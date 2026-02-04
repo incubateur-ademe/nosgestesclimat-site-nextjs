@@ -6,25 +6,25 @@ import Footer from '@/components/layout/Footer'
 import HeaderServer from '@/components/layout/HeaderServer'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
-import type { DefaultPageProps } from '@/types'
-import type { PropsWithChildren } from 'react'
+import type { Locale } from '@/i18nConfig'
 
-type LayoutProps = PropsWithChildren & DefaultPageProps
-
-export default async function LargeLayout({ children, params }: LayoutProps) {
+export default async function LargeLayout({
+  children,
+  params,
+}: LayoutProps<'/[locale]'>) {
   const { locale } = await params
   return (
     <>
       <CookieBannerProvider>
         <SkipToMainContentLink />
         <CookieConsentBannerAndManagement />
-        <Banner locale={locale} />
+        <Banner locale={locale as Locale} />
         <HeaderServer locale={locale} />
         {children}
 
         <GoogleTagScript />
         <GoogleTagIframe />
-        <Footer />
+        <Footer locale={locale as Locale} />
       </CookieBannerProvider>
     </>
   )

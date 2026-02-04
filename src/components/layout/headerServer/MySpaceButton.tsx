@@ -29,7 +29,7 @@ export default async function MySpaceButton({ locale }: { locale: string }) {
         data-track-event={headerClickMonEspaceUnauthenticatedServer}
         data-track-posthog={captureClickHeaderMonEspaceUnauthenticatedServer}>
         <Trans locale={locale} i18nKey="header.monEspace.title">
-          Mon Espace
+          Mon espace
         </Trans>
       </ButtonLinkServer>
     )

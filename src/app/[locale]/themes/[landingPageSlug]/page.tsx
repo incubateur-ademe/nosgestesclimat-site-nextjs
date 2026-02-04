@@ -296,7 +296,7 @@ export default async function ThematicLandingPage({
         {htmlLegend && <Legend htmlLegend={htmlLegend} />}
       </LandingPage>
 
-      <Footer langButtonsDisplayed={{ fr: false, en: false }} />
+      <Footer locale={locale} />
     </ClientLayout>
   )
 }

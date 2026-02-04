@@ -63,6 +63,7 @@ const nextConfig: NextConfig = {
     mdxRs: true,
     useCache: true,
   },
+
   ...rewrites,
   webpack(config) {
     config.module.rules.push({

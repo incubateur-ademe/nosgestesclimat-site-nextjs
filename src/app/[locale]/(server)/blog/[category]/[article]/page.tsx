@@ -5,7 +5,6 @@ import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadat
 
 import Footer from '@/components/layout/Footer'
 import Badge from '@/design-system/layout/Badge'
-import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
@@ -57,11 +56,6 @@ export default async function ArticlePage({
       categorySlug: category,
       locale,
     })) || {}
-
-  const langButtonsDisplayed = await getLangButtonsDisplayed({
-    category,
-    article: articleSlug,
-  })
 
   //  Firstly redirect to french version if the page is not available in the current locale
   if (locale !== i18nConfig.defaultLocale && !article) {
@@ -150,7 +144,7 @@ export default async function ArticlePage({
 
       <OtherArticles articles={otherArticles} locale={locale} />
 
-      <Footer langButtonsDisplayed={langButtonsDisplayed} />
+      <Footer backgroundColor="white" locale={locale} />
     </>
   )
 }
