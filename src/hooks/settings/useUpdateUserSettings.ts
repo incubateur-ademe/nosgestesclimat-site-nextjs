@@ -24,12 +24,9 @@ export function useUpdateUserSettings() {
           {
             email,
             name,
-            contact:
-              newsletterIds && newsletterIds.length > 0
-                ? {
-                    listIds: newsletterIds,
-                  }
-                : undefined,
+            contact: {
+              listIds: newsletterIds,
+            },
           },
           {
             params: {

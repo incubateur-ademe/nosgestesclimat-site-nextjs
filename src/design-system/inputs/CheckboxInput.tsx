@@ -66,7 +66,7 @@ export default forwardRef(function CheckboxInput(
           id={checkboxId}
           type="checkbox"
           className={twMerge(
-            'focus:ring-primary-700 cursor-pointer rounded-xl border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-2xl transition-colors focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
+            'focus:ring-primary-700 accent-primary-700 cursor-pointer rounded-xl border-2 border-solid border-gray-200 bg-gray-100 text-2xl transition-colors focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
             sizesClassNames[size],
             error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
             disabled ? 'cursor-not-allowed opacity-50' : '',

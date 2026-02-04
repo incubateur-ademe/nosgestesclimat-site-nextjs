@@ -5,7 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Form from '@/design-system/form/Form'
-import TextInput from '@/design-system/inputs/TextInput'
+import EmailInput from '@/design-system/inputs/EmailInput'
 import {
   CREATE_VERIFICATION_CODE_ERROR,
   useCreateVerificationCode,
@@ -72,17 +72,9 @@ export default function SendVerificationCodeForm({
     <Form
       onSubmit={handleSubmit(onSubmit)}
       buttonLabel={buttonLabel ?? t('Accéder à mon espace')}>
-      <TextInput
-        type="email"
-        autoComplete="email"
+      <EmailInput
         data-testid="verification-code-email-input"
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
-        placeholder="nom.prenom@domaine.fr"
-        srOnlyHelperText={
-          <Trans i18nKey="organisations.connexion.email.input.helper">
-            Format attendu : nom.prenom@domaine.fr
-          </Trans>
-        }
         {...register('email', {
           required: required
             ? t('Merci de renseigner votre adresse e-mail')

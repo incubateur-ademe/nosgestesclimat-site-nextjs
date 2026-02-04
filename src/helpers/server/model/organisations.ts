@@ -1,17 +1,20 @@
+'use server'
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
-import { fetchWithJWTCookie } from './fetchWithJWTCookie'
+import { fetchServer } from './fetchServer'
 import { getUser } from './user'
 
-export function getOrganisation(idOrSlug: string): Promise<Organisation> {
-  return fetchWithJWTCookie(`${ORGANISATION_URL}/${idOrSlug}`)
+export async function getOrganisation(idOrSlug: string): Promise<Organisation> {
+  return fetchServer<Organisation>(`${ORGANISATION_URL}/${idOrSlug}`)
 }
 
-export function getOrganisationPolls(
+export async function getOrganisationPolls(
   idOrSlug: string
 ): Promise<OrganisationPoll[]> {
-  return fetchWithJWTCookie(`${ORGANISATION_URL}/${idOrSlug}/polls`)
+  return fetchServer<OrganisationPoll[]>(
+    `${ORGANISATION_URL}/${idOrSlug}/polls`
+  )
 }
 
 export async function getUserOrganisation(): Promise<Organisation | undefined> {
@@ -22,8 +25,7 @@ export async function getUserOrganisation(): Promise<Organisation | undefined> {
   }
 
   try {
-    const organisations =
-      await fetchWithJWTCookie<Organisation[]>(ORGANISATION_URL)
+    const organisations = await fetchServer<Organisation[]>(ORGANISATION_URL)
 
     if (organisations.length === 0) return undefined
 
