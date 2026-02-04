@@ -131,6 +131,7 @@
     "eslint-plugin-react-hooks": "6.1.1",
     "glob": "^11.0.1",
     "happy-dom": "^20.0.8",
+    "i18next-parser": "^9.3.0",
     "jsdom": "^27.0.1",
     "knip": "^5.82.1",
     "mailisk": "^2.2.2",
