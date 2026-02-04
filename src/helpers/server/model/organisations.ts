@@ -5,10 +5,6 @@ import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
 import { getUser } from './user'
 
-export async function getOrganisation(idOrSlug: string): Promise<Organisation> {
-  return fetchServer<Organisation>(`${ORGANISATION_URL}/${idOrSlug}`)
-}
-
 export async function getOrganisationPolls(
   idOrSlug: string
 ): Promise<OrganisationPoll[]> {

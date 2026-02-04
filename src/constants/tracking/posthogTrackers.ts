@@ -118,42 +118,6 @@ export const captureIframeInteraction = (url: string) => {
 
 // Orga
 
-export const captureDownloadKit = () => {
-  return {
-    eventName: 'click download kit',
-    properties: {
-      module: 'organisation board',
-    },
-  }
-}
-
-export const captureClickAteliers = () => {
-  return {
-    eventName: 'click ateliers',
-    properties: {
-      module: 'organisation board',
-    },
-  }
-}
-
-export const captureClickImpactCo2 = () => {
-  return {
-    eventName: 'click impact co2',
-    properties: {
-      module: 'organisation board',
-    },
-  }
-}
-
-export const captureCopyPollLink = () => {
-  return {
-    eventName: 'copy poll link',
-    properties: {
-      module: 'poll dashboard',
-    },
-  }
-}
-
 export const captureClickFunFactsPlus = () => {
   return {
     eventName: 'click poll fun facts plus',
@@ -204,15 +168,6 @@ export const captureExportPollData = () => {
 export const captureLocale = ({ locale }: Props) => {
   return {
     eventName: 'Locale used',
-    properties: {
-      language: locale,
-    },
-  }
-}
-
-export const captureFooterSwitchLanguage = (locale: string) => {
-  return {
-    eventName: 'Switch Language in Footer',
     properties: {
       language: locale,
     },

@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBackgroundLightColor,
@@ -24,7 +24,7 @@ interface Props {
 export default function Action({
   action,
   index,
-  metric = defaultMetric,
+  metric = carboneMetric,
 }: Props) {
   const { actionChoices } = useCurrentSimulation()
 

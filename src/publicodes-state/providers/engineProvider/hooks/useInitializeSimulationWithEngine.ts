@@ -1,4 +1,4 @@
-import { defaultMetric, metrics } from '@/constants/model/metric'
+import { carboneMetric, metrics } from '@/constants/model/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
@@ -100,7 +100,7 @@ export function useInitializeSimulationWithEngine({
   }, [computedResults, updateCurrentSimulation])
 
   const isInitialized = useMemo(
-    () => computedResults[defaultMetric].bilan !== 0,
+    () => computedResults[carboneMetric].bilan !== 0,
     [computedResults]
   )
 

@@ -23,8 +23,18 @@
     "vitest.setup.ts",
     "vitest-globals.d.ts",
     "src/locales/nouveautes/**",
-    "scripts/check-links-validity.mjs",
-    "src/constants/ab-test.ts"
+    "scripts/**",
+    "src/constants/ab-test.ts",
+    "e2e/**",
+    "src/locales/initClient.ts"
   ],
-  "ignoreDependencies": ["@axe-core/playwright"]
+  "ignoreDependencies": [
+    "@axe-core/playwright",
+    "i18next-parser",
+    "yaml-loader",
+    "playwright-core",
+    "react-tooltip",
+    "eslint-plugin-react-hooks"
+  ],
+  "ignoreBinaries": ["only-allow"]
 }
