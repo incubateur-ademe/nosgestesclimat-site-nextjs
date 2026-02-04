@@ -117,6 +117,7 @@ function CategoriesAccordionWithSelector({
       </div>
 
       <CategoriesAccordionStandalone
+        key={computedResults.carbone?.bilan}
         rules={rules as Partial<NGCRules>}
         computedResults={computedResults}
         metric="carbone"

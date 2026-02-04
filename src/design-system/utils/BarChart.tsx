@@ -20,8 +20,9 @@ export default function BarChart({ type, value, color }: Props) {
         [propertyAffected]: value,
       }}
       transition={{
-        duration: 0.2,
+        duration: 0.8,
         ease: 'easeOut',
+        delay: 0.5,
       }}
     />
   )
