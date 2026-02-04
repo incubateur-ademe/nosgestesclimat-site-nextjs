@@ -2,13 +2,23 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_SETTINGS_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
+import {
+  getNewsletters,
+  getNewsletterSubscriptions,
+} from '@/helpers/server/model/newsletter'
+import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ProfileTab from '../_components/ProfileTabs'
 import LocalisationSection from './_components/LocalisationSection'
-import UserInfoSection from './_components/UserInfoSection'
+import NewsletterSettings from './_components/NewsletterSettings'
+import UserEmail from './_components/UserEmail'
 
 export default async function SettingsPage({ params }: DefaultPageProps) {
   const { locale } = await params
+  const [subscriptions, newsletters] = await Promise.all([
+    getNewsletterSubscriptions(),
+    getNewsletters({ locale }),
+  ])
   return (
     <div className="flex flex-col">
       <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} locale={locale} />
@@ -26,7 +36,28 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
         />
       </div>
 
-      <UserInfoSection locale={locale} />
+      <section aria-labelledby="user-info-title" className="mb-10">
+        <h2 id="user-info-title" className="mb-4">
+          <Trans i18nKey="mon-espace.settings.userInfos.title" locale={locale}>
+            Mes informations
+          </Trans>
+        </h2>
+
+        <div className="flex max-w-[720px] flex-col gap-8">
+          <QueryClientProviderWrapper>
+            <UserProvider>
+              <UserEmail />
+            </UserProvider>
+          </QueryClientProviderWrapper>
+
+          <h2 className="mt-8">
+            <Trans i18nKey="settings.newsletters.title" locale={locale}>
+              Inscription à nos contenus
+            </Trans>
+          </h2>
+          <NewsletterSettings {...{ newsletters, subscriptions }} />
+        </div>
+      </section>
 
       <QueryClientProviderWrapper>
         <LocalisationSection />
