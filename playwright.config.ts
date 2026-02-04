@@ -13,7 +13,7 @@ export default defineConfig<FixturesOptions>({
   testDir: './e2e',
   fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 6 : undefined,
+  workers: process.env.CI ? 3 : undefined,
   use: {
     baseURL: process.env.NEXT_PUBLIC_SITE_URL,
     trace: process.env.CI ? 'on-first-retry' : 'on',
