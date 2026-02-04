@@ -17,12 +17,6 @@ vi.mock('next/navigation', () => ({
   useSearchParams: () => mockSearchParams,
 }))
 
-// Mock trackEvent
-vi.mock('@/utils/analytics/trackEvent', () => ({
-  trackEvent: vi.fn(),
-  trackPosthogEvent: vi.fn(),
-}))
-
 // Mock getCategoryColorClass helpers
 vi.mock('@/helpers/getCategoryColorClass', () => ({
   getBackgroundColor: vi.fn(() => '#f0f0f0'),
