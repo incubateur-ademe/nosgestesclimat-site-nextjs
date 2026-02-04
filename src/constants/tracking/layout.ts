@@ -2,30 +2,8 @@
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
 // Figma comment #1
-export const headerClickLogo = ['trackEvent', 'Header', 'Click Logo']
-
-// Figma comment #2
-export const headerClickTest = ['trackEvent', 'Header', 'Click Test']
-
-// Figma comment #3
-export const headerClickActions = ['trackEvent', 'Header', 'Click Actions']
-
-// Figma comment #4
-export const headerClickClassements = [
-  'trackEvent',
-  'Header',
-  'Click Classements',
-]
 
 // Figma comment #5
-export const headerClickProfil = ['trackEvent', 'Header', 'Click Profil']
-
-// Figma comment #7
-export const headerClickOrganisation = [
-  'trackEvent',
-  'Header',
-  'Click Organisation',
-]
 
 // Figma comment #8
 export const footerClickLogo = ['trackEvent', 'Footer', 'Click Logo']

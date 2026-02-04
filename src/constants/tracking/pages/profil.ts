@@ -3,41 +3,6 @@
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-// Figma comment #72
-export const profilClickCtaCommencer = [
-  'trackEvent',
-  'Profil',
-  'Click CTA',
-  'Click Passer le test',
-]
-
-// Figma comment #72
-export const profilClickCtaReprendre = [
-  'trackEvent',
-  'Profil',
-  'Click CTA',
-  'Click Reprendre mon test',
-]
-
-// Figma comment #72
-export const profilClickCtaResultats = [
-  'trackEvent',
-  'Profil',
-  'Click CTA',
-  'Click Voir les résultats',
-]
-
-// Figma comment #73
-export const profilClickRecommencer = [
-  'trackEvent',
-  'Profil',
-  'Click CTA',
-  'Click Nouveau test',
-]
-
-// Figma comment #74
-export const profilClickTutoriel = ['trackEvent', 'Profil', 'Click Tutoriel']
-
 // Figma comment #76
 export const profilOpenRegions = ['trackEvent', 'Profil', 'Open Regions']
 

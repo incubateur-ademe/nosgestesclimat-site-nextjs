@@ -3,10 +3,6 @@
   "tags": ["-lintignore"],
   "entry": [
     "sentry.*.config.ts",
-    "tailwind.config.js",
-    "postcss.config.js",
-    "vitest.config.ts",
-    "playwright.config.ts",
     ".storybook/**/*.{ts,tsx,js,jsx}",
     "scripts/**/*.{ts,tsx,js,jsx,mjs,cjs}",
     "src/i18nConfig.ts",
@@ -30,23 +26,5 @@
     "scripts/check-links-validity.mjs",
     "src/constants/ab-test.ts"
   ],
-  "ignoreDependencies": [
-    "@axe-core/playwright",
-    "@chromatic-com/storybook",
-    "@faker-js/faker",
-    "@playwright/test",
-    "/^@storybook\\//",
-    "/^@testing-library\\//",
-    "/^@types\\//",
-    "@vitejs/plugin-react",
-    "/^@vitest\\//",
-    "happy-dom",
-    "jsdom",
-    "msw",
-    "msw-storybook-addon",
-    "playwright",
-    "playwright-core",
-    "puppeteer",
-    "vitest"
-  ]
+  "ignoreDependencies": ["@axe-core/playwright"]
 }
