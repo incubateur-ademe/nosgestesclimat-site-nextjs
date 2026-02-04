@@ -14,6 +14,7 @@ import {
   isMicrosoftEmail,
   MICROSOFT_EMAIL_ERROR_MESSAGE,
 } from '@/utils/isEmailValid'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
@@ -37,14 +38,16 @@ export default function InvitationForm({ group }: { group: Group }) {
   const hasCompletedTest = currentSimulation.progression === 1
 
   const { goToSimulateurPage } = useSimulateurPage()
-  const { goToEndPage } = useEndPage()
+  const { linkToEndPage } = useEndPage()
+  const router = useRouter()
 
   const [shouldNavigate, setShouldNavigate] = useState(false)
+
   useEffect(() => {
     if (shouldNavigate && currentSimulation.groups?.includes(group.id)) {
       setShouldNavigate(false)
       if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
+        router.push(linkToEndPage)
       } else {
         goToSimulateurPage()
       }
@@ -53,9 +56,10 @@ export default function InvitationForm({ group }: { group: Group }) {
     currentSimulation.groups,
     group.id,
     hasCompletedTest,
-    goToEndPage,
     goToSimulateurPage,
     shouldNavigate,
+    router,
+    linkToEndPage,
   ])
 
   function onSubmit({ guestName, guestEmail }: Inputs) {

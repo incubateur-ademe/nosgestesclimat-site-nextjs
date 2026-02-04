@@ -15,7 +15,7 @@ import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { FIN_TAB_QUERY_PARAM } from '@/constants/urls/params'
 import Title from '@/design-system/layout/Title'
 import { fetchUser } from '@/helpers/user/fetchUser'
-import { useEndGuard } from '@/hooks/navigation/useEndGuard'
+import { useSimulatorGuard } from '@/hooks/navigation/useSimulatorGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
@@ -30,7 +30,6 @@ import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import SaveResultsAndSigninSignUpForm from './_components/SaveResultsAndSigninSignUpForm'
 import TallyForm from './_components/TallyForm'
-import FinPageSkeleton from './skeleton'
 
 const titles: Record<Metric, ReactElement> = {
   [carboneMetric]: <Trans>carbone</Trans>,
@@ -38,7 +37,7 @@ const titles: Record<Metric, ReactElement> = {
 }
 
 export default function FinPage() {
-  const { isGuardInit, isGuardRedirecting } = useEndGuard()
+  useSimulatorGuard()
 
   const { currentMetric } = useCurrentMetric()
 
@@ -59,9 +58,6 @@ export default function FinPage() {
       titleTags[1].remove()
     }
   }, [])
-
-  // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
-  if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
 
   return (
     <div className="relative mt-4 mb-16 md:mt-10">

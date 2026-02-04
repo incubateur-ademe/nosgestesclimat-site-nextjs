@@ -1,3 +1,4 @@
+import { END_PAGE_PATH } from '@/constants/urls/paths'
 import {
   getLinkToSimulateur,
   getLinkToTutoriel,
@@ -34,7 +35,7 @@ export function useSimulateurPage() {
 
   const { tutorials, initSimulation } = useUser()
 
-  const { goToEndPage, getLinkToEndPage } = useEndPage()
+  const { linkToEndPage } = useEndPage()
 
   const tutorielSeen = tutorials.testIntro
 
@@ -58,7 +59,7 @@ export function useSimulateurPage() {
       // If the user has completed the test we redirect him to the results page
       // But not if they're coming from profile modification
       if (progression === 1 && !newSimulation) {
-        goToEndPage()
+        router.push(linkToEndPage)
         return
       }
 
@@ -84,10 +85,10 @@ export function useSimulateurPage() {
       progression,
       tutorielSeen,
       router,
-      initSimulation,
-      goToEndPage,
       locale,
       searchParams,
+      initSimulation,
+      linkToEndPage,
     ]
   )
 
@@ -97,7 +98,7 @@ export function useSimulateurPage() {
     }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault): string => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
       if (progression === 1 && !newSimulation) {
-        return getLinkToEndPage()
+        return END_PAGE_PATH
       }
 
       // If the user has seen the tutoriel we return the test page link
@@ -111,7 +112,7 @@ export function useSimulateurPage() {
       // else we return the tutoriel page link
       return getLinkToTutoriel({ locale, searchParams })
     },
-    [progression, tutorielSeen, getLinkToEndPage, locale, searchParams]
+    [progression, tutorielSeen, locale, searchParams]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {
