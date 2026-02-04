@@ -64,7 +64,6 @@ export const CookieFieldset = ({
   register,
   className = '',
 }: CookieFieldsetProps) => {
-  console.log(currentValue)
   return (
     <fieldset className={`border-t border-gray-200 ${className}`}>
       <legend className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">

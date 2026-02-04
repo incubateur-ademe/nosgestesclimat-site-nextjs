@@ -12,6 +12,11 @@ export interface CookieState {
 
 type CookieBannerDisplayState = 'hidden' | 'banner' | 'form'
 
+const DEFAULT_COOKIE_STATE: CookieState = {
+  posthog: 'refused',
+  googleTag: 'refused',
+}
+
 export function useCookieManagement(): {
   cookieState: CookieState
   onChange: (state: CookieState) => void
@@ -25,12 +30,14 @@ export function useCookieManagement(): {
 
   const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
 
-  const cookieLocalStorageState: CookieState = json
-    ? (JSON.parse(json) as CookieState)
-    : ({
-        posthog: 'refused',
-        googleTag: 'refused',
-      } as const)
+  let cookieLocalStorageState: CookieState
+  try {
+    cookieLocalStorageState = json
+      ? (JSON.parse(json) as CookieState)
+      : DEFAULT_COOKIE_STATE
+  } catch {
+    cookieLocalStorageState = DEFAULT_COOKIE_STATE
+  }
 
   const handleUpdatePosthog = useCallback((cookieState: CookieState) => {
     switch (cookieState.posthog) {
