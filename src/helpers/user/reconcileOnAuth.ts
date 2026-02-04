@@ -87,6 +87,10 @@ export async function reconcileUserOnAuth({
     posthog.alias(localUser.userId, userId)
   }
 
+  if (hasPosthogConsent) {
+    posthog.identify(userId)
+  }
+
   await loadServerSimulation({
     userId,
     updateSimulations,

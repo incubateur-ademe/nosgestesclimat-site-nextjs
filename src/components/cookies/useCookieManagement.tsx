@@ -1,5 +1,6 @@
 'use client'
 
+import { useUser } from '@/publicodes-state'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
 import type { PropsWithChildren } from 'react'
@@ -45,6 +46,24 @@ export const CookieBannerProvider = ({ children }: PropsWithChildren) => {
     </CookieConsentContext>
   )
 }
+const handleUpdateGoogleTag = (cookieState: CookieState) => {
+  switch (cookieState.googleTag) {
+    case 'accepted':
+      window.gtag?.('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+      })
+      break
+    case 'refused':
+      window.gtag?.('consent', 'update', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      })
+      break
+  }
+}
 
 export function useCookieManagement(): {
   cookieState: CookieState
@@ -57,6 +76,8 @@ export function useCookieManagement(): {
   const { cookieBannerDisplayState, setCookieBannerDisplayState } =
     useContext(CookieConsentContext)
 
+  const { user } = useUser()
+
   const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
 
   let cookieLocalStorageState: CookieState
@@ -68,43 +89,42 @@ export function useCookieManagement(): {
     cookieLocalStorageState = DEFAULT_COOKIE_STATE
   }
 
-  const handleUpdatePosthog = useCallback((cookieState: CookieState) => {
-    switch (cookieState.posthog) {
-      case 'accepted':
-        posthog.opt_in_capturing()
-        break
-      case 'refused':
-        posthog.opt_out_capturing()
-        break
-      case 'do_not_track':
-        posthog.set_config({
-          disable_persistence: true,
-          disable_session_recording: true,
-          opt_out_capturing_by_default: true,
-        })
-        posthog.opt_out_capturing()
-        break
-    }
-  }, [])
-
-  const handleUpdateGoogleTag = useCallback((cookieState: CookieState) => {
-    switch (cookieState.googleTag) {
-      case 'accepted':
-        window.gtag?.('consent', 'update', {
-          ad_storage: 'granted',
-          ad_user_data: 'granted',
-          ad_personalization: 'granted',
-        })
-        break
-      case 'refused':
-        window.gtag?.('consent', 'update', {
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-        })
-        break
-    }
-  }, [])
+  const handleUpdatePosthog = useCallback(
+    (cookieState: CookieState) => {
+      switch (cookieState.posthog) {
+        case 'accepted':
+          posthog.set_config({
+            disable_persistence: false,
+            disable_session_recording: false,
+            opt_out_capturing_by_default: false,
+          })
+          posthog.opt_in_capturing()
+          posthog.identify(user?.userId)
+          break
+        case 'refused':
+          posthog.set_config({
+            disable_persistence: false,
+            disable_session_recording: true,
+            opt_out_capturing_by_default: false,
+          })
+          // If previously accepted, we need to reset to clear the opt-out
+          posthog.reset()
+          // If user was previously opted-out, we need to opt-in
+          posthog.opt_in_capturing()
+          break
+        case 'do_not_track':
+          posthog.set_config({
+            disable_persistence: true,
+            disable_session_recording: true,
+            opt_out_capturing_by_default: true,
+          })
+          posthog.reset()
+          posthog.opt_out_capturing()
+          break
+      }
+    },
+    [user?.userId]
+  )
 
   const onChange = useCallback(
     (cookieState: CookieState) => {
@@ -116,7 +136,7 @@ export function useCookieManagement(): {
 
       safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
     },
-    [handleUpdateGoogleTag, handleUpdatePosthog, setCookieBannerDisplayState]
+    [handleUpdatePosthog, setCookieBannerDisplayState]
   )
 
   const rejectAll = useCallback(() => {
