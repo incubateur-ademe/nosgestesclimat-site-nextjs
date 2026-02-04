@@ -26,9 +26,9 @@ const meta: Meta<typeof PostThumbnail> = {
       control: 'text',
       description: 'Link URL for the post',
     },
-    trackingEvent: {
-      control: 'object',
-      description: 'Analytics tracking event array',
+    onLinkClick: {
+      action: 'clicked',
+      description: 'Link click handler',
     },
     className: {
       control: 'text',
@@ -47,7 +47,7 @@ export const Default: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-1',
-    trackingEvent: ['blog', 'click', 'article-1'],
+    onLinkClick: () => console.log('Link clicked'),
   },
 }
 
@@ -59,7 +59,7 @@ export const LongTitle: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-2',
-    trackingEvent: ['blog', 'click', 'article-2'],
+    onLinkClick: () => console.log('Link clicked'),
   },
 }
 
@@ -70,7 +70,7 @@ export const ShortTitle: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-3',
-    trackingEvent: ['blog', 'click', 'article-3'],
+    onLinkClick: () => console.log('Link clicked'),
   },
 }
 
@@ -81,7 +81,7 @@ export const WithoutTracking: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-4',
-    trackingEvent: [],
+
   },
 }
 
@@ -92,7 +92,7 @@ export const CustomStyling: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-5',
-    trackingEvent: ['blog', 'click', 'article-5'],
+    onLinkClick: () => console.log('Link clicked'),
     className: 'border-2 border-blue-500',
   },
 }

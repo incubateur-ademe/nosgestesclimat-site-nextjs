@@ -18,7 +18,7 @@ declare global {
  * @param matomoArgs - Array for Matomo tracking: ['trackEvent', 'Category', 'Action', 'Name', 'Value']
  * @param posthogEvent - Optional object for Posthog tracking: { eventName: string, properties?: Record<...> }
  */
-export const trackEvent = (
+export const trackEvents = (
   matomoArgs: (string | null)[],
   posthogEvent?: {
     eventName: string
@@ -53,7 +53,31 @@ export const trackEvent = (
 }
 
 /**
- * @deprecated Use trackEvent with posthogEvent parameter instead
+ * @deprecated Use trackEvents with matomoArgs parameter instead
+ */
+export const trackEvent = (args: (string | null)[]) => {
+  if (shouldLogTracking) {
+    console.log(args)
+    console.debug(args.join(' => '))
+  }
+
+  if (shouldNotTrack || !window?._paq) {
+    return
+  }
+
+  // Matomo: [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
+  // Exemple : ['trackEvent', 'Misc', 'Region', 'Region used: FR']
+  // Or : ['trackEvent', 'Accueil', 'CTA Click', 'Click Reprendre le test']
+  // Or : ['trackEvent', 'Simulation', 'Simulation Completed', null, '8.9']
+  // Or : ['trackEvent', 'Simulation', 'Simulation Time', null, '3']
+  // Or : ['trackEvent', 'Fin', 'Toggle Target block']
+
+  // Pass a copy of the array to avoid mutation
+  window?._paq?.push([...args])
+}
+
+/**
+ * @deprecated Use trackEvents with posthogEvent parameter instead
  */
 export const trackPosthogEvent = (args: {
   eventName: string

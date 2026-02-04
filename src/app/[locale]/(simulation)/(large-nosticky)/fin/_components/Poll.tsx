@@ -4,7 +4,7 @@ import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutP
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import { endClickPoll } from '@/constants/tracking/pages/end'
+import { trackEndClickPoll } from '@/constants/tracking/pages/end'
 import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import Confirmation from '@/design-system/alerts/Confirmation'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
@@ -95,7 +95,7 @@ export default function Poll() {
             orgaSlug: poll?.organisation.slug || '', // TODO: handle this better
             pollSlug: lastPollSlug || '',
           })}
-          trackingEvent={endClickPoll}>
+          onClick={trackEndClickPoll}>
           <Trans i18nKey="endPage.poll.seeResults.button.label">
             Voir les résultats
           </Trans>

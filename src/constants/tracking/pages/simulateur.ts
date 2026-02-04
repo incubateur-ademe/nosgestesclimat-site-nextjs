@@ -1,6 +1,8 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
+import { trackEvents } from '@/utils/analytics/trackEvent'
+
 // Figma comment #39
 export const simulateurOpenSommaire = [
   'trackEvent',
@@ -39,8 +41,6 @@ export const simulateurCloseScoreInfo = [
 // Figma comment #121
 export const simulateurClickFaq = ['trackEvent', 'Simulateur', 'Click FAQ']
 
-export const simulationClickSaveShortcut = [
-  'trackEvent',
-  'Simulateur',
-  'Click Save shortcut',
-]
+export const trackSimulationClickSaveShortcut = () => {
+  trackEvents(['trackEvent', 'Simulateur', 'Click Save shortcut'])
+}

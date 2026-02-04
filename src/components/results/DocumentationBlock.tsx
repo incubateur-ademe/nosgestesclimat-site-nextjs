@@ -2,10 +2,9 @@
 
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { endClickDocumentation } from '@/constants/tracking/pages/end'
+import { trackEndClickDocumentation } from '@/constants/tracking/pages/end'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function DocumentationBlock() {
   return (
@@ -25,7 +24,7 @@ export default function DocumentationBlock() {
       <InlineLink
         href="/documentation/bilan"
         className="flex items-center"
-        onClick={() => trackEvent(endClickDocumentation)}>
+        onClick={() => trackEndClickDocumentation()}>
         <BookClosedIcon className="fill-primary-700 mr-2 w-4" />
 
         <Trans>Comprendre le calcul</Trans>

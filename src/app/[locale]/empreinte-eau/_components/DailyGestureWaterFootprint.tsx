@@ -3,9 +3,9 @@ import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
+  trackLandingClickCTAResults,
+  trackLandingClickCTAResume,
+  trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 
 export default async function DailyGestureWaterFootprint({
@@ -54,18 +54,21 @@ export default async function DailyGestureWaterFootprint({
         </>
       }
       trackingEvents={{
-        start: getLandingClickCTAStart(
-          '/empreinte-eau',
-          trackingActionClickPageBottom
-        ),
-        resume: getLandingClickCTAResume(
-          '/empreinte-eau',
-          trackingActionClickPageBottom
-        ),
-        results: getLandingClickCTAResults(
-          '/empreinte-eau',
-          trackingActionClickPageBottom
-        ),
+        start: () =>
+          trackLandingClickCTAStart(
+            '/empreinte-eau',
+            trackingActionClickPageBottom
+          ),
+        resume: () =>
+          trackLandingClickCTAResume(
+            '/empreinte-eau',
+            trackingActionClickPageBottom
+          ),
+        results: () =>
+          trackLandingClickCTAResults(
+            '/empreinte-eau',
+            trackingActionClickPageBottom
+          ),
       }}
       gestures={{
         [gesturesKeysForTranslation.alimentation]: {

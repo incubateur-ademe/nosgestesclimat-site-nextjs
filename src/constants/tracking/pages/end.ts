@@ -1,6 +1,6 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #57
@@ -27,7 +27,7 @@ export const trackEndClickHedgehog = () => {
 
 // Figma comment #60
 export const trackEndClickCategory = (category: DottedName) => {
-  trackEvent(
+  trackEvents(
     ['trackEvent', 'Fin', 'Click Category', `Click Category ${category}`],
     {
       eventName: 'Fin click category',
@@ -43,7 +43,7 @@ export const trackEndClickSaveSimulation = () => {
 
 // Figma comment #63
 export const trackEndClickAction = (action: DottedName) => {
-  trackEvent(['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`], {
+  trackEvents(['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`], {
     eventName: 'Fin click action',
     properties: { action },
   })
@@ -51,7 +51,7 @@ export const trackEndClickAction = (action: DottedName) => {
 
 // Figma comment #64
 export const trackEndClickActions = (subcategory?: string) => {
-  trackEvent(
+  trackEvents(
     ['trackEvent', 'Fin', 'Click Actions'],
     subcategory
       ? {
@@ -68,7 +68,7 @@ export const trackEndClickDocumentation = () => {
 }
 
 export const trackEndClickDomesticWater = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Eau domestique'], {
+  trackEvents(['trackEvent', 'Fin', 'Click Eau domestique'], {
     eventName: 'Fin switch eau',
   })
 }
@@ -82,7 +82,7 @@ export const trackEndClickJagisSecondBlock = () => {
 }
 
 export const trackEndClickFootprint = (metric: string) => {
-  trackEvent(['trackEvent', 'Fin', `Click Empreinte ${metric}`], {
+  trackEvents(['trackEvent', 'Fin', `Click Empreinte ${metric}`], {
     eventName: 'Fin click empreinte',
     properties: { metric },
   })

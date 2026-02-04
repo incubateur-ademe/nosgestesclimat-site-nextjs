@@ -2,9 +2,8 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import { breadcrumbClickLink } from '@/constants/tracking/layout'
+import { trackBreadcrumbClickLink } from '@/constants/tracking/layout'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { Fragment, type ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -58,7 +57,7 @@ export default function Breadcrumbs({
                 if (itemBeforeCurrent.isDisabled) {
                   e.preventDefault()
                 }
-                trackEvent(breadcrumbClickLink(itemBeforeCurrent.href))
+                trackBreadcrumbClickLink(itemBeforeCurrent.href)
               }}
               title={`${itemBeforeCurrent.label} - ${t('Visiter cette page')}`}
               aria-current={itemBeforeCurrent.isActive}
@@ -83,7 +82,7 @@ export default function Breadcrumbs({
                     if (isDisabled || isActive) {
                       e.preventDefault()
                     }
-                    trackEvent(breadcrumbClickLink(href))
+                    trackBreadcrumbClickLink(href)
                   }}
                   title={`${label} - ${isActive ? t('Page active') : t('Visiter cette page')}`}
                   aria-current={isActive}

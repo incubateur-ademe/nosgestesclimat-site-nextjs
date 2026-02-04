@@ -9,10 +9,10 @@ import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
+  trackLandingClickCTARestart,
+  trackLandingClickCTAResults,
+  trackLandingClickCTAResume,
+  trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import { headers } from 'next/headers'
@@ -69,22 +69,26 @@ export default async function Homepage({ params }: DefaultPageProps) {
               <Suspense fallback={<CTAButtonsPlaceholder />}>
                 <DynamicCTAButtons
                   trackingEvents={{
-                    start: getLandingClickCTAStart(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
-                    resume: getLandingClickCTAResume(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
+                    start: () =>
+                      trackLandingClickCTAStart(
+                        pathname,
+                        trackingActionClickCTA
+                      ),
+                    resume: () =>
+                      trackLandingClickCTAResume(
+                        pathname,
+                        trackingActionClickCTA
+                      ),
+                    results: () =>
+                      trackLandingClickCTAResults(
+                        pathname,
+                        trackingActionClickCTA
+                      ),
+                    restart: () =>
+                      trackLandingClickCTARestart(
+                        pathname,
+                        trackingActionClickCTA
+                      ),
                   }}
                   className="w-full"
                 />

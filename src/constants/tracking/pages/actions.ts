@@ -1,19 +1,19 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #67
 export const trackActionsClickStart = () => {
-  trackEvent(['trackEvent', 'Actions', 'Click Démarrer'], {
+  trackEvents(['trackEvent', 'Actions', 'Click Démarrer'], {
     eventName: 'Actions click Démarrer',
   })
 }
 
 // Figma comment #69
 export const trackActionsClickYes = (action: DottedName) => {
-  trackEvent(['trackEvent', 'Actions', 'Click Yes', `Click Yes ${action}`], {
+  trackEvents(['trackEvent', 'Actions', 'Click Yes', `Click Yes ${action}`], {
     eventName: 'Actions click Yes',
     properties: { action },
   })
@@ -21,7 +21,7 @@ export const trackActionsClickYes = (action: DottedName) => {
 
 // Figma comment #70
 export const trackActionsClickNo = (action: DottedName) => {
-  trackEvent(['trackEvent', 'Actions', 'Click No', `Click No ${action}`], {
+  trackEvents(['trackEvent', 'Actions', 'Click No', `Click No ${action}`], {
     eventName: 'Actions click No',
     properties: { action },
   })
@@ -29,7 +29,7 @@ export const trackActionsClickNo = (action: DottedName) => {
 
 // Figma comment #71
 export const trackActionsClickAdditionalQuestion = (action: DottedName) => {
-  trackEvent(
+  trackEvents(
     [
       'trackEvent',
       'Actions',
@@ -45,7 +45,7 @@ export const trackActionsClickAdditionalQuestion = (action: DottedName) => {
 
 // Figma comment #112
 export const trackActionsOpenAction = (action: DottedName) => {
-  trackEvent(
+  trackEvents(
     ['trackEvent', 'Actions', 'Open Action', `Open Action ${action}`],
     {
       eventName: 'Actions open action',
@@ -56,7 +56,7 @@ export const trackActionsOpenAction = (action: DottedName) => {
 
 // Figma comment #114
 export const trackActionsClickAdeme = () => {
-  trackEvent(
+  trackEvents(
     ['trackEvent', 'Actions', 'Click More infos', 'Click Agir ADEME'],
     {
       eventName: 'Actions click Agir ADEME',
@@ -65,18 +65,20 @@ export const trackActionsClickAdeme = () => {
 }
 
 // Click on "Comprendre le calcul" link in action detail
-export const actionsClickUnderstandCalculation = (action: DottedName) => [
-  'trackEvent',
-  'Actions',
-  'Click Understand Calculation',
-  `Click Understand Calculation ${action}`,
-]
-
-export const actionsClickUnderstandCalculationPosthog = (
-  action: DottedName
-) => ({
-  eventName: 'Actions click understand calculation',
-  properties: {
-    action,
-  },
-})
+// Click on "Comprendre le calcul" link in action detail
+export const trackActionsClickUnderstandCalculation = (action: DottedName) => {
+  trackEvents(
+    [
+      'trackEvent',
+      'Actions',
+      'Click Understand Calculation',
+      `Click Understand Calculation ${action}`,
+    ],
+    {
+      eventName: 'Actions click understand calculation',
+      properties: {
+        action,
+      },
+    }
+  )
+}

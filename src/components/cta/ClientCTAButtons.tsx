@@ -4,7 +4,6 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -19,10 +18,10 @@ export default function ClientCTAButtons({
 }: {
   className?: string
   trackingEvents: {
-    start: string[]
-    resume: string[]
-    results: string[]
-    restart?: string[]
+    start?: () => void
+    resume?: () => void
+    results?: () => void
+    restart?: () => void
   }
   withRestart?: boolean
   isAuthenticated: boolean
@@ -84,16 +83,16 @@ export default function ClientCTAButtons({
 
   const handleMainButtonClick = () => {
     if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
-      trackEvent(trackingEvents?.results)
+      trackingEvents?.results?.()
       return
     }
 
     if (progression > 0) {
-      trackEvent(trackingEvents?.resume)
+      trackingEvents?.resume?.()
       return
     }
 
-    trackEvent(trackingEvents?.start)
+    trackingEvents?.start?.()
   }
 
   const handleRestartClick = () => {
@@ -137,12 +136,14 @@ export default function ClientCTAButtons({
             size="xl"
             color="secondary"
             className="leading-none"
-            trackingEvent={
-              progression !== 1
-                ? trackingEvents?.resume
-                : trackingEvents?.restart
-            }
-            onClick={handleRestartClick}
+            onClick={() => {
+              handleRestartClick()
+              if (progression !== 1) {
+                trackingEvents?.resume?.()
+              } else {
+                trackingEvents?.restart?.()
+              }
+            }}
             href={getLinkToSimulateurPage({
               newSimulation: progression === 1,
             })}>

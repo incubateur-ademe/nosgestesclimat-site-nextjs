@@ -1,11 +1,10 @@
 import Trans from '@/components/translation/trans/TransClient'
-import { actionsClickAdditionalQuestion } from '@/constants/tracking/pages/actions'
+import { trackActionsClickAdditionalQuestion } from '@/constants/tracking/pages/actions'
 import Button from '@/design-system/buttons/Button'
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { TranslationFunctionType } from '@/types/translation'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { i18n as I18nType } from 'i18next'
@@ -113,7 +112,7 @@ export default function ActionValue({
               'Répondre aux questions restantes'
             )}
             onClick={() => {
-              trackEvent(actionsClickAdditionalQuestion(dottedName))
+              trackActionsClickAdditionalQuestion(dottedName)
               setActionWithFormOpen(dottedName)
             }}>
             <Trans i18nKey="actions.actionCard.actionValue.answerButton.label">

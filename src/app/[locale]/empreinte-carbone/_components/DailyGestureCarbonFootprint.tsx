@@ -3,9 +3,9 @@ import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
+  trackLandingClickCTAResults,
+  trackLandingClickCTAResume,
+  trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 
 export default async function DailyGestureCarbonFootprint({
@@ -46,18 +46,21 @@ export default async function DailyGestureCarbonFootprint({
         </p>
       }
       trackingEvents={{
-        start: getLandingClickCTAStart(
-          '/empreinte-carbone',
-          trackingActionClickPageBottom
-        ),
-        resume: getLandingClickCTAResume(
-          '/empreinte-carbone',
-          trackingActionClickPageBottom
-        ),
-        results: getLandingClickCTAResults(
-          '/empreinte-carbone',
-          trackingActionClickPageBottom
-        ),
+        start: () =>
+          trackLandingClickCTAStart(
+            '/empreinte-carbone',
+            trackingActionClickPageBottom
+          ),
+        resume: () =>
+          trackLandingClickCTAResume(
+            '/empreinte-carbone',
+            trackingActionClickPageBottom
+          ),
+        results: () =>
+          trackLandingClickCTAResults(
+            '/empreinte-carbone',
+            trackingActionClickPageBottom
+          ),
       }}
       gestures={{
         [gesturesKeysForTranslation.transport]: {

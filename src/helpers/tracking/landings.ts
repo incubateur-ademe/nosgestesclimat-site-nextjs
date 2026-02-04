@@ -1,4 +1,4 @@
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
 
 function getLandingCategory(pathname: string) {
   switch (pathname) {
@@ -14,7 +14,7 @@ function getLandingCategory(pathname: string) {
 
 // Click CTA
 export const trackLandingClickCTAStart = (pathname: string, action: string) => {
-  trackEvent(
+  trackEvents(
     [
       'trackEvent',
       getLandingCategory(pathname),
@@ -35,7 +35,7 @@ export const trackLandingClickCTAResume = (
   pathname: string,
   action: string
 ) => {
-  trackEvent(
+  trackEvents(
     [
       'trackEvent',
       getLandingCategory(pathname),
@@ -56,7 +56,7 @@ export const trackLandingClickCTAResults = (
   pathname: string,
   action: string
 ) => {
-  trackEvent(
+  trackEvents(
     [
       'trackEvent',
       getLandingCategory(pathname),
@@ -77,7 +77,7 @@ export const trackLandingClickCTARestart = (
   pathname: string,
   action: string
 ) => {
-  trackEvent(
+  trackEvents(
     ['trackEvent', getLandingCategory(pathname), action, 'Click Recommencer'],
     {
       eventName: 'Landing CTA click',
@@ -98,7 +98,7 @@ export const trackLandingDidYouKnowSlider = (
   value: string,
   slideNumber?: number
 ) => {
-  trackEvent(
+  trackEvents(
     [
       'trackEvent',
       getLandingCategory(pathname),
@@ -138,13 +138,13 @@ export const trackLandingClickNouveautes = (pathname: string) => {
 }
 
 export const trackLearnMoreCarbonLink = () => {
-  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'], {
+  trackEvents(['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'], {
     eventName: 'Accueil click en savoir plus LP carbone',
   })
 }
 
 export const trackLearnMoreWaterLink = () => {
-  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'], {
+  trackEvents(['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'], {
     eventName: 'Accueil click en savoir plus LP eau',
   })
 }

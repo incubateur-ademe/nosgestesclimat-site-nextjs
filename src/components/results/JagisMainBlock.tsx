@@ -3,13 +3,12 @@
 import Marianne from '@/components/images/partners/Marianne'
 import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_JAGIS } from '@/constants/partners'
-import { endClickJagisFirstBlock } from '@/constants/tracking/pages/end'
+import { trackEndClickJagisFirstBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -96,7 +95,7 @@ export default function JagisMainBlock() {
                     : undefined
             }
             onClick={() => {
-              trackEvent(endClickJagisFirstBlock)
+              trackEndClickJagisFirstBlock()
               exportSituation({
                 situation,
                 partner: PARTNER_JAGIS,

@@ -1,8 +1,7 @@
 'use client'
 
-import { trackingBannerClick } from '@/constants/tracking/misc'
+import { trackBannerClick } from '@/constants/tracking/misc'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function BannerLink({
   href,
@@ -14,7 +13,7 @@ export default function BannerLink({
   return (
     <ButtonLink
       onClick={() => {
-        trackEvent(trackingBannerClick)
+        trackBannerClick()
       }}
       size="sm"
       className="border-primary-100 text-primary-800 hover:border-primary-200 hover:bg-primary-100 hover:text-primary-800 inline-flex! bg-white px-2 py-1 transition-colors duration-300"

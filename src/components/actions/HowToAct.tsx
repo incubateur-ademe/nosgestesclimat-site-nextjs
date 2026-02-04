@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { endClickActions } from '@/constants/tracking/pages/end'
+import { trackEndClickActions } from '@/constants/tracking/pages/end'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import RecommendedActions from './howToAct/RecommendedActions'
@@ -36,7 +36,7 @@ export default function HowToAct({
         <ButtonLink
           href={MON_ESPACE_ACTIONS_PATH}
           color="secondary"
-          trackingEvent={endClickActions}>
+          onClick={() => trackEndClickActions()}>
           <Trans>Voir toutes les actions</Trans>
         </ButtonLink>
       </div>

@@ -1,10 +1,5 @@
 import Footer from '@/components/layout/Footer'
 import { COOKIE_CONSENT_KEY } from '@/constants/state/cookies'
-import {
-  trackingCookiesAccept,
-  trackingCookiesCustomChoice,
-  trackingCookiesRefuse,
-} from '@/constants/tracking/misc'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { CookieChoice } from '@/types/cookies'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -68,7 +63,11 @@ describe('CookieConsentBannerAndManagement', () => {
         COOKIE_CONSENT_KEY,
         CookieChoice.all
       )
-      expect(trackEvent).toHaveBeenCalledWith(trackingCookiesAccept)
+      expect(trackEvent).toHaveBeenCalledWith([
+        'trackEvent',
+        'Cookies',
+        'Click accepter tout',
+      ])
 
       await waitFor(() => {
         expect(
@@ -97,7 +96,11 @@ describe('CookieConsentBannerAndManagement', () => {
         COOKIE_CONSENT_KEY,
         CookieChoice.refuse
       )
-      expect(trackEvent).toHaveBeenCalledWith(trackingCookiesRefuse)
+      expect(trackEvent).toHaveBeenCalledWith([
+        'trackEvent',
+        'Cookies',
+        'Click tout refuser',
+      ])
 
       await waitFor(() => {
         expect(
@@ -122,7 +125,11 @@ describe('CookieConsentBannerAndManagement', () => {
 
       await user.click(screen.getByTestId('cookie-banner-customize-button'))
 
-      expect(trackEvent).toHaveBeenCalledWith(trackingCookiesCustomChoice)
+      expect(trackEvent).toHaveBeenCalledWith([
+        'trackEvent',
+        'Cookies',
+        'Click choix personnalisés',
+      ])
 
       await waitFor(() => {
         expect(
@@ -207,7 +214,11 @@ describe('CookieConsentBannerAndManagement', () => {
         COOKIE_CONSENT_KEY,
         CookieChoice.all
       )
-      expect(trackEvent).toHaveBeenCalledWith(trackingCookiesAccept)
+      expect(trackEvent).toHaveBeenCalledWith([
+        'trackEvent',
+        'Cookies',
+        'Click accepter tout',
+      ])
 
       await waitFor(() => {
         expect(screen.queryByTestId('cookie-banner-title')).toBeNull()
@@ -236,7 +247,11 @@ describe('CookieConsentBannerAndManagement', () => {
         COOKIE_CONSENT_KEY,
         CookieChoice.all
       )
-      expect(trackEvent).toHaveBeenCalledWith(trackingCookiesAccept)
+      expect(trackEvent).toHaveBeenCalledWith([
+        'trackEvent',
+        'Cookies',
+        'Click accepter tout',
+      ])
     })
 
     it('should handle refuse all from management panel', async () => {
@@ -258,7 +273,11 @@ describe('CookieConsentBannerAndManagement', () => {
         COOKIE_CONSENT_KEY,
         CookieChoice.refuse
       )
-      expect(trackEvent).toHaveBeenCalledWith(trackingCookiesRefuse)
+      expect(trackEvent).toHaveBeenCalledWith([
+        'trackEvent',
+        'Cookies',
+        'Click tout refuser',
+      ])
     })
   })
 })

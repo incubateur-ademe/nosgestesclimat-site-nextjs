@@ -1,17 +1,9 @@
 import { CONTAINER_ID } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import {
-  trackingIframeInteraction,
-  trackingIframeVisit,
+  trackIframeInteraction,
+  trackIframeVisit,
 } from '@/constants/tracking/misc'
-import {
-  captureIframeInteraction,
-  captureIframeVisit,
-} from '@/constants/tracking/posthogTrackers'
-import {
-  trackEvent,
-  trackPageView,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
+import { trackPageView } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { usePathname } from 'next/navigation'
 import posthog from 'posthog-js'
@@ -132,8 +124,7 @@ export function useTrackIframe(isIframe: boolean) {
       // And with an event
       const urlInteractor = getIntegratorUrl(isIframe)
 
-      trackEvent(trackingIframeVisit(urlInteractor))
-      trackPosthogEvent(captureIframeVisit(urlInteractor))
+      trackIframeVisit(urlInteractor)
     }
   }, [entry, observed, url, isIframe, anonymizedUrl])
 
@@ -148,8 +139,7 @@ export function useTrackIframe(isIframe: boolean) {
 
       const urlInteractor = getIntegratorUrl(isIframe)
 
-      trackEvent(trackingIframeInteraction(urlInteractor))
-      trackPosthogEvent(captureIframeInteraction(urlInteractor))
+      trackIframeInteraction(urlInteractor)
     }
   }, [entry, observed, path, isIframe, hasInteracted])
 }

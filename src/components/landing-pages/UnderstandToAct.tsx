@@ -1,7 +1,7 @@
 import { trackingActionClickPostThumbnail } from '@/constants/tracking/actions'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import ColorLine from '@/design-system/layout/ColorLine'
-import { getLandingClickPostThumbnail } from '@/helpers/tracking/landings'
+import { trackLandingClickPostThumbnail } from '@/helpers/tracking/landings'
 import type { LandingPagePostType } from '@/types/landing-page'
 import type { JSX, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -51,10 +51,12 @@ export default function UnderstandToAct({
               <PostThumbnail
                 {...post}
                 className="bg-white"
-                trackingEvent={getLandingClickPostThumbnail(
-                  pathname,
-                  `${trackingActionClickPostThumbnail} ${index + 1}`
-                )}
+                onLinkClick={() =>
+                  trackLandingClickPostThumbnail(
+                    pathname,
+                    `${trackingActionClickPostThumbnail} ${index + 1}`
+                  )
+                }
               />
             </li>
           ))}

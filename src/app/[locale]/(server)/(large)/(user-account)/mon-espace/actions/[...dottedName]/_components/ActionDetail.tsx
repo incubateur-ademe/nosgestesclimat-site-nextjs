@@ -3,10 +3,8 @@
 import ActionForm from '@/components/results/actions/actionsContent/actions/ActionForm'
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  actionsClickUnderstandCalculation,
-  actionsClickUnderstandCalculationPosthog,
-  actionsClickYes,
-  actionsClickYesPosthog,
+  trackActionsClickUnderstandCalculation,
+  trackActionsClickYes,
 } from '@/constants/tracking/pages/actions'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -21,7 +19,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
@@ -105,10 +103,7 @@ export default function ActionDetail({
               color="secondary"
               href={'/documentation/' + encodeRuleName(dottedName)}
               onClick={() => {
-                trackEvent(actionsClickUnderstandCalculation(dottedName))
-                trackPosthogEvent(
-                  actionsClickUnderstandCalculationPosthog(dottedName)
-                )
+                trackActionsClickUnderstandCalculation(dottedName)
               }}>
               <span role="img" aria-hidden className="mr-3 text-xl">
                 📚
@@ -136,8 +131,7 @@ export default function ActionDetail({
                   setPersistedRemainingQuestions(undefined)
 
                   if (!actionChoices[dottedName]) {
-                    trackEvent(actionsClickYes(dottedName))
-                    trackPosthogEvent(actionsClickYesPosthog(dottedName))
+                    trackActionsClickYes(dottedName)
                   }
                 }}
                 action={{ ...rule, dottedName } as unknown as Action}

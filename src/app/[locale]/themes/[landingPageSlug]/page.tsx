@@ -19,10 +19,10 @@ import {
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
+  trackLandingClickCTARestart,
+  trackLandingClickCTAResults,
+  trackLandingClickCTAResume,
+  trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { Locale } from '@/i18nConfig'
 import { fetchThematicLandingPage } from '@/services/cms/fetchThematicLandingPage'
@@ -130,22 +130,26 @@ export default async function ThematicLandingPage({
               <Suspense fallback={<CTAButtonsPlaceholder />}>
                 <DynamicCTAButtons
                   trackingEvents={{
-                    start: getLandingClickCTAStart(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
-                    resume: getLandingClickCTAResume(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
+                    start: () =>
+                      trackLandingClickCTAStart(
+                        `/${landingPageSlug}`,
+                        trackingActionClickCTA
+                      ),
+                    resume: () =>
+                      trackLandingClickCTAResume(
+                        `/${landingPageSlug}`,
+                        trackingActionClickCTA
+                      ),
+                    results: () =>
+                      trackLandingClickCTAResults(
+                        `/${landingPageSlug}`,
+                        trackingActionClickCTA
+                      ),
+                    restart: () =>
+                      trackLandingClickCTARestart(
+                        `/${landingPageSlug}`,
+                        trackingActionClickCTA
+                      ),
                   }}
                 />
               </Suspense>
@@ -212,18 +216,21 @@ export default async function ThematicLandingPage({
         {block5 && (
           <DailyGestures
             trackingEvents={{
-              start: getLandingClickCTAStart(
-                `/${landingPageSlug}`,
-                trackingActionClickPageBottom
-              ),
-              resume: getLandingClickCTAResume(
-                `/${landingPageSlug}`,
-                trackingActionClickPageBottom
-              ),
-              results: getLandingClickCTAResults(
-                `/${landingPageSlug}`,
-                trackingActionClickPageBottom
-              ),
+              start: () =>
+                trackLandingClickCTAStart(
+                  `/${landingPageSlug}`,
+                  trackingActionClickPageBottom
+                ),
+              resume: () =>
+                trackLandingClickCTAResume(
+                  `/${landingPageSlug}`,
+                  trackingActionClickPageBottom
+                ),
+              results: () =>
+                trackLandingClickCTAResults(
+                  `/${landingPageSlug}`,
+                  trackingActionClickPageBottom
+                ),
             }}
             title={block5.title}
             description={block5?.htmlDescription ?? ''}

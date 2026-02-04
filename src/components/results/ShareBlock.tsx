@@ -1,11 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { endClickShare } from '@/constants/tracking/pages/end'
+import { trackEndClickShare } from '@/constants/tracking/pages/end'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import Title from '@/design-system/layout/Title'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function ShareBlock() {
   const { sharedUrl } = useEndPageSharedUrl()
@@ -23,7 +22,7 @@ export default function ShareBlock() {
           textToCopy={sharedUrl}
           textToDisplay={sharedUrl}
           canShare
-          onClick={() => trackEvent(endClickShare)}
+          onClick={() => trackEndClickShare()}
         />
       </label>
     </div>

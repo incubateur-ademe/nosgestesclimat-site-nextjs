@@ -1,10 +1,7 @@
 'use client'
 
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
-import {
-  trackingCategoryFilter,
-  trackingCategoryFilterPosthog,
-} from '@/constants/tracking/misc'
+import { trackCategoryFilter } from '@/constants/tracking/misc'
 import { baseClassNames } from '@/design-system/buttons/Button'
 import {
   getBackgroundColor,
@@ -13,7 +10,7 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
@@ -62,9 +59,7 @@ export default function CategoryFilter({
 
   const handleClick = () => {
     onTabActivate()
-    trackEvent(trackingCategoryFilter(dottedName, window.location.pathname))
-
-    trackPosthogEvent(trackingCategoryFilterPosthog(dottedName))
+    trackCategoryFilter(dottedName, window.location.pathname)
 
     router.replace(buildURL(), {
       scroll: false,

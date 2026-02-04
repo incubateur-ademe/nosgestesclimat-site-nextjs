@@ -1,7 +1,7 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
 
 // Figma comment #1
 export const trackHeaderClickLogo = () => {
@@ -45,21 +45,21 @@ export const trackFooterClickNouveautes = () => {
 
 // Figma comment #10
 export const trackFooterClickQuiSommesNous = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Qui sommes-nous'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Qui sommes-nous'], {
     eventName: 'Footer click qui sommes-nous',
   })
 }
 
 // Figma comment #11
 export const trackFooterClickBlog = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Blog'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Blog'], {
     eventName: 'Footer click blog',
   })
 }
 
 // Figma comment #12
 export const trackFooterClickDocumentation = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Documentation'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Documentation'], {
     eventName: 'Footer click documentation',
   })
 }
@@ -70,19 +70,19 @@ export const trackFooterClickAmbassadeurs = () => {
 }
 
 export const trackFooterClickFAQ = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click FAQ'], {
+  trackEvents(['trackEvent', 'Footer', 'Click FAQ'], {
     eventName: 'Footer click FAQ',
   })
 }
 
 export const trackFooterClickContact = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Contact'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Contact'], {
     eventName: 'Footer click contact',
   })
 }
 
 export const trackFooterClickDiffusion = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Diffusion'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Diffusion'], {
     eventName: 'Footer click diffusion',
   })
 }
@@ -94,33 +94,33 @@ export const trackFooterClickPlanSite = () => {
 
 // Figma comment #15
 export const trackFooterClickOrganisations = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Organisations'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Organisations'], {
     eventName: 'Footer click organisations',
   })
 }
 
 // Figma comment #16
 export const trackFooterClickInternational = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click International'], {
+  trackEvents(['trackEvent', 'Footer', 'Click International'], {
     eventName: 'Footer click international',
   })
 }
 
 export const trackFooterClickStats = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Statistiques'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Statistiques'], {
     eventName: 'Footer click statistiques',
   })
 }
 
 export const trackFooterClickImpactco2 = () => {
-  trackEvent(['trackEvent', 'Footer', 'Click Impact CO2'], {
+  trackEvents(['trackEvent', 'Footer', 'Click Impact CO2'], {
     eventName: 'Footer click Impact CO2',
   })
 }
 
 // Figma comment #17
 export const trackFooterClickLanguage = (locale: string) => {
-  trackEvent(
+  trackEvents(
     ['trackEvent', 'Footer', 'Click Language', `Click Language ${locale}`],
     {
       eventName: 'Footer click language',

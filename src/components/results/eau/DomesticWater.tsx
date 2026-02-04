@@ -3,6 +3,7 @@
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/trans/TransClient'
+import { trackEndClickDomesticWater } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
 import { useState } from 'react'

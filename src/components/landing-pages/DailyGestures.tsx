@@ -15,9 +15,9 @@ export default function DailyGestures({
   description: string | JSX.Element
   gestures: GesturesType
   trackingEvents: {
-    start: string[]
-    resume: string[]
-    results: string[]
+    start?: () => void
+    resume?: () => void
+    results?: () => void
   }
 }) {
   return (

@@ -1,28 +1,46 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import {
+  captureIframeInteraction,
+  captureIframeVisit,
+  captureLocale,
+  captureRegion,
+} from './posthogTrackers'
 
 export const trackIframeVisit = (url: string) => {
-  trackEvent(['trackEvent', 'Misc', 'Iframe visit', `Iframe visit from ${url}`])
+  trackEvents(
+    ['trackEvent', 'Misc', 'Iframe visit', `Iframe visit from ${url}`],
+    captureIframeVisit(url)
+  )
 }
 
 export const trackIframeInteraction = (url: string) => {
-  trackEvent([
-    'trackEvent',
-    'Misc',
-    'Iframe interaction',
-    `Iframe interaction from ${url}`,
-  ])
+  trackEvents(
+    [
+      'trackEvent',
+      'Misc',
+      'Iframe interaction',
+      `Iframe interaction from ${url}`,
+    ],
+    captureIframeInteraction(url)
+  )
 }
 
 export const trackLocale = (locale: string) => {
-  trackEvent(['trackEvent', 'Misc', 'Language', `Locale used ${locale}`])
+  trackEvents(
+    ['trackEvent', 'Misc', 'Language', `Locale used ${locale}`],
+    captureLocale({ locale })
+  )
 }
 
 export const trackRegion = (region: string) => {
-  trackEvent(['trackEvent', 'Misc', 'Region', `Region used: ${region}`])
+  trackEvents(
+    ['trackEvent', 'Misc', 'Region', `Region used: ${region}`],
+    captureRegion({ region })
+  )
 }
 
 export const trackDownloadRavijenChart = () => {
@@ -49,7 +67,7 @@ export const trackBannerClick = () => {
 
 // Category filter
 export const trackCategoryFilter = (category: DottedName, path: string) => {
-  trackEvent(
+  trackEvents(
     ['trackEvent', path, 'Category filter', `Click Filter ${category}`],
     {
       eventName: 'Actions click category filter',
@@ -73,25 +91,25 @@ export const trackUserAccountFakeDoorRefuse = () => {
 
 // Cookies
 export const trackCookiesAccept = () => {
-  trackEvent(['trackEvent', 'Cookies', 'Click accepter tout'], {
+  trackEvents(['trackEvent', 'Cookies', 'Click accepter tout'], {
     eventName: 'Cookies click accepter tout',
   })
 }
 
 export const trackCookiesRefuse = () => {
-  trackEvent(['trackEvent', 'Cookies', 'Click tout refuser'], {
+  trackEvents(['trackEvent', 'Cookies', 'Click tout refuser'], {
     eventName: 'Cookies click tout refuser',
   })
 }
 
 export const trackCookiesCustomChoice = () => {
-  trackEvent(['trackEvent', 'Cookies', 'Click choix personnalisés'], {
+  trackEvents(['trackEvent', 'Cookies', 'Click choix personnalisés'], {
     eventName: 'Cookies click choix personnalisés',
   })
 }
 
 export const trackCookiesCustomChoiceSave = () => {
-  trackEvent(['trackEvent', 'Cookies', 'Enregistrer choix personnalisés'], {
+  trackEvents(['trackEvent', 'Cookies', 'Enregistrer choix personnalisés'], {
     eventName: 'Cookies enregistrer choix personnalisés',
   })
 }

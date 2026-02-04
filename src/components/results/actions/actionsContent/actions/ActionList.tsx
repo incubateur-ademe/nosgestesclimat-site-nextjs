@@ -1,6 +1,6 @@
 'use client'
 
-import { actionsClickYes } from '@/constants/tracking/pages/actions'
+import { trackActionsClickYes } from '@/constants/tracking/pages/actions'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
@@ -10,7 +10,6 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import type {
   NGCRuleNode,
   NGCRules,
@@ -143,7 +142,7 @@ export default function ActionList({
                           toggleActionChoice(action.dottedName)
 
                           if (!actionChoices[action.dottedName]) {
-                            trackEvent(actionsClickYes(action.dottedName))
+                            trackActionsClickYes(action.dottedName)
                           }
                           setActionWithFormOpen('')
                         }}
