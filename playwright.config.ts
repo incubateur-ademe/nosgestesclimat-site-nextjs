@@ -45,33 +45,31 @@ export default defineConfig<FixturesOptions>({
         storageState: NEW_VISITOR_STATE,
       },
     },
-    // ...(process.env.CI ? [
-      {
-        name: 'Firefox',
-        dependencies: ['global setup'],
-        use: {
-          ...devices['Desktop Firefox'],
-          storageState: NEW_VISITOR_STATE,
-        },
-      },
-      {
-        name: 'Mobile Safari',
-        dependencies: ['global setup'],
-        use: {
-          ...devices['iPhone 12'],
-          storageState: NEW_VISITOR_STATE,
-        },
-       },
-    // ] : []),
     {
-      name: 'Cookies',
-      testMatch: /cookies\.spec\.ts/,
+      name: 'Firefox',
+      dependencies: ['global setup'],
       use: {
-        ...devices['Desktop Chrome HiDPI'],
+        ...devices['Desktop Firefox'],
+        storageState: NEW_VISITOR_STATE,
       },
     },
+    {
+      name: 'Mobile Safari',
+      dependencies: ['global setup'],
+      use: {
+        ...devices['iPhone 12'],
+        storageState: NEW_VISITOR_STATE,
+      },
+    },
+    ...(!process.env.CI ? [
+      {
+        name: 'Chrome No Setup',
+        use: {
+          ...devices['Desktop Chrome HiDPI'],
+        },
+      },
+    ] : []),
   ],
-
   /* Run your local dev server before starting the tests */
   webServer: process.env.CI
     ? undefined

@@ -23,6 +23,7 @@ export const CookieRadio = ({
       className="peer sr-only"
       disabled={disabled}
       id={id}
+      checked={!!checked}
       {...props}
     />
     <span
