@@ -1,10 +1,9 @@
-import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/model/metric'
-import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
+import AnimatedBar from '../_client/AnimatedBar'
 
 interface Props {
   subcategory: DottedName
@@ -12,10 +11,12 @@ interface Props {
   value: number
   categoryValue: number
   metric?: Metric
+  index?: number
 }
 
 /**
  * Standalone version of SubcategoryListItem that doesn't use publicodes-state hooks.
+ * Layout matches the Figma mockup: title + value + percentage, with animated bar below.
  */
 export default function SubcategoryItemStandalone({
   subcategory,
@@ -23,43 +24,44 @@ export default function SubcategoryItemStandalone({
   value,
   categoryValue,
   metric = defaultMetric,
+  index = 0,
 }: Props) {
   const rule = rules[subcategory]
   const title = (rule?.titre as string) ?? utils.nameLeaf(subcategory)
-  const icons = rule?.['icônes']
 
   const { formattedValue, unit } = formatFootprint(value, { metric })
 
   if (formattedValue === '0') return null
 
-  const percentageOfCategoryValue = 1 - (categoryValue - value) / categoryValue
+  const percentageOfCategoryValue = Math.round((value / categoryValue) * 100)
+  const barPercentage = (value / categoryValue) * 100
+
+  // Calculate delay for staggered animation
+  const animationDelay = 0.3 + index * 0.08
 
   return (
-    <li className="p-3">
-      <div className="flex items-baseline gap-4">
-        {/* @bjlaa: flex w-4 is required here because of a bug of react-easy-emoji that creates a duplicate empty element */}
-        <Emoji className="flex w-4">{icons}</Emoji>
+    <li className="py-3 first:pt-0 last:pb-0">
+      <div className="flex flex-col gap-2">
+        {/* Title and value row */}
+        <div className="flex items-baseline justify-between">
+          <span className="text-sm font-bold md:text-base">{title}</span>
+          <span className="text-sm text-gray-600">
+            {formattedValue} {unit} - {percentageOfCategoryValue}%
+          </span>
+        </div>
 
-        <div className="w-full">
-          <div className="flex items-center justify-between text-sm md:text-base">
-            <p className="mb-0">{title}</p>
-
-            <div className="text-primary-700">
-              <strong>{formattedValue}</strong> <Trans>{unit}</Trans>
-            </div>
-          </div>
-          <div className="mt-2">
-            <div
-              role="img"
-              aria-label={`Part de la sous-catégorie: ${Math.round(
-                percentageOfCategoryValue * 100
-              )}%`}>
-              <div
-                className="bg-primary-700 h-[6px] rounded-xl"
-                style={{ width: `calc(${percentageOfCategoryValue} * 100%)` }}
-              />
-            </div>
-          </div>
+        {/* Animated progress bar */}
+        <div
+          className="w-full overflow-hidden rounded-xl bg-gray-200"
+          style={{ height: 6 }}
+          role="img"
+          aria-label={`Part de la sous-catégorie: ${percentageOfCategoryValue}%`}>
+          <AnimatedBar
+            percentage={barPercentage}
+            delay={animationDelay}
+            color="bg-primary-700"
+            height={6}
+          />
         </div>
       </div>
     </li>

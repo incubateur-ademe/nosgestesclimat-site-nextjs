@@ -9,6 +9,7 @@ import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import SubcategoriesListStandalone from './categoriesAccordionStandalone/SubcategoriesListStandalone'
+import AnimatedAccordionItem from './categoriesAccordionStandalone/_client/AnimatedAccordionItem'
 
 interface Props {
   rules: Partial<NGCRules>
@@ -51,42 +52,43 @@ export default function CategoriesAccordionStandalone({
         const percentageOfTotalValue = (numericValue / maxCategoryValue) * 100
 
         return (
-          <AccordionItem
-            key={categoryDottedName}
-            title={
-              <HorizontalBarChartItem
-                percentageOfTotalValue={percentageOfTotalValue}
-                index={index}
-                title={title}
-                icons={icons}
-                barColor={getBackgroundColor(categoryDottedName)}
-                shouldDisplayValue={false}
-                displayValue={
-                  <span>
-                    <strong className="font-black">{formattedValue}</strong>{' '}
-                    <Trans>{unit}</Trans>
-                  </span>
-                }
-              />
-            }
-            name={title ?? ''}
-            ariaLabel={`${title ?? ''} - ${formattedValue} ${unit}`}
-            content={
-              <Card
-                className="mb-4 border-x-0 bg-gray-100"
-                style={{
-                  boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset',
-                }}>
-                <SubcategoriesListStandalone
-                  category={categoryDottedName}
-                  rules={rules}
-                  subcategoriesData={computedResults[metric]?.subcategories}
-                  categoryValue={numericValue}
-                  metric={metric}
+          <AnimatedAccordionItem key={categoryDottedName} index={index}>
+            <AccordionItem
+              title={
+                <HorizontalBarChartItem
+                  percentageOfTotalValue={percentageOfTotalValue}
+                  index={index}
+                  title={title}
+                  icons={icons}
+                  barColor={getBackgroundColor(categoryDottedName)}
+                  shouldDisplayValue={false}
+                  displayValue={
+                    <span>
+                      <strong className="font-black">{formattedValue}</strong>{' '}
+                      <Trans>{unit}</Trans>
+                    </span>
+                  }
                 />
-              </Card>
-            }
-          />
+              }
+              name={title ?? ''}
+              ariaLabel={`${title ?? ''} - ${formattedValue} ${unit}`}
+              content={
+                <Card
+                  className="mb-4 border-x-0 bg-gray-100"
+                  style={{
+                    boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset',
+                  }}>
+                  <SubcategoriesListStandalone
+                    category={categoryDottedName}
+                    rules={rules}
+                    subcategoriesData={computedResults[metric]?.subcategories}
+                    categoryValue={numericValue}
+                    metric={metric}
+                  />
+                </Card>
+              }
+            />
+          </AnimatedAccordionItem>
         )
       })}
     </div>
