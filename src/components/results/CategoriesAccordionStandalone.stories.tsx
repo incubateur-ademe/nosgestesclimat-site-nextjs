@@ -50,13 +50,17 @@ function createEngineWithPersona(personaKey: string) {
 
 // Function to compute results for a given persona
 function getComputedResultsForPersona(personaKey: string): ComputedResults {
+  
   const engine = createEngineWithPersona(personaKey)
 
   const everyRules = Object.keys(rules).map(
     (dottedName) => dottedName as DottedName
   )
 
-  return getComputedResults({
+  // Debug: check the bilan value directly from engine
+  const bilanValue = engine.evaluate('bilan').nodeValue
+
+  const results = getComputedResults({
     metrics: ['carbone', 'eau'],
     categories: orderedCategories,
     subcategories: getSubcategories({
@@ -69,6 +73,10 @@ function getComputedResultsForPersona(personaKey: string): ComputedResults {
     getNumericValue: (dottedName) =>
       engine.evaluate(dottedName).nodeValue as number,
   })
+
+  console.log('📊 Computed results bilan:', results.carbone?.bilan)
+  
+  return results
 }
 
 // Wrapper component to handle persona selection state

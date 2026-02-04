@@ -42,7 +42,7 @@ export default function SubcategoriesListStandalone({
 
   return (
     <ul>
-      {filteredSubcategories.map((subcategory, index) => (
+      {filteredSubcategories.map((subcategory) => (
         <SubcategoryItemStandalone
           key={subcategory}
           subcategory={subcategory}
@@ -50,7 +50,6 @@ export default function SubcategoriesListStandalone({
           value={subcategoriesData[subcategory] ?? 0}
           categoryValue={categoryValue}
           metric={metric}
-          index={index}
         />
       ))}
     </ul>
