@@ -36,6 +36,7 @@ export default function DisablePosthogCheckbox() {
       className="mb-6 flex cursor-pointer items-center gap-2">
       <CheckboxInput
         id="posthog-checkbox"
+        data-testid="posthog-tracking-checkbox"
         type="checkbox"
         value={isEnabled}
         onChange={handleCheckboxChange}

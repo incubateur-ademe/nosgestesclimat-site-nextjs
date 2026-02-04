@@ -64,7 +64,7 @@ test.describe('Cookie Consent Management', () => {
     // 3. Find check box - Label "Désactiver le suivi Posthog"
     // The checkbox is checked by default if tracking is enabled.
     // Unchecking it disables tracking.
-    const checkbox = page.getByLabel('Désactiver le suivi Posthog')
+    const checkbox = page.getByTestId('posthog-tracking-checkbox')
     await expect(checkbox).toBeChecked()
 
     await checkbox.uncheck()
