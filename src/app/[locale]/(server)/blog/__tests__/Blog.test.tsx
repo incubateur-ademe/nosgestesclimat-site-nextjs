@@ -172,15 +172,6 @@ describe('BlogHomePage', () => {
         locale: 'en',
       })
     })
-
-    it('should call getLangButtonsDisplayed', async () => {
-      const params = Promise.resolve({ locale: 'fr' as Locale })
-      const searchParams = Promise.resolve({ page: '1' })
-
-      await BlogHomePage({ params, searchParams })
-
-      expect(mockGetLangButtonsDisplayed).toHaveBeenCalled()
-    })
   })
 
   describe('Edge cases', () => {

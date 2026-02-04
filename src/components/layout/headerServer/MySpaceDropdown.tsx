@@ -209,14 +209,14 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   const ariaLabelTitle = isOpen
     ? t(
         'header.monEspace.openMenuButton.open.title',
-        'Mon Espace ({{email}}), ouvrir le menu',
+        'Mon espace ({{email}}), ouvrir le menu',
         {
           email,
         }
       )
     : t(
         'header.monEspace.openMenuButton.close.title',
-        'Mon Espace ({{email}}), fermer le menu',
+        'Mon espace ({{email}}), fermer le menu',
         {
           email,
         }
@@ -237,7 +237,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
         title={ariaLabelTitle}
         onClick={handleToggleMenu}
         onKeyDown={handleButtonKeyDown}>
-        <Trans i18nKey="header.monEspace.title">Mon Espace</Trans>{' '}
+        <Trans i18nKey="header.monEspace.title">Mon espace</Trans>{' '}
         <span className="hidden md:inline">({displayEmail})</span>
         <ChevronRight
           className={twMerge(

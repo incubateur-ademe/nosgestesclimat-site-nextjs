@@ -160,7 +160,7 @@ export default async function CarbonFootprintLandingPage({
         <FAQCarbonFootprint locale={locale} />
       </LandingPage>
 
-      <Footer />
+      <Footer backgroundColor="white" locale={locale} />
     </ClientLayout>
   )
 }

@@ -119,7 +119,7 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
         <TheySpeakAboutUs locale={locale} />
       </LandingPage>
 
-      <Footer />
+      <Footer backgroundColor="white" locale={locale} />
     </ClientLayout>
   )
 }
