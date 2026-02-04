@@ -1,5 +1,5 @@
-import { CookieBannerProvider } from '@/components/cookies/CookieBannerProvider'
 import CookieConsent from '@/components/cookies/CookieConsent'
+import { CookieBannerProvider } from '@/components/cookies/useCookieManagement'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import HeaderServer from '@/components/layout/HeaderServer'

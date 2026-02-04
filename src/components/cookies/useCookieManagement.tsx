@@ -1,7 +1,9 @@
+'use client'
+
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
-import { useCallback } from 'react'
-import { useCookieBanner } from './CookieBannerProvider'
+import type { PropsWithChildren } from 'react'
+import { createContext, useCallback, useContext, useState } from 'react'
 
 export const COOKIE_STATE_KEY = 'cookie-management-state'
 
@@ -12,9 +14,36 @@ export interface CookieState {
 
 type CookieBannerDisplayState = 'hidden' | 'banner' | 'form'
 
+interface CookieConsentContextType {
+  cookieBannerDisplayState: CookieBannerDisplayState
+  setCookieBannerDisplayState: (state: CookieBannerDisplayState) => void
+}
+
 const DEFAULT_COOKIE_STATE: CookieState = {
   posthog: 'refused',
   googleTag: 'refused',
+}
+
+const CookieConsentContext = createContext<CookieConsentContextType>({
+  cookieBannerDisplayState: 'hidden',
+  setCookieBannerDisplayState: () => {},
+})
+
+export const CookieBannerProvider = ({ children }: PropsWithChildren) => {
+  const [cookieBannerDisplayState, setCookieBannerDisplayState] =
+    useState<CookieBannerDisplayState>(
+      !safeLocalStorage.getItem(COOKIE_STATE_KEY) ? 'banner' : 'hidden'
+    )
+
+  return (
+    <CookieConsentContext
+      value={{
+        cookieBannerDisplayState,
+        setCookieBannerDisplayState,
+      }}>
+      {children}
+    </CookieConsentContext>
+  )
 }
 
 export function useCookieManagement(): {
@@ -26,7 +55,7 @@ export function useCookieManagement(): {
   acceptAll: () => void
 } {
   const { cookieBannerDisplayState, setCookieBannerDisplayState } =
-    useCookieBanner()
+    useContext(CookieConsentContext)
 
   const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
 

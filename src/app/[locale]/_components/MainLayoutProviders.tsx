@@ -1,6 +1,6 @@
 'use client'
 
-import { CookieBannerProvider } from '@/components/cookies/CookieBannerProvider'
+import { CookieBannerProvider } from '@/components/cookies/useCookieManagement'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { UserProvider } from '@/publicodes-state'
