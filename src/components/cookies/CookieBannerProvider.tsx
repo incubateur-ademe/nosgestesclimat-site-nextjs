@@ -1,12 +1,13 @@
 'use client'
 
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import {
   createContext,
   useContext,
   useState,
   type PropsWithChildren,
 } from 'react'
-import { useCookieManagement } from './useCookieManagement'
+import { COOKIE_STATE_KEY } from './useCookieManagement'
 
 interface CookieConsentContextType {
   cookieBannerDisplayState: CookieBannerDisplayState
@@ -15,18 +16,16 @@ interface CookieConsentContextType {
 
 type CookieBannerDisplayState = 'hidden' | 'banner' | 'form'
 
-export const COOKIE_STATE_KEY = 'cookie-management-state'
-
 const CookieConsentContext = createContext<CookieConsentContextType>({
   cookieBannerDisplayState: 'hidden',
   setCookieBannerDisplayState: () => {},
 })
 
 export const CookieBannerProvider = ({ children }: PropsWithChildren) => {
-  const { cookieStateJson } = useCookieManagement()
-
   const [cookieBannerDisplayState, setCookieBannerDisplayState] =
-    useState<CookieBannerDisplayState>(!cookieStateJson ? 'banner' : 'hidden')
+    useState<CookieBannerDisplayState>(
+      !safeLocalStorage.getItem(COOKIE_STATE_KEY) ? 'banner' : 'hidden'
+    )
 
   return (
     <CookieConsentContext

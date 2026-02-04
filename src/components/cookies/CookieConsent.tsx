@@ -1,14 +1,14 @@
 'use client'
 
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentForm from './CookieConsentForm'
 import type { CookieState } from './useCookieManagement'
-import { useCookieManagement } from './useCookieManagement'
+import { COOKIE_STATE_KEY, useCookieManagement } from './useCookieManagement'
 
-export default function CookieConsentBannerAndManagement() {
+export default function CookieConsent() {
   const {
     cookieState,
-    cookieStateJson,
     onChange,
     cookieBannerDisplayState,
     setCookieBannerDisplayState,
@@ -31,7 +31,9 @@ export default function CookieConsentBannerAndManagement() {
       ) : cookieBannerDisplayState === 'form' ? (
         <CookieConsentForm
           onCancel={() =>
-            setCookieBannerDisplayState(!cookieStateJson ? 'banner' : 'hidden')
+            setCookieBannerDisplayState(
+              !safeLocalStorage.getItem(COOKIE_STATE_KEY) ? 'banner' : 'hidden'
+            )
           }
           rejectAll={rejectAll}
           acceptAll={acceptAll}

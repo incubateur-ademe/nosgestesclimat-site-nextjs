@@ -1,7 +1,9 @@
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
 import { useCallback } from 'react'
-import { COOKIE_STATE_KEY, useCookieBanner } from './CookieBannerProvider'
+import { useCookieBanner } from './CookieBannerProvider'
+
+export const COOKIE_STATE_KEY = 'cookie-management-state'
 
 export interface CookieState {
   posthog: 'accepted' | 'refused' | 'do_not_track'
@@ -10,34 +12,8 @@ export interface CookieState {
 
 type CookieBannerDisplayState = 'hidden' | 'banner' | 'form'
 
-const getCookieLocalStorageState = () => {
-  const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
-
-  const cookieLocalStorageState: CookieState = json
-    ? (JSON.parse(json) as CookieState)
-    : ({
-        posthog: 'refused',
-        googleTag: 'refused',
-      } as const)
-
-  return { cookieLocalStorageState, cookieStateJson: json }
-}
-
-/*
-@TODO
-1. Utiliser un Provider pour l'état bannerDisplayState
-2. Utiliser ce hook dans vie privée pour do_not_track de posthog
-3. Fix la logique onChange
-4. Vérifier que le do_not_track fonctionne (rien n'est envoyé à posthog)
-5. Clean clean (si ça marche)
-6. Test E2E
-  - Vérifier que rien n'est envoyé à posthog si DNT (pas de requete réseau)
-  - Si DNT, vérifier que le bandeau cookie est passé à « refuser »
-*/
-
 export function useCookieManagement(): {
   cookieState: CookieState
-  cookieStateJson: string | null
   onChange: (state: CookieState) => void
   cookieBannerDisplayState: CookieBannerDisplayState
   setCookieBannerDisplayState: (state: CookieBannerDisplayState) => void
@@ -47,8 +23,14 @@ export function useCookieManagement(): {
   const { cookieBannerDisplayState, setCookieBannerDisplayState } =
     useCookieBanner()
 
-  const { cookieLocalStorageState, cookieStateJson } =
-    getCookieLocalStorageState()
+  const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
+
+  const cookieLocalStorageState: CookieState = json
+    ? (JSON.parse(json) as CookieState)
+    : ({
+        posthog: 'refused',
+        googleTag: 'refused',
+      } as const)
 
   const handleUpdatePosthog = useCallback((cookieState: CookieState) => {
     switch (cookieState.posthog) {
@@ -117,7 +99,6 @@ export function useCookieManagement(): {
 
   return {
     cookieState: cookieLocalStorageState,
-    cookieStateJson,
     cookieBannerDisplayState,
     setCookieBannerDisplayState,
     onChange,

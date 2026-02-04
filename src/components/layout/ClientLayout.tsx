@@ -1,4 +1,4 @@
-import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsent'
+import CookieConsent from '@/components/cookies/CookieConsent'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
@@ -21,7 +21,7 @@ export const ClientLayout = ({
   <MainLayoutProviders>
     <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
 
-    <CookieConsentBannerAndManagement />
+    <CookieConsent />
 
     <Banner locale={locale as Locale} />
 
