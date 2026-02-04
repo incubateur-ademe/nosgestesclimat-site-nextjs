@@ -28,6 +28,7 @@ export default function OrganisationFields({
       <TextInput
         label={<Trans>Votre organisation</Trans>}
         value={defaultValues.name}
+        data-testid="input-organisation-name"
         {...register('name')}
       />
       <SelectInput

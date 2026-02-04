@@ -13,6 +13,7 @@ export const enum CREATE_VERIFICATION_CODE_ERROR {
   SIGNIN_USER_DOES_NOT_EXIST = 'User does not exist',
   SIGNUP_USER_ALREADY_EXISTS = 'User already exists',
   UNKNOWN_ERROR = 'An unknown error occurred',
+  INTERNAL_ERROR = 'Internal Server Error',
 }
 
 export function useCreateVerificationCode({
@@ -50,8 +51,9 @@ export function useCreateVerificationCode({
   })
 
   const errorCode: CREATE_VERIFICATION_CODE_ERROR | false =
-    error &&
-    ((error instanceof AxiosError && error.response?.data) ??
+    !!error &&
+    ((error instanceof AxiosError &&
+      (error.response?.data as CREATE_VERIFICATION_CODE_ERROR)) ||
       CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR)
 
   const createVerificationCode = useCallback(

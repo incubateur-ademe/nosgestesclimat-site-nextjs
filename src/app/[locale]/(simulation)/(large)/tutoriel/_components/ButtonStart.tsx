@@ -66,7 +66,7 @@ export default function ButtonStart({
           ? `${POLL_START_PATH}?${searchParamsString}`
           : getLinkToSimulateurPage()
       }
-      data-cypress-id="skip-tutorial-button"
+      data-testid="skip-tutorial-button"
       aria-disabled={isLoading}
       className="min-w-[167px]!"
       size={size}

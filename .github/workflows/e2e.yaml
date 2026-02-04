@@ -2,70 +2,156 @@ name: E2E Tests
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
-      - preprod
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_call:
+    inputs:
+      is_preprod:
+        description: 'Whether this is a preprod test run'
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      MAILISK_API_KEY:
+        required: true
+
+env:
+  NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
+  NEXT_PUBLIC_PROXY_SERVER: 'true'
+  LOCAL_TEST: ${{ !inputs.is_preprod }}
+  NEXT_PUBLIC_SITE_URL: ${{ inputs.is_preprod && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
+
 jobs:
-  e2e:
+  # Build and setup job - runs on a single machine
+  build-and-setup:
+    # Skip entire workflow if PR is a draft (all other jobs depend on this one)
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     environment: 'Test E2E'
-    strategy:
-      matrix:
-        ab-test: [false, true]
     runs-on: ubuntu-latest
-    name: E2E Tests [AB-test ${{ matrix.ab-test && 'enabled' || 'disabled' }}]
+    name: Build & Setup Tests
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup and Build
+        uses: ./.github/actions/setup
+        with:
+          build: ${{ env.LOCAL_TEST }}
+
+      - name: Install Playwright
+        run: pnpm playwright install chromium
+
+      - name: Run setup tests
+        env:
+          MAILISK_API_KEY: ${{ secrets.MAILISK_API_KEY }}
+          MAILISK_NAMESPACE: ${{ vars.MAILISK_NAMESPACE }}
+          CMS_TOKEN: ${{ env.LOCAL_TEST && secrets.CMS_TOKEN || '' }}
+          CMS_URL: ${{ env.LOCAL_TEST && secrets.CMS_URL || '' }}
+        run: |
+          ${{ env.LOCAL_TEST && 'pnpm start &' || '' }}
+          pnpm playwright test --project="global setup"
+
+      - name: Upload state artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: e2e-state
+          path: e2e/state/*.json
+          retention-days: 1
+
+      # We archive the Next.js build because ":" in filenames are not allowed by upload-artifact
+      - name: Archive Next.js build
+        if: ${{ env.LOCAL_TEST }}
+        run: tar -cf nextjs-build.tar .next
+
+      - name: Upload Next.js build
+        if: ${{ env.LOCAL_TEST }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: nextjs-build
+          path: nextjs-build.tar
+          retention-days: 1
+
+  # Project-based test jobs - runs on 3 machines in parallel
+  e2e-tests:
+    environment: 'Test E2E'
+    needs: [build-and-setup]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: Chrome
+            browser: chromium
+          - project: Firefox
+            browser: firefox
+          - project: Mobile Safari
+            browser: webkit
+    runs-on: ubuntu-latest
+    name: E2E ${{ matrix.project }}
+
     steps:
       - uses: actions/checkout@v6
 
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v4
-      # - name: Use Node.js
-      #   uses: actions/setup-node@v6
-      #   with:
-      #     node-version-file: './package.json'
-      #     cache: 'pnpm'
-      # - name: Install dependencies
-      #   run: pnpm install
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      # - name: Install Playwright
-      #   run: pnpm playwright install
+      - name: Download Next.js build
+        if: ${{ env.LOCAL_TEST }}
+        uses: actions/download-artifact@v6
+        with:
+          name: nextjs-build
 
-      # # - name: Generate E2E test specs from personas
-      # #   run: pnpm e2e:generate
-      # - uses: actions/cache@v5
-      #   if: github.event.inputs.branch != 'preprod'
-      #   name: Cache nextJS build
-      #   with:
-      #     path: |
-      #       ${{ github.workspace }}/.next/cache
-      #     # Generate a new cache whenever packages or source files change.
-      #     key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('src/**/*.(js|jsx|ts|tsx)') }}-${{ matrix.ab-test }}
-      #     # If source files changed but packages didn't, rebuild from a prior cache.
-      #     restore-keys: |
-      #       ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+      - name: Extract Next.js build
+        if: ${{ env.LOCAL_TEST }}
+        run: tar -xf nextjs-build.tar
 
-      # - name: Build
-      #   if: github.event.inputs.branch != 'preprod'
-      #   run: pnpm build
-      #   env:
-      #     NEXT_PUBLIC_FORCE_AB_TEST: ${{ matrix.ab-test }}
-      #     NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
+      - name: Install Playwright
+        run: pnpm playwright install ${{ matrix.browser }} ${{ matrix.browser == 'webkit' && '--with-deps' || '' }}
 
-      # - name: Run E2E tests
-      #   env:
-      #     PLAYWRIGHT_baseUrl: "${{ github.event.inputs.branch == 'preprod' && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}"
-      #     CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
-      #     CMS_URL: ${{ secrets.CMS_URL }}
-      #     NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
+      - name: Download state artifacts
+        uses: actions/download-artifact@v6
+        with:
+          name: e2e-state
+          path: e2e/state
 
-      #   run: |
-      #     echo "Running tests against ${{ env.PLAYWRIGHT_baseUrl }} (ABTest: ${{ env.NEXT_PUBLIC_FORCE_AB_TEST }})"
-      #     ${{ github.event.inputs.branch != 'preprod' && 'pnpm start &' }}
-      #     pnpm exec playwright test
+      - name: Run E2E tests (${{ matrix.project }})
+        env:
+          MAILISK_API_KEY: ${{ secrets.MAILISK_API_KEY }}
+          MAILISK_NAMESPACE: ${{ vars.MAILISK_NAMESPACE }}
+          CMS_TOKEN: ${{ env.LOCAL_TEST && secrets.CMS_TOKEN || '' }}
+          CMS_URL: ${{ env.LOCAL_TEST && secrets.CMS_URL || '' }}
+        run: |
+          ${{ env.LOCAL_TEST && 'pnpm start &' || ''}}
+          pnpm playwright test --no-deps --project="${{ matrix.project }}"
 
-      # - uses: actions/upload-artifact@v6
-      #   if: ${{ !cancelled() }}
-      #   with:
-      #     name: playwright-report-ab-test-${{ matrix.ab-test && 'enabled' || 'disabled' }}
-      #     path: playwright-report/
-      #     retention-days: 30
+      - name: Upload blob report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: blob-report-${{ matrix.project }}
+          path: blob-report
+          retention-days: 1
+
+  # Merge reports from all shards
+  merge-reports:
+    if: ${{ !cancelled() && needs.e2e-tests.result != 'skipped' }}
+    needs: [e2e-tests]
+    runs-on: ubuntu-latest
+    name: Merge E2E Reports
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Download blob reports
+        uses: actions/download-artifact@v6
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v6
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

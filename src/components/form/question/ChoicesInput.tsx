@@ -9,7 +9,7 @@ interface Props {
   value: Evaluation<string>
   choices: (string | number)[] | null
   setValue: (value: string | undefined) => void
-  'data-cypress-id': string
+  'data-testid': string
   label: string
   firstInputId?: string
 }
@@ -85,7 +85,7 @@ export default function ChoicesInput(props: Props) {
               }
             }}
             {...otherProps}
-            data-cypress-id={`${props['data-cypress-id']}-${choice}`}
+            data-testid={`${props['data-testid']}-${choice}`}
             {...(index === 0 ? { id: firstInputId } : {})}
           />
         ) : null

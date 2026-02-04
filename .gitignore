@@ -71,5 +71,4 @@ coverage
 
 /public/mockServiceWorker.js
 storybook-static
-
-.cursor
+package-lock.json

@@ -1,17 +1,18 @@
+'use server'
+
 import { SIMULATION_URL } from '@/constants/urls/main'
 import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import { mapNewSimulationToOld } from '@/helpers/simulation/mapNewSimulation'
 import type { Simulation as ClientSimulation } from '@/publicodes-state/types'
 import type { Simulation as ServerSimulation } from '@/types/organisations'
-
-import { fetchWithJWTCookie } from './fetchWithJWTCookie'
+import { fetchServer } from './fetchServer'
 
 export async function getUserSimulations({
   userId,
 }: {
   userId: string
 }): Promise<ClientSimulation[]> {
-  const serverSimulations = await fetchWithJWTCookie<ServerSimulation[]>(
+  const serverSimulations = await fetchServer<ServerSimulation[]>(
     `${SIMULATION_URL}/${userId}?pageSize=50`
   )
 

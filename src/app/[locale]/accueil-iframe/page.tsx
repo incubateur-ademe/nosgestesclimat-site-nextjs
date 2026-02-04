@@ -111,7 +111,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
         <></>
       </LandingPage>
 
-      <Footer />
+      <Footer locale={locale} />
     </ClientLayout>
   )
 }

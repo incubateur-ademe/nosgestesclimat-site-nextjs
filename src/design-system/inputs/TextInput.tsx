@@ -29,7 +29,7 @@ interface Props {
   disabled?: boolean
   debounceTimeout?: number
   readOnly?: boolean
-  'data-cypress-id'?: string
+  'data-testid'?: string
   autoComplete?: string
   mention?: string
 }
@@ -86,7 +86,7 @@ export default forwardRef(function TextInput(
         required={required}
         aria-disabled={disabled}
         autoComplete={autoComplete}
-        data-cypress-id={`${props['data-cypress-id']}`}
+        data-testid={`${props['data-testid']}`}
         {...props}
         className={twMerge(
           'w-full max-w-[30rem] p-4 text-base',

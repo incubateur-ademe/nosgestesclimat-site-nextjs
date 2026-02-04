@@ -227,31 +227,3 @@ export const captureRegion = ({ region }: Props) => {
     },
   }
 }
-
-export const clickSaveSimulation = ({
-  question,
-  completionPercentage,
-}: {
-  question: string
-  completionPercentage: number
-}) => ({
-  eventName: 'Click save simulation',
-  properties: {
-    question,
-    progression: completionPercentage,
-  },
-})
-
-export const confirmSaveSimulation = ({
-  question,
-  completionPercentage,
-}: {
-  question: string
-  completionPercentage: number
-}) => ({
-  eventName: 'Confirm save simulation',
-  properties: {
-    question,
-    progression: completionPercentage,
-  },
-})

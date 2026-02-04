@@ -30,7 +30,7 @@ export default function Actions() {
 
   return (
     <>
-      <h2 data-cypress-id="plan-actions-title">
+      <h2 data-testid="plan-actions-title">
         <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
       </h2>
 

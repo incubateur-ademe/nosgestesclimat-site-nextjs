@@ -1,7 +1,6 @@
 'use client'
 
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
-import Confirmation from '@/components/results/carbone/getResultsByEmail/Confirmation'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   captureSaveResultsAndSigninSignUpComplete,
@@ -38,10 +37,7 @@ export default function SaveResultsAndSigninSignUpForm({
 
     try {
       await postSimulation({
-        simulation: {
-          ...currentSimulation,
-          savedViaEmail: true,
-        },
+        simulation: currentSimulation,
         sendEmail: true,
         userId,
         locale,
@@ -51,12 +47,6 @@ export default function SaveResultsAndSigninSignUpForm({
     } catch (error) {
       captureException(error)
     }
-  }
-
-  // If we successfully saved the simulation, we display the confirmation message
-  // or if the simulation is already saved
-  if (currentSimulation?.savedViaEmail) {
-    return <Confirmation className={className} />
   }
 
   return (

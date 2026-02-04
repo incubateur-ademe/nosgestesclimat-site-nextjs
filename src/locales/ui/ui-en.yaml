@@ -140,7 +140,6 @@ entries:
   Rejoindre: Join
   Retour: Back
   Créer le groupe: Create group
-  Votre prénom (ou pseudo): Your first name (or nickname)
   Il sera visible uniquement par les participants du groupe: It will be visible only to group participants
   Créez votre premier groupe: Create your first group
   Le classement: The ranking
@@ -305,7 +304,6 @@ entries:
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
   Votre code postal: Your postcode
   Pour conserver vos résultats et les retrouver à l’avenir: To keep your results and find them again in the future
-  Se déconnecter de votre espace organisation: Logging out of your organisation space
   Veuillez entrer votre code postal: Please enter your postcode
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Are you sure you want to leave this page? Your changes will be lost.
   Accéder au kit: Access the kit
@@ -530,14 +528,12 @@ entries:
   Vous n'avez pas encore débuté votre test,: You haven't started your test yet,
   Autres actions: Other actions
   sur: on
-  Et une illustration: And an illustration
   Mentions légales: Legal information
   Étape: Step
   Politique de confidentialité: Privacy policy
   Ce champ est trop long: This field is too long
   Ce champ est obligatoire.: This field is mandatory.
   Pour le retrouver facilement dans votre liste: To find it easily in your list
-  Choisissez un nom pour ce groupe: Choose a name for this group
   Pour faire joli et le reconnaitre !: To make it look pretty and recognisable!
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
@@ -566,18 +562,13 @@ entries:
   Les activités humaines menacent les équilibres naturels de notre planète.: Human activities are threatening the natural balance of our planet.
   '*La moyenne française est de': '*The French average is'
   litres par jour: litres per day
-  Reprendre plus tard: Resume later
-  Sauvegarder <2>ma progression</2>: Save <2>my progress</2>
   d'eau par jour: of water per day
   Votre région a bien été mise à jour.: Your region has been updated.
   de CO₂e par an: of CO₂e per year
   Liste des questions: List of questions
-  Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
   Une erreur est survenue: An error has occurred
-  Non, merci: No, thank you
-  Votre test est sauvegardé !: Your test is saved!
   <0>Empreinte eau</0> moyenne: 'Average <0>water footprint</0> '
   Lire l'article: Read the article
   Carbone: Carbon
@@ -1195,9 +1186,7 @@ entries:
   blog.homepage.defaultTitle: Blog, discover our articles and advice on the climate - Nos Gestes Climat
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   4 infolettres l'impact des transports: 4 newsletters the impact of transport
-  5 infolettres sur l'impact du logement: 5 newsletters on the impact of housing
   3 infolettres sur l'impact du logement: 3 newsletters on the impact of housing
-  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Enter your email address to receive the selected newsletters.
   documentation.total_category_block.title: of the total, see documentation
   documentation.total_category_block.title.lock: du total, voir la documentation
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Tick the boxes corresponding to the newsletters you wish to subscribe to.
@@ -1328,7 +1317,6 @@ entries:
   endpage.title.default.lock: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   actions.thresholdDescription: Shares with an impact of {{label}} or more
   actions.thresholdDescription.lock: Actions avec un impact de {{label}} ou plus
-  Accéder au test: Access the test
   Option sélectionnée: Selected option
   Sélectionner cette option: Select this option
   Sélectionner cette métrique: Select this metric
@@ -1617,8 +1605,8 @@ entries:
   mon-espace.groups.empty.title.lock: Invitez votre entourage à calculer leur empreinte
   mon-espace.groups.empty.description: Free, 100% anonymous and, above all, without judgement or comparison.
   mon-espace.groups.empty.description.lock: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
-  header.monEspace.title: My Space
-  header.monEspace.title.lock: Mon Espace
+  header.monEspace.title: My space
+  header.monEspace.title.lock: Mon espace
   common.metric.choice: Choice of metric
   common.metric.choice.lock: Choix de la métrique
   header.monEspace.access: Access my space
@@ -1737,7 +1725,6 @@ entries:
   landing.water.understand.description.lock: Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d'articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.
   landing.carbon.dailyGestures.description.lock: "Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d'autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>. Voici quelques idées :"
   landing.carbon.understand.description.lock: Réduire efficacement son empreinte sur l'environnement nécessite de <2>s'informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l'action</5>.
-  Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.: Calculate <2>your footprints</2> in <5>just 10 minutes</5>.
   la page groupes: groups page
   <0>Invitez vos proches à</0> <2>passer le test</2>: <0>Invite your friends and family to</0> <2>take the test</2>
   Mobilisez votre entourage: Involve those around you
@@ -1747,10 +1734,10 @@ entries:
   mon-espace.groups.organisation.create.button.lock: Créer mon organisation
   mon-espace.groups.organisation.create.title: Mobilising my organisation
   mon-espace.groups.organisation.create.title.lock: Mobiliser mon organisation
-  header.monEspace.openMenuButton.open.title: My Space ({{email}}), open the menu
-  header.monEspace.openMenuButton.open.title.lock: Mon Espace ({{email}}), ouvrir le menu
-  header.monEspace.openMenuButton.close.title: My Space ({{email}}), close the menu
-  header.monEspace.openMenuButton.close.title.lock: Mon Espace ({{email}}), fermer le menu
+  header.monEspace.openMenuButton.open.title: My space ({{email}}), open the menu
+  header.monEspace.openMenuButton.open.title.lock: Mon espace ({{email}}), ouvrir le menu
+  header.monEspace.openMenuButton.close.title: My space ({{email}}), close the menu
+  header.monEspace.openMenuButton.close.title.lock: Mon espace ({{email}}), fermer le menu
   Créer: Create
   Votre adresse e-mail: Your e-mail address
   Merci de renseigner votre adresse e-mail: Please enter your e-mail address
@@ -1760,16 +1747,12 @@ entries:
   Veuillez renseigner un e-mail.: Please enter an e-mail address.
   Veuillez entrer une adresse e-mail valide.: Please enter a valid e-mail address.
   Votre e-mail, rejoindre une campagne - Nos Gestes Climat: Your e-mail address, join a campaign - Nos Gestes Climat
-  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.: You can resume it later by clicking on the link you received by e-mail.
   Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver: You will receive an e-mail from us shortly, enabling you to find it
-  Recevez par e-mail un lien pour reprendre votre test plus tard.: Receive an e-mail with a link to take your test again later.
   Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations: Receive occasional e-mails about new Nos Gestes Climat services for organisations
   Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.: Enter your e-mail address to receive the selected newsletters.
   Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: To unsubscribe, use the link at the bottom of the e-mail you receive
   auth.verifyemail: Check my email address
   auth.verifyemail.lock: Vérifier mon adresse email
-  Rejoignez le groupe <2>{group?.name}</2> et passez le test.: Join the <2>{group?.name}</2> group and take the test.
-  Connaissez-vous votre empreinte carbone et eau ?: Do you know your carbon and water footprint?
   Qui sommes-nous - Nouvelle fenêtre: About us - New window
   international.comment.3: We are gradually adding to it to extend our international coverage.
   international.comment.3.lock: Nous l’enrichissons progressivement pour élargir la couverture internationale.
@@ -1780,16 +1763,11 @@ entries:
   Commencer le test: Start the test
   Découvrez votre empreinte carbone: Discover your carbon footprint
   Résultats immédiats, sans inscription.: Immediate results, no registration required.
-  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Get your personalised estimate</0> and <3>concrete ways</3> of reducing it.
   mon-espace.settings.userInfos.editLabel: Modify
   mon-espace.settings.userInfos.editLabel.lock: Modifier
-  Vérifier mon email: Check my email
   Nom du groupe: Group name
   Illustration du groupe: Illustration of the group
   Veuillez entrer votre nom.: Please enter your name.
-  Entrez votre email pour sauvegarder vos résultats: Enter your email address to save your results
-  Veuillez renseigner votre prénom.: Please enter your first name.
-  Retrouvez vos résultats à tout moment sur votre espace personnel: Find your results at any time in your personal space
   Un compte avec cette adresse e-mail existe déjà: An account with this e-mail address already exists
   fin.newsletters.title: Get advice on how to reduce your footprint
   fin.newsletters.title.lock: Recevez des conseils pour réduire votre empreinte
@@ -1797,11 +1775,58 @@ entries:
   'Format attendu : nom.prenom@domaine.fr': 'Expected format: nom.prenom@domaine.fr'
   'Format attendu : nom.prenom@domaine.fr.lock': 'Format attendu : nom.prenom@domaine.fr'
   <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <2>Already used by</2> <0>2.7 million people</0>
+  newsletterManagement.email.helperText: 'Expected format: nom.prenom@domaine.fr'
+  newsletterManagement.email.helperText.lock: 'Format attendu : nom.prenom@domaine.fr'
+  Je choisis mes infolettres: I choose my newsletters
+  newsletterManagement.email.required: Please enter your e-mail address
+  newsletterManagement.email.required.lock: Veuillez renseigner votre adresse e-mail
+  Envie d'agir, pas à pas ?: Want to take action, step by step?
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Compare your results with your family or a group of friends.
+  newsletterManagement.logementNewsletter.title: Our Housing Gestures
+  newsletterManagement.logementNewsletter.title.lock: Nos Gestes Logement
+  newsletterManagement.email.label: Your e-mail address
+  newsletterManagement.email.label.lock: Votre adresse e-mail
+  newsletterManagement.saveSubscriptions: Confirm my registration
+  newsletterManagement.saveSubscriptions.lock: Valider mon inscription
+  Veuillez entrer une adresse email valide.: Please enter a valid email address.
+  newsletterManagement.title: Select the newsletters that interest you
+  newsletterManagement.title.lock: Sélectionnez les infolettres qui vous intéressent
+  newsletterManagement.alimentationNewsletter.title: Our Food Gestures
+  newsletterManagement.alimentationNewsletter.title.lock: Nos Gestes Alimentation
+  newsletterManagement.transportNewsletter.description: 4 newsletters (over 4 weeks), to understand the impact of our journeys and take concrete action. To move towards lighter journeys.
+  newsletterManagement.transportNewsletter.description.lock: 4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers.
+  newsletterManagement.transportNewsletter.title: Our Transport Gestures
+  newsletterManagement.transportNewsletter.title.lock: Nos Gestes Transports
+  newsletterManagement.mainNewsletter.description: Our latest developments and recommendations for action, recent articles, current content and more. Once a month.
+  newsletterManagement.mainNewsletter.description.lock: Nos dernières évolutions et nos recommandations d'actions, les articles récents, les contenus du moment, et plus encore. Une fois par mois.
+  newsletterManagement.logementNewsletter.description: 3 newsletters (over 3 weeks), to find out how our housing choices influence our carbon footprint. For a more sober and comfortable home.
+  newsletterManagement.logementNewsletter.description.lock: 3 infolettres (sur 3 semaines), pour découvrir comment nos choix d'habitat influencent notre empreinte carbone. Pour un logement plus sobre et confortable.
+  newsletterManagement.mainNewsletter.title: News from Nos Gestes Climat
+  newsletterManagement.mainNewsletter.title.lock: Les actualités de Nos Gestes Climat
+  newsletterManagement.alimentationNewsletter.description: 4 newsletters (over 4 weeks), to find out about the footprint of our food, and how to align our diet with global issues.
+  newsletterManagement.alimentationNewsletter.description.lock: 4 infolettres (sur 4 semaines), pour découvrir l'empreinte de notre alimentation, et comprendre comment aligner son assiette avec les enjeux planétaires.
+  Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.: Receive our newsletters to help you understand, learn and take action.
   <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Get a personalised estimate</0> and <3>actionable steps</3> to reduce it
   simulator.mosaic.noneOfTheseOptions: No
   simulator.mosaic.noneOfTheseOptions.lock: Aucun
   simulator.mosaic.notConcerned: I am not concerned
   simulator.mosaic.notConcerned.lock: Je ne suis pas concerné·e
+  newsletterManagement.success.authenticated.title: Confirmation of your choice
+  newsletterManagement.success.authenticated.title.lock: Confirmation de votre choix
+  newsletterManagement.success.authenticated.description: We have taken your request into account.
+  newsletterManagement.success.authenticated.description.lock: Nous avons bien pris en compte votre demande.
+  newsletterManagement.error.title: An error has occurred while updating the information.
+  newsletterManagement.error.title.lock: Une erreur est survenue lors de la mise à jour des informations.
+  newsletterManagement.message.authenticated: You can unsubscribe at any time with just one click!
+  newsletterManagement.message.authenticated.lock: Vous pouvez vous désinscrire à tout moment en un clic !
+  newsletterManagement.success.unauthenticated.title: An e-mail has just been sent to you
+  newsletterManagement.success.unauthenticated.title.lock: Un e-mail vient de vous être envoyé
+  newsletterManagement.success.unauthenticated.description: Check your inbox and confirm your address to receive our emails.
+  newsletterManagement.success.unauthenticated.description.lock: Consultez votre boîte de réception et confirmez votre adresse pour recevoir nos e-mails.
+  newsletterManagement.message.unauthenticated: To unsubscribe, use the link at the bottom of the e-mail you receive
+  newsletterManagement.message.unauthenticated.lock: Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu
+  'Veuillez entrer une adresse email valide (format attendu : nom.prenom@domaine.fr)': 'Please enter a valid email address (expected format: nom.prenom@domaine.fr)'
+  'Veuillez entrer une adresse email valide (format attendu : nom.prenom@domaine.fr).lock': 'Veuillez entrer une adresse email valide (format attendu : nom.prenom@domaine.fr)'
   ont déjà calculé leur empreinte: have already calculated their footprint
   2,7 millions de personnes: 2.7 million people
   À propos - Nos Gestes Climat: About us - Nos Gestes Climat
@@ -1809,9 +1834,23 @@ entries:
   <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2.7 million people</0><1>have already calculated their footprint</1>
   Mon empreinte: My footprint
   Mon empreinte: My footprint
-  Veuillez entrer une adresse email valide.: Please enter a valid email address.
-  Comparez vos résultats avec votre famille ou un groupe d'amis.: Compare your results with your family or a group of friends.
   Création de compte - Nos Gestes Climat: Create an account - Nos Gestes Climat
   Connexion à votre espace - Nos Gestes Climat: Login to your space - Nos Gestes Climat
   Mon espace - Nos Gestes Climat: My space - Nos Gestes Climat
   Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.: Log on to your Nos Gestes Climat space to access your results and compare your carbon footprints with others.
+  ui.emailInput.helperText: 'Expected format: nom.prenom@domaine.fr'
+  ui.emailInput.helperText.lock: 'Format attendu : nom.prenom@domaine.fr'
+  footer.wantToAct.button: I choose my newsletters
+  footer.wantToAct.button.lock: Je choisis mes infolettres
+  ui.emailInput.error.invalid: 'Please enter a valid e-mail address (expected format: nom@exemple.org)'
+  ui.emailInput.error.invalid.lock: 'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
+  footer.wantToAct.title: Want to take action, step by step?
+  footer.wantToAct.title.lock: Envie d'agir, pas à pas ?
+  footer.wantToAct.description: Receive our newsletters to help you understand, learn and take action.
+  footer.wantToAct.description.lock: Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.
+  ui.emailInput.label: Your e-mail address
+  ui.emailInput.label.lock: Votre adresse e-mail
+  ui.emailInput.error.required: Please enter an e-mail address
+  ui.emailInput.error.required.lock: Veuillez entrer une adresse e-mail
+  email.input.helper: 'Expected format: nom@exemple.org'
+  email.input.helper.lock: 'Format attendu : nom@exemple.org'

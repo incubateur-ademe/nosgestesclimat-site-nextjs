@@ -116,7 +116,6 @@ export interface Simulation {
   computedResults: ComputedResults
   progression: number
   additionalQuestionsAnswers: AdditionalQuestionsAnswer[]
-  savedViaEmail?: boolean
   /**
    * user is defined only for the current user and undefined for others
    */
