@@ -32,8 +32,9 @@ export const useQuestionInQueryParams = (
   )
 
   useEffect(() => {
-    if (currentQuestion) setQuestionInQueryParams(currentQuestion)
-  }, [currentQuestion, setQuestionInQueryParams])
+    if (currentQuestion && questionInQueryParams !== currentQuestion)
+      setQuestionInQueryParams(currentQuestion)
+  }, [currentQuestion, setQuestionInQueryParams, questionInQueryParams])
 
   return { questionInQueryParams }
 }

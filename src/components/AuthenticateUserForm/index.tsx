@@ -29,6 +29,7 @@ interface Props<T extends object> {
   mode?: AuthenticationMode
   redirectURL?: string
   onEmailEntered?: (email: string) => void
+  additionnalButton?: ReactNode
   onEmailEmpty?: () => void
   onComplete?: (user: { email: string; userId: string }) => void | Promise<void>
   required?: boolean
@@ -53,6 +54,7 @@ interface Props<T extends object> {
 export default function AuthenticateUserForm({
   buttonLabel,
   buttonColor = 'primary',
+  additionnalButton,
   inputLabel,
   redirectURL,
   mode,
@@ -129,6 +131,7 @@ export default function AuthenticateUserForm({
   return (
     <SendVerificationCodeForm
       buttonLabel={buttonLabel}
+      additionnalButton={additionnalButton}
       buttonColor={buttonColor}
       mode={mode}
       onCodeSent={(pendingVerification) => {

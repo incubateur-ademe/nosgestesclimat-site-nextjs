@@ -10,7 +10,6 @@ import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 
-import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { useCallback, useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -38,24 +37,11 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
-  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
-    usePreventNavigation()
-
   const handleOnComplete = useCallback(() => {
-    if (shouldPreventNavigation) {
-      handleUpdateShouldPreventNavigation(false)
-    }
     if (progression === 1) {
-      goToEndPage({
-        allowedToGoToGroupDashboard: true,
-      })
+      goToEndPage()
     }
-  }, [
-    shouldPreventNavigation,
-    progression,
-    handleUpdateShouldPreventNavigation,
-    goToEndPage,
-  ])
+  }, [goToEndPage, progression])
 
   useEffect(() => {
     if (!relevantAnsweredQuestions || currentQuestion) {
