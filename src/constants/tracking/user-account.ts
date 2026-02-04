@@ -173,7 +173,7 @@ export const captureClickUpdateUserEmail = {
 export const clickUpdateUserNewsletters = [
   'trackEvent',
   'User Account Settings',
-  'Click User Newsletters',
+  'Click Update Newsletters',
 ]
 
 export const captureClickUpdateUserNewsletters = {

@@ -7,12 +7,11 @@ import {
 } from '@/helpers/server/model/newsletter'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { captureException } from '@sentry/nextjs'
-import { FORM_ERROR } from './postNewsletterFormError'
 
 export interface NewsletterFormState {
   email: string
   listIds: ListIds
-  error?: FORM_ERROR
+  error?: 'EMAIL_INVALID' | 'EMAIL_REQUIRED' | 'SERVER_ERROR'
   success?: boolean
 }
 
@@ -30,14 +29,14 @@ export async function postNewsletterFormAction(
     return {
       email: '',
       listIds,
-      error: FORM_ERROR.EMAIL_REQUIRED,
+      error: 'EMAIL_REQUIRED',
     }
   }
   if (!isEmailValid(email)) {
     return {
       email,
       listIds,
-      error: FORM_ERROR.EMAIL_INVALID,
+      error: 'EMAIL_INVALID',
     }
   }
 
@@ -53,7 +52,7 @@ export async function postNewsletterFormAction(
     return {
       email,
       listIds,
-      error: FORM_ERROR.SERVER_ERROR,
+      error: 'SERVER_ERROR',
     }
   }
 }

@@ -1393,11 +1393,11 @@ entries:
   newsletterManagement.email.required: Veuillez renseigner votre adresse e-mail
   newsletterManagement.logementNewsletter.description: 3 infolettres (sur 3 semaines), pour découvrir comment nos choix d'habitat influencent notre empreinte carbone. Pour un logement plus sobre et confortable.
   newsletterManagement.logementNewsletter.title: Nos Gestes Logement
-  newsletterManagement.mainNewsletter.description: Nos dernières évolutions et nos recommandations d'actions, les articles récents, les nouvelles formations, et plus encore. Une fois par mois
+  newsletterManagement.mainNewsletter.description: Nos dernières évolutions et nos recommandations d'actions, les articles récents, les contenus du moment, et plus encore. Une fois par mois.
   newsletterManagement.mainNewsletter.title: Les actualités de Nos Gestes Climat
   newsletterManagement.saveSubscriptions: Valider mon inscription
   newsletterManagement.title: Sélectionnez les infolettres qui vous intéressent
-  newsletterManagement.transportNewsletter.description: 4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers
+  newsletterManagement.transportNewsletter.description: 4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers.
   newsletterManagement.transportNewsletter.title: Nos Gestes Transports
   Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.: Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.
   Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
@@ -1421,7 +1421,8 @@ entries:
   footer.wantToAct.button: Je choisis mes infolettres
   footer.wantToAct.description: Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.
   footer.wantToAct.title: Envie d'agir, pas à pas ?
-  ui.emailInput.error.invalid: 'Veuillez entrer une adresse e-mail valide (format attendu : nom.prenom@domaine.fr)'
+  ui.emailInput.error.invalid: 'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
   ui.emailInput.error.required: Veuillez entrer une adresse e-mail
   ui.emailInput.helperText: 'Format attendu : nom.prenom@domaine.fr'
   ui.emailInput.label: Votre adresse e-mail
+  email.input.helper: 'Format attendu : nom@exemple.org'

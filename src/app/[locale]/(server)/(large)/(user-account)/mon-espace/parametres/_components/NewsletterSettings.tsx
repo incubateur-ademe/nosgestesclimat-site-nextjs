@@ -1,10 +1,10 @@
 'use client'
 
-import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
 import {
   type NewsletterFormState,
   postNewsletterFormAction,
-} from '@/components/newsletter/postNewsletterFormAction'
+} from '@/actions/newsletters/postNewsletterFormAction'
+import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
 import {
   captureClickUpdateUserNewsletters,
   clickUpdateUserNewsletters,

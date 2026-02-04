@@ -1,8 +1,7 @@
 'use client'
 
+import { postNewsletterFormAction } from '@/actions/newsletters/postNewsletterFormAction'
 import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
-import { postNewsletterFormAction } from '@/components/newsletter/postNewsletterFormAction'
-import { FORM_ERROR } from '@/components/newsletter/postNewsletterFormError'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   captureClickUpdateUserNewsletters,
@@ -49,12 +48,12 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
           containerClassName="my-8"
           value={state.email}
           error={
-            state.error === FORM_ERROR.EMAIL_INVALID
+            state.error === 'EMAIL_INVALID'
               ? t(
                   'ui.emailInput.error.invalid',
                   'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
                 )
-              : state.error === FORM_ERROR.EMAIL_REQUIRED
+              : state.error === 'EMAIL_REQUIRED'
                 ? t(
                     'ui.emailInput.error.required',
                     'Veuillez entrer une adresse e-mail'
@@ -105,7 +104,7 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
         />
       )}
 
-      {!pending && state.error === FORM_ERROR.SERVER_ERROR && (
+      {!pending && state.error === 'SERVER_ERROR' && (
         <Alert
           aria-live="polite"
           className="mb-6"

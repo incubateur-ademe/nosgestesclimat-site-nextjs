@@ -45,7 +45,7 @@ export async function logout() {
     name: AUTHENTICATION_COOKIE_NAME,
     httpOnly: true,
     secure,
-    sameSite: 'strict',
+    sameSite: 'lax',
     partitioned: secure,
     domain,
   })

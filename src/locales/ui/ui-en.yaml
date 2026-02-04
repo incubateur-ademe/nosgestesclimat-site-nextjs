@@ -1793,12 +1793,12 @@ entries:
   newsletterManagement.title.lock: Sélectionnez les infolettres qui vous intéressent
   newsletterManagement.alimentationNewsletter.title: Our Food Gestures
   newsletterManagement.alimentationNewsletter.title.lock: Nos Gestes Alimentation
-  newsletterManagement.transportNewsletter.description: 4 newsletters (over 4 weeks), to understand the impact of our journeys and take concrete action. Moving towards lighter journeys
-  newsletterManagement.transportNewsletter.description.lock: 4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers
+  newsletterManagement.transportNewsletter.description: 4 newsletters (over 4 weeks), to understand the impact of our journeys and take concrete action. To move towards lighter journeys.
+  newsletterManagement.transportNewsletter.description.lock: 4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers.
   newsletterManagement.transportNewsletter.title: Our Transport Gestures
   newsletterManagement.transportNewsletter.title.lock: Nos Gestes Transports
-  newsletterManagement.mainNewsletter.description: Our latest developments and recommendations for action, recent articles, new training courses and more. Once a month
-  newsletterManagement.mainNewsletter.description.lock: Nos dernières évolutions et nos recommandations d'actions, les articles récents, les nouvelles formations, et plus encore. Une fois par mois
+  newsletterManagement.mainNewsletter.description: Our latest developments and recommendations for action, recent articles, current content and more. Once a month.
+  newsletterManagement.mainNewsletter.description.lock: Nos dernières évolutions et nos recommandations d'actions, les articles récents, les contenus du moment, et plus encore. Une fois par mois.
   newsletterManagement.logementNewsletter.description: 3 newsletters (over 3 weeks), to find out how our housing choices influence our carbon footprint. For a more sober and comfortable home.
   newsletterManagement.logementNewsletter.description.lock: 3 infolettres (sur 3 semaines), pour découvrir comment nos choix d'habitat influencent notre empreinte carbone. Pour un logement plus sobre et confortable.
   newsletterManagement.mainNewsletter.title: News from Nos Gestes Climat
@@ -1842,8 +1842,8 @@ entries:
   ui.emailInput.helperText.lock: 'Format attendu : nom.prenom@domaine.fr'
   footer.wantToAct.button: I choose my newsletters
   footer.wantToAct.button.lock: Je choisis mes infolettres
-  ui.emailInput.error.invalid: 'Please enter a valid e-mail address (expected format: nom.prenom@domaine.fr)'
-  ui.emailInput.error.invalid.lock: 'Veuillez entrer une adresse e-mail valide (format attendu : nom.prenom@domaine.fr)'
+  ui.emailInput.error.invalid: 'Please enter a valid e-mail address (expected format: nom@exemple.org)'
+  ui.emailInput.error.invalid.lock: 'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
   footer.wantToAct.title: Want to take action, step by step?
   footer.wantToAct.title.lock: Envie d'agir, pas à pas ?
   footer.wantToAct.description: Receive our newsletters to help you understand, learn and take action.
@@ -1852,3 +1852,5 @@ entries:
   ui.emailInput.label.lock: Votre adresse e-mail
   ui.emailInput.error.required: Please enter an e-mail address
   ui.emailInput.error.required.lock: Veuillez entrer une adresse e-mail
+  email.input.helper: 'Expected format: nom@exemple.org'
+  email.input.helper.lock: 'Format attendu : nom@exemple.org'
