@@ -1,13 +1,12 @@
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/model/metric'
-import { orderedCategories } from '@/constants/model/orderedCategories'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import SubcategoriesListStandalone from './categoriesAccordionStandalone/SubcategoriesListStandalone'
 import AnimatedAccordionItem from './categoriesAccordionStandalone/_client/AnimatedAccordionItem'
@@ -21,7 +20,6 @@ interface Props {
 /**
  * Standalone version of CategoriesAccordion that doesn't use publicodes-state hooks.
  * All data comes from props (computedResults and rules).
- * Categories are displayed in fixed order, subcategories are sorted by footprint.
  */
 export default function CategoriesAccordionStandalone({
   rules,
@@ -30,20 +28,17 @@ export default function CategoriesAccordionStandalone({
 }: Props) {
   const categoriesData = computedResults[metric]?.categories ?? {}
 
-  // Use fixed category order, filter to only include categories with values
-  const categories = orderedCategories.filter(
-    (cat) => categoriesData[cat] !== undefined && categoriesData[cat] > 0
-  )
+  // Sort categories by value (descending)
+  const sortedCategories = Object.entries(categoriesData)
+    .filter(([, value]) => value > 0)
+    .sort(([, a], [, b]) => b - a)
+    .map(([dottedName]) => dottedName as DottedName)
 
-  // Get max value for percentage calculation
-  const maxCategoryValue = Math.max(...Object.values(categoriesData))
-
-  // Get total footprint (bilan) for percentage calculation
-  const totalBilan = computedResults[metric]?.bilan ?? 0
+  const maxCategoryValue = categoriesData[sortedCategories[0]] ?? 0
 
   return (
     <div className="flex flex-col">
-      {categories.map((categoryDottedName, index) => {
+      {sortedCategories.map((categoryDottedName, index) => {
         const rule = rules[categoryDottedName]
         const title =
           (rule?.titre as string) ?? utils.nameLeaf(categoryDottedName)
@@ -54,11 +49,7 @@ export default function CategoriesAccordionStandalone({
           metric,
         })
 
-        // Bar percentage: relative to max category
         const percentageOfTotalValue = (numericValue / maxCategoryValue) * 100
-
-        // Display percentage: relative to total footprint (bilan)
-        const percentageOfBilan = Math.round((numericValue / totalBilan) * 100)
 
         return (
           <AnimatedAccordionItem key={categoryDottedName} index={index}>
@@ -70,11 +61,11 @@ export default function CategoriesAccordionStandalone({
                   title={title}
                   icons={icons}
                   barColor={getBackgroundColor(categoryDottedName)}
-                  shouldDisplayValue={true}
+                  shouldDisplayValue={false}
                   displayValue={
-                    <span className="font-normal text-gray-700">
-                      {formattedValue} <Trans>{unit}</Trans> -{' '}
-                      {percentageOfBilan}%
+                    <span>
+                      <strong className="font-black">{formattedValue}</strong>{' '}
+                      <Trans>{unit}</Trans>
                     </span>
                   }
                 />
