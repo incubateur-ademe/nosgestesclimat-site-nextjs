@@ -28,7 +28,7 @@ export default function AccordionItem({
   const panelId = useId()
 
   return (
-    <li role="listitem" className="list-none">
+    <li role="listitem">
       <button
         type="button"
         id={buttonId}
