@@ -2,6 +2,7 @@ name: E2E Tests
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_call:
     inputs:
       is_preprod:
@@ -22,6 +23,8 @@ env:
 jobs:
   # Build and setup job - runs on a single machine
   build-and-setup:
+    # Skip entire workflow if PR is a draft (all other jobs depend on this one)
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     environment: 'Test E2E'
     runs-on: ubuntu-latest
     name: Build & Setup Tests
@@ -128,7 +131,7 @@ jobs:
 
   # Merge reports from all shards
   merge-reports:
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && needs.e2e-tests.result != 'skipped' }}
     needs: [e2e-tests]
     runs-on: ubuntu-latest
     name: Merge E2E Reports
