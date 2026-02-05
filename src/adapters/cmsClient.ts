@@ -261,7 +261,3 @@ export interface ThematicLandingPage {
   slug: string
   htmlLegend?: string
 }
-
-export type PopulatedThematicLandingPageType<
-  K extends OptionalKeys<ThematicLandingPage>,
-> = Populate<ThematicLandingPage, K>

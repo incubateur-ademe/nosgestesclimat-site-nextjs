@@ -1,4 +1,4 @@
-import { test as base, expect, type Page } from '@playwright/test'
+import { test as base, type Page } from '@playwright/test'
 
 export class CookieBanner {
   static DISMISS_COOKIE_BANNER = 'cookie-banner-refuse-button'
@@ -20,4 +20,4 @@ const test = base.extend<CookieBannerFixtures>({
   },
 })
 
-export { expect, test }
+export { test }

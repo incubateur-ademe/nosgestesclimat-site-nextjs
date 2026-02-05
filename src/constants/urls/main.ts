@@ -1,5 +1,3 @@
-import { SIMULATOR_PATH } from './paths'
-
 let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? 'http://localhost:3001'
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 const sameOrigin = new URL(serverUrl).origin.endsWith(new URL(siteUrl).origin)
@@ -31,14 +29,3 @@ export const NEWSLETTER_URL = serverUrl + '/newsletters/v1'
 export const getPreviewUrl = (PRNumber: string | number) => {
   return `https://nosgestesclimat-dev.s3.fr-par.scw.cloud/model/${PRNumber}`
 }
-
-export const HIDE_CTA_PATHS = [
-  '/fin',
-  SIMULATOR_PATH,
-  '/tutoriel',
-  '/infos',
-  '/organisations/infos',
-  '/organisations/connexion',
-  '/organisations/creer',
-  '/organisations/demander-demo',
-]

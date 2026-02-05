@@ -22,13 +22,6 @@ export const endClickCategory = (category: DottedName) => [
   `Click Category ${category}`,
 ]
 
-// Figma comment #62
-export const endClickSaveSimulation = [
-  'trackEvent',
-  'Fin',
-  'Click Save simulation',
-]
-
 // Figma comment #63
 export const endClickAction = (action: DottedName) => [
   'trackEvent',
@@ -66,13 +59,7 @@ export const endClickJagisFirstBlock = [
   'Click Jagis premier bloc',
 ]
 
-export const endClickJagisSecondBlock = [
-  'trackEvent',
-  'Fin',
-  'Click Jagis second bloc',
-]
-
-export type FinTab = 'results' | 'actions' | 'groups'
+type FinTab = 'results' | 'actions' | 'groups'
 
 export const finTabTrackEvent = (tab: FinTab) => [
   'trackEvent',
