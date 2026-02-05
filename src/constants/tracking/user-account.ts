@@ -1,31 +1,3 @@
-export const headerClickMonEspaceAuthenticated = [
-  'trackEvent',
-  'Header',
-  'Click Mon espace',
-  'Authenticated',
-]
-
-export const headerClickMonEspaceUnauthenticated = [
-  'trackEvent',
-  'Header',
-  'Click Mon espace',
-  'Unauthenticated',
-]
-
-export const captureClickHeaderMonEspaceAuthenticated = {
-  eventName: 'click header mon espace',
-  properties: {
-    status: 'authenticated',
-  },
-}
-
-export const captureClickHeaderMonEspaceUnauthenticated = {
-  eventName: 'click header mon espace',
-  properties: {
-    status: 'unauthenticated',
-  },
-}
-
 export const headerClickMonEspaceAuthenticatedServer = [
   'trackEvent',
   'Header',

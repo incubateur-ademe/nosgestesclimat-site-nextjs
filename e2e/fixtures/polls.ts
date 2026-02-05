@@ -92,4 +92,4 @@ const test = base.extend<PollPageFixtures>({
   },
 })
 
-export { expect, test }
+export { test }

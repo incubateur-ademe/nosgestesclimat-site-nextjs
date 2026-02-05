@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-export function debounce<T extends unknown[]>(
+function debounce<T extends unknown[]>(
   func: (...args: T) => void | Promise<void>,
   wait: number
 ): (...args: T) => void {

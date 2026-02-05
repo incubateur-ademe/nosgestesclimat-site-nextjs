@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Loader from '@/design-system/layout/Loader'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -23,7 +23,7 @@ const duration = {
   eau: <Trans>d'eau par jour</Trans>,
 }
 export default function TotalFootprintNumber({
-  metric = defaultMetric,
+  metric = carboneMetric,
   className,
   size = 'md',
 }: Props) {
