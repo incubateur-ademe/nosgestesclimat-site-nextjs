@@ -16,6 +16,7 @@ import {
   type Newsletters,
 } from '@/helpers/server/model/newsletter'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { MICROSOFT_EMAIL_ERROR_MESSAGE } from '@/utils/isEmailValid'
 import Form from 'next/form'
 import { useActionState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -58,7 +59,9 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
                     'ui.emailInput.error.required',
                     'Veuillez entrer une adresse e-mail'
                   )
-                : undefined
+                : state.error === 'EMAIL_MICROSOFT_BLOCKED'
+                  ? t(MICROSOFT_EMAIL_ERROR_MESSAGE)
+                  : undefined
           }
         />
 
