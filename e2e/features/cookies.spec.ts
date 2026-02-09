@@ -1,8 +1,5 @@
 import { expect, test } from '@playwright/test'
 
-const COOKIE_BANNER_TITLE_TEST_ID = 'cookie-banner-title'
-const COOKIE_MANAGEMENT_TITLE_TEST_ID = 'cookie-management-title'
-
 test.use({ storageState: { cookies: [], origins: [] } })
 
 test.describe('Cookie Consent Management', () => {
@@ -14,17 +11,13 @@ test.describe('Cookie Consent Management', () => {
     page,
   }) => {
     // Refuse all on banner
-    await expect(page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)).toBeVisible()
+    await expect(page.getByTestId('cookie-banner-title')).toBeVisible()
     await page.getByTestId('cookie-banner-refuse-button').click()
-    await expect(
-      page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)
-    ).not.toBeVisible()
+    await expect(page.getByTestId('cookie-banner-title')).not.toBeVisible()
 
     // Open settings
     await page.getByTestId('cookie-footer-button').click()
-    await expect(
-      page.getByTestId(COOKIE_MANAGEMENT_TITLE_TEST_ID)
-    ).toBeVisible()
+    await expect(page.getByTestId('cookie-management-title')).toBeVisible()
 
     // Verify defaults
     await expect(page.getByTestId('google-ads-refuse-radio')).toBeChecked()
@@ -35,17 +28,13 @@ test.describe('Cookie Consent Management', () => {
     page,
   }) => {
     // Accept all on banner
-    await expect(page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)).toBeVisible()
+    await expect(page.getByTestId('cookie-banner-title')).toBeVisible()
     await page.getByTestId('cookie-banner-accept-button').click()
-    await expect(
-      page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)
-    ).not.toBeVisible()
+    await expect(page.getByTestId('cookie-banner-title')).not.toBeVisible()
 
     // Open settings
     await page.getByTestId('cookie-footer-button').click()
-    await expect(
-      page.getByTestId(COOKIE_MANAGEMENT_TITLE_TEST_ID)
-    ).toBeVisible()
+    await expect(page.getByTestId('cookie-management-title')).toBeVisible()
 
     // Verify defaults
     await expect(page.getByTestId('google-ads-accept-radio')).toBeChecked()
@@ -56,24 +45,18 @@ test.describe('Cookie Consent Management', () => {
     page,
   }) => {
     // Accept all on banner
-    await expect(page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)).toBeVisible()
+    await expect(page.getByTestId('cookie-banner-title')).toBeVisible()
     await page.getByTestId('cookie-banner-accept-button').click()
-    await expect(
-      page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)
-    ).not.toBeVisible()
+    await expect(page.getByTestId('cookie-banner-title')).not.toBeVisible()
 
     await page.reload()
 
     // Banner should not reappear
-    await expect(
-      page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)
-    ).not.toBeVisible()
+    await expect(page.getByTestId('cookie-banner-title')).not.toBeVisible()
 
     // Open settings
     await page.getByTestId('cookie-footer-button').click()
-    await expect(
-      page.getByTestId(COOKIE_MANAGEMENT_TITLE_TEST_ID)
-    ).toBeVisible()
+    await expect(page.getByTestId('cookie-management-title')).toBeVisible()
 
     // Verify accept radios are still selected
     await expect(page.getByTestId('google-ads-accept-radio')).toBeChecked()
@@ -97,9 +80,7 @@ test.describe('Cookie Consent Management', () => {
 
     // Open settings
     await page.getByTestId('cookie-footer-button').click()
-    await expect(
-      page.getByTestId(COOKIE_MANAGEMENT_TITLE_TEST_ID)
-    ).toBeVisible()
+    await expect(page.getByTestId('cookie-management-title')).toBeVisible()
 
     // Verify PostHog is "Refused"
     await expect(page.getByTestId('posthog-refuse-radio')).toBeChecked()
