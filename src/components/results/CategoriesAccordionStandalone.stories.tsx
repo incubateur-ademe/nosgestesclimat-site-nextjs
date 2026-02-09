@@ -90,7 +90,7 @@ function CategoriesAccordionWithSelector({
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full p-12">
       <div className="mb-6 p-4 bg-gray-50 rounded-lg">
         <label
           htmlFor="persona-selector"
@@ -130,7 +130,7 @@ const meta: Meta<typeof CategoriesAccordionWithSelector> = {
   title: 'Components/Results/CategoriesAccordionStandalone',
   component: CategoriesAccordionWithSelector,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
   argTypes: {

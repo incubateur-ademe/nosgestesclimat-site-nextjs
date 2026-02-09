@@ -1,10 +1,9 @@
 import BarChart from '@/design-system/utils/BarChart'
-import Emoji from '@/design-system/utils/Emoji'
 import type { ReactNode } from 'react'
 
 interface Props {
   title?: string
-  icons?: string
+  icon?: ReactNode
   displayValue: ReactNode
   shouldDisplayValue?: boolean
   percentageOfTotalValue: number
@@ -15,7 +14,7 @@ interface Props {
 
 export default function HorizontalBarChartItem({
   title,
-  icons,
+  icon,
   displayValue,
   shouldDisplayValue = true,
   percentageOfTotalValue,
@@ -31,7 +30,7 @@ export default function HorizontalBarChartItem({
           minWidth: (minTitleWidth ?? 10) + 'rem',
         }}>
         <div className="flex items-center gap-1">
-          <Emoji>{icons}</Emoji> <p className={`mb-0`}>{title}</p>
+          {icon} <p className={`mb-0`}>{title}</p>
         </div>
         {shouldDisplayValue && (
           <div className="text-primary-700 mr-4 min-w-20 text-right">
