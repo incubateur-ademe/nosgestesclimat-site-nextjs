@@ -1,14 +1,14 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 
 export const trackAmisCreationEtapeVotreGroupeSuivant = () => {
-  trackEvent(['trackEvent', 'Amis Creation', 'Step 1 - Click Suivant'])
+  trackEvents(['trackEvent', 'Amis Creation', 'Step 1 - Click Suivant'])
 }
 
 export const trackAmisCreationVosInformationsRetour = () => {
-  trackEvent(['trackEvent', 'Amis Creation', 'Step 1 - Click Retour'])
+  trackEvents(['trackEvent', 'Amis Creation', 'Step 1 - Click Retour'])
 }
 
 export const trackAmisCreationEtapeVosInformationsSuivant = () => {
@@ -18,9 +18,16 @@ export const trackAmisCreationEtapeVosInformationsSuivant = () => {
 }
 
 export const trackAmisCreationVotreGroupeRetour = () => {
-  trackEvent(['trackEvent', 'Amis Creation', 'Step 2 - Click Retour'])
+  trackEvents(['trackEvent', 'Amis Creation', 'Step 2 - Click Retour'])
 }
 
+export const trackAmisCreationConnexionComplete = () => {
+  trackEvents(['trackEvent', 'Amis Creation', 'Verification code validé'], {
+    eventName: 'Verification code validé',
+  })
+}
+
+// Old-style exports for server components that still use the old pattern
 export const amisCreationConnexionRetour = [
   'trackEvent',
   'Amis Creation',

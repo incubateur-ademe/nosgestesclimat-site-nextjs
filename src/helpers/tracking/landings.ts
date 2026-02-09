@@ -1,4 +1,4 @@
-import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 
 function getLandingCategory(pathname: string) {
   switch (pathname) {

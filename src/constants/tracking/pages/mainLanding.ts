@@ -1,4 +1,4 @@
-import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 
 export const trackLearnMoreCarbonLink = () => {
   trackEvents(['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'], {
@@ -13,9 +13,9 @@ export const trackLearnMoreWaterLink = () => {
 }
 
 export const trackCreateGroupLink = () => {
-  trackEvent(['trackEvent', 'Accueil', 'Click "Groupes"'])
+  trackEvents(['trackEvent', 'Accueil', 'Click "Groupes"'])
 }
 
 export const trackCreateOrganisationLink = () => {
-  trackEvent(['trackEvent', 'Accueil', 'Click "Organisations"'])
+  trackEvents(['trackEvent', 'Accueil', 'Click "Organisations"'])
 }

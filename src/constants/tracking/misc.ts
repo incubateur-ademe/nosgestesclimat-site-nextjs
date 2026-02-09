@@ -1,7 +1,7 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import {
   captureIframeInteraction,
@@ -44,16 +44,15 @@ export const trackRegion = (region: string) => {
 }
 
 export const trackDownloadRavijenChart = () => {
-  trackEvent(['trackEvent', 'Misc', 'Download Ravijen chart'])
+  trackEvents(['trackEvent', 'Misc', 'Download Ravijen chart'])
 }
 
-<<<<<<< HEAD
 export const trackClickRegionBanner = () => {
-  trackEvent(['trackEvent', 'Misc', 'Click Region Banner'])
+  trackEvents(['trackEvent', 'Misc', 'Click Region Banner'])
 }
 
 export const trackSplitTesting = (branch: string) => {
-  trackEvent([
+  trackEvents([
     'trackEvent',
     'Misc',
     'Split testing',
@@ -61,19 +60,9 @@ export const trackSplitTesting = (branch: string) => {
   ])
 }
 
-||||||| a37acc3a1
-export const trackingSplitTesting = (branch: string) => [
-  'trackEvent',
-  'Misc',
-  'Split testing',
-  `User on branch ${branch}`,
-]
-
-=======
->>>>>>> origin/preprod
 // Banner
 export const trackBannerClick = () => {
-  trackEvent(['trackEvent', 'Bannière', 'Click lien'])
+  trackEvents(['trackEvent', 'Bannière', 'Click lien'])
 }
 
 // Category filter
@@ -87,45 +76,18 @@ export const trackCategoryFilter = (category: DottedName, path: string) => {
   )
 }
 
-<<<<<<< HEAD
 // User account fake door
 export const trackUserAccountFakeDoorAccept = () => {
-  trackEvent(['trackEvent', 'Compte utilisateur', 'Click Je crée mon compte'])
+  trackEvents(['trackEvent', 'Compte utilisateur', 'Click Je crée mon compte'])
 }
 
 export const trackUserAccountFakeDoorRefuse = () => {
-  trackEvent([
+  trackEvents([
     'trackEvent',
     'Compte utilisateur',
     'Click Je ne préfère pas créer de compte',
   ])
 }
-||||||| a37acc3a1
-export const trackingCategoryFilterPosthog = (category: DottedName) => ({
-  eventName: 'Actions click category filter',
-  properties: {
-    category,
-  },
-})
-// User account fake door
-export const trackingUserAccountFakeDoorAccept = [
-  'trackEvent',
-  'Compte utilisateur',
-  'Click Je crée mon compte',
-]
-export const trackingUserAccountFakeDoorRefuse = [
-  'trackEvent',
-  'Compte utilisateur',
-  'Click Je ne préfère pas créer de compte',
-]
-=======
-export const trackingCategoryFilterPosthog = (category: DottedName) => ({
-  eventName: 'Actions click category filter',
-  properties: {
-    category,
-  },
-})
->>>>>>> origin/preprod
 
 // Cookies
 export const trackCookiesAccept = () => {

@@ -4,15 +4,11 @@ import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickFinTab,
-  finTabTrackEvent,
-} from '@/constants/tracking/pages/end'
+import { trackFinTabClick } from '@/constants/tracking/pages/end'
 import { FIN_TAB_QUERY_PARAM } from '@/constants/urls/params'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
@@ -42,16 +38,7 @@ export default function FinTabs() {
     router.replace(`${pathname}${query}`)
 
     // Track events
-    if (tab === 'results') {
-      trackEvent(finTabTrackEvent('results'))
-      trackPosthogEvent(captureClickFinTab({ tab: 'results' }))
-    } else if (tab === 'actions') {
-      trackEvent(finTabTrackEvent('actions'))
-      trackPosthogEvent(captureClickFinTab({ tab: 'actions' }))
-    } else if (tab === 'groups') {
-      trackEvent(finTabTrackEvent('groups'))
-      trackPosthogEvent(captureClickFinTab({ tab: 'groups' }))
-    }
+    trackFinTabClick(tab)
   }
 
   const tabsItems: TabItem[] = [

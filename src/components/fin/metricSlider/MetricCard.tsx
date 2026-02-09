@@ -1,12 +1,8 @@
 import { carboneMetric } from '@/constants/model/metric'
-import {
-  captureClickFootprint,
-  endClickFootprint,
-} from '@/constants/tracking/pages/end'
+import { trackEndClickFootprint } from '@/constants/tracking/pages/end'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import type { Metric } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { KeyboardEvent, PropsWithChildren, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -42,8 +38,7 @@ export default function MetricCard({
 
     setCurrentMetric(metric)
 
-    trackEvent(endClickFootprint(metric))
-    trackPosthogEvent(captureClickFootprint(metric))
+    trackEndClickFootprint(metric)
 
     window.scrollTo({
       top: 0,

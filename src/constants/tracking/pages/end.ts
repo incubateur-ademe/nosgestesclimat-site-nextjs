@@ -1,28 +1,28 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
-import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #57
 export const trackEndClickPoll = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Poll'])
+  trackEvents(['trackEvent', 'Fin', 'Click Poll'])
 }
 
 // Figma comment #58
 export const trackEndClickSaveShortcut = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Save shortcut'])
+  trackEvents(['trackEvent', 'Fin', 'Click Save shortcut'])
 }
 
 export const trackEndClickShare = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Share'])
+  trackEvents(['trackEvent', 'Fin', 'Click Share'])
 }
 
 export const trackEndToggleTargetBlock = () => {
-  trackEvent(['trackEvent', 'Fin', 'Toggle Target block'])
+  trackEvents(['trackEvent', 'Fin', 'Toggle Target block'])
 }
 
 export const trackEndClickHedgehog = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Hedgehog'])
+  trackEvents(['trackEvent', 'Fin', 'Click Hedgehog'])
 }
 
 // Figma comment #60
@@ -59,7 +59,7 @@ export const trackEndClickActions = (subcategory?: string) => {
 
 // Figma comment #65
 export const trackEndClickDocumentation = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Documentation'])
+  trackEvents(['trackEvent', 'Fin', 'Click Documentation'])
 }
 
 export const trackEndClickDomesticWater = () => {
@@ -69,36 +69,49 @@ export const trackEndClickDomesticWater = () => {
 }
 
 export const trackEndClickJagisFirstBlock = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Jagis premier bloc'])
+  trackEvents(['trackEvent', 'Fin', 'Click Jagis premier bloc'])
 }
 
 type FinTab = 'results' | 'actions' | 'groups'
 
-export const finTabTrackEvent = (tab: FinTab) => [
-  'trackEvent',
-  'Fin',
-  'Click Tab',
-  tab.charAt(0).toUpperCase() + tab.slice(1),
-]
+export const trackFinTabClick = (tab: FinTab) => {
+  trackEvents(
+    [
+      'trackEvent',
+      'Fin',
+      'Click Tab',
+      tab.charAt(0).toUpperCase() + tab.slice(1),
+    ],
+    {
+      eventName: 'click tab fin',
+      properties: { tab },
+    }
+  )
+}
 
-export const captureClickFinTab = ({ tab }: { tab: FinTab }) => ({
-  eventName: 'click tab fin',
-  properties: { tab },
-})
+export const trackEndClickFootprint = (metric: string) => {
+  trackEvents(['trackEvent', 'Fin', `Click Empreinte ${metric}`], {
+    eventName: 'Fin click empreinte',
+    properties: { metric },
+  })
+}
 
-export const endClickFootprint = (metric: string) => [
-  'trackEvent',
-  'Fin',
-  `Click Empreinte ${metric}`,
-]
+export const trackGroupsLoginComplete = () => {
+  trackEvents(['trackEvent', 'Groups Login', 'Verification code validé'], {
+    eventName: 'Groups Login - Verification code validé',
+  })
+}
 
-export const captureClickFootprint = (metric: string) => ({
-  eventName: 'Fin click empreinte',
-  properties: {
-    metric,
-  },
-})
+export const trackSaveResultsAndSigninSignUpComplete = () => {
+  trackEvents(
+    ['trackEvent', 'Save Results and Signin Sign Up', 'Verification code validé'],
+    {
+      eventName: 'Save Results and Signin Sign Up - Verification code validé',
+    }
+  )
+}
 
+// Old-style exports for server components that still use the old pattern
 export const groupsLoginComplete = [
   'trackEvent',
   'Groups Login',
