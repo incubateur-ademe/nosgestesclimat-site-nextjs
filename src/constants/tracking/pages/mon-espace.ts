@@ -1,16 +1,4 @@
-export type MonEspaceTab = 'results' | 'actions' | 'groups' | 'settings'
-
-export const monEspaceTabTrackEvent = (tab: MonEspaceTab) => [
-  'trackEvent',
-  'MonEspace',
-  'Click Tab',
-  tab.charAt(0).toUpperCase() + tab.slice(1),
-]
-
-export const captureClickMonEspaceTab = ({ tab }: { tab: MonEspaceTab }) => ({
-  eventName: 'click tab mon espace',
-  properties: { tab },
-})
+type MonEspaceTab = 'results' | 'actions' | 'groups' | 'settings'
 
 // Server-side constants formatted for data-track-event and data-track-posthog attributes
 export const monEspaceTabTrackEventServer = (tab: MonEspaceTab) =>

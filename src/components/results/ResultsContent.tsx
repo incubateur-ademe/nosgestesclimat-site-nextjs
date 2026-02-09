@@ -69,7 +69,7 @@ function ResultsContentInner({
         <MetricSlider
           isStatic={isStatic}
           carboneTotal={simulation.computedResults.carbone.bilan}
-          waterTotal={simulation.computedResults.eau.bilan}
+          waterTotal={simulation.computedResults.eau?.bilan}
         />
 
         {currentMetric === carboneMetric && (
