@@ -1866,3 +1866,5 @@ entries:
   ui.emailInput.error.required.lock: Veuillez entrer une adresse e-mail
   email.input.helper: 'Expected format: nom@exemple.org'
   email.input.helper.lock: 'Format attendu : nom@exemple.org'
+  privacyPolicy.posthogCheckboxTextNotFollowed: You are not currently being monitored. Tick this box if you agree to be monitored by Posthog
+  privacyPolicy.posthogCheckboxTextNotFollowed.lock: Vous n'êtes actuellement pas suivi(e). Cochez cette case si vous acceptez d'être suivi(e) avec Posthog
