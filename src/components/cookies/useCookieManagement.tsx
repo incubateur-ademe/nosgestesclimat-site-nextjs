@@ -30,7 +30,7 @@ const CookieConsentContext = createContext<CookieConsentContextType>({
   setCookieBannerDisplayState: () => {},
 })
 
-export const CookieBannerProvider = ({ children }: PropsWithChildren) => {
+export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
   const [cookieBannerDisplayState, setCookieBannerDisplayState] =
     useState<CookieBannerDisplayState>(
       !safeLocalStorage.getItem(COOKIE_STATE_KEY) ? 'banner' : 'hidden'

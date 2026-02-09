@@ -1,5 +1,5 @@
 import CookieConsent from '@/components/cookies/CookieConsent'
-import { CookieBannerProvider } from '@/components/cookies/useCookieManagement'
+import { CookieConsentProvider } from '@/components/cookies/useCookieManagement'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import HeaderServer from '@/components/layout/HeaderServer'
@@ -14,7 +14,7 @@ export default async function LargeLayout({
   const { locale } = await params
   return (
     <>
-      <CookieBannerProvider>
+      <CookieConsentProvider>
         <SkipToMainContentLink />
         <CookieConsent />
         <Banner locale={locale as Locale} />
@@ -23,7 +23,7 @@ export default async function LargeLayout({
 
         <GoogleTagScript />
         <GoogleTagIframe />
-      </CookieBannerProvider>
+      </CookieConsentProvider>
     </>
   )
 }

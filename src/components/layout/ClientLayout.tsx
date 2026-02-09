@@ -7,6 +7,7 @@ import type { Locale } from '@/i18nConfig'
 import type { SkipLinksDisplayed } from '@/types'
 import type { PropsWithChildren } from 'react'
 import MainLayoutProviders from '../../app/[locale]/_components/MainLayoutProviders'
+import { CookieConsentProvider } from '../cookies/useCookieManagement'
 
 type RootLayoutProps = PropsWithChildren & {
   locale: string
@@ -18,16 +19,18 @@ export const ClientLayout = ({
   skipLinksDisplayed,
   locale,
 }: RootLayoutProps) => (
-  <MainLayoutProviders>
-    <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
+  <CookieConsentProvider>
+    <MainLayoutProviders>
+      <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
 
-    <CookieConsent />
+      <CookieConsent />
 
-    <Banner locale={locale as Locale} />
+      <Banner locale={locale as Locale} />
 
-    {children}
+      {children}
 
-    <GoogleTagScript />
-    <GoogleTagIframe />
-  </MainLayoutProviders>
+      <GoogleTagScript />
+      <GoogleTagIframe />
+    </MainLayoutProviders>
+  </CookieConsentProvider>
 )

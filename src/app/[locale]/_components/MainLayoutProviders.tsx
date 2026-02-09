@@ -1,6 +1,5 @@
 'use client'
 
-import { CookieBannerProvider } from '@/components/cookies/useCookieManagement'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { UserProvider } from '@/publicodes-state'
@@ -13,22 +12,20 @@ import QueryClientProviderWrapper from '../_components/mainLayoutProviders/Query
 export default function MainLayoutProviders({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary>
-      <CookieBannerProvider>
-        <QueryClientProviderWrapper>
-          <UserProvider>
-            <PartnerProvider>
-              <IframeOptionsProvider>
-                <PreventNavigationProvider>
-                  <Suspense>
-                    <MainHooks />
-                  </Suspense>
-                  {children}
-                </PreventNavigationProvider>
-              </IframeOptionsProvider>
-            </PartnerProvider>
-          </UserProvider>
-        </QueryClientProviderWrapper>
-      </CookieBannerProvider>
+      <QueryClientProviderWrapper>
+        <UserProvider>
+          <PartnerProvider>
+            <IframeOptionsProvider>
+              <PreventNavigationProvider>
+                <Suspense>
+                  <MainHooks />
+                </Suspense>
+                {children}
+              </PreventNavigationProvider>
+            </IframeOptionsProvider>
+          </PartnerProvider>
+        </UserProvider>
+      </QueryClientProviderWrapper>
     </ErrorBoundary>
   )
 }
