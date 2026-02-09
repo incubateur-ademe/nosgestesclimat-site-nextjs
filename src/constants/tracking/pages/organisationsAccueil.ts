@@ -15,22 +15,6 @@ export const organisationsAccueilClickDemo = [
   'Click Démo',
 ]
 
-export const organisationsAccueilClickAmbassadeurs = [
-  'trackEvent',
-  'Organisations Accueil',
-  'Click Ambassadeurs',
-]
+// Figma comment #115
 
 // Figma comment #115
-export const organisationsAccueilClickCommencerBottom = [
-  'trackEvent',
-  'Organisations Accueil',
-  'Click Commencer (Bottom)',
-]
-
-// Figma comment #115
-export const organisationsAccueilClickDemoBottom = [
-  'trackEvent',
-  'Organisations Accueil',
-  'Click Démo (Bottom)',
-]

@@ -58,7 +58,7 @@ export default function LatestResults({
 
       <MetricSlider
         carboneTotal={simulation.computedResults.carbone.bilan}
-        waterTotal={simulation.computedResults.eau.bilan}
+        waterTotal={simulation.computedResults.eau?.bilan}
         className="mb-0 h-auto"
         isStatic
         isSharePage

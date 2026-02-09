@@ -2,6 +2,7 @@ name: E2E Tests
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_call:
     inputs:
       is_preprod:
@@ -15,13 +16,14 @@ on:
 
 env:
   NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
-  NEXT_PUBLIC_PROXY_SERVER: 'true'
   LOCAL_TEST: ${{ !inputs.is_preprod }}
   NEXT_PUBLIC_SITE_URL: ${{ inputs.is_preprod && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
 
 jobs:
   # Build and setup job - runs on a single machine
   build-and-setup:
+    # Skip entire workflow if PR is a draft (all other jobs depend on this one)
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     environment: 'Test E2E'
     runs-on: ubuntu-latest
     name: Build & Setup Tests
@@ -43,7 +45,7 @@ jobs:
           CMS_TOKEN: ${{ env.LOCAL_TEST && secrets.CMS_TOKEN || '' }}
           CMS_URL: ${{ env.LOCAL_TEST && secrets.CMS_URL || '' }}
         run: |
-          ${{ env.LOCAL_TEST && 'pnpm start &' || '' }}
+          ${{ env.LOCAL_TEST == 'true' && 'pnpm start &' || '' }}
           pnpm playwright test --project="global setup"
 
       - name: Upload state artifacts
@@ -55,11 +57,11 @@ jobs:
 
       # We archive the Next.js build because ":" in filenames are not allowed by upload-artifact
       - name: Archive Next.js build
-        if: ${{ env.LOCAL_TEST }}
+        if: ${{ env.LOCAL_TEST == 'true' }}
         run: tar -cf nextjs-build.tar .next
 
       - name: Upload Next.js build
-        if: ${{ env.LOCAL_TEST }}
+        if: ${{ env.LOCAL_TEST == 'true' }}
         uses: actions/upload-artifact@v6
         with:
           name: nextjs-build
@@ -90,13 +92,13 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Download Next.js build
-        if: ${{ env.LOCAL_TEST }}
+        if: ${{ env.LOCAL_TEST == 'true'}}
         uses: actions/download-artifact@v6
         with:
           name: nextjs-build
 
       - name: Extract Next.js build
-        if: ${{ env.LOCAL_TEST }}
+        if: ${{ env.LOCAL_TEST == 'true'}}
         run: tar -xf nextjs-build.tar
 
       - name: Install Playwright
@@ -128,7 +130,7 @@ jobs:
 
   # Merge reports from all shards
   merge-reports:
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && needs.e2e-tests.result != 'skipped' }}
     needs: [e2e-tests]
     runs-on: ubuntu-latest
     name: Merge E2E Reports

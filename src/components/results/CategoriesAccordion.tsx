@@ -1,6 +1,6 @@
 'use client'
 
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Accordion from '@/design-system/layout/Accordion'
 import { useSortedCategoriesByFootprint } from '@/hooks/useSortedCategoriesByFootprint'
 import { useRule } from '@/publicodes-state'
@@ -10,7 +10,7 @@ import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
 interface Props {
   metric?: Metric
 }
-export default function CategoriesAccordion({ metric = defaultMetric }: Props) {
+export default function CategoriesAccordion({ metric = carboneMetric }: Props) {
   const { sortedCategories } = useSortedCategoriesByFootprint()
 
   const { numericValue: maxCategoryValue } = useRule(

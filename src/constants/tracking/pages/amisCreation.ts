@@ -28,13 +28,3 @@ export const amisCreationConnexionComplete = [
 export const captureAmisCreationConnexionComplete = {
   eventName: 'Verification code validé',
 }
-
-export const amisInvitationConnexionComplete = [
-  'trackEvent',
-  'Amis Invitation',
-  'Verification code validé',
-]
-
-export const captureAmisInvitationConnexionComplete = {
-  eventName: 'Amis Invitation - Verification code validé',
-}

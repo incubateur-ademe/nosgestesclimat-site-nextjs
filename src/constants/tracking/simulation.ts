@@ -26,12 +26,6 @@ export const simulationSimulationStarted = [
   'Simulation First answer',
 ]
 
-export const simulationSimulationHalfCompleted = [
-  'trackEvent',
-  'Simulation',
-  'Simulation Half completed',
-]
-
 export const simulationSimulationCompleted = (bilan: number) => [
   'trackEvent',
   'Simulation',

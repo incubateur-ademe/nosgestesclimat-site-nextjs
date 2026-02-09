@@ -5,13 +5,17 @@ import {
   NEWSLETTER_IDS,
   updateNewsletterSubscription,
 } from '@/helpers/server/model/newsletter'
-import { isEmailValid } from '@/utils/isEmailValid'
+import { isEmailValid, isMicrosoftEmail } from '@/utils/isEmailValid'
 import { captureException } from '@sentry/nextjs'
 
 export interface NewsletterFormState {
   email: string
   listIds: ListIds
-  error?: 'EMAIL_INVALID' | 'EMAIL_REQUIRED' | 'SERVER_ERROR'
+  error?:
+    | 'EMAIL_INVALID'
+    | 'EMAIL_REQUIRED'
+    | 'EMAIL_MICROSOFT_BLOCKED'
+    | 'SERVER_ERROR'
   success?: boolean
 }
 
@@ -37,6 +41,13 @@ export async function postNewsletterFormAction(
       email,
       listIds,
       error: 'EMAIL_INVALID',
+    }
+  }
+  if (isMicrosoftEmail(email)) {
+    return {
+      email,
+      listIds,
+      error: 'EMAIL_MICROSOFT_BLOCKED',
     }
   }
 
