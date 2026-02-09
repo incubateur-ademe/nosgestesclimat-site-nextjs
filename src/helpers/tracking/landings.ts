@@ -120,21 +120,39 @@ export const trackLandingClickPostThumbnail = (
   pathname: string,
   action: string
 ) => {
-  trackEvent(['trackEvent', getLandingCategory(pathname), action])
+  trackEvents(['trackEvent', getLandingCategory(pathname), action], {
+    eventName: 'Landing click post thumbnail',
+    properties: {
+      page: getLandingCategory(pathname),
+      action,
+    },
+  })
 }
 
 // Model info
 export const trackLandingClickModelDocumentation = (pathname: string) => {
-  trackEvent([
-    'trackEvent',
-    getLandingCategory(pathname),
-    'Click documentation',
-  ])
+  trackEvents(
+    ['trackEvent', getLandingCategory(pathname), 'Click documentation'],
+    {
+      eventName: 'Landing click model documentation',
+      properties: {
+        page: getLandingCategory(pathname),
+      },
+    }
+  )
 }
 
 // Nouveautés
 export const trackLandingClickNouveautes = (pathname: string) => {
-  trackEvent(['trackEvent', getLandingCategory(pathname), 'Click nouveautés'])
+  trackEvents(
+    ['trackEvent', getLandingCategory(pathname), 'Click nouveautés'],
+    {
+      eventName: 'Landing click nouveautés',
+      properties: {
+        page: getLandingCategory(pathname),
+      },
+    }
+  )
 }
 
 export const trackLearnMoreCarbonLink = () => {

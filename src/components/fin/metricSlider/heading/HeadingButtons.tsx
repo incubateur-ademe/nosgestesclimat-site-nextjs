@@ -4,7 +4,6 @@ import SaveIcon from '@/components/icons/SaveIcon'
 import ShareSimulationButton from '@/components/sharing/ShareSimulationButton'
 import Trans from '@/components/translation/trans/TransClient'
 import { trackEndClickSaveShortcut } from '@/constants/tracking/pages/end'
-import { trackSimulationClickSaveShortcut } from '@/constants/tracking/pages/simulateur'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
@@ -22,15 +21,10 @@ const saveClassNames = {
 
 interface Props {
   size?: 'sm' | 'md'
-  endPage?: boolean
   showSaveButton?: boolean
 }
 
-export default function HeadingButtons({
-  size = 'md',
-  endPage,
-  showSaveButton,
-}: Props) {
+export default function HeadingButtons({ size = 'md', showSaveButton }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
 
   const { t } = useClientTranslation()
@@ -52,11 +46,8 @@ export default function HeadingButtons({
             'font-medium lg:w-auto lg:gap-2 lg:px-4! lg:py-2!'
           )}
           onClick={() => {
-            if (endPage) {
-              trackEndClickSaveShortcut()
-            } else {
-              trackSimulationClickSaveShortcut()
-            }
+            trackEndClickSaveShortcut()
+
             handleScroll('email-block', 'center')
           }}>
           <SaveIcon

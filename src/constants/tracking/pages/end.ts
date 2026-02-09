@@ -104,7 +104,11 @@ export const trackGroupsLoginComplete = () => {
 
 export const trackSaveResultsAndSigninSignUpComplete = () => {
   trackEvents(
-    ['trackEvent', 'Save Results and Signin Sign Up', 'Verification code validé'],
+    [
+      'trackEvent',
+      'Save Results and Signin Sign Up',
+      'Verification code validé',
+    ],
     {
       eventName: 'Save Results and Signin Sign Up - Verification code validé',
     }
