@@ -28,6 +28,7 @@ export default function AccordionItem({
   const panelId = useId()
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-redundant-roles
     <li role="listitem" className="list-none">
       <button
         type="button"
@@ -41,15 +42,15 @@ export default function AccordionItem({
             onClick()
           }
         }}
-        className={`focus:ring-primary-700 relative z-10 flex w-full items-end justify-between py-2 focus:ring-2 focus:ring-offset-3 focus:outline-hidden ${isReadOnly ? 'cursor-default!' : ''}`}
+        className={`focus-visible:ring-primary-700 relative z-10 mb-2 flex w-full items-end justify-between focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-1 ${isReadOnly ? 'cursor-default!' : ''}`}
         aria-disabled={isReadOnly}
         aria-expanded={isOpen}
         aria-controls={panelId}>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 
-        <div className="flex items-center gap-4">
+        <div className="absolute top-1/2 right-6 flex -translate-y-1/2 items-center">
           <ChevronRight
-            className={`${isOpen ? 'rotate-90' : ''} ${
+            className={`h-4 w-4 stroke-slate-950 ${isOpen ? '-rotate-90' : 'rotate-90'} ${
               isReadOnly ? 'opacity-20' : ''
             }`}
           />
@@ -62,8 +63,9 @@ export default function AccordionItem({
           role="region"
           aria-labelledby={buttonId}
           tabIndex={-1}
-          initial={{ opacity: 0.6, y: -50 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           className="z-0">
           {content}
         </motion.div>

@@ -708,6 +708,16 @@ export default {
     'fill-divers-800',
     'fill-servicessocietaux-800',
     'stroke-primary-600',
+    'bg-yellow-800',
+    'bg-blue-800',
+    'bg-orange-800',
+    'bg-green-800',
+    'bg-purple-800',
+    'bg-yellow-50',
+    'bg-blue-50',
+    'bg-orange-50',
+    'bg-green-50',
+    'bg-purple-50',    
   ],
   plugins: [
     function ({ addComponents }) {

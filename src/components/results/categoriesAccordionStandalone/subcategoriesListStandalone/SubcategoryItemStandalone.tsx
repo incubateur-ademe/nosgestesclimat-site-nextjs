@@ -1,6 +1,7 @@
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Metric } from '@/publicodes-state/types'
+import { capitalizeString } from '@/utils/capitalizeString'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import AnimatedBar from '../_client/AnimatedBar'
@@ -10,6 +11,7 @@ interface Props {
   rules: Partial<NGCRules>
   value: number
   categoryValue: number
+  colorName: string
   metric?: Metric
   index?: number
 }
@@ -23,7 +25,8 @@ export default function SubcategoryItemStandalone({
   rules,
   value,
   categoryValue,
-  metric = defaultMetric,
+  colorName,
+  metric = carboneMetric,
   index = 0,
 }: Props) {
   const rule = rules[subcategory]
@@ -37,29 +40,27 @@ export default function SubcategoryItemStandalone({
   const barPercentage = (value / categoryValue) * 100
 
   // Calculate delay for staggered animation
-  const animationDelay = 0.3 + index * 0.08
+  const animationDelay = 0.3 + index * 0.25
 
   return (
     <li className="py-3 first:pt-0 last:pb-0">
       <div className="flex flex-col gap-2">
-        {/* Title and value row */}
-        <div className="flex items-baseline justify-between">
-          <span className="text-sm font-bold md:text-base">{title}</span>
-          <span className="text-sm text-gray-600">
+        <div className="flex items-baseline gap-2">
+          <strong>{capitalizeString(title)}</strong>
+          <span>
             {formattedValue} {unit} - {percentageOfCategoryValue}%
           </span>
         </div>
 
-        {/* Animated progress bar */}
         <div
-          className="w-full overflow-hidden rounded-xl bg-gray-200"
+          className="w-full overflow-hidden"
           style={{ height: 6 }}
           role="img"
           aria-label={`Part de la sous-catégorie: ${percentageOfCategoryValue}%`}>
           <AnimatedBar
             percentage={barPercentage}
             delay={animationDelay}
-            color="bg-primary-700"
+            color={`bg-${colorName}-800`}
             height={6}
           />
         </div>

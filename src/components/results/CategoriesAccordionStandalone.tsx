@@ -5,7 +5,6 @@ import { orderedCategories } from '@/constants/model/orderedCategories'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
@@ -17,12 +16,30 @@ import PublicServicesIcon from '../icons/PublicServicesIcon'
 import SubcategoriesListStandalone from './categoriesAccordionStandalone/SubcategoriesListStandalone'
 import AnimatedAccordionItem from './categoriesAccordionStandalone/_client/AnimatedAccordionItem'
 
-const ICONS_MAPPER: Record<string, React.ReactNode> = {
-  logement: <HousingIcon />,
-  alimentation: <FoodIcon />,
-  transport: <CarIcon />,
-  'services sociétaux': <PublicServicesIcon />,
-  divers: <MiscIcon />,
+const CATEGORIES_MAPPER: Record<
+  string,
+  { icon: React.ReactNode; colorName: string }
+> = {
+  logement: {
+    icon: <HousingIcon />,
+    colorName: 'green',
+  },
+  alimentation: {
+    icon: <FoodIcon />,
+    colorName: 'orange',
+  },
+  transport: {
+    icon: <CarIcon />,
+    colorName: 'blue',
+  },
+  'services sociétaux': {
+    icon: <PublicServicesIcon />,
+    colorName: 'purple',
+  },
+  divers: {
+    icon: <MiscIcon />,
+    colorName: 'yellow',
+  },
 }
 
 interface Props {
@@ -65,10 +82,11 @@ export default function CategoriesAccordionStandalone({
 
         const { formattedValue, unit } = formatFootprint(numericValue, {
           metric,
+          shouldUseAbbreviation: true,
         })
 
         // Bar percentage: relative to max category
-        const percentageOfTotalValue = (numericValue / maxCategoryValue) * 100
+        const percentageOfTotalValue = (numericValue / maxCategoryValue) * 75
 
         // Display percentage: relative to total footprint (bilan)
         const percentageOfBilan = Math.round((numericValue / totalBilan) * 100)
@@ -80,28 +98,27 @@ export default function CategoriesAccordionStandalone({
                 <HorizontalBarChartItem
                   percentageOfTotalValue={percentageOfTotalValue}
                   index={index}
-                  title={title}
-                  icon={ICONS_MAPPER[categoryDottedName]}
-                  barColor={getBackgroundColor(categoryDottedName)}
-                  shouldDisplayValue={true}
-                  displayValue={
-                    <span className="font-normal text-gray-700">
-                      {formattedValue} <Trans>{unit}</Trans> -{' '}
-                      {percentageOfBilan}%
-                    </span>
+                  icon={CATEGORIES_MAPPER[categoryDottedName].icon}
+                  title={
+                    <div className="flex items-center gap-2">
+                      <strong>{title}</strong>
+                      <span>
+                        {formattedValue} <Trans>{unit}</Trans> -{' '}
+                        {percentageOfBilan}%
+                      </span>
+                    </div>
                   }
+                  color={CATEGORIES_MAPPER[categoryDottedName].colorName}
                 />
               }
               name={title ?? ''}
               ariaLabel={`${title ?? ''} - ${formattedValue} ${unit}`}
               content={
                 <Card
-                  className="mb-4 border-x-0 bg-gray-100"
-                  style={{
-                    boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset',
-                  }}>
+                  className={`mb-4 rounded-lg border border-slate-400 bg-${CATEGORIES_MAPPER[categoryDottedName].colorName}-50`}>
                   <SubcategoriesListStandalone
                     category={categoryDottedName}
+                    colorName={CATEGORIES_MAPPER[categoryDottedName].colorName}
                     rules={rules}
                     subcategoriesData={computedResults[metric]?.subcategories}
                     categoryValue={numericValue}

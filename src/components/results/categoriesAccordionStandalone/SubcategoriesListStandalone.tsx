@@ -1,10 +1,11 @@
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoryItemStandalone from './subcategoriesListStandalone/SubcategoryItemStandalone'
 
 interface Props {
   category: DottedName
+  colorName: string
   rules: Partial<NGCRules>
   subcategoriesData?: Record<DottedName, number>
   categoryValue: number
@@ -16,10 +17,11 @@ interface Props {
  */
 export default function SubcategoriesListStandalone({
   category,
+  colorName,
   rules,
   subcategoriesData,
   categoryValue,
-  metric = defaultMetric,
+  metric = carboneMetric,
 }: Props) {
   if (!subcategoriesData) {
     return null
@@ -49,6 +51,7 @@ export default function SubcategoriesListStandalone({
           rules={rules}
           value={subcategoriesData[subcategory] ?? 0}
           categoryValue={categoryValue}
+          colorName={colorName}
           metric={metric}
           index={index}
         />
