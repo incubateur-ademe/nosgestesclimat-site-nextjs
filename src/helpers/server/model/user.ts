@@ -9,21 +9,6 @@ export interface UserServer {
   email: string
 }
 
-export interface BrevoContact {
-  id: number
-  email: string
-  listIds: number[]
-}
-
-export type CompleteUserServer = UserServer & {
-  id: string
-  email: string | null
-  name: string | null
-  createdAt: Date
-  updatedAt: Date
-  contact?: BrevoContact
-}
-
 export async function getUser(): Promise<UserServer> {
   return fetchServer(USER_URL + '/me')
 }
