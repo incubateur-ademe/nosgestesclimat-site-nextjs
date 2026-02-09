@@ -52,6 +52,34 @@ test.describe('Cookie Consent Management', () => {
     await expect(page.getByTestId('posthog-accept-radio')).toBeChecked()
   })
 
+  test('should persist "Accept" choices after page reload', async ({
+    page,
+  }) => {
+    // Accept all on banner
+    await expect(page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)).toBeVisible()
+    await page.getByTestId('cookie-banner-accept-button').click()
+    await expect(
+      page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)
+    ).not.toBeVisible()
+
+    await page.reload()
+
+    // Banner should not reappear
+    await expect(
+      page.getByTestId(COOKIE_BANNER_TITLE_TEST_ID)
+    ).not.toBeVisible()
+
+    // Open settings
+    await page.getByTestId('cookie-footer-button').click()
+    await expect(
+      page.getByTestId(COOKIE_MANAGEMENT_TITLE_TEST_ID)
+    ).toBeVisible()
+
+    // Verify accept radios are still selected
+    await expect(page.getByTestId('google-ads-accept-radio')).toBeChecked()
+    await expect(page.getByTestId('posthog-accept-radio')).toBeChecked()
+  })
+
   test('should sync PostHog opt-out from privacy policy checkbox to settings', async ({
     page,
   }) => {
