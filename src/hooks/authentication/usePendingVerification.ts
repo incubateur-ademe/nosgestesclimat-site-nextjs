@@ -1,4 +1,3 @@
-import { useCookieManagement } from '@/components/cookies/useCookieManagement'
 import { reconcileUserOnAuth } from '@/helpers/user/reconcileOnAuth'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
@@ -16,8 +15,6 @@ export function usePendingVerification({
   onComplete?: (user: { email: string; userId: string }) => void
 }) {
   const user = useUser()
-
-  const { cookieState } = useCookieManagement()
 
   let pendingVerification = user.user.pendingVerification
 
@@ -39,7 +36,6 @@ export function usePendingVerification({
           userId,
           email: pendingVerification.email,
           user,
-          hasPosthogConsent: cookieState.posthog === 'accepted',
         })
 
         user.updatePendingVerification(undefined)
@@ -48,7 +44,7 @@ export function usePendingVerification({
         captureException(error)
       }
     },
-    [onComplete, pendingVerification, user, cookieState]
+    [onComplete, pendingVerification, user]
   )
 
   return {

@@ -60,12 +60,10 @@ export async function reconcileUserOnAuth({
   userId,
   email,
   user,
-  hasPosthogConsent,
 }: {
   userId: string
   email: string
   user: ReturnType<typeof useUser>
-  hasPosthogConsent: boolean
 }) {
   const {
     user: localUser,
@@ -83,12 +81,8 @@ export async function reconcileUserOnAuth({
       simulations,
       userId,
     })
-  } else if (hasPosthogConsent) {
+  } else {
     posthog.alias(localUser.userId, userId)
-  }
-
-  if (hasPosthogConsent) {
-    posthog.identify(userId)
   }
 
   await loadServerSimulation({
