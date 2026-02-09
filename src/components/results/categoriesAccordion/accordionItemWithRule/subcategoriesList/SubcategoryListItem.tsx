@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
@@ -17,7 +17,7 @@ interface Props {
 export default function SubcategoryListItem({
   subcategory,
   categoryValue,
-  metric = defaultMetric,
+  metric = carboneMetric,
 }: Props) {
   const { numericValue, title, icons } = useRule(subcategory, metric)
 

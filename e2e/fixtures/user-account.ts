@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test'
-import { test as base, expect, type User } from './user'
+import { test as base, type User } from './user'
 
 export class UserSpace {
   static URL = '/mon-espace'
@@ -29,4 +29,4 @@ const test = base.extend<UserSpaceFixtures>({
   },
 })
 
-export { expect, test }
+export { test }

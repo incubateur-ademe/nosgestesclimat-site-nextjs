@@ -36,11 +36,6 @@ export const trackEndClickCategory = (category: DottedName) => {
   )
 }
 
-// Figma comment #62
-export const trackEndClickSaveSimulation = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Save simulation'])
-}
-
 // Figma comment #63
 export const trackEndClickAction = (action: DottedName) => {
   trackEvents(['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`], {
@@ -77,18 +72,7 @@ export const trackEndClickJagisFirstBlock = () => {
   trackEvent(['trackEvent', 'Fin', 'Click Jagis premier bloc'])
 }
 
-export const trackEndClickJagisSecondBlock = () => {
-  trackEvent(['trackEvent', 'Fin', 'Click Jagis second bloc'])
-}
-
-export const trackEndClickFootprint = (metric: string) => {
-  trackEvents(['trackEvent', 'Fin', `Click Empreinte ${metric}`], {
-    eventName: 'Fin click empreinte',
-    properties: { metric },
-  })
-}
-
-export type FinTab = 'results' | 'actions' | 'groups'
+type FinTab = 'results' | 'actions' | 'groups'
 
 export const finTabTrackEvent = (tab: FinTab) => [
   'trackEvent',

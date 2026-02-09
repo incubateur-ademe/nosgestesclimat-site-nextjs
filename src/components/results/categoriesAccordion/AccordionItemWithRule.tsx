@@ -2,7 +2,7 @@
 
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { trackEndClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
@@ -23,7 +23,7 @@ export default function AccordionItemWithRule({
   dottedName,
   maxValue,
   index,
-  metric = defaultMetric,
+  metric = carboneMetric,
 }: Props) {
   const { title, icons, numericValue } = useRule(dottedName, metric)
 

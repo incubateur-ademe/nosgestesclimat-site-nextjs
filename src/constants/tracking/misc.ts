@@ -47,6 +47,7 @@ export const trackDownloadRavijenChart = () => {
   trackEvent(['trackEvent', 'Misc', 'Download Ravijen chart'])
 }
 
+<<<<<<< HEAD
 export const trackClickRegionBanner = () => {
   trackEvent(['trackEvent', 'Misc', 'Click Region Banner'])
 }
@@ -60,6 +61,16 @@ export const trackSplitTesting = (branch: string) => {
   ])
 }
 
+||||||| a37acc3a1
+export const trackingSplitTesting = (branch: string) => [
+  'trackEvent',
+  'Misc',
+  'Split testing',
+  `User on branch ${branch}`,
+]
+
+=======
+>>>>>>> origin/preprod
 // Banner
 export const trackBannerClick = () => {
   trackEvent(['trackEvent', 'Bannière', 'Click lien'])
@@ -76,6 +87,7 @@ export const trackCategoryFilter = (category: DottedName, path: string) => {
   )
 }
 
+<<<<<<< HEAD
 // User account fake door
 export const trackUserAccountFakeDoorAccept = () => {
   trackEvent(['trackEvent', 'Compte utilisateur', 'Click Je crée mon compte'])
@@ -88,6 +100,32 @@ export const trackUserAccountFakeDoorRefuse = () => {
     'Click Je ne préfère pas créer de compte',
   ])
 }
+||||||| a37acc3a1
+export const trackingCategoryFilterPosthog = (category: DottedName) => ({
+  eventName: 'Actions click category filter',
+  properties: {
+    category,
+  },
+})
+// User account fake door
+export const trackingUserAccountFakeDoorAccept = [
+  'trackEvent',
+  'Compte utilisateur',
+  'Click Je crée mon compte',
+]
+export const trackingUserAccountFakeDoorRefuse = [
+  'trackEvent',
+  'Compte utilisateur',
+  'Click Je ne préfère pas créer de compte',
+]
+=======
+export const trackingCategoryFilterPosthog = (category: DottedName) => ({
+  eventName: 'Actions click category filter',
+  properties: {
+    category,
+  },
+})
+>>>>>>> origin/preprod
 
 // Cookies
 export const trackCookiesAccept = () => {

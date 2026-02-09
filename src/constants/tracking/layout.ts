@@ -4,6 +4,7 @@
 import { trackEvent, trackEvents } from '@/utils/analytics/trackEvent'
 
 // Figma comment #1
+<<<<<<< HEAD
 export const trackHeaderClickLogo = () => {
   trackEvent(['trackEvent', 'Header', 'Click Logo'])
 }
@@ -22,8 +23,26 @@ export const trackHeaderClickActions = () => {
 export const trackHeaderClickClassements = () => {
   trackEvent(['trackEvent', 'Header', 'Click Classements'])
 }
+||||||| a37acc3a1
+export const headerClickLogo = ['trackEvent', 'Header', 'Click Logo']
+
+// Figma comment #2
+export const headerClickTest = ['trackEvent', 'Header', 'Click Test']
+
+// Figma comment #3
+export const headerClickActions = ['trackEvent', 'Header', 'Click Actions']
+
+// Figma comment #4
+export const headerClickClassements = [
+  'trackEvent',
+  'Header',
+  'Click Classements',
+]
+=======
+>>>>>>> origin/preprod
 
 // Figma comment #5
+<<<<<<< HEAD
 export const trackHeaderClickProfil = () => {
   trackEvent(['trackEvent', 'Header', 'Click Profil'])
 }
@@ -117,6 +136,17 @@ export const trackFooterClickImpactco2 = () => {
     eventName: 'Footer click Impact CO2',
   })
 }
+||||||| a37acc3a1
+export const headerClickProfil = ['trackEvent', 'Header', 'Click Profil']
+
+// Figma comment #7
+export const headerClickOrganisation = [
+  'trackEvent',
+  'Header',
+  'Click Organisation',
+]
+=======
+>>>>>>> origin/preprod
 
 // Figma comment #17
 export const trackFooterClickLanguage = (locale: string) => {

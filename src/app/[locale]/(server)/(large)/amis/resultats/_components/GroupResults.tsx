@@ -5,7 +5,7 @@ import FootprintSelector from '@/components/footprints/FootprintSelector'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric, defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Separator from '@/design-system/layout/Separator'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
 import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
@@ -32,7 +32,7 @@ export default function GroupResults({
   const { isGroupOwner } = useIsGroupOwner({ group })
 
   const [footprintSelected, setFootprintSelected] =
-    useState<Metrics>(defaultMetric)
+    useState<Metrics>(carboneMetric)
 
   const isCarbonFootprintSelected = footprintSelected === carboneMetric
 
