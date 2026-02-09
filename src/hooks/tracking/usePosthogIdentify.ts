@@ -1,22 +1,14 @@
 'use client'
 
-import { useCookieManagement } from '@/components/cookies/useCookieManagement'
-import { useUser } from '@/publicodes-state'
 import posthog from 'posthog-js'
 import { useEffect } from 'react'
 
-export function usePosthogIdentify() {
-  const { cookieState } = useCookieManagement()
-  const { user } = useUser()
-
-  const hasPosthogConsent = cookieState.posthog === 'accepted'
-  const userId = user.userId
-
+export function usePosthogIdentify({ userId }: { userId: string }) {
   useEffect(() => {
-    if (!hasPosthogConsent || !userId) {
+    if (!userId) {
       return
     }
 
     posthog.identify(userId)
-  }, [hasPosthogConsent, userId])
+  }, [userId])
 }

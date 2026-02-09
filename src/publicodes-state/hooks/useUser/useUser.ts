@@ -2,6 +2,7 @@
 
 import { useContext } from 'react'
 
+import { usePosthogIdentify } from '@/hooks/tracking/usePosthogIdentify'
 import userContext from '../../providers/userProvider/context'
 import useActions from './hooks/useActions'
 import useSimulations from './hooks/useSimulations'
@@ -55,6 +56,8 @@ export default function useUser() {
   })
 
   const { hideTutorial, showTutorial } = useTutorials({ setTutorials })
+
+  usePosthogIdentify({ userId: user?.userId || '' })
 
   return {
     /**
