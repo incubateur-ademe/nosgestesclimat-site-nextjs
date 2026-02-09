@@ -1436,3 +1436,4 @@ entries:
   ui.emailInput.label: Votre adresse e-mail
   email.input.helper: 'Format attendu : nom@exemple.org'
   privacyPolicy.posthogCheckboxTextNotFollowed: Vous n'êtes actuellement pas suivi(e). Cochez cette case si vous acceptez d'être suivi(e) avec Posthog
+  Cliquez sur voir le détail pour découvrir également votre empreinte eau: Cliquez sur voir le détail pour découvrir également votre empreinte eau

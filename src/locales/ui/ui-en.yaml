@@ -1868,3 +1868,4 @@ entries:
   email.input.helper.lock: 'Format attendu : nom@exemple.org'
   privacyPolicy.posthogCheckboxTextNotFollowed: You are not currently being monitored. Tick this box if you agree to be monitored by Posthog
   privacyPolicy.posthogCheckboxTextNotFollowed.lock: Vous n'êtes actuellement pas suivi(e). Cochez cette case si vous acceptez d'être suivi(e) avec Posthog
+  Cliquez sur voir le détail pour découvrir également votre empreinte eau: Click on see details to find out more about your water footprint
