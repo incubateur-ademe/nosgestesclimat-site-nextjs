@@ -11,7 +11,7 @@ interface InfosContextType {
   customAnswers: Record<string, string>
   addCustomAnswer: ({ key, answer }: { key: string; answer: string }) => void
 }
-export const InfosContext = createContext<InfosContextType>({
+const InfosContext = createContext<InfosContextType>({
   postalCode: '',
   setPostalCode: () => {},
   birthdate: '',

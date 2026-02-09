@@ -5,7 +5,7 @@ import BilanChart from '@/components/charts/BilanChart'
 import ServicesChart from '@/components/charts/ServicesChart'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import { RULES_TO_HIDE } from '@/constants/documentation'
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Markdown from '@/design-system/utils/Markdown'
 import { useLocale } from '@/hooks/useLocale'
@@ -52,7 +52,7 @@ export default function DocumentationClient({ slugs }: Props) {
   const { situation } = useCurrentSimulation()
   const { engine } = useDisposableEngine({ rules, situation })
 
-  const [metric, setMetric] = useState<Metric>(defaultMetric)
+  const [metric, setMetric] = useState<Metric>(carboneMetric)
 
   if (isPending) {
     return <BlockSkeleton />

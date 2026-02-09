@@ -12,7 +12,7 @@ const getLanguageFromCookie = () => {
   return match ? match[1] : 'fr'
 }
 
-i18next.use(initReactI18next).init({
+void i18next.use(initReactI18next).init({
   ...getOptions(),
   lng: getLanguageFromCookie(),
   resources: {
@@ -24,5 +24,3 @@ i18next.use(initReactI18next).init({
     },
   },
 })
-
-export default i18next
