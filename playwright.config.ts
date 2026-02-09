@@ -61,14 +61,6 @@ export default defineConfig<FixturesOptions>({
         storageState: NEW_VISITOR_STATE,
       },
     },
-    ...(!process.env.CI ? [
-      {
-        name: 'Chrome No Setup',
-        use: {
-          ...devices['Desktop Chrome HiDPI'],
-        },
-      },
-    ] : []),
   ],
   /* Run your local dev server before starting the tests */
   webServer: process.env.CI
