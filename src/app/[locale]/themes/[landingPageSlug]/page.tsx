@@ -226,7 +226,13 @@ export default async function ThematicLandingPage({
               ),
             }}
             title={block5.title}
-            description={block5?.htmlDescription ?? ''}
+            description={
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: block5?.htmlDescription ?? '',
+                }}
+              />
+            }
             gestures={{
               default: {
                 imageAlt: block5.image?.alternativeText ?? '',
