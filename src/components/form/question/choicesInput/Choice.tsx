@@ -9,6 +9,7 @@ interface Props {
   active: boolean
   setValue: (value: string | number) => void
   id?: string
+  isWithinGrid?: boolean
 }
 
 export default function Choice({
@@ -17,6 +18,7 @@ export default function Choice({
   active,
   setValue,
   id,
+  isWithinGrid,
   ...props
 }: Props) {
   const { title, description, icons } = useRule(
@@ -41,6 +43,7 @@ export default function Choice({
       active={active}
       onClick={() => setValue(choice)}
       id={id}
+      isWithinGrid={isWithinGrid}
       {...props}
     />
   )

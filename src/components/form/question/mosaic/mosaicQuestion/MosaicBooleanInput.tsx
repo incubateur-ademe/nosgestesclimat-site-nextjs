@@ -5,6 +5,7 @@ import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useEngine } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
@@ -43,6 +44,21 @@ export default function MosaicBooleanInput({
   isInactive,
 }: Props) {
   const { t } = useClientTranslation()
+
+  const { safeEvaluate } = useEngine()
+
+  // This is a hack to deal with some mosaics children that should be checked for applicability
+  const shouldCheckChildrenApplicability = [
+    'logement . chauffage . appoint . électricité . présent',
+    'logement . chauffage . appoint . bois . présent',
+    'logement . chauffage . appoint . bouteille gaz cuisson . présent',
+  ].includes(question)
+
+  if (shouldCheckChildrenApplicability) {
+    if (safeEvaluate({ 'est non applicable': question })?.nodeValue === true) {
+      return null
+    }
+  }
 
   const status = isInactive
     ? 'inactive'

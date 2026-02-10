@@ -30,7 +30,6 @@ export const PRIORITY_QUESTIONS = new Set<DottedName>([
   'alimentation . plats',
   'logement . type',
   'logement . propriétaire',
-  'logement . chauffage . précision consommation',
   'logement . chauffage . bois . type',
   'logement . électricité . réseau . consommation',
   'transport . voiture . km',
@@ -41,6 +40,9 @@ export const PRIORITY_QUESTIONS = new Set<DottedName>([
 export const NON_PRIORITY_QUESTIONS = new Set<DottedName>([
   'logement . électricité . réseau . consommation',
   'transport . voiture . thermique . consommation aux 100',
+  'logement . chauffage . saisie précision consommation',
+  'logement . chauffage . précision consommation . ressenti',
+  'logement . chauffage . précision consommation . DPE',
 ])
 
 export const MUST_ASK_QUESTIONS = new Set<DottedName>([
