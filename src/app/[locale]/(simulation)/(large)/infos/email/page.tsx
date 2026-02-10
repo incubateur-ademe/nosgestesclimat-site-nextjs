@@ -7,7 +7,6 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
 
 export default function Email() {
   const { polls } = useCurrentSimulation()
@@ -18,7 +17,6 @@ export default function Email() {
     (process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS ?? '')
       .split(',')
       .includes(pollSlug)
-  const router = useRouter()
   return (
     <>
       <Title
@@ -51,7 +49,10 @@ export default function Email() {
       <AuthenticateUserForm
         buttonLabel={'Vérifier mon adresse email'}
         additionnalButton={
-          <ButtonLink color="secondary" href={linkToEndPage}>
+          <ButtonLink
+            color="secondary"
+            href={linkToEndPage}
+            data-testid="skip-email-button">
             <Trans>Passer</Trans>
           </ButtonLink>
         }

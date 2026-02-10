@@ -15,11 +15,8 @@ import { twMerge } from 'tailwind-merge'
 import Simulateur from './_components/Simulateur'
 
 export default function SimulateurPage() {
-  // Guarding the route and redirecting if necessary
-  useSimulatorGuard()
-
+  const { isRedirecting } = useSimulatorGuard()
   const { isInitialized } = useEngine()
-
   const { isIframe } = useIframe()
 
   // We track the progression of the user in the simulation
@@ -48,7 +45,7 @@ export default function SimulateurPage() {
       <Simulateur
         toggleQuestionList={toggleQuestionList}
         isQuestionListOpen={isQuestionListOpen}
-        isLoading={!isInitialized}
+        isLoading={isRedirecting || !isInitialized}
       />
     </div>
   )

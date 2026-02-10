@@ -66,12 +66,9 @@ export class Group {
     this.data.name = newName
   }
 
-  async joinWithInviteLink(user: User, { fillEmail = false } = {}) {
+  async joinWithInviteLink(user: User) {
     await user.page.goto(this.inviteLink)
     await user.page.getByTestId('member-name').fill(user.firstName)
-    if (fillEmail) {
-      await user.page.getByTestId('email-input').fill(user.email)
-    }
     await user.page.getByTestId('button-join-group').click()
   }
 

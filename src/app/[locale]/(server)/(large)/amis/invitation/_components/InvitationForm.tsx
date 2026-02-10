@@ -31,7 +31,7 @@ export default function InvitationForm({ group }: { group: Group }) {
   const currentSimulation = useCurrentSimulation()
   const hasCompletedTest = currentSimulation.progression === 1
 
-  const { goToSimulateurPage } = useSimulateurPage()
+  const { getLinkToSimulateurPage } = useSimulateurPage()
   const { linkToEndPage } = useEndPage()
   const router = useRouter()
 
@@ -43,14 +43,14 @@ export default function InvitationForm({ group }: { group: Group }) {
       if (hasCompletedTest) {
         router.push(linkToEndPage)
       } else {
-        goToSimulateurPage()
+        router.push(getLinkToSimulateurPage())
       }
     }
   }, [
     currentSimulation.groups,
     group.id,
     hasCompletedTest,
-    goToSimulateurPage,
+    getLinkToSimulateurPage,
     shouldNavigate,
     router,
     linkToEndPage,
