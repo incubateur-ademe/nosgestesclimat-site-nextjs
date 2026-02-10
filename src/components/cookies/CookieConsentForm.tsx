@@ -7,7 +7,7 @@ import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { CookieConsentKey } from '@/types/cookies'
 import Link from 'next/link'
-import { useForm, useWatch } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
 import type { CookieState } from './useCookieManagement'
 
@@ -26,16 +26,9 @@ export default function CookieConsentForm({
 }) {
   const { t } = useClientTranslation()
 
-  const { register, handleSubmit, control } = useForm<CookieState>({
+  const { register, handleSubmit } = useForm<CookieState>({
     defaultValues,
   })
-
-  const googleTagValue = useWatch({ control, name: CookieConsentKey.googleTag })
-  const posthogValue = useWatch({ control, name: CookieConsentKey.posthog })
-
-  const onSubmit = (choices: CookieState) => {
-    confirmChoices(choices)
-  }
 
   return (
     <Modal
@@ -59,7 +52,7 @@ export default function CookieConsentForm({
           </h2>
         </div>
         <form
-          onSubmit={(e) => void handleSubmit(onSubmit)(e)}
+          onSubmit={(e) => void handleSubmit(confirmChoices)(e)}
           data-testid="cookie-form">
           <div className="max-h-[50vh] flex-1 overflow-y-auto px-8 pb-8">
             <div className="mb-6 flex flex-col gap-4 md:flex-row">
@@ -162,7 +155,7 @@ export default function CookieConsentForm({
               linkHref="https://policies.google.com/technologies/cookies?hl=fr-fr"
               linkI18nKey="cookies.management.googleAds.link"
               linkDefault="Voir le site officiel"
-              currentValue={googleTagValue}
+              defaultValue={defaultValues?.googleTag ?? 'refused'}
               register={register(CookieConsentKey.googleTag)}
             />
 
@@ -175,7 +168,7 @@ export default function CookieConsentForm({
               linkHref="https://posthog.com/docs/privacy"
               linkI18nKey="cookies.management.posthog.link"
               linkDefault="Voir le site officiel"
-              currentValue={posthogValue}
+              defaultValue={defaultValues?.posthog ?? 'refused'}
               register={register(CookieConsentKey.posthog)}
               className="mt-6"
             />

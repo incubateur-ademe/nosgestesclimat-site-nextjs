@@ -1,10 +1,9 @@
 'use client'
 
-import { useUser } from '@/publicodes-state'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
 import type { PropsWithChildren } from 'react'
-import { createContext, useCallback, useContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 export const COOKIE_STATE_KEY = 'cookie-management-state'
 
@@ -76,8 +75,6 @@ export function useCookieManagement(): {
   const { cookieBannerDisplayState, setCookieBannerDisplayState } =
     useContext(CookieConsentContext)
 
-  const { user } = useUser()
-
   const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
 
   let cookieLocalStorageState: CookieState
@@ -89,69 +86,64 @@ export function useCookieManagement(): {
     cookieLocalStorageState = DEFAULT_COOKIE_STATE
   }
 
-  const handleUpdatePosthog = useCallback(
-    (cookieState: CookieState) => {
-      switch (cookieState.posthog) {
-        case 'accepted':
-          posthog.set_config({
-            disable_persistence: false,
-            disable_session_recording: false,
-            opt_out_capturing_by_default: false,
-          })
-          posthog.opt_in_capturing()
-          posthog.identify(user?.userId)
-          break
-        case 'refused':
-          posthog.set_config({
-            disable_persistence: false,
-            disable_session_recording: true,
-            opt_out_capturing_by_default: false,
-          })
-          // If previously accepted, we need to reset to clear the opt-out
-          posthog.reset()
-          // If user was previously opted-out, we need to opt-in
-          posthog.opt_in_capturing()
-          break
-        case 'do_not_track':
-          posthog.set_config({
-            disable_persistence: true,
-            disable_session_recording: true,
-            opt_out_capturing_by_default: true,
-          })
-          posthog.reset()
-          posthog.opt_out_capturing()
-          break
-      }
-    },
-    [user?.userId]
-  )
+  const handleUpdatePosthog = (cookieState: CookieState) => {
+    switch (cookieState.posthog) {
+      case 'accepted':
+        posthog.set_config({
+          disable_persistence: false,
+          disable_session_recording: false,
+          opt_out_capturing_by_default: false,
+        })
+        posthog.opt_in_capturing()
+        break
 
-  const onChange = useCallback(
-    (cookieState: CookieState) => {
-      setCookieBannerDisplayState('hidden')
+      case 'refused':
+        posthog.set_config({
+          disable_persistence: false,
+          disable_session_recording: true,
+          opt_out_capturing_by_default: false,
+        })
+        // If previously accepted, we need to reset to clear the opt-out
+        posthog.reset()
+        // If user was previously opted-out, we need to opt-in
+        posthog.opt_in_capturing()
+        break
 
-      handleUpdatePosthog(cookieState)
+      case 'do_not_track':
+        posthog.set_config({
+          disable_persistence: true,
+          disable_session_recording: true,
+          opt_out_capturing_by_default: true,
+        })
+        posthog.reset()
+        posthog.opt_out_capturing()
+        break
+    }
+  }
 
-      handleUpdateGoogleTag(cookieState)
+  const onChange = (cookieState: CookieState) => {
+    setCookieBannerDisplayState('hidden')
 
-      safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
-    },
-    [handleUpdatePosthog, setCookieBannerDisplayState]
-  )
+    handleUpdatePosthog(cookieState)
 
-  const rejectAll = useCallback(() => {
+    handleUpdateGoogleTag(cookieState)
+
+    safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
+  }
+
+  const rejectAll = () => {
     onChange({
       posthog: 'refused',
       googleTag: 'refused',
     })
-  }, [onChange])
+  }
 
-  const acceptAll = useCallback(() => {
+  const acceptAll = () => {
     onChange({
       posthog: 'accepted',
       googleTag: 'accepted',
     })
-  }, [onChange])
+  }
 
   return {
     cookieState: cookieLocalStorageState,
