@@ -53,10 +53,6 @@ test.describe('A group admin', () => {
 
 test.describe('The group result page, when accessed by an admin', () => {
   test.beforeEach(async ({ group, page, browser }) => {
-    if (browser.browserType().name() === 'webkit') {
-      // @TODO it seems that the guard logic on safari mobile does'nt work very well
-      test.skip()
-    }
     await page.goto(group.url)
   })
 
@@ -81,12 +77,7 @@ test.describe('The group result page, when accessed by an admin', () => {
 
 test.describe('A new user', () => {
   test.use({ storageState: NEW_VISITOR_STATE })
-  test.beforeEach(({ browser }) => {
-    if (browser.browserType().name() === 'webkit') {
-      // @TODO it seems that the guard logic on safari mobile does'nt work very well
-      test.skip()
-    }
-  })
+  test.beforeEach(({ browser }) => {})
 
   test('is redirected to the invite screen if it goes to the result page', async ({
     group,
@@ -131,8 +122,6 @@ test.describe('A new user', () => {
 
 test.describe('A user with a completed test that joined a group', () => {
   test.use({ storageState: COMPLETED_TEST_STATE })
-  // @TODO : fix when redirection is working better
-  test.skip()
   test.beforeEach(async ({ user, group, page }) => {
     await group.joinWithInviteLink(user)
     await page.waitForLoadState('networkidle')

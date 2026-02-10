@@ -5,7 +5,7 @@ export default async function Layout({
   children,
   params,
 }: LayoutProps<
-  '/[locale]/infos/[question]' | '/[locale]/personas' | '/[locale]/tutoriel'
+  '/[locale]/infos/email' | '/[locale]/personas' | '/[locale]/tutoriel'
 >) {
   const { locale } = await params
 

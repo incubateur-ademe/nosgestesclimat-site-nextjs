@@ -2,15 +2,17 @@
 
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/buttons/Button'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 
 export default function Email() {
   const { polls } = useCurrentSimulation()
   const pollSlug = polls?.[0]
+  const { linkToEndPage } = useEndPage()
   const hasContest =
     pollSlug &&
     (process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS ?? '')
@@ -49,14 +51,11 @@ export default function Email() {
       <AuthenticateUserForm
         buttonLabel={'Vérifier mon adresse email'}
         additionnalButton={
-          <Button
-            color="secondary"
-            type="button"
-            onClick={() => router.push('/fin')}>
+          <ButtonLink color="secondary" href={linkToEndPage}>
             <Trans>Passer</Trans>
-          </Button>
+          </ButtonLink>
         }
-        redirectURL={'/fin'}
+        redirectURL={linkToEndPage}
       />
     </>
   )

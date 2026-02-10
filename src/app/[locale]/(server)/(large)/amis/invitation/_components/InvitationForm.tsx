@@ -9,7 +9,6 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
-import { formatEmail } from '@/utils/format/formatEmail'
 import { useRouter } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
@@ -23,7 +22,7 @@ interface Inputs {
 export default function InvitationForm({ group }: { group: Group }) {
   const { t } = useClientTranslation()
 
-  const { user, updateName, updateEmail } = useUser()
+  const { user, updateName } = useUser()
 
   const {
     register,
@@ -59,17 +58,14 @@ export default function InvitationForm({ group }: { group: Group }) {
     linkToEndPage,
   ])
 
-  function onSubmit({ guestName, guestEmail }: Inputs) {
+  function onSubmit({ guestName }: Inputs) {
     // Shouldn't happen but in any case, avoid group joining
     if (!group) {
       return
     }
 
-    const formattedQuestEmail = formatEmail(guestEmail)
-
     // Update user info
     updateName(guestName)
-    updateEmail(formattedQuestEmail)
 
     // Update current simulation with group id (to redirect after test completion)
     currentSimulation.update({
@@ -123,7 +119,7 @@ export default function InvitationForm({ group }: { group: Group }) {
         </p>
       )}
 
-      <Button type="submit" data-testid="button-join-group">
+      <Button type="submit" data-testid="button-join-group" className="mt-4">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
         ) : (
