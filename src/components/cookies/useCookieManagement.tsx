@@ -64,6 +64,41 @@ const handleUpdateGoogleTag = (cookieState: CookieState) => {
   }
 }
 
+const handleUpdatePosthog = (cookieState: CookieState) => {
+  switch (cookieState.posthog) {
+    case 'accepted':
+      posthog.set_config({
+        disable_persistence: false,
+        disable_session_recording: false,
+        opt_out_capturing_by_default: false,
+      })
+      posthog.opt_in_capturing()
+      break
+
+    case 'refused':
+      posthog.set_config({
+        disable_persistence: false,
+        disable_session_recording: true,
+        opt_out_capturing_by_default: false,
+      })
+      // If previously accepted, we need to reset to clear the opt-out
+      posthog.reset()
+      // If user was previously opted-out, we need to opt-in
+      posthog.opt_in_capturing()
+      break
+
+    case 'do_not_track':
+      posthog.set_config({
+        disable_persistence: true,
+        disable_session_recording: true,
+        opt_out_capturing_by_default: true,
+      })
+      posthog.reset()
+      posthog.opt_out_capturing()
+      break
+  }
+}
+
 export function useCookieManagement(): {
   cookieState: CookieState
   onChange: (state: CookieState) => void
@@ -86,41 +121,6 @@ export function useCookieManagement(): {
     cookieLocalStorageState = DEFAULT_COOKIE_STATE
   }
 
-  const handleUpdatePosthog = (cookieState: CookieState) => {
-    switch (cookieState.posthog) {
-      case 'accepted':
-        posthog.set_config({
-          disable_persistence: false,
-          disable_session_recording: false,
-          opt_out_capturing_by_default: false,
-        })
-        posthog.opt_in_capturing()
-        break
-
-      case 'refused':
-        posthog.set_config({
-          disable_persistence: false,
-          disable_session_recording: true,
-          opt_out_capturing_by_default: false,
-        })
-        // If previously accepted, we need to reset to clear the opt-out
-        posthog.reset()
-        // If user was previously opted-out, we need to opt-in
-        posthog.opt_in_capturing()
-        break
-
-      case 'do_not_track':
-        posthog.set_config({
-          disable_persistence: true,
-          disable_session_recording: true,
-          opt_out_capturing_by_default: true,
-        })
-        posthog.reset()
-        posthog.opt_out_capturing()
-        break
-    }
-  }
-
   const onChange = (cookieState: CookieState) => {
     setCookieBannerDisplayState('hidden')
 
@@ -131,26 +131,22 @@ export function useCookieManagement(): {
     safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
   }
 
-  const rejectAll = () => {
-    onChange({
-      posthog: 'refused',
-      googleTag: 'refused',
-    })
-  }
-
-  const acceptAll = () => {
-    onChange({
-      posthog: 'accepted',
-      googleTag: 'accepted',
-    })
-  }
-
   return {
     cookieState: cookieLocalStorageState,
     cookieBannerDisplayState,
     setCookieBannerDisplayState,
     onChange,
-    rejectAll,
-    acceptAll,
+    rejectAll: () => {
+      onChange({
+        posthog: 'refused',
+        googleTag: 'refused',
+      })
+    },
+    acceptAll: () => {
+      onChange({
+        posthog: 'accepted',
+        googleTag: 'accepted',
+      })
+    },
   }
 }
