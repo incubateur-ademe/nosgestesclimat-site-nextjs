@@ -42,7 +42,7 @@ export default function AccordionItemWithRule({
           percentageOfTotalValue={percentageOfTotalValue}
           index={index}
           title={title}
-          icons={icons}
+          icon={icons}
           barColor={getBackgroundColor(dottedName)}
           shouldDisplayValue={false}
           displayValue={

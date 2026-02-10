@@ -10,6 +10,10 @@ interface Props {
   minTitleWidth?: number
   index?: number
   color?: string
+  /**
+   * Legacy prop for backward compatibility
+   */
+  barColor?: string
 }
 
 export default function HorizontalBarChartItem({
@@ -21,6 +25,7 @@ export default function HorizontalBarChartItem({
   minTitleWidth,
   index,
   color,
+  barColor,
 }: Props) {
   return (
     <div className="w-full rounded-lg border border-slate-400 bg-white p-4 pr-12">
@@ -46,7 +51,7 @@ export default function HorizontalBarChartItem({
           className="h-2"
           value={`${percentageOfTotalValue}%`}
           index={index}
-          color={`bg-${color}-800`}
+          color={barColor ?? `bg-${color}-800`}
         />
       </div>
     </div>

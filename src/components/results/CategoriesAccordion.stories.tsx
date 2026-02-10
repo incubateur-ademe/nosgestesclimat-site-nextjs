@@ -12,7 +12,7 @@ import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr
 import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
 import Engine from 'publicodes'
 
-import CategoriesAccordionStandalone from './CategoriesAccordionStandalone'
+import CategoriesAccordion from './CategoriesAccordion'
 
 // Type for personas record
 type PersonasRecord = Record<string, Persona>
@@ -116,7 +116,7 @@ function CategoriesAccordionWithSelector({
         </p>
       </div>
 
-      <CategoriesAccordionStandalone
+      <CategoriesAccordion
         key={computedResults.carbone?.bilan}
         rules={rules as Partial<NGCRules>}
         computedResults={computedResults}
@@ -127,7 +127,7 @@ function CategoriesAccordionWithSelector({
 }
 
 const meta: Meta<typeof CategoriesAccordionWithSelector> = {
-  title: 'Components/Results/CategoriesAccordionStandalone',
+  title: 'Components/Results/CategoriesAccordion',
   component: CategoriesAccordionWithSelector,
   parameters: {
     layout: 'fullscreen',

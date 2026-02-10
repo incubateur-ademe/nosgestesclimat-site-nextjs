@@ -9,10 +9,6 @@ interface Props {
   height?: number
 }
 
-/**
- * Client-side animated progress bar wrapper.
- * Uses framer-motion to animate the bar width from 0% to the target percentage.
- */
 export default function AnimatedBar({
   percentage,
   delay = 0,

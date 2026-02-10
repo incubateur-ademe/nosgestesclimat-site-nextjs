@@ -8,10 +8,6 @@ interface Props {
   children: ReactNode
 }
 
-/**
- * Client-side wrapper for animated accordion item entry.
- * Animates opacity (0→1) and vertical translation (20px→0) with staggered delay.
- */
 export default function AnimatedAccordionItem({ index, children }: Props) {
   return (
     <motion.div
