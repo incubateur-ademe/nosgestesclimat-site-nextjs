@@ -1,5 +1,5 @@
 import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
@@ -12,7 +12,8 @@ export function useSimulatorGuard() {
 
   const locale = useLocale()
 
-  const { tutorials, isInitialized } = useUser()
+  const { tutorials } = useUser()
+  const { isInitialized } = useEngine()
   const { progression } = useCurrentSimulation()
   const { linkToEndPage } = useEndPage()
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
@@ -23,19 +24,11 @@ export function useSimulatorGuard() {
       return
     }
     router.replace(getLinkToTutoriel({ locale, searchParams }))
-  }, [
-    tutorials.testIntro,
-    isFinished,
-    locale,
-    isInitialized,
-    searchParams,
-    router,
-    simulationIdInQueryParams,
-  ])
+  }, [isInitialized])
 
   useEffect(() => {
     if (isFinished) {
       router.replace(linkToEndPage)
     }
-  }, [isFinished, router, linkToEndPage])
+  }, [isInitialized])
 }

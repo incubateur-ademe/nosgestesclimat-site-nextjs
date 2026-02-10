@@ -2,18 +2,12 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
-import { formatEmail } from '@/utils/format/formatEmail'
-import {
-  isMicrosoftEmail,
-  MICROSOFT_EMAIL_ERROR_MESSAGE,
-} from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -26,7 +20,7 @@ interface Inputs {
 export default function InvitationForm({ group }: { group: Group }) {
   const { t } = useClientTranslation()
 
-  const { user, updateName, updateEmail } = useUser()
+  const { user, updateName } = useUser()
 
   const {
     register,
@@ -62,17 +56,14 @@ export default function InvitationForm({ group }: { group: Group }) {
     linkToEndPage,
   ])
 
-  function onSubmit({ guestName, guestEmail }: Inputs) {
+  function onSubmit({ guestName }: Inputs) {
     // Shouldn't happen but in any case, avoid group joining
     if (!group) {
       return
     }
 
-    const formattedQuestEmail = formatEmail(guestEmail)
-
     // Update user info
     updateName(guestName)
-    updateEmail(formattedQuestEmail)
 
     // Update current simulation with group id (to redirect after test completion)
     currentSimulation.update({
@@ -94,45 +85,13 @@ export default function InvitationForm({ group }: { group: Group }) {
         })}
       />
 
-      <div className="my-4">
-        <EmailInput
-          value={user.email ?? ''}
-          data-testid="email-input"
-          label={
-            <span>
-              {t('Votre adresse electronique')}{' '}
-              <span className="text-secondary-700 italic">
-                {' '}
-                {t('facultatif')}
-              </span>
-            </span>
-          }
-          helperText={t(
-            'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
-          )}
-          {...register('guestEmail', {
-            pattern: {
-              value:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: t('Veuillez entrer une adresse email valide.'),
-            },
-            validate: (value) => {
-              if (value && isMicrosoftEmail(value)) {
-                return t(MICROSOFT_EMAIL_ERROR_MESSAGE)
-              }
-              return true
-            },
-          })}
-        />
-      </div>
-
       {!hasCompletedTest && (
         <p className="mb-2 text-xs">
           Vous devrez compléter votre test après avoir rejoint le groupe.
         </p>
       )}
 
-      <Button type="submit" data-testid="button-join-group">
+      <Button type="submit" data-testid="button-join-group" className="mt-4">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
         ) : (

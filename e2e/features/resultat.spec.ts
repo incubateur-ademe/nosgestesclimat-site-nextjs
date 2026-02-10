@@ -82,8 +82,6 @@ test.describe('Given a user that saved it simulation', () => {
     user,
     browser,
   }) => {
-    // @TODO
-    test.skip()
     const context = await browser.newContext({
       storageState: ORGANISATION_ADMIN_STATE,
     })
