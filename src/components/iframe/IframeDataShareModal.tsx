@@ -85,9 +85,10 @@ export default function IframeDataShareModal() {
     }
   }, [isIframeShareData, isIntegratorAllowedToBypassConsentDataShare])
 
-  const parent = document.referrer
-    ? String(new URL(document.referrer).hostname)
-    : 'site parent inconnu'
+  const parent =
+    typeof document !== 'undefined' && document.referrer
+      ? String(new URL(document.referrer).hostname)
+      : 'site parent inconnu'
 
   if (
     !isOpen ||

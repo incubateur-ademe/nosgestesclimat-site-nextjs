@@ -15,7 +15,7 @@ import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { FIN_TAB_QUERY_PARAM } from '@/constants/urls/params'
 import Title from '@/design-system/layout/Title'
 import { fetchUser } from '@/helpers/user/fetchUser'
-import { useSimulatorGuard } from '@/hooks/navigation/useSimulatorGuard'
+import { useEndPageGuard } from '@/hooks/navigation/useSimulatorGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
@@ -23,6 +23,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, type ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
+import SimulateurSkeleton from '../../simulateur/[root]/skeleton'
 import ActionsTabContent from './_components/ActionsTabContent'
 import FinTabs from './_components/FinTabs'
 import GroupsTabContent from './_components/GroupsTabContent'
@@ -37,7 +38,7 @@ const titles: Record<Metric, ReactElement> = {
 }
 
 export default function FinPage() {
-  useSimulatorGuard()
+  const { isRedirecting } = useEndPageGuard()
 
   const { currentMetric } = useCurrentMetric()
 
@@ -58,6 +59,8 @@ export default function FinPage() {
       titleTags[1].remove()
     }
   }, [])
+
+  if (isRedirecting) return <SimulateurSkeleton />
 
   return (
     <div className="relative mt-4 mb-16 md:mt-10">

@@ -7,14 +7,9 @@ import {
   USER_ACCOUNT_STATE,
 } from '../state'
 
-const URL = '/fin'
 test.beforeEach(async ({ page }) => {
-  await page.goto(URL)
+  await page.goto('/fin')
 })
-// The redirect logic is very shakky and E2E fail test very often (especially on firefox and safari)
-// Note : This might also happen to real users !
-// @TODO fix this when we implement the new result page
-test.skip()
 
 test('Should redirect to the tutorial if no simulation', async ({ page }) => {
   await expect(page).toHaveURL(TutorialPage.URL)
@@ -24,13 +19,13 @@ test.describe('Given a user that completed a test without an account', () => {
   test.use({ storageState: COMPLETED_TEST_STATE })
 
   test('can access the end page directly', async ({ page }) => {
-    await expect(page).toHaveURL(new RegExp(URL))
+    await expect(page).toHaveURL(new RegExp('/fin'))
   })
 
   test('should be accessible from the home', async ({ page }) => {
     await page.goto('/')
     await page.getByTestId('do-the-test-link').first().click()
-    await expect(page).toHaveURL(new RegExp(URL))
+    await expect(page).toHaveURL(new RegExp('/fin'))
   })
 
   test('should display the carbon footprint', async ({ page }) => {
@@ -52,7 +47,7 @@ test.describe('Given a user that completed a test without an account', () => {
     // Wait for animation to finish
     await page.waitForTimeout(4000)
     const waterFootprintElem = page
-      .getByText(/[\d]+[\s]litres/)
+      .getByText(/[\d]+[\s]?litres/)
       .filter({ visible: true })
       .first()
     await expect(waterFootprintElem).toBeInViewport()
@@ -71,7 +66,7 @@ test.describe('Given a user that saved it simulation', () => {
     user,
   }) => {
     await page.goto(user.savedSimulationLink)
-    await expect(page).toHaveURL(new RegExp(URL))
+    await expect(page).toHaveURL(new RegExp('/fin'))
     // @TODO There is two h1 on result page
     await expect(page.locator('h1').first()).toHaveText('Mes empreintes')
     await page.waitForTimeout(7000)
@@ -83,6 +78,8 @@ test.describe('Given a user that saved it simulation', () => {
     user,
     browser,
   }) => {
+    // @TODO when we have simulation security
+    test.skip()
     const context = await browser.newContext({
       storageState: ORGANISATION_ADMIN_STATE,
     })

@@ -1,6 +1,5 @@
 'use client'
 
-import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
@@ -103,20 +102,6 @@ export default function PollForm({ organisation }: Props) {
           />
         </div>
       </form>
-
-      <QuestionsComplementaires
-        organisation={organisation}
-        poll={pollInfo}
-        description={
-          <Trans>
-            Vous retrouverez les réponses à ces questions dans l'export des
-            réponses à la campagne.
-          </Trans>
-        }
-        onChange={(updates: PollToUpdate) =>
-          setPollInfo((prevPollInfo) => ({ ...prevPollInfo, ...updates }))
-        }
-      />
 
       {isError && (
         <p className="mt-2 text-red-800">

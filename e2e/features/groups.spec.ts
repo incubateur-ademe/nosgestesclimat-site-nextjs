@@ -52,7 +52,7 @@ test.describe('A group admin', () => {
 })
 
 test.describe('The group result page, when accessed by an admin', () => {
-  test.beforeEach(async ({ group, page, browser }) => {
+  test.beforeEach(async ({ group, page }) => {
     await page.goto(group.url)
   })
 
@@ -77,7 +77,6 @@ test.describe('The group result page, when accessed by an admin', () => {
 
 test.describe('A new user', () => {
   test.use({ storageState: NEW_VISITOR_STATE })
-  test.beforeEach(({ browser }) => {})
 
   test('is redirected to the invite screen if it goes to the result page', async ({
     group,
@@ -100,12 +99,7 @@ test.describe('A new user', () => {
     await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
   })
 
-  test('can join a group and fill its email', async ({ page, user, group }) => {
-    await group.joinWithInviteLink(user, { fillEmail: true })
-    await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
-  })
-
-  test('can see the group result page once he has completed the test', async ({
+  test('can leave its email after completing the test', async ({
     page,
     ngcTest,
     tutorialPage,
@@ -116,6 +110,22 @@ test.describe('A new user', () => {
     await group.joinWithInviteLink(user)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
+    await user.fillEmailAndCompleteVerification()
+    await expect(page).toHaveURL(group.url)
+  })
+
+  test('can skip leaving its email after completing the test', async ({
+    page,
+    ngcTest,
+    tutorialPage,
+    user,
+    group,
+  }) => {
+    test.setTimeout(60_000)
+    await group.joinWithInviteLink(user)
+    await tutorialPage.skip()
+    await ngcTest.skipAllQuestions()
+    await page.getByTestId('skip-email-button').click()
     await expect(page).toHaveURL(group.url)
   })
 })

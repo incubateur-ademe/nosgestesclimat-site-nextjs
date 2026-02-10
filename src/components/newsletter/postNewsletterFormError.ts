@@ -1,5 +1,0 @@
-export enum FORM_ERROR {
-  EMAIL_INVALID,
-  EMAIL_REQUIRED,
-  SERVER_ERROR,
-}
