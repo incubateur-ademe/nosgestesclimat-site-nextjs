@@ -714,10 +714,15 @@ export default {
     'bg-green-800',
     'bg-purple-800',
     'bg-yellow-50',
+    'bg-yellow-100',
     'bg-blue-50',
+    'bg-blue-100',
     'bg-orange-50',
+    'bg-orange-100',
     'bg-green-50',
-    'bg-purple-50',    
+    'bg-green-100',
+    'bg-purple-50',
+    'bg-purple-100',  
   ],
   plugins: [
     function ({ addComponents }) {
