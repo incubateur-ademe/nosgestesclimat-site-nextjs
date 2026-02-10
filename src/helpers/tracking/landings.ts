@@ -116,44 +116,43 @@ export const trackLandingDidYouKnowSlider = (
 }
 
 // Post thumbnail
-export const trackLandingClickPostThumbnail = (
-  pathname: string,
-  action: string
-) => {
-  trackEvents(['trackEvent', getLandingCategory(pathname), action], {
-    eventName: 'Landing click post thumbnail',
-    properties: {
-      page: getLandingCategory(pathname),
-      action,
-    },
-  })
-}
+export const landingClickPostThumbnailMatomo = (pathname: string) => [
+  'trackEvent',
+  getLandingCategory(pathname),
+  'Click post thumbnail',
+]
+export const landingClickPostThumbnailPosthog = (pathname: string) => ({
+  eventName: 'Landing click post thumbnail',
+  properties: {
+    page: getLandingCategory(pathname),
+  },
+})
 
 // Model info
-export const trackLandingClickModelDocumentation = (pathname: string) => {
-  trackEvents(
-    ['trackEvent', getLandingCategory(pathname), 'Click documentation'],
-    {
-      eventName: 'Landing click model documentation',
-      properties: {
-        page: getLandingCategory(pathname),
-      },
-    }
-  )
-}
+export const landingClickModelDocumentationMatomo = (pathname: string) => [
+  'trackEvent',
+  getLandingCategory(pathname),
+  'Click documentation',
+]
+export const landingClickModelDocumentationPosthog = (pathname: string) => ({
+  eventName: 'Landing click model documentation',
+  properties: {
+    page: getLandingCategory(pathname),
+  },
+})
 
 // Nouveautés
-export const trackLandingClickNouveautes = (pathname: string) => {
-  trackEvents(
-    ['trackEvent', getLandingCategory(pathname), 'Click nouveautés'],
-    {
-      eventName: 'Landing click nouveautés',
-      properties: {
-        page: getLandingCategory(pathname),
-      },
-    }
-  )
-}
+export const landingNouveautesMatomo = (pathname: string) => [
+  'trackEvent',
+  getLandingCategory(pathname),
+  'Click nouveautés',
+]
+export const landingNouveautesPosthog = (pathname: string) => ({
+  eventName: 'Landing click nouveautés',
+  properties: {
+    page: getLandingCategory(pathname),
+  },
+})
 
 export const trackLearnMoreCarbonLink = () => {
   trackEvents(['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'], {

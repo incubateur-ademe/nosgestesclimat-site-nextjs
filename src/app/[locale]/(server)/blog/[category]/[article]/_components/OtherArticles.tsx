@@ -1,7 +1,6 @@
 import type { ArticleType } from '@/adapters/cmsClient'
 import Trans from '@/components/translation/trans/TransServer'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function OtherArticles({
   articles,
@@ -26,7 +25,7 @@ export default function OtherArticles({
                 title={article.title}
                 imageSrc={article.image?.url ?? ''}
                 href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
-                onLinkClick={() => trackEvent(['blog', 'other-articles'])}
+                trackingEvents={[['trackEvent', 'blog', 'other-articles']]}
                 category={article.blogCategory?.title ?? ''}
                 className="bg-white"
               />

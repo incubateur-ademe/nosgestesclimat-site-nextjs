@@ -26,7 +26,7 @@ const meta: Meta<typeof PostThumbnail> = {
       control: 'text',
       description: 'Link URL for the post',
     },
-    onLinkClick: {
+    trackingEvents: {
       action: 'clicked',
       description: 'Link click handler',
     },
@@ -47,7 +47,7 @@ export const Default: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-1',
-    onLinkClick: () => console.log('Link clicked'),
+    trackingEvents: [["trackEvent", "blog", "article", "article-1"]],
   },
 }
 
@@ -59,7 +59,7 @@ export const LongTitle: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-2',
-    onLinkClick: () => console.log('Link clicked'),
+    trackingEvents: [["trackEvent", "blog", "article", "article-2"]],
   },
 }
 
@@ -70,7 +70,7 @@ export const ShortTitle: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-3',
-    onLinkClick: () => console.log('Link clicked'),
+    trackingEvents: [["trackEvent", "blog", "article", "article-3"]],
   },
 }
 
@@ -92,7 +92,7 @@ export const CustomStyling: Story = {
     imageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ella_olsson_KP_Db_Ry_FO_Tn_E_unsplash_9b029eb7e6.jpg',
     href: '/blog/article-5',
-    onLinkClick: () => console.log('Link clicked'),
+    trackingEvents: [["trackEvent", "blog", "article", "article-5"]],
     className: 'border-2 border-blue-500',
   },
 }

@@ -1,4 +1,5 @@
 import Separator from '@/design-system/layout/Separator'
+import type { PosthogEventType } from '@/utils/analytics/trackEvent'
 import type { ReactNode } from 'react'
 import TitleDescLink from './titleDescLinkBlock/TitleDescLink'
 
@@ -6,7 +7,7 @@ export default function TitleDescLinkBlock({
   title,
   description,
   link,
-  onLinkClick,
+  trackingEvents,
 }: {
   title: ReactNode
   description: ReactNode
@@ -14,7 +15,7 @@ export default function TitleDescLinkBlock({
     href: string
     text: ReactNode
   }
-  onLinkClick?: () => void
+  trackingEvents?: [(string | null)[], PosthogEventType?]
 }) {
   return (
     <div className="flex flex-1 flex-col">
@@ -24,7 +25,7 @@ export default function TitleDescLinkBlock({
 
       <p className="mb-6 text-sm md:text-lg">{description}</p>
 
-      <TitleDescLink {...link} onClick={onLinkClick} />
+      <TitleDescLink {...link} trackingEvents={trackingEvents} />
     </div>
   )
 }

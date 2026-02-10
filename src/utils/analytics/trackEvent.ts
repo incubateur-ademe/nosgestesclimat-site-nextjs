@@ -18,12 +18,13 @@ declare global {
  * @param matomoArgs - Array for Matomo tracking: ['trackEvent', 'Category', 'Action', 'Name', 'Value']
  * @param posthogEvent - Optional object for Posthog tracking: { eventName: string, properties?: Record<...> }
  */
+export interface PosthogEventType {
+  eventName: string
+  properties?: Record<string, string | number | boolean | null | undefined>
+}
 export const trackEvents = (
   matomoArgs: (string | null)[],
-  posthogEvent?: {
-    eventName: string
-    properties?: Record<string, string | number | boolean | null | undefined>
-  }
+  posthogEvent?: PosthogEventType
 ) => {
   // Track to Matomo
   if (shouldLogTracking) {

@@ -1,5 +1,6 @@
-import { trackEvents } from '@/utils/analytics/trackEvent'
-
-export const trackPostThumbnailClick = (slug: string) => {
-  trackEvents(['trackEvent', 'blog', 'article', slug])
-}
+export const postThumbnailClickMatomo = (slug: string) => [
+  'trackEvent',
+  'blog',
+  'article',
+  slug,
+]

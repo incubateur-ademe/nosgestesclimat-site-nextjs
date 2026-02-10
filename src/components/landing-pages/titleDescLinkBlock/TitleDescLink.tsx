@@ -1,22 +1,26 @@
 'use client'
 
 import Link from '@/components/Link'
+import type { PosthogEventType } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 import type { ReactNode } from 'react'
 
 export default function TitleDescLink({
   href,
   text,
-  onClick,
+  trackingEvents,
 }: {
   href: string
   text: ReactNode
-  onClick?: () => void
+  trackingEvents?: [(string | null)[], PosthogEventType?]
 }) {
   return (
     <Link
       className="text-[13px] md:text-base"
       href={href}
-      onClick={onClick ? onClick : undefined}>
+      onClick={
+        trackingEvents ? () => trackEvents(...trackingEvents) : undefined
+      }>
       {text}
     </Link>
   )

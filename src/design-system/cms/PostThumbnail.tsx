@@ -1,6 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import type { PosthogEventType } from '@/utils/analytics/trackEvent'
+import { trackEvents } from '@/utils/analytics/trackEvent'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ImageWithCategory from './ImageWithCategory'
@@ -10,14 +12,14 @@ export default function PostThumbnail({
   category,
   imageSrc,
   href,
-  onLinkClick,
+  trackingEvents,
   className,
 }: {
   title: ReactNode
   category: ReactNode
   imageSrc: string
   href: string
-  onLinkClick?: () => void
+  trackingEvents: [(string | null)[], PosthogEventType?]
   className?: string
 }) {
   return (
@@ -27,7 +29,7 @@ export default function PostThumbnail({
         'flex h-full rounded-xl no-underline! duration-300! md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
         className
       )}
-      onClick={onLinkClick}>
+      onClick={() => trackEvents(...trackingEvents)}>
       <div className="order-1 mt-4 flex w-full flex-col md:flex-1">
         <h3 className="text-default mb-auto pr-2 pl-4 text-[13px] font-normal no-underline! md:mb-2 md:px-4 md:text-base">
           {title}

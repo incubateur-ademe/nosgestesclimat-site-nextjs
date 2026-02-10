@@ -1,8 +1,10 @@
 import TitleDescLinkBlock from '@/components/landing-pages/TitleDescLinkBlock'
 import Trans from '@/components/translation/trans/TransServer'
 import {
-  trackLandingClickModelDocumentation,
-  trackLandingClickNouveautes,
+  landingClickModelDocumentationMatomo,
+  landingClickModelDocumentationPosthog,
+  landingNouveautesMatomo,
+  landingNouveautesPosthog,
 } from '@/helpers/tracking/landings'
 
 export default function ModelInfo({ locale }: { locale: string }) {
@@ -36,7 +38,10 @@ export default function ModelInfo({ locale }: { locale: string }) {
               href: '/documentation',
               text: <Trans locale={locale}>Découvrir la documentation</Trans>,
             }}
-            onLinkClick={() => trackLandingClickModelDocumentation('/')}
+            trackingEvents={[
+              landingClickModelDocumentationMatomo('/'),
+              landingClickModelDocumentationPosthog('/'),
+            ]}
           />
 
           <TitleDescLinkBlock
@@ -57,7 +62,10 @@ export default function ModelInfo({ locale }: { locale: string }) {
               href: '/nouveautes',
               text: <Trans locale={locale}>Voir les nouveautés</Trans>,
             }}
-            onLinkClick={() => trackLandingClickNouveautes('/')}
+            trackingEvents={[
+              landingNouveautesMatomo('/'),
+              landingNouveautesPosthog('/'),
+            ]}
           />
         </div>
       </div>
