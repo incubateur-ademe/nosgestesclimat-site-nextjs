@@ -37,7 +37,9 @@ export default function AccordionItem({
         title={`${ariaLabel ?? name} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
         onClick={() => {
           if (isReadOnly) return
+
           setIsOpen((prevState) => !prevState)
+
           if (onClick) {
             onClick()
           }
