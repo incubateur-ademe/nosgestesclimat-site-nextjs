@@ -85,6 +85,17 @@ export default function CategoriesAccordion({
             content={
               <Card
                 className={`mb-4 rounded-lg border border-slate-400 bg-${category.colorName}-50`}>
+                {category.dottedName.startsWith('services') && (
+                  <p>
+                    <Trans i18nKey="results.categories.services.text">
+                      Les services (santé, éducation, télécoms…) représentent
+                      environ <strong>1,5 t de votre empreinte</strong>. Cette
+                      part est <strong>la même pour tous</strong> et{' '}
+                      <strong>diminue progressivement</strong> avec la
+                      transition écologique.
+                    </Trans>
+                  </p>
+                )}
                 <SubcategoriesList
                   subcategories={category.subcategories}
                   colorName={category.colorName}
