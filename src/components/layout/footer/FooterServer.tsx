@@ -46,7 +46,7 @@ interface Props {
   backgroundColor?: 'default' | 'white'
   locale: Locale
   className?: string
-  params?: { category?: string; article?: string }
+  params?: Record<string, string>
 }
 
 export default async function FooterServer({
