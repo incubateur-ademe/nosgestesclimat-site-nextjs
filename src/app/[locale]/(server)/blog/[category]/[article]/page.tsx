@@ -28,15 +28,15 @@ export async function generateMetadata({
     (await fetchArticlePageMetadata({
       articleSlug: article,
       locale: locale,
-    })) || {}
+    })) ?? {}
 
   return getMetadataObject({
     locale,
-    title: metaTitle || 'Blog - Nos Gestes Climat',
+    title: metaTitle ?? 'Blog - Nos Gestes Climat',
     description:
-      metaDescription ||
+      metaDescription ??
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
-    image: image?.url || '',
+    image: image?.url ?? '',
     alternates: {
       canonical: `/blog/${category}/${article}`,
     },
@@ -55,7 +55,7 @@ export default async function ArticlePage({
       articleSlug: articleSlug,
       categorySlug: category,
       locale,
-    })) || {}
+    })) ?? {}
 
   //  Firstly redirect to french version if the page is not available in the current locale
   if (locale !== i18nConfig.defaultLocale && !article) {
@@ -144,7 +144,11 @@ export default async function ArticlePage({
 
       <OtherArticles articles={otherArticles} locale={locale} />
 
-      <Footer backgroundColor="white" locale={locale} />
+      <Footer
+        backgroundColor="white"
+        locale={locale}
+        params={{ category, article: articleSlug }}
+      />
     </>
   )
 }

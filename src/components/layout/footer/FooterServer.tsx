@@ -46,12 +46,14 @@ interface Props {
   backgroundColor?: 'default' | 'white'
   locale: Locale
   className?: string
+  params?: { category?: string; article?: string }
 }
 
 export default async function FooterServer({
   backgroundColor = 'default',
   locale,
   className = '',
+  params,
 }: Props) {
   const { t } = await getServerTranslation({ locale })
 
@@ -245,7 +247,7 @@ export default async function FooterServer({
             </div>
           ) : null}
         </div>
-        <LanguageSwitchButton />
+        <LanguageSwitchButton params={params} />
 
         <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
           <div>

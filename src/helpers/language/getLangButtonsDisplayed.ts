@@ -1,3 +1,5 @@
+'use server'
+
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 
@@ -9,6 +11,7 @@ export interface LangButtonsConfigType {
 interface Props {
   category?: string
   article?: string
+  landingPageSlug?: string
 }
 
 const ALL_TRUE_VALUE = {
@@ -27,7 +30,13 @@ const FR_EN_ACTIVATED_VALUE = {
 export async function getLangButtonsDisplayed({
   category,
   article,
+  landingPageSlug,
 }: Props = {}) {
+  // Thematic landing pages aren't translated
+  if (landingPageSlug) {
+    return ALL_FALSE_VALUE
+  }
+
   // Blog landing page
   if (!category && !article) {
     return FR_EN_ACTIVATED_VALUE
