@@ -33,7 +33,6 @@ export default function DisablePosthogCheckbox() {
       )}
       className="mb-6 flex cursor-pointer items-center gap-2">
       <CheckboxInput
-        id="posthog-checkbox"
         data-testid="posthog-tracking-checkbox"
         type="checkbox"
         value={isChecked}
@@ -42,11 +41,11 @@ export default function DisablePosthogCheckbox() {
           isChecked
             ? t(
                 'privacyPolicy.posthogCheckboxText',
-                "Vous n'êtes pas exclu(e). Décochez cette case pour désactiver complètement le suivi avec Posthog"
+                'Vous êtes suivi de façon anonyme par Posthog. Décochez cette case pour vous exclure également du suivi anonyme.'
               )
             : t(
                 'privacyPolicy.posthogCheckboxTextNotFollowed',
-                "Vous n'êtes actuellement pas suivi(e). Cochez cette case si vous acceptez d'être suivi(e) avec Posthog"
+                "Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog"
               )
         }
       />
