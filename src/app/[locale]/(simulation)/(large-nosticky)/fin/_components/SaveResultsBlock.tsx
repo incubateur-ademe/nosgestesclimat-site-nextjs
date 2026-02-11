@@ -4,24 +4,41 @@ import type { Locale } from '@/i18nConfig'
 
 import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
+import { MON_ESPACE_PATH } from '@/constants/urls/paths'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
+import { type UserServer } from '@/helpers/server/model/user'
+import Image from 'next/image'
 import SaveResultsForm from './SaveResultsForm'
 interface Props {
   locale: Locale
+  user?: UserServer | null
 }
 
-export default function SaveResultsBlock({ locale }: Props) {
+export default function SaveResultsBlock({ locale, user }: Props) {
+  const isAuthentified = !!user
+
   return (
     <section
       className="bg-primary-700 rounded-2xl p-8"
       aria-labelledby="save-results-block-title">
       <div className="flex flex-col items-stretch gap-8 md:flex-row md:items-center">
-        <div>
+        <div className="flex-1">
           <h3
             id="save-results-block-title"
             className="text-2xl font-bold text-white">
-            <Trans i18nKey="results.saveResults.title" locale={locale}>
-              Recevez-les par e-mail et accédez à votre espace personnel
-            </Trans>
+            {isAuthentified ? (
+              <Trans
+                i18nKey="results.saveResults.title.authenticated"
+                locale={locale}>
+                Accédez à votre espace personnel
+              </Trans>
+            ) : (
+              <Trans
+                i18nKey="results.saveResults.title.unauthenticated"
+                locale={locale}>
+                Recevez-les par e-mail et accédez à votre espace personnel
+              </Trans>
+            )}
           </h3>
 
           <ul role="list" className="mb-6 flex flex-col gap-2">
@@ -54,14 +71,35 @@ export default function SaveResultsBlock({ locale }: Props) {
             </li>
           </ul>
 
-          <SaveResultsForm />
+          {isAuthentified ? (
+            <ButtonLink color="borderless" href={MON_ESPACE_PATH}>
+              <Trans
+                i18nKey="results.saveResults.buttonLabel.authenticated"
+                locale={locale}>
+                Voir l’évolution de mon résultat
+              </Trans>
+            </ButtonLink>
+          ) : (
+            <SaveResultsForm />
+          )}
         </div>
         <div>
-          <div className="flex justify-center gap-8 rounded-2xl bg-white p-6 md:p-10">
-            <Marianne className="w-16 lg:h-auto" />
+          {isAuthentified ? (
+            <div className="flex w-full justify-center">
+              <Image
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/visuel_login_cbf2f03684.svg"
+                alt=""
+                width="300"
+                height="300"
+              />
+            </div>
+          ) : (
+            <div className="flex justify-center gap-8 rounded-2xl bg-white p-6 md:p-10">
+              <Marianne className="w-16 lg:h-auto" />
 
-            <Ademe className="h-16 lg:h-auto" />
-          </div>
+              <Ademe className="h-16 lg:h-auto" />
+            </div>
+          )}
         </div>
       </div>
     </section>

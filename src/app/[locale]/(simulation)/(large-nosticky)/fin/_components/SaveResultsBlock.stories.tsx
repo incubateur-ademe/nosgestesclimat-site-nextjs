@@ -25,7 +25,7 @@ const meta: Meta<typeof SaveResultsBlock> = {
   argTypes: {
     locale: {
       control: 'radio',
-      options: ['fr', 'en', 'es'],
+      options: ['fr', 'en'],
       description: 'Locale for translations',
     },
   },
@@ -34,14 +34,16 @@ const meta: Meta<typeof SaveResultsBlock> = {
 export default meta
 type Story = StoryObj<typeof SaveResultsBlock>
 
-export const Default: Story = {
+export const Unauthenticated: Story = {
   args: {
     locale: 'fr',
+    user: null,
   },
 }
 
-export const English: Story = {
+export const Authenticated: Story = {
   args: {
-    locale: 'en',
+    locale: 'fr',
+    user: { id: '123', email: 'test@test.com' },
   },
 }

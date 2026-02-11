@@ -69,13 +69,9 @@ export default function SendVerificationCodeForm({
     },
   })
 
-  const onSubmit = ({ email }: FormData) => {
-    createVerificationCode(email)
-  }
-
   return (
     <Form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={void handleSubmit((data) => createVerificationCode(data.email))}
       buttonLabel={buttonLabel ?? t('Accéder à mon espace')}
       buttonColor={buttonColor}
       isVerticalLayout={isVerticalLayout}>
