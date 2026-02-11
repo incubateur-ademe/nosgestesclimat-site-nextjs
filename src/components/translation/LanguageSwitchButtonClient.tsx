@@ -3,7 +3,6 @@
 import { footerClickLanguage } from '@/constants/tracking/layout'
 import ButtonAnchor from '@/design-system/buttons/ButtonAnchor'
 import Emoji from '@/design-system/utils/Emoji'
-import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { useIsClient } from '@/hooks/useIsClient'
 import i18nConfig, { type Locale } from '@/i18nConfig'
@@ -12,7 +11,6 @@ import { useCurrentLocale } from 'next-i18n-router/client'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 interface Props {
-  langButtonsDisplayed: LangButtonsConfigType
   size?: 'xs' | 'sm'
   className?: string
 }
@@ -52,7 +50,6 @@ const handleLanguageClick = (newLocale: Locale) => {
 }
 
 export default function LanguageSwitchButtonClient({
-  langButtonsDisplayed,
   size = 'sm',
   className,
 }: Props) {
@@ -69,65 +66,57 @@ export default function LanguageSwitchButtonClient({
     }
   }, [currentLocale])
 
-  if (Object.values(langButtonsDisplayed).every((value) => !value)) {
-    return null
-  }
-
   return (
     <div
       className={twMerge(
         'flex flex-wrap items-center gap-1 sm:gap-2',
         className
       )}>
-      {langButtonsDisplayed.fr && (
-        <ButtonAnchor
-          href={
-            isClient
-              ? generateLanguageUrl(
-                  'fr',
-                  currentLocale ?? i18nConfig.defaultLocale
-                )
-              : '#'
-          }
-          color={currentLocale === 'fr' ? 'primary' : 'secondary'}
-          onClick={() => handleLanguageClick('fr')}
-          size={size}
-          aria-label="Passer en français"
-          title={
-            currentLocale === 'fr'
-              ? 'FR - Langue active'
-              : 'FR - Sélectionner la langue française'
-          }
-          className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-testid="language-switch-button-fr">
-          <span>FR</span> <Emoji>🇫🇷</Emoji>
-        </ButtonAnchor>
-      )}
+      <ButtonAnchor
+        href={
+          isClient
+            ? generateLanguageUrl(
+                'fr',
+                currentLocale ?? i18nConfig.defaultLocale
+              )
+            : '#'
+        }
+        color={currentLocale === 'fr' ? 'primary' : 'secondary'}
+        onClick={() => handleLanguageClick('fr')}
+        size={size}
+        aria-label="Passer en français"
+        title={
+          currentLocale === 'fr'
+            ? 'FR - Langue active'
+            : 'FR - Sélectionner la langue française'
+        }
+        className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
+        data-testid="language-switch-button-fr">
+        <span>FR</span> <Emoji>🇫🇷</Emoji>
+      </ButtonAnchor>
 
-      {langButtonsDisplayed.en && (
-        <ButtonAnchor
-          href={
-            isClient
-              ? generateLanguageUrl(
-                  'en',
-                  currentLocale ?? i18nConfig.defaultLocale
-                )
-              : '#'
-          }
-          color={currentLocale === 'en' ? 'primary' : 'secondary'}
-          onClick={() => handleLanguageClick('en')}
-          size={size}
-          aria-label="Switch to english"
-          title={
-            currentLocale === 'en'
-              ? 'EN - Active language'
-              : 'EN - Select English language'
-          }
-          className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-testid="language-switch-button-en">
-          <span>EN</span> <Emoji>🇬🇧</Emoji>
-        </ButtonAnchor>
-      )}
+      <ButtonAnchor
+        href={
+          isClient
+            ? generateLanguageUrl(
+                'en',
+                currentLocale ?? i18nConfig.defaultLocale
+              )
+            : '#'
+        }
+        color={currentLocale === 'en' ? 'primary' : 'secondary'}
+        onClick={() => handleLanguageClick('en')}
+        size={size}
+        aria-label="Switch to english"
+        title={
+          currentLocale === 'en'
+            ? 'EN - Active language'
+            : 'EN - Select English language'
+        }
+        className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
+        data-testid="language-switch-button-en">
+        <span>EN</span> <Emoji>🇬🇧</Emoji>
+      </ButtonAnchor>
     </div>
   )
 }

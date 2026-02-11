@@ -3,34 +3,20 @@
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 
-export interface LangButtonsConfigType {
-  fr: boolean
-  en: boolean
-}
-
 interface Props {
   category?: string
   article?: string
   landingPageSlug?: string
 }
 
-const ALL_TRUE_VALUE = {
-  fr: true,
-  en: true,
-}
-const ALL_FALSE_VALUE = {
-  fr: false,
-  en: false,
-}
-
-export async function getLangButtonsDisplayed({
+export async function getShouldDisplayLangButtons({
   category,
   article,
   landingPageSlug,
 }: Props = {}) {
   // Thematic landing pages aren't translated
   if (landingPageSlug) {
-    return ALL_FALSE_VALUE
+    return false
   }
 
   // Article page
@@ -41,7 +27,7 @@ export async function getLangButtonsDisplayed({
       locale: 'en',
     })
 
-    return result?.article ? ALL_TRUE_VALUE : ALL_FALSE_VALUE
+    return !!result?.article
   }
 
   // Category page
@@ -52,10 +38,8 @@ export async function getLangButtonsDisplayed({
       page: 1,
     })
 
-    return result?.title && result?.description
-      ? ALL_TRUE_VALUE
-      : ALL_FALSE_VALUE
+    return !!(result?.title && result?.description)
   }
 
-  return ALL_TRUE_VALUE
+  return true
 }
