@@ -9,7 +9,7 @@ export default function ResultsBlockDesktop() {
     <section className="relative hidden flex-col gap-4 md:flex">
       <details className="group transition-all duration-200">
         <summary
-          className="border-primary-100 focus:ring-primary-700 bg-primary-50 relative z-10 flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg border-2 p-4 focus:ring-2 focus:ring-offset-3 focus:outline-hidden [&::-webkit-details-marker]:hidden [&::marker]:hidden"
+          className="border-primary-100 focus-visible:ring-primary-700 bg-primary-50 relative z-10 flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg border-2 p-4 focus-visible:ring-2 focus-visible:ring-offset-3 focus-visible:outline-hidden [&::-webkit-details-marker]:hidden [&::marker]:hidden"
           role="button"
           tabIndex={0}
           aria-expanded="false"
