@@ -6,6 +6,7 @@ interface InputGroupProps {
   name: string
   label?: string | ReactNode
   error?: string | ReactNode
+  errorColor?: string
   helperText?: string | ReactNode
   srOnlyHelperText?: string | ReactNode
   containerClassName?: string
@@ -20,6 +21,7 @@ export default function InputGroup({
   name,
   label,
   error,
+  errorColor = 'text-red-700',
   helperText,
   srOnlyHelperText,
   containerClassName,
@@ -104,7 +106,7 @@ export default function InputGroup({
           id={errorId}
           role="alert"
           data-testid={`error-${name}`}
-          className="mt-2 text-xs text-red-700">
+          className={twMerge('mt-2 text-xs', errorColor)}>
           {error}
         </span>
       )}
