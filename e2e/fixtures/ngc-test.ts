@@ -64,13 +64,21 @@ export class NGCTest {
 
   async isBooleanQuestion() {
     // if boolean question, test id contains "oui" or "non"
-    try {
-      const ouiCount = await this.page.getByTestId(/oui-label/).count()
-      const nonCount = await this.page.getByTestId(/non-label/).count()
-      return ouiCount === 1 && nonCount === 1
-    } catch {
-      return false
-    }
+    const ouiCount = await this.page.getByTestId(/oui-label/).count()
+    const nonCount = await this.page.getByTestId(/non-label/).count()
+    return ouiCount === 1 && nonCount === 1
+  }
+
+  async isChoicesQuestion() {
+    // we consider that if there are more than 3 labels (question label + at least 3 answers), it's a choices question
+    const labelInput = await this.page.getByTestId(/-label/).count()
+    return labelInput > 3
+  }
+
+  async isSelectionMosaic() {
+    // we consider that if there are more than 2 oui-label, it's a selection mosaic question
+    const labelInput = await this.page.getByTestId(/oui-label/).count()
+    return labelInput > 2
   }
 
   async skipAll() {

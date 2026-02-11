@@ -60,10 +60,90 @@ test(`Should be able to deselect a boolean answer`, async ({ ngcTest }) => {
   }
 })
 
-test(`Should be able to deselect a multiple choice answer`, () => {
-  // @TODO
+test(`Should be able to deselect a multiple choice answer`, async ({
+  ngcTest,
+}) => {
+  //  1. Trouver une question `Choices` (passer jusqu'à avoir une question `Choices`)
+  await ngcTest.goto()
+  while (!(await ngcTest.isChoicesQuestion())) {
+    // skip until we have a choices question
+    await ngcTest.clickOnSkip()
+  }
+
+  //  2. Récupérer la valeur du bilan
+  const carbonFootprintElemBefore = await ngcTest.getCarbonFootprintElem()
+  const carbonFootprintValueBeforeChange =
+    await carbonFootprintElemBefore.innerText()
+
+  //  3. Selectionner une réponse (la dernière de la liste)
+  let isAnswered = false
+  const answerInput = ngcTest.page.getByTestId(/-label/).last()
+  if (await answerInput.isVisible()) {
+    await answerInput.click()
+    isAnswered = true
+  }
+  //  4. Vérifier que le bouton suivant est affiché
+  if (isAnswered) {
+    await expect(ngcTest.page.getByTestId('next-question-button')).toBeVisible()
+    //  5. Recliquer sur l'element (input) en question
+    await answerInput.click()
+    isAnswered = false
+  }
+
+  if (!isAnswered) {
+    //  6. Vérifier que la valeur du bilan est identique au 2.
+    const carbonFootprintElemAfter = await ngcTest.getCarbonFootprintElem()
+    const carbonFootprintValueAfterChange =
+      await carbonFootprintElemAfter.innerText()
+
+    expect(carbonFootprintValueAfterChange).toBe(
+      carbonFootprintValueBeforeChange
+    )
+
+    //  7. Vérifier que le bouton « je ne sais pas » est affiché
+    await expect(ngcTest.page.getByTestId('skip-question-button')).toBeVisible()
+  }
 })
 
-test(`Should be able to deselect a mosaic answer`, () => {
-  // @TODO
+test(`Should be able to deselect a mosaic answer`, async ({ ngcTest }) => {
+  //  1. Trouver une question `Selection Mosaic` (passer jusqu'à avoir une question `Selection Mosaic`)
+  await ngcTest.goto()
+  while (!(await ngcTest.isSelectionMosaic())) {
+    // skip until we have a selection mosaic question
+    await ngcTest.clickOnSkip()
+  }
+
+  //  2. Récupérer la valeur du bilan
+  const carbonFootprintElemBefore = await ngcTest.getCarbonFootprintElem()
+  const carbonFootprintValueBeforeChange =
+    await carbonFootprintElemBefore.innerText()
+
+  //  3. Selectionner une réponse (la première de la liste)
+  let isAnswered = false
+  const answerInput = ngcTest.page.getByTestId(/oui-label/).first()
+  if (await answerInput.isVisible()) {
+    await answerInput.click()
+    isAnswered = true
+  }
+  //  4. Vérifier que le bouton suivant est affiché
+  if (isAnswered) {
+    await expect(ngcTest.page.getByTestId('next-question-button')).toBeVisible()
+    //  5. Recliquer sur l'element (input) en question
+    await answerInput.click()
+    isAnswered = false
+  }
+
+  if (!isAnswered) {
+    //  6. Vérifier que la valeur du bilan est identique au 2.
+    const carbonFootprintElemAfter = await ngcTest.getCarbonFootprintElem()
+    const carbonFootprintValueAfterChange =
+      await carbonFootprintElemAfter.innerText()
+
+    expect(carbonFootprintValueAfterChange).toBe(
+      carbonFootprintValueBeforeChange
+    )
+
+    //  7. Vérifier que le bouton « je ne sais pas » est affiché
+    await expect(ngcTest.page.getByTestId('skip-question-button')).toBeVisible()
+  }
 })
