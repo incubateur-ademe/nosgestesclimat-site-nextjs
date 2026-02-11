@@ -62,6 +62,17 @@ export class NGCTest {
       .isVisible()
   }
 
+  async isBooleanQuestion() {
+    // if boolean question, test id contains "oui" or "non"
+    try {
+      const ouiCount = await this.page.getByTestId(/oui-label/).count()
+      const nonCount = await this.page.getByTestId(/non-label/).count()
+      return ouiCount === 1 && nonCount === 1
+    } catch {
+      return false
+    }
+  }
+
   async skipAll() {
     await this.goto()
     await this.skipAllQuestions()
@@ -80,6 +91,15 @@ export class NGCTest {
       await this.answerQuestion(situation)
     }
     await this.page.getByTestId('end-test-button').click()
+  }
+
+  async getCarbonFootprintElem() {
+    await this.page.waitForTimeout(1000)
+    const carbonFootprintElem = this.page
+      .getByText(/[\d]+,[\d][\s]tonnes/)
+      .filter({ visible: true })
+      .first()
+    return carbonFootprintElem
   }
 }
 

@@ -17,16 +17,53 @@ for (const persona of Object.values(personas)) {
   })
 }
 
-test(`Should be able to deselect a boolean answer`, () => {
+test(`Should be able to deselect a boolean answer`, async ({ ngcTest }) => {
   //  1. Trouver une question boolean (passer jusqu'à avoir une question booléénne)
+  await ngcTest.goto()
+  while (!(await ngcTest.isBooleanQuestion())) {
+    // skip until we have a boolean question
+    await ngcTest.clickOnSkip()
+  }
+
   //  2. Récupérer la valeur du bilan
+  const carbonFootprintElemBefore = await ngcTest.getCarbonFootprintElem()
+  const carbonFootprintValueBeforeChange =
+    await carbonFootprintElemBefore.innerText()
+
   //  3. Selectionner une réponse
+  let isAnswered = false
+  const answerInput = ngcTest.page.getByTestId(new RegExp('oui-label'))
+  if (await answerInput.isVisible()) {
+    await answerInput.click()
+    isAnswered = true
+  }
   //  4. Vérifier que le bouton suivant est affiché
-  //  5. Recliquer sur l'element (input) en question
-  //  6. Vérifier que la valeur du bilan est identique au 2.
-  //  7. Vérifier que le bouton « je ne sais pas » est affiché
+  if (isAnswered) {
+    await expect(ngcTest.page.getByTestId('next-question-button')).toBeVisible()
+    //  5. Recliquer sur l'element (input) en question
+    await answerInput.click()
+    isAnswered = false
+  }
+
+  if (!isAnswered) {
+    //  6. Vérifier que la valeur du bilan est identique au 2.
+    const carbonFootprintElemAfter = await ngcTest.getCarbonFootprintElem()
+    const carbonFootprintValueAfterChange =
+      await carbonFootprintElemAfter.innerText()
+
+    expect(carbonFootprintValueAfterChange).toBe(
+      carbonFootprintValueBeforeChange
+    )
+
+    //  7. Vérifier que le bouton « je ne sais pas » est affiché
+    await expect(ngcTest.page.getByTestId('skip-question-button')).toBeVisible()
+  }
 })
 
-test(`Should be able to deselect a multiple choice answer`, () => {})
+test(`Should be able to deselect a multiple choice answer`, () => {
+  // @TODO
+})
 
-test(`Should be able to deselect a mosaic answer`, () => {})
+test(`Should be able to deselect a mosaic answer`, () => {
+  // @TODO
+})
