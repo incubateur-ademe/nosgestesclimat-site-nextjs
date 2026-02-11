@@ -75,6 +75,7 @@ export class NGCTest {
   }
 
   async answerTest(situation: Situation) {
+    // @TODO : test that there are no unit warning in publicodes
     while (!(await this.isLastQuestion())) {
       await this.answerQuestion(situation)
     }
