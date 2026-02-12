@@ -74,8 +74,6 @@ const CATEGORIES_MAPPER: Record<
   },
 }
 
-const BEAUTIFUL_COEFFICIENT = 0.75
-
 function getPercentages({
   numericValue,
   maxNumericValue,
@@ -158,18 +156,19 @@ export function getCategoriesDisplayData({
 
     return {
       dottedName: categoryDottedName,
-      title: getRuleTitle(
-        rules?.[categoryDottedName] as NGCRule & {
+      title: getRuleTitle({
+        ...(rules?.[categoryDottedName] as NGCRule & {
           dottedName: DottedName
-        }
-      ),
+        }),
+        dottedName: categoryDottedName,
+      }),
       icon: meta.icon,
       bgBarClassName: meta.bgBarClassName,
       bgLightClassName: meta.bgLightClassName,
       bgIconClassName: meta.bgIconClassName,
       formattedValue,
       unit,
-      percentage: percentage * BEAUTIFUL_COEFFICIENT,
+      percentage,
       displayPercentage,
       subcategories,
     }
@@ -213,11 +212,12 @@ function getSubcategoriesDisplayData({
 
       return {
         dottedName: dottedName as DottedName,
-        title: getRuleTitle(
-          rules?.[dottedName as DottedName] as NGCRule & {
+        title: getRuleTitle({
+          ...(rules?.[dottedName as DottedName] as NGCRule & {
             dottedName: DottedName
-          }
-        ),
+          }),
+          dottedName: dottedName as DottedName,
+        }),
         formattedValue,
         unit,
         percentage,

@@ -17,6 +17,8 @@ interface Props {
   locale: Locale
 }
 
+const BEAUTIFUL_COEFFICIENT = 0.75
+
 export default function CategoriesAccordion({
   rules,
   computedResults,
@@ -37,7 +39,9 @@ export default function CategoriesAccordion({
           <AccordionItem
             title={
               <HorizontalBarChartItem
-                percentageOfTotalValue={category.percentage}
+                percentageOfTotalValue={
+                  category.percentage * BEAUTIFUL_COEFFICIENT
+                }
                 index={index}
                 icon={category.icon}
                 title={
