@@ -94,8 +94,6 @@ export default function ParametresPage() {
 
         <Separator />
 
-        <Separator className="my-4" />
-
         <DeletePollButton />
       </MaxWidthContent>
     </>
