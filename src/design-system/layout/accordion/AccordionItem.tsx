@@ -28,8 +28,7 @@ export default function AccordionItem({
   const panelId = useId()
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <li role="listitem" className="list-none">
+    <li className="list-none">
       <button
         type="button"
         id={buttonId}

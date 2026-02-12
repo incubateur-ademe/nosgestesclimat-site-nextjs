@@ -1,9 +1,9 @@
 import { carboneMetric } from '@/constants/model/metric'
 import { orderedCategories } from '@/constants/model/orderedCategories'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getRuleTitleFromRules } from '@/helpers/publicodes/getRuleTitle'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { utils } from 'publicodes'
 import type { ReactNode } from 'react'
 
 export interface SubcategoryDisplayData {
@@ -60,8 +60,7 @@ export function getCategoriesDisplayData({
   const maxCategoryValue = Math.max(...Object.values(categoriesData))
 
   return categories.map((categoryDottedName) => {
-    const rule = rules[categoryDottedName]
-    const title = (rule?.titre as string) ?? utils.nameLeaf(categoryDottedName)
+    const title = getRuleTitleFromRules(rules, categoryDottedName)
 
     const numericValue = categoriesData[categoryDottedName] ?? 0
 
@@ -122,8 +121,7 @@ function getSubcategoriesDisplayData({
     })
     .sort(([, a], [, b]) => b - a)
     .map(([dottedName, value]) => {
-      const rule = rules[dottedName as DottedName]
-      const title = (rule?.titre as string) ?? utils.nameLeaf(dottedName)
+      const title = getRuleTitleFromRules(rules, dottedName as DottedName)
 
       const { formattedValue, unit } = formatFootprint(value, { metric })
 
