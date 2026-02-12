@@ -1,12 +1,15 @@
 'use client'
 
-import { footerClickLanguage } from '@/constants/tracking/layout'
+import {
+  footerClickLanguage,
+  footerClickLanguagePosthog,
+} from '@/constants/tracking/layout'
 import ButtonAnchor from '@/design-system/buttons/ButtonAnchor'
 import Emoji from '@/design-system/utils/Emoji'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { useIsClient } from '@/hooks/useIsClient'
 import i18nConfig, { type Locale } from '@/i18nConfig'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -35,6 +38,7 @@ const generateLanguageUrl = (newLocale: Locale): string => {
 
 const handleLanguageClick = (newLocale: Locale) => {
   trackEvent(footerClickLanguage(newLocale))
+  trackPosthogEvent(footerClickLanguagePosthog(newLocale))
   updateLangCookie(newLocale)
 }
 
