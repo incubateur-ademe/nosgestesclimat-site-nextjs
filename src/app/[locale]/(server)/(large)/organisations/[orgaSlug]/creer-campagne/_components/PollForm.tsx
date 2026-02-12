@@ -4,12 +4,10 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
-import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 interface Props {
@@ -22,11 +20,6 @@ interface Inputs {
 }
 
 export default function PollForm({ organisation }: Props) {
-  const [pollInfo, setPollInfo] = useState<PollToUpdate>({
-    defaultAdditionalQuestions: [],
-    customAdditionalQuestions: [],
-  })
-
   const router = useRouter()
 
   const { t } = useClientTranslation()
@@ -47,8 +40,6 @@ export default function PollForm({ organisation }: Props) {
     try {
       const pollCreated = await createPoll({
         name,
-        defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
-        customAdditionalQuestions: pollInfo.customAdditionalQuestions,
         expectedNumberOfParticipants: expectedNumberOfParticipants || undefined,
       })
 
