@@ -9,14 +9,22 @@ import {
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import { postSimulation } from '@/helpers/simulation/postSimulation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import type { Locale } from '@/i18nConfig'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function SaveResultsForm() {
+  const [onCompleteError, setOnCompleteError] = useState<string | undefined>(
+    undefined
+  )
+
+  const { t } = useClientTranslation()
+
   const currentSimulation = useCurrentSimulation()
   const locale = useLocale()
 
@@ -37,6 +45,11 @@ export default function SaveResultsForm() {
       router.push(`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`)
     } catch (error) {
       captureException(error)
+      setOnCompleteError(
+        t(
+          'Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.'
+        )
+      )
     }
   }
   return (
@@ -56,6 +69,7 @@ export default function SaveResultsForm() {
         </span>
       }
       onComplete={onSubmit}
+      onCompleteError={onCompleteError}
     />
   )
 }

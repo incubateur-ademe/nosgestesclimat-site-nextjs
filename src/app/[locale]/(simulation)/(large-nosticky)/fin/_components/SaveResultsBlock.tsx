@@ -7,14 +7,16 @@ import Marianne from '@/components/images/partners/Marianne'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { type UserServer } from '@/helpers/server/model/user'
+import type { TFunction } from 'i18next'
 import Image from 'next/image'
 import SaveResultsForm from './SaveResultsForm'
 interface Props {
   locale: Locale
   user?: UserServer | null
+  t: TFunction
 }
 
-export default function SaveResultsBlock({ locale, user }: Props) {
+export default function SaveResultsBlock({ locale, user, t }: Props) {
   const isAuthentified = !!user
 
   return (
@@ -88,7 +90,10 @@ export default function SaveResultsBlock({ locale, user }: Props) {
             <div className="flex w-full justify-center">
               <Image
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/visuel_login_cbf2f03684.svg"
-                alt=""
+                alt={t(
+                  "Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services.",
+                  'results.saveResults.imageAlt'
+                )}
                 width="300"
                 height="300"
               />

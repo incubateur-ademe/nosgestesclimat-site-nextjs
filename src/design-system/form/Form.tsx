@@ -31,17 +31,15 @@ export default function Form({
       <div className="flex items-start gap-4">
         {children}
 
-        <Button
-          className={twMerge(
-            'mt-8 h-14',
-            !isVerticalLayout && 'hidden md:block',
-            isVerticalLayout && 'hidden md:hidden'
-          )}
-          type="submit"
-          data-testid="button-submit"
-          color={buttonColor}>
-          {buttonLabel ?? <Trans>Enregistrer</Trans>}
-        </Button>
+        {!isVerticalLayout && (
+          <Button
+            className="mt-8 hidden h-14 md:block"
+            type="submit"
+            data-testid="button-submit-horizontal"
+            color={buttonColor}>
+            {buttonLabel ?? <Trans>Enregistrer</Trans>}
+          </Button>
+        )}
       </div>
 
       {error && (
@@ -55,7 +53,10 @@ export default function Form({
       )}
 
       <Button
-        className={twMerge('mt-8 block md:hidden')}
+        className={twMerge(
+          'mt-8',
+          isVerticalLayout ? 'block' : 'block md:hidden'
+        )}
         type="submit"
         data-testid="button-submit"
         color={buttonColor}>

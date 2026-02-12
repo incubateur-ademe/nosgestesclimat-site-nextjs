@@ -19,6 +19,7 @@ interface Props<T extends object> {
     Error,
     Partial<{ email: string; code: string }> & T
   >
+  onCompleteError?: string
 }
 
 enum ERROR_MESSAGES {
@@ -46,6 +47,7 @@ export default function VerificationForm<T extends object>({
   onRegisterNewVerification,
   mutationPayload: mutateProps,
   verificationMutation,
+  onCompleteError,
 }: Props<T>) {
   const { timeLeft, setTimeLeft } = useTimeLeft(NUM_SECONDS)
 
@@ -94,7 +96,11 @@ export default function VerificationForm<T extends object>({
     <div>
       <VerificationContent
         email={email}
-        inputError={(error && getErrorMessage({ error, t })) ?? undefined}
+        inputError={
+          (error && getErrorMessage({ error, t })) ??
+          onCompleteError ??
+          undefined
+        }
         isSuccessValidate={isSuccess}
         isPendingValidate={isPending}
         handleValidateVerificationCode={handleValidateVerificationCode}

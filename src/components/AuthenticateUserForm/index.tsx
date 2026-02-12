@@ -38,6 +38,7 @@ interface Props {
     }
   }
   isVerticalLayout?: boolean
+  onCompleteError?: string
 }
 
 export default function AuthenticateUserForm({
@@ -50,6 +51,7 @@ export default function AuthenticateUserForm({
   required = true,
   trackers,
   isVerticalLayout = true,
+  onCompleteError,
 }: Props) {
   const router = useRouter()
   const { user } = useUser()
@@ -96,6 +98,7 @@ export default function AuthenticateUserForm({
           email={pendingVerification?.email ?? user.email ?? ''}
           onVerificationCompleted={completeVerification}
           verificationMutation={login}
+          onCompleteError={onCompleteError}
         />
         <Button
           onClick={resetVerification}
