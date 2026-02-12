@@ -91,8 +91,8 @@ export default function SaveResultsBlock({ locale, user, t }: Props) {
               <Image
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/visuel_login_cbf2f03684.svg"
                 alt={t(
-                  "Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services.",
-                  'results.saveResults.imageAlt'
+                  'results.saveResults.imageAlt',
+                  "Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services."
                 )}
                 width="300"
                 height="300"

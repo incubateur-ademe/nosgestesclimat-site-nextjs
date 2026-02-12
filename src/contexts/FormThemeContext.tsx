@@ -8,11 +8,7 @@ const FormThemeContext = createContext<FormTheme>('light')
 
 export const FormThemeProvider = FormThemeContext.Provider
 
-export function useFormTheme() {
-  return useContext(FormThemeContext)
-}
-
 export function useFormThemeErrorColor(lightColor = 'text-red-700') {
-  const theme = useFormTheme()
+  const theme = useContext(FormThemeContext)
   return theme === 'dark' ? 'text-white' : lightColor
 }

@@ -1427,3 +1427,13 @@ entries:
   ui.emailInput.label: Votre adresse e-mail
   email.input.helper: 'Format attendu : nom@exemple.org'
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Cliquez sur voir le détail pour découvrir également votre empreinte eau
+  fin.getResultsOnUserProfile.inputLabel: Votre adresse e-mail
+  Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.
+  results.saveResults.buttonLabel.authenticated: Voir l’évolution de mon résultat
+  results.saveResults.imageAlt: Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services.
+  results.saveResults.listItem1: Retrouvez <1>votre historique</1>
+  results.saveResults.listItem2: Suivez <1>votre évolution</1>
+  results.saveResults.listItem3: Découvrez <1>vos actions personnalisées</1>
+  results.saveResults.title.authenticated: Accédez à votre espace personnel
+  results.saveResults.title.unauthenticated: Recevez-les par e-mail et accédez à votre espace personnel
+  Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.: Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.
