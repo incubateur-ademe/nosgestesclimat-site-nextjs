@@ -30,8 +30,7 @@ export default function SubcategoryItem({
         </div>
 
         <div
-          className="w-full overflow-hidden"
-          style={{ height: 6 }}
+          className="h-1.5 w-full overflow-hidden"
           role="img"
           aria-label={t(`Part de la sous-catégorie {{percentage}}`, {
             percentage: subcategory.displayPercentage,
