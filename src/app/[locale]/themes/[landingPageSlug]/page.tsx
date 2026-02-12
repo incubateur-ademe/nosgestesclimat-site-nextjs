@@ -44,7 +44,7 @@ export async function generateMetadata({
   const { thematicLandingPageMetadata } =
     (await fetchThematicLandingPageMetadata({
       landingPageSlug,
-    })) || {}
+    })) ?? {}
 
   return getMetadataObject({
     locale,
@@ -302,7 +302,7 @@ export default async function ThematicLandingPage({
         {htmlLegend && <Legend htmlLegend={htmlLegend} />}
       </LandingPage>
 
-      <Footer locale={locale} />
+      <Footer params={{ landingPageSlug }} locale={locale} />
     </ClientLayout>
   )
 }
