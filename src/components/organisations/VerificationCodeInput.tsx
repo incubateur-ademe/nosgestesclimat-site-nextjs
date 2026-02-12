@@ -22,7 +22,7 @@ export default function VerificationCodeInput({
   isPendingValidate,
   handleValidateVerificationCode,
 }: Props) {
-  const errorTextColor = useFormThemeErrorColor('text-red-800')
+  const errorTextColor = useFormThemeErrorColor()
 
   return (
     <fieldset className="m-0 border-0 p-0">

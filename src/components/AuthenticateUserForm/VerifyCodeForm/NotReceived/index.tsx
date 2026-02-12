@@ -18,7 +18,7 @@ export default function NotReceived({
   onResendVerificationCode,
   timeLeft,
 }: Props) {
-  const errorTextColor = useFormThemeErrorColor('text-red-800')
+  const errorTextColor = useFormThemeErrorColor()
   return (
     <>
       <h3 className="mt-12 text-lg">
