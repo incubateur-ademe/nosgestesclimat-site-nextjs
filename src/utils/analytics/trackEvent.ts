@@ -60,7 +60,9 @@ export const trackPageView = (url: string, anonymizedUrl: string) => {
     return
   }
 
-  posthog.capture('$pageview', { $current_url: url })
+  if (!posthog.has_opted_out_capturing()) {
+    posthog.capture('$pageview', { $current_url: url })
+  }
 
   // We track "organisation anonymized" page view for Matomo, as it is public. We don't want anyone to check any poll results with the slug.
   window?._paq?.push(['setCustomUrl', anonymizedUrl])

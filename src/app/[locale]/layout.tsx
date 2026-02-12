@@ -1,10 +1,11 @@
-import TrackersWrapper from '@/components/tracking/TrackersWrapper'
+import Trackers from '@/components/tracking/Trackers'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
+import { Suspense } from 'react'
 import ServerTracking from './_components/scripts/ServerTracking'
 import './globals.css'
 
@@ -70,7 +71,9 @@ export default async function RootLayout({
 
         <meta name="theme-color" content="#4949ba" />
 
-        <TrackersWrapper locale={locale} />
+        <Suspense>
+          <Trackers locale={locale} />
+        </Suspense>
 
         {
           // Matomo Prod

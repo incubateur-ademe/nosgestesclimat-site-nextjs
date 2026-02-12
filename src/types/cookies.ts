@@ -5,7 +5,8 @@ export enum CookieChoice {
 }
 
 export enum CookieConsentKey {
-  googleAds = 'googleAds',
+  googleTag = 'googleTag',
+  posthog = 'posthog',
 }
 
 export type CookieConsentChoices = Record<CookieConsentKey, boolean>

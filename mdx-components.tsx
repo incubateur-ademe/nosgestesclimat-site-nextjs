@@ -2,6 +2,7 @@
 
 import type { MDXComponents } from 'mdx/types'
 
+import DisablePosthogCheckbox from '@/components/tracking/DisablePosthogCheckbox'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title, { type TitleProps } from '@/design-system/layout/Title'
 import Image from 'next/image'
@@ -29,6 +30,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
+    DisablePosthogCheckbox: () => <DisablePosthogCheckbox />,
     ...components,
   }
 }
