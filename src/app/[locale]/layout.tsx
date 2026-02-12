@@ -5,6 +5,7 @@ import type { DefaultPageProps } from '@/types'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
+import ServerTracking from './_components/scripts/ServerTracking'
 import './globals.css'
 
 export const marianne = localFont({
@@ -121,46 +122,7 @@ export default async function RootLayout({
           src="https://tally.so/widgets/embed.js"
           strategy="lazyOnload"></Script>
 
-        <Script
-          id="global-tracking"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-            if (!window.globalTrackingAdded) {
-              window.globalTrackingAdded = true;
-              
-              // Wait for DOM to be ready
-              const initTracking = () => {                
-                document.addEventListener('click', (e) => {
-                  const target = e.target.closest('[data-track-event]');
-                  const posthogTarget = e.target.closest('[data-track-posthog]');
-                  
-                  // Execute tracking asynchronously if attributes are present
-                  if (target || posthogTarget) {                    
-                    if (target) {
-                      const eventData = target.dataset.trackEvent.split('|');
-                      console.log('Matomo tracking:', eventData);
-                      window._paq?.push(['trackEvent', ...eventData]);
-                    }
-                    
-                    if (posthogTarget) {
-                      const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
-                      console.log('Posthog tracking:', { eventName, properties });
-                      window.posthog?.capture(eventName, properties);
-                    }
-                  }
-                });
-              };
-              
-              if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initTracking);
-              } else {
-                initTracking();
-              }
-            }
-          `,
-          }}
-        />
+        <ServerTracking />
       </head>
       <body
         className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
