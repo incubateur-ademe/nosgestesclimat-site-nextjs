@@ -1,4 +1,4 @@
-import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsentBannerAndManagement'
+import CookieConsent from '@/components/cookies/CookieConsent'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
@@ -7,6 +7,7 @@ import type { Locale } from '@/i18nConfig'
 import type { SkipLinksDisplayed } from '@/types'
 import type { PropsWithChildren } from 'react'
 import MainLayoutProviders from '../../app/[locale]/_components/MainLayoutProviders'
+import { CookieConsentProvider } from '../cookies/useCookieManagement'
 
 type RootLayoutProps = PropsWithChildren & {
   locale: string
@@ -18,16 +19,18 @@ export const ClientLayout = ({
   skipLinksDisplayed,
   locale,
 }: RootLayoutProps) => (
-  <MainLayoutProviders>
-    <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
+  <CookieConsentProvider>
+    <MainLayoutProviders>
+      <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
 
-    <CookieConsentBannerAndManagement />
+      <CookieConsent />
 
-    <Banner locale={locale as Locale} />
+      <Banner locale={locale as Locale} />
 
-    {children}
+      {children}
 
-    <GoogleTagScript />
-    <GoogleTagIframe />
-  </MainLayoutProviders>
+      <GoogleTagScript />
+      <GoogleTagIframe />
+    </MainLayoutProviders>
+  </CookieConsentProvider>
 )

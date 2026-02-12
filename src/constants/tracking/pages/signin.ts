@@ -45,3 +45,9 @@ export const clickResendCode = [
   'Authentication',
   'Click Renvoyer le code',
 ]
+
+export const captureClickResendCode = () => {
+  return {
+    eventName: 'click resend code',
+  }
+}
