@@ -204,7 +204,6 @@ entries:
   Accédez à votre espace organisation: Accédez à votre espace organisation
   Bienvenue: Bienvenue
   Bienvenue sur votre espace !: Bienvenue sur votre espace !
-  Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.
   Créer un compte: Créer un compte
   Demander une démo: Demander une démo
   Entrez votre code de vérification pour continuer: Entrez votre code de vérification pour continuer
@@ -958,7 +957,6 @@ entries:
   Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.
   Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
   Chargement du tableau de bord...: Chargement du tableau de bord...
-  Formulaire - Demander une démo: Formulaire - Demander une démo
   Formulaire - nous faire part de vos remarques sur le site: Formulaire - nous faire part de vos remarques sur le site
   Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
   Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
@@ -1379,3 +1377,5 @@ entries:
   cookies.management.googleAds.link: Voir le site officiel
   cookies.management.posthog.description: Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers.
   cookies.management.posthog.link: Voir le site officiel
+  organisations.demanderDemo.subtitle: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
+  organisations.demanderDemo.title: Demander une démo
