@@ -1,11 +1,20 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import {
+  cookieClickAcceptAll,
+  cookieClickAcceptAllPosthog,
+  cookieClickRejectAll,
+  cookieClickRejectAllPosthog,
+  cookieClickSave,
+  cookieClickSavePosthog,
+} from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { CookieConsentKey } from '@/types/cookies'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
@@ -52,7 +61,11 @@ export default function CookieConsentForm({
           </h2>
         </div>
         <form
-          onSubmit={(e) => void handleSubmit(confirmChoices)(e)}
+          onSubmit={(e) => {
+            trackEvent(cookieClickSave)
+            trackPosthogEvent(cookieClickSavePosthog)
+            void handleSubmit(confirmChoices)(e)
+          }}
           data-testid="cookie-form">
           <div className="max-h-[40vh] flex-1 overflow-y-scroll px-8 pb-8">
             <div className="mb-6 flex flex-col gap-4 md:flex-row">
@@ -77,7 +90,11 @@ export default function CookieConsentForm({
                   <Button
                     type="button"
                     color="secondary"
-                    onClick={rejectAll}
+                    onClick={() => {
+                      trackEvent(cookieClickRejectAll)
+                      trackPosthogEvent(cookieClickRejectAllPosthog)
+                      rejectAll()
+                    }}
                     size="sm"
                     data-testid="refuse-all-button">
                     <Trans i18nKey="cookies.management.rejectAll">
@@ -89,7 +106,11 @@ export default function CookieConsentForm({
                   <Button
                     type="button"
                     color="primary"
-                    onClick={acceptAll}
+                    onClick={() => {
+                      trackEvent(cookieClickAcceptAll)
+                      trackPosthogEvent(cookieClickAcceptAllPosthog)
+                      acceptAll()
+                    }}
                     size="sm"
                     data-testid="accept-all-button">
                     <Trans i18nKey="cookies.management.acceptAll">

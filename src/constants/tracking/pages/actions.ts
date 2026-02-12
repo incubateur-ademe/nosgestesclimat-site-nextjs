@@ -56,6 +56,13 @@ export const actionsOpenAction = (action: DottedName) => [
   `Open Action ${action}`,
 ]
 
+export const actionsOpenActionPosthog = (action: DottedName) => ({
+  eventName: 'Actions click open stats',
+  properties: {
+    action,
+  },
+})
+
 // Figma comment #114
 export const actionsClickAdeme = [
   'trackEvent',

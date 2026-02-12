@@ -4,7 +4,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -20,9 +20,25 @@ export default function ClientCTAButtons({
   className?: string
   trackingEvents: {
     start: string[]
+    startPosthog?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
     resume: string[]
+    resumePosthog?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
     results: string[]
+    resultsPosthog?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
     restart?: string[]
+    restartPosthog?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
   }
   withRestart?: boolean
   isAuthenticated: boolean
@@ -85,15 +101,24 @@ export default function ClientCTAButtons({
   const handleMainButtonClick = () => {
     if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
       trackEvent(trackingEvents?.results)
+      if (trackingEvents?.resultsPosthog) {
+        trackPosthogEvent(trackingEvents.resultsPosthog)
+      }
       return
     }
 
     if (progression > 0) {
       trackEvent(trackingEvents?.resume)
+      if (trackingEvents?.resumePosthog) {
+        trackPosthogEvent(trackingEvents.resumePosthog)
+      }
       return
     }
 
     trackEvent(trackingEvents?.start)
+    if (trackingEvents?.startPosthog) {
+      trackPosthogEvent(trackingEvents.startPosthog)
+    }
   }
 
   const handleRestartClick = () => {

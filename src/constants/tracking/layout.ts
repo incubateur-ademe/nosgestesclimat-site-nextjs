@@ -13,6 +13,13 @@ export const footerClickLanguage = (locale: string) => [
   `Click Language ${locale}`,
 ]
 
+export const footerClickLanguagePosthog = (locale: string) => ({
+  eventName: 'Footer click Language',
+  properties: {
+    locale,
+  },
+})
+
 // Figma comment #18
 export const breadcrumbClickLink = (href: string) => [
   'trackEvent',
