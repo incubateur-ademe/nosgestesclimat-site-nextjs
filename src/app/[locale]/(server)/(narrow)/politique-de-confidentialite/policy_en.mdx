@@ -1,38 +1,22 @@
-<style jsx global>{`
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-  }
-  th,
-  td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  th {
-    background-color: #f2f2f2;
-  }
-`}</style>
-
-<style jsx global>{`
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-  }
-  th,
-  td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  th {
-    background-color: #f2f2f2;
-  }
-`}</style>
+<style jsx="true" global="true">
+  {`
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+    }
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  `}
+</style>
 
 When you use our simulator, all data entered and calculations performed remain strictly on your browser. We do not collect any personal information related to your responses, unless you voluntarily choose to provide your email address. In this case, your simulation data may be saved on our servers, solely for the purpose of allowing you to retrieve it later.
 
@@ -374,17 +358,6 @@ In any case, ADEME undertakes to inform Data Subjects in advance in case of data
       </td>
     </tr>
     <tr>
-      <td>Crisp</td>
-      <td>France</td>
-      <td>France (Scaleway, OVH or AWS Paris)</td>
-      <td>Messaging / Support</td>
-      <td>
-        <a href="https://crisp.chat/fr/privacy/">
-          https://crisp.chat/fr/privacy/
-        </a>
-      </td>
-    </tr>
-    <tr>
       <td>Tally</td>
       <td>Belgium</td>
       <td>Europe / Ireland (AWS)</td>
@@ -396,20 +369,31 @@ In any case, ADEME undertakes to inform Data Subjects in advance in case of data
       </td>
     </tr>
     <tr>
-      <td>Youtube</td>
-      <td>United States</td>
-      <td>United States</td>
-      <td>Video playback</td>
+      <td>Brevo</td>
+      <td>Europe</td>
+      <td>Europe (OVH)</td>
+      <td>E-mail campaigns</td>
       <td>
-        <a href="https://policies.google.com/privacy">
-          https://policies.google.com/privacy
+        <a href="https://www.brevo.com/fr/legal/termsofuse/">
+          https://www.brevo.com/fr/legal/termsofuse/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>SalesForce</td>
+      <td>Germany</td>
+      <td>Germany</td>
+      <td>E-mail campaigns</td>
+      <td>
+        <a href="https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/misc/salesforce-infrastructure-and-subprocessors.pdf">
+          https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/misc/salesforce-infrastructure-and-subprocessors.pdf
         </a>
       </td>
     </tr>
   </tbody>
 </table>
 
-### 7.2 Cookies
+<h3 id="cookies">7.2 Cookies</h3>
 
 #### 1. Preamble
 
@@ -513,14 +497,6 @@ Finally, the Site also uses performance cookies, for the purpose of:
       <td>France / EU</td>
     </tr>
     <tr>
-      <td>Service functionality</td>
-      <td>Crisp (chat)</td>
-      <td>Until session closure</td>
-      <td>User support</td>
-      <td>Crisp</td>
-      <td>France</td>
-    </tr>
-    <tr>
       <td>Form collection</td>
       <td>Tally</td>
       <td>13 months</td>
@@ -536,16 +512,10 @@ Finally, the Site also uses performance cookies, for the purpose of:
       <td>Internal</td>
       <td>France / EU</td>
     </tr>
-    <tr>
-      <td>Video playback / third-party trackers</td>
-      <td>YouTube</td>
-      <td>Up to 13 months</td>
-      <td>Video playback, advertising tracking</td>
-      <td>Google / YouTube</td>
-      <td>United States</td>
-    </tr>
   </tbody>
 </table>
+
+##### Matomo
 
 See the complete list of Matomo cookies [https://matomo.org/faq/general/faq_146/](https://matomo.org/faq/general/faq_146/)
 
@@ -553,8 +523,15 @@ Nos Gestes Climat uses the Matomo audience measurement solution configured in "e
 
 <iframe
   title="matomo"
-  src="https://stats.beta.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
+  className="min-h-64"
+  src="https://stats.beta.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily=&language=en"
 />
+
+##### Posthog
+
+Nos Gestes Climat uses the Posthog audience measurement solution. If you have refused the deposit of a tracking cookie from the consent banner (cookies), you can also object to the tracking of your navigation and any tracking, by unchecking the box below:
+
+<DisablePosthogCheckbox />
 
 See also the complete list of Posthog cookies: [https://www.cookie.is/service/posthog-analytics\#](https://www.cookie.is/service/posthog-analytics#)
 
