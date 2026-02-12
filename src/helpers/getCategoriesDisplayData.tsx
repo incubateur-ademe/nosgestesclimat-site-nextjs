@@ -129,15 +129,6 @@ export function getCategoriesDisplayData({
   return categories.map((categoryDottedName) => {
     const numericValue = categoriesData[categoryDottedName]
 
-    const { percentage, displayPercentage, formattedValue, unit } =
-      getPercentages({
-        numericValue,
-        maxNumericValue,
-        displayDenominator: totalBilan,
-        metric,
-        locale,
-      })
-
     const subcategories = getSubcategoriesDisplayData({
       categoryDottedName,
       categoryValue: numericValue,
@@ -166,11 +157,14 @@ export function getCategoriesDisplayData({
       bgBarClassName: meta.bgBarClassName,
       bgLightClassName: meta.bgLightClassName,
       bgIconClassName: meta.bgIconClassName,
-      formattedValue,
-      unit,
-      percentage,
-      displayPercentage,
       subcategories,
+      ...getPercentages({
+        numericValue,
+        maxNumericValue,
+        displayDenominator: totalBilan,
+        metric,
+        locale,
+      }),
     }
   })
 }
@@ -201,15 +195,6 @@ function getSubcategoriesDisplayData({
     })
     .sort(([, a], [, b]) => b - a)
     .map(([dottedName, value]) => {
-      const { percentage, displayPercentage, formattedValue, unit } =
-        getPercentages({
-          numericValue: value,
-          maxNumericValue: categoryValue,
-          displayDenominator: categoryValue,
-          metric,
-          locale,
-        })
-
       return {
         dottedName: dottedName as DottedName,
         title: getRuleTitle({
@@ -218,10 +203,13 @@ function getSubcategoriesDisplayData({
           }),
           dottedName: dottedName as DottedName,
         }),
-        formattedValue,
-        unit,
-        percentage,
-        displayPercentage,
+        ...getPercentages({
+          numericValue: value,
+          maxNumericValue: categoryValue,
+          displayDenominator: categoryValue,
+          metric,
+          locale,
+        }),
       }
     })
 }
