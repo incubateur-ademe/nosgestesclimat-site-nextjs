@@ -12,7 +12,7 @@ interface Props {
   barColor?: string
 }
 
-export default function HorizontalBarChartItem({
+export default function HorizontalBarChartItemLegacy({
   title,
   icon,
   displayValue,

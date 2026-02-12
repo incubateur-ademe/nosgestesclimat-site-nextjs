@@ -21,38 +21,56 @@ export interface SubcategoryDisplayData {
   displayPercentage: string
 }
 
-export interface CategoryDisplayData
-  extends Omit<SubcategoryDisplayData, 'categoryPercentage'> {
-  icon?: ReactNode
-  colorName: string
+export interface CategoryDisplayData extends SubcategoryDisplayData {
+  icon: ReactNode
+  bgBarClassName: string
+  bgLightClassName: string
+  bgIconClassName: string
   subcategories: SubcategoryDisplayData[]
 }
 
 const CATEGORIES_MAPPER: Record<
   string,
-  { icon: React.ReactNode; colorName: string }
+  {
+    icon: React.ReactNode
+    bgBarClassName: string
+    bgLightClassName: string
+    bgIconClassName: string
+  }
 > = {
   logement: {
     icon: <HousingIcon />,
-    colorName: 'green',
+    bgBarClassName: 'bg-green-800',
+    bgLightClassName: 'bg-green-50',
+    bgIconClassName: 'bg-green-100',
   },
   alimentation: {
     icon: <FoodIcon />,
-    colorName: 'orange',
+    bgBarClassName: 'bg-orange-800',
+    bgLightClassName: 'bg-orange-50',
+    bgIconClassName: 'bg-orange-100',
   },
   transport: {
     icon: <CarIcon />,
-    colorName: 'blue',
+    bgBarClassName: 'bg-blue-800',
+    bgLightClassName: 'bg-blue-50',
+    bgIconClassName: 'bg-blue-100',
   },
   'services sociétaux': {
     icon: <PublicServicesIcon />,
-    colorName: 'purple',
+    bgBarClassName: 'bg-purple-800',
+    bgLightClassName: 'bg-purple-50',
+    bgIconClassName: 'bg-purple-100',
   },
   divers: {
     icon: <MiscIcon />,
-    colorName: 'yellow',
+    bgBarClassName: 'bg-yellow-800',
+    bgLightClassName: 'bg-yellow-50',
+    bgIconClassName: 'bg-yellow-100',
   },
 }
+
+const BEAUTIFUL_COEFFICIENT = 0.75
 
 function getPercentages({
   numericValue,
@@ -78,7 +96,6 @@ function getPercentages({
     percentage: (numericValue / maxNumericValue) * 100,
     displayPercentage: new Intl.NumberFormat(locale, {
       style: 'percent',
-      roundingMode: 'floor',
       minimumFractionDigits: 0,
       maximumFractionDigits: 1,
     }).format(numericValue / displayDenominator),
@@ -128,16 +145,22 @@ export function getCategoriesDisplayData({
       locale,
     })
 
-    const meta = CATEGORIES_MAPPER[categoryDottedName] ?? { colorName: 'gray' }
+    const meta = CATEGORIES_MAPPER[categoryDottedName] ?? {
+      bgBarClassName: 'bg-gray-800',
+      bgLightClassName: 'bg-gray-50',
+      bgIconClassName: 'bg-gray-100',
+    }
 
     return {
       dottedName: categoryDottedName,
       title: getRuleTitleFromRules(rules, categoryDottedName),
       icon: meta.icon,
-      colorName: meta.colorName,
+      bgBarClassName: meta.bgBarClassName,
+      bgLightClassName: meta.bgLightClassName,
+      bgIconClassName: meta.bgIconClassName,
       formattedValue,
       unit,
-      percentage: percentage * 0.75,
+      percentage: percentage * BEAUTIFUL_COEFFICIENT,
       displayPercentage,
       subcategories,
     }

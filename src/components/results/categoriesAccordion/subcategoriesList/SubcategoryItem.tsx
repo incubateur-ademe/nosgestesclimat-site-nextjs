@@ -1,19 +1,25 @@
 import type { SubcategoryDisplayData } from '@/helpers/getCategoriesDisplayData'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import type { Locale } from '@/i18nConfig'
 import { capitalizeString } from '@/utils/capitalizeString'
 import AnimatedBar from '../_client/AnimatedBar'
 
 interface Props {
   subcategory: SubcategoryDisplayData
-  colorName: string
+  bgBarClassName: string
   index?: number
+  locale: Locale
 }
 
-export default function SubcategoryItem({
+export default async function SubcategoryItem({
   subcategory,
-  colorName,
+  bgBarClassName,
   index = 0,
+  locale,
 }: Props) {
   const animationDelay = 0.3 + index * 0.25
+
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <li className="py-3 first:pt-0 last:pb-0">
@@ -30,11 +36,13 @@ export default function SubcategoryItem({
           className="w-full overflow-hidden"
           style={{ height: 6 }}
           role="img"
-          aria-label={`Part de la sous-catégorie: ${subcategory.displayPercentage}`}>
+          aria-label={t(`Part de la sous-catégorie {{percentage}}`, {
+            percentage: subcategory.displayPercentage,
+          })}>
           <AnimatedBar
             percentage={subcategory.percentage}
             delay={animationDelay}
-            color={`bg-${colorName}-800`}
+            color={bgBarClassName}
             height={6}
           />
         </div>

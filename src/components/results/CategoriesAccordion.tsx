@@ -49,14 +49,15 @@ export default function CategoriesAccordion({
                     </span>
                   </div>
                 }
-                color={category.colorName}
+                bgBarClassName={category.bgBarClassName}
+                bgIconClassName={category.bgIconClassName}
               />
             }
             name={category.title ?? ''}
             ariaLabel={`${category.title ?? ''} - ${category.formattedValue} ${category.unit}`}
             content={
               <Card
-                className={`mb-4 rounded-lg border border-slate-400 bg-${category.colorName}-50`}>
+                className={`mb-4 rounded-lg border border-slate-400 ${category.bgLightClassName}`}>
                 {category.dottedName.startsWith('services') && (
                   <p>
                     <Trans i18nKey="results.categories.services.text">
@@ -70,7 +71,8 @@ export default function CategoriesAccordion({
                 )}
                 <SubcategoriesList
                   subcategories={category.subcategories}
-                  colorName={category.colorName}
+                  bgBarClassName={category.bgBarClassName}
+                  locale={locale}
                 />
               </Card>
             }

@@ -8,7 +8,8 @@ interface Props {
   percentageOfTotalValue: number
   minTitleWidth?: number
   index?: number
-  color?: string
+  bgBarClassName?: string
+  bgIconClassName?: string
 }
 
 export default function HorizontalBarChartItem({
@@ -18,7 +19,8 @@ export default function HorizontalBarChartItem({
   percentageOfTotalValue,
   minTitleWidth,
   index,
-  color = 'primary',
+  bgBarClassName = 'bg-primary-800',
+  bgIconClassName = 'bg-primary-100',
 }: Props) {
   return (
     <div className="w-full rounded-lg border border-slate-400 bg-white p-4 pr-12">
@@ -28,7 +30,7 @@ export default function HorizontalBarChartItem({
           minWidth: (minTitleWidth ?? 10) + 'rem',
         }}>
         <div className="flex items-center gap-2">
-          <span className={`rounded-sm p-1.5 bg-${color}-100`}>{icon}</span>{' '}
+          <span className={`rounded-sm p-1.5 ${bgIconClassName}`}>{icon}</span>{' '}
           <p className={`mb-0`}>{title}</p>
         </div>
         {displayValue && (
@@ -44,7 +46,7 @@ export default function HorizontalBarChartItem({
           className="h-2"
           value={`${percentageOfTotalValue}%`}
           index={index}
-          color={`bg-${color}-800`}
+          color={bgBarClassName}
         />
       </div>
     </div>

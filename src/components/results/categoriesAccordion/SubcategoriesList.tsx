@@ -1,20 +1,27 @@
 import type { SubcategoryDisplayData } from '@/helpers/getCategoriesDisplayData'
+import type { Locale } from '@/i18nConfig'
 import SubcategoryItem from './subcategoriesList/SubcategoryItem'
 
 interface Props {
   subcategories: SubcategoryDisplayData[]
-  colorName: string
+  bgBarClassName: string
+  locale: Locale
 }
 
-export default function SubcategoriesList({ subcategories, colorName }: Props) {
+export default function SubcategoriesList({
+  subcategories,
+  bgBarClassName,
+  locale,
+}: Props) {
   return (
     <ul>
       {subcategories.map((subcategory, index) => (
         <SubcategoryItem
           key={subcategory.dottedName}
           subcategory={subcategory}
-          colorName={colorName}
+          bgBarClassName={bgBarClassName}
           index={index}
+          locale={locale}
         />
       ))}
     </ul>
