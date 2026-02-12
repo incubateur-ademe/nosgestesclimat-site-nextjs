@@ -2,6 +2,7 @@ import { TEST_INTRO_TUTO_KEY } from '@/app/[locale]/(simulation)/(large)/tutorie
 import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import type { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
+import posthog from 'posthog-js'
 import { getUserSimulations } from '../server/model/simulations'
 import { generateSimulation } from '../simulation/generateSimulation'
 
@@ -63,7 +64,6 @@ export async function reconcileUserOnAuth({
   userId: string
   email: string
   user: ReturnType<typeof useUser>
-  twoWaySync?: boolean
 }) {
   const {
     user: localUser,
@@ -81,6 +81,8 @@ export async function reconcileUserOnAuth({
       simulations,
       userId,
     })
+  } else {
+    posthog.alias(localUser.userId, userId)
   }
 
   await loadServerSimulation({

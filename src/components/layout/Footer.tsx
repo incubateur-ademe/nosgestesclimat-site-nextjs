@@ -4,10 +4,14 @@ import HideInIframe from './footer/HideInIframe'
 
 type Props = ComponentProps<typeof FooterServer>
 
-export default function Footer({ backgroundColor, locale }: Props) {
+export default function Footer({ backgroundColor, locale, params }: Props) {
   return (
     <HideInIframe>
-      <FooterServer backgroundColor={backgroundColor} locale={locale} />
+      <FooterServer
+        backgroundColor={backgroundColor}
+        locale={locale}
+        params={params}
+      />
     </HideInIframe>
   )
 }
