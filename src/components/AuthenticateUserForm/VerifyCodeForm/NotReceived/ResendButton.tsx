@@ -3,10 +3,13 @@
 import LockIcon from '@/components/icons/LockIcon'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { clickResendCode } from '@/constants/tracking/pages/signin'
+import {
+  captureClickResendCode,
+  clickResendCode,
+} from '@/constants/tracking/pages/signin'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 
 interface Props {
@@ -31,6 +34,7 @@ export default function ResendButton({
     }
 
     trackEvent(clickResendCode)
+    trackPosthogEvent(captureClickResendCode())
 
     onResendVerificationCode()
     setShouldDisplayConfirmation(true)
