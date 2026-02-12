@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { useFormThemeErrorColor } from '@/contexts/FormThemeContext'
 import Button from '@/design-system/buttons/Button'
 import ResendButton from './ResendButton'
 
@@ -17,6 +18,7 @@ export default function NotReceived({
   onResendVerificationCode,
   timeLeft,
 }: Props) {
+  const errorTextColor = useFormThemeErrorColor('text-red-800')
   return (
     <>
       <h3 className="mt-12 text-lg">
@@ -42,7 +44,7 @@ export default function NotReceived({
       )}
 
       {isErrorResend && (
-        <div className="text-red-800">
+        <div className={errorTextColor}>
           <p>
             <Trans i18nKey="signIn.verificationForm.notReceived.error">
               Oups, une erreur s'est produite au moment de l'envoi de votre

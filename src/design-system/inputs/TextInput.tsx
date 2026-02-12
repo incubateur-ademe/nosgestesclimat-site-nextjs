@@ -32,7 +32,6 @@ interface Props {
   'data-testid'?: string
   autoComplete?: string
   mention?: string
-  errorColor?: string
 }
 
 export default forwardRef(function TextInput(
@@ -54,7 +53,6 @@ export default forwardRef(function TextInput(
     debounceTimeout = 100,
     readOnly = false,
     autoComplete = 'off',
-    errorColor,
     ...props
   }: HTMLAttributes<HTMLInputElement> & Props,
   ref: ForwardedRef<HTMLInputElement>
@@ -70,7 +68,6 @@ export default forwardRef(function TextInput(
       name={name}
       label={label}
       error={error}
-      errorColor={errorColor}
       helperText={helperText}
       srOnlyHelperText={srOnlyHelperText}
       containerClassName={containerClassName}

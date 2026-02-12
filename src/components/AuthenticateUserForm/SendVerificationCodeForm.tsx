@@ -78,7 +78,6 @@ export default function SendVerificationCodeForm({
       <EmailInput
         data-testid="verification-code-email-input"
         containerClassName={isVerticalLayout ? 'w-full' : 'w-96'}
-        errorColor="text-red-100"
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
         {...register('email', {
           required: required

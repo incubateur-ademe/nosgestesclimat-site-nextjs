@@ -8,6 +8,7 @@ import {
 } from '@/constants/tracking/pages/end'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
+import { FormThemeProvider } from '@/contexts/FormThemeContext'
 import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -53,23 +54,25 @@ export default function SaveResultsForm() {
     }
   }
   return (
-    <AuthenticateUserForm
-      buttonColor="borderless"
-      isVerticalLayout={false}
-      buttonLabel={
-        <Trans i18nKey="fin.getResultsOnUserProfile.buttonLabel">
-          Sauvegarder mes résultats
-        </Trans>
-      }
-      inputLabel={
-        <span className="text-white">
-          <Trans i18nKey="fin.getResultsOnUserProfile.inputLabel">
-            Votre adresse e-mail
+    <FormThemeProvider value="dark">
+      <AuthenticateUserForm
+        buttonColor="borderless"
+        isVerticalLayout={false}
+        buttonLabel={
+          <Trans i18nKey="fin.getResultsOnUserProfile.buttonLabel">
+            Sauvegarder mes résultats
           </Trans>
-        </span>
-      }
-      onComplete={onSubmit}
-      onCompleteError={onCompleteError}
-    />
+        }
+        inputLabel={
+          <span className="text-white">
+            <Trans i18nKey="fin.getResultsOnUserProfile.inputLabel">
+              Votre adresse e-mail
+            </Trans>
+          </span>
+        }
+        onComplete={onSubmit}
+        onCompleteError={onCompleteError}
+      />
+    </FormThemeProvider>
   )
 }

@@ -3,6 +3,7 @@
 import { marianne } from '@/app/[locale]/layout'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
+import { useFormThemeErrorColor } from '@/contexts/FormThemeContext'
 import Loader from '@/design-system/layout/Loader'
 import type { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import VerificationInput from 'react-verification-input'
@@ -21,6 +22,8 @@ export default function VerificationCodeInput({
   isPendingValidate,
   handleValidateVerificationCode,
 }: Props) {
+  const errorTextColor = useFormThemeErrorColor('text-red-800')
+
   return (
     <fieldset className="m-0 border-0 p-0">
       <legend className="sr-only">
@@ -71,7 +74,9 @@ export default function VerificationCodeInput({
 
       {inputError && (
         <div>
-          <p id="verification-error" className="w- mt-2 text-sm text-red-800">
+          <p
+            id="verification-error"
+            className={twMerge('w- mt-2 text-sm', errorTextColor)}>
             <Trans>Le code est invalide</Trans>
           </p>
         </div>

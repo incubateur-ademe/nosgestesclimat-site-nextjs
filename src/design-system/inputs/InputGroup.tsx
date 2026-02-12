@@ -1,3 +1,4 @@
+import { useFormThemeErrorColor } from '@/contexts/FormThemeContext'
 import type { ReactNode } from 'react'
 import React, { useId } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -6,7 +7,6 @@ interface InputGroupProps {
   name: string
   label?: string | ReactNode
   error?: string | ReactNode
-  errorColor?: string
   helperText?: string | ReactNode
   srOnlyHelperText?: string | ReactNode
   containerClassName?: string
@@ -21,7 +21,6 @@ export default function InputGroup({
   name,
   label,
   error,
-  errorColor = 'text-red-700',
   helperText,
   srOnlyHelperText,
   containerClassName,
@@ -36,6 +35,8 @@ export default function InputGroup({
   const helperTextId = `helper-${id}`
   const srOnlyHelperTextId = `srOnlyHelper-${id}`
   const errorId = `error-${id}`
+
+  const errorColor = useFormThemeErrorColor()
 
   const describedBy = [
     helperText ? helperTextId : undefined,
@@ -61,7 +62,7 @@ export default function InputGroup({
           <span
             className={twMerge(
               `w-full text-base font-bold text-slate-900`,
-              error ? 'text-red-700' : ''
+              error ? errorColor : ''
             )}>
             {label}
           </span>
@@ -84,7 +85,7 @@ export default function InputGroup({
           id={helperTextId}
           className={twMerge(
             '-mt-1 mb-2 text-base text-slate-900',
-            error ? 'text-red-700' : ''
+            error ? errorColor : ''
           )}>
           {helperText}
         </span>
