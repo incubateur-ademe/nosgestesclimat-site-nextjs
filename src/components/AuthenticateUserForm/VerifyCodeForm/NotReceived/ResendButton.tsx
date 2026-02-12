@@ -34,7 +34,7 @@ export default function ResendButton({
     }
 
     trackEvent(clickResendCode)
-    trackPosthogEvent(captureClickResendCode)
+    trackPosthogEvent(captureClickResendCode())
 
     onResendVerificationCode()
     setShouldDisplayConfirmation(true)
