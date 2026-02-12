@@ -875,7 +875,7 @@ entries:
   footer.thematicLandingPages.title: Pages thématiques
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
-  cookies.banner.description: Nous utilisons des cookies pour améliorer votre expérience et les services disponibles ainsi que pour mesurer l'audience et piloter notre budget de campagnes. Vous pouvez à tout moment décider d’accepter ou non ces cookies.
+  cookies.banner.description: Nous utilisons des cookies pour améliorer votre expérience, nos services, mesurer l'audience et piloter notre budget de campagnes.
   cookies.banner.rejectAll: Tout refuser
   cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
@@ -885,9 +885,9 @@ entries:
   cookies.management.privacyLink: Données personnelles et cookies
   cookies.management.refuse: Refuser
   cookies.management.rejectAll: Tout refuser
-  cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucunes données personnelles et ne peuvent pas être désactivés.
+  cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
-  cookies.management.title: Panneau de gestion des cookies
+  cookies.management.title: Gestion des cookies
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Vous pouvez nous contacter via notre page de contact : <2></2>.'
   Gestion des cookies: Gestion des cookies
@@ -1375,3 +1375,7 @@ entries:
   privacyPolicy.posthogCheckboxTextNotFollowed: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Cliquez sur voir le détail pour découvrir également votre empreinte eau
   Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.
+  cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation.
+  cookies.management.googleAds.link: Voir le site officiel
+  cookies.management.posthog.description: Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers.
+  cookies.management.posthog.link: Voir le site officiel

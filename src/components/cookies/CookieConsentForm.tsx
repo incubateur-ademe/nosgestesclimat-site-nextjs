@@ -47,14 +47,14 @@ export default function CookieConsentForm({
             className="text-xl font-bold text-gray-900"
             data-testid="cookie-management-title">
             <Trans i18nKey="cookies.management.title">
-              Panneau de gestion des cookies
+              Gestion des cookies
             </Trans>
           </h2>
         </div>
         <form
           onSubmit={(e) => void handleSubmit(confirmChoices)(e)}
           data-testid="cookie-form">
-          <div className="max-h-[50vh] flex-1 overflow-y-auto px-8 pb-8">
+          <div className="max-h-[40vh] flex-1 overflow-y-scroll px-8 pb-8">
             <div className="mb-6 flex flex-col gap-4 md:flex-row">
               <div>
                 <span
@@ -140,8 +140,8 @@ export default function CookieConsentForm({
                 <Trans i18nKey="cookies.management.required.description">
                   Notre site utilise des cookies indispensables à son bon
                   fonctionnement (sécurité, choix de langue, authentification).
-                  Ils ne contiennent aucunes données personnelles et ne peuvent
-                  pas être désactivés.
+                  Ils ne contiennent aucune donnée personnelle et ne peuvent pas
+                  être désactivés.
                 </Trans>
               </p>
             </fieldset>
@@ -151,10 +151,16 @@ export default function CookieConsentForm({
               titleI18nKey="cookies.management.googleAds.title"
               titleDefault="Google Ads"
               descriptionI18nKey="cookies.management.googleAds.description"
-              descriptionDefault="Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne. Ces cookies permettent le suivi de votre navigation ainsi que la réalisation de certaines actions."
+              descriptionDefault={t(
+                'cookies.management.googleAds.description',
+                "Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation."
+              )}
               linkHref="https://policies.google.com/technologies/cookies?hl=fr-fr"
               linkI18nKey="cookies.management.googleAds.link"
-              linkDefault="Voir le site officiel"
+              linkDefault={t(
+                'cookies.management.googleAds.link',
+                'Voir le site officiel'
+              )}
               defaultValue={defaultValues?.googleTag ?? 'refused'}
               register={register(CookieConsentKey.googleTag)}
             />
@@ -164,16 +170,22 @@ export default function CookieConsentForm({
               titleI18nKey="cookies.management.posthog.title"
               titleDefault="Posthog"
               descriptionI18nKey="cookies.management.posthog.description"
-              descriptionDefault="Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers."
+              descriptionDefault={t(
+                'cookies.management.posthog.description',
+                "Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers."
+              )}
               linkHref="https://posthog.com/docs/privacy"
               linkI18nKey="cookies.management.posthog.link"
-              linkDefault="Voir le site officiel"
+              linkDefault={t(
+                'cookies.management.posthog.link',
+                'Voir le site officiel'
+              )}
               defaultValue={defaultValues?.posthog ?? 'refused'}
               register={register(CookieConsentKey.posthog)}
               className="mt-6"
             />
           </div>
-          <div className="flex justify-start border-t border-gray-100 bg-white px-8 pt-4 pb-8">
+          <div className="flex justify-start border-t border-slate-200 bg-white px-8 pt-4 pb-8">
             <Button
               type="submit"
               color="primary"

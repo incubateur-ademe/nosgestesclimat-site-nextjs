@@ -76,10 +76,8 @@ export default function CookieConsentBanner({
           className="mb-2 text-sm"
           data-testid="cookie-banner-description">
           <Trans i18nKey="cookies.banner.description">
-            Nous utilisons des cookies pour améliorer votre expérience et les
-            services disponibles ainsi que pour mesurer l'audience et piloter
-            notre budget de campagnes. Vous pouvez à tout moment décider
-            d’accepter ou non ces cookies.
+            Nous utilisons des cookies pour améliorer votre expérience, nos
+            services, mesurer l'audience et piloter notre budget de campagnes.
           </Trans>
         </p>
         <ul className="mt-6 flex w-full flex-row flex-wrap items-start justify-start gap-2 md:flex-nowrap md:items-center">

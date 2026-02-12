@@ -935,8 +935,8 @@ entries:
   cookies.management.confirm.lock: Confirmer mes choix
   cookies.management.preferences: 'Preferences for all services. '
   cookies.management.preferences.lock: 'Préférences pour tous les services. '
-  cookies.banner.description: We use cookies to improve your experience and the services available to you, as well as to measure our audience and manage our campaign budget. You can decide at any time whether or not to accept these cookies.
-  cookies.banner.description.lock: Nous utilisons des cookies pour améliorer votre expérience et les services disponibles ainsi que pour mesurer l'audience et piloter notre budget de campagnes. Vous pouvez à tout moment décider d’accepter ou non ces cookies.
+  cookies.banner.description: We use cookies to improve your experience and our services, measure our audience and manage our campaign budget.
+  cookies.banner.description.lock: Nous utilisons des cookies pour améliorer votre expérience, nos services, mesurer l'audience et piloter notre budget de campagnes.
   cookies.banner.title: At Nos Gestes Climat, your privacy counts
   cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.acceptAll: Accept all
@@ -950,9 +950,9 @@ entries:
   cookies.management.accept: Accept
   cookies.management.accept.lock: Accepter
   cookies.management.required.description: Our site uses cookies, which are essential for its proper operation (security, language selection, authentication). They contain no personal data and cannot be deactivated.
-  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucunes données personnelles et ne peuvent pas être désactivés.
-  cookies.management.title: Cookie management panel
-  cookies.management.title.lock: Panneau de gestion des cookies
+  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
+  cookies.management.title: Cookie management
+  cookies.management.title.lock: Gestion des cookies
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Gestion des cookies: Cookie management
@@ -1790,3 +1790,11 @@ entries:
   privacyPolicy.posthogCheckboxTextNotFollowed.lock: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Click on see details to find out more about your water footprint
   Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: We are currently experiencing a technical problem with Microsoft addresses (@outlook, @hotmail, @live, @msn) and are doing everything we can to resolve it. Please use another e-mail address in the meantime.
+  cookies.management.googleAds.link: See the official website
+  cookies.management.googleAds.link.lock: Voir le site officiel
+  cookies.management.posthog.link: See the official website
+  cookies.management.posthog.link.lock: Voir le site officiel
+  cookies.management.googleAds.description: We use cookies to measure and calibrate the effectiveness of our online advertising campaigns. These make it possible to track your browsing.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation.
+  cookies.management.posthog.description: We use Posthog to measure the audience for our site and improve its content. Your data is stored on secure servers and is never shared with third parties.
+  cookies.management.posthog.description.lock: Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers.
