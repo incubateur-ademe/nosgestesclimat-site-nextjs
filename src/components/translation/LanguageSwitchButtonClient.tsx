@@ -15,30 +15,19 @@ interface Props {
   className?: string
 }
 
-const generateLanguageUrl = (
-  newLocale: Locale,
-  currentLocale: string
-): string => {
+const generateLanguageUrl = (newLocale: Locale): string => {
   if (typeof window === 'undefined') {
     return '#'
   }
 
   const url = new URL(window.location.href)
-  const { pathname } = url
 
-  // Reset to default locale
-  if (
-    newLocale === i18nConfig.defaultLocale &&
-    currentLocale !== i18nConfig.defaultLocale
-  ) {
-    url.pathname = pathname.replace(`/${currentLocale}`, '')
-  } else {
-    // Add locale prefix
-    if (currentLocale === i18nConfig.defaultLocale) {
-      url.pathname = `/${newLocale}${pathname}`
-    } else {
-      url.pathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
-    }
+  // Remove any existing locale prefix
+  url.pathname = url.pathname.replace(/^\/en/, '')
+
+  // Add locale prefix if switching to non-default locale
+  if (newLocale !== i18nConfig.defaultLocale) {
+    url.pathname = `/${newLocale}${url.pathname}`
   }
 
   return url.toString()
@@ -73,14 +62,7 @@ export default function LanguageSwitchButtonClient({
         className
       )}>
       <ButtonAnchor
-        href={
-          isClient
-            ? generateLanguageUrl(
-                'fr',
-                currentLocale ?? i18nConfig.defaultLocale
-              )
-            : '#'
-        }
+        href={isClient ? generateLanguageUrl('fr') : '#'}
         color={currentLocale === 'fr' ? 'primary' : 'secondary'}
         onClick={() => handleLanguageClick('fr')}
         size={size}
@@ -96,14 +78,7 @@ export default function LanguageSwitchButtonClient({
       </ButtonAnchor>
 
       <ButtonAnchor
-        href={
-          isClient
-            ? generateLanguageUrl(
-                'en',
-                currentLocale ?? i18nConfig.defaultLocale
-              )
-            : '#'
-        }
+        href={isClient ? generateLanguageUrl('en') : '#'}
         color={currentLocale === 'en' ? 'primary' : 'secondary'}
         onClick={() => handleLanguageClick('en')}
         size={size}
