@@ -7,8 +7,6 @@ import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr
 
 import CategoriesAccordion from './CategoriesAccordion'
 
-// --- Hardcoded ComputedResults for 3 personas ---
-
 const marieResults: ComputedResults = {
   carbone: {
     bilan: 4200,
@@ -132,8 +130,6 @@ const gerardResults: ComputedResults = {
   },
 }
 
-// --- Stories ---
-
 const meta: Meta<typeof CategoriesAccordion> = {
   title: 'Components/Results/CategoriesAccordion',
   component: CategoriesAccordion,
@@ -161,21 +157,18 @@ const meta: Meta<typeof CategoriesAccordion> = {
 export default meta
 type Story = StoryObj<typeof CategoriesAccordion>
 
-/** Marie – faible empreinte (~4,2 t CO₂e) */
 export const FaibleEmpreinte: Story = {
   args: {
     computedResults: marieResults,
   },
 }
 
-/** Corentin – empreinte moyenne (~8,5 t CO₂e) */
 export const MoyenneEmpreinte: Story = {
   args: {
     computedResults: corentinResults,
   },
 }
 
-/** Gérard – forte empreinte (~14 t CO₂e) */
 export const ForteEmpreinte: Story = {
   args: {
     computedResults: gerardResults,
