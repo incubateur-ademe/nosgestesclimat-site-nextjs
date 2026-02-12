@@ -49,8 +49,8 @@ export default function CategoriesAccordion({
                     </span>
                   </div>
                 }
-                bgBarClassName={category.bgBarClassName}
-                bgIconClassName={category.bgIconClassName}
+                bgBarClassName={category.bgBarClassName as string}
+                bgIconClassName={category.bgIconClassName as string}
               />
             }
             name={category.title ?? ''}

@@ -6,10 +6,14 @@ import PublicServicesIcon from '@/components/icons/PublicServicesIcon'
 import { carboneMetric } from '@/constants/model/metric'
 import { orderedCategories } from '@/constants/model/orderedCategories'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import { getRuleTitleFromRules } from '@/helpers/publicodes/getRuleTitle'
+import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import type { Locale } from '@/i18nConfig'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import type { ReactNode } from 'react'
 
 export interface SubcategoryDisplayData {
@@ -146,6 +150,7 @@ export function getCategoriesDisplayData({
     })
 
     const meta = CATEGORIES_MAPPER[categoryDottedName] ?? {
+      icon: <MiscIcon />,
       bgBarClassName: 'bg-gray-800',
       bgLightClassName: 'bg-gray-50',
       bgIconClassName: 'bg-gray-100',
@@ -153,7 +158,11 @@ export function getCategoriesDisplayData({
 
     return {
       dottedName: categoryDottedName,
-      title: getRuleTitleFromRules(rules, categoryDottedName),
+      title: getRuleTitle(
+        rules?.[categoryDottedName] as NGCRule & {
+          dottedName: DottedName
+        }
+      ),
       icon: meta.icon,
       bgBarClassName: meta.bgBarClassName,
       bgLightClassName: meta.bgLightClassName,
@@ -204,7 +213,11 @@ function getSubcategoriesDisplayData({
 
       return {
         dottedName: dottedName as DottedName,
-        title: getRuleTitleFromRules(rules, dottedName as DottedName),
+        title: getRuleTitle(
+          rules?.[dottedName as DottedName] as NGCRule & {
+            dottedName: DottedName
+          }
+        ),
         formattedValue,
         unit,
         percentage,
