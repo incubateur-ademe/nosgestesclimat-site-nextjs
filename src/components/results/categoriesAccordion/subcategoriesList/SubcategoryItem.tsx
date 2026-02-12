@@ -22,7 +22,7 @@ export default function SubcategoryItem({
           <strong>{capitalizeString(subcategory.title)}</strong>
           <span>
             {subcategory.formattedValue} {subcategory.unit} -{' '}
-            {subcategory.categoryPercentage}%
+            {subcategory.displayPercentage}
           </span>
         </div>
 
@@ -30,9 +30,9 @@ export default function SubcategoryItem({
           className="w-full overflow-hidden"
           style={{ height: 6 }}
           role="img"
-          aria-label={`Part de la sous-catégorie: ${subcategory.categoryPercentage}%`}>
+          aria-label={`Part de la sous-catégorie: ${subcategory.displayPercentage}`}>
           <AnimatedBar
-            percentage={subcategory.barPercentage}
+            percentage={subcategory.percentage}
             delay={animationDelay}
             color={`bg-${colorName}-800`}
             height={6}

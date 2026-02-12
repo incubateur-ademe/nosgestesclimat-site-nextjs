@@ -4,58 +4,30 @@ import { carboneMetric } from '@/constants/model/metric'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import { getCategoriesDisplayData } from '@/helpers/getCategoriesDisplayData'
+import type { Locale } from '@/i18nConfig'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import CarIcon from '../icons/CarIcon'
-import FoodIcon from '../icons/FoodIcon'
-import HousingIcon from '../icons/HousingIcon'
-import MiscIcon from '../icons/MiscIcon'
-import PublicServicesIcon from '../icons/PublicServicesIcon'
 import SubcategoriesList from './categoriesAccordion/SubcategoriesList'
 import AnimatedAccordionItem from './categoriesAccordion/_client/AnimatedAccordionItem'
-
-const CATEGORIES_MAPPER: Record<
-  string,
-  { icon: React.ReactNode; colorName: string }
-> = {
-  logement: {
-    icon: <HousingIcon />,
-    colorName: 'green',
-  },
-  alimentation: {
-    icon: <FoodIcon />,
-    colorName: 'orange',
-  },
-  transport: {
-    icon: <CarIcon />,
-    colorName: 'blue',
-  },
-  'services sociétaux': {
-    icon: <PublicServicesIcon />,
-    colorName: 'purple',
-  },
-  divers: {
-    icon: <MiscIcon />,
-    colorName: 'yellow',
-  },
-}
 
 interface Props {
   rules: Partial<NGCRules>
   computedResults: ComputedResults
   metric?: Metric
+  locale: Locale
 }
 
 export default function CategoriesAccordion({
   rules,
   computedResults,
   metric = carboneMetric,
+  locale,
 }: Props) {
   const categories = getCategoriesDisplayData({
     computedResults,
     rules,
     metric,
-    categoriesMapper: CATEGORIES_MAPPER,
+    locale,
   })
 
   return (
@@ -65,7 +37,7 @@ export default function CategoriesAccordion({
           <AccordionItem
             title={
               <HorizontalBarChartItem
-                percentageOfTotalValue={category.barPercentage}
+                percentageOfTotalValue={category.percentage}
                 index={index}
                 icon={category.icon}
                 title={
@@ -73,7 +45,7 @@ export default function CategoriesAccordion({
                     <strong>{category.title}</strong>
                     <span>
                       {category.formattedValue} <Trans>{category.unit}</Trans> -{' '}
-                      {category.bilanPercentage}%
+                      {category.displayPercentage}
                     </span>
                   </div>
                 }
