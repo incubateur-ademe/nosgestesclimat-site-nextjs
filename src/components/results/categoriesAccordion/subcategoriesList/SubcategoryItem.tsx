@@ -1,6 +1,5 @@
 import type { SubcategoryDisplayData } from '@/helpers/getCategoriesDisplayData'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { capitalizeString } from '@/utils/capitalizeString'
 import AnimatedBar from '../_client/AnimatedBar'
 
@@ -8,18 +7,16 @@ interface Props {
   subcategory: SubcategoryDisplayData
   bgBarClassName: string
   index?: number
-  locale: Locale
 }
 
-export default async function SubcategoryItem({
+export default function SubcategoryItem({
   subcategory,
   bgBarClassName,
   index = 0,
-  locale,
 }: Props) {
   const animationDelay = 0.3 + index * 0.25
 
-  const { t } = await getServerTranslation({ locale })
+  const { t } = useClientTranslation()
 
   return (
     <li className="py-3 first:pt-0 last:pb-0">

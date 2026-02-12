@@ -1,17 +1,14 @@
 import type { SubcategoryDisplayData } from '@/helpers/getCategoriesDisplayData'
-import type { Locale } from '@/i18nConfig'
 import SubcategoryItem from './subcategoriesList/SubcategoryItem'
 
 interface Props {
   subcategories: SubcategoryDisplayData[]
   bgBarClassName: string
-  locale: Locale
 }
 
 export default function SubcategoriesList({
   subcategories,
   bgBarClassName,
-  locale,
 }: Props) {
   return (
     <ul>
@@ -21,7 +18,6 @@ export default function SubcategoriesList({
           subcategory={subcategory}
           bgBarClassName={bgBarClassName}
           index={index}
-          locale={locale}
         />
       ))}
     </ul>

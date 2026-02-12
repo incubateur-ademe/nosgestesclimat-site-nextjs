@@ -1,5 +1,5 @@
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
-import Trans from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransServer'
 import { carboneMetric } from '@/constants/model/metric'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
@@ -44,7 +44,7 @@ export default function CategoriesAccordion({
                   <div className="flex items-center gap-2">
                     <strong>{category.title}</strong>
                     <span>
-                      {category.formattedValue} <Trans>{category.unit}</Trans> -{' '}
+                      {category.formattedValue} {category.unit} -{' '}
                       {category.displayPercentage}
                     </span>
                   </div>
@@ -60,7 +60,9 @@ export default function CategoriesAccordion({
                 className={`mb-4 rounded-lg border border-slate-400 ${category.bgLightClassName}`}>
                 {category.dottedName.startsWith('services') && (
                   <p>
-                    <Trans i18nKey="results.categories.services.text">
+                    <Trans
+                      locale={locale}
+                      i18nKey="results.categories.services.text">
                       Les services (santé, éducation, télécoms…) représentent
                       environ <strong>1,5 t de votre empreinte</strong>. Cette
                       part est <strong>la même pour tous</strong> et{' '}
@@ -72,7 +74,6 @@ export default function CategoriesAccordion({
                 <SubcategoriesList
                   subcategories={category.subcategories}
                   bgBarClassName={category.bgBarClassName}
-                  locale={locale}
                 />
               </Card>
             }
