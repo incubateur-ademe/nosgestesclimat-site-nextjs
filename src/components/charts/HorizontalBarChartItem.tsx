@@ -5,27 +5,20 @@ interface Props {
   title?: string | ReactNode
   icon?: ReactNode
   displayValue?: ReactNode
-  shouldDisplayValue?: boolean
   percentageOfTotalValue: number
   minTitleWidth?: number
   index?: number
   color?: string
-  /**
-   * Legacy prop for backward compatibility
-   */
-  barColor?: string
 }
 
 export default function HorizontalBarChartItem({
   title,
   icon,
   displayValue,
-  shouldDisplayValue = true,
   percentageOfTotalValue,
   minTitleWidth,
   index,
-  color,
-  barColor,
+  color = 'primary',
 }: Props) {
   return (
     <div className="w-full rounded-lg border border-slate-400 bg-white p-4 pr-12">
@@ -38,7 +31,7 @@ export default function HorizontalBarChartItem({
           <span className={`rounded-sm p-1.5 bg-${color}-100`}>{icon}</span>{' '}
           <p className={`mb-0`}>{title}</p>
         </div>
-        {shouldDisplayValue && displayValue && (
+        {displayValue && (
           <div className="text-primary-700 mr-4 min-w-20 text-right">
             {displayValue}
           </div>
@@ -51,7 +44,7 @@ export default function HorizontalBarChartItem({
           className="h-2"
           value={`${percentageOfTotalValue}%`}
           index={index}
-          color={barColor ?? `bg-${color}-800`}
+          color={`bg-${color}-800`}
         />
       </div>
     </div>
