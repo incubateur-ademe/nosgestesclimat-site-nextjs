@@ -1,28 +1,46 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { twMerge } from 'tailwind-merge'
+import type { ButtonColor } from '../buttons/Button'
 import Button from '../buttons/Button'
 
 interface Props {
   children: React.ReactNode
   buttonLabel?: React.ReactNode
+  buttonColor?: ButtonColor
   error?: string
   onSubmit?: () => void
   className?: string
+  isVerticalLayout?: boolean
 }
 
 export default function Form({
   children,
   buttonLabel,
+  buttonColor,
   error,
   className,
+  isVerticalLayout = true,
   ...props
 }: Props) {
   const errorId = 'form-error'
 
   return (
     <form className={className} {...props}>
-      {children}
+      <div className="flex items-start gap-4">
+        {children}
+
+        {!isVerticalLayout && (
+          <Button
+            className="mt-8 hidden h-14 md:block"
+            type="submit"
+            data-testid="button-submit-horizontal"
+            color={buttonColor}>
+            {buttonLabel ?? <Trans>Enregistrer</Trans>}
+          </Button>
+        )}
+      </div>
 
       {error && (
         <p
@@ -34,7 +52,14 @@ export default function Form({
         </p>
       )}
 
-      <Button className="mt-8" type="submit" data-testid="button-submit">
+      <Button
+        className={twMerge(
+          'mt-8',
+          isVerticalLayout ? 'block' : 'block md:hidden'
+        )}
+        type="submit"
+        data-testid="button-submit"
+        color={buttonColor}>
         {buttonLabel ?? <Trans>Enregistrer</Trans>}
       </Button>
     </form>

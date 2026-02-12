@@ -15,13 +15,14 @@ import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { useRouter } from 'next/navigation'
+import type { ButtonColor } from '../../design-system/buttons/Button'
 import Trans from '../translation/trans/TransClient'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
 import VerifyCodeForm from './VerifyCodeForm'
 
 interface Props {
   buttonLabel?: string | ReactNode
-  buttonColor?: 'primary' | 'secondary'
+  buttonColor?: ButtonColor
   inputLabel?: ReactNode | string
   mode?: AuthenticationMode
   redirectURL?: string
@@ -36,6 +37,8 @@ interface Props {
       properties?: Record<string, string | number | boolean | null | undefined>
     }
   }
+  isVerticalLayout?: boolean
+  onCompleteError?: string
 }
 
 export default function AuthenticateUserForm({
@@ -47,6 +50,8 @@ export default function AuthenticateUserForm({
   onComplete,
   required = true,
   trackers,
+  isVerticalLayout = true,
+  onCompleteError,
 }: Props) {
   const router = useRouter()
   const { user } = useUser()
@@ -93,6 +98,7 @@ export default function AuthenticateUserForm({
           email={pendingVerification?.email ?? user.email ?? ''}
           onVerificationCompleted={completeVerification}
           verificationMutation={login}
+          onCompleteError={onCompleteError}
         />
         <Button
           onClick={resetVerification}
@@ -117,6 +123,7 @@ export default function AuthenticateUserForm({
       }}
       inputLabel={inputLabel}
       required={required}
+      isVerticalLayout={isVerticalLayout}
     />
   )
 }
