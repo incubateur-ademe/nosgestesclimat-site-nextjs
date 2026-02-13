@@ -1,6 +1,6 @@
-import type { Page } from '@playwright/test'
 import { expect, test } from '../fixtures'
 import { TutorialPage } from '../fixtures/tutorial'
+import { getCarbonFootprintElem } from '../helpers/carbon-footprint'
 import {
   COMPLETED_TEST_STATE,
   ORGANISATION_ADMIN_STATE,
@@ -37,7 +37,7 @@ test.describe('Given a user that completed a test without an account', () => {
     // @TODO : two h1 in page
     await page.locator('h1').first().isVisible()
 
-    const carbonFootprintElem = await getCarbonFootprintElem(page)
+    const carbonFootprintElem = getCarbonFootprintElem(page)
     await expect(carbonFootprintElem).toBeInViewport()
 
     const carbonFootprintResult = parseFloat(
@@ -74,7 +74,8 @@ test.describe('Given a user that saved it simulation', () => {
     await expect(page).toHaveURL(new RegExp(URL))
     // @TODO There is two h1 on result page
     await expect(page.locator('h1').first()).toHaveText('Mes empreintes')
-    const carbonFootprintElem = await getCarbonFootprintElem(page)
+    await page.waitForTimeout(7000)
+    const carbonFootprintElem = getCarbonFootprintElem(page)
     await expect(carbonFootprintElem).toBeInViewport()
   })
 
@@ -90,16 +91,7 @@ test.describe('Given a user that saved it simulation', () => {
     const page = await context.newPage()
     await page.goto(user.savedSimulationLink)
     await page.waitForLoadState()
-    const carbonFootprintElem = await getCarbonFootprintElem(page)
+    const carbonFootprintElem = getCarbonFootprintElem(page)
     expect(carbonFootprintElem).not.toBeDefined()
   })
 })
-
-async function getCarbonFootprintElem(page: Page) {
-  await page.waitForTimeout(7000)
-  const carbonFootprintElem = page
-    .getByText(/[\d]+,[\d][\s]tonnes/)
-    .filter({ visible: true })
-    .first()
-  return carbonFootprintElem
-}
