@@ -1,7 +1,6 @@
 import type { Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { Locator, Page } from '@playwright/test'
-import { getCarbonFootprintElem } from '../helpers/carbon-footprint'
+import type { Page } from '@playwright/test'
 import { type TutorialPage, test as base, expect } from './tutorial'
 
 export class NGCTest {
@@ -100,57 +99,6 @@ export class NGCTest {
       await this.answerQuestion(situation)
     }
     await this.page.getByTestId('end-test-button').click()
-  }
-
-  /**
-   * Helper function to test deselection behavior for any question type
-   */
-  async testDeselectAnswer(
-    isQuestionType: () => Promise<boolean>,
-    getAnswerInput: () => Locator
-  ) {
-    //  1. Trouver la question du type spécifique
-    await this.goto()
-    while (!(await isQuestionType())) {
-      await this.clickOnSkip()
-    }
-
-    //  2. Récupérer la valeur du bilan
-    await this.page.waitForTimeout(1000)
-    const carbonFootprintElemBefore = getCarbonFootprintElem(this.page)
-    const carbonFootprintValueBeforeChange =
-      await carbonFootprintElemBefore.innerText()
-
-    //  3. Selectionner une réponse
-    let isAnswered = false
-    const answerInput = getAnswerInput()
-    if (await answerInput.isVisible()) {
-      await answerInput.click()
-      isAnswered = true
-    }
-
-    //  4. Vérifier que le bouton suivant est affiché
-    if (isAnswered) {
-      await expect(this.page.getByTestId('next-question-button')).toBeVisible()
-      //  5. Recliquer sur l'element (input) en question
-      await answerInput.click()
-      isAnswered = false
-    }
-
-    if (!isAnswered) {
-      //  6. Vérifier que la valeur du bilan est identique au 2.
-      await this.page.waitForTimeout(1000)
-      const carbonFootprintElemAfter = getCarbonFootprintElem(this.page)
-      const carbonFootprintValueAfterChange =
-        await carbonFootprintElemAfter.innerText()
-
-      expect(carbonFootprintValueAfterChange).toBe(
-        carbonFootprintValueBeforeChange
-      )
-
-      //  7. Vérifier que le bouton « je ne sais pas » est affiché
-      await expect(this.page.getByTestId('skip-question-button')).toBeVisible()
-    }
   }
 }
 
