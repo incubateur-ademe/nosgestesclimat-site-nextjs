@@ -33,6 +33,7 @@ interface Props {
   onComplete?: ({ email, userId }: { email: string; userId: string }) => void
   onEmailEntered?: (email: string) => void
   onEmailEmpty?: () => void
+  additionnalButton?: ReactNode
 }
 
 interface FormData {
@@ -44,6 +45,7 @@ export default function SendVerificationCodeForm({
   mode,
   inputLabel,
   onCodeSent,
+  additionnalButton,
   required = true,
 }: Props) {
   const { t } = useClientTranslation()
@@ -75,6 +77,7 @@ export default function SendVerificationCodeForm({
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
+      additionnalButton={additionnalButton}
       buttonLabel={buttonLabel ?? t('Accéder à mon espace')}>
       <EmailInput
         data-testid="verification-code-email-input"

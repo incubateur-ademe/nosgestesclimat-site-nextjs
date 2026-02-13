@@ -9,6 +9,7 @@ interface Props {
   error?: string
   onSubmit?: () => void
   className?: string
+  additionnalButton?: React.ReactNode
 }
 
 export default function Form({
@@ -16,6 +17,7 @@ export default function Form({
   buttonLabel,
   error,
   className,
+  additionnalButton,
   ...props
 }: Props) {
   const errorId = 'form-error'
@@ -34,9 +36,12 @@ export default function Form({
         </p>
       )}
 
-      <Button className="mt-8" type="submit" data-testid="button-submit">
-        {buttonLabel ?? <Trans>Enregistrer</Trans>}
-      </Button>
+      <div className="mt-8 flex gap-4 pb-8">
+        <Button type="submit" data-testid="button-submit">
+          {buttonLabel ?? <Trans>Enregistrer</Trans>}
+        </Button>
+        {additionnalButton}
+      </div>
     </form>
   )
 }
