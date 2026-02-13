@@ -5,6 +5,7 @@ import Button from '@/design-system/buttons/Button'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
@@ -55,6 +56,7 @@ export default function InvitationForm({ group }: { group: Group }) {
     router,
     linkToEndPage,
   ])
+  const { saveSimulation } = useSaveSimulation()
 
   function onSubmit({ guestName }: Inputs) {
     // Shouldn't happen but in any case, avoid group joining
@@ -69,6 +71,8 @@ export default function InvitationForm({ group }: { group: Group }) {
     currentSimulation.update({
       groupToAdd: group.id,
     })
+
+    saveSimulation({ simulation: currentSimulation })
 
     // Redirect to simulateur page or end page
     setShouldNavigate(true)

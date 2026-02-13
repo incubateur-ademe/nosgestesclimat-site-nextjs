@@ -105,9 +105,11 @@ test.describe('A new user', () => {
     tutorialPage,
     user,
     group,
+    cookieBanner,
   }) => {
     test.setTimeout(60_000)
     await group.joinWithInviteLink(user)
+    await cookieBanner.dismiss()
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await user.fillEmailAndCompleteVerification()
@@ -120,9 +122,11 @@ test.describe('A new user', () => {
     tutorialPage,
     user,
     group,
+    cookieBanner,
   }) => {
     test.setTimeout(60_000)
     await group.joinWithInviteLink(user)
+    await cookieBanner.dismiss()
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await page.getByTestId('skip-email-button').click()
