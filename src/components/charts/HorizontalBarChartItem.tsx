@@ -22,6 +22,8 @@ export default function HorizontalBarChartItem({
   bgBarClassName = 'bg-primary-800',
   bgIconClassName = 'bg-primary-100',
 }: Props) {
+  const animationDelay = 0.3 + (index ?? 0) * 0.5
+
   return (
     <div className="w-full rounded-lg border border-slate-400 bg-white p-4 pr-12">
       <div
@@ -47,6 +49,7 @@ export default function HorizontalBarChartItem({
           value={`${percentageOfTotalValue}%`}
           index={index}
           color={bgBarClassName}
+          delay={animationDelay}
         />
       </div>
     </div>

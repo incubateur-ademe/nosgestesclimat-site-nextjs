@@ -1,7 +1,7 @@
+import BarChart from '@/design-system/utils/BarChart'
 import type { SubcategoryDisplayData } from '@/helpers/getCategoriesDisplayData'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { capitalizeString } from '@/utils/capitalizeString'
-import AnimatedBar from '../_client/AnimatedBar'
 
 interface Props {
   subcategory: SubcategoryDisplayData
@@ -35,11 +35,12 @@ export default function SubcategoryItem({
           aria-label={t(`Part de la sous-catégorie {{percentage}}`, {
             percentage: subcategory.displayPercentage,
           })}>
-          <AnimatedBar
-            percentage={subcategory.percentage}
+          <BarChart
+            type="horizontal"
+            value={`${subcategory.percentage}%`}
             delay={animationDelay}
             color={bgBarClassName}
-            height={6}
+            width={6}
           />
         </div>
       </div>

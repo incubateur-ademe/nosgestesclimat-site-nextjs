@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import type { ReactNode } from 'react'
 
 interface Props {
@@ -9,13 +9,14 @@ interface Props {
 }
 
 export default function AnimatedAccordionItem({ index, children }: Props) {
+  const shouldReduceMotion = useReducedMotion()
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.4,
-        delay: index * 0.1, // Staggered delay based on index
+        duration: shouldReduceMotion ? 0 : 0.4,
+        delay: shouldReduceMotion ? 0 : index * 0.1,
         ease: [0.25, 0.1, 0.25, 1],
       }}>
       {children}
