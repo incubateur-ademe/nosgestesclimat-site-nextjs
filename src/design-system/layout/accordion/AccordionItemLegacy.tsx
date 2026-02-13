@@ -14,7 +14,7 @@ export interface AccordionItemType {
   ariaLabel?: string
 }
 
-export default function AccordionItem({
+export default function AccordionItemLegacy({
   title,
   name,
   content,
@@ -28,7 +28,7 @@ export default function AccordionItem({
   const panelId = useId()
 
   return (
-    <li className="list-none">
+    <li role="listitem">
       <button
         type="button"
         id={buttonId}
@@ -36,22 +36,20 @@ export default function AccordionItem({
         title={`${ariaLabel ?? name} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
         onClick={() => {
           if (isReadOnly) return
-
           setIsOpen((prevState) => !prevState)
-
           if (onClick) {
             onClick()
           }
         }}
-        className={`focus-visible:ring-primary-700 relative z-10 mb-2 flex w-full items-end justify-between focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-1 ${isReadOnly ? 'cursor-default!' : ''}`}
+        className={`focus:ring-primary-700 relative z-10 flex w-full items-end justify-between py-2 focus:ring-2 focus:ring-offset-3 focus:outline-hidden ${isReadOnly ? 'cursor-default!' : ''}`}
         aria-disabled={isReadOnly}
         aria-expanded={isOpen}
         aria-controls={panelId}>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 
-        <div className="absolute top-1/2 right-6 flex -translate-y-1/2 items-center">
+        <div className="flex items-center gap-4">
           <ChevronRight
-            className={`h-4 w-4 stroke-slate-950 ${isOpen ? '-rotate-90' : 'rotate-90'} ${
+            className={`${isOpen ? 'rotate-90' : ''} ${
               isReadOnly ? 'opacity-20' : ''
             }`}
           />
@@ -64,9 +62,8 @@ export default function AccordionItem({
           role="region"
           aria-labelledby={buttonId}
           tabIndex={-1}
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0.6, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
           className="z-0">
           {content}
         </motion.div>

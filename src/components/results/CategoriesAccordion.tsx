@@ -1,36 +1,89 @@
-'use client'
-
+import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
+import Trans from '@/components/translation/trans/TransServer'
 import { carboneMetric } from '@/constants/model/metric'
-import Accordion from '@/design-system/layout/Accordion'
-import { useSortedCategoriesByFootprint } from '@/hooks/useSortedCategoriesByFootprint'
-import { useRule } from '@/publicodes-state'
-import type { Metric } from '@/publicodes-state/types'
-import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
+import Card from '@/design-system/layout/Card'
+import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
+import { getCategoriesDisplayData } from '@/helpers/getCategoriesDisplayData'
+import type { Locale } from '@/i18nConfig'
+import type { ComputedResults, Metric } from '@/publicodes-state/types'
+import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import SubcategoriesList from './categoriesAccordion/SubcategoriesList'
+import AnimatedAccordionItem from './categoriesAccordion/_client/AnimatedAccordionItem'
 
 interface Props {
+  rules: Partial<NGCRules>
+  computedResults: ComputedResults
   metric?: Metric
+  locale: Locale
 }
-export default function CategoriesAccordion({ metric = carboneMetric }: Props) {
-  const { sortedCategories } = useSortedCategoriesByFootprint()
 
-  const { numericValue: maxCategoryValue } = useRule(
-    sortedCategories?.[0] ?? '',
-    metric
-  )
+const BEAUTIFUL_COEFFICIENT = 0.75
+
+export default function CategoriesAccordion({
+  rules,
+  computedResults,
+  metric = carboneMetric,
+  locale,
+}: Props) {
+  const categories = getCategoriesDisplayData({
+    computedResults,
+    rules,
+    metric,
+    locale,
+  })
 
   return (
-    <Accordion>
-      {sortedCategories.map((categoryDottedName, index) => {
-        return (
-          <AccordionItemWithRule
-            key={categoryDottedName}
-            dottedName={categoryDottedName}
-            maxValue={maxCategoryValue}
-            index={index}
-            metric={metric}
+    <div className="flex flex-col">
+      {categories.map((category, index) => (
+        <AnimatedAccordionItem key={category.dottedName} index={index}>
+          <AccordionItem
+            title={
+              <HorizontalBarChartItem
+                percentageOfTotalValue={
+                  category.percentage * BEAUTIFUL_COEFFICIENT
+                }
+                index={index}
+                icon={category.icon}
+                title={
+                  <div className="flex items-center gap-2">
+                    <strong>{category.title}</strong>
+                    <span>
+                      {category.formattedValue} {category.unit} -{' '}
+                      {category.displayPercentage}
+                    </span>
+                  </div>
+                }
+                bgBarClassName={category.bgBarClassName}
+                bgIconClassName={category.bgIconClassName}
+              />
+            }
+            name={category.title ?? ''}
+            ariaLabel={`${category.title ?? ''} - ${category.formattedValue} ${category.unit}`}
+            content={
+              <Card
+                className={`mb-4 rounded-lg border border-slate-400 ${category.bgLightClassName}`}>
+                {category.dottedName.startsWith('services') && (
+                  <p>
+                    <Trans
+                      locale={locale}
+                      i18nKey="results.categories.services.text">
+                      Les services (santé, éducation, télécoms…) représentent
+                      environ <strong>1,5 t de votre empreinte</strong>. Cette
+                      part est <strong>la même pour tous</strong> et{' '}
+                      <strong>diminue progressivement</strong> avec la
+                      transition écologique.
+                    </Trans>
+                  </p>
+                )}
+                <SubcategoriesList
+                  subcategories={category.subcategories}
+                  bgBarClassName={category.bgBarClassName}
+                />
+              </Card>
+            }
           />
-        )
-      })}
-    </Accordion>
+        </AnimatedAccordionItem>
+      ))}
+    </div>
   )
 }

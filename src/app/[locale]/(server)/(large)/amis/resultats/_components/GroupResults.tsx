@@ -2,7 +2,7 @@
 
 import HowToAct from '@/components/actions/HowToAct'
 import FootprintSelector from '@/components/footprints/FootprintSelector'
-import CategoriesAccordion from '@/components/results/CategoriesAccordion'
+import CategoriesAccordion from '@/components/results/CategoriesAccordionLegacy'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
