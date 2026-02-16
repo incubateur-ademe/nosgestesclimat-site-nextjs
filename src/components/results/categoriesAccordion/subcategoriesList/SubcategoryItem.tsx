@@ -1,24 +1,21 @@
 import BarChart from '@/design-system/utils/BarChart'
 import type { SubcategoryDisplayData } from '@/helpers/getCategoriesDisplayData'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import { capitalizeString } from '@/utils/capitalizeString'
+import type { TFunction } from 'i18next'
 
 interface Props {
   subcategory: SubcategoryDisplayData
   bgBarClassName: string
   index?: number
-  locale: Locale
+  t: TFunction
 }
 
-export default async function SubcategoryItem({
+export default function SubcategoryItem({
   subcategory,
   bgBarClassName,
   index = 0,
-  locale,
+  t,
 }: Props) {
-  const { t } = await getServerTranslation({ locale })
-
   const animationDelay = 0.3 + index * 0.25
 
   return (

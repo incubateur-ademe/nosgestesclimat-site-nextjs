@@ -1,14 +1,15 @@
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
-import Trans from '@/components/translation/trans/TransServer'
 import { carboneMetric } from '@/constants/model/metric'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import { getCategoriesDisplayData } from '@/helpers/getCategoriesDisplayData'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './categoriesAccordion/SubcategoriesList'
 import AnimatedAccordionItem from './categoriesAccordion/_client/AnimatedAccordionItem'
+import ServicesDescription from './categoriesAccordion/_client/ServicesDescription'
 
 interface Props {
   rules: Partial<NGCRules>
@@ -19,12 +20,14 @@ interface Props {
 
 const BEAUTIFUL_COEFFICIENT = 0.75
 
-export default function CategoriesAccordion({
+export default async function CategoriesAccordion({
   rules,
   computedResults,
   metric = carboneMetric,
   locale,
 }: Props) {
+  const { t } = await getServerTranslation({ locale })
+
   const categories = getCategoriesDisplayData({
     computedResults,
     rules,
@@ -63,22 +66,12 @@ export default function CategoriesAccordion({
               <Card
                 className={`mb-4 rounded-lg border border-slate-400 ${category.bgLightClassName}`}>
                 {category.dottedName.startsWith('services') && (
-                  <p>
-                    <Trans
-                      locale={locale}
-                      i18nKey="results.categories.services.text">
-                      Les services (santé, éducation, télécoms…) représentent
-                      environ <strong>1,5 t de votre empreinte</strong>. Cette
-                      part est <strong>la même pour tous</strong> et{' '}
-                      <strong>diminue progressivement</strong> avec la
-                      transition écologique.
-                    </Trans>
-                  </p>
+                  <ServicesDescription />
                 )}
                 <SubcategoriesList
                   subcategories={category.subcategories}
                   bgBarClassName={category.bgBarClassName}
-                  locale={locale}
+                  t={t}
                 />
               </Card>
             }
