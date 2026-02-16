@@ -1,6 +1,6 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { motion } from 'framer-motion'
+
 import type { ReactNode } from 'react'
 import { useId, useState } from 'react'
 
@@ -59,17 +59,14 @@ export default function AccordionItem({
       </button>
 
       {isOpen && (
-        <motion.div
+        <div
           id={panelId}
           role="region"
           aria-labelledby={buttonId}
           tabIndex={-1}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="z-0">
+          className="animate-fade-in-slide-from-top z-0 motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
           {content}
-        </motion.div>
+        </div>
       )}
     </li>
   )

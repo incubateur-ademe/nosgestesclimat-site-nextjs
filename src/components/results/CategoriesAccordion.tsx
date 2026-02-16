@@ -78,6 +78,7 @@ export default function CategoriesAccordion({
                 <SubcategoriesList
                   subcategories={category.subcategories}
                   bgBarClassName={category.bgBarClassName}
+                  locale={locale}
                 />
               </Card>
             }
