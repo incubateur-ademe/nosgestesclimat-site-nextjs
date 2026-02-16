@@ -4,15 +4,14 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
 import type { Group } from '@/types/groups'
 import { useRouter } from 'next/navigation'
 
-import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 interface Inputs {
@@ -35,49 +34,29 @@ export default function InvitationForm({ group }: { group: Group }) {
   const hasCompletedTest = currentSimulation.progression === 1
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
-  const { linkToEndPage } = useEndPage()
   const router = useRouter()
 
-  const [shouldNavigate, setShouldNavigate] = useState(false)
-
-  useEffect(() => {
-    if (shouldNavigate && currentSimulation.groups?.includes(group.id)) {
-      setShouldNavigate(false)
-      if (hasCompletedTest) {
-        router.push(linkToEndPage)
-      } else {
-        router.push(getLinkToSimulateurPage())
-      }
-    }
-  }, [
-    currentSimulation.groups,
-    group.id,
-    hasCompletedTest,
-    getLinkToSimulateurPage,
-    shouldNavigate,
-    router,
-    linkToEndPage,
-  ])
-  const { saveSimulation } = useSaveSimulation()
-
-  function onSubmit({ guestName }: Inputs) {
+  async function onSubmit({ guestName }: Inputs) {
     // Shouldn't happen but in any case, avoid group joining
     if (!group) {
       return
-    }
-
-    // Update user info
+    } // Update user info
     updateName(guestName)
-
     // Update current simulation with group id (to redirect after test completion)
     currentSimulation.update({
       groupToAdd: group.id,
     })
-
-    saveSimulation({ simulation: currentSimulation })
-
-    // Redirect to simulateur page or end page
-    setShouldNavigate(true)
+    if (hasCompletedTest) {
+      await updateGroupParticipant({
+        groupId: group.id,
+        simulation: currentSimulation,
+        userId: user.userId,
+        name: guestName,
+      })
+      router.push(getLinkToGroupDashboard({ groupId: group.id }))
+    } else {
+      router.push(getLinkToSimulateurPage())
+    }
   }
 
   return (

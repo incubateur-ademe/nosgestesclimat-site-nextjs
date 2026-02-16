@@ -72,9 +72,9 @@ export class Group {
     await user.page.getByTestId('button-join-group').click()
   }
 
-  async leave(user: User) {
-    await user.page.getByTestId('button-leave-group').click()
-    await user.page.getByTestId('button-confirm-leave-group').click()
+  async leave(page: Page) {
+    await page.getByTestId('button-leave-group').click()
+    await page.getByTestId('button-confirm-leave-group').click()
   }
 
   async copyInviteLink() {

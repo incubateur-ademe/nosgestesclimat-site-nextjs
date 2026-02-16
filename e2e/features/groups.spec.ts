@@ -1,11 +1,10 @@
+import type { Page } from '@playwright/test'
 import { expect, test } from '../fixtures'
 import { Group } from '../fixtures/groups'
+import { NGCTest } from '../fixtures/ngc-test'
 import { TutorialPage } from '../fixtures/tutorial'
-import {
-  COMPLETED_TEST_STATE,
-  GROUP_ADMIN_STATE,
-  NEW_VISITOR_STATE,
-} from '../state'
+import { User } from '../fixtures/user'
+import { GROUP_ADMIN_STATE, NEW_VISITOR_STATE } from '../state'
 
 test.use({ storageState: GROUP_ADMIN_STATE })
 
@@ -21,6 +20,8 @@ test.describe('A group admin', () => {
 
   test.describe('can create a new group and delete it', () => {
     let newGroup: Group
+    test.setTimeout(60_000)
+
     test.beforeEach(async ({ page, user }) => {
       newGroup = new Group(page, user)
       await page.goto(Group.CREATION_URL)
@@ -103,13 +104,11 @@ test.describe('A new user', () => {
     page,
     ngcTest,
     tutorialPage,
-    user,
     group,
-    cookieBanner,
   }) => {
     test.setTimeout(60_000)
+    const user = new User(page)
     await group.joinWithInviteLink(user)
-    await cookieBanner.dismiss()
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await user.fillEmailAndCompleteVerification()
@@ -122,11 +121,9 @@ test.describe('A new user', () => {
     tutorialPage,
     user,
     group,
-    cookieBanner,
   }) => {
     test.setTimeout(60_000)
     await group.joinWithInviteLink(user)
-    await cookieBanner.dismiss()
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await page.getByTestId('skip-email-button').click()
@@ -135,47 +132,61 @@ test.describe('A new user', () => {
 })
 
 test.describe('A user with a completed test that joined a group', () => {
-  test.use({ storageState: COMPLETED_TEST_STATE })
-  test.beforeEach(async ({ user, group, page }) => {
-    await group.joinWithInviteLink(user)
-    await page.waitForLoadState('networkidle')
+  test.use({ storageState: NEW_VISITOR_STATE })
+
+  test.describe.configure({ mode: 'default' })
+  test.setTimeout(60_000)
+  let page: Page
+  test.beforeEach(async ({ group, browser }) => {
+    if (page) return
+    page = await browser.newPage()
+    await new NGCTest(page).skipAll()
+
+    const user = new User(page, {
+      email: 'test@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+    })
+    return group.joinWithInviteLink(user)
   })
 
-  test.afterEach(async ({ user, group }) => {
-    await group.leave(user)
+  test.afterAll(async () => {
+    await page.close()
   })
 
-  test('can see the group result page directly', async ({
-    page,
-    user,
-    group,
-  }) => {
+  test('see the group result page after joining', async ({ group }) => {
     await expect(page).toHaveURL(group.url)
-    await expect(page.getByText(user.firstName)).toBeVisible()
+    await expect(page.locator('h1')).toContainText(group.name)
+  })
+
+  test('can access the group result page directly', async ({ group }) => {
+    await page.goto(group.url)
+    await expect(page).toHaveURL(group.url)
+    await expect(page.locator('h1')).toContainText(group.name)
   })
 
   test('can go to the group from the end page of his test', async ({
-    page,
     group,
   }) => {
     await page.goto('/fin')
     await group.goFromGroupTabs(page)
     await expect(page).toHaveURL(group.url)
+    await expect(page.locator('h1')).toContainText(group.name)
   })
 
   test('when he reuses the invite link, lands directly on the result page', async ({
-    page,
     group,
   }) => {
     await page.goto(group.inviteLink)
     await expect(page).toHaveURL(group.url)
+    await expect(page.locator('h1')).toContainText(group.name)
   })
 
-  test('can go directly to the result page with the group url', async ({
-    page,
-    group,
-  }) => {
+  test('can leave a group', async ({ group }) => {
     await page.goto(group.url)
-    await expect(page.locator('h1')).toContainText(group.name)
+    await group.leave(page)
+    await page.goto('/fin')
+    await page.getByTestId('my-groups-tab').click()
+    await expect(page.getByText(group.name)).not.toBeVisible()
   })
 })

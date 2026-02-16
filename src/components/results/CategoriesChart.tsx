@@ -11,8 +11,9 @@ interface Props {
 }
 export default function CategoriesChart({ className }: Props) {
   const { sortedCategories } = useSortedCategoriesByFootprint()
-
-  const { numericValue: firstCategoryValue } = useRule(sortedCategories[0])
+  const { numericValue: firstCategoryValue } = useRule(
+    sortedCategories[0] ?? 'transport'
+  )
 
   return (
     <VerticalBarChart className={twMerge('md:hidden', className)}>

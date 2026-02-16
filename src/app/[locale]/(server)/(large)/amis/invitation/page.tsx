@@ -13,7 +13,7 @@ import LaconicRanking from './_components/LaconicRanking'
 
 export default function RejoindreGroupePage() {
   // Guarding the route and redirecting if necessary
-  const { isGuardInit, isGuardRedirecting } = useGroupPagesGuard()
+  const { isGuardRedirecting } = useGroupPagesGuard()
 
   const { t } = useClientTranslation()
 
@@ -21,7 +21,7 @@ export default function RejoindreGroupePage() {
   const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
 
   // If we are still fetching the group (or we are redirecting the user), we display a loader
-  if (!isGuardInit || isGuardRedirecting || isLoading) {
+  if (isGuardRedirecting || isLoading) {
     return <GroupLoader />
   }
 

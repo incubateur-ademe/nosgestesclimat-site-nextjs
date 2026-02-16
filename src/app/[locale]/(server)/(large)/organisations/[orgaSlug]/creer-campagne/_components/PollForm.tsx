@@ -108,7 +108,7 @@ export default function PollForm({ organisation }: Props) {
         disabled={isPending}
         data-testid="poll-create-button"
         form="poll-form"
-        className="self-start">
+        className="mt-4 self-start">
         <Trans>Lancer ma campagne</Trans>
       </Button>
     </>
