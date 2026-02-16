@@ -7,8 +7,10 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useCurrentSimulation } from '@/publicodes-state'
+import { useTranslation } from 'react-i18next'
 
 export default function Email() {
+  const { t } = useTranslation()
   const { polls } = useCurrentSimulation()
   const pollSlug = polls?.[0]
   const { linkToEndPage } = useEndPage()
@@ -47,7 +49,7 @@ export default function Email() {
         }
       />
       <AuthenticateUserForm
-        buttonLabel={'Vérifier mon adresse email'}
+        buttonLabel={t('Vérifier mon adresse email')}
         additionnalButton={
           <ButtonLink
             color="secondary"

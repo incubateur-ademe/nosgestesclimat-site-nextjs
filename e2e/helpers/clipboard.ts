@@ -1,4 +1,5 @@
 import type { Page } from '@playwright/test'
+import { test } from '@playwright/test'
 
 /**
  * Reads the clipboard content after clicking on a button.
@@ -23,7 +24,6 @@ export async function copyAndReadClipboard({
   }
 
   if (browser?.browserType().name() === 'webkit') {
-    const { test } = await import('@playwright/test')
     test.skip()
   }
 
