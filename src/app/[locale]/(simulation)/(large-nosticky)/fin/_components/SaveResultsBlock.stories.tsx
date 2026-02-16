@@ -38,6 +38,7 @@ export const Unauthenticated: Story = {
   args: {
     locale: 'fr',
     user: null,
+    t: ((string: string, string2: string) => string2) as any,
   },
 }
 
@@ -45,5 +46,6 @@ export const Authenticated: Story = {
   args: {
     locale: 'fr',
     user: { id: '123', email: 'test@test.com' },
+    t: ((string: string, string2: string) => string2) as any,
   },
 }

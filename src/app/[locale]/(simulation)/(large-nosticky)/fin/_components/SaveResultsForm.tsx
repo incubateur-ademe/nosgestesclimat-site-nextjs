@@ -8,7 +8,7 @@ import {
 } from '@/constants/tracking/pages/end'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
-import { FormThemeProvider } from '@/contexts/FormThemeContext'
+
 import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -54,7 +54,7 @@ export default function SaveResultsForm() {
     }
   }
   return (
-    <FormThemeProvider value="dark">
+    <div className="dark">
       <AuthenticateUserForm
         buttonColor="borderless"
         isVerticalLayout={false}
@@ -73,6 +73,6 @@ export default function SaveResultsForm() {
         onComplete={onSubmit}
         onCompleteError={onCompleteError}
       />
-    </FormThemeProvider>
+    </div>
   )
 }

@@ -1,4 +1,3 @@
-import { useFormThemeErrorColor } from '@/contexts/FormThemeContext'
 import type { ReactNode } from 'react'
 import React, { useId } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -36,7 +35,7 @@ export default function InputGroup({
   const srOnlyHelperTextId = `srOnlyHelper-${id}`
   const errorId = `error-${id}`
 
-  const errorColor = useFormThemeErrorColor()
+  const errorColor = 'text-red-800 dark:text-white'
 
   const describedBy = [
     helperText ? helperTextId : undefined,
