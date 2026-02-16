@@ -1,5 +1,6 @@
 import type { Locale } from '@/i18nConfig'
 import Trans from '../translation/trans/TransServer'
+import ObjectiveChart from './objective/ObjectiveChart'
 import ObjectiveWithRhythm from './objective/ObjectiveWithRhythm'
 
 interface Props {
@@ -25,9 +26,9 @@ export default function Objective({ locale, carbonFootprint }: Props) {
 
       <ObjectiveWithRhythm locale={locale} carbonFootprint={carbonFootprint} />
 
-      {/* <ObjectiveCurve />
+      <ObjectiveChart carbonFootprint={carbonFootprint} />
 
-      <CollectiveEfforts /> */}
+      {/* <CollectiveEfforts /> */}
     </div>
   )
 }
