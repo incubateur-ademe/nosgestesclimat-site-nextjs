@@ -48,6 +48,7 @@ export default function SaveResultsForm() {
       captureException(error)
       setOnCompleteError(
         t(
+          'fin.getResultsOnUserProfile.error',
           'Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.'
         )
       )
