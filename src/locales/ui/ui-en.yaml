@@ -265,7 +265,6 @@ entries:
   Accéder à mon espace: Go to my dashboard
   Accéder à mon espace.lock: Go to my dashboard
   Explorez, comparez et analysez vos données: Explore, compare and analyse your data
-  Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Contact us to arrange a demonstration of our tool for organisations.
   Votre code est valide !: Your code is valid!
   Renvoyer le code, désactivé pendant 30 secondes: Resend code, deactivated for 30 seconds
   Accueil: Home
@@ -923,24 +922,20 @@ entries:
   <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>The water footprint</0> is the total amount of freshwater used to produce, distribute and end-of-life treat the products, goods and services we consume every day.
   L'empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l'eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d'eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés.: The water footprint, <2>calculated in thousands of litres per day</2>, takes into account the <5>water needed</5> to produce, distribute and process the goods and services consumed. This calculation also takes into account <8>water stress</8> and weights water consumption according to <12>the scarcity of the resource</12> in the areas concerned.
   "Depuis le siècle dernier, <2>la concentration du carbone dans l'atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.": 'Since the last century, <2>the concentration of carbon in the atmosphere has been rising</2>, causing serious upheavals in the climate: rising sea levels, destruction of living organisms, rising temperatures, and so on.'
-  cookies.banner.refuseAll: Refuse everything
-  cookies.banner.refuseAll.lock: Tout refuser
+  cookies.banner.rejectAll: Refuse everything
+  cookies.banner.rejectAll.lock: Tout refuser
   cookies.banner.customize: Customise
   cookies.banner.customize.lock: Personnaliser
-  cookies.management.googleAds.title: Google Ads
-  cookies.management.googleAds.title.lock: Google Ads
-  cookies.management.googleAds.description: We use cookies to measure and calibrate the effectiveness of our online campaigns and advertising.
-  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
-  cookies.management.refuseAll: Refuse everything
-  cookies.management.refuseAll.lock: Tout refuser
+  cookies.management.rejectAll: Refuse everything
+  cookies.management.rejectAll.lock: Tout refuser
   cookies.management.privacyLink: Personal data and cookies
   cookies.management.privacyLink.lock: Données personnelles et cookies
   cookies.management.confirm: Confirm my choices
   cookies.management.confirm.lock: Confirmer mes choix
   cookies.management.preferences: 'Preferences for all services. '
   cookies.management.preferences.lock: 'Préférences pour tous les services. '
-  cookies.banner.description: We use cookies, just enough to keep the site running, improve the experience and measure the audience anonymously. With your agreement, we also activate a simple tracking system for our campaigns to better understand what works and better manage our budget.
-  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu'il faut pour faire fonctionner le site, améliorer l'expérience et mesurer de manière anonyme l'audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.banner.description: We use cookies to improve your experience and our services, measure our audience and manage our campaign budget.
+  cookies.banner.description.lock: Nous utilisons des cookies pour améliorer votre expérience, nos services, mesurer l'audience et piloter notre budget de campagnes.
   cookies.banner.title: At Nos Gestes Climat, your privacy counts
   cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.acceptAll: Accept all
@@ -955,8 +950,8 @@ entries:
   cookies.management.accept.lock: Accepter
   cookies.management.required.description: Our site uses cookies, which are essential for its proper operation (security, language selection, authentication). They contain no personal data and cannot be deactivated.
   cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
-  cookies.management.title: Cookie management panel
-  cookies.management.title.lock: Panneau de gestion des cookies
+  cookies.management.title: Cookie management
+  cookies.management.title.lock: Gestion des cookies
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Gestion des cookies: Cookie management
@@ -1065,7 +1060,6 @@ entries:
   documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.label: Enter keywords
   documentation.search.input.label.lock: Entrez des mots clefs
-  Formulaire - Demander une démo: Form - Request a demo
   documentation.search.h2: Explore our models
   documentation.search.h2.lock: Explorez nos modèles
   documentation.search.label: Documentation search
@@ -1764,6 +1758,18 @@ entries:
   Connexion à votre espace - Nos Gestes Climat: Login to your space - Nos Gestes Climat
   Mon espace - Nos Gestes Climat: My space - Nos Gestes Climat
   Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.: Log on to your Nos Gestes Climat space to access your results and compare your carbon footprints with others.
+  cookies.management.audience.linkText: our privacy policy
+  cookies.management.audience.linkText.lock: notre politique de confidentialité
+  cookies.management.audience.title: Audience measurement
+  cookies.management.audience.title.lock: Mesure d'audience
+  cookies.management.audience.linkTitle: Visit our privacy policy
+  cookies.management.audience.linkTitle.lock: Visiter notre politique de confidentialité
+  privacyPolicy.posthogCheckboxLabel: Deactivate Posthog tracking
+  privacyPolicy.posthogCheckboxLabel.lock: Désactiver le suivi Posthog
+  cookies.management.audience.description: To deactivate all anonymous audience measurement cookies, visit
+  cookies.management.audience.description.lock: Pour désactiver tous les cookies de mesure d'audience anonymes, visitez
+  privacyPolicy.posthogCheckboxText: You are tracked anonymously by Posthog. Uncheck this box to exclude yourself from anonymous tracking.
+  privacyPolicy.posthogCheckboxText.lock: Vous êtes suivi de façon anonyme par Posthog. Décochez cette case pour vous exclure également du suivi anonyme.
   footer.wantToAct.button: I choose my newsletters
   footer.wantToAct.button.lock: Je choisis mes infolettres
   ui.emailInput.error.invalid: 'Please enter a valid e-mail address (expected format: nom@exemple.org)'
@@ -1778,6 +1784,8 @@ entries:
   ui.emailInput.error.required.lock: Veuillez entrer une adresse e-mail
   email.input.helper: 'Expected format: nom@exemple.org'
   email.input.helper.lock: 'Format attendu : nom@exemple.org'
+  privacyPolicy.posthogCheckboxTextNotFollowed: You are not currently being tracked. Tick this box if you agree to be anonymously tracked by Posthog
+  privacyPolicy.posthogCheckboxTextNotFollowed.lock: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Click on see details to find out more about your water footprint
   fin.getResultsOnUserProfile.inputLabel: Your e-mail address
   fin.getResultsOnUserProfile.inputLabel.lock: Votre adresse e-mail
@@ -1798,3 +1806,16 @@ entries:
   Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: We are currently experiencing a technical problem with Microsoft addresses (@outlook, @hotmail, @live, @msn) and are doing everything we can to resolve it. Please use another e-mail address in the meantime.
   fin.getResultsOnUserProfile.error: An error has occurred while saving your results. Please try again.
   fin.getResultsOnUserProfile.error.lock: Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.
+  Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: We are currently experiencing a technical problem with Microsoft addresses (@outlook, @hotmail, @live, @msn) and are doing everything we can to resolve it. Please use another e-mail address in the meantime.
+  cookies.management.googleAds.link: See the official website
+  cookies.management.googleAds.link.lock: Voir le site officiel
+  cookies.management.posthog.link: See the official website
+  cookies.management.posthog.link.lock: Voir le site officiel
+  cookies.management.googleAds.description: We use cookies to measure and calibrate the effectiveness of our online advertising campaigns. These make it possible to track your browsing.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation.
+  cookies.management.posthog.description: We use Posthog to measure the audience for our site and improve its content. Your data is stored on secure servers and is never shared with third parties.
+  cookies.management.posthog.description.lock: Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers.
+  organisations.demanderDemo.title: Request a demo
+  organisations.demanderDemo.title.lock: Demander une démo
+  organisations.demanderDemo.subtitle: Book a slot to attend a demonstration of our functionality dedicated to organisations (companies, associations, schools, etc.) and allow you to distribute the Nos Gestes Climat test to your audience.
+  organisations.demanderDemo.subtitle.lock: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.

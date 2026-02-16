@@ -45,7 +45,7 @@
     "knip": "knip"
   },
   "dependencies": {
-    "@incubateur-ademe/nosgestesclimat": "4.8.1",
+    "@incubateur-ademe/nosgestesclimat": "4.9.0",
     "@next/mdx": "^16.0.7",
     "@publicodes/react-ui": "^1.10.0",
     "@publicodes/tools": "^1.8.0",
@@ -68,7 +68,7 @@
     "next": "16.1.5",
     "next-i18n-router": "^5.5.5",
     "postcss": "8.5.6",
-    "posthog-js": "^1.331.0",
+    "posthog-js": "^1.333.0",
     "publicodes": "^1.9.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
