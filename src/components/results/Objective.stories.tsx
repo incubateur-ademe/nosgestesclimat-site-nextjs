@@ -20,14 +20,23 @@ const meta: Meta<typeof Objective> = {
 export default meta
 type Story = StoryObj<typeof Objective>
 
-export const Default: Story = {
+export const Over7Tons: Story = {
   args: {
     locale: 'fr',
+    carbonFootprint: 12000,
   },
 }
 
-export const English: Story = {
+export const Under7Tons: Story = {
   args: {
-    locale: 'en',
+    locale: 'fr',
+    carbonFootprint: 6000,
+  },
+}
+
+export const Under4TonsEnglish: Story = {
+  args: {
+    locale: 'fr',
+    carbonFootprint: 4000,
   },
 }

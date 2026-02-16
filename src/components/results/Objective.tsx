@@ -4,9 +4,10 @@ import ObjectiveWithRhythm from './objective/ObjectiveWithRhythm'
 
 interface Props {
   locale: Locale
+  carbonFootprint: number
 }
 
-export default function Objective({ locale }: Props) {
+export default function Objective({ locale, carbonFootprint }: Props) {
   return (
     <div>
       <h2>
@@ -22,7 +23,7 @@ export default function Objective({ locale }: Props) {
         </Trans>
       </p>
 
-      <ObjectiveWithRhythm locale={locale} />
+      <ObjectiveWithRhythm locale={locale} carbonFootprint={carbonFootprint} />
 
       {/* <ObjectiveCurve />
 

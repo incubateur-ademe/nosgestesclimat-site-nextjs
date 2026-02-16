@@ -128,9 +128,6 @@ importers:
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.14
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
       use-count-up:
         specifier: ^3.0.1
         version: 3.0.1(react@19.2.4)
@@ -294,6 +291,9 @@ importers:
       storybook:
         specifier: ^10.1.8
         version: 10.1.8(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
       typescript-eslint:
         specifier: ^8.46.1
         version: 8.48.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
