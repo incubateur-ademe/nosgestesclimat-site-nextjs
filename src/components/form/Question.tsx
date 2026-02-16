@@ -127,7 +127,7 @@ export default function Question({
             {type === 'boolean' && (
               <BooleanInput
                 value={situationValue as Evaluation<boolean>}
-                setValue={(value: string) => {
+                setValue={(value: string | undefined) => {
                   {
                     setValue(value, { questionDottedName: question })
                     trackEvent(

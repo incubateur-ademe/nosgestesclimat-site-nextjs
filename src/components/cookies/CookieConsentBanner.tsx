@@ -1,7 +1,15 @@
 import Trans from '@/components/translation/trans/TransClient'
+import {
+  cookieClickAcceptAll,
+  cookieClickAcceptAllPosthog,
+  cookieClickCustomize,
+  cookieClickCustomizePosthog,
+  cookieClickRejectAll,
+  cookieClickRejectAllPosthog,
+} from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { Dispatch, SetStateAction } from 'react'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import ReactModal from 'react-modal'
 
 // Type assertion to resolve React types version mismatch
@@ -14,28 +22,22 @@ if (typeof document !== 'undefined') {
 }
 
 export default function CookieConsentBanner({
-  isVisible,
-  setIsVisible,
-  isBoardOpen,
-  openSettings,
-  refuseAll,
+  onOpenForm,
+  rejectAll,
   acceptAll,
 }: {
-  isVisible: boolean
-  setIsVisible: Dispatch<SetStateAction<boolean>>
-  isBoardOpen: boolean
-  openSettings: () => void
-  refuseAll: () => void
+  onOpenForm: () => void
+  rejectAll: () => void
   acceptAll: () => void
 }) {
   const { t } = useClientTranslation()
+
   return (
     <Modal
-      isOpen={isVisible && !isBoardOpen}
+      isOpen={true}
       aria={{
         label: t('cookieConsent.board.title', 'Panneau de gestion des cookies'),
       }}
-      onAfterClose={() => setIsVisible(false)}
       className="!fixed !top-1/2 !left-1/2 !z-[10001] !mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
       overlayClassName="!bg-black/0 !backdrop-blur-none !fixed !bottom-0 !left-0 !right-0 !top-auto !z-[10000]"
       // Accessibility improvements for cookie consent banner
@@ -83,11 +85,8 @@ export default function CookieConsentBanner({
           className="mb-2 text-sm"
           data-testid="cookie-banner-description">
           <Trans i18nKey="cookies.banner.description">
-            Nous utilisons des cookies, juste ce qu'il faut pour faire
-            fonctionner le site, améliorer l'expérience et mesurer de manière
-            anonyme l'audience. Avec votre accord, nous activons aussi un suivi
-            simple de nos campagnes pour mieux comprendre ce qui fonctionne et
-            mieux piloter notre budget.
+            Nous utilisons des cookies pour améliorer votre expérience, nos
+            services, mesurer l'audience et piloter notre budget de campagnes.
           </Trans>
         </p>
         <ul className="mt-6 flex w-full flex-row flex-wrap items-start justify-start gap-2 md:flex-nowrap md:items-center">
@@ -95,7 +94,11 @@ export default function CookieConsentBanner({
             <Button
               size="sm"
               color="secondary"
-              onClick={openSettings}
+              onClick={() => {
+                trackEvent(cookieClickCustomize)
+                trackPosthogEvent(cookieClickCustomizePosthog)
+                onOpenForm()
+              }}
               data-testid="cookie-banner-customize-button">
               <Trans i18nKey="cookies.banner.customize">Personnaliser</Trans>
             </Button>
@@ -104,16 +107,24 @@ export default function CookieConsentBanner({
             <Button
               size="sm"
               color="secondary"
-              onClick={refuseAll}
+              onClick={() => {
+                trackEvent(cookieClickRejectAll)
+                trackPosthogEvent(cookieClickRejectAllPosthog)
+                rejectAll()
+              }}
               data-testid="cookie-banner-refuse-button">
-              <Trans i18nKey="cookies.banner.refuseAll">Tout refuser</Trans>
+              <Trans i18nKey="cookies.banner.rejectAll">Tout refuser</Trans>
             </Button>
           </li>
           <li>
             <Button
               size="sm"
               color="primary"
-              onClick={acceptAll}
+              onClick={() => {
+                trackEvent(cookieClickAcceptAll)
+                trackPosthogEvent(cookieClickAcceptAllPosthog)
+                acceptAll()
+              }}
               data-testid="cookie-banner-accept-button">
               <Trans i18nKey="cookies.banner.acceptAll">Tout accepter</Trans>
             </Button>

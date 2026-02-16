@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@incubateur-ademe/nosgestesclimat':
-        specifier: 4.8.1
-        version: 4.8.1(publicodes@1.9.1)
+        specifier: 4.9.0
+        version: 4.9.0(publicodes@1.9.1)
       '@next/mdx':
         specifier: ^16.0.7
         version: 16.0.7(@mdx-js/loader@3.1.1(webpack@5.102.1(esbuild@0.27.1)))(@mdx-js/react@3.1.1(@types/react@19.2.2)(react@19.2.4))
@@ -78,8 +78,8 @@ importers:
         specifier: 8.5.6
         version: 8.5.6
       posthog-js:
-        specifier: ^1.331.0
-        version: 1.331.0
+        specifier: ^1.333.0
+        version: 1.333.0
       publicodes:
         specifier: ^1.9.1
         version: 1.9.1
@@ -291,9 +291,6 @@ importers:
       storybook:
         specifier: ^10.1.8
         version: 10.1.8(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
       typescript-eslint:
         specifier: ^8.46.1
         version: 8.48.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
@@ -1711,8 +1708,8 @@ packages:
   '@incubateur-ademe/nosgestesclimat-scripts@0.8.0':
     resolution: {integrity: sha512-Jc3d3SAWDDBQNLG1d7+ao+5QPMpiEZg2tfY0EDmray0UBpP9lj0LvWG0uwWoA0waeYFroYNuK58yBrbqGRQMLg==}
 
-  '@incubateur-ademe/nosgestesclimat@4.8.1':
-    resolution: {integrity: sha512-f9wuK1+L469J/YEkuKXE2s9kdyNiCBRJMhNSHf3ADPY9H4Uo8Qv8ffpbcizoBV4v5BWINpfUPQRj1+qs2LHDjA==}
+  '@incubateur-ademe/nosgestesclimat@4.9.0':
+    resolution: {integrity: sha512-jAS9RQ+a+cztW7gGPtbBkcO2BeNfhtO/r4IOUYvlgPrFIsu3vJh2ZJOi2pSJLV/De/qBvDqBRSBArElLigakyw==}
     engines: {node: '>=22'}
     peerDependencies:
       publicodes: ^1.8.5
@@ -2336,11 +2333,11 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@posthog/core@1.11.0':
-    resolution: {integrity: sha512-BnUQ9FP5vqMr2NKntDSLfMCwO/pOI2In7kAjg6vLVzU1JdcPt266kwCZj84PTYbdSfHG5ELDs3hXNv9Rn+coUw==}
+  '@posthog/core@1.13.0':
+    resolution: {integrity: sha512-knjncrk7qRmssFRbGzBl1Tunt21GRpe0Wv+uVelyL0Rh7PdQUsgguulzXFTps8hA6wPwTU4kq85qnbAJ3eH6Wg==}
 
-  '@posthog/types@1.331.0':
-    resolution: {integrity: sha512-C2eT5T2zovjLB+KOOWOb4vGBInH58imeuOrH/DL3hpcH0V5Nd5ttOAZczr1AxsI08lR5VaUPCw2bUsfPxYJGRA==}
+  '@posthog/types@1.333.0':
+    resolution: {integrity: sha512-9Wg/2ez+EZh6NmtOjhtYSkBHz/yIq8WMS0QSIizUoggh35hHVg4BTMXl3rz/tPearJNKU/8oRjEyuZ0OYTEDOA==}
 
   '@prisma/instrumentation@6.15.0':
     resolution: {integrity: sha512-6TXaH6OmDkMOQvOxwLZ8XS51hU2v4A3vmE2pSijCIiGRJYyNeMcL6nMHQMyYdZRD8wl7LF3Wzc+AMPMV/9Oo7A==}
@@ -6353,8 +6350,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.331.0:
-    resolution: {integrity: sha512-9bUWkQXP95OhDxcjctKma8LSxpIxU+i7Xq+i/M4wjGjEvN7xt1ztNO4XKJYmEVT1Su3ZOLudidyWrSGL568F4A==}
+  posthog-js@1.333.0:
+    resolution: {integrity: sha512-c7vquERMedjuGE2GnaDDJW/V1BIMMQG7BlYKrH0z8O7fc3WpEsQ/IyQ+9aD9+DLxlDCFpzrwgoxVDWi9K37mdA==}
 
   preact@10.28.2:
     resolution: {integrity: sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA==}
@@ -9365,7 +9362,7 @@ snapshots:
       - debug
       - encoding
 
-  '@incubateur-ademe/nosgestesclimat@4.8.1(publicodes@1.9.1)':
+  '@incubateur-ademe/nosgestesclimat@4.9.0(publicodes@1.9.1)':
     dependencies:
       publicodes: 1.9.1
 
@@ -10014,11 +10011,11 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@posthog/core@1.11.0':
+  '@posthog/core@1.13.0':
     dependencies:
       cross-spawn: 7.0.6
 
-  '@posthog/types@1.331.0': {}
+  '@posthog/types@1.333.0': {}
 
   '@prisma/instrumentation@6.15.0(@opentelemetry/api@1.9.0)':
     dependencies:
@@ -14891,15 +14888,15 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.331.0:
+  posthog-js@1.333.0:
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.208.0
       '@opentelemetry/exporter-logs-otlp-http': 0.208.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 2.4.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-logs': 0.208.0(@opentelemetry/api@1.9.0)
-      '@posthog/core': 1.11.0
-      '@posthog/types': 1.331.0
+      '@posthog/core': 1.13.0
+      '@posthog/types': 1.333.0
       core-js: 3.46.0
       dompurify: 3.3.1
       fflate: 0.4.8

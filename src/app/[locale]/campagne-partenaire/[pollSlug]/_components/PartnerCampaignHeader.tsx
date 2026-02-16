@@ -33,23 +33,12 @@ export default function PartnerCampaignHeader({
 
         {/* Mobile */}
         <div className="block sm:hidden">
-          <LanguageSwitchButton
-            langButtonsDisplayed={{
-              fr: true,
-              en: true,
-            }}
-            size="xs"
-          />
+          <LanguageSwitchButton size="xs" />
         </div>
 
         {/* Desktop */}
         <div className="hidden sm:block">
-          <LanguageSwitchButton
-            langButtonsDisplayed={{
-              fr: true,
-              en: true,
-            }}
-          />
+          <LanguageSwitchButton />
         </div>
       </div>
     </header>
