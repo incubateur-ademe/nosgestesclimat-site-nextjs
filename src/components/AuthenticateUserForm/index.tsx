@@ -14,6 +14,7 @@ import { usePendingVerification } from '@/hooks/authentication/usePendingVerific
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
+import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { UseMutationResult } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
@@ -83,10 +84,10 @@ export default function AuthenticateUserForm({
       await onComplete?.(user)
 
       if (redirectURL) {
-        router.push(redirectURL)
+        requestIdleCallback(() => router.push(redirectURL))
+      } else {
+        router.refresh()
       }
-
-      router.refresh()
     },
     [redirectURL, onComplete, router, trackers]
   )

@@ -54,7 +54,7 @@ export default function Poll() {
     <Confirmation>
       <Title
         title={
-          <span className="inline-block">
+          <span className="inline-block" data-testid="poll-confirmation-block">
             <Trans>Vous avez terminé le test !</Trans> <Emoji>💪</Emoji>
           </span>
         }
@@ -84,6 +84,7 @@ export default function Poll() {
             orgaSlug: poll?.organisation.slug || '', // TODO: handle this better
             pollSlug: lastPollSlug || '',
           })}
+          data-testid="poll-see-results-button"
           trackingEvent={endClickPoll}>
           <Trans i18nKey="endPage.poll.seeResults.button.label">
             Voir les résultats

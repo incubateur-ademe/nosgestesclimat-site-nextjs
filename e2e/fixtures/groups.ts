@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 import type { Page } from '@playwright/test'
 
+import { copyAndReadClipboard } from '../helpers/clipboard'
 import {
   getPlaywrightState,
   savePlaywrightState,
@@ -78,20 +79,9 @@ export class Group {
   }
 
   async copyInviteLink() {
-    const browser = this.page.context().browser()
-    if (browser?.browserType().name() === 'chromium') {
-      await this.page
-        .context()
-        .grantPermissions(['clipboard-read', 'clipboard-write'])
-    }
-    if (browser?.browserType().name() === 'webkit') {
-      // We cannot use clipboard read with webkit yet
-      // https://github.com/microsoft/playwright/issues/13037
-      test.skip()
-    }
-    await this.page.getByTestId('invite-button').click()
-    const clipboardContent = await this.page.evaluate(() => {
-      return navigator.clipboard.readText()
+    const clipboardContent = await copyAndReadClipboard({
+      page: this.page,
+      copyAction: () => this.page.getByTestId('invite-button').click(),
     })
     this.data.inviteLink = clipboardContent
     return clipboardContent

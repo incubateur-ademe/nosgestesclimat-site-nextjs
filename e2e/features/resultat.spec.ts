@@ -31,7 +31,7 @@ test.describe('Given a user that completed a test without an account', () => {
   test('should display the carbon footprint', async ({ page }) => {
     // @TODO : two h1 in page
     await page.locator('h1').first().isVisible()
-
+    await page.waitForTimeout(7000)
     const carbonFootprintElem = getCarbonFootprintElem(page)
     await expect(carbonFootprintElem).toBeInViewport()
 
