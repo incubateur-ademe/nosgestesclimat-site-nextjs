@@ -64,37 +64,34 @@ const handleUpdateGoogleTag = (cookieState: CookieState) => {
   }
 }
 
+const handlePosthogDNT = (dnt: boolean) => {
+  posthog.reset()
+  if (dnt) {
+    posthog.set_config({
+      cookieless_mode: undefined,
+      opt_out_capturing_by_default: true,
+    })
+    posthog.opt_out_capturing()
+  } else {
+    posthog.set_config({
+      cookieless_mode: 'on_reject',
+      opt_out_capturing_by_default: false,
+    })
+  }
+}
+
 const handleUpdatePosthog = (cookieState: CookieState) => {
   switch (cookieState.posthog) {
     case 'accepted':
-      posthog.set_config({
-        disable_persistence: false,
-        disable_session_recording: false,
-        opt_out_capturing_by_default: false,
-      })
       posthog.opt_in_capturing()
       break
 
     case 'refused':
-      posthog.set_config({
-        disable_persistence: false,
-        disable_session_recording: true,
-        opt_out_capturing_by_default: false,
-      })
-      // If previously accepted, we need to reset to clear the opt-out
-      posthog.reset()
-      // If user was previously opted-out, we need to opt-in
       posthog.opt_in_capturing()
       break
 
     case 'do_not_track':
-      posthog.set_config({
-        disable_persistence: true,
-        disable_session_recording: true,
-        opt_out_capturing_by_default: true,
-      })
-      posthog.reset()
-      posthog.opt_out_capturing()
+      handlePosthogDNT(true)
       break
   }
 }
@@ -123,7 +120,12 @@ export function useCookieManagement(): {
 
   const onChange = (cookieState: CookieState) => {
     setCookieBannerDisplayState('hidden')
-
+    if (
+      cookieState.posthog !== 'do_not_track' &&
+      cookieLocalStorageState.posthog === 'do_not_track'
+    ) {
+      handlePosthogDNT(false)
+    }
     handleUpdatePosthog(cookieState)
 
     handleUpdateGoogleTag(cookieState)
