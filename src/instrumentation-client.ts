@@ -24,7 +24,6 @@ export const onRouterTransitionStart = Sentry.captureRouterTransitionStart
 if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-    person_profiles: 'identified_only', // we only identify users if they explicitly give their consent trough the cookie banner
     defaults: '2025-11-30', // @TODO: last available date for the SDK we use. To be updated when being able to install a newer version of posthog-js (today restricted by minimumReleaseAge protection).
     autocapture: false, // Disable automatic event capture, as we capture manually. So we can control the events we send (and reduce our billing)
     capture_pageview: false, // Disable automatic pageview capture, as we capture manually to be more precise on iframe detections and referrer sources
