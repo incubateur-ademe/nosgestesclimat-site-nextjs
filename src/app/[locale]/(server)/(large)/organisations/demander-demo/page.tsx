@@ -2,8 +2,7 @@ import OrganisationFilAriane from '@/components/layout/FilAriane'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import Script from 'next/script'
-import TallyIframe from './_components/TallyIframe'
+import CalendlyWidget from './_components/CalendlyWidget'
 
 /* global PageProps */
 
@@ -25,17 +24,23 @@ export default async function DemanderDemoPage({
       <section className="w-full bg-[#fff]">
         <div className="mx-auto max-w-5xl py-10">
           <Title
-            title={<Trans locale={locale}>Demander une démo</Trans>}
+            title={
+              <Trans i18nKey="organisations.demanderDemo.title" locale={locale}>
+                Demander une démo
+              </Trans>
+            }
             subtitle={
-              <Trans locale={locale}>
-                Contactez nous afin de convenir d'un temps de démonstration de
-                notre outil pour les organisations.
+              <Trans
+                i18nKey="organisations.demanderDemo.subtitle"
+                locale={locale}>
+                Réservez un créneau pour assister à une démonstration de notre
+                fonctionnalité dédiée aux organisations (entreprises,
+                associations, écoles…) et vous permettre de diffuser le test de
+                Nos Gestes Climat à votre audience.
               </Trans>
             }
           />
-          <TallyIframe />
-
-          <Script id="tally">{`var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}`}</Script>
+          <CalendlyWidget />
         </div>
       </section>
     </>
