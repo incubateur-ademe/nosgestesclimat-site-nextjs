@@ -137,8 +137,7 @@ test.describe('A user with a completed test that joined a group', () => {
   test.describe.configure({ mode: 'default' })
   test.setTimeout(60_000)
   let page: Page
-  test.beforeEach(async ({ group, browser }) => {
-    if (page) return
+  test.beforeAll(async ({ browser }) => {
     page = await browser.newPage()
     await new NGCTest(page).skipAll()
 
@@ -147,7 +146,16 @@ test.describe('A user with a completed test that joined a group', () => {
       firstName: 'John',
       lastName: 'Doe',
     })
-    return group.joinWithInviteLink(user)
+
+    const group = await Group.fromContext(
+      await browser
+        .newContext({
+          storageState: GROUP_ADMIN_STATE,
+        })
+        .then((context) => context.newPage())
+    )
+
+    await group.joinWithInviteLink(user)
   })
 
   test.afterAll(async () => {
