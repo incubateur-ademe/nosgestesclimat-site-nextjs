@@ -1382,7 +1382,6 @@ entries:
   results.saveResults.title.authenticated: Accédez à votre espace personnel
   results.saveResults.title.unauthenticated: Recevez-les par e-mail et accédez à votre espace personnel
   fin.getResultsOnUserProfile.error: Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.
-  Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.
   cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation.
   cookies.management.googleAds.link: Voir le site officiel
   cookies.management.posthog.description: Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers.
