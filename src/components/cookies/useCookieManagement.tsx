@@ -123,17 +123,18 @@ export function useCookieManagement(): {
 
   const onChange = (cookieState: CookieState) => {
     setCookieBannerDisplayState('hidden')
+
+    handleUpdatePosthog(cookieState)
+    handleUpdateGoogleTag(cookieState)
+    safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
+
     if (
       cookieState.posthog !== 'do_not_track' &&
       cookieLocalStorageState.posthog === 'do_not_track'
     ) {
       handlePosthogDNT(false)
+      setCookieBannerDisplayState('banner')
     }
-    handleUpdatePosthog(cookieState)
-
-    handleUpdateGoogleTag(cookieState)
-
-    safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
   }
 
   return {
