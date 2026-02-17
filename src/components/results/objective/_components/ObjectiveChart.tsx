@@ -6,6 +6,12 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
+import {
+  MAX_CARBON_FOOTPRINT,
+  MIN_CARBON_FOOTPRINT,
+  OVER_7_TONS_YEAR_OBJECTIVE,
+  UNDER_7_TONS_YEAR_OBJECTIVE,
+} from '../_constants/footprints'
 
 interface Props {
   carbonFootprint: number
@@ -18,8 +24,8 @@ interface Point {
 }
 
 const POINTS: Point[] = [
-  { year: 2030, value: 7000 },
-  { year: 2040, value: 4000 },
+  { year: OVER_7_TONS_YEAR_OBJECTIVE, value: MAX_CARBON_FOOTPRINT },
+  { year: UNDER_7_TONS_YEAR_OBJECTIVE, value: MIN_CARBON_FOOTPRINT },
   { year: 2050, value: 2000 },
 ]
 
@@ -36,7 +42,9 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
   const allPoints: Point[] = [
     { year: currentYear, value: carbonFootprint, isCurrent: true },
     ...POINTS.filter(({ value }) =>
-      carbonFootprint < 7000 ? value !== 7000 : true
+      carbonFootprint < MAX_CARBON_FOOTPRINT
+        ? value !== MAX_CARBON_FOOTPRINT
+        : true
     ),
   ]
 

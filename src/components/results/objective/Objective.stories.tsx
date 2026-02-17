@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Objective from './Objective'
-import ObjectiveChart from './objective/ObjectiveChart'
+import ObjectiveChart from './_components/ObjectiveChart'
 
 const meta: Meta<typeof Objective> = {
   title: 'Components/Results/Objective',

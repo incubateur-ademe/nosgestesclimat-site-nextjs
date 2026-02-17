@@ -1,8 +1,8 @@
 import type { Locale } from '@/i18nConfig'
-import Trans from '../translation/trans/TransServer'
-import CollectiveEfforts from './objective/CollectiveEffort'
-import ObjectiveChart from './objective/ObjectiveChart'
-import ObjectiveWithRhythm from './objective/ObjectiveWithRhythm'
+import Trans from '../../translation/trans/TransServer'
+import CollectiveEfforts from './_components/CollectiveEffort'
+import ObjectiveChart from './_components/ObjectiveChart'
+import ObjectiveWithRhythm from './_components/ObjectiveWithRhythm'
 
 interface Props {
   locale: Locale

@@ -4,19 +4,17 @@ import Badge from '@/design-system/layout/Badge'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import type { Locale } from '@/i18nConfig'
 import { twMerge } from 'tailwind-merge'
+import {
+  MAX_CARBON_FOOTPRINT,
+  MIN_CARBON_FOOTPRINT,
+  OVER_7_TONS_YEAR_OBJECTIVE,
+  UNDER_7_TONS_YEAR_OBJECTIVE,
+} from '../_constants/footprints'
 
 interface Props {
   carbonFootprint: number
   locale: Locale
 }
-
-const MAX_CARBON_FOOTPRINT = 7000
-
-const MIN_CARBON_FOOTPRINT = 4000
-
-const OVER_7_TONS_YEAR_OBJECTIVE = 2030
-
-const UNDER_7_TONS_YEAR_OBJECTIVE = 2040
 
 const getObjectiveData = ({
   carbonFootprint,
