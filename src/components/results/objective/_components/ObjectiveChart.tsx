@@ -6,122 +6,23 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
-import {
-  MAX_CARBON_FOOTPRINT,
-  MIN_CARBON_FOOTPRINT,
-  OVER_7_TONS_YEAR_OBJECTIVE,
-  UNDER_7_TONS_YEAR_OBJECTIVE,
-} from '../_constants/footprints'
+import { useObjectiveChart } from './_hooks/useObjectiveChart'
 
 interface Props {
   carbonFootprint: number
 }
 
-interface Point {
-  year: number
-  value: number
-  isCurrent?: boolean
-}
-
-const POINTS: Point[] = [
-  { year: OVER_7_TONS_YEAR_OBJECTIVE, value: MAX_CARBON_FOOTPRINT },
-  { year: UNDER_7_TONS_YEAR_OBJECTIVE, value: MIN_CARBON_FOOTPRINT },
-  { year: 2050, value: 2000 },
-]
-
-import { useEffect, useRef, useState } from 'react'
-
 export default function ObjectiveChart({ carbonFootprint }: Props) {
   const { t } = useClientTranslation()
   const locale = useLocale()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [arrowRotation, setArrowRotation] = useState(26) // Default fallback
-
-  const currentYear = new Date().getFullYear()
-
-  const allPoints: Point[] = [
-    { year: currentYear, value: carbonFootprint, isCurrent: true },
-    ...POINTS.filter(({ value }) =>
-      carbonFootprint < MAX_CARBON_FOOTPRINT
-        ? value !== MAX_CARBON_FOOTPRINT
-        : true
-    ),
-  ]
-
-  // Calculate coordinates
-  // Distribute points equally on X axis
-  const getCoordinates = (index: number) => {
-    // X goes from 10% to 90%
-    const scaleMinX = 10
-    const scaleMaxX = 60
-    const x =
-      scaleMinX + (index / (allPoints.length - 1)) * (scaleMaxX - scaleMinX)
-
-    // Y goes from 20% to 80% (straight line)
-    // We ignore the value for Y to ensure straight line alignment as requested
-    const scaleMinY = 20
-    const scaleMaxY = 80
-
-    // Determine Y based on X to follow the slope
-    // But since X is linear with index, Y can also be linear with index
-    const y =
-      scaleMinY + (index / (allPoints.length - 1)) * (scaleMaxY - scaleMinY)
-
-    return { x, y }
-  }
-
-  const pointsWithCoords = allPoints.map((p, index) => ({
-    ...p,
-    ...getCoordinates(index),
-  }))
-  const firstPoint = pointsWithCoords[0]
-  const lastPoint = pointsWithCoords[pointsWithCoords.length - 1]
-
-  // Shorten the line by approx 15px to account for the arrow offset
-  // Based on current layout (10->60% X, 20->90% Y)
-  // Estimated offsets:
-  const shortenX = 1.3
-  const shortenY = 2.2
-
-  const shortenedLastPointIndex = pointsWithCoords.length - 1
-  const pathPoints = [...pointsWithCoords]
-  pathPoints[shortenedLastPointIndex] = {
-    ...lastPoint,
-    x: lastPoint.x - shortenX,
-    y: lastPoint.y - shortenY,
-  }
-
-  const pathD = pathPoints.reduce((acc, p, i) => {
-    if (i === 0) return `M ${p.x} ${p.y}`
-    return `${acc} L ${p.x} ${p.y}`
-  }, '')
-
-  useEffect(() => {
-    if (!containerRef.current) return
-
-    const calculateRotation = () => {
-      if (!containerRef.current) return
-      const { width, height } = containerRef.current.getBoundingClientRect()
-
-      // Calculate the visual angle of the line
-      // The line goes from (10% x, 20% y) to (60% x, 80% y)
-      // dx = 50% of width, dy = 60% of height
-      const dx = 0.45 * width
-      const dy = 0.6 * height
-
-      if (dx === 0) return
-
-      const angle = (Math.atan2(dy, dx) * 180) / Math.PI
-      setArrowRotation(angle)
-    }
-
-    calculateRotation()
-
-    const observer = new ResizeObserver(calculateRotation)
-    observer.observe(containerRef.current)
-
-    return () => observer.disconnect()
-  }, [])
+  const {
+    containerRef,
+    firstPoint,
+    lastPoint,
+    linePath,
+    arrowRotation,
+    pointsWithCoords,
+  } = useObjectiveChart(carbonFootprint)
 
   return (
     <div className="bg-primary-100 relative mt-8 h-96 w-full overflow-visible rounded-xl px-8 py-4">
@@ -133,7 +34,7 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
           preserveAspectRatio="none"
           viewBox="0 0 100 100">
           <motion.path
-            d={pathD}
+            d={linePath}
             fill="none"
             stroke="#d40d83"
             strokeWidth="0.8"
@@ -147,9 +48,10 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
         {/* Animated Arrow */}
         <motion.div
           className="absolute h-4 w-4"
+          // Center arrow horizontally and vertically
           style={{
-            marginLeft: '-6px', // Center arrow horizontally (12px width / 2)
-            marginTop: '-6px', // Center arrow vertically
+            marginLeft: '-6px',
+            marginTop: '-6px',
           }}
           initial={{
             left: `${firstPoint.x}%`,
@@ -184,7 +86,6 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
           </div>
         </motion.div>
 
-        {/* Points and Labels */}
         {pointsWithCoords.map((p, index) => {
           const isLastPoint = index === pointsWithCoords.length - 1
 
@@ -203,7 +104,6 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
                 top: `${p.y}%`,
                 transform: 'translate(-50%, -50%)',
               }}>
-              {/* Point Circle */}
               <div className="relative flex items-center justify-center">
                 {p.isCurrent && (
                   <motion.div
