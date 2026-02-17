@@ -1800,3 +1800,39 @@ entries:
   organisations.demanderDemo.title.lock: Demander une démo
   organisations.demanderDemo.subtitle: Book a slot to attend a demonstration of our functionality dedicated to organisations (companies, associations, schools, etc.) and allow you to distribute the Nos Gestes Climat test to your audience.
   organisations.demanderDemo.subtitle.lock: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
+  results.objective.collectiveEffort.state: The French State
+  results.objective.collectiveEffort.state.lock: L'État français
+  common.parAn: per year
+  common.parAn.lock: par an
+  common.vous: You
+  common.vous.lock: Vous
+  Vous aujourd'hui: You today
+  results.objective.reduction.over7.description: Your target rate for reaching <2>7T by 2030</2>
+  results.objective.reduction.over7.description.lock: Votre rythme indicatif pour parvenir à <2>7T en 2030</2>
+  Objectif 2050: Objective 2050
+  common.co2eAn: CO₂e / year
+  common.co2eAn.lock: CO₂e / an
+  results.objective.collectiveEffort.society: The whole company
+  results.objective.collectiveEffort.society.lock: Toute la société
+  results.objective.over7.description: Today, you are <2>above the national average </2>
+  results.objective.over7.description.lock: Aujourd’hui, vous êtes <2>au-dessus de la moyenne nationale </2>
+  results.objective.chart.trajectory: Path proposed by Nos Gestes Climat
+  results.objective.chart.trajectory.lock: Trajectoire proposée par Nos Gestes Climat
+  results.objective.collectiveEffort.title: "Important: it's also a collective effort"
+  results.objective.collectiveEffort.title.lock: "Important : c'est aussi un effort collectif"
+  results.objective.collectiveEffort.societyDescription: 'Reducing the footprint of goods and services through the combined efforts of businesses and local authorities. '
+  results.objective.collectiveEffort.societyDescription.lock: 'Diminution de l’empreinte des biens et des services par l’effort combiné des entreprises et collectivités. '
+  results.objective.title: 'National target: <1>2T</1> per person by 2050'
+  results.objective.title.lock: 'Objectif national : <1>2T</1> par personne en 2050'
+  results.objective.under4.description.title: You're already under 4 tonnes - well done!
+  results.objective.under4.description.title.lock: Vous êtes déjà sous les 4 tonnes, bravo !
+  results.objective.collectiveEffort.stateDescription: Reducing societal services (currently at 1.55T) and decarbonising infrastructures.
+  results.objective.collectiveEffort.stateDescription.lock: Réduction des services sociétaux (aujourd’hui à 1,55T) et décarbonation des infrastructures.
+  results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of 4T in 2040
+  results.objective.over4.description.lock: Bravo, aujourd’hui vous êtes déjà <2>en transition vers l’objectif intermédiaire</2> de 4T en 2040
+  results.objective.reduction.over4.description: Your indicative rate for reaching <2>4T in 2040</2>
+  results.objective.reduction.over4.description.lock: Votre rythme indicatif pour parvenir à <2>4T en 2040</2>
+  results.objective.description: France's objective to achieve carbon neutrality by 2050 and help limit global warming to +2°C.
+  results.objective.description.lock: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à +2 °C.
+  results.objective.under4.description.body: With the work of the government and society as a whole over the coming decades, your footprint should naturally fall to around 2T. So what's left for you to do? Persevere and convince others!
+  results.objective.under4.description.body.lock: Avec le travail de l’Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2T. Ce qu’il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !

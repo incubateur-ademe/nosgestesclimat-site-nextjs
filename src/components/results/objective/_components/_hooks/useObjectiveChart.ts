@@ -40,7 +40,6 @@ const getCoordinates = ({
   const scaleMaxY = 90
 
   // Determine Y based on X to follow the slope
-  // But since X is linear with index, Y can also be linear with index
   const y =
     scaleMinY + (index / (allPoints.length - 1)) * (scaleMaxY - scaleMinY)
 
@@ -77,6 +76,7 @@ const computeChartData = (carbonFootprint: number) => {
   const length = Math.sqrt(dx * dx + dy * dy)
 
   // Define how much we want to shorten the line (in % units approx)
+  // this allows the arrow to reach the outline of the last dot
   const shortenDistance = 2
 
   // Normalize vector and scale by shortenDistance
