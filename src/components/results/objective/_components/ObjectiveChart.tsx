@@ -31,6 +31,7 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
       <div
         ref={containerRef}
         className="relative mx-auto h-72 w-full max-w-10/12 md:max-w-[400px]">
+        {/* SVG line */}
         <svg
           className="absolute inset-0 h-full w-full overflow-visible"
           preserveAspectRatio="none"
