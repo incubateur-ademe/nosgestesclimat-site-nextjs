@@ -90,7 +90,10 @@ const handleUpdatePosthog = (cookieState: CookieState) => {
       break
 
     case 'refused':
-      // keep initial cookieless_mode configuration
+      // keep or go back initial cookieless_mode configuration
+      posthog.set_config({
+        cookieless_mode: 'always',
+      })
       break
 
     case 'do_not_track':
