@@ -87,7 +87,7 @@ const handleUpdatePosthog = (cookieState: CookieState) => {
       break
 
     case 'refused':
-      posthog.opt_in_capturing()
+      posthog.opt_out_capturing()
       break
 
     case 'do_not_track':
