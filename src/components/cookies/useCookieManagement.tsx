@@ -67,15 +67,14 @@ const handleUpdateGoogleTag = (cookieState: CookieState) => {
 const handlePosthogDNT = (dnt: boolean) => {
   posthog.reset()
   if (dnt) {
-    posthog.set_config({
-      cookieless_mode: undefined,
-      opt_out_capturing_by_default: true,
-    })
-    posthog.opt_out_capturing()
-  } else {
+    // We use 'on_reject' waiting status to make sure we do not capture anything.
     posthog.set_config({
       cookieless_mode: 'on_reject',
-      opt_out_capturing_by_default: false,
+    })
+  } else {
+    // We go back to the initial configuration.
+    posthog.set_config({
+      cookieless_mode: 'always',
     })
   }
 }
@@ -83,11 +82,15 @@ const handlePosthogDNT = (dnt: boolean) => {
 const handleUpdatePosthog = (cookieState: CookieState) => {
   switch (cookieState.posthog) {
     case 'accepted':
+      // We use 'on_reject' status and then opt in to enable identified tracking.
+      posthog.set_config({
+        cookieless_mode: 'on_reject',
+      })
       posthog.opt_in_capturing()
       break
 
     case 'refused':
-      posthog.opt_out_capturing()
+      // keep initial cookieless_mode configuration
       break
 
     case 'do_not_track':

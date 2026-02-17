@@ -25,7 +25,7 @@ if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     // @TODO: update this date when able to install a newer version of posthog-js
-    cookieless_mode: 'on_reject',
+    cookieless_mode: 'always',
     defaults: '2025-05-24',
     autocapture: false,
     capture_pageview: false,
