@@ -36,8 +36,8 @@ const getObjectiveData = ({
         unit,
         reductionAmount:
           (carbonFootprint - MAX_CARBON_FOOTPRINT) /
-            OVER_7_TONS_YEAR_OBJECTIVE -
-          currentYear,
+          // Prevent division by zero if we are already at the objective year
+          Math.max(1, OVER_7_TONS_YEAR_OBJECTIVE - currentYear),
         titleClassName: 'text-red-900',
       }
     case carbonFootprint > MIN_CARBON_FOOTPRINT &&
@@ -47,7 +47,8 @@ const getObjectiveData = ({
         unit,
         reductionAmount:
           (MIN_CARBON_FOOTPRINT - carbonFootprint) /
-          (UNDER_7_TONS_YEAR_OBJECTIVE - currentYear),
+          // Prevent division by zero if we are already at the objective year
+          Math.max(1, UNDER_7_TONS_YEAR_OBJECTIVE - currentYear),
         titleClassName: 'text-orange-900',
       }
     default:

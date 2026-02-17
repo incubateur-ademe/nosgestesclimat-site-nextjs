@@ -4,7 +4,7 @@ import {
   OVER_7_TONS_YEAR_OBJECTIVE,
   UNDER_7_TONS_YEAR_OBJECTIVE,
 } from '@/components/results/objective/_constants/footprints'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 interface Point {
   year: number
@@ -18,14 +18,39 @@ const POINTS: Point[] = [
   { year: 2050, value: 2000 },
 ]
 
-export const useObjectiveChart = (carbonFootprint: number) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [arrowRotation, setArrowRotation] = useState(26) // Default fallback
+const CURRENT_YEAR = new Date().getFullYear()
 
-  const currentYear = new Date().getFullYear()
+const getCoordinates = ({
+  index,
+  allPoints,
+}: {
+  index: number
+  allPoints: Point[]
+}) => {
+  // Leave space for animation on the left
+  // and the text on the right
+  const scaleMinX = 10
+  const scaleMaxX = 60
+  const x =
+    scaleMinX + (index / (allPoints.length - 1)) * (scaleMaxX - scaleMinX)
 
+  // Start high (20% from top) and end low (80% from top)
+  // to create a descending slope representing the reduction
+  const scaleMinY = 20
+  const scaleMaxY = 90
+
+  // Determine Y based on X to follow the slope
+  // But since X is linear with index, Y can also be linear with index
+  const y =
+    scaleMinY + (index / (allPoints.length - 1)) * (scaleMaxY - scaleMinY)
+
+  return { x, y }
+}
+
+const computeChartData = (carbonFootprint: number) => {
   const allPoints: Point[] = [
-    { year: currentYear, value: carbonFootprint, isCurrent: true },
+    { year: CURRENT_YEAR, value: carbonFootprint, isCurrent: true },
+    // Filter out 2030 step if the footprint is below 7T
     ...POINTS.filter(({ value }) =>
       carbonFootprint < MAX_CARBON_FOOTPRINT
         ? value !== MAX_CARBON_FOOTPRINT
@@ -33,42 +58,32 @@ export const useObjectiveChart = (carbonFootprint: number) => {
     ),
   ]
 
-  // Calculate coordinates
-  // Distribute points equally on X axis
-  const getCoordinates = (index: number) => {
-    // X goes from 10% to 60%
-    const scaleMinX = 10
-    const scaleMaxX = 60
-    const x =
-      scaleMinX + (index / (allPoints.length - 1)) * (scaleMaxX - scaleMinX)
-
-    // Y goes from 20% to 80% (straight line)
-    // We ignore the value for Y to ensure straight line alignment as requested
-    const scaleMinY = 20
-    const scaleMaxY = 80
-
-    // Determine Y based on X to follow the slope
-    // But since X is linear with index, Y can also be linear with index
-    const y =
-      scaleMinY + (index / (allPoints.length - 1)) * (scaleMaxY - scaleMinY)
-
-    return { x, y }
-  }
-
   const pointsWithCoords = allPoints.map((p, index) => ({
     ...p,
-    ...getCoordinates(index),
+    ...getCoordinates({ index, allPoints }),
   }))
+
   const firstPoint = pointsWithCoords[0]
   const lastPoint = pointsWithCoords[pointsWithCoords.length - 1]
 
-  // Shorten the line by approx 15px to account for the arrow offset
-  const shortenX = 1.3
-  const shortenY = 2.2
-
-  const shortenedLastPointIndex = pointsWithCoords.length - 1
+  const lastPointIndex = pointsWithCoords.length - 1
   const pathPoints = [...pointsWithCoords]
-  pathPoints[shortenedLastPointIndex] = {
+
+  // Calculate vector from start to end
+  const dx = lastPoint.x - firstPoint.x
+  const dy = lastPoint.y - firstPoint.y
+
+  // Calculate length of the full segment
+  const length = Math.sqrt(dx * dx + dy * dy)
+
+  // Define how much we want to shorten the line (in % units approx)
+  const shortenDistance = 2
+
+  // Normalize vector and scale by shortenDistance
+  const shortenX = (dx / length) * shortenDistance
+  const shortenY = (dy / length) * shortenDistance
+
+  pathPoints[lastPointIndex] = {
     ...lastPoint,
     x: lastPoint.x - shortenX,
     y: lastPoint.y - shortenY,
@@ -79,6 +94,23 @@ export const useObjectiveChart = (carbonFootprint: number) => {
     return `${acc} L ${p.x} ${p.y}`
   }, '')
 
+  return {
+    firstPoint,
+    lastPoint,
+    linePath,
+    pointsWithCoords,
+  }
+}
+
+export const useObjectiveChart = (carbonFootprint: number) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [arrowRotation, setArrowRotation] = useState(26)
+
+  const { firstPoint, lastPoint, linePath, pointsWithCoords } = useMemo(
+    () => computeChartData(carbonFootprint),
+    [carbonFootprint]
+  )
+
   useEffect(() => {
     if (!containerRef.current) return
 
@@ -86,15 +118,18 @@ export const useObjectiveChart = (carbonFootprint: number) => {
       if (!containerRef.current) return
       const { width, height } = containerRef.current.getBoundingClientRect()
 
-      // Calculate the visual angle of the line
-      // The line goes from (10% x, 20% y) to (60% x, 80% y)
-      // dx = 50% of width, dy = 60% of height
-      const dx = 0.45 * width
-      const dy = 0.6 * height
+      const x1 = (firstPoint.x / 100) * width
+      const y1 = (firstPoint.y / 100) * height
+      const x2 = (lastPoint.x / 100) * width
+      const y2 = (lastPoint.y / 100) * height
+
+      const dx = x2 - x1
+      const dy = y2 - y1
 
       if (dx === 0) return
 
       const angle = (Math.atan2(dy, dx) * 180) / Math.PI
+
       setArrowRotation(angle)
     }
 
@@ -104,7 +139,7 @@ export const useObjectiveChart = (carbonFootprint: number) => {
     observer.observe(containerRef.current)
 
     return () => observer.disconnect()
-  }, [])
+  }, [firstPoint, lastPoint])
 
   return {
     containerRef,

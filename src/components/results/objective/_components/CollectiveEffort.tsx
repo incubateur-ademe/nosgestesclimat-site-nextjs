@@ -20,7 +20,7 @@ export default function CollectiveEfforts({ locale }: Props) {
 
       <Card className="mb-12 flex-col gap-4 md:flex-row">
         <article>
-          <h1 className="mb-5">
+          <h3 className="mb-5">
             <Badge color="purple" className="border-none">
               <Trans
                 locale={locale}
@@ -28,7 +28,7 @@ export default function CollectiveEfforts({ locale }: Props) {
                 L'État français
               </Trans>
             </Badge>
-          </h1>
+          </h3>
           <p>
             <Trans
               locale={locale}
@@ -40,7 +40,7 @@ export default function CollectiveEfforts({ locale }: Props) {
         </article>
 
         <article>
-          <h1 className="mb-5">
+          <h3 className="mb-5">
             <Badge color="yellow" className="border-none">
               <Trans
                 locale={locale}
@@ -48,7 +48,7 @@ export default function CollectiveEfforts({ locale }: Props) {
                 Toute la société
               </Trans>
             </Badge>
-          </h1>
+          </h3>
           <p>
             <Trans
               locale={locale}

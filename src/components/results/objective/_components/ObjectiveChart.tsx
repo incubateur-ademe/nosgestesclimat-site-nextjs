@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 import { useObjectiveChart } from './_hooks/useObjectiveChart'
 
@@ -24,11 +24,13 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
     pointsWithCoords,
   } = useObjectiveChart(carbonFootprint)
 
+  const shouldReduceMotion = useReducedMotion()
+
   return (
-    <div className="bg-primary-100 relative mt-8 h-96 w-full overflow-visible rounded-xl px-8 py-4">
-      {/* Chart Area */}
-      <div ref={containerRef} className="relative mx-auto h-80 w-full max-w-lg">
-        {/* SVG Line */}
+    <div className="bg-primary-100 mt-8 h-90 w-full overflow-visible rounded-xl px-8 py-6">
+      <div
+        ref={containerRef}
+        className="relative mx-auto h-72 w-full max-w-10/12 md:max-w-[400px]">
         <svg
           className="absolute inset-0 h-full w-full overflow-visible"
           preserveAspectRatio="none"
@@ -36,27 +38,28 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
           <motion.path
             d={linePath}
             fill="none"
-            stroke="#d40d83"
+            className="stroke-secondary-700"
             strokeWidth="0.8"
-            initial={{ pathLength: 0, opacity: 0 }}
+            initial={{
+              pathLength: shouldReduceMotion ? 1 : 0,
+              opacity: shouldReduceMotion ? 1 : 0,
+            }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 1.5,
+              ease: 'easeInOut',
+            }}
           />
         </svg>
 
         {/* Animated Arrow */}
         <motion.div
           className="absolute h-4 w-4"
-          // Center arrow horizontally and vertically
-          style={{
-            marginLeft: '-6px',
-            marginTop: '-6px',
-          }}
           initial={{
-            left: `${firstPoint.x}%`,
-            top: `${firstPoint.y}%`,
-            opacity: 0,
+            left: `${shouldReduceMotion ? lastPoint.x : firstPoint.x}%`,
+            top: `${shouldReduceMotion ? lastPoint.y : firstPoint.y}%`,
+            opacity: shouldReduceMotion ? 1 : 0,
           }}
           whileInView={{
             left: `${lastPoint.x}%`,
@@ -64,10 +67,14 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
             opacity: 1,
           }}
           viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}>
+          transition={{
+            duration: shouldReduceMotion ? 0 : 1.5,
+            ease: 'easeInOut',
+          }}>
           <div
+            className="-translate-x-4.5 -translate-y-5 sm:-translate-x-5 sm:-translate-y-4 md:-translate-x-4.5"
             style={{
-              transform: `rotate(${arrowRotation}deg) translateX(-16px)`,
+              transform: `rotate(${arrowRotation}deg)`,
             }}>
             <svg
               width="24"
@@ -77,7 +84,7 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
               <path
                 d="M 2 1 L 8 6 L 2 11"
                 fill="none"
-                stroke="#d40d83"
+                className="stroke-secondary-700"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -105,7 +112,7 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
                 transform: 'translate(-50%, -50%)',
               }}>
               <div className="relative flex items-center justify-center">
-                {p.isCurrent && (
+                {p.isCurrent && !shouldReduceMotion && (
                   <motion.div
                     className="bg-secondary-700 absolute rounded-full"
                     style={{
