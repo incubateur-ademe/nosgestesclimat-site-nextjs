@@ -79,7 +79,10 @@ const handlePosthogDNT = (dnt: boolean) => {
   }
 }
 
-const handleUpdatePosthog = (cookieState: CookieState) => {
+const handleUpdatePosthog = (
+  cookieState: CookieState,
+  cookieLocalStorageState: CookieState
+) => {
   switch (cookieState.posthog) {
     case 'accepted':
       // We use 'on_reject' status and then opt in to enable identified tracking.
@@ -91,6 +94,9 @@ const handleUpdatePosthog = (cookieState: CookieState) => {
 
     case 'refused':
       // keep or go back initial cookieless_mode configuration
+      if (cookieLocalStorageState.posthog === 'accepted') {
+        posthog.reset()
+      }
       posthog.set_config({
         cookieless_mode: 'always',
       })
@@ -127,7 +133,7 @@ export function useCookieManagement(): {
   const onChange = (cookieState: CookieState) => {
     setCookieBannerDisplayState('hidden')
 
-    handleUpdatePosthog(cookieState)
+    handleUpdatePosthog(cookieState, cookieLocalStorageState)
     handleUpdateGoogleTag(cookieState)
     safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
 
