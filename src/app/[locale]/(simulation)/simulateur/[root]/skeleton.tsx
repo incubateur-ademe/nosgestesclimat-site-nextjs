@@ -2,7 +2,7 @@ import ContentLarge from '@/components/layout/ContentLarge'
 
 function SimulateurSkeleton() {
   return (
-    <div className="flex flex-1 animate-pulse flex-col px-4 pt-16 pb-4 md:pt-20">
+    <div className="flex flex-1 animate-pulse flex-col px-4 pt-16 pb-4 motion-reduce:animate-none md:pt-20">
       <ContentLarge>
         <div className="flex flex-1 flex-col gap-16 pt-8 md:flex-row">
           <div className="flex flex-1 flex-col">

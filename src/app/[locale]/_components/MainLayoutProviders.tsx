@@ -3,6 +3,7 @@
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { UserProvider } from '@/publicodes-state'
+import { MotionConfig } from 'framer-motion'
 import { Suspense, type PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from '../_components/mainLayoutProviders/IframeOptionsContext'
 import MainHooks from '../_components/mainLayoutProviders/MainHooks'
@@ -17,10 +18,12 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
           <PartnerProvider>
             <IframeOptionsProvider>
               <PreventNavigationProvider>
-                <Suspense>
-                  <MainHooks />
-                </Suspense>
-                {children}
+                <MotionConfig reducedMotion="user">
+                  <Suspense>
+                    <MainHooks />
+                  </Suspense>
+                  {children}
+                </MotionConfig>
               </PreventNavigationProvider>
             </IframeOptionsProvider>
           </PartnerProvider>

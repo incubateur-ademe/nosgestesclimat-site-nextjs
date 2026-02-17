@@ -28,14 +28,17 @@ export default function Loader({
   ariaLabel = 'Chargement en cours',
 }: Props) {
   return (
-    <span
-      role="status"
-      aria-label={ariaLabel}
-      aria-live="polite"
-      className={twMerge(
-        `inline-block animate-spin rounded-[50%] border-solid ${sizesClassNames[size]} ${colorsClassNames[color]}`,
-        className
-      )}
-    />
+    <>
+      <span
+        role="status"
+        aria-label={ariaLabel}
+        aria-live="polite"
+        className={twMerge(
+          `inline-block animate-spin rounded-[50%] border-solid ${sizesClassNames[size]} ${colorsClassNames[color]} motion-reduce:hidden motion-reduce:animate-none`,
+          className
+        )}
+      />
+      <span className="hidden motion-reduce:block">{ariaLabel}</span>
+    </>
   )
 }
