@@ -1,29 +1,7 @@
-import { ORGANISATION_URL } from '@/constants/urls/main'
-import type { Organisation, OrganisationPoll } from '@/types/organisations'
+import { fetchPoll } from '@/helpers/server/model/organisations'
+import type { Organisation } from '@/types/organisations'
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { useParams } from 'next/navigation'
-
-export function fetchPoll({
-  organisationId,
-  pollId,
-}: {
-  organisationId: string
-  pollId: string
-}) {
-  if (!organisationId || !pollId) {
-    throw new Error('Missing organisationId or pollId')
-  }
-
-  return axios
-    .get<OrganisationPoll>(
-      `${ORGANISATION_URL}/${organisationId}/polls/${pollId}`,
-      {
-        withCredentials: true,
-      }
-    )
-    .then((res) => res.data)
-}
 
 export const useFetchPoll = (organisation?: Organisation) => {
   const { pollSlug: pollIdOrSlug } = useParams()

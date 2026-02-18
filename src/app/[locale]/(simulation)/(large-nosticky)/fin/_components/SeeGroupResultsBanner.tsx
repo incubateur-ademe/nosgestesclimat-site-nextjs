@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { fetchGroup } from '@/hooks/groups/useFetchGroup'
-import { fetchPoll } from '@/hooks/organisations/polls/useFetchPoll'
+import { fetchGroup } from '@/helpers/server/model/groups'
+import { fetchPoll } from '@/helpers/server/model/organisations'
 import type { Locale } from '@/i18nConfig'
 
 interface Props {
@@ -24,13 +24,17 @@ const fetchGroupName = async ({
   pollId?: string
   organisationId?: string
 }) => {
-  if (groupId) {
-    const group = await fetchGroup({ userId, groupId })
-    return group.name
-  }
-  if (pollId && organisationId) {
-    const poll = await fetchPoll({ organisationId, pollId })
-    return poll.name
+  try {
+    if (groupId) {
+      const group = await fetchGroup({ userId, groupId })
+      return group.name
+    }
+    if (pollId && organisationId) {
+      const poll = await fetchPoll({ organisationId, pollId })
+      return poll.name
+    }
+  } catch {
+    return null
   }
 }
 
@@ -53,6 +57,8 @@ export default async function SeeGroupResultsBanner({
       pollId,
       organisationId,
     }))
+
+  if (!name) return null
 
   return (
     <div className="bg-secondary-50 flex w-full flex-col items-center gap-4 rounded-lg px-4 py-6">
