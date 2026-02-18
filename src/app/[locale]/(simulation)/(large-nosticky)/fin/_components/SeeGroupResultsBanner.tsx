@@ -40,7 +40,7 @@ export default async function SeeGroupResultsBanner({
   groupId,
   pollId,
   organisationId,
-  // @TODO : remove this when the component is implemented
+  // @TODO : prop only for Storybook usage, remove this when the component is implemented
   name: nameFromProps,
 }: Props) {
   if (!groupId && !pollId && !organisationId && !nameFromProps) return null
