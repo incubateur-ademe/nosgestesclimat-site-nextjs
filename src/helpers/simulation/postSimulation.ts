@@ -1,6 +1,7 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
 import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
+import type { Simulation as NewSimulation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
 import { mapNewSimulationToOld } from './mapNewSimulation'
 
@@ -9,18 +10,31 @@ interface Props {
   sendEmail?: boolean
   userId: string
   locale: Locale
+  code?: string
+  email?: string
 }
 
 export async function postSimulation({
   simulation,
   userId,
   sendEmail = false,
+  email,
   locale,
+  code,
 }: Props) {
   const url = new URL(`${SIMULATION_URL}/${userId}`)
 
   url.searchParams.set('sendEmail', sendEmail.toString())
   url.searchParams.set('locale', locale)
+
+  if ((code && !email) || (!code && email)) {
+    throw new Error('Code and email must be both provided or both absent')
+  }
+
+  if (code && email) {
+    url.searchParams.set('code', code)
+    url.searchParams.set('email', email)
+  }
 
   const response = await fetch(url.toString(), {
     method: 'POST',
@@ -35,10 +49,10 @@ export async function postSimulation({
     throw new Error(`HTTP error! status: ${response.status}`)
   }
 
-  let simulationSaved
+  let simulationSaved: NewSimulation
 
   try {
-    simulationSaved = await response.json()
+    simulationSaved = (await response.json()) as NewSimulation
   } catch (error) {
     captureException(error)
     throw error

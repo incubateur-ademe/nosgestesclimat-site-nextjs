@@ -101,11 +101,11 @@ export default function VerificationCodeInput({
           role="status"
           aria-live="polite">
           <CheckCircleIcon
-            className="h-4 w-4 fill-green-700"
+            className="h-4 w-4 fill-green-700 dark:fill-green-100"
             aria-hidden="true"
           />
 
-          <span className="text-green-700">
+          <span className="text-green-700 dark:text-green-100">
             <Trans>Votre code est valide !</Trans>
           </span>
         </div>

@@ -12,7 +12,7 @@ export interface PendingVerification {
 export function usePendingVerification({
   onComplete,
 }: {
-  onComplete?: (user: { email: string; userId: string }) => void
+  onComplete?: (user: { email: string; userId: string }) => void | Promise<void>
 }) {
   const user = useUser()
 
@@ -39,7 +39,7 @@ export function usePendingVerification({
         })
 
         user.updatePendingVerification(undefined)
-        onComplete?.({ email: pendingVerification.email, userId })
+        await onComplete?.({ email: pendingVerification.email, userId })
       } catch (error) {
         captureException(error)
       }

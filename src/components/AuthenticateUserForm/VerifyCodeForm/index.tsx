@@ -12,12 +12,13 @@ import VerificationContent from './VerificationContent'
 interface Props<T extends object> {
   email: string
   onRegisterNewVerification: (newVerification: PendingVerification) => void
-  onVerificationCompleted: (serverUserId: string) => void
+  onVerificationCompleted: (serverUserId: string) => void | Promise<void>
   mutationPayload?: T
   verificationMutation: UseMutationResult<
     { userId: string },
     Error,
-    Partial<{ email: string; code: string }> & T
+    { email: string; code: string } & T,
+    unknown
   >
   onCompleteError?: string
 }
@@ -29,7 +30,9 @@ enum ERROR_MESSAGES {
 
 const getErrorMessage = ({ error, t }: { error: Error; t: TFunction }) => {
   const errorMessage =
-    error instanceof AxiosError ? error.response?.data.message : error.message
+    error instanceof AxiosError
+      ? (error.response?.data as { message?: string })?.message
+      : error.message
 
   if (errorMessage === ERROR_MESSAGES.ACCOUNT_ALREADY_EXISTS) {
     return t('Un compte avec cette adresse e-mail existe déjà')
@@ -47,7 +50,6 @@ export default function VerificationForm<T extends object>({
   onRegisterNewVerification,
   mutationPayload: mutateProps,
   verificationMutation,
-  onCompleteError,
 }: Props<T>) {
   const { timeLeft, setTimeLeft } = useTimeLeft(NUM_SECONDS)
 
@@ -77,12 +79,12 @@ export default function VerificationForm<T extends object>({
       const payload = {
         email,
         code,
-        ...mutateProps,
-      } as { email: string; code: string } & T
+        ...((mutateProps ?? {}) as T),
+      }
 
       const { userId } = await mutateAsync(payload)
 
-      onVerificationCompleted?.(userId)
+      await onVerificationCompleted?.(userId)
     },
     [
       isValidationDisabled,
@@ -96,11 +98,7 @@ export default function VerificationForm<T extends object>({
     <div>
       <VerificationContent
         email={email}
-        inputError={
-          (error && getErrorMessage({ error, t })) ??
-          onCompleteError ??
-          undefined
-        }
+        inputError={(error && getErrorMessage({ error, t })) ?? undefined}
         isSuccessValidate={isSuccess}
         isPendingValidate={isPending}
         handleValidateVerificationCode={handleValidateVerificationCode}
@@ -110,7 +108,9 @@ export default function VerificationForm<T extends object>({
         <NotReceived
           isRetryButtonDisabled={isRetryButtonDisabled}
           isErrorResend={!!error}
-          onResendVerificationCode={() => createVerificationCode(email)}
+          onResendVerificationCode={() => {
+            void createVerificationCode(email)
+          }}
           timeLeft={timeLeft}
         />
       )}

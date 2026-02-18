@@ -8,7 +8,7 @@ import ResendButton from './ResendButton'
 interface Props {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
-  onResendVerificationCode: () => void
+  onResendVerificationCode: () => void | Promise<void>
   timeLeft: number
 }
 
@@ -54,6 +54,7 @@ export default function NotReceived({
           <div>
             <Button
               size="sm"
+              className="dark:text-primary-900 dark:bg-primary-50 dark:hover:bg-primary-100 dark:hover:text-primary-900"
               onClick={() => {
                 window.location.reload()
               }}>

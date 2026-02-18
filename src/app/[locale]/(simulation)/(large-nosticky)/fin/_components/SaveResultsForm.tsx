@@ -10,50 +10,40 @@ import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 
 import { postSimulation } from '@/helpers/simulation/postSimulation'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import type { Locale } from '@/i18nConfig'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import type { VerifiedUser } from '@/types/organisations'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { captureException } from '@sentry/nextjs'
+import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 
 export default function SaveResultsForm() {
-  const [onCompleteError, setOnCompleteError] = useState<string | undefined>(
-    undefined
-  )
-
-  const { t } = useClientTranslation()
-
   const currentSimulation = useCurrentSimulation()
   const locale = useLocale()
 
   const router = useRouter()
 
-  const onSubmit = async ({ userId }: { userId: string }) => {
-    trackEvent(saveResultsAndSigninSignUpComplete)
-    trackPosthogEvent(captureSaveResultsAndSigninSignUpComplete)
+  const { user } = useUser()
 
-    try {
+  const saveSimulationMutation = useMutation({
+    mutationFn: async ({ code, email }: { code: string; email: string }) => {
+      trackEvent(saveResultsAndSigninSignUpComplete)
+      trackPosthogEvent(captureSaveResultsAndSigninSignUpComplete)
+
       await postSimulation({
         simulation: currentSimulation,
         sendEmail: true,
-        userId,
+        userId: user?.userId ?? '',
         locale: locale as Locale,
+        code,
+        email,
       })
 
-      router.push(`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`)
-    } catch (error) {
-      captureException(error)
-      setOnCompleteError(
-        t(
-          'fin.getResultsOnUserProfile.error',
-          'Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.'
-        )
-      )
-    }
-  }
+      return { userId: user?.userId ?? '', email } as VerifiedUser
+    },
+  })
+
   return (
     <div className="dark">
       <AuthenticateUserForm
@@ -71,8 +61,12 @@ export default function SaveResultsForm() {
             </Trans>
           </span>
         }
-        onComplete={onSubmit}
-        onCompleteError={onCompleteError}
+        onComplete={() => {
+          router.push(
+            `${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`
+          )
+        }}
+        verificationMutation={saveSimulationMutation}
       />
     </div>
   )
