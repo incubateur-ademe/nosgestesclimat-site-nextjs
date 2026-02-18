@@ -11,9 +11,16 @@ export function fetchPoll({
   organisationId: string
   pollId: string
 }) {
+  if (!organisationId || !pollId) {
+    throw new Error('Missing organisationId or pollId')
+  }
+
   return axios
     .get<OrganisationPoll>(
-      `${ORGANISATION_URL}/${organisationId}/polls/${pollId}`
+      `${ORGANISATION_URL}/${organisationId}/polls/${pollId}`,
+      {
+        withCredentials: true,
+      }
     )
     .then((res) => res.data)
 }
@@ -24,14 +31,10 @@ export const useFetchPoll = (organisation?: Organisation) => {
   return useQuery({
     queryKey: ['organisations', organisation?.slug, 'polls', pollIdOrSlug],
     queryFn: () =>
-      axios
-        .get<OrganisationPoll>(
-          `${ORGANISATION_URL}/${organisation?.slug}/polls/${pollIdOrSlug}`,
-          {
-            withCredentials: true,
-          }
-        )
-        .then((res) => res.data),
+      fetchPoll({
+        organisationId: organisation?.id ?? '',
+        pollId: (pollIdOrSlug as string | undefined) ?? '',
+      }),
     enabled: !!pollIdOrSlug && !!organisation,
   })
 }
