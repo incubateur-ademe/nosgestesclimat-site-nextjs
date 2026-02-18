@@ -1,32 +1,46 @@
 'use client'
 
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
-import posthog from 'posthog-js'
 import type { PropsWithChildren } from 'react'
 import { createContext, useContext, useState } from 'react'
+import { PostHog, type PostHogCookieState } from './Posthog'
 
 export const COOKIE_STATE_KEY = 'cookie-management-state'
 
 export interface CookieState {
-  posthog: 'accepted' | 'refused' | 'do_not_track'
+  posthog: PostHogCookieState
   googleTag: 'accepted' | 'refused'
 }
 
 type CookieBannerDisplayState = 'hidden' | 'banner' | 'form'
-
-interface CookieConsentContextType {
-  cookieBannerDisplayState: CookieBannerDisplayState
-  setCookieBannerDisplayState: (state: CookieBannerDisplayState) => void
-}
 
 const DEFAULT_COOKIE_STATE: CookieState = {
   posthog: 'refused',
   googleTag: 'refused',
 }
 
-const CookieConsentContext = createContext<CookieConsentContextType>({
+function getLocalStorageState(): CookieState {
+  try {
+    const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
+    return json ? (JSON.parse(json) as CookieState) : DEFAULT_COOKIE_STATE
+  } catch {
+    return DEFAULT_COOKIE_STATE
+  }
+}
+
+const LOCAL_STORAGE_STATE = getLocalStorageState()
+
+const posthog = new PostHog(LOCAL_STORAGE_STATE.posthog)
+const CookieConsentContext = createContext<{
+  cookieBannerDisplayState: CookieBannerDisplayState
+  setCookieBannerDisplayState: (state: CookieBannerDisplayState) => void
+  cookieState: CookieState
+  setCookieState: (state: CookieState) => void
+}>({
   cookieBannerDisplayState: 'hidden',
   setCookieBannerDisplayState: () => {},
+  cookieState: DEFAULT_COOKIE_STATE,
+  setCookieState: () => {},
 })
 
 export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
@@ -34,19 +48,23 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
     useState<CookieBannerDisplayState>(
       !safeLocalStorage.getItem(COOKIE_STATE_KEY) ? 'banner' : 'hidden'
     )
+  const [cookieState, setCookieState] =
+    useState<CookieState>(LOCAL_STORAGE_STATE)
 
   return (
     <CookieConsentContext
       value={{
         cookieBannerDisplayState,
         setCookieBannerDisplayState,
+        cookieState,
+        setCookieState,
       }}>
       {children}
     </CookieConsentContext>
   )
 }
-const handleUpdateGoogleTag = (cookieState: CookieState) => {
-  switch (cookieState.googleTag) {
+const handleUpdateGoogleTag = (cookieState: CookieState['googleTag']) => {
+  switch (cookieState) {
     case 'accepted':
       window.gtag?.('consent', 'update', {
         ad_storage: 'granted',
@@ -64,41 +82,6 @@ const handleUpdateGoogleTag = (cookieState: CookieState) => {
   }
 }
 
-const handleUpdatePosthog = (cookieState: CookieState) => {
-  switch (cookieState.posthog) {
-    case 'accepted':
-      posthog.set_config({
-        disable_persistence: false,
-        disable_session_recording: false,
-        opt_out_capturing_by_default: false,
-      })
-      posthog.opt_in_capturing()
-      break
-
-    case 'refused':
-      posthog.set_config({
-        disable_persistence: false,
-        disable_session_recording: true,
-        opt_out_capturing_by_default: false,
-      })
-      // If previously accepted, we need to reset to clear the opt-out
-      posthog.reset()
-      // If user was previously opted-out, we need to opt-in
-      posthog.opt_in_capturing()
-      break
-
-    case 'do_not_track':
-      posthog.set_config({
-        disable_persistence: true,
-        disable_session_recording: true,
-        opt_out_capturing_by_default: true,
-      })
-      posthog.reset()
-      posthog.opt_out_capturing()
-      break
-  }
-}
-
 export function useCookieManagement(): {
   cookieState: CookieState
   onChange: (state: CookieState) => void
@@ -107,32 +90,23 @@ export function useCookieManagement(): {
   rejectAll: () => void
   acceptAll: () => void
 } {
-  const { cookieBannerDisplayState, setCookieBannerDisplayState } =
-    useContext(CookieConsentContext)
-
-  const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
-
-  let cookieLocalStorageState: CookieState
-  try {
-    cookieLocalStorageState = json
-      ? (JSON.parse(json) as CookieState)
-      : DEFAULT_COOKIE_STATE
-  } catch {
-    cookieLocalStorageState = DEFAULT_COOKIE_STATE
-  }
+  const {
+    cookieBannerDisplayState,
+    setCookieBannerDisplayState,
+    setCookieState,
+    cookieState,
+  } = useContext(CookieConsentContext)
 
   const onChange = (cookieState: CookieState) => {
     setCookieBannerDisplayState('hidden')
-
-    handleUpdatePosthog(cookieState)
-
-    handleUpdateGoogleTag(cookieState)
-
+    setCookieState(cookieState)
+    posthog.update(cookieState.posthog)
+    handleUpdateGoogleTag(cookieState.googleTag)
     safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
   }
 
   return {
-    cookieState: cookieLocalStorageState,
+    cookieState,
     cookieBannerDisplayState,
     setCookieBannerDisplayState,
     onChange,
