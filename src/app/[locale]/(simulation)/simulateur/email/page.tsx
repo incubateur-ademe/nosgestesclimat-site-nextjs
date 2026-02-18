@@ -6,11 +6,11 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { useTranslation } from 'react-i18next'
 
 export default function Email() {
-  const { t } = useTranslation()
+  const { t } = useClientTranslation()
   const { polls } = useCurrentSimulation()
   const pollSlug = polls?.[0]
   const { linkToEndPage } = useEndPage()

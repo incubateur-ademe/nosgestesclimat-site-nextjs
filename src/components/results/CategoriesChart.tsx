@@ -12,7 +12,7 @@ interface Props {
 export default function CategoriesChart({ className }: Props) {
   const { sortedCategories } = useSortedCategoriesByFootprint()
   const { numericValue: firstCategoryValue } = useRule(
-    sortedCategories[0] ?? 'transport'
+    sortedCategories[0] ?? 'logement'
   )
 
   return (

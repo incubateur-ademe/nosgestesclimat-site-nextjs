@@ -1,2 +1,2 @@
 export const TUTORIEL_PAGE = 'tutoriel'
-export const EMAIL_PAGE = '/infos/email'
+export const EMAIL_PAGE = '/simulateur/email'

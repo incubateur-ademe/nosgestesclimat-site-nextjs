@@ -51,6 +51,7 @@ export function generateSimulation({
   try {
     simulation = migrateSimulation(simulation, migrationInstructions)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn('Error trying to migrate Simulation:', error)
     captureException(error)
   }

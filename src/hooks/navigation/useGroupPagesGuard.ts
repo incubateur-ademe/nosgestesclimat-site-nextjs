@@ -1,4 +1,3 @@
-import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import {
   getLinkToGroupDashboard,
   getLinkToGroupInvitation,
@@ -30,11 +29,6 @@ export function useGroupPagesGuard(
   )
 
   useEffect(() => {
-    // If there is no groupId in the query params, we redirect to the classement page
-    if (!groupIdInQueryParams) {
-      router.replace(MON_ESPACE_GROUPS_PATH)
-      return
-    }
     // we only run the guard when the group is fetched (or failed fetching)
     if (!group) return
 
@@ -53,10 +47,10 @@ export function useGroupPagesGuard(
 
   return {
     isGuardRedirecting:
-      isServerSide() ||
-      !group ||
-      (isDashboard && !isParticipant) ||
-      (!isDashboard && isParticipant) ||
-      !groupIdInQueryParams,
+      !!group &&
+      (isServerSide() ||
+        (isDashboard && !isParticipant) ||
+        (!isDashboard && isParticipant) ||
+        !groupIdInQueryParams),
   }
 }

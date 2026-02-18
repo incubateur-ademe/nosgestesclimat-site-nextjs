@@ -8,11 +8,13 @@ export default function usePersistentTutorials() {
   let localTutorials: Tutorials = {}
   if (typeof window !== 'undefined') {
     const currentStorage = safeLocalStorage.getItem(STORAGE_KEY)
-    const parsedStorage = JSON.parse(currentStorage || '{}')
+    try {
+      const parsedStorage = JSON.parse(currentStorage || '{}')
 
-    if (parsedStorage.tutorials) {
-      localTutorials = parsedStorage.tutorials
-    }
+      if (parsedStorage.tutorials) {
+        localTutorials = parsedStorage.tutorials
+      }
+    } catch {}
   }
 
   const [tutorials, setTutorials] = useState<Tutorials>(localTutorials)

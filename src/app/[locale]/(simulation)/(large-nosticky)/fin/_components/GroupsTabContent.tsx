@@ -5,6 +5,7 @@ import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Groups from '@/components/results/groups/Groups'
 import Organisation from '@/components/results/groups/Organisation'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   captureGroupsLoginComplete,
   groupsLoginComplete,
@@ -17,13 +18,11 @@ import type { Group } from '@/types/groups'
 import type { Organisation as OrganisationT } from '@/types/organisations'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useQuery } from '@tanstack/react-query'
-import { Trans } from 'react-i18next'
 import FinPageSkeleton from '../skeleton'
 
 export default function GroupsTabContent({ user }: { user?: UserServer }) {
   const clientUserId = useUser()?.user.userId
   const userId = user?.id ?? clientUserId
-  console.log({ userId })
   // Fetch groups if authenticated
   const {
     data: groupsData,

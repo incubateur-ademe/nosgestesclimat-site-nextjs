@@ -18,6 +18,7 @@ export default function RejoindreGroupePage() {
   const { t } = useClientTranslation()
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
+
   const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
 
   // If we are still fetching the group (or we are redirecting the user), we display a loader

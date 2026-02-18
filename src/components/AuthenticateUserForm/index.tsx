@@ -84,9 +84,8 @@ export default function AuthenticateUserForm({
 
       if (redirectURL) {
         router.push(redirectURL)
-      } else {
-        router.refresh()
       }
+      router.refresh()
     },
     [redirectURL, onComplete, router, trackers]
   )
