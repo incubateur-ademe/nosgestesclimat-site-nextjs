@@ -4,6 +4,20 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 
+export function fetchPoll({
+  organisationId,
+  pollId,
+}: {
+  organisationId: string
+  pollId: string
+}) {
+  return axios
+    .get<OrganisationPoll>(
+      `${ORGANISATION_URL}/${organisationId}/polls/${pollId}`
+    )
+    .then((res) => res.data)
+}
+
 export const useFetchPoll = (organisation?: Organisation) => {
   const { pollSlug: pollIdOrSlug } = useParams()
 
