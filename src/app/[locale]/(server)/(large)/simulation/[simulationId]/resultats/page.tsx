@@ -1,4 +1,4 @@
-import SimulationResultContent from '@/components/results/SimulationResults'
+import SimulationResults from '@/components/results/SimulationResults'
 import { getUser } from '@/helpers/server/model/user'
 import type { Locale } from '@/i18nConfig'
 
@@ -10,7 +10,7 @@ export default async function SimulationPage({
   const user = await getUser()
 
   return (
-    <SimulationResultContent
+    <SimulationResults
       simulationId={simulationId}
       locale={locale as Locale}
       userId={user?.id || ''}

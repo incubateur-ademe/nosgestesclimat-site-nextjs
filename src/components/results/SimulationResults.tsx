@@ -11,7 +11,7 @@ interface Props {
   userId: string
 }
 
-export default async function SimulationResultContent({
+export default async function SimulationResults({
   simulationId,
   locale,
   userId,
