@@ -17,7 +17,7 @@ interface Props<T extends object> {
   verificationMutation: UseMutationResult<
     { userId: string },
     Error,
-    { email: string; code: string } & T,
+    { email?: string; code?: string } & T,
     unknown
   >
   onCompleteError?: string
