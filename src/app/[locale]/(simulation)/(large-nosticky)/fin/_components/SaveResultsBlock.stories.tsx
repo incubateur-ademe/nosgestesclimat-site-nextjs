@@ -37,15 +37,13 @@ type Story = StoryObj<typeof SaveResultsBlock>
 export const Unauthenticated: Story = {
   args: {
     locale: 'fr',
-    user: null,
-    t: ((string: string, string2: string) => string2) as any,
+    isAuthentified: false,
   },
 }
 
 export const Authenticated: Story = {
   args: {
     locale: 'fr',
-    user: { id: '123', email: 'test@test.com' },
-    t: ((string: string, string2: string) => string2) as any,
+    isAuthentified: true,
   },
 }

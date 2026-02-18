@@ -28,40 +28,37 @@ export default function Form({
 
   return (
     <form className={className} {...props}>
-      <div className="flex items-start gap-4">
-        {children}
-
-        {!isVerticalLayout && (
-          <Button
-            className="mt-8 hidden h-14 md:block"
-            type="submit"
-            data-testid="button-submit-horizontal"
-            color={buttonColor}>
-            {buttonLabel ?? <Trans>Enregistrer</Trans>}
-          </Button>
-        )}
-      </div>
-
-      {error && (
-        <p
-          id={errorId}
-          className="my-4 text-sm text-red-500"
-          role="alert"
-          aria-live="assertive">
-          {error}
-        </p>
-      )}
-
-      <Button
+      <div
         className={twMerge(
-          'mt-8',
-          isVerticalLayout ? 'block' : 'block md:hidden'
-        )}
-        type="submit"
-        data-testid="button-submit"
-        color={buttonColor}>
-        {buttonLabel ?? <Trans>Enregistrer</Trans>}
-      </Button>
+          'flex w-full flex-col items-start gap-4 lg:flex-row',
+          isVerticalLayout && 'md:flex-col lg:flex-col'
+        )}>
+        <div
+          className={twMerge(
+            'flex w-full flex-col',
+            !isVerticalLayout && 'md:w-auto'
+          )}>
+          {children}
+
+          {error && (
+            <p
+              id={errorId}
+              className="my-4 text-sm text-red-500"
+              role="alert"
+              aria-live="assertive">
+              {error}
+            </p>
+          )}
+        </div>
+
+        <Button
+          className={twMerge(!isVerticalLayout && 'lg:mt-8 lg:h-14')}
+          type="submit"
+          data-testid="button-submit"
+          color={buttonColor}>
+          {buttonLabel ?? <Trans>Enregistrer</Trans>}
+        </Button>
+      </div>
     </form>
   )
 }

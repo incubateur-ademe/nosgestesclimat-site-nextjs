@@ -77,7 +77,7 @@ export default function SendVerificationCodeForm({
       isVerticalLayout={isVerticalLayout}>
       <EmailInput
         data-testid="verification-code-email-input"
-        containerClassName={isVerticalLayout ? 'w-full' : 'w-96'}
+        containerClassName={isVerticalLayout ? 'w-full' : 'max-w-full w-96'}
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
         {...register('email', {
           required: required

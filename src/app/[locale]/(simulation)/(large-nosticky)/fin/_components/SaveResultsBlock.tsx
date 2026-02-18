@@ -6,25 +6,25 @@ import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { type UserServer } from '@/helpers/server/model/user'
-import type { TFunction } from 'i18next'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import SaveResultsForm from './SaveResultsForm'
 interface Props {
   locale: Locale
-  user?: UserServer | null
-  t: TFunction
+  isAuthentified: boolean
 }
 
-export default function SaveResultsBlock({ locale, user, t }: Props) {
-  const isAuthentified = !!user
-
+export default async function SaveResultsBlock({
+  locale,
+  isAuthentified,
+}: Props) {
+  const { t } = await getServerTranslation({ locale })
   return (
     <section
       className="bg-primary-700 rounded-2xl p-8"
       aria-labelledby="save-results-block-title">
-      <div className="flex flex-col items-stretch gap-8 md:flex-row md:items-center">
-        <div className="flex-1">
+      <div className="flex flex-col flex-wrap items-stretch gap-8 md:flex-row md:items-center lg:flex-nowrap">
+        <div className="max-w-full flex-1">
           <h3
             id="save-results-block-title"
             className="text-2xl font-bold text-white">
@@ -43,7 +43,7 @@ export default function SaveResultsBlock({ locale, user, t }: Props) {
             )}
           </h3>
 
-          <ul role="list" className="mb-6 flex flex-col gap-2">
+          <ul role="list" className="mb-6 flex max-w-full flex-col gap-2">
             <li className="flex gap-2 text-white">
               <CheckIcon className="inline-block fill-white" />
 
@@ -85,7 +85,7 @@ export default function SaveResultsBlock({ locale, user, t }: Props) {
             <SaveResultsForm />
           )}
         </div>
-        <div>
+        <div className="max-w-full">
           {isAuthentified ? (
             <div className="flex w-full justify-center">
               <Image
