@@ -3,11 +3,7 @@
 import Button from '@/design-system/buttons/Button'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
-import {
-  getLandingDidYouKnowSlider,
-  getLandingDidYouKnowSliderPosthog,
-  getLandingDidYouKnowSliderValue,
-} from '@/helpers/tracking/landings'
+import { getLandingDidYouKnowSliderPosthog } from '@/helpers/tracking/landings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 // @ts-expect-error package types are wrongly exported
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
@@ -248,29 +244,17 @@ export default function DidYouKnowSlider({
           <ClientCTAButtons
             isAuthenticated={isAuthenticated}
             trackingEvents={{
-              start: getLandingDidYouKnowSlider(
-                pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1)
-              ),
-              resume: getLandingDidYouKnowSlider(
-                pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1)
-              ),
-              results: getLandingDidYouKnowSlider(
-                pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1)
-              ),
               startPosthog: getLandingDidYouKnowSliderPosthog(
                 pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1)
+                `Passer le test écran ${currentSlide + 1}`
               ),
               resumePosthog: getLandingDidYouKnowSliderPosthog(
                 pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1)
+                `Passer le test écran ${currentSlide + 1}`
               ),
               resultsPosthog: getLandingDidYouKnowSliderPosthog(
                 pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1)
+                `Passer le test écran ${currentSlide + 1}`
               ),
             }}
             withRestart={false}

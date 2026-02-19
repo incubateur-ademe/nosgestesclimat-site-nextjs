@@ -70,7 +70,6 @@ export default function PostalCode() {
         linkToPrev={getLinkToPrevInfosPage({ curPage: POSTAL_CODE_PAGE })}
         submitDisabled={!getLinkToNextInfosPage({ curPage: POSTAL_CODE_PAGE })}
         handleSubmit={handleSubmit}
-        currentPage={POSTAL_CODE_PAGE}
       />
     </form>
   )

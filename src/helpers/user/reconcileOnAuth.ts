@@ -1,5 +1,5 @@
 import { TEST_INTRO_TUTO_KEY } from '@/app/[locale]/(simulation)/(large)/tutoriel/_components/ButtonStart'
-import type { CookieState } from '@/components/cookies/useCookieManagement'
+import type { CookieState } from '@/components/cookies/cookieLocalStorage'
 import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import type { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'

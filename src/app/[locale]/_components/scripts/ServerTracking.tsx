@@ -13,7 +13,6 @@ export default function ServerTracking() {
               // Wait for DOM to be ready
               const initTracking = () => {
                 document.addEventListener('click', (e) => {
-                  const target = e.target.closest('[data-track-event]');
                   const posthogTarget = e.target.closest('[data-track-posthog]');
 
                   // Execute tracking asynchronously if attributes are present

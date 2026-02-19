@@ -1,7 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
 import {
   captureClickLatestResultsViewDetail,
-  clickLatestResultsViewDetail,
 } from '@/constants/tracking/user-account'
 import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
 import {
@@ -32,7 +31,6 @@ export default function SeeDetailLink({
         ':simulationId',
         simulationId
       )}
-      data-track-event={clickLatestResultsViewDetail}
       data-track-posthog={captureClickLatestResultsViewDetail}>
       <span aria-hidden className="text-2xl leading-none">
         →

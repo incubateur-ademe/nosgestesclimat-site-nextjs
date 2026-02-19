@@ -12,12 +12,10 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
 import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
 import { useRef, useState } from 'react'
@@ -130,9 +128,6 @@ export default function Question({
                 setValue={(value: string | undefined) => {
                   {
                     setValue(value, { questionDottedName: question })
-                    trackEvent(
-                      questionChooseAnswer({ question, answer: value })
-                    )
                   }
                 }}
                 data-testid={question}
@@ -151,9 +146,6 @@ export default function Question({
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })
-                    trackEvent(
-                      questionChooseAnswer({ question, answer: value })
-                    )
                   }
                 }}
                 data-testid={question}

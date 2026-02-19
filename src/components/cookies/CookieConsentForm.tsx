@@ -2,11 +2,8 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  cookieClickAcceptAll,
   cookieClickAcceptAllPosthog,
-  cookieClickRejectAll,
   cookieClickRejectAllPosthog,
-  cookieClickSave,
   cookieClickSavePosthog,
 } from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
@@ -14,11 +11,12 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { CookieConsentKey } from '@/types/cookies'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
-import { useCookieManagement, type CookieState } from './useCookieManagement'
+import type { CookieState } from './cookieLocalStorage'
+import { useCookieManagement } from './useCookieManagement'
 
 export default function CookieConsentForm({
   onCancel,
@@ -64,7 +62,6 @@ export default function CookieConsentForm({
         </div>
         <form
           onSubmit={(e) => {
-            trackEvent(cookieClickSave)
             trackPosthogEvent(cookieClickSavePosthog)
             void handleSubmit(confirmChoices)(e)
           }}
@@ -93,7 +90,6 @@ export default function CookieConsentForm({
                     type="button"
                     color="secondary"
                     onClick={() => {
-                      trackEvent(cookieClickRejectAll)
                       trackPosthogEvent(cookieClickRejectAllPosthog)
                       rejectAll()
                     }}
@@ -109,7 +105,6 @@ export default function CookieConsentForm({
                     type="button"
                     color="primary"
                     onClick={() => {
-                      trackEvent(cookieClickAcceptAll)
                       trackPosthogEvent(cookieClickAcceptAllPosthog)
                       acceptAll()
                     }}

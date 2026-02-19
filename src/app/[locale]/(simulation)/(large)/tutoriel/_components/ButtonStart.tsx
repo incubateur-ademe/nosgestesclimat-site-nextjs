@@ -1,16 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import { POLL_START_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export const TEST_INTRO_TUTO_KEY = 'testIntro'
 
@@ -37,8 +35,6 @@ export default function ButtonStart({
   }, [hideTutorial, tutorials])
 
   const { data: poll, isLoading } = useFetchPublicPoll()
-
-  const [startTime] = useState(() => Date.now())
 
   // If user has already participated to the poll and the simulation is finished
   if (poll?.simulations.hasParticipated && progression === 1) {
@@ -80,10 +76,6 @@ export default function ButtonStart({
         if (poll && !polls?.includes(poll.slug)) {
           updateCurrentSimulation({ pollToAdd: poll.slug })
         }
-
-        const endTime = Date.now()
-        const timeSpentOnPage = endTime - startTime
-        trackEvent(tutorielClickSuivant(timeSpentOnPage))
       }}>
       {isLoading ? (
         <Loader size="sm" />

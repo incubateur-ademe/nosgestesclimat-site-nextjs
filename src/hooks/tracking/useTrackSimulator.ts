@@ -7,18 +7,13 @@ import {
 import {
   gtmSimulationCompleted,
   gtmSimulationStarted,
-  simulationCategoryCompleted,
-  simulationCategoryStarted,
-  simulationSimulationCompleted,
-  simulationSimulationFirstQuestionSeen,
-  simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
 import {
   useCurrentSimulation,
   useEngine,
   useFormState,
 } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect } from 'react'
@@ -51,13 +46,7 @@ export function useTrackSimulator() {
   const currentSimulation = useCurrentSimulation()
   const simulationId = currentSimulation.id
 
-  const {
-    isFirstQuestionOfCategory,
-    isLastQuestionOfCategory,
-    currentCategory,
-    relevantAnsweredQuestions,
-    remainingQuestions,
-  } = useFormState()
+  const { relevantAnsweredQuestions, remainingQuestions } = useFormState()
 
   const { progression, foldedSteps } = currentSimulation
 
@@ -74,8 +63,6 @@ export function useTrackSimulator() {
       foldedSteps.length === 0 &&
       !getTrackingState(simulationId, FIRST_QUESTION_SEEN)
     ) {
-      trackEvent(simulationSimulationFirstQuestionSeen)
-
       trackPosthogEvent(
         captureSimulationFirstQuestionSeen({
           question: remainingQuestions[0],
@@ -93,8 +80,6 @@ export function useTrackSimulator() {
       foldedSteps.length === 1 &&
       !getTrackingState(simulationId, FIRST_QUESTION_ANSWERED)
     ) {
-      trackEvent(simulationSimulationStarted)
-
       // Track GTM event if available
       if (cookieState.googleTag === 'accepted') {
         trackGTMEvent(gtmSimulationStarted)
@@ -122,11 +107,6 @@ export function useTrackSimulator() {
     if (progression === 1 && !getTrackingState(simulationId, TEST_COMPLETED)) {
       const timeSpentOnSimulation = trackTimeOnSimulation()
 
-      const bilan = getNumericValue('bilan')
-
-      // Track Matomo event
-      trackEvent(simulationSimulationCompleted(bilan))
-
       // Track GTM event if available
       if (cookieState.googleTag === 'accepted') {
         trackGTMEvent(gtmSimulationCompleted)
@@ -150,16 +130,4 @@ export function useTrackSimulator() {
     currentSimulation,
     cookieState,
   ])
-
-  useEffect(() => {
-    if (!currentCategory) return
-
-    if (isFirstQuestionOfCategory) {
-      trackEvent(simulationCategoryStarted(currentCategory))
-    }
-
-    if (isLastQuestionOfCategory) {
-      trackEvent(simulationCategoryCompleted(currentCategory))
-    }
-  }, [currentCategory, isFirstQuestionOfCategory, isLastQuestionOfCategory])
 }

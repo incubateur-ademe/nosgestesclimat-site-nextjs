@@ -4,18 +4,10 @@ import Partners from '@/components/landing-pages/Partners'
 import Footer from '@/components/layout/Footer'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
-import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
-} from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
-import { headers } from 'next/headers'
 import { Suspense } from 'react'
 import { ClientLayout } from '../../../components/layout/ClientLayout'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
@@ -37,9 +29,6 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const headersList = await headers()
-  const pathname = headersList.get('x-pathname') || '/'
-
   return (
     <ClientLayout locale={locale}>
       <LandingPage
@@ -67,27 +56,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
               <Suspense fallback={<CTAButtonsPlaceholder />}>
-                <DynamicCTAButtons
-                  trackingEvents={{
-                    start: getLandingClickCTAStart(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
-                    resume: getLandingClickCTAResume(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      pathname,
-                      trackingActionClickCTA
-                    ),
-                  }}
-                  className="w-full"
-                />
+                <DynamicCTAButtons trackingEvents={{}} className="w-full" />
               </Suspense>
 
               {/* Displayed on mobile only */}

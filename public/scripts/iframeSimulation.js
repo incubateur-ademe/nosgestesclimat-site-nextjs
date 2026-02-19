@@ -54,8 +54,6 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   url.searchParams.append('iframe', 'true')
   url.searchParams.append('integratorUrl', integratorUrl.toString())
 
-  // Append matomo tracking params
-
   const utmSourceParam = script.dataset.utm_source
 
   const utmCampaignParam = script.dataset.utm_campaign

@@ -13,13 +13,6 @@ export const captureClickSubmitEmail = ({
   }
 }
 
-export const signinTrackEvent = (mode?: AuthenticationMode) => [
-  'trackEvent',
-  'Authentication',
-  'Click Submit Email',
-  mode ?? '',
-]
-
 export const captureClickTab = ({
   tab,
 }: {
@@ -32,19 +25,6 @@ export const captureClickTab = ({
     },
   }
 }
-
-export const tabTrackEvent = (tab: 'connexion' | 'inscription') => [
-  'trackEvent',
-  'Authentication',
-  'Click Tab',
-  tab === 'connexion' ? 'Connexion' : 'Inscription',
-]
-
-export const clickResendCode = [
-  'trackEvent',
-  'Authentication',
-  'Click Renvoyer le code',
-]
 
 export const captureClickResendCode = () => {
   return {

@@ -12,18 +12,8 @@ import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Footer from '@/components/layout/Footer'
 import Link from '@/components/Link'
 import JSONLD from '@/components/seo/JSONLD'
-import {
-  trackingActionClickCTA,
-  trackingActionClickPageBottom,
-} from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
-} from '@/helpers/tracking/landings'
 import type { Locale } from '@/i18nConfig'
 import { fetchThematicLandingPage } from '@/services/cms/fetchThematicLandingPage'
 import { fetchThematicLandingPageMetadata } from '@/services/cms/fetchThematicLandingPageMetadata'
@@ -128,26 +118,7 @@ export default async function ThematicLandingPage({
               }}></p>
             <div className="flex w-full justify-center md:justify-start">
               <Suspense fallback={<CTAButtonsPlaceholder />}>
-                <DynamicCTAButtons
-                  trackingEvents={{
-                    start: getLandingClickCTAStart(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
-                    resume: getLandingClickCTAResume(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      `/${landingPageSlug}`,
-                      trackingActionClickCTA
-                    ),
-                  }}
-                />
+                <DynamicCTAButtons trackingEvents={{}} />
               </Suspense>
             </div>
 
@@ -211,20 +182,6 @@ export default async function ThematicLandingPage({
 
         {block5 && (
           <DailyGestures
-            trackingEvents={{
-              start: getLandingClickCTAStart(
-                `/${landingPageSlug}`,
-                trackingActionClickPageBottom
-              ),
-              resume: getLandingClickCTAResume(
-                `/${landingPageSlug}`,
-                trackingActionClickPageBottom
-              ),
-              results: getLandingClickCTAResults(
-                `/${landingPageSlug}`,
-                trackingActionClickPageBottom
-              ),
-            }}
             title={block5.title}
             description={
               <div
@@ -246,7 +203,6 @@ export default async function ThematicLandingPage({
         {block6 && (
           <UnderstandToAct
             locale={locale}
-            pathname={`/${landingPageSlug}`}
             title={block6.title}
             description={block6.htmlDescription}
             posts={

@@ -1,10 +1,6 @@
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import OrganisationFilAriane from '@/components/layout/FilAriane'
 import Trans from '@/components/translation/trans/TransServer'
-import {
-  captureOrganisationsLoginComplete,
-  organisationsLoginComplete,
-} from '@/constants/tracking/pages/organisationsConnexion'
 import Separator from '@/design-system/layout/Separator'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
@@ -61,8 +57,9 @@ export default async function Page({
             <AuthenticateUserForm
               onComplete={redirectAfterLogin}
               trackers={{
-                matomo: organisationsLoginComplete,
-                posthog: captureOrganisationsLoginComplete,
+                posthog: {
+                  eventName: 'Organisations Login - Verification code validé',
+                },
               }}
             />
           </div>

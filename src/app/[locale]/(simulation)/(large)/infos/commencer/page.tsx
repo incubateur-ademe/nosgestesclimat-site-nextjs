@@ -3,10 +3,7 @@
 import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import Trans from '@/components/translation/trans/TransClient'
 import { START_PAGE } from '@/constants/organisations/infosPages'
-import {
-  infosCommencerClickCtaCommencer,
-  infosCommencerClickNewTest,
-} from '@/constants/tracking/pages/infos'
+
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
@@ -16,7 +13,7 @@ import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+
 import { useRouter } from 'next/navigation'
 import { useContext, useEffect, useState } from 'react'
 
@@ -82,8 +79,6 @@ export default function Commencer() {
       <div className="flex flex-col items-start gap-6">
         <Button
           onClick={() => {
-            trackEvent(infosCommencerClickCtaCommencer)
-
             updateCurrentSimulation({
               pollToAdd: pollSlug || undefined,
             })
@@ -97,8 +92,6 @@ export default function Commencer() {
         <Button
           color="secondary"
           onClick={() => {
-            trackEvent(infosCommencerClickNewTest)
-
             goToSimulateurPage({
               newSimulation: {
                 polls: [pollSlug || ''],

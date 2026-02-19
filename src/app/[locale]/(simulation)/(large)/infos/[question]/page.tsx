@@ -92,7 +92,6 @@ export default function CustomQuestion() {
             submitDisabled={
               !getLinkToNextInfosPage({ curPage: params.question })
             }
-            currentPage={params.question}
           />
         </>
       )}

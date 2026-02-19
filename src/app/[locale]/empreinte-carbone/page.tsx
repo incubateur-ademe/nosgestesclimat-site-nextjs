@@ -4,16 +4,9 @@ import Partners from '@/components/landing-pages/Partners'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
-import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
-} from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import { Suspense } from 'react'
@@ -94,26 +87,7 @@ export default async function CarbonFootprintLandingPage({
             </p>
             <div className="flex w-full justify-center md:justify-start">
               <Suspense fallback={<CTAButtonsPlaceholder />}>
-                <DynamicCTAButtons
-                  trackingEvents={{
-                    start: getLandingClickCTAStart(
-                      '/empreinte-carbone',
-                      trackingActionClickCTA
-                    ),
-                    resume: getLandingClickCTAResume(
-                      '/empreinte-carbone',
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      '/empreinte-carbone',
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      '/empreinte-carbone',
-                      trackingActionClickCTA
-                    ),
-                  }}
-                />
+                <DynamicCTAButtons trackingEvents={{}} />
               </Suspense>
             </div>
 
@@ -146,10 +120,7 @@ export default async function CarbonFootprintLandingPage({
 
         <DailyGestureCarbonFootprint locale={locale} />
 
-        <UnderstandToActCarbonFootprint
-          locale={locale}
-          pathname={'/empreinte-carbone'}
-        />
+        <UnderstandToActCarbonFootprint locale={locale} />
 
         <MotivationSectionCarbonFootprint locale={locale} />
 

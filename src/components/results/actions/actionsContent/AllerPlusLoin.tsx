@@ -4,12 +4,11 @@ import Link from '@/components/Link'
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  actionsClickAdeme,
   actionsClickAdemePosthog,
 } from '@/constants/tracking/pages/actions'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 export default function AllerPlusLoin() {
   const { t } = useClientTranslation()
@@ -31,7 +30,6 @@ export default function AllerPlusLoin() {
               className="hover:text-primary-200 block text-white underline"
               href="https://agirpourlatransition.ademe.fr/particuliers/"
               onClick={() => {
-                trackEvent(actionsClickAdeme)
                 trackPosthogEvent(actionsClickAdemePosthog)
               }}
               aria-label={t(

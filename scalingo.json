@@ -13,10 +13,6 @@
   "env": {
     "NEXT_PUBLIC_SITE_URL": {
       "generator": "url"
-    },
-    "NEXT_PUBLIC_MATOMO_DOMAIN": {
-      "value": "*.osc-fr1.scalingo.io",
-      "description": "Matomo domain for Scalingo review apps"
     }
   }
 }

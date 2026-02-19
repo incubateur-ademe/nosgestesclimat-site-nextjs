@@ -4,11 +4,10 @@ import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   captureClickDashboardGroupPageCreateOrganisation,
-  clickDashboardGroupPageCreateOrganisation,
 } from '@/constants/tracking/user-account'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 export default function CreateOrganisation() {
   return (
@@ -30,7 +29,6 @@ export default function CreateOrganisation() {
         className="font-bold"
         href="/organisations/connexion"
         onClick={() => {
-          trackEvent(clickDashboardGroupPageCreateOrganisation)
           trackPosthogEvent(captureClickDashboardGroupPageCreateOrganisation)
         }}>
         <Trans i18nKey="mon-espace.groups.organisation.create.button">

@@ -3,12 +3,11 @@
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import {
   captureClickFootprint,
-  endClickFootprint,
 } from '@/constants/tracking/pages/end'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
@@ -119,7 +118,6 @@ export default function MetricSlider({
           if (nextMetric !== currentMetric) {
             setCurrentMetric(nextMetric)
 
-            trackEvent(endClickFootprint(nextMetric))
             trackPosthogEvent(captureClickFootprint(nextMetric))
 
             const nextTabId =

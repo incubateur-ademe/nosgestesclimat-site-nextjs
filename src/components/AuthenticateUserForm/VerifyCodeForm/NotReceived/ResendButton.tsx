@@ -5,11 +5,10 @@ import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   captureClickResendCode,
-  clickResendCode,
 } from '@/constants/tracking/pages/signin'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 
 interface Props {
@@ -33,7 +32,6 @@ export default function ResendButton({
       return
     }
 
-    trackEvent(clickResendCode)
     trackPosthogEvent(captureClickResendCode())
 
     onResendVerificationCode()

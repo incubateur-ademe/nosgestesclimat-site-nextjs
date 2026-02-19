@@ -1,15 +1,12 @@
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  cookieClickAcceptAll,
   cookieClickAcceptAllPosthog,
-  cookieClickCustomize,
   cookieClickCustomizePosthog,
-  cookieClickRejectAll,
   cookieClickRejectAllPosthog,
 } from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import ReactModal from 'react-modal'
 
 // Type assertion to resolve React types version mismatch
@@ -95,7 +92,6 @@ export default function CookieConsentBanner({
               size="sm"
               color="secondary"
               onClick={() => {
-                trackEvent(cookieClickCustomize)
                 trackPosthogEvent(cookieClickCustomizePosthog)
                 onOpenForm()
               }}
@@ -108,7 +104,6 @@ export default function CookieConsentBanner({
               size="sm"
               color="secondary"
               onClick={() => {
-                trackEvent(cookieClickRejectAll)
                 trackPosthogEvent(cookieClickRejectAllPosthog)
                 rejectAll()
               }}
@@ -121,7 +116,6 @@ export default function CookieConsentBanner({
               size="sm"
               color="primary"
               onClick={() => {
-                trackEvent(cookieClickAcceptAll)
                 trackPosthogEvent(cookieClickAcceptAllPosthog)
                 acceptAll()
               }}

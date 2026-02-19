@@ -3,16 +3,12 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import { captureClickInfo } from '@/constants/tracking/posthogTrackers'
-import {
-  questionCloseInfo,
-  questionOpenInfo,
-} from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { MUST_SHOW_DESCRIPTION } from '@/publicodes-state/constants/questions'
 import type { QuestionSize } from '@/types/values'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
@@ -107,12 +103,10 @@ export default function Label({
             type="button"
             onClick={() => {
               if (isOpen) {
-                trackEvent(questionCloseInfo({ question }))
                 trackPosthogEvent(
                   captureClickInfo({ question, state: 'closed' })
                 )
               } else {
-                trackEvent(questionOpenInfo({ question }))
                 trackPosthogEvent(
                   captureClickInfo({ question, state: 'opened' })
                 )
@@ -171,7 +165,6 @@ export default function Label({
                 size="xs"
                 color="secondary"
                 onClick={() => {
-                  trackEvent(questionCloseInfo({ question }))
                   setIsOpen(false)
                 }}
                 title={t('Fermer')}>

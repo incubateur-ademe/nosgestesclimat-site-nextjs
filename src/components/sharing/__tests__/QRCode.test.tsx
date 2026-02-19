@@ -1,6 +1,4 @@
 import QRCode from '@/components/sharing/QRCode'
-import { pollDashboardClickQRCodeDownload } from '@/constants/tracking/pages/pollDashboard'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -27,12 +25,6 @@ vi.mock('jszip', () => ({
     file: vi.fn(),
     generateAsync: vi.fn().mockResolvedValue(new Blob(['mock-zip-content'])),
   })),
-}))
-
-// Mock trackEvent
-vi.mock('@/utils/analytics/trackEvent', () => ({
-  trackEvent: vi.fn(),
-  trackPosthogEvent: vi.fn(),
 }))
 
 // Mock URL.createObjectURL and URL.revokeObjectURL
@@ -90,7 +82,7 @@ describe('QRCode', () => {
     expect(svg).toHaveTextContent(`QR Code for: ${testValue}`)
   })
 
-  it('tracks download event when download button is clicked', async () => {
+  it('triggers download when download button is clicked', async () => {
     // Mock the necessary DOM APIs for the download functionality
     const mockCanvas = {
       width: 0,
@@ -158,7 +150,8 @@ describe('QRCode', () => {
     // Wait for async operations
     await vi.runAllTimersAsync()
 
-    expect(trackEvent).toHaveBeenCalledWith(pollDashboardClickQRCodeDownload)
+    // Assert that the download link was clicked (download occurred)
+    expect(mockDownloadLink.click).toHaveBeenCalled()
 
     // Restore original createElement
     document.createElement = originalCreateElement
@@ -290,7 +283,6 @@ describe('QRCode', () => {
 
     // The tracking event is called before the context check, so it will be called
     // This is the actual behavior of the component
-    expect(trackEvent).toHaveBeenCalledWith(pollDashboardClickQRCodeDownload)
 
     // Restore original createElement
     document.createElement = originalCreateElement
@@ -313,7 +305,6 @@ describe('QRCode', () => {
     fireEvent.click(button)
 
     expect(createElementSpy).not.toHaveBeenCalledWith('canvas')
-    expect(trackEvent).not.toHaveBeenCalled()
   })
 
   it('does not download when SVG element is not found', () => {
@@ -333,7 +324,6 @@ describe('QRCode', () => {
     fireEvent.click(button)
 
     expect(createElementSpy).not.toHaveBeenCalledWith('canvas')
-    expect(trackEvent).not.toHaveBeenCalled()
   })
 
   it('has correct SVG attributes', () => {

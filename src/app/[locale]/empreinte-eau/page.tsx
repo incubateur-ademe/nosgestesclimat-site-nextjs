@@ -3,17 +3,10 @@ import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
-import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
-} from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import { Suspense } from 'react'
@@ -96,26 +89,7 @@ export default async function WaterFootprintLandingPage(
             </p>
             <div className="flex w-full justify-center md:justify-start">
               <Suspense fallback={<CTAButtonsPlaceholder />}>
-                <DynamicCTAButtons
-                  trackingEvents={{
-                    start: getLandingClickCTAStart(
-                      '/empreinte-eau',
-                      trackingActionClickCTA
-                    ),
-                    resume: getLandingClickCTAResume(
-                      '/empreinte-eau',
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      '/empreinte-eau',
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      '/empreinte-eau',
-                      trackingActionClickCTA
-                    ),
-                  }}
-                />
+                <DynamicCTAButtons trackingEvents={{}} />
               </Suspense>
             </div>
 
@@ -150,10 +124,7 @@ export default async function WaterFootprintLandingPage(
 
         <DailyGestureWaterFootprint locale={locale} />
 
-        <UnderstandToActWaterFootprint
-          pathname={'/empreinte-eau'}
-          locale={locale}
-        />
+        <UnderstandToActWaterFootprint locale={locale} />
 
         <MotivationSectionWaterFootprint locale={locale} />
 

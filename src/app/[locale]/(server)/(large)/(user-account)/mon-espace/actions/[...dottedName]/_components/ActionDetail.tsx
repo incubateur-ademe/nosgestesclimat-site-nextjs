@@ -3,9 +3,7 @@
 import ActionForm from '@/components/results/actions/actionsContent/actions/ActionForm'
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  actionsClickUnderstandCalculation,
   actionsClickUnderstandCalculationPosthog,
-  actionsClickYes,
   actionsClickYesPosthog,
 } from '@/constants/tracking/pages/actions'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
@@ -21,7 +19,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
@@ -105,7 +103,6 @@ export default function ActionDetail({
               color="secondary"
               href={'/documentation/' + encodeRuleName(dottedName)}
               onClick={() => {
-                trackEvent(actionsClickUnderstandCalculation(dottedName))
                 trackPosthogEvent(
                   actionsClickUnderstandCalculationPosthog(dottedName)
                 )
@@ -136,7 +133,6 @@ export default function ActionDetail({
                   setPersistedRemainingQuestions(undefined)
 
                   if (!actionChoices[dottedName]) {
-                    trackEvent(actionsClickYes(dottedName))
                     trackPosthogEvent(actionsClickYesPosthog(dottedName))
                   }
                 }}

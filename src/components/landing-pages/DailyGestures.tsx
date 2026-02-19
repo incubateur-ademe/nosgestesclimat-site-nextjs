@@ -1,6 +1,6 @@
 import Separator from '@/design-system/layout/Separator'
 import type { GesturesType } from '@/types/landing-page'
-import { Suspense, type JSX } from 'react'
+import { Suspense, type ReactNode } from 'react'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '../cta/DynamicCTAButtons'
 import GestureSelector from './dailyGestures/GestureSelector'
@@ -9,16 +9,10 @@ export default function DailyGestures({
   title,
   description,
   gestures,
-  trackingEvents,
 }: {
   title: string
-  description: string | JSX.Element
+  description: ReactNode
   gestures: GesturesType
-  trackingEvents: {
-    start: string[]
-    resume: string[]
-    results: string[]
-  }
 }) {
   return (
     <div className="mx-auto mt-16 mb-20 w-full max-w-full px-4 text-center md:my-20 md:max-w-[850px] md:px-0">
@@ -34,10 +28,7 @@ export default function DailyGestures({
 
       <div className="mt-10 text-center">
         <Suspense fallback={<CTAButtonsPlaceholder />}>
-          <DynamicCTAButtons
-            trackingEvents={trackingEvents}
-            withRestart={false}
-          />
+          <DynamicCTAButtons withRestart={false} />
         </Suspense>
       </div>
     </div>

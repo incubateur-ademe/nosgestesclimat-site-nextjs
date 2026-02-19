@@ -1,7 +1,5 @@
 'use client'
 
-import { endClickHedgehog } from '@/constants/tracking/pages/end'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -48,7 +46,6 @@ export default function Hedgehog({ setIsHedgehog }: Props) {
       )}
       aria-hidden
       onClick={() => {
-        trackEvent(endClickHedgehog)
         setIsHedgehog(true)
       }}>
       <path

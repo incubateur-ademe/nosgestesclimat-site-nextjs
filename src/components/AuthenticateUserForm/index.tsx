@@ -4,15 +4,12 @@ import type { AuthenticationMode } from '@/types/authentication'
 import { useCallback, useState, type ReactNode } from 'react'
 
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
-import {
-  captureClickSubmitEmail,
-  signinTrackEvent,
-} from '@/constants/tracking/pages/signin'
+import { captureClickSubmitEmail } from '@/constants/tracking/pages/signin'
 import Button from '@/design-system/buttons/Button'
 import useLogin from '@/hooks/authentication/useLogin'
 import { usePendingVerification } from '@/hooks/authentication/usePendingVerification'
 import { useUser } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { useRouter } from 'next/navigation'
 import Trans from '../translation/trans/TransClient'
@@ -30,7 +27,6 @@ interface Props {
   onComplete?: (user: { email: string; userId: string }) => void
   required?: boolean
   trackers?: {
-    matomo: string[]
     posthog: {
       eventName: string
       properties?: Record<string, string | number | boolean | null | undefined>
@@ -60,7 +56,6 @@ export default function AuthenticateUserForm({
       setIsRedirecting(true)
 
       if (trackers) {
-        trackEvent(trackers.matomo)
         trackPosthogEvent(trackers.posthog)
       }
       onComplete?.(user)
@@ -112,7 +107,6 @@ export default function AuthenticateUserForm({
       mode={mode}
       onCodeSent={(pendingVerification) => {
         registerVerification(pendingVerification)
-        trackEvent(signinTrackEvent(mode))
         trackPosthogEvent(captureClickSubmitEmail({ mode }))
       }}
       inputLabel={inputLabel}

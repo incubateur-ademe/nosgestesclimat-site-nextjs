@@ -9,12 +9,11 @@ import Organisation from '@/components/results/groups/Organisation'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   captureGroupsLoginComplete,
-  groupsLoginComplete,
 } from '@/constants/tracking/pages/end'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
 import { fetchOrganisationsClient } from '@/helpers/organisations/fetchOrganisationsClient'
 import type { UserServer } from '@/helpers/server/model/user'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useQuery } from '@tanstack/react-query'
 
 export default function GroupsTabContent({ user }: { user?: UserServer }) {
@@ -47,7 +46,6 @@ export default function GroupsTabContent({ user }: { user?: UserServer }) {
 
   const onLoginComplete = () => {
     window.location.reload()
-    trackEvent(groupsLoginComplete)
     trackPosthogEvent(captureGroupsLoginComplete)
   }
 

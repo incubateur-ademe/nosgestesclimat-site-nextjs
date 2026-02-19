@@ -4,16 +4,9 @@ import { ClientLayout } from '@/components/layout/ClientLayout'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
-import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
-} from '@/helpers/tracking/landings'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { Suspense } from 'react'
 import Partners from '../../components/landing-pages/Partners'
@@ -76,19 +69,6 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
               <Suspense fallback={<CTAButtonsPlaceholder />}>
                 <DynamicCTAButtons
                   trackingEvents={{
-                    start: getLandingClickCTAStart('/', trackingActionClickCTA),
-                    resume: getLandingClickCTAResume(
-                      '/',
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      '/',
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      '/',
-                      trackingActionClickCTA
-                    ),
                   }}
                 />
               </Suspense>

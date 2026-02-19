@@ -3,10 +3,6 @@
 import NewTabSvg from '@/components/icons/NewTabSvg'
 import RegionGrid from '@/components/misc/RegionGrid'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  profilClickRegion,
-  profilOpenRegions,
-} from '@/constants/tracking/pages/profil'
 import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
@@ -14,7 +10,6 @@ import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegion
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 
@@ -50,7 +45,6 @@ export default function RegionSelector({
           className={`middle w-auto cursor-pointer p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
           }`}
-          onClick={() => trackEvent(profilOpenRegions)}
           aria-expanded={isOpen}
           aria-controls="region-grid"
           role="button"
@@ -58,7 +52,6 @@ export default function RegionSelector({
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault()
-              trackEvent(profilOpenRegions)
             }
           }}>
           <span>
@@ -80,7 +73,6 @@ export default function RegionSelector({
           supportedRegions={supportedRegions}
           updateCurrentRegion={(code: string) => {
             setIsUpdateSuccess(false)
-            trackEvent(profilClickRegion(code))
 
             updateRegion({
               code,

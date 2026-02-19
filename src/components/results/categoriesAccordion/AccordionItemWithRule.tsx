@@ -4,7 +4,6 @@ import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import {
-  endClickCategory,
   endClickCategoryPosthog,
 } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
@@ -13,7 +12,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
@@ -40,7 +39,6 @@ export default function AccordionItemWithRule({
   return (
     <AccordionItem
       onClick={() => {
-        trackEvent(endClickCategory(dottedName))
         trackPosthogEvent(endClickCategoryPosthog(dottedName))
       }}
       title={

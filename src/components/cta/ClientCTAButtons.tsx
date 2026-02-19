@@ -4,7 +4,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -18,23 +18,19 @@ export default function ClientCTAButtons({
   isAuthenticated,
 }: {
   className?: string
-  trackingEvents: {
-    start: string[]
+  trackingEvents?: {
     startPosthog?: {
       eventName: string
       properties?: Record<string, string | number | boolean | null | undefined>
     }
-    resume: string[]
     resumePosthog?: {
       eventName: string
       properties?: Record<string, string | number | boolean | null | undefined>
     }
-    results: string[]
     resultsPosthog?: {
       eventName: string
       properties?: Record<string, string | number | boolean | null | undefined>
     }
-    restart?: string[]
     restartPosthog?: {
       eventName: string
       properties?: Record<string, string | number | boolean | null | undefined>
@@ -100,7 +96,6 @@ export default function ClientCTAButtons({
 
   const handleMainButtonClick = () => {
     if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
-      trackEvent(trackingEvents?.results)
       if (trackingEvents?.resultsPosthog) {
         trackPosthogEvent(trackingEvents.resultsPosthog)
       }
@@ -108,14 +103,12 @@ export default function ClientCTAButtons({
     }
 
     if (progression > 0) {
-      trackEvent(trackingEvents?.resume)
       if (trackingEvents?.resumePosthog) {
         trackPosthogEvent(trackingEvents.resumePosthog)
       }
       return
     }
 
-    trackEvent(trackingEvents?.start)
     if (trackingEvents?.startPosthog) {
       trackPosthogEvent(trackingEvents.startPosthog)
     }
@@ -162,11 +155,6 @@ export default function ClientCTAButtons({
             size="xl"
             color="secondary"
             className="leading-none"
-            trackingEvent={
-              progression !== 1
-                ? trackingEvents?.resume
-                : trackingEvents?.restart
-            }
             onClick={handleRestartClick}
             href={getLinkToSimulateurPage({
               newSimulation: progression === 1,

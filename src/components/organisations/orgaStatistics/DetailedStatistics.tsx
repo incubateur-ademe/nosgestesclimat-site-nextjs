@@ -2,11 +2,10 @@
 
 import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/trans/TransClient'
-import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
 import { captureClickFunFactsPlus } from '@/constants/tracking/posthogTrackers'
 import Button from '@/design-system/buttons/Button'
 import type { Entries } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import importedFunFacts from '@incubateur-ademe/nosgestesclimat/public/funFactsRules.json'
 import { utils } from 'publicodes'
@@ -59,7 +58,6 @@ export default function DetailedStatistics({ funFacts, className }: Props) {
         className="my-4 w-auto self-center px-4! no-underline md:self-end"
         color="link"
         onClick={() => {
-          trackEvent(organisationsDashboardClickFunFacts)
           trackPosthogEvent(captureClickFunFactsPlus())
           setIsSectionVisible(!isSectionVisible)
         }}>
