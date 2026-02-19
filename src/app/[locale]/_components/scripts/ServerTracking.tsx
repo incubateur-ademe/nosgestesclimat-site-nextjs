@@ -9,21 +9,21 @@ export default function ServerTracking() {
         __html: `
             if (!window.globalTrackingAdded) {
               window.globalTrackingAdded = true;
-              
+
               // Wait for DOM to be ready
-              const initTracking = () => {                
+              const initTracking = () => {
                 document.addEventListener('click', (e) => {
                   const target = e.target.closest('[data-track-event]');
                   const posthogTarget = e.target.closest('[data-track-posthog]');
-                  
+
                   // Execute tracking asynchronously if attributes are present
-                  if (target || posthogTarget) {                    
+                  if (target || posthogTarget) {
                     if (target) {
                       const eventData = target.dataset.trackEvent.split('|');
                       console.log('Matomo tracking:', eventData);
                       window._paq?.push(['trackEvent', ...eventData]);
                     }
-                    
+
                     if (posthogTarget) {
                       const { eventName, properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
                       console.log('Posthog tracking:', { eventName, properties });
@@ -32,7 +32,7 @@ export default function ServerTracking() {
                   }
                 });
               };
-              
+
               if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', initTracking);
               } else {
