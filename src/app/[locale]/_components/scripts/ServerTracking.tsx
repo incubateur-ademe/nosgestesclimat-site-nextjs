@@ -17,18 +17,11 @@ export default function ServerTracking() {
                   const posthogTarget = e.target.closest('[data-track-posthog]');
 
                   // Execute tracking asynchronously if attributes are present
-                  if (target || posthogTarget) {
-                    if (target) {
-                      const eventData = target.dataset.trackEvent.split('|');
-                      console.log('Matomo tracking:', eventData);
-                      window._paq?.push(['trackEvent', ...eventData]);
-                    }
 
-                    if (posthogTarget) {
-                      const { eventName, properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
-                      console.log('Posthog tracking:', { eventName, properties });
-                      window.posthog?.capture(eventName, properties);
-                    }
+                  if (posthogTarget) {
+                    const { eventName, properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
+                    console.log('Posthog tracking:', { eventName, properties });
+                    window.posthog?.capture(eventName, properties);
                   }
                 });
               };
