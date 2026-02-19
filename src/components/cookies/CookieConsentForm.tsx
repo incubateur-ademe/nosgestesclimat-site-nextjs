@@ -1,112 +1,54 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import {
+  cookieClickAcceptAll,
+  cookieClickAcceptAllPosthog,
+  cookieClickRejectAll,
+  cookieClickRejectAllPosthog,
+  cookieClickSave,
+  cookieClickSavePosthog,
+} from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
-import { useEffect } from 'react'
+import { CookieConsentKey } from '@/types/cookies'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
+import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
+import { useCookieManagement, type CookieState } from './useCookieManagement'
 
-interface CookieFormData {
-  [CookieConsentKey.googleAds]: 'accept' | 'refuse'
-}
-
-interface RadioProps {
-  id: string
-  name: string
-  checked: boolean
-  disabled?: boolean
-  label: string | React.ReactNode
-  value?: string
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const Radio = ({
-  id,
-  name,
-  checked,
-  disabled,
-  label,
-  ...props
-}: RadioProps) => (
-  <label
-    className={`inline-flex cursor-pointer items-center gap-2 select-none ${disabled ? 'opacity-50' : ''}`}
-    htmlFor={id}>
-    <input
-      type="radio"
-      id={id}
-      name={name}
-      checked={checked}
-      disabled={disabled}
-      className="peer sr-only"
-      {...props}
-    />
-    <span
-      className={`relative flex h-5 w-5 items-center justify-center rounded-full border-2 ${checked ? 'border-blue-800' : 'border-gray-300'} bg-white transition-colors duration-150`}>
-      <span
-        className={`absolute top-1/2 left-1/2 block h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full ${checked ? 'bg-blue-800' : ''}`}></span>
-    </span>
-    <span className="text-sm font-medium text-gray-900 md:text-base">
-      {label}
-    </span>
-  </label>
-)
-
-export default function CookieConsentManagement({
-  isBoardOpen,
-  closeSettings,
-  refuseAll,
+export default function CookieConsentForm({
+  onCancel,
+  rejectAll,
   acceptAll,
+  defaultChoices: defaultValues,
   confirmChoices,
-  choices,
 }: {
-  isBoardOpen: boolean
-  closeSettings: () => void
-  refuseAll: () => void
+  onCancel: () => void
+  rejectAll: () => void
   acceptAll: () => void
-  confirmChoices: (data: CookieConsentChoices) => void
-  choices?: CookieConsentChoices
+  confirmChoices: (data: CookieState) => void
+  defaultChoices?: CookieState
 }) {
   const { t } = useClientTranslation()
 
-  const { register, handleSubmit, watch, setValue } = useForm<CookieFormData>({
-    defaultValues: {
-      [CookieConsentKey.googleAds]:
-        choices?.[CookieConsentKey.googleAds] === false ? 'refuse' : 'accept',
-    },
+  const { register, handleSubmit } = useForm<CookieState>({
+    defaultValues,
   })
 
-  // @TODO: Remove this eslint-disable-next-line once we have a proper solution for this rule
-  // eslint-disable-next-line react-hooks/incompatible-library
-  const googleAdsValue = watch('googleAds')
-
-  const onSubmit = (data: CookieFormData) => {
-    const choices: CookieConsentChoices = {
-      [CookieConsentKey.googleAds]:
-        data[CookieConsentKey.googleAds] === 'accept',
-    }
-    confirmChoices(choices)
-  }
-
-  useEffect(() => {
-    if (choices?.[CookieConsentKey.googleAds] !== undefined) {
-      setValue(
-        CookieConsentKey.googleAds,
-        choices[CookieConsentKey.googleAds] ? 'accept' : 'refuse'
-      )
-    }
-  }, [choices, setValue])
+  const { setCookieBannerDisplayState } = useCookieManagement()
 
   return (
     <Modal
-      isOpen={isBoardOpen}
+      isOpen={true}
       ariaLabel={t(
         'cookieConsent.banner.title',
         'Fenêtre modale de gestion des cookies'
       )}
-      closeModal={closeSettings}
+      closeModal={onCancel}
       hasAbortCross={true}
       hasAbortButton={false}
       className="!w-3xl max-w-screen overflow-hidden !rounded-2xl !p-0 !shadow-2xl">
@@ -116,12 +58,18 @@ export default function CookieConsentManagement({
             className="text-xl font-bold text-gray-900"
             data-testid="cookie-management-title">
             <Trans i18nKey="cookies.management.title">
-              Panneau de gestion des cookies
+              Gestion des cookies
             </Trans>
           </h2>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} data-testid="cookie-form">
-          <div className="max-h-[50vh] flex-1 overflow-y-auto px-8 pb-8">
+        <form
+          onSubmit={(e) => {
+            trackEvent(cookieClickSave)
+            trackPosthogEvent(cookieClickSavePosthog)
+            void handleSubmit(confirmChoices)(e)
+          }}
+          data-testid="cookie-form">
+          <div className="max-h-[40vh] flex-1 overflow-y-scroll px-8 pb-8">
             <div className="mb-6 flex flex-col gap-4 md:flex-row">
               <div>
                 <span
@@ -145,12 +93,13 @@ export default function CookieConsentManagement({
                     type="button"
                     color="secondary"
                     onClick={() => {
-                      setValue(CookieConsentKey.googleAds, 'refuse')
-                      refuseAll()
+                      trackEvent(cookieClickRejectAll)
+                      trackPosthogEvent(cookieClickRejectAllPosthog)
+                      rejectAll()
                     }}
                     size="sm"
                     data-testid="refuse-all-button">
-                    <Trans i18nKey="cookies.management.refuseAll">
+                    <Trans i18nKey="cookies.management.rejectAll">
                       Tout refuser
                     </Trans>
                   </Button>
@@ -160,7 +109,8 @@ export default function CookieConsentManagement({
                     type="button"
                     color="primary"
                     onClick={() => {
-                      setValue(CookieConsentKey.googleAds, 'accept')
+                      trackEvent(cookieClickAcceptAll)
+                      trackPosthogEvent(cookieClickAcceptAllPosthog)
                       acceptAll()
                     }}
                     size="sm"
@@ -183,7 +133,7 @@ export default function CookieConsentManagement({
                   </Trans>
                 </span>
                 <div className="flex gap-6">
-                  <Radio
+                  <CookieRadio
                     id="oblig-accept"
                     name="oblig"
                     checked={true}
@@ -195,7 +145,7 @@ export default function CookieConsentManagement({
                       </Trans>
                     }
                   />
-                  <Radio
+                  <CookieRadio
                     id="oblig-refuse"
                     name="oblig"
                     checked={false}
@@ -219,51 +169,46 @@ export default function CookieConsentManagement({
               </p>
             </fieldset>
 
-            <fieldset className="border-t border-gray-200">
-              <legend className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
-                <span
-                  className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg"
-                  data-testid="google-ads-title">
-                  <Trans i18nKey="cookies.management.googleAds.title">
-                    Google Ads
-                  </Trans>
-                </span>
-                <div className="flex gap-6">
-                  <Radio
-                    id="googleAds-accept"
-                    value="accept"
-                    checked={googleAdsValue === 'accept'}
-                    data-testid="google-ads-accept-radio"
-                    label={
-                      <Trans i18nKey="cookies.management.accept">
-                        Accepter
-                      </Trans>
-                    }
-                    {...register(CookieConsentKey.googleAds)}
-                  />
-                  <Radio
-                    id="googleAds-refuse"
-                    value="refuse"
-                    checked={googleAdsValue === 'refuse'}
-                    data-testid="google-ads-refuse-radio"
-                    label={
-                      <Trans i18nKey="cookies.management.refuse">Refuser</Trans>
-                    }
-                    {...register(CookieConsentKey.googleAds)}
-                  />
-                </div>
-              </legend>
-              <p
-                className="mt-2 text-base text-gray-700"
-                data-testid="google-ads-description">
-                <Trans i18nKey="cookies.management.googleAds.description">
-                  Nous utilisons des cookies pour mesurer et calibrer
-                  l'efficacité de nos campagnes et publicités en ligne.
-                </Trans>
-              </p>
-            </fieldset>
+            <CookieFieldset
+              id="google-ads"
+              titleI18nKey="cookies.management.googleAds.title"
+              titleDefault="Google Ads"
+              descriptionI18nKey="cookies.management.googleAds.description"
+              descriptionDefault={t(
+                'cookies.management.googleAds.description',
+                "Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation."
+              )}
+              linkHref="https://policies.google.com/technologies/cookies?hl=fr-fr"
+              linkI18nKey="cookies.management.googleAds.link"
+              linkDefault={t(
+                'cookies.management.googleAds.link',
+                'Voir le site officiel'
+              )}
+              defaultValue={defaultValues?.googleTag ?? 'refused'}
+              register={register(CookieConsentKey.googleTag)}
+            />
+
+            <CookieFieldset
+              id="posthog"
+              titleI18nKey="cookies.management.posthog.title"
+              titleDefault="Posthog"
+              descriptionI18nKey="cookies.management.posthog.description"
+              descriptionDefault={t(
+                'cookies.management.posthog.description',
+                "Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers."
+              )}
+              linkHref="https://posthog.com/docs/privacy"
+              linkI18nKey="cookies.management.posthog.link"
+              linkDefault={t(
+                'cookies.management.posthog.link',
+                'Voir le site officiel'
+              )}
+              defaultValue={defaultValues?.posthog ?? 'refused'}
+              register={register(CookieConsentKey.posthog)}
+              className="mt-6"
+            />
           </div>
-          <div className="flex justify-start border-t border-gray-100 bg-white px-8 pt-4 pb-8">
+          <div className="flex justify-start border-t border-slate-200 bg-white px-8 pt-4 pb-8">
             <Button
               type="submit"
               color="primary"
@@ -274,6 +219,33 @@ export default function CookieConsentManagement({
             </Button>
           </div>
         </form>
+
+        <div className="px-8 pt-4 pb-8">
+          <h2 className="text-lg font-bold">
+            <Trans i18nKey="cookies.management.audience.title">
+              Mesure d'audience
+            </Trans>
+          </h2>
+          <p>
+            <Trans i18nKey="cookies.management.audience.description">
+              Pour désactiver tous les cookies de mesure d'audience anonymes,
+              visitez
+            </Trans>{' '}
+            <Link
+              href="/politique-de-confidentialite#cookies"
+              title={t(
+                'cookies.management.audience.linkTitle',
+                'Visiter notre politique de confidentialité'
+              )}
+              onClick={() => setCookieBannerDisplayState('hidden')}
+              className="text-primary-700 underline">
+              <Trans i18nKey="cookies.management.audience.linkText">
+                notre politique de confidentialité
+              </Trans>
+            </Link>
+            .
+          </p>
+        </div>
       </div>
     </Modal>
   )

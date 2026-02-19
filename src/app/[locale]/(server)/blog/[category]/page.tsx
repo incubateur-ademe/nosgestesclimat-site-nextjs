@@ -38,7 +38,7 @@ export async function generateMetadata({
       slug: category,
       locale,
       pageNumber,
-    })) || {}
+    })) ?? {}
 
   const dynamicTitle = getDynamicPageTitleWithPagination({
     metaTitle,
@@ -97,7 +97,7 @@ export default async function CategoryPage({
       slug: category,
       page,
       locale,
-    })) || {}
+    })) ?? {}
 
   //  Firstly redirect to french version if the page is not available in the current locale
   if (locale !== i18nConfig.defaultLocale && (!title || !description)) {
@@ -185,7 +185,7 @@ export default async function CategoryPage({
         />
       </div>
 
-      <Footer backgroundColor="white" locale={locale} />
+      <Footer backgroundColor="white" locale={locale} params={{ category }} />
     </>
   )
 }
