@@ -1,4 +1,4 @@
-export enum CookieChoice {
+enum CookieChoice {
   all = 'all',
   refuse = 'refuse',
   custom = 'custom',
@@ -9,4 +9,4 @@ export enum CookieConsentKey {
   posthog = 'posthog',
 }
 
-export type CookieConsentChoices = Record<CookieConsentKey, boolean>
+type CookieConsentChoices = Record<CookieConsentKey, boolean>
