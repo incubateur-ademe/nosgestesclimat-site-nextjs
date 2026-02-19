@@ -27,6 +27,13 @@ export const Over7Tons: Story = {
   },
 }
 
+export const Is7Tons: Story = {
+  args: {
+    locale: 'fr',
+    carbonFootprint: 7000,
+  },
+}
+
 export const Under7Tons: Story = {
   args: {
     locale: 'fr',

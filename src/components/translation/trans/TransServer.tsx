@@ -6,11 +6,12 @@ export default async function Trans({
   locale,
   children,
   i18nKey,
+  values,
 }: TransPropsWithInterpolation & { locale: string }): Promise<ReactElement> {
   const { t } = await getServerTranslation({ locale })
 
   return (
-    <TransReactI18n i18nKey={i18nKey} t={t}>
+    <TransReactI18n i18nKey={i18nKey} t={t} values={values}>
       {children}
     </TransReactI18n>
   )

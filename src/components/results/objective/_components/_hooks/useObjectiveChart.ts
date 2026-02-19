@@ -1,152 +1,60 @@
 import {
-  MAX_CARBON_FOOTPRINT,
-  MIN_CARBON_FOOTPRINT,
-  OVER_7_TONS_YEAR_OBJECTIVE,
-  UNDER_7_TONS_YEAR_OBJECTIVE,
-} from '@/components/results/objective/_constants/footprints'
-import { useEffect, useMemo, useRef, useState } from 'react'
-
-interface Point {
-  year: number
-  value: number
-  isCurrent?: boolean
-}
-
-const POINTS: Point[] = [
-  { year: OVER_7_TONS_YEAR_OBJECTIVE, value: MAX_CARBON_FOOTPRINT },
-  { year: UNDER_7_TONS_YEAR_OBJECTIVE, value: MIN_CARBON_FOOTPRINT },
-  { year: 2050, value: 2000 },
-]
+  FIRST_OBJECTIVE,
+  SECOND_OBJECTIVE,
+  THIRD_OBJECTIVE,
+} from '@/components/results/objective/_constants/objectives'
+import { useMemo } from 'react'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
-const getCoordinates = ({
-  index,
-  allPoints,
-}: {
-  index: number
-  allPoints: Point[]
-}) => {
-  // Leave space for animation on the left
-  // and the text on the right
-  const scaleMinX = 10
-  const scaleMaxX = 60
-  const x =
-    scaleMinX + (index / (allPoints.length - 1)) * (scaleMaxX - scaleMinX)
+const FIRST_POINT = { x: 10, y: 10 }
+const LAST_POINT = { x: 60, y: 80 }
 
-  // Start high (20% from top) and end low (80% from top)
-  // to create a descending slope representing the reduction
-  const scaleMinY = 20
-  const scaleMaxY = 90
+// Pre-computed coordinates for 4 points (carbon > 7 T)
+// Evenly spaced along a descending line, y range: 10→80.
+const COORDS_4 = [
+  FIRST_POINT,
+  { x: 26.7, y: 33.3 },
+  { x: 43.3, y: 56.7 },
+  LAST_POINT,
+]
 
-  // Determine Y based on X to follow the slope
-  const y =
-    scaleMinY + (index / (allPoints.length - 1)) * (scaleMaxY - scaleMinY)
+// Pre-computed coordinates for 3 points (carbon ≤ 7 T)
+const COORDS_3 = [FIRST_POINT, { x: 35, y: 45 }, LAST_POINT]
 
-  return { x, y }
-}
-
-const computeChartData = (carbonFootprint: number) => {
-  const allPoints: Point[] = [
-    { year: CURRENT_YEAR, value: carbonFootprint, isCurrent: true },
-    // Filter out 2030 step if the footprint is below 7T
-    ...POINTS.filter(({ value }) =>
-      carbonFootprint < MAX_CARBON_FOOTPRINT
-        ? value !== MAX_CARBON_FOOTPRINT
-        : true
-    ),
-  ]
-
-  const pointsWithCoords = allPoints.map((p, index) => ({
-    ...p,
-    ...getCoordinates({ index, allPoints }),
-  }))
-
-  const firstPoint = pointsWithCoords[0]
-  const lastPoint = pointsWithCoords[pointsWithCoords.length - 1]
-
-  const lastPointIndex = pointsWithCoords.length - 1
-  const pathPoints = [...pointsWithCoords]
-
-  // Calculate vector from start to end
-  const dx = lastPoint.x - firstPoint.x
-  const dy = lastPoint.y - firstPoint.y
-
-  // Calculate length of the full segment
-  const length = Math.sqrt(dx * dx + dy * dy)
-
-  // Define how much we want to shorten the line (in % units approx)
-  // this allows the arrow to reach the outline of the last dot
-  const shortenDistance = 2
-
-  // Normalize vector and scale by shortenDistance
-  const shortenX = (dx / length) * shortenDistance
-  const shortenY = (dy / length) * shortenDistance
-
-  pathPoints[lastPointIndex] = {
-    ...lastPoint,
-    x: lastPoint.x - shortenX,
-    y: lastPoint.y - shortenY,
-  }
-
-  const linePath = pathPoints.reduce((acc, p, i) => {
-    if (i === 0) return `M ${p.x} ${p.y}`
-    return `${acc} L ${p.x} ${p.y}`
-  }, '')
-
-  return {
-    firstPoint,
-    lastPoint,
-    linePath,
-    pointsWithCoords,
-  }
-}
+// SVG paths – last segment shortened slightly so the arrowhead
+// reaches the outline of the last dot, not its center.
+const LINE_PATH_4 = 'M 10 10 L 26.7 33.3 L 43.3 56.7 L 58.8 78.4'
+const LINE_PATH_3 = 'M 10 10 L 35 45 L 58.8 78.4'
 
 export const useObjectiveChart = (carbonFootprint: number) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [arrowRotation, setArrowRotation] = useState(26)
+  const is4Points = carbonFootprint > FIRST_OBJECTIVE.value
 
-  const { firstPoint, lastPoint, linePath, pointsWithCoords } = useMemo(
-    () => computeChartData(carbonFootprint),
-    [carbonFootprint]
-  )
+  const pointsWithCoords = useMemo(() => {
+    const coords = is4Points ? COORDS_4 : COORDS_3
 
-  useEffect(() => {
-    if (!containerRef.current) return
+    const milestonePoints = is4Points
+      ? [FIRST_OBJECTIVE, SECOND_OBJECTIVE, THIRD_OBJECTIVE]
+      : [SECOND_OBJECTIVE, THIRD_OBJECTIVE]
 
-    const calculateRotation = () => {
-      if (!containerRef.current) return
-      const { width, height } = containerRef.current.getBoundingClientRect()
-
-      const x1 = (firstPoint.x / 100) * width
-      const y1 = (firstPoint.y / 100) * height
-      const x2 = (lastPoint.x / 100) * width
-      const y2 = (lastPoint.y / 100) * height
-
-      const dx = x2 - x1
-      const dy = y2 - y1
-
-      if (dx === 0) return
-
-      const angle = (Math.atan2(dy, dx) * 180) / Math.PI
-
-      setArrowRotation(angle)
-    }
-
-    calculateRotation()
-
-    const observer = new ResizeObserver(calculateRotation)
-    observer.observe(containerRef.current)
-
-    return () => observer.disconnect()
-  }, [firstPoint, lastPoint])
+    return [
+      {
+        year: CURRENT_YEAR,
+        value: carbonFootprint,
+        isCurrent: true,
+        ...coords[0],
+      },
+      ...milestonePoints.map((p, i) => ({
+        ...p,
+        ...coords[i + 1],
+      })),
+    ]
+  }, [carbonFootprint, is4Points])
 
   return {
-    containerRef,
-    firstPoint,
-    lastPoint,
-    linePath,
-    arrowRotation,
+    firstPoint: FIRST_POINT,
+    lastPoint: LAST_POINT,
+    linePath: is4Points ? LINE_PATH_4 : LINE_PATH_3,
     pointsWithCoords,
   }
 }

@@ -1,15 +1,14 @@
 import DownArrow from '@/components/icons/DownArrow'
+import {
+  FIRST_OBJECTIVE,
+  SECOND_OBJECTIVE,
+} from '@/components/results/objective/_constants/objectives'
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import type { Locale } from '@/i18nConfig'
+import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import {
-  MAX_CARBON_FOOTPRINT,
-  MIN_CARBON_FOOTPRINT,
-  OVER_7_TONS_YEAR_OBJECTIVE,
-  UNDER_7_TONS_YEAR_OBJECTIVE,
-} from '../_constants/footprints'
 
 interface Props {
   carbonFootprint: number
@@ -29,35 +28,98 @@ const getObjectiveData = ({
     locale,
   })
 
-  switch (true) {
-    case carbonFootprint > MAX_CARBON_FOOTPRINT:
+  const getReductionData = () => {
+    if (carbonFootprint > FIRST_OBJECTIVE.value) {
+      const year = FIRST_OBJECTIVE.year
+
       return {
-        displayValue: formattedValue,
-        unit,
         reductionAmount:
-          (carbonFootprint - MAX_CARBON_FOOTPRINT) /
-          // Prevent division by zero if we are already at the objective year
-          Math.max(1, OVER_7_TONS_YEAR_OBJECTIVE - currentYear),
+          (carbonFootprint - FIRST_OBJECTIVE.value) /
+          Math.max(1, year - currentYear),
         titleClassName: 'text-red-900',
+        bgClassName: 'bg-red-50',
+        description: (
+          <Trans locale={locale} i18nKey="results.objective.over7.description">
+            Aujourd'hui, vous êtes{' '}
+            <strong>au-dessus de la moyenne nationale </strong>
+          </Trans>
+        ),
+        reductionDescription: (
+          <Trans
+            locale={locale}
+            i18nKey="results.objective.reduction.over7.description"
+            values={{ year }}>
+            Votre rythme indicatif pour parvenir à{' '}
+            <strong>7T en {{ year } as unknown as ReactNode}</strong>
+          </Trans>
+        ),
       }
-    case carbonFootprint > MIN_CARBON_FOOTPRINT &&
-      carbonFootprint < MAX_CARBON_FOOTPRINT:
+    }
+
+    if (carbonFootprint > SECOND_OBJECTIVE.value) {
+      const year = SECOND_OBJECTIVE.year
+
       return {
-        displayValue: formattedValue,
-        unit,
         reductionAmount:
-          (MIN_CARBON_FOOTPRINT - carbonFootprint) /
-          // Prevent division by zero if we are already at the objective year
-          Math.max(1, UNDER_7_TONS_YEAR_OBJECTIVE - currentYear),
+          (carbonFootprint - SECOND_OBJECTIVE.value) /
+          Math.max(1, year - currentYear),
         titleClassName: 'text-orange-900',
+        bgClassName: 'bg-orange-50',
+        description: (
+          <Trans
+            locale={locale}
+            i18nKey="results.objective.over4.description"
+            values={{ year }}>
+            Bravo, aujourd'hui vous êtes déjà{' '}
+            <strong>en transition vers l'objectif intermédiaire</strong> de 4T
+            en {{ year } as unknown as ReactNode}
+          </Trans>
+        ),
+        reductionDescription: (
+          <Trans
+            locale={locale}
+            i18nKey="results.objective.reduction.over4.description"
+            values={{ year }}>
+            Votre rythme indicatif pour parvenir à{' '}
+            <strong>4T en {{ year } as unknown as ReactNode}</strong>
+          </Trans>
+        ),
       }
-    default:
-      return {
-        displayValue: formattedValue,
-        unit,
-        reductionAmount: 0,
-        titleClassName: 'text-green-900',
-      }
+    }
+
+    return {
+      reductionAmount: 0,
+      titleClassName: 'text-green-900',
+      bgClassName: 'bg-green-50',
+      description: (
+        <>
+          <strong className="block">
+            <Trans
+              locale={locale}
+              i18nKey="results.objective.under4.description.title">
+              Vous êtes déjà sous les 4 tonnes, bravo !
+            </Trans>
+          </strong>
+          <span className="block w-lg max-w-full">
+            <Trans
+              locale={locale}
+              i18nKey="results.objective.under4.description.body">
+              Avec le travail de l'Etat et toute la société dans les décennies à
+              venir, votre empreinte devrait naturellement diminuer pour se
+              rapprocher des 2T. Ce qu'il vous reste à faire ? Persévérer dans
+              votre être et… convaincre les autres !
+            </Trans>
+          </span>
+        </>
+      ),
+      reductionDescription: null,
+    }
+  }
+
+  return {
+    displayValue: formattedValue,
+    unit,
+    ...getReductionData(),
   }
 }
 
@@ -65,11 +127,18 @@ export default function ObjectiveWithRhythm({
   locale,
   carbonFootprint,
 }: Props) {
-  const { displayValue, unit, reductionAmount, titleClassName } =
-    getObjectiveData({
-      carbonFootprint,
-      locale,
-    })
+  const {
+    displayValue,
+    unit,
+    reductionAmount,
+    titleClassName,
+    bgClassName,
+    description,
+    reductionDescription,
+  } = getObjectiveData({
+    carbonFootprint,
+    locale,
+  })
 
   const { formattedValue: reductionDisplayValue, unit: reductionUnit } =
     reductionAmount
@@ -88,15 +157,7 @@ export default function ObjectiveWithRhythm({
         </Badge>
       </div>
       <div className="flex w-full flex-col gap-4 md:flex-row">
-        <div
-          className={twMerge(
-            'flex-1 rounded-lg px-6 py-4',
-            carbonFootprint > MAX_CARBON_FOOTPRINT
-              ? 'bg-red-50'
-              : carbonFootprint > MIN_CARBON_FOOTPRINT
-                ? 'bg-orange-50'
-                : 'bg-green-50'
-          )}>
+        <div className={twMerge('flex-1 rounded-lg px-6 py-4', bgClassName)}>
           <h3 className={twMerge('mb-2 text-2xl font-bold', titleClassName)}>
             {displayValue} {unit}{' '}
             <Trans locale={locale} i18nKey="common.co2eAn">
@@ -104,45 +165,7 @@ export default function ObjectiveWithRhythm({
             </Trans>
           </h3>
 
-          <p className="mb-0">
-            {carbonFootprint > MAX_CARBON_FOOTPRINT ? (
-              <Trans
-                locale={locale}
-                i18nKey="results.objective.over7.description">
-                Aujourd’hui, vous êtes{' '}
-                <strong>au-dessus de la moyenne nationale </strong>
-              </Trans>
-            ) : carbonFootprint > MIN_CARBON_FOOTPRINT ? (
-              <Trans
-                locale={locale}
-                i18nKey="results.objective.over4.description">
-                Bravo, aujourd’hui vous êtes déjà{' '}
-                <strong>en transition vers l’objectif intermédiaire</strong> de
-                4T en 2040
-              </Trans>
-            ) : (
-              <>
-                <strong className="block">
-                  <Trans
-                    locale={locale}
-                    i18nKey="results.objective.under4.description.title">
-                    Vous êtes déjà sous les 4 tonnes, bravo !
-                  </Trans>
-                </strong>
-                <span className="block w-lg max-w-full">
-                  <Trans
-                    locale={locale}
-                    i18nKey="results.objective.under4.description.body">
-                    Avec le travail de l’Etat et toute la société dans les
-                    décennies à venir, votre empreinte devrait naturellement
-                    diminuer pour se rapprocher des 2T. Ce qu’il vous reste à
-                    faire ? Persévérer dans votre être et… convaincre les autres
-                    !
-                  </Trans>
-                </span>
-              </>
-            )}
-          </p>
+          <p className="mb-0">{description}</p>
         </div>
 
         {!!reductionAmount && (
@@ -150,23 +173,7 @@ export default function ObjectiveWithRhythm({
             <DownArrow className="fill-default h-6 w-6 self-center md:-rotate-90" />
 
             <div className="bg-primary-50 flex-1 rounded-lg px-6 py-4">
-              <p className="mb-2">
-                {carbonFootprint > MAX_CARBON_FOOTPRINT ? (
-                  <Trans
-                    locale={locale}
-                    i18nKey="results.objective.reduction.over7.description">
-                    Votre rythme indicatif pour parvenir à{' '}
-                    <strong>7T en 2030</strong>
-                  </Trans>
-                ) : (
-                  <Trans
-                    locale={locale}
-                    i18nKey="results.objective.reduction.over4.description">
-                    Votre rythme indicatif pour parvenir à{' '}
-                    <strong>4T en 2040</strong>
-                  </Trans>
-                )}
-              </p>
+              <p className="mb-2">{reductionDescription}</p>
 
               <p className="text-2xl font-bold">
                 {reductionDisplayValue} {reductionUnit}{' '}

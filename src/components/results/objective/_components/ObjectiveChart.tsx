@@ -15,22 +15,14 @@ interface Props {
 export default function ObjectiveChart({ carbonFootprint }: Props) {
   const { t } = useClientTranslation()
   const locale = useLocale()
-  const {
-    containerRef,
-    firstPoint,
-    lastPoint,
-    linePath,
-    arrowRotation,
-    pointsWithCoords,
-  } = useObjectiveChart(carbonFootprint)
+  const { firstPoint, lastPoint, linePath, pointsWithCoords } =
+    useObjectiveChart(carbonFootprint)
 
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <div className="bg-primary-100 mt-8 h-90 w-full overflow-visible rounded-xl px-8 py-6">
-      <div
-        ref={containerRef}
-        className="relative mx-auto h-72 w-full max-w-10/12 md:max-w-[400px]">
+    <div className="bg-primary-100 mt-8 w-full overflow-visible rounded-xl px-8 pt-12 pb-6">
+      <div className="relative flex aspect-[4/3] w-full items-center justify-center md:mx-auto md:max-w-[400px]">
         {/* SVG line */}
         <svg
           className="absolute inset-0 h-full w-full overflow-visible"
@@ -42,25 +34,25 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
             className="stroke-secondary-700"
             strokeWidth="0.8"
             initial={{
-              pathLength: shouldReduceMotion ? 1 : 0,
-              opacity: shouldReduceMotion ? 1 : 0,
+              pathLength: 0,
+              opacity: 0,
             }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 1.5,
+              duration: 1.5,
               ease: 'easeInOut',
             }}
           />
         </svg>
 
-        {/* Animated Arrow */}
+        {/* Animated arrow head */}
         <motion.div
           className="absolute h-4 w-4"
           initial={{
-            left: `${shouldReduceMotion ? lastPoint.x : firstPoint.x}%`,
-            top: `${shouldReduceMotion ? lastPoint.y : firstPoint.y}%`,
-            opacity: shouldReduceMotion ? 1 : 0,
+            left: `${firstPoint.x}%`,
+            top: `${firstPoint.y}%`,
+            opacity: 0,
           }}
           whileInView={{
             left: `${lastPoint.x}%`,
@@ -69,17 +61,16 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
           }}
           viewport={{ once: true }}
           transition={{
-            duration: shouldReduceMotion ? 0 : 1.5,
+            duration: 1.5,
             ease: 'easeInOut',
           }}>
           <div
-            className="-translate-x-4.5 -translate-y-5 sm:-translate-x-5 sm:-translate-y-4 md:-translate-x-4.5"
             style={{
-              transform: `rotate(${arrowRotation}deg)`,
+              transform: 'rotate(46deg) translate(-18px, 2px)',
             }}>
             <svg
-              width="24"
-              height="24"
+              width="18"
+              height="18"
               viewBox="0 0 18 18"
               className="overflow-visible">
               <path
@@ -113,27 +104,30 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
                 transform: 'translate(-50%, -50%)',
               }}>
               <div className="relative flex items-center justify-center">
-                {p.isCurrent && !shouldReduceMotion && (
-                  <motion.div
-                    className="bg-secondary-700 absolute rounded-full"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                    }}
-                    initial={{ scale: 1, opacity: 0.5 }}
-                    animate={{ scale: 2, opacity: 0 }}
-                    transition={{
-                      duration: 1.5,
-                      delay: 1.5,
-                      repeat: Infinity,
-                      ease: 'easeOut',
-                    }}
-                  />
-                )}
+                {
+                  // Display pulsating animation on current dot
+                  index === 0 && !shouldReduceMotion && (
+                    <motion.div
+                      className="bg-secondary-700 absolute rounded-full"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      initial={{ scale: 1, opacity: 0.5 }}
+                      animate={{ scale: 2, opacity: 0 }}
+                      transition={{
+                        duration: 1.5,
+                        delay: 1.5,
+                        repeat: Infinity,
+                        ease: 'easeOut',
+                      }}
+                    />
+                  )
+                }
                 <div
                   className={twMerge(
                     'bg-secondary-700 relative z-10 rounded-full',
-                    p.isCurrent ? 'h-5 w-5' : 'h-4 w-4'
+                    index === 0 ? 'h-5 w-5' : 'h-4 w-4'
                   )}
                 />
               </div>
@@ -144,7 +138,7 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
                   'bottom-2 left-5 items-start text-left'
                 )}>
                 <span className="text-secondary-700 text-xs font-bold md:text-sm">
-                  {p.isCurrent ? (
+                  {index === 0 ? (
                     <Trans>Vous aujourd'hui</Trans>
                   ) : p.year === 2050 ? (
                     <Trans>Objectif 2050</Trans>

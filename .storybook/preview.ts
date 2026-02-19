@@ -1,6 +1,8 @@
 import type { Preview } from '@storybook/nextjs'
+import i18next from 'i18next'
 import { initialize, mswLoader } from 'msw-storybook-addon'
 import '../src/app/[locale]/globals.css'
+import '../src/locales/initClient'
 
 // Initialize MSW
 initialize({
@@ -22,6 +24,22 @@ const preview: Preview = {
     },
   },
   loaders: [mswLoader],
+  decorators: [
+    (Story, context) => {
+      const locale = context.args.locale ?? 'fr'
+
+      // Sync the NEXT_LOCALE cookie so useCurrentLocale() picks up the right locale
+      document.cookie = `NEXT_LOCALE=${locale}; path=/`
+
+      // Sync the i18next language so useTranslation / TransClient re-renders
+      if (i18next.language !== locale) {
+        i18next.changeLanguage(locale)
+      }
+
+      return Story()
+    },
+  ],
 }
 
 export default preview
+
