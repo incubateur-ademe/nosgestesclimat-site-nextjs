@@ -1787,7 +1787,6 @@ entries:
   privacyPolicy.posthogCheckboxTextNotFollowed: You are not currently being tracked. Tick this box if you agree to be anonymously tracked by Posthog
   privacyPolicy.posthogCheckboxTextNotFollowed.lock: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Click on see details to find out more about your water footprint
-  Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: We are currently experiencing a technical problem with Microsoft addresses (@outlook, @hotmail, @live, @msn) and are doing everything we can to resolve it. Please use another e-mail address in the meantime.
   cookies.management.googleAds.link: See the official website
   cookies.management.googleAds.link.lock: Voir le site officiel
   cookies.management.posthog.link: See the official website
