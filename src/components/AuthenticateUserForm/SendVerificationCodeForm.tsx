@@ -15,11 +15,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
-import {
-  isEmailValid,
-  isMicrosoftEmail,
-  MICROSOFT_EMAIL_ERROR_MESSAGE,
-} from '@/utils/isEmailValid'
+import { isEmailValid } from '@/utils/isEmailValid'
 import { type ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -83,15 +79,8 @@ export default function SendVerificationCodeForm({
           required: required
             ? t('Merci de renseigner votre adresse e-mail')
             : undefined,
-          validate: (value) => {
-            if (!isEmailValid(value)) {
-              return t("L'adresse e-mail est invalide")
-            }
-            if (isMicrosoftEmail(value)) {
-              return t(MICROSOFT_EMAIL_ERROR_MESSAGE)
-            }
-            return true
-          },
+          validate: (value) =>
+            isEmailValid(value) || t("L'adresse e-mail est invalide"),
         })}
         error={formErrors.email?.message}
       />

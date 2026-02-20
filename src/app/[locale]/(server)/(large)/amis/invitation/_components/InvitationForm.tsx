@@ -10,10 +10,6 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
 import { formatEmail } from '@/utils/format/formatEmail'
-import {
-  isMicrosoftEmail,
-  MICROSOFT_EMAIL_ERROR_MESSAGE,
-} from '@/utils/isEmailValid'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
@@ -111,12 +107,6 @@ export default function InvitationForm({ group }: { group: Group }) {
               value:
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
               message: t('Veuillez entrer une adresse email valide.'),
-            },
-            validate: (value) => {
-              if (value && isMicrosoftEmail(value)) {
-                return t(MICROSOFT_EMAIL_ERROR_MESSAGE)
-              }
-              return true
             },
           })}
         />

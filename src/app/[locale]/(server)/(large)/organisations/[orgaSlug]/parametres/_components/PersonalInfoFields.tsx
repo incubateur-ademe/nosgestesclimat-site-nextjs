@@ -6,10 +6,6 @@ import EmailInput from '@/design-system/inputs/EmailInput'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
-import {
-  isMicrosoftEmail,
-  MICROSOFT_EMAIL_ERROR_MESSAGE,
-} from '@/utils/isEmailValid'
 import type { UseFormRegister } from 'react-hook-form'
 
 interface Props {
@@ -79,12 +75,6 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
         data-testid="input-administrator-email"
         {...register('email', {
           required: t('Ce champ est requis'),
-          validate: (value) => {
-            if (value && isMicrosoftEmail(value)) {
-              return t(MICROSOFT_EMAIL_ERROR_MESSAGE)
-            }
-            return true
-          },
         })}
       />
 
