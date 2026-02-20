@@ -6,7 +6,6 @@ import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import EngineProviders from '@/components/providers/EngineProviders'
 import Trans from '@/components/translation/trans/TransClient'
-import { captureClickPollSettings } from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
@@ -14,7 +13,6 @@ import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPo
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import { useUser } from '@/publicodes-state'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
@@ -101,9 +99,7 @@ export default function CampagnePage() {
             <div>
               <ButtonLink
                 href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
-                onClick={() => {
-                  trackPosthogEvent(captureClickPollSettings())
-                }}
+                data-track
                 color="secondary"
                 size="sm"
                 data-testid="poll-admin-section-see-parameters-button"

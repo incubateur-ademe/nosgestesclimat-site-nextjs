@@ -66,11 +66,10 @@ export class PostHog {
       defaults: '2026-01-30',
       debug: true,
       person_profiles: 'identified_only',
-      autocapture: false,
-      // {
-      //   capture_copied_text: false,
-      //   css_selector_allowlist: ['[data-track]'],
-      // },
+      autocapture: {
+        capture_copied_text: false,
+        css_selector_allowlist: ['[data-track]'],
+      },
       custom_campaign_params: [
         'mtm_campaign',
         'mtm_kwd',

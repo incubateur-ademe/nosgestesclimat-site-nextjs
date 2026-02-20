@@ -2,12 +2,10 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { SIGNIN_MODE, SIGNUP_MODE } from '@/constants/authentication/modes'
-import { captureClickTab } from '@/constants/tracking/pages/signin'
 import { CONNEXION_PATH, INSCRIPTION_PATH } from '@/constants/urls/paths'
 import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AuthenticationMode } from '@/types/authentication'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 interface Props {
   mode: AuthenticationMode
@@ -23,11 +21,6 @@ export default function SigninSignupTabs({ mode, className }: Props) {
       label: <Trans i18nKey="login.list.login.label">Se connecter</Trans>,
       href: CONNEXION_PATH,
       isActive: mode === SIGNIN_MODE,
-      onClick: () => {
-        if (mode !== SIGNIN_MODE) {
-          trackPosthogEvent(captureClickTab({ tab: 'connexion' }))
-        }
-      },
       tab: 'connexion',
       prefetch: false,
     },
@@ -36,18 +29,13 @@ export default function SigninSignupTabs({ mode, className }: Props) {
       label: <Trans i18nKey="login.list.signin.label">Créer un compte</Trans>,
       href: INSCRIPTION_PATH,
       isActive: mode === SIGNUP_MODE,
-      onClick: () => {
-        if (mode !== SIGNUP_MODE) {
-          trackPosthogEvent(captureClickTab({ tab: 'inscription' }))
-        }
-      },
       tab: 'inscription',
       prefetch: false,
     },
   ]
 
   return (
-    <div className={className}>
+    <div className={className} data-track>
       <Tabs
         items={tabItems}
         ariaLabel={t(

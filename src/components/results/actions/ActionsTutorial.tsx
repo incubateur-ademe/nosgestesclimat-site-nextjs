@@ -1,16 +1,12 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  actionsClickStartPosthog,
-} from '@/constants/tracking/pages/actions'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 export default function ActionsTutorial() {
   const { t, i18n } = useClientTranslation()
@@ -85,9 +81,9 @@ export default function ActionsTutorial() {
       </p>
 
       <Button
+        data-track
         onClick={() => {
           hideTutorial('actions')
-          trackPosthogEvent(actionsClickStartPosthog)
         }}>
         <Trans>Démarrer</Trans>
       </Button>

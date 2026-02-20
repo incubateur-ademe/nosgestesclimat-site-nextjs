@@ -1,9 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { captureDownloadPollQRCode } from '@/constants/tracking/posthogTrackers'
 import Button from '@/design-system/buttons/Button'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import JSZip from 'jszip'
 import { useRef } from 'react'
 import QRCodeLib from 'react-qr-code'
@@ -22,8 +20,6 @@ export default function QRCode({ value, className }: QRCodeProps) {
 
     const svg = qrRef.current.querySelector('svg')
     if (!svg) return
-
-    trackPosthogEvent(captureDownloadPollQRCode())
 
     const zip = new JSZip()
 
@@ -111,6 +107,7 @@ export default function QRCode({ value, className }: QRCodeProps) {
         color="secondary"
         className="px-3"
         size="sm"
+        data-track
         onClick={downloadQRCodeZip}>
         <span className="whitespace-normal">
           <Trans>Télécharger le QR Code</Trans>

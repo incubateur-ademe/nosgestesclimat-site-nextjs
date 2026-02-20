@@ -54,14 +54,7 @@ export default async function Page({
           </p>
           <Separator />
           <div className="max-w-full md:w-[40rem]">
-            <AuthenticateUserForm
-              onComplete={redirectAfterLogin}
-              trackers={{
-                posthog: {
-                  eventName: 'Organisations Login - Verification code validé',
-                },
-              }}
-            />
+            <AuthenticateUserForm onComplete={redirectAfterLogin} />
           </div>
         </div>
       </section>

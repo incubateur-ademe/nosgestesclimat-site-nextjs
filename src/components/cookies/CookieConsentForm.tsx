@@ -1,11 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  cookieClickAcceptAllPosthog,
-  cookieClickRejectAllPosthog,
-  cookieClickSavePosthog,
-} from '@/constants/tracking/cookie'
+import { cookieClickSavePosthog } from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
@@ -89,8 +85,8 @@ export default function CookieConsentForm({
                   <Button
                     type="button"
                     color="secondary"
+                    data-track
                     onClick={() => {
-                      trackPosthogEvent(cookieClickRejectAllPosthog)
                       rejectAll()
                     }}
                     size="sm"
@@ -104,8 +100,8 @@ export default function CookieConsentForm({
                   <Button
                     type="button"
                     color="primary"
+                    data-track
                     onClick={() => {
-                      trackPosthogEvent(cookieClickAcceptAllPosthog)
                       acceptAll()
                     }}
                     size="sm"

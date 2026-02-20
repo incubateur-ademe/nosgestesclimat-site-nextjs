@@ -2,9 +2,6 @@
 
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureSaveResultsAndSigninSignUpComplete,
-} from '@/constants/tracking/pages/end'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
@@ -14,7 +11,6 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import type { Locale } from '@/i18nConfig'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
@@ -31,8 +27,6 @@ export default function SaveResultsAndSigninSignUpForm({
   const router = useRouter()
 
   const onSubmit = async ({ userId }: { userId: string }) => {
-    trackPosthogEvent(captureSaveResultsAndSigninSignUpComplete)
-
     try {
       await postSimulation({
         simulation: currentSimulation,

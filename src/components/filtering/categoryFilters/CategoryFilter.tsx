@@ -1,9 +1,6 @@
 'use client'
 
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
-import {
-  trackingCategoryFilterPosthog,
-} from '@/constants/tracking/misc'
 import { baseClassNames } from '@/design-system/buttons/Button'
 import {
   getBackgroundColor,
@@ -12,7 +9,6 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
@@ -62,8 +58,6 @@ export default function CategoryFilter({
   const handleClick = () => {
     onTabActivate()
 
-    trackPosthogEvent(trackingCategoryFilterPosthog(dottedName))
-
     router.replace(buildURL(), {
       scroll: false,
     })
@@ -95,6 +89,7 @@ export default function CategoryFilter({
         backgroundColor: isSelected ? getBackgroundColor() : undefined,
       }}
       onClick={handleClick}
+      data-track
       onKeyDown={handleKeyDown}>
       <span className={getTextDarkColor(dottedName)}>
         {title}{' '}

@@ -26,12 +26,6 @@ interface Props {
   onEmailEmpty?: () => void
   onComplete?: (user: { email: string; userId: string }) => void
   required?: boolean
-  trackers?: {
-    posthog: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-  }
 }
 
 export default function AuthenticateUserForm({
@@ -42,7 +36,6 @@ export default function AuthenticateUserForm({
   mode,
   onComplete,
   required = true,
-  trackers,
 }: Props) {
   const router = useRouter()
   const { user } = useUser()
@@ -55,9 +48,6 @@ export default function AuthenticateUserForm({
       safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
       setIsRedirecting(true)
 
-      if (trackers) {
-        trackPosthogEvent(trackers.posthog)
-      }
       onComplete?.(user)
 
       if (redirectURL) {
@@ -66,7 +56,7 @@ export default function AuthenticateUserForm({
 
       router.refresh()
     },
-    [redirectURL, onComplete, router, trackers]
+    [redirectURL, onComplete, router]
   )
 
   const {

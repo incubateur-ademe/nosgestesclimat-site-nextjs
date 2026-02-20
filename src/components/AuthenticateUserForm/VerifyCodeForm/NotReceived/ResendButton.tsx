@@ -3,12 +3,8 @@
 import LockIcon from '@/components/icons/LockIcon'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickResendCode,
-} from '@/constants/tracking/pages/signin'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 
 interface Props {
@@ -32,8 +28,6 @@ export default function ResendButton({
       return
     }
 
-    trackPosthogEvent(captureClickResendCode())
-
     onResendVerificationCode()
     setShouldDisplayConfirmation(true)
 
@@ -46,6 +40,7 @@ export default function ResendButton({
     <div className="flex items-center">
       <Button
         color="link"
+        data-track
         aria-disabled={isRetryButtonDisabled}
         aria-label={
           isRetryButtonDisabled

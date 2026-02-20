@@ -12,22 +12,3 @@ export const captureClickSubmitEmail = ({
     },
   }
 }
-
-export const captureClickTab = ({
-  tab,
-}: {
-  tab: 'connexion' | 'inscription'
-}) => {
-  return {
-    eventName: 'click tab',
-    properties: {
-      tab,
-    },
-  }
-}
-
-export const captureClickResendCode = () => {
-  return {
-    eventName: 'click resend code',
-  }
-}

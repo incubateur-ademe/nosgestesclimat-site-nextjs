@@ -2,7 +2,6 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
-import { captureSignupComplete } from '@/constants/tracking/pages/mon-espace'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
@@ -49,9 +48,6 @@ export default async function Connexion({ params }: DefaultPageProps) {
               mode="signUp"
               buttonLabel={t('signup.button.label', "M'inscrire")}
               redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
-              trackers={{
-                posthog: captureSignupComplete,
-              }}
             />
           </UserProvider>
         </QueryClientProviderWrapper>

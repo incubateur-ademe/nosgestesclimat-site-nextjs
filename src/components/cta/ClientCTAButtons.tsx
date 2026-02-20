@@ -4,7 +4,6 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -13,29 +12,10 @@ import CTAButtonsPlaceholder from './CTAButtonsPlaceholder'
 
 export default function ClientCTAButtons({
   className,
-  trackingEvents,
   withRestart = true,
   isAuthenticated,
 }: {
   className?: string
-  trackingEvents?: {
-    startPosthog?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-    resumePosthog?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-    resultsPosthog?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-    restartPosthog?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-  }
   withRestart?: boolean
   isAuthenticated: boolean
 }) {
@@ -94,26 +74,6 @@ export default function ClientCTAButtons({
     return <CTAButtonsPlaceholder className={className} />
   }
 
-  const handleMainButtonClick = () => {
-    if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
-      if (trackingEvents?.resultsPosthog) {
-        trackPosthogEvent(trackingEvents.resultsPosthog)
-      }
-      return
-    }
-
-    if (progression > 0) {
-      if (trackingEvents?.resumePosthog) {
-        trackPosthogEvent(trackingEvents.resumePosthog)
-      }
-      return
-    }
-
-    if (trackingEvents?.startPosthog) {
-      trackPosthogEvent(trackingEvents.startPosthog)
-    }
-  }
-
   const handleRestartClick = () => {
     if (progression === 1) {
       initSimulation()
@@ -136,7 +96,7 @@ export default function ClientCTAButtons({
           data-testid="do-the-test-link"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
-          onClick={handleMainButtonClick}>
+          data-track>
           <span
             className={twMerge(
               isHover
@@ -156,6 +116,7 @@ export default function ClientCTAButtons({
             color="secondary"
             className="leading-none"
             onClick={handleRestartClick}
+            data-track
             href={getLinkToSimulateurPage({
               newSimulation: progression === 1,
             })}>

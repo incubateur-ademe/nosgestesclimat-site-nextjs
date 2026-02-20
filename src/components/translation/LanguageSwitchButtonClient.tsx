@@ -1,14 +1,10 @@
 'use client'
 
-import {
-  footerClickLanguagePosthog,
-} from '@/constants/tracking/layout'
 import ButtonAnchor from '@/design-system/buttons/ButtonAnchor'
 import Emoji from '@/design-system/utils/Emoji'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { useIsClient } from '@/hooks/useIsClient'
 import i18nConfig, { type Locale } from '@/i18nConfig'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -36,7 +32,6 @@ const generateLanguageUrl = (newLocale: Locale): string => {
 }
 
 const handleLanguageClick = (newLocale: Locale) => {
-  trackPosthogEvent(footerClickLanguagePosthog(newLocale))
   updateLangCookie(newLocale)
 }
 
@@ -59,6 +54,7 @@ export default function LanguageSwitchButtonClient({
 
   return (
     <div
+      data-track
       className={twMerge(
         'flex flex-wrap items-center gap-1 sm:gap-2',
         className

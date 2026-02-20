@@ -2,11 +2,7 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickResultsListResultViewDetail,
-} from '@/constants/tracking/user-account'
 import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 export default function SeeListItemDetailLink({
   simulationId,
@@ -20,9 +16,7 @@ export default function SeeListItemDetailLink({
         ':simulationId',
         simulationId
       )}
-      onClick={() => {
-        trackPosthogEvent(captureClickResultsListResultViewDetail)
-      }}>
+      data-track>
       <Trans i18nKey="mon-espace.resultsList.result.viewDetail">
         Voir le détail
       </Trans>
