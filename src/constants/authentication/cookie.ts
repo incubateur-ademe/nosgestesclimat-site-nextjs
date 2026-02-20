@@ -1,2 +1,1 @@
-export const AUTHENTICATION_COOKIE_NAME =
-  process.env.COOKIE_NAME ?? 'ngcjwt2'
+export const AUTHENTICATION_COOKIE_NAME = process.env.COOKIE_NAME ?? 'ngcjwt2'
