@@ -16,7 +16,7 @@ export default function HeroSection() {
       <div className="max-w-full md:w-[34rem]">
         <h1>
           <Trans i18nKey="organisations.accueil.titre">
-            Nos Gestes Climat pour les organisations
+            Nos Gestes Climat pour les organisations et les animateurs
           </Trans>
         </h1>
 
