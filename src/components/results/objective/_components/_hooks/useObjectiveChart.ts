@@ -22,20 +22,26 @@ const COORDS_4 = [
 // Pre-computed coordinates for 3 points (carbon ≤ 7 T)
 const COORDS_3 = [FIRST_POINT, { x: 35, y: 45 }, LAST_POINT]
 
+const COORDS_2 = [FIRST_POINT, LAST_POINT]
+
 // SVG paths – last segment shortened slightly so the arrowhead
 // reaches the outline of the last dot, not its center.
 const LINE_PATH_4 = 'M 10 10 L 26.7 33.3 L 43.3 56.7 L 58.8 78.4'
 const LINE_PATH_3 = 'M 10 10 L 35 45 L 58.8 78.4'
+const LINE_PATH_2 = 'M 10 10 L 58.8 78.4'
 
 export const useObjectiveChart = (carbonFootprint: number) => {
   const is4Points = carbonFootprint > FIRST_OBJECTIVE.value
+  const is2Points = carbonFootprint <= SECOND_OBJECTIVE.value
 
   const pointsWithCoords = useMemo(() => {
-    const coords = is4Points ? COORDS_4 : COORDS_3
+    const coords = is4Points ? COORDS_4 : is2Points ? COORDS_2 : COORDS_3
 
     const milestonePoints = is4Points
       ? [FIRST_OBJECTIVE, SECOND_OBJECTIVE, THIRD_OBJECTIVE]
-      : [SECOND_OBJECTIVE, THIRD_OBJECTIVE]
+      : is2Points
+        ? [THIRD_OBJECTIVE]
+        : [SECOND_OBJECTIVE, THIRD_OBJECTIVE]
 
     return [
       {
@@ -49,12 +55,12 @@ export const useObjectiveChart = (carbonFootprint: number) => {
         ...coords[i + 1],
       })),
     ]
-  }, [carbonFootprint, is4Points])
+  }, [carbonFootprint, is4Points, is2Points])
 
   return {
     firstPoint: FIRST_POINT,
     lastPoint: LAST_POINT,
-    linePath: is4Points ? LINE_PATH_4 : LINE_PATH_3,
+    linePath: is4Points ? LINE_PATH_4 : is2Points ? LINE_PATH_2 : LINE_PATH_3,
     pointsWithCoords,
   }
 }

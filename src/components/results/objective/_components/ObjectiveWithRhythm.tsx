@@ -2,6 +2,7 @@ import DownArrow from '@/components/icons/DownArrow'
 import {
   FIRST_OBJECTIVE,
   SECOND_OBJECTIVE,
+  THIRD_OBJECTIVE,
 } from '@/components/results/objective/_constants/objectives'
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
@@ -29,9 +30,11 @@ const getObjectiveData = ({
   })
 
   const getReductionData = () => {
+    const secondObjectiveNumber = SECOND_OBJECTIVE.value / 1000
+
     if (carbonFootprint > FIRST_OBJECTIVE.value) {
       const year = FIRST_OBJECTIVE.year
-
+      const firstObjectiveNumber = FIRST_OBJECTIVE.value / 1000
       return {
         reductionAmount:
           (carbonFootprint - FIRST_OBJECTIVE.value) /
@@ -48,9 +51,12 @@ const getObjectiveData = ({
           <Trans
             locale={locale}
             i18nKey="results.objective.reduction.over7.description"
-            values={{ year }}>
+            values={{ year, firstObjectiveNumber }}>
             Votre rythme indicatif pour parvenir à{' '}
-            <strong>7T en {{ year } as unknown as ReactNode}</strong>
+            <strong>
+              {{ firstObjectiveNumber } as unknown as ReactNode}T en{' '}
+              {{ year } as unknown as ReactNode}
+            </strong>
           </Trans>
         ),
       }
@@ -69,23 +75,31 @@ const getObjectiveData = ({
           <Trans
             locale={locale}
             i18nKey="results.objective.over4.description"
-            values={{ year }}>
+            values={{ year, secondObjectiveNumber }}>
             Bravo, aujourd'hui vous êtes déjà{' '}
-            <strong>en transition vers l'objectif intermédiaire</strong> de 4T
-            en {{ year } as unknown as ReactNode}
+            <strong>en transition vers l'objectif intermédiaire</strong> de{' '}
+            <strong>
+              {{ secondObjectiveNumber } as unknown as ReactNode}T en{' '}
+              {{ year } as unknown as ReactNode}
+            </strong>
           </Trans>
         ),
         reductionDescription: (
           <Trans
             locale={locale}
             i18nKey="results.objective.reduction.over4.description"
-            values={{ year }}>
+            values={{ year, secondObjectiveNumber }}>
             Votre rythme indicatif pour parvenir à{' '}
-            <strong>4T en {{ year } as unknown as ReactNode}</strong>
+            <strong>
+              {{ secondObjectiveNumber } as unknown as ReactNode}T en{' '}
+              {{ year } as unknown as ReactNode}
+            </strong>
           </Trans>
         ),
       }
     }
+
+    const thirdObjectiveNumber = THIRD_OBJECTIVE.value / 1000
 
     return {
       reductionAmount: 0,
@@ -96,18 +110,23 @@ const getObjectiveData = ({
           <strong className="block">
             <Trans
               locale={locale}
-              i18nKey="results.objective.under4.description.title">
-              Vous êtes déjà sous les 4 tonnes, bravo !
+              i18nKey="results.objective.under4.description.title"
+              values={{ secondObjectiveNumber }}>
+              Vous êtes déjà sous les{' '}
+              {{ secondObjectiveNumber } as unknown as ReactNode} tonnes, bravo
+              !
             </Trans>
           </strong>
           <span className="block w-lg max-w-full">
             <Trans
               locale={locale}
-              i18nKey="results.objective.under4.description.body">
+              i18nKey="results.objective.under4.description.body"
+              values={{ thirdObjectiveNumber }}>
               Avec le travail de l'Etat et toute la société dans les décennies à
               venir, votre empreinte devrait naturellement diminuer pour se
-              rapprocher des 2T. Ce qu'il vous reste à faire ? Persévérer dans
-              votre être et… convaincre les autres !
+              rapprocher des {{ thirdObjectiveNumber } as unknown as ReactNode}
+              T. Ce qu'il vous reste à faire ? Persévérer dans votre être et…
+              convaincre les autres !
             </Trans>
           </span>
         </>

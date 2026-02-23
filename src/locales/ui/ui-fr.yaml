@@ -1395,13 +1395,15 @@ entries:
   results.objective.collectiveEffort.stateDescription: Réduction des services sociétaux (aujourd’hui à 1,55T) et décarbonation des infrastructures.
   results.objective.collectiveEffort.title: "Important : c'est aussi un effort collectif"
   results.objective.description: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à +2 °C.
-  results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de 4T en {{year}}
+  results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
   results.objective.over7.description: Aujourd'hui, vous êtes <2>au-dessus de la moyenne nationale </2>
-  results.objective.reduction.over4.description: Votre rythme indicatif pour parvenir à <2>4T en {{year}}</2>
-  results.objective.reduction.over7.description: Votre rythme indicatif pour parvenir à <2>7T en {{year}}</2>
+  results.objective.reduction.over4.description: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
+  results.objective.reduction.over7.description: Votre rythme indicatif pour parvenir à <2>{{firstObjectiveNumber}}T en {{year}}</2>
   results.objective.title: 'Objectif national : <1>2T</1> par personne en 2050'
-  results.objective.under4.description.body: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
-  results.objective.under4.description.title: Vous êtes déjà sous les 4 tonnes, bravo !
+  results.objective.under4.description.body: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des {{thirdObjectiveNumber}}T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
+  results.objective.under4.description.title: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
   Vous aujourd'hui: Vous aujourd'hui
   Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat
   Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.
+  Part de la sous-catégorie {{percentage}}: Part de la sous-catégorie {{percentage}}
+  results.categories.services.text: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.

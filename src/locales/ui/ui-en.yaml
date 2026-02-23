@@ -1820,8 +1820,8 @@ entries:
   common.vous: You
   common.vous.lock: Vous
   Vous aujourd'hui: You today
-  results.objective.reduction.over7.description: Your target rate for reaching <2>7T in</2> <2> {{year}}</2>
-  results.objective.reduction.over7.description.lock: Votre rythme indicatif pour parvenir à <2>7T en {{year}}</2>
+  results.objective.reduction.over7.description: Your indicative pace for achieving <2>{{firstObjectiveNumber}}T en {{year}}</2>
+  results.objective.reduction.over7.description.lock: Votre rythme indicatif pour parvenir à <2>{{firstObjectiveNumber}}T en {{year}}</2>
   Objectif 2050: Objective 2050
   common.co2eAn: CO₂e / year
   common.co2eAn.lock: CO₂e / an
@@ -1837,17 +1837,20 @@ entries:
   results.objective.collectiveEffort.societyDescription.lock: 'Diminution de l’empreinte des biens et des services par l’effort combiné des entreprises et collectivités. '
   results.objective.title: 'National target: <1>2T</1> per person by 2050'
   results.objective.title.lock: 'Objectif national : <1>2T</1> par personne en 2050'
-  results.objective.under4.description.title: You're already under 4 tonnes - well done!
-  results.objective.under4.description.title.lock: Vous êtes déjà sous les 4 tonnes, bravo !
+  results.objective.under4.description.title: You're already under {{secondObjectiveNumber}} tonnes - well done!
+  results.objective.under4.description.title.lock: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
   results.objective.collectiveEffort.stateDescription: Reducing societal services (currently at 1.55T) and decarbonising infrastructures.
   results.objective.collectiveEffort.stateDescription.lock: Réduction des services sociétaux (aujourd’hui à 1,55T) et décarbonation des infrastructures.
-  results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of 4T in {{year}}
-  results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de 4T en {{year}}
-  results.objective.reduction.over4.description: Your indicative rate for achieving <2>4T in</2> <2> {{year}}</2>
-  results.objective.reduction.over4.description.lock: Votre rythme indicatif pour parvenir à <2>4T en {{year}}</2>
+  results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of <5>{{secondObjectiveNumber}}T en {{year}}</5>
+  results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
+  results.objective.reduction.over4.description: Your indicative pace for achieving <2>{{secondObjectiveNumber}}T en {{year}}</2>
+  results.objective.reduction.over4.description.lock: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
   results.objective.description: France's objective to achieve carbon neutrality by 2050 and help limit global warming to +2°C.
   results.objective.description.lock: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à +2 °C.
-  results.objective.under4.description.body: With the work of the government and society as a whole over the coming decades, your footprint should naturally fall to around 2T. So what's left for you to do? Persevere and convince others!
-  results.objective.under4.description.body.lock: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
+  results.objective.under4.description.body: With the work of the government and society as a whole over the coming decades, your footprint should naturally shrink to around {{thirdObjectiveNumber}}T. So what's left for you to do? Persevere and convince others!
+  results.objective.under4.description.body.lock: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des {{thirdObjectiveNumber}}T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
   Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Distribute a collective link from your personal space and access quantified visual summaries of your impact.
   Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Access your organisation space to easily distribute Nos Gestes Climat
+  Part de la sous-catégorie {{percentage}}: Share of sub-category {{percentage}}
+  results.categories.services.text: Services (health, education, telecoms, etc.) account for around <2>1.5 tonnes of your footprint</2>. This share is <5>the same for everyone</5> and is <8>gradually decreasing</8> with the ecological transition.
+  results.categories.services.text.lock: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.
