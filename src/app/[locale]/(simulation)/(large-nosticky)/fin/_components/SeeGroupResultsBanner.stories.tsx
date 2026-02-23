@@ -35,8 +35,7 @@ export const GroupBanner: Story = {
   ...Template,
   args: {
     locale: 'fr',
-    userId: 'user-123',
-    groupId: 'group-456',
+    url: '/group-456',
     name: 'Mon Super Groupe',
   },
 }
@@ -45,9 +44,7 @@ export const PollBanner: Story = {
   ...Template,
   args: {
     locale: 'fr',
-    userId: 'user-123',
-    pollId: 'poll-789',
-    organisationId: 'orga-101',
+    url: '/poll-789',
     name: 'Ma Campagne Climat',
   },
 }
