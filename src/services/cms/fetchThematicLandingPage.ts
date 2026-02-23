@@ -65,6 +65,7 @@ export async function fetchThematicLandingPage({
       data: [ThematicLandingPage]
     }>(`/api/landing-thematiques?${thematicLPSearchParams}`)
     if (thematicLPResponse.data?.length !== 1) {
+      // eslint-disable-next-line no-console
       console.error(
         `Error: fetch thematic LP error for slug: ${landingPageSlug}`
       )

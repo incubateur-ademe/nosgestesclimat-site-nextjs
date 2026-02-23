@@ -20,6 +20,35 @@ for (const persona of Object.values(personas)) {
   })
 }
 
+test.describe('It should be possible to deselect an answer', () => {
+  test(`for boolean`, async ({ ngcTest, page }) => {
+    await testDeselectAnswer(
+      ngcTest,
+      page,
+      () => ngcTest.isBooleanQuestion(),
+      () => ngcTest.page.getByTestId(new RegExp('oui-label'))
+    )
+  })
+
+  test(`for multiple answer`, async ({ ngcTest, page }) => {
+    await testDeselectAnswer(
+      ngcTest,
+      page,
+      () => ngcTest.isChoicesQuestion(),
+      () => ngcTest.page.getByTestId(/-label/).last()
+    )
+  })
+
+  test(`for mosaic`, async ({ ngcTest, page }) => {
+    await testDeselectAnswer(
+      ngcTest,
+      page,
+      () => ngcTest.isSelectionMosaic(),
+      () => ngcTest.page.getByTestId(/oui-label/).first()
+    )
+  })
+})
+
 /**
  * Helper function to test deselection behavior for any question type
  */
@@ -42,11 +71,7 @@ async function testDeselectAnswer(
 
   //  3. Selectionner une réponse
   const answerInput = getAnswerInput()
-  if (await answerInput.isVisible()) {
-    await answerInput.click()
-  } else {
-    throw new Error('Answer input not found or not visible')
-  }
+  await answerInput.click()
 
   //  4. Vérifier que le bouton suivant est affiché
   await expect(ngcTest.page.getByTestId('next-question-button')).toBeVisible()
@@ -54,7 +79,7 @@ async function testDeselectAnswer(
   await answerInput.click()
 
   //  6. Vérifier que la valeur du bilan est identique au 2.
-  await page.waitForTimeout(1000)
+  await page.waitForTimeout(2000)
   const carbonFootprintValueAfterChange =
     await getCarbonFootprintElem(page).innerText()
 
@@ -63,39 +88,3 @@ async function testDeselectAnswer(
   //  7. Vérifier que le bouton « je ne sais pas » est affiché
   await expect(ngcTest.page.getByTestId('skip-question-button')).toBeVisible()
 }
-
-test(`Should be able to deselect a boolean answer`, async ({
-  ngcTest,
-  page,
-}) => {
-  await testDeselectAnswer(
-    ngcTest,
-    page,
-    () => ngcTest.isBooleanQuestion(),
-    () => ngcTest.page.getByTestId(new RegExp('oui-label'))
-  )
-})
-
-test(`Should be able to deselect a multiple choice answer`, async ({
-  ngcTest,
-  page,
-}) => {
-  await testDeselectAnswer(
-    ngcTest,
-    page,
-    () => ngcTest.isChoicesQuestion(),
-    () => ngcTest.page.getByTestId(/-label/).last()
-  )
-})
-
-test(`Should be able to deselect a mosaic answer`, async ({
-  ngcTest,
-  page,
-}) => {
-  await testDeselectAnswer(
-    ngcTest,
-    page,
-    () => ngcTest.isSelectionMosaic(),
-    () => ngcTest.page.getByTestId(/oui-label/).first()
-  )
-})

@@ -4,7 +4,6 @@ import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMess
 import OrganisationFilAriane from '@/components/layout/FilAriane'
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import PollLoader from '@/components/organisations/PollLoader'
-import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/trans/TransClient'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
@@ -94,15 +93,6 @@ export default function ParametresPage() {
         />
 
         <Separator />
-
-        <QuestionsComplementaires
-          onChange={updateAndRefetchPoll}
-          organisation={organisation}
-          description={' '}
-          poll={poll}
-        />
-
-        <Separator className="my-4" />
 
         <DeletePollButton />
       </MaxWidthContent>
