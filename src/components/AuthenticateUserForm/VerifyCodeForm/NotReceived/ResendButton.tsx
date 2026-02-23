@@ -41,7 +41,7 @@ export default function ResendButton({
 
     setTimeout(() => {
       setShouldDisplayConfirmation(false)
-    }, 1500)
+    }, 4000)
   }
 
   return (
@@ -60,7 +60,7 @@ export default function ResendButton({
         }}>
         {isRetryButtonDisabled && timeLeft > 0 && (
           <span className="mr-2 flex items-center">
-            <LockIcon className="fill-primary-700 mr-2 h-4 w-4" />
+            <LockIcon className="fill-primary-700 dark:fill-primary-50 mr-2 h-4 w-4" />
             <Trans i18nKey="signIn.verificationForm.notReceived.resendButton">
               Renvoyer le code
             </Trans>
