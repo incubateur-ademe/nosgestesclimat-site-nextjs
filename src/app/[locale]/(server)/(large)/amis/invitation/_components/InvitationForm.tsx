@@ -69,7 +69,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       />
 
       {!hasCompletedTest && (
-        <p className="mb-2 text-xs">
+        <p className="my-2 text-xs">
           Vous devrez compléter votre test après avoir rejoint le groupe.
         </p>
       )}
