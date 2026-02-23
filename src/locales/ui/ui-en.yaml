@@ -1813,12 +1813,11 @@ entries:
   organisations.demanderDemo.title.lock: Demander une démo
   organisations.demanderDemo.subtitle: Book a slot to attend a demonstration of our functionality dedicated to organisations (companies, associations, schools, etc.) and allow you to distribute the Nos Gestes Climat test to your audience.
   organisations.demanderDemo.subtitle.lock: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
-<<<<<<< HEAD
   Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Distribute a collective link from your personal space and access quantified visual summaries of your impact.
   Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Access your organisation space to easily distribute Nos Gestes Climat
-||||||| parent of 2a4085b5f (🌐 Add translations and i18n to Email page)
-=======
   Vérifier mon adresse email: Check my email address
-  Passer: Go to
+  Passer: Skip
   Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>: To save your results and retrieve them in the future in <2>your personal space</2>
->>>>>>> 2a4085b5f (🌐 Add translations and i18n to Email page)
+  Part de la sous-catégorie {{percentage}}: Share of sub-category {{percentage}}
+  results.categories.services.text: Services (health, education, telecoms, etc.) account for around <2>1.5 tonnes of your footprint</2>. This share is <5>the same for everyone</5> and is <8>gradually decreasing</8> with the ecological transition.
+  results.categories.services.text.lock: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.

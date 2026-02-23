@@ -1384,12 +1384,10 @@ entries:
   cookies.management.posthog.link: Voir le site officiel
   organisations.demanderDemo.subtitle: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
   organisations.demanderDemo.title: Demander une démo
-<<<<<<< HEAD
   Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat
   Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.
-||||||| parent of 2a4085b5f (🌐 Add translations and i18n to Email page)
-=======
+  Part de la sous-catégorie {{percentage}}: Part de la sous-catégorie {{percentage}}
   Passer: Passer
   Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>: Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>
+  results.categories.services.text: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.
   Vérifier mon adresse email: Vérifier mon adresse email
->>>>>>> 2a4085b5f (🌐 Add translations and i18n to Email page)
