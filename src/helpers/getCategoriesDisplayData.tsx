@@ -62,11 +62,15 @@ const CATEGORIES_MAPPER = {
   },
 } as const
 
-function getFormattedPercentages(
-  values: number[],
-  total: number,
+function getFormattedPercentages({
+  values,
+  total,
+  locale,
+}: {
+  values: number[]
+  total: number
   locale: Locale
-) {
+}) {
   // We work on a base 1000 to keep one decimal place using integers (100.0% = 1000)
   const roundedPercentagesAtOneDecimal = values.map((v) =>
     Math.round((v / total) * 1000)
@@ -110,13 +114,13 @@ export function getCategoriesDisplayData({
   const totalBilan = computedResults[metric].bilan
 
   const categories = orderedCategories.filter((cat) => categoriesData[cat] > 0)
-  const maxVal = Math.max(...Object.values(categoriesData))
+  const maxValue = Math.max(...Object.values(categoriesData))
 
-  const displayPercentages = getFormattedPercentages(
-    categories.map((c) => categoriesData[c]),
-    totalBilan,
-    locale
-  )
+  const displayPercentages = getFormattedPercentages({
+    values: categories.map((c) => categoriesData[c]),
+    total: totalBilan,
+    locale,
+  })
 
   return categories.map((dottedName, i) => {
     const value = categoriesData[dottedName]
@@ -135,7 +139,7 @@ export function getCategoriesDisplayData({
       bgIconClassName: meta.bgIconClassName,
       formattedValue,
       unit,
-      percentage: (value / maxVal) * 100,
+      percentage: (value / maxValue) * 100,
       displayPercentage: displayPercentages[i],
       subcategories: getSubcategoriesDisplayData({
         categoryDottedName: dottedName,
@@ -172,11 +176,11 @@ function getSubcategoriesDisplayData({
     )
     .sort(([, a], [, b]) => b - a)
 
-  const displayPercentages = getFormattedPercentages(
-    entries.map(([, v]) => v),
-    categoryValue,
-    locale
-  )
+  const displayPercentages = getFormattedPercentages({
+    values: entries.map(([, v]) => v),
+    total: categoryValue,
+    locale,
+  })
 
   return entries.map(([dottedName, value], i) => {
     const { formattedValue, unit } = formatFootprint(value, {
