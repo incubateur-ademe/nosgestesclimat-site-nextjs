@@ -1,10 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  amisDashboardOpenDeleteGroup,
-  amisDashboardValidateDeleteGroup,
-} from '@/constants/tracking/pages/amisDashboard'
 import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
@@ -12,7 +8,6 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -41,7 +36,6 @@ export default function OwnerAdminSection({ group }: Props) {
   }, [])
 
   async function handleDelete() {
-    trackEvent(amisDashboardOpenDeleteGroup)
     if (!group) return
 
     try {
@@ -106,7 +100,6 @@ export default function OwnerAdminSection({ group }: Props) {
         <Button
           color="link"
           onClick={() => {
-            trackEvent(amisDashboardValidateDeleteGroup)
             setIsConfirming(true)
           }}
           data-testid="button-delete-group">

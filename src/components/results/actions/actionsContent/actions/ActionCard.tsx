@@ -4,11 +4,8 @@ import Link from '@/components/Link'
 import CloseIcon from '@/components/icons/Close'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
-  actionsClickNo,
   actionsClickNoPosthog,
-  actionsClickYes,
   actionsClickYesPosthog,
-  actionsOpenAction,
   actionsOpenActionPosthog,
 } from '@/constants/tracking/pages/actions'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
@@ -29,7 +26,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
@@ -118,7 +115,6 @@ export default function ActionCard({
     handleUpdatePersistedActions()
 
     if (!isSelected) {
-      trackEvent(actionsClickYes(dottedName))
       trackPosthogEvent(actionsClickYesPosthog(dottedName))
     }
   }, [
@@ -139,7 +135,6 @@ export default function ActionCard({
     handleUpdatePersistedActions()
 
     if (!isSelected) {
-      trackEvent(actionsClickNo(dottedName))
       trackPosthogEvent(actionsClickNoPosthog(dottedName))
     }
   }
@@ -165,7 +160,6 @@ export default function ActionCard({
         <Link
           className="z-10 w-full underline"
           onClick={() => {
-            trackEvent(actionsOpenAction(dottedName))
             trackPosthogEvent(actionsOpenActionPosthog(dottedName))
           }}
           href={`${MON_ESPACE_ACTIONS_PATH}/${encodeRuleName(dottedName)}`}>

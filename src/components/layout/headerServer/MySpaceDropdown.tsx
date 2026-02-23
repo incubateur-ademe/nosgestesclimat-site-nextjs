@@ -3,23 +3,14 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import LogOutIcon from '@/components/icons/LogOutIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickHeaderAccessMySpaceAuthenticatedServer,
-  captureClickHeaderLogoutAuthenticatedServer,
-  captureClickHeaderMonEspaceAuthenticatedServer,
-  headerClickAccessMySpaceAuthenticatedServer,
-  headerClickLogoutAuthenticatedServer,
-  headerClickMonEspaceAuthenticatedServer,
-} from '@/constants/tracking/user-account'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import { resetLocalState } from '@/helpers/user/resetLocalState'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import posthog from 'posthog-js'
-import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const MAX_EMAIL_LENGTH = 20
@@ -146,8 +137,6 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   }, [isOpen])
 
   const handleToggleMenu = () => {
-    trackEvent(headerClickMonEspaceAuthenticatedServer)
-    trackPosthogEvent(captureClickHeaderMonEspaceAuthenticatedServer)
     setIsOpen((prev) => {
       const willOpen = !prev
       // If opening with mouse click, reset keyboard navigation flag
@@ -162,7 +151,9 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     })
   }
 
-  const handleButtonKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+  const handleButtonKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>
+  ) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       openedWithKeyboardRef.current = true
@@ -176,7 +167,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     }
   }
 
-  const handleMenuKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+  const handleMenuKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Escape') {
       event.preventDefault()
       setIsOpen(false)
@@ -199,8 +190,6 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   }
 
   const handleLogout = async () => {
-    trackEvent(headerClickLogoutAuthenticatedServer)
-    trackPosthogEvent(captureClickHeaderLogoutAuthenticatedServer)
     setIsOpen(false)
 
     await resetLocalState({ setUser, updateSimulations })
@@ -239,6 +228,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
         aria-controls={menuId}
         aria-label={ariaLabelTitle}
         title={ariaLabelTitle}
+        data-track
         onClick={handleToggleMenu}
         onKeyDown={handleButtonKeyDown}>
         <Trans i18nKey="header.monEspace.title">Mon espace</Trans>{' '}
@@ -265,6 +255,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
               <Link
                 ref={firstMenuItemRef}
                 href={MON_ESPACE_PATH}
+                data-track
                 role="menuitem"
                 className={twMerge(
                   'text-default hover:bg-primary-100 block min-h-10 px-4 py-2 text-sm no-underline! transition-colors focus:outline-none',
@@ -274,18 +265,10 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
                 )}
                 onClick={() => {
                   setIsOpen(false)
-                  trackEvent(headerClickAccessMySpaceAuthenticatedServer)
-                  trackPosthogEvent(
-                    captureClickHeaderAccessMySpaceAuthenticatedServer
-                  )
                 }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     setIsOpen(false)
-                    trackEvent(headerClickAccessMySpaceAuthenticatedServer)
-                    trackPosthogEvent(
-                      captureClickHeaderAccessMySpaceAuthenticatedServer
-                    )
                   }
                 }}>
                 <Trans i18nKey="header.monEspace.access">
@@ -297,6 +280,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
               <button
                 ref={logoutButtonRef}
                 type="button"
+                data-track
                 role="menuitem"
                 className="text-default hover:bg-primary-50 focus:bg-primary-50 focus:ring-primary-700 flex min-h-10 w-full items-center gap-2 px-4 py-2 text-sm transition-colors hover:underline! focus:underline! focus:ring-2 focus:ring-offset-2 focus:outline-none"
                 onClick={handleLogout}

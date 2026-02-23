@@ -3,11 +3,9 @@
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
 import { carboneMetric } from '@/constants/model/metric'
-import { endToggleTargetBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CarboneTargetContent from './informationBlock/CarboneTargetContent'
@@ -67,7 +65,6 @@ export default function InformationBlock() {
         onClick={() => {
           setIsOpen((prevIsOpen) => !prevIsOpen)
           setIsHedgehog(false)
-          trackEvent(endToggleTargetBlock)
         }}>
         {isOpen || isHedgehog ? (
           <CloseIcon className="fill-primary-700 h-7 w-7" />

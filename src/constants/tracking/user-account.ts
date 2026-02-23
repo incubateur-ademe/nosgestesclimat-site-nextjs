@@ -1,9 +1,3 @@
-export const headerClickMonEspaceAuthenticatedServer = [
-  'trackEvent',
-  'Header',
-  'Click Mon espace',
-  'Authenticated',
-]
 export const captureClickHeaderMonEspaceAuthenticatedServer = {
   eventName: 'click header mon espace',
   properties: {
@@ -11,12 +5,6 @@ export const captureClickHeaderMonEspaceAuthenticatedServer = {
   },
 }
 
-export const headerClickAccessMySpaceAuthenticatedServer = [
-  'trackEvent',
-  'Header',
-  'Click Accéder à mon espace',
-  'Authenticated',
-]
 export const captureClickHeaderAccessMySpaceAuthenticatedServer = {
   eventName: 'click header access my space',
   properties: {
@@ -24,12 +12,6 @@ export const captureClickHeaderAccessMySpaceAuthenticatedServer = {
   },
 }
 
-export const headerClickLogoutAuthenticatedServer = [
-  'trackEvent',
-  'Header',
-  'Click Déconnexion',
-  'Authenticated',
-]
 export const captureClickHeaderLogoutAuthenticatedServer = {
   eventName: 'click header logout',
   properties: {
@@ -37,24 +19,12 @@ export const captureClickHeaderLogoutAuthenticatedServer = {
   },
 }
 
-/** Server-side tracking */
-export const headerClickMonEspaceUnauthenticatedServer =
-  'Header|Click Mon espace|Unauthenticated'
-
 export const captureClickHeaderMonEspaceUnauthenticatedServer = JSON.stringify({
   eventName: 'click header mon espace',
   properties: {
     status: 'unauthenticated',
   },
 })
-/** Server-side tracking */
-
-export const clickDashboardGroupPageNoGroupsCreate = [
-  'trackEvent',
-  'User Account Groups',
-  'Click Create Group',
-  'No Groups No Organisation',
-]
 
 export const captureClickDashboardGroupPageNoGroupsCreate = {
   eventName: 'click dashboard group page create group',
@@ -63,13 +33,6 @@ export const captureClickDashboardGroupPageNoGroupsCreate = {
   },
 }
 
-export const clickDashboardGroupPageCreateOrganisation = [
-  'trackEvent',
-  'User Account Groups',
-  'Click Create Organisation',
-  'No Groups No Organisation',
-]
-
 export const captureClickDashboardGroupPageCreateOrganisation = {
   eventName: 'click dashboard group page create organisation',
   properties: {
@@ -77,39 +40,17 @@ export const captureClickDashboardGroupPageCreateOrganisation = {
   },
 }
 
-export const clickLatestResultsViewDetail =
-  'User Account Results|Click Latest Results View Detail'
-
 export const captureClickLatestResultsViewDetail = JSON.stringify({
   eventName: 'click latest results view detail',
 })
-
-export const clickResultsListResultViewDetail = [
-  'trackEvent',
-  'User Account Results',
-  'Click Results List Result View Detail',
-]
 
 export const captureClickResultsListResultViewDetail = {
   eventName: 'click results list result view detail',
 }
 
-export const clickShareSimulationButton = [
-  'trackEvent',
-  'User Account Results',
-  'Click Share Simulation Button',
-]
-
 export const captureClickShareSimulationButton = {
   eventName: 'click share simulation button',
 }
-
-export const clickCategorySelector = (category: string) => [
-  'trackEvent',
-  'User Account Results',
-  'Click Category Selector',
-  category,
-]
 
 export const captureClickCategorySelector = (category: string) => ({
   eventName: 'click category selector',
@@ -118,13 +59,6 @@ export const captureClickCategorySelector = (category: string) => ({
   },
 })
 
-export const clickCategorySelectorMobile = (category: string) => [
-  'trackEvent',
-  'User Account Results',
-  'Click Category Selector Mobile',
-  category,
-]
-
 export const captureClickCategorySelectorMobile = (category: string) => ({
   eventName: 'click category selector mobile',
   properties: {
@@ -132,21 +66,9 @@ export const captureClickCategorySelectorMobile = (category: string) => ({
   },
 })
 
-export const clickUpdateUserEmail = [
-  'trackEvent',
-  'User Account Settings',
-  'Click Update User Email',
-]
-
 export const captureClickUpdateUserEmail = {
   eventName: 'click update user email',
 }
-
-export const clickUpdateUserNewsletters = [
-  'trackEvent',
-  'User Account Settings',
-  'Click Update Newsletters',
-]
 
 export const captureClickUpdateUserNewsletters = {
   eventName: 'click update newsletters',

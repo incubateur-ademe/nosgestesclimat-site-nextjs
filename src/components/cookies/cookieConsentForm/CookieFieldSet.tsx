@@ -2,7 +2,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Link from 'next/link'
 import type { ComponentPropsWithoutRef } from 'react'
 import type { UseFormRegisterReturn } from 'react-hook-form'
-import type { CookieState } from '../useCookieManagement'
+import type { CookieState } from '../cookieLocalStorage'
 
 interface RadioProps extends ComponentPropsWithoutRef<'input'> {
   label: string | React.ReactNode

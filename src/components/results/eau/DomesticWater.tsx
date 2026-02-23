@@ -3,13 +3,8 @@
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  endClickDomesticWater,
-  endClickDomesticWaterPosthog,
-} from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import DomesticWaterContent from './domesticWater/DomesticWaterContent'
@@ -43,9 +38,8 @@ export default function DomesticWater() {
       <Button
         color={isOpen ? 'text' : 'primary'}
         className="absolute top-4 right-4 h-12 w-12 p-0!"
+        data-track
         onClick={() => {
-          trackEvent(endClickDomesticWater)
-          trackPosthogEvent(endClickDomesticWaterPosthog)
           setIsOpen((prevIsOpen) => !prevIsOpen)
         }}>
         {isOpen ? (

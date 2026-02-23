@@ -2,10 +2,6 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNIN_MODE } from '@/constants/authentication/modes'
-import {
-  captureLoginComplete,
-  loginComplete,
-} from '@/constants/tracking/pages/mon-espace'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -44,14 +40,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
         <QueryClientProviderWrapper>
           <UserProvider>
-            <AuthenticateUserForm
-              mode="signIn"
-              redirectURL={MON_ESPACE_PATH}
-              trackers={{
-                matomo: loginComplete,
-                posthog: captureLoginComplete,
-              }}
-            />
+            <AuthenticateUserForm mode="signIn" redirectURL={MON_ESPACE_PATH} />
           </UserProvider>
         </QueryClientProviderWrapper>
       </div>

@@ -1,11 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { orderedCategories } from '@/constants/model/orderedCategories'
-import {
-  captureClickCategorySelector,
-  clickCategorySelector,
-} from '@/constants/tracking/user-account'
 import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
@@ -37,8 +32,6 @@ export default function CategorySelector({
       onClick: () => {
         if (!disabled) {
           setActiveTab('global')
-          trackEvent(clickCategorySelector('bilan'))
-          trackPosthogEvent(captureClickCategorySelector('bilan'))
         }
       },
       'aria-disabled': disabled,
@@ -52,8 +45,6 @@ export default function CategorySelector({
         onClick: () => {
           if (!disabled) {
             setActiveTab(category)
-            trackEvent(clickCategorySelector(category))
-            trackPosthogEvent(captureClickCategorySelector(category))
           }
         },
         'aria-disabled': disabled,
@@ -62,7 +53,8 @@ export default function CategorySelector({
 
   return (
     <div
-      className={twMerge('mb-6 hidden md:block', disabled ? 'opacity-50' : '')}>
+      className={twMerge('mb-6 hidden md:block', disabled ? 'opacity-50' : '')}
+      data-track>
       <Tabs
         items={tabsItems}
         ariaLabel="Navigation par catégorie"

@@ -4,7 +4,6 @@ import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
 import { LOCALISATION_BANNER_ID } from '@/constants/ids'
 import { defaultModelRegionCode } from '@/constants/localisation/translation'
-import { trackingClickRegionBanner } from '@/constants/tracking/misc'
 import {
   MON_ESPACE_SETTINGS_PATH,
   SIMULATOR_PATH,
@@ -14,7 +13,6 @@ import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { capitalizeString } from '@/utils/capitalizeString'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
@@ -138,7 +136,6 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
             onClick={() => {
               hideTutorial('localisationBanner')
 
-              trackEvent(trackingClickRegionBanner)
             }}>
             <Trans>J'ai compris</Trans>
           </Button>

@@ -1,11 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
-import { captureExportPollData } from '@/constants/tracking/posthogTrackers'
 import type { ComputedResults } from '@/publicodes-state/types'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import type { ReactNode } from 'react'
 import ExportDataButton from './ExportDataButton'
@@ -39,10 +36,7 @@ export default function PollStatistics({
           <ExportDataButton
             poll={poll}
             color="borderless"
-            onClick={() => {
-              trackEvent(organisationsDashboardExportData)
-              trackPosthogEvent(captureExportPollData())
-            }}
+            data-track
             className="h-14"
           />
         )}

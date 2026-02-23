@@ -2,10 +2,8 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import { breadcrumbClickLink } from '@/constants/tracking/layout'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/analytics/trackEvent'
-import { Fragment, type ReactNode } from 'react'
+import { Fragment } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function Breadcrumbs({
@@ -15,7 +13,7 @@ export default function Breadcrumbs({
 }: {
   items: {
     href: string
-    label: string | ReactNode
+    label: string
     isActive?: boolean
     isDisabled?: boolean
   }[]
@@ -58,7 +56,6 @@ export default function Breadcrumbs({
                 if (itemBeforeCurrent.isDisabled) {
                   e.preventDefault()
                 }
-                trackEvent(breadcrumbClickLink(itemBeforeCurrent.href))
               }}
               title={`${itemBeforeCurrent.label} - ${t('Visiter cette page')}`}
               aria-current={itemBeforeCurrent.isActive}
@@ -83,7 +80,6 @@ export default function Breadcrumbs({
                     if (isDisabled || isActive) {
                       e.preventDefault()
                     }
-                    trackEvent(breadcrumbClickLink(href))
                   }}
                   title={`${label} - ${isActive ? t('Page active') : t('Visiter cette page')}`}
                   aria-current={isActive}

@@ -5,11 +5,6 @@ import {
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
 import { captureClickFormNav } from '@/constants/tracking/posthogTrackers'
-import {
-  questionClickPass,
-  questionClickPrevious,
-  questionClickSuivant,
-} from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
@@ -21,7 +16,7 @@ import {
   useRule,
 } from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -144,7 +139,6 @@ export default function Navigation({
       const timeSpentOnQuestion = endTime - startTime
 
       if (isMissing) {
-        trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
         trackPosthogEvent(
           captureClickFormNav({
             actionType: 'passer',
@@ -154,13 +148,6 @@ export default function Navigation({
           })
         )
       } else {
-        trackEvent(
-          questionClickSuivant({
-            question,
-            answer: value,
-            timeSpentOnQuestion,
-          })
-        )
         trackPosthogEvent(
           captureClickFormNav({
             actionType: 'suivant',
@@ -245,7 +232,6 @@ export default function Navigation({
 
       const endTime = Date.now()
       const timeSpentOnQuestion = endTime - startTime
-      trackEvent(questionClickPrevious({ question }))
       trackPosthogEvent(
         captureClickFormNav({
           actionType: 'précédent',

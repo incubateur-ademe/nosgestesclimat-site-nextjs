@@ -3,12 +3,11 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  endClickActions,
   endClickActionsPosthog,
 } from '@/constants/tracking/pages/end'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { useEngine, useRule } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Action from './actions/Action'
 
@@ -72,7 +71,6 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
         <div className="flex justify-center">
           <Link
             onClick={() => {
-              trackEvent(endClickActions)
               trackPosthogEvent(endClickActionsPosthog(title ?? ''))
             }}
             href={MON_ESPACE_ACTIONS_PATH}

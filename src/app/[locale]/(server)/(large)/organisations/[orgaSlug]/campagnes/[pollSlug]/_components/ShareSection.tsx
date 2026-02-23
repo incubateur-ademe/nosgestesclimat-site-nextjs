@@ -18,10 +18,8 @@ import { UTM_MEDIUM_KEY, UTM_SOURCE_KEY } from '@/constants/urls/utm'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import CopyButton from '@/design-system/buttons/CopyButton'
 import Card from '@/design-system/layout/Card'
-import { getShareTrackEvent } from '@/helpers/tracking/share'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -117,49 +115,29 @@ export default function ShareSection({ poll, className, title }: Props) {
               icon: <WhatsappIcon />,
               label: t('Whatsapp'),
               link: `${WHATSAPP_SHARE_URL}${url}`,
-              eventTracked: getShareTrackEvent({
-                page: 'Fin',
-                target: 'Whatsapp',
-              }),
             },
             {
               icon: <FacebookIcon />,
               label: t('Facebook'),
               link: `${FACEBOOK_SHARE_URL}${url}`,
-              eventTracked: getShareTrackEvent({
-                page: 'Fin',
-                target: 'Facebook',
-              }),
             },
             {
               icon: <MessengerIcon />,
               label: t('Messenger'),
               link: `${MESSENGER_SHARE_MOBILE_URL}${url}`,
               mobileOnly: true,
-              eventTracked: getShareTrackEvent({
-                page: 'Fin',
-                target: 'Messenger',
-              }),
             },
             {
               icon: <LinkedinIcon />,
               label: t('Linkedin'),
               link: `${LINKEDIN_SHARE_URL}${url}`,
-              eventTracked: getShareTrackEvent({
-                page: 'Fin',
-                target: 'Linkedin',
-              }),
             },
             {
               icon: <MailIcon className="fill-primary-700 w-4" />,
               label: t('Envoyer par e-mail'),
               link: `mailto:?subject=${t('Voici mes empreintes carbone et eau ; tu connais les tiennes ?')}&body=${url}`,
-              eventTracked: getShareTrackEvent({
-                page: 'Fin',
-                target: 'E-mail',
-              }),
             },
-          ].map(({ link, label, icon, eventTracked }, index) => (
+          ].map(({ link, label, icon }, index) => (
             <li key={link} className="flex max-w-48 flex-1">
               <ButtonLink
                 data-testid={`share-button-link-${index}`}
@@ -167,8 +145,7 @@ export default function ShareSection({ poll, className, title }: Props) {
                 color="secondary"
                 target="_blank"
                 rel="noopener noreferrer"
-                href={link}
-                onClick={() => trackEvent(eventTracked)}>
+                href={link}>
                 <span className="flex items-center gap-2">
                   {label}
                   {icon}

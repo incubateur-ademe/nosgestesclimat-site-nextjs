@@ -2,13 +2,11 @@
 import Marianne from '@/components/images/partners/Marianne'
 import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_JAGIS } from '@/constants/partners'
-import { clickJagisActionBanner } from '@/constants/tracking/pages/mon-espace'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 
 export default function JagisActionBanner() {
@@ -132,7 +130,6 @@ export default function JagisActionBanner() {
                 : undefined
         }
         onClick={() => {
-          trackEvent(clickJagisActionBanner)
           exportSituation({
             situation,
             partner: PARTNER_JAGIS,

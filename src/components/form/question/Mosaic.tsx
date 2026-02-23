@@ -1,8 +1,5 @@
-import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
-import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
@@ -82,14 +79,8 @@ export default function Mosaic({
           <Button
             color="link"
             size="sm"
+            data-track
             onClick={() => {
-              trackEvent(openSubQuestion({ question }))
-              trackPosthogEvent(
-                captureSubQuestion({
-                  question,
-                  state: isMoreOptionsVisible ? 'closed' : 'opened',
-                })
-              )
               setIsMoreOptionsVisible(!isMoreOptionsVisible)
             }}
             className="mt-2 w-30 md:mt-4">

@@ -1,11 +1,7 @@
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import { linkToGroupCreation, SHOW_STEP_KEY } from '@/constants/group'
-import {
-  amisCreationConnexionComplete,
-  amisCreationConnexionRetour,
-  captureAmisCreationConnexionComplete,
-} from '@/constants/tracking/pages/amisCreation'
+import { captureAmisCreationConnexionComplete } from '@/constants/tracking/pages/amisCreation'
 import GoBackButton from '@/design-system/inputs/GoBackButton'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -34,10 +30,7 @@ export default async function GroupConnexionPage({ params }: DefaultPageProps) {
 
   return (
     <div className="pb-8">
-      <GoBackButton
-        eventTracked={amisCreationConnexionRetour}
-        className="mb-4 font-bold"
-      />
+      <GoBackButton className="mb-4 font-bold" />
 
       <StepsDisplay currentStep={1} />
 
@@ -50,7 +43,6 @@ export default async function GroupConnexionPage({ params }: DefaultPageProps) {
         redirectURL={`/amis/creer/votre-groupe?${SHOW_STEP_KEY}=true`}
         buttonLabel={t('auth.verifyemail', 'Vérifier mon adresse email')}
         trackers={{
-          matomo: amisCreationConnexionComplete,
           posthog: captureAmisCreationConnexionComplete,
         }}
       />

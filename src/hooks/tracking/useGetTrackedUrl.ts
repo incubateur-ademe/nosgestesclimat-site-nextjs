@@ -64,7 +64,7 @@ export function useGetTrackedUrl() {
     pathnameUpdated += `?${search}`
   }
 
-  // We don't want to track the slugs of the organisations and theirs polls on Matomo, as it is publicly accessible.
+  // We don't want to track the slugs of the organisations and theirs polls, as it is publicly accessible.
   const anonymizedUrl = handlePathnameAnonymisation(pathnameUpdated)
 
   return { url: pathnameUpdated, anonymizedUrl }

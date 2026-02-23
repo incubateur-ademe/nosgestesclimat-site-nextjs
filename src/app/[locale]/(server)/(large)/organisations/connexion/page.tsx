@@ -1,10 +1,6 @@
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import OrganisationFilAriane from '@/components/layout/FilAriane'
 import Trans from '@/components/translation/trans/TransServer'
-import {
-  captureOrganisationsLoginComplete,
-  organisationsLoginComplete,
-} from '@/constants/tracking/pages/organisationsConnexion'
 import Separator from '@/design-system/layout/Separator'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
@@ -58,13 +54,7 @@ export default async function Page({
           </p>
           <Separator />
           <div className="max-w-full md:w-[40rem]">
-            <AuthenticateUserForm
-              onComplete={redirectAfterLogin}
-              trackers={{
-                matomo: organisationsLoginComplete,
-                posthog: captureOrganisationsLoginComplete,
-              }}
-            />
+            <AuthenticateUserForm onComplete={redirectAfterLogin} />
           </div>
         </div>
       </section>

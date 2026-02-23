@@ -3,7 +3,7 @@
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
-import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
+
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
@@ -13,7 +13,7 @@ import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useForm as useReactHookForm, type Control } from 'react-hook-form'
@@ -74,8 +74,6 @@ export default function NameForm({ user }: { user: UserServer | null }) {
       currentSimulation.update({
         groupToAdd: group.id,
       })
-
-      trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
       if (hasCompletedTest) {
         router.push('/amis/resultats?groupId=' + group.id)

@@ -1,24 +1,18 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  cookieClickAcceptAll,
-  cookieClickAcceptAllPosthog,
-  cookieClickRejectAll,
-  cookieClickRejectAllPosthog,
-  cookieClickSave,
-  cookieClickSavePosthog,
-} from '@/constants/tracking/cookie'
+import { cookieClickSavePosthog } from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { CookieConsentKey } from '@/types/cookies'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
-import { useCookieManagement, type CookieState } from './useCookieManagement'
+import type { CookieState } from './cookieLocalStorage'
+import { useCookieManagement } from './useCookieManagement'
 
 export default function CookieConsentForm({
   onCancel,
@@ -64,7 +58,6 @@ export default function CookieConsentForm({
         </div>
         <form
           onSubmit={(e) => {
-            trackEvent(cookieClickSave)
             trackPosthogEvent(cookieClickSavePosthog)
             void handleSubmit(confirmChoices)(e)
           }}
@@ -92,9 +85,8 @@ export default function CookieConsentForm({
                   <Button
                     type="button"
                     color="secondary"
+                    data-track
                     onClick={() => {
-                      trackEvent(cookieClickRejectAll)
-                      trackPosthogEvent(cookieClickRejectAllPosthog)
                       rejectAll()
                     }}
                     size="sm"
@@ -108,9 +100,8 @@ export default function CookieConsentForm({
                   <Button
                     type="button"
                     color="primary"
+                    data-track
                     onClick={() => {
-                      trackEvent(cookieClickAcceptAll)
-                      trackPosthogEvent(cookieClickAcceptAllPosthog)
                       acceptAll()
                     }}
                     size="sm"

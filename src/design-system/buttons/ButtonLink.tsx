@@ -2,7 +2,6 @@
 
 import Link from '@/components/Link'
 import type { ButtonSize } from '@/types/values'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import type {
   HtmlHTMLAttributes,
   KeyboardEvent,
@@ -20,7 +19,6 @@ interface Props {
   title?: string
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
   onKeyDown?: (e: KeyboardEvent<HTMLAnchorElement>) => void
-  trackingEvent?: (string | null)[]
   target?: string
 }
 
@@ -33,7 +31,6 @@ export default function ButtonLink({
   title,
   onClick,
   onKeyDown,
-  trackingEvent,
   target = '_self',
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
@@ -44,17 +41,10 @@ export default function ButtonLink({
         if (onClick) {
           onClick(e)
         }
-        if (trackingEvent) {
-          trackEvent(trackingEvent)
-        }
       }}
       onKeyDown={(e) => {
         if (onKeyDown) {
           onKeyDown(e)
-        }
-
-        if (trackingEvent) {
-          trackEvent(trackingEvent)
         }
       }}
       title={title}
