@@ -16,6 +16,7 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import type { UseMutationResult } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { twMerge } from 'tailwind-merge'
 import type { ButtonColor } from '../../design-system/buttons/Button'
 import Trans from '../translation/trans/TransClient'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
@@ -46,6 +47,7 @@ interface Props<T extends object> {
     { email: string; code: string } & T,
     unknown
   >
+  verificationClassName?: string
 }
 
 export default function AuthenticateUserForm({
@@ -59,6 +61,7 @@ export default function AuthenticateUserForm({
   trackers,
   isVerticalLayout = true,
   verificationMutation,
+  verificationClassName,
 }: Props<object>) {
   const router = useRouter()
   const { user } = useUser()
@@ -101,7 +104,11 @@ export default function AuthenticateUserForm({
 
   if (pendingVerification || isRedirecting) {
     return (
-      <div className="dark:bg-primary-700 mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8 dark:text-white">
+      <div
+        className={twMerge(
+          'dark:bg-primary-700 mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8 dark:text-white',
+          verificationClassName
+        )}>
         <VerifyCodeForm
           onRegisterNewVerification={registerVerification}
           email={pendingVerification?.email ?? user.email ?? ''}
@@ -111,7 +118,7 @@ export default function AuthenticateUserForm({
         <Button
           onClick={resetVerification}
           color="link"
-          className="mt-2 -ml-2 flex items-center font-normal">
+          className="dark:text-primary-50 dark:hover:text-primary-100 mt-2 -ml-2 flex items-center font-normal">
           <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
             Retour à la connexion
           </Trans>

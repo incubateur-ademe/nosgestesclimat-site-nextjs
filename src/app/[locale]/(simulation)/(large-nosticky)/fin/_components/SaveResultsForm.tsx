@@ -63,6 +63,7 @@ export default function SaveResultsForm() {
         }
         redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
         verificationMutation={saveSimulationMutation}
+        verificationClassName="p-0 md:p-0 border-t border-primary-500 rounded-none pt-6!"
       />
     </div>
   )
