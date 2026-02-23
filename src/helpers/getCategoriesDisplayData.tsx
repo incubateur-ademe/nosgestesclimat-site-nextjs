@@ -125,10 +125,6 @@ export function getCategoriesDisplayData({
   return categories.map((dottedName, i) => {
     const value = categoriesData[dottedName]
     const meta = CATEGORIES_MAPPER[dottedName as keyof typeof CATEGORIES_MAPPER]
-    const { formattedValue, unit } = formatFootprint(value, {
-      metric,
-      shouldUseAbbreviation: true,
-    })
 
     return {
       dottedName,
@@ -137,8 +133,6 @@ export function getCategoriesDisplayData({
       bgBarClassName: meta.bgBarClassName,
       bgLightClassName: meta.bgLightClassName,
       bgIconClassName: meta.bgIconClassName,
-      formattedValue,
-      unit,
       percentage: (value / maxValue) * 100,
       displayPercentage: displayPercentages[i],
       subcategories: getSubcategoriesDisplayData({
@@ -148,6 +142,10 @@ export function getCategoriesDisplayData({
         rules,
         metric,
         locale,
+      }),
+      ...formatFootprint(value, {
+        metric,
+        shouldUseAbbreviation: true,
       }),
     }
   })
@@ -183,18 +181,15 @@ function getSubcategoriesDisplayData({
   })
 
   return entries.map(([dottedName, value], i) => {
-    const { formattedValue, unit } = formatFootprint(value, {
-      metric,
-      shouldUseAbbreviation: true,
-    })
-
     return {
       dottedName,
       title: getRuleTitle({ ...rules[dottedName], dottedName }),
-      formattedValue,
-      unit,
       percentage: (value / categoryValue) * 100,
       displayPercentage: displayPercentages[i],
+      ...formatFootprint(value, {
+        metric,
+        shouldUseAbbreviation: true,
+      }),
     }
   })
 }
