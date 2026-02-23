@@ -51,7 +51,8 @@ export default function MosaicBooleanInput({
   const shouldCheckChildrenApplicability = [
     'logement . chauffage . appoint . électricité . présent',
     'logement . chauffage . appoint . bois . présent',
-    'logement . chauffage . appoint . bouteille gaz cuisson . présent',
+    'logement . chauffage . bois . système . chaudière bûches . présent',
+    'logement . chauffage . bois . système . chaudière granulés . présent',
   ].includes(question)
 
   if (shouldCheckChildrenApplicability) {
