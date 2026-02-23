@@ -148,7 +148,6 @@ const meta: Meta<typeof CategoriesAccordion> = {
     metric: 'carbone',
     locale: 'fr',
   },
-  // rules is injected via render to avoid Storybook serializing the ~1MB JSON in Controls
   render: (args) => (
     <CategoriesAccordion {...args} rules={rules as Partial<NGCRules>} />
   ),

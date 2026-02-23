@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useId, useState } from 'react'
 
-export interface AccordionItemType {
+export interface AccordionItemProps {
   title: ReactNode
   name: string
   content: ReactNode
@@ -21,7 +21,7 @@ export default function AccordionItemLegacy({
   isReadOnly = false,
   onClick,
   ariaLabel,
-}: AccordionItemType) {
+}: AccordionItemProps) {
   const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const buttonId = useId()

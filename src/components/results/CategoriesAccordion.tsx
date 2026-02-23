@@ -18,6 +18,7 @@ interface Props {
   locale: Locale
 }
 
+// Makes the bars in the chart just the right width
 const BEAUTIFUL_COEFFICIENT = 0.75
 
 export default async function CategoriesAccordion({
@@ -60,8 +61,8 @@ export default async function CategoriesAccordion({
                 bgIconClassName={category.bgIconClassName}
               />
             }
-            name={category.title ?? ''}
-            ariaLabel={`${category.title ?? ''} - ${category.formattedValue} ${category.unit}`}
+            name={category.title}
+            ariaLabel={`${category.title} - ${category.formattedValue} ${category.unit}`}
             content={
               <Card
                 className={`mb-4 rounded-lg border border-slate-400 ${category.bgLightClassName}`}>

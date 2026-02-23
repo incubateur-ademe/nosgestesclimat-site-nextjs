@@ -33,15 +33,7 @@ export interface CategoryDisplayData extends SubcategoryDisplayData {
   subcategories: SubcategoryDisplayData[]
 }
 
-const CATEGORIES_MAPPER: Record<
-  string,
-  {
-    icon: React.ReactNode
-    bgBarClassName: string
-    bgLightClassName: string
-    bgIconClassName: string
-  }
-> = {
+const CATEGORIES_MAPPER = {
   logement: {
     icon: <HousingIcon />,
     bgBarClassName: 'bg-green-800',
@@ -72,7 +64,7 @@ const CATEGORIES_MAPPER: Record<
     bgLightClassName: 'bg-yellow-50',
     bgIconClassName: 'bg-yellow-100',
   },
-}
+} as const
 
 function getPercentages({
   numericValue,
@@ -115,14 +107,12 @@ export function getCategoriesDisplayData({
   metric?: Metric
   locale: Locale
 }): CategoryDisplayData[] {
-  const categoriesData = computedResults[metric]?.categories ?? {}
-  const subcategoriesData = computedResults[metric]?.subcategories
-  const totalBilan = computedResults[metric]?.bilan ?? 0
+  const categoriesData = computedResults[metric].categories
+  const subcategoriesData = computedResults[metric].subcategories
+  const totalBilan = computedResults[metric].bilan
 
   // Filter to categories with positive values, keep fixed order
-  const categories = orderedCategories.filter(
-    (cat) => categoriesData[cat] !== undefined && categoriesData[cat] > 0
-  )
+  const categories = orderedCategories.filter((cat) => categoriesData[cat] > 0)
 
   const maxNumericValue = Math.max(...Object.values(categoriesData))
 
@@ -138,17 +128,13 @@ export function getCategoriesDisplayData({
       locale,
     })
 
-    const meta = CATEGORIES_MAPPER[categoryDottedName] ?? {
-      icon: <MiscIcon />,
-      bgBarClassName: 'bg-gray-800',
-      bgLightClassName: 'bg-gray-50',
-      bgIconClassName: 'bg-gray-100',
-    }
+    const meta =
+      CATEGORIES_MAPPER[categoryDottedName as keyof typeof CATEGORIES_MAPPER]
 
     return {
       dottedName: categoryDottedName,
       title: getRuleTitle({
-        ...(rules?.[categoryDottedName] as NGCRule & {
+        ...(rules[categoryDottedName] as NGCRule & {
           dottedName: DottedName
         }),
         dottedName: categoryDottedName,
@@ -186,22 +172,20 @@ function getSubcategoriesDisplayData({
 }): SubcategoryDisplayData[] {
   if (!subcategoriesData) return []
 
-  return Object.entries(subcategoriesData)
+  return (Object.entries(subcategoriesData) as [DottedName, number][])
     .filter(([dottedName, value]) => {
       const belongsToCategory = dottedName.startsWith(categoryDottedName)
-      const ruleExists = Boolean(rules[dottedName as DottedName])
+      const ruleExists = Boolean(rules[dottedName])
       const hasValue = value > 0
       return belongsToCategory && ruleExists && hasValue
     })
     .sort(([, a], [, b]) => b - a)
     .map(([dottedName, value]) => {
       return {
-        dottedName: dottedName as DottedName,
+        dottedName: dottedName,
         title: getRuleTitle({
-          ...(rules?.[dottedName as DottedName] as NGCRule & {
-            dottedName: DottedName
-          }),
-          dottedName: dottedName as DottedName,
+          ...rules[dottedName],
+          dottedName: dottedName,
         }),
         ...getPercentages({
           numericValue: value,
