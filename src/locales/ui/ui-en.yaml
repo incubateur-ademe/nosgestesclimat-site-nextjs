@@ -258,7 +258,6 @@ entries:
   Créer un compte: Create an account
   Votre organisation: Your organisation
   Bienvenue: Welcome
-  Accédez à votre espace organisation: Access your organisation area
   Entrez votre code de vérification pour continuer: Enter your verification code to continue
   (une fois par mois maximum !): (once a month maximum!)
   Votre prénom: Your first name
@@ -567,8 +566,8 @@ entries:
   CO₂e / an: CO₂e / year
   contacter le support.: contact support.
   Si le problème persiste, merci de: If the problem persists, please
-  organisations.accueil.titre: Nos Gestes Climat for organisations
-  organisations.accueil.titre.lock: Nos Gestes Climat pour les organisations
+  organisations.accueil.titre: Nos Gestes Climat for organisations and facilitators
+  organisations.accueil.titre.lock: Nos Gestes Climat pour les organisations et les animateurs
   / jour: / day
   / an: / year
   Comment calculer l’empreinte eau ?: How do you calculate your water footprint?
@@ -1260,7 +1259,6 @@ entries:
   actions.thresholdIcon.ariaLabel.lock: Les actions se trouvent en dessous
   actions.engagementDescription: Committed actions to reduce your carbon footprint
   actions.engagementDescription.lock: Actions d'engagement pour réduire votre empreinte carbone
-  C'est gratuit, et ça prend une minute !: It's free, and only takes a minute!
   Pourquoi avons-nous ajouté l'empreinte eau ?: Why have we added the water footprint?
   actions.negativeDescription: Actions that increase your carbon footprint
   actions.negativeDescription.lock: Actions qui augmentent votre empreinte carbone
@@ -1787,7 +1785,6 @@ entries:
   privacyPolicy.posthogCheckboxTextNotFollowed: You are not currently being tracked. Tick this box if you agree to be anonymously tracked by Posthog
   privacyPolicy.posthogCheckboxTextNotFollowed.lock: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Click on see details to find out more about your water footprint
-  Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: We are currently experiencing a technical problem with Microsoft addresses (@outlook, @hotmail, @live, @msn) and are doing everything we can to resolve it. Please use another e-mail address in the meantime.
   cookies.management.googleAds.link: See the official website
   cookies.management.googleAds.link.lock: Voir le site officiel
   cookies.management.posthog.link: See the official website
@@ -1836,3 +1833,5 @@ entries:
   results.objective.description.lock: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à +2 °C.
   results.objective.under4.description.body: With the work of the government and society as a whole over the coming decades, your footprint should naturally fall to around 2T. So what's left for you to do? Persevere and convince others!
   results.objective.under4.description.body.lock: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
+  Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Distribute a collective link from your personal space and access quantified visual summaries of your impact.
+  Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Access your organisation space to easily distribute Nos Gestes Climat

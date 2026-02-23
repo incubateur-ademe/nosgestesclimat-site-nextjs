@@ -12,11 +12,7 @@ import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPo
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import {
-  isEmailValid,
-  isMicrosoftEmail,
-  MICROSOFT_EMAIL_ERROR_MESSAGE,
-} from '@/utils/isEmailValid'
+import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
@@ -75,15 +71,6 @@ export default function Email() {
         message: t(
           'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org'
         ),
-      })
-      return
-    }
-
-    // If email is from Microsoft (temporarily blocked)
-    if (isMicrosoftEmail(email)) {
-      setError('email', {
-        type: 'validate',
-        message: t(MICROSOFT_EMAIL_ERROR_MESSAGE),
       })
       return
     }

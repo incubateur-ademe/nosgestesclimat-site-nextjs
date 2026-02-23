@@ -201,7 +201,6 @@ entries:
   mais vous êtes seul·e…: mais vous êtes seul·e…
   (une fois par mois maximum !): (une fois par mois maximum !)
   Accéder à mon espace: Accéder à mon espace
-  Accédez à votre espace organisation: Accédez à votre espace organisation
   Bienvenue: Bienvenue
   Bienvenue sur votre espace !: Bienvenue sur votre espace !
   Créer un compte: Créer un compte
@@ -510,7 +509,7 @@ entries:
   En cours: En cours
   contacter le support.: contacter le support.
   Si le problème persiste, merci de: Si le problème persiste, merci de
-  organisations.accueil.titre: Nos Gestes Climat pour les organisations
+  organisations.accueil.titre: Nos Gestes Climat pour les organisations et les animateurs
   / jour: / jour
   / an: / an
   Comment calculer l’empreinte eau ?: Comment calculer l’empreinte eau ?
@@ -1058,7 +1057,6 @@ entries:
   actions.negativeIcon.ariaLabel: Les actions se trouvent en dessous
   actions.thresholdDescription: Actions avec un impact de {{label}} ou plus
   actions.thresholdIcon.ariaLabel: Les actions se trouvent en dessous
-  C'est gratuit, et ça prend une minute !: C'est gratuit, et ça prend une minute !
   C'est quoi mon empreinte carbone ?: C'est quoi mon empreinte carbone ?
   Cliquez pour ouvrir la liste des régions disponibles: Cliquez pour ouvrir la liste des régions disponibles
   Comment on la mesure ?: Comment on la mesure ?
@@ -1372,7 +1370,6 @@ entries:
   email.input.helper: 'Format attendu : nom@exemple.org'
   privacyPolicy.posthogCheckboxTextNotFollowed: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Cliquez sur voir le détail pour découvrir également votre empreinte eau
-  Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.
   cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation.
   cookies.management.googleAds.link: Voir le site officiel
   cookies.management.posthog.description: Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers.
@@ -1398,3 +1395,5 @@ entries:
   results.objective.under4.description.body: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
   results.objective.under4.description.title: Vous êtes déjà sous les 4 tonnes, bravo !
   Vous aujourd'hui: Vous aujourd'hui
+  Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat
+  Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.
