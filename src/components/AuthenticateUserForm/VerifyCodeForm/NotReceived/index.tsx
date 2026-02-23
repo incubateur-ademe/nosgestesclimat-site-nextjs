@@ -1,13 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+
 import Button from '@/design-system/buttons/Button'
 import ResendButton from './ResendButton'
 
 interface Props {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
-  onResendVerificationCode: () => void
+  onResendVerificationCode: () => void | Promise<void>
   timeLeft: number
 }
 
@@ -42,7 +43,7 @@ export default function NotReceived({
       )}
 
       {isErrorResend && (
-        <div className="text-red-800">
+        <div className="text-red-800 dark:text-white">
           <p>
             <Trans i18nKey="signIn.verificationForm.notReceived.error">
               Oups, une erreur s'est produite au moment de l'envoi de votre
@@ -53,6 +54,7 @@ export default function NotReceived({
           <div>
             <Button
               size="sm"
+              className="dark:text-primary-900 dark:bg-primary-50 dark:hover:bg-primary-100 dark:hover:text-primary-900"
               onClick={() => {
                 window.location.reload()
               }}>

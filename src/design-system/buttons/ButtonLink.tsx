@@ -10,12 +10,13 @@ import type {
   PropsWithChildren,
 } from 'react'
 import { twMerge } from 'tailwind-merge'
+import type { ButtonColor } from './Button'
 import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
 
 interface Props {
   href: string
   className?: string
-  color?: 'primary' | 'secondary' | 'text' | 'success'
+  color?: ButtonColor
   size?: ButtonSize
   title?: string
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void

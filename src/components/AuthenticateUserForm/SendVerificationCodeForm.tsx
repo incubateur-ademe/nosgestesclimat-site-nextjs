@@ -4,6 +4,7 @@ import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMess
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import Alert from '@/design-system/alerts/alert/Alert'
+import type { ButtonColor } from '@/design-system/buttons/Button'
 import Form from '@/design-system/form/Form'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import {
@@ -21,14 +22,12 @@ import { useForm } from 'react-hook-form'
 
 interface Props {
   buttonLabel?: string | ReactNode
-  buttonColor?: 'primary' | 'secondary'
+  buttonColor?: ButtonColor
   mode?: AuthenticationMode
   onCodeSent: (pendingVerification: PendingVerification) => void
   inputLabel?: ReactNode | string
   required?: boolean
-  onComplete?: ({ email, userId }: { email: string; userId: string }) => void
-  onEmailEntered?: (email: string) => void
-  onEmailEmpty?: () => void
+  isVerticalLayout?: boolean
 }
 
 interface FormData {
@@ -37,10 +36,12 @@ interface FormData {
 
 export default function SendVerificationCodeForm({
   buttonLabel,
+  buttonColor,
   mode,
   inputLabel,
   onCodeSent,
   required = true,
+  isVerticalLayout = true,
 }: Props) {
   const { t } = useClientTranslation()
   const { createVerificationCodeError, createVerificationCode } =
@@ -64,16 +65,15 @@ export default function SendVerificationCodeForm({
     },
   })
 
-  const onSubmit = ({ email }: FormData) => {
-    createVerificationCode(email)
-  }
-
   return (
     <Form
-      onSubmit={handleSubmit(onSubmit)}
-      buttonLabel={buttonLabel ?? t('Accéder à mon espace')}>
+      onSubmit={handleSubmit((data) => createVerificationCode(data.email))}
+      buttonLabel={buttonLabel ?? t('Accéder à mon espace')}
+      buttonColor={buttonColor}
+      isVerticalLayout={isVerticalLayout}>
       <EmailInput
         data-testid="verification-code-email-input"
+        containerClassName={isVerticalLayout ? 'w-full' : 'max-w-full w-96'}
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
         {...register('email', {
           required: required
