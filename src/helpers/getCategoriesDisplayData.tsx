@@ -9,11 +9,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import type { Locale } from '@/i18nConfig'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
-import type {
-  DottedName,
-  NGCRule,
-  NGCRules,
-} from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { ReactNode } from 'react'
 
 export interface SubcategoryDisplayData {
@@ -66,34 +62,40 @@ const CATEGORIES_MAPPER = {
   },
 } as const
 
-function getPercentages({
-  numericValue,
-  maxNumericValue,
-  displayDenominator,
-  metric,
+function getFormattedPercentages({
+  values,
+  total,
   locale,
 }: {
-  numericValue: number
-  maxNumericValue: number
-  displayDenominator: number
-  metric: Metric
+  values: number[]
+  total: number
   locale: Locale
 }) {
-  const { formattedValue, unit } = formatFootprint(numericValue, {
-    metric,
-    shouldUseAbbreviation: true,
+  // We work on a base 1000 to keep one decimal place using integers (100.0% = 1000)
+  const roundedPercentagesAtOneDecimal = values.map((v) =>
+    Math.round((v / total) * 1000)
+  )
+
+  // Calculate the difference between the sum of rounded values and 1000
+  const sumDifference =
+    1000 - roundedPercentagesAtOneDecimal.reduce((acc, val) => acc + val, 0)
+
+  // Adjust the largest value to absorb the rounding error
+  if (values.length > 0) {
+    const indexOfLargestValue = roundedPercentagesAtOneDecimal.indexOf(
+      Math.max(...roundedPercentagesAtOneDecimal)
+    )
+    roundedPercentagesAtOneDecimal[indexOfLargestValue] += sumDifference
+  }
+
+  const percentFormatter = new Intl.NumberFormat(locale, {
+    style: 'percent',
+    maximumFractionDigits: 1,
   })
 
-  return {
-    formattedValue,
-    unit,
-    percentage: (numericValue / maxNumericValue) * 100,
-    displayPercentage: new Intl.NumberFormat(locale, {
-      style: 'percent',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 1,
-    }).format(numericValue / displayDenominator),
-  }
+  return roundedPercentagesAtOneDecimal.map((v) =>
+    percentFormatter.format(v / 1000)
+  )
 }
 
 export function getCategoriesDisplayData({
@@ -111,45 +113,39 @@ export function getCategoriesDisplayData({
   const subcategoriesData = computedResults[metric].subcategories
   const totalBilan = computedResults[metric].bilan
 
-  // Filter to categories with positive values, keep fixed order
   const categories = orderedCategories.filter((cat) => categoriesData[cat] > 0)
+  const maxValue = Math.max(...Object.values(categoriesData))
 
-  const maxNumericValue = Math.max(...Object.values(categoriesData))
+  const displayPercentages = getFormattedPercentages({
+    values: categories.map((c) => categoriesData[c]),
+    total: totalBilan,
+    locale,
+  })
 
-  return categories.map((categoryDottedName) => {
-    const numericValue = categoriesData[categoryDottedName]
-
-    const subcategories = getSubcategoriesDisplayData({
-      categoryDottedName,
-      categoryValue: numericValue,
-      subcategoriesData,
-      rules,
-      metric,
-      locale,
-    })
-
-    const meta =
-      CATEGORIES_MAPPER[categoryDottedName as keyof typeof CATEGORIES_MAPPER]
+  return categories.map((dottedName, i) => {
+    const value = categoriesData[dottedName]
+    const meta = CATEGORIES_MAPPER[dottedName as keyof typeof CATEGORIES_MAPPER]
 
     return {
-      dottedName: categoryDottedName,
-      title: getRuleTitle({
-        ...(rules[categoryDottedName] as NGCRule & {
-          dottedName: DottedName
-        }),
-        dottedName: categoryDottedName,
-      }),
+      dottedName,
+      title: getRuleTitle({ ...rules[dottedName], dottedName }),
       icon: meta.icon,
       bgBarClassName: meta.bgBarClassName,
       bgLightClassName: meta.bgLightClassName,
       bgIconClassName: meta.bgIconClassName,
-      subcategories,
-      ...getPercentages({
-        numericValue,
-        maxNumericValue,
-        displayDenominator: totalBilan,
+      percentage: (value / maxValue) * 100,
+      displayPercentage: displayPercentages[i],
+      subcategories: getSubcategoriesDisplayData({
+        categoryDottedName: dottedName,
+        categoryValue: value,
+        subcategoriesData,
+        rules,
         metric,
         locale,
+      }),
+      ...formatFootprint(value, {
+        metric,
+        shouldUseAbbreviation: true,
       }),
     }
   })
@@ -172,28 +168,28 @@ function getSubcategoriesDisplayData({
 }): SubcategoryDisplayData[] {
   if (!subcategoriesData) return []
 
-  return (Object.entries(subcategoriesData) as [DottedName, number][])
-    .filter(([dottedName, value]) => {
-      const belongsToCategory = dottedName.startsWith(categoryDottedName)
-      const ruleExists = Boolean(rules[dottedName])
-      const hasValue = value > 0
-      return belongsToCategory && ruleExists && hasValue
-    })
+  const entries = (Object.entries(subcategoriesData) as [DottedName, number][])
+    .filter(
+      ([dn, v]) => dn.startsWith(categoryDottedName) && rules[dn] && v > 0
+    )
     .sort(([, a], [, b]) => b - a)
-    .map(([dottedName, value]) => {
-      return {
-        dottedName: dottedName,
-        title: getRuleTitle({
-          ...rules[dottedName],
-          dottedName: dottedName,
-        }),
-        ...getPercentages({
-          numericValue: value,
-          maxNumericValue: categoryValue,
-          displayDenominator: categoryValue,
-          metric,
-          locale,
-        }),
-      }
-    })
+
+  const displayPercentages = getFormattedPercentages({
+    values: entries.map(([, v]) => v),
+    total: categoryValue,
+    locale,
+  })
+
+  return entries.map(([dottedName, value], i) => {
+    return {
+      dottedName,
+      title: getRuleTitle({ ...rules[dottedName], dottedName }),
+      percentage: (value / categoryValue) * 100,
+      displayPercentage: displayPercentages[i],
+      ...formatFootprint(value, {
+        metric,
+        shouldUseAbbreviation: true,
+      }),
+    }
+  })
 }

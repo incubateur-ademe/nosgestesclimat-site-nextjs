@@ -106,7 +106,7 @@ export default function InputGroup({
           id={errorId}
           role="alert"
           data-testid={`error-${name}`}
-          className={twMerge('mt-2 text-xs', errorColor)}>
+          className={twMerge('mt-2 text-xs dark:text-red-50', errorColor)}>
           {error}
         </span>
       )}
