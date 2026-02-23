@@ -3,7 +3,10 @@
 import HorizontalBarChartItemLegacy from '@/components/charts/HorizontalBarChartItemLegacy'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
-import { endClickCategory } from '@/constants/tracking/pages/end'
+import {
+  endClickCategory,
+  endClickCategoryPosthog,
+} from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
 import AccordionItemLegacy from '@/design-system/layout/accordion/AccordionItemLegacy'
 import Emoji from '@/design-system/utils/Emoji'
@@ -11,7 +14,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
@@ -37,7 +40,10 @@ export default function AccordionItemWithRule({
 
   return (
     <AccordionItemLegacy
-      onClick={() => trackEvent(endClickCategory(dottedName))}
+      onClick={() => {
+        trackEvent(endClickCategory(dottedName))
+        trackPosthogEvent(endClickCategoryPosthog(dottedName))
+      }}
       title={
         <HorizontalBarChartItemLegacy
           percentageOfTotalValue={percentageOfTotalValue}
