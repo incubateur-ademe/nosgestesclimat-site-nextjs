@@ -13,16 +13,12 @@ import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useLocale } from '@/hooks/useLocale'
 import type { Locale } from '@/i18nConfig'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import type { VerifiedUser } from '@/types/organisations'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 
 export default function SaveResultsForm() {
   const currentSimulation = useCurrentSimulation()
   const locale = useLocale()
-
-  const router = useRouter()
 
   const { user } = useUser()
 
@@ -31,16 +27,20 @@ export default function SaveResultsForm() {
       trackEvent(saveResultsAndSigninSignUpComplete)
       trackPosthogEvent(captureSaveResultsAndSigninSignUpComplete)
 
+      if (!user.userId) {
+        throw new Error('User ID is required')
+      }
+
       await postSimulation({
         simulation: currentSimulation,
         sendEmail: true,
-        userId: user?.userId ?? '',
+        userId: user.userId,
         locale: locale as Locale,
         code,
         email,
       })
 
-      return { userId: user?.userId ?? '', email } as VerifiedUser
+      return { userId: user.userId, email }
     },
   })
 
@@ -61,11 +61,7 @@ export default function SaveResultsForm() {
             </Trans>
           </span>
         }
-        onComplete={() => {
-          router.push(
-            `${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`
-          )
-        }}
+        redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
         verificationMutation={saveSimulationMutation}
       />
     </div>
