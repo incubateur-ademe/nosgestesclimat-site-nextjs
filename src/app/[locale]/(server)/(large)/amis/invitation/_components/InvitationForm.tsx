@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
@@ -16,7 +15,6 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 
 interface Inputs {
   guestName: string
-  guestEmail: string
 }
 
 export default function InvitationForm({ group }: { group: Group }) {
@@ -69,32 +67,6 @@ export default function InvitationForm({ group }: { group: Group }) {
           required: t('Ce champ est requis.'),
         })}
       />
-
-      <div className="my-4">
-        <EmailInput
-          value={user.email ?? ''}
-          data-testid="email-input"
-          label={
-            <span>
-              {t('Votre adresse electronique')}{' '}
-              <span className="text-secondary-700 italic">
-                {' '}
-                {t('facultatif')}
-              </span>
-            </span>
-          }
-          helperText={t(
-            'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
-          )}
-          {...register('guestEmail', {
-            pattern: {
-              value:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: t('Veuillez entrer une adresse email valide.'),
-            },
-          })}
-        />
-      </div>
 
       {!hasCompletedTest && (
         <p className="mb-2 text-xs">
