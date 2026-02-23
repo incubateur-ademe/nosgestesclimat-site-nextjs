@@ -14,20 +14,22 @@ import { usePendingVerification } from '@/hooks/authentication/usePendingVerific
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
+import type { UseMutationResult } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import type { ButtonColor } from '../../design-system/buttons/Button'
 import Trans from '../translation/trans/TransClient'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
 import VerifyCodeForm from './VerifyCodeForm'
 
-interface Props {
+interface Props<T extends object> {
   buttonLabel?: string | ReactNode
-  buttonColor?: 'primary' | 'secondary'
+  buttonColor?: ButtonColor
   inputLabel?: ReactNode | string
   mode?: AuthenticationMode
   redirectURL?: string
   onEmailEntered?: (email: string) => void
   onEmailEmpty?: () => void
-  onComplete?: (user: { email: string; userId: string }) => void
+  onComplete?: (user: { email: string; userId: string }) => void | Promise<void>
   required?: boolean
   trackers?: {
     matomo: string[]
@@ -36,6 +38,14 @@ interface Props {
       properties?: Record<string, string | number | boolean | null | undefined>
     }
   }
+  isVerticalLayout?: boolean
+  onCompleteError?: string
+  verificationMutation?: UseMutationResult<
+    { userId: string },
+    Error,
+    { email: string; code: string } & T,
+    unknown
+  >
 }
 
 export default function AuthenticateUserForm({
@@ -47,7 +57,9 @@ export default function AuthenticateUserForm({
   onComplete,
   required = true,
   trackers,
-}: Props) {
+  isVerticalLayout = true,
+  verificationMutation,
+}: Props<object>) {
   const router = useRouter()
   const { user } = useUser()
 
@@ -55,7 +67,7 @@ export default function AuthenticateUserForm({
 
   // Called upon code verification
   const complete = useCallback(
-    (user: { email: string; userId: string }) => {
+    async (user: { email: string; userId: string }) => {
       safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
       setIsRedirecting(true)
 
@@ -63,7 +75,7 @@ export default function AuthenticateUserForm({
         trackEvent(trackers.matomo)
         trackPosthogEvent(trackers.posthog)
       }
-      onComplete?.(user)
+      await onComplete?.(user)
 
       if (redirectURL) {
         router.push(redirectURL)
@@ -80,19 +92,21 @@ export default function AuthenticateUserForm({
     resetVerification,
     completeVerification,
   } = usePendingVerification({
-    onComplete: complete,
+    onComplete: (data) => {
+      void complete(data)
+    },
   })
 
   const login = useLogin()
 
   if (pendingVerification || isRedirecting) {
     return (
-      <div className="mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8">
+      <div className="dark:bg-primary-700 mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8 dark:text-white">
         <VerifyCodeForm
           onRegisterNewVerification={registerVerification}
           email={pendingVerification?.email ?? user.email ?? ''}
           onVerificationCompleted={completeVerification}
-          verificationMutation={login}
+          verificationMutation={verificationMutation ?? login}
         />
         <Button
           onClick={resetVerification}
@@ -117,6 +131,7 @@ export default function AuthenticateUserForm({
       }}
       inputLabel={inputLabel}
       required={required}
+      isVerticalLayout={isVerticalLayout}
     />
   )
 }
