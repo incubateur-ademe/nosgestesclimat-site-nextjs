@@ -16,7 +16,7 @@ export default async function WaterFootprintDetail({
 }: Props) {
   const rules = await getRules({ locale })
   return (
-    <section>
+    <section className="mb-12">
       <h2 className="mb-6 text-2xl font-normal">
         <Trans locale={locale} key="eau.resultats.waterFootprintDetail.title">
           D’où vient votre résultat ?
