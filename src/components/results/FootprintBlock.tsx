@@ -25,7 +25,7 @@ export default async function FootprintBlock({
   })
 
   return (
-    <div className="bg-primary-50 rounded-2xl p-8">
+    <div className="bg-primary-50 mb-12 rounded-2xl p-8">
       <h1>
         <span className="block text-lg font-normal">
           {t('simulation.title', 'Vous émettez environ', {

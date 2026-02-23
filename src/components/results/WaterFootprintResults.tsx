@@ -1,3 +1,5 @@
+import IsItALot from '@/app/[locale]/(server)/(large)/simulation/[simulationId]/resultats/eau/_components/IsItALot'
+import WaterFootprintDetail from '@/app/[locale]/(server)/(large)/simulation/[simulationId]/resultats/eau/_components/WaterFootprintDetail'
 import FinTabs from '@/app/[locale]/(simulation)/(large-nosticky)/fin/_components/FinTabs'
 import { eauMetric } from '@/constants/model/metric'
 import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
@@ -42,6 +44,13 @@ export default async function WaterFootprintResults({
             / an
           </Trans>
         }
+      />
+
+      <IsItALot locale={locale} />
+
+      <WaterFootprintDetail
+        computedResults={simulation.computedResults}
+        locale={locale}
       />
     </>
   )
