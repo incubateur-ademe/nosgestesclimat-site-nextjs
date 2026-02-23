@@ -1,6 +1,6 @@
 'use client'
 
-import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
+import HorizontalBarChartItemLegacy from '@/components/charts/HorizontalBarChartItemLegacy'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import {
@@ -8,7 +8,8 @@ import {
   endClickCategoryPosthog,
 } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
-import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
+import AccordionItemLegacy from '@/design-system/layout/accordion/AccordionItemLegacy'
+import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useRule } from '@/publicodes-state'
@@ -38,17 +39,17 @@ export default function AccordionItemWithRule({
   const percentageOfTotalValue = (numericValue / maxValue) * 100
 
   return (
-    <AccordionItem
+    <AccordionItemLegacy
       onClick={() => {
         trackEvent(endClickCategory(dottedName))
         trackPosthogEvent(endClickCategoryPosthog(dottedName))
       }}
       title={
-        <HorizontalBarChartItem
+        <HorizontalBarChartItemLegacy
           percentageOfTotalValue={percentageOfTotalValue}
           index={index}
           title={title}
-          icons={icons}
+          icon={<Emoji>{icons}</Emoji>}
           barColor={getBackgroundColor(dottedName)}
           shouldDisplayValue={false}
           displayValue={

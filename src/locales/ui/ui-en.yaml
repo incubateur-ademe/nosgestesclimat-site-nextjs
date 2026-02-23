@@ -1785,6 +1785,22 @@ entries:
   privacyPolicy.posthogCheckboxTextNotFollowed: You are not currently being tracked. Tick this box if you agree to be anonymously tracked by Posthog
   privacyPolicy.posthogCheckboxTextNotFollowed.lock: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Click on see details to find out more about your water footprint
+  fin.getResultsOnUserProfile.inputLabel: Your e-mail address
+  fin.getResultsOnUserProfile.inputLabel.lock: Votre adresse e-mail
+  results.saveResults.listItem1: Retrieve <1>your history</1>
+  results.saveResults.listItem1.lock: Retrouvez <1>votre historique</1>
+  results.saveResults.title.authenticated: Access your personal space
+  results.saveResults.title.authenticated.lock: Accédez à votre espace personnel
+  results.saveResults.buttonLabel.authenticated: See the evolution of my result
+  results.saveResults.buttonLabel.authenticated.lock: Voir l’évolution de mon résultat
+  results.saveResults.listItem2: Follow <1>your progress</1>
+  results.saveResults.listItem2.lock: Suivez <1>votre évolution</1>
+  results.saveResults.listItem3: Discover <1>your personalised actions</1>
+  results.saveResults.listItem3.lock: Découvrez <1>vos actions personnalisées</1>
+  results.saveResults.title.unauthenticated: Receive them by e-mail and access your personal space
+  results.saveResults.title.unauthenticated.lock: Recevez-les par e-mail et accédez à votre espace personnel
+  results.saveResults.imageAlt: Example of a progression curve for my footprint, and a breakdown of the footprint across the categories of transport, housing, food, miscellaneous and services.
+  results.saveResults.imageAlt.lock: Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services.
   cookies.management.googleAds.link: See the official website
   cookies.management.googleAds.link.lock: Voir le site officiel
   cookies.management.posthog.link: See the official website

@@ -8,6 +8,8 @@
   --color-water: #5152d0;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
