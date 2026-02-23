@@ -51,7 +51,7 @@ export default function ChoiceInput({
       <div
         className={
           isWithinGrid
-            ? 'flex w-full items-center gap-2'
+            ? 'flex w-full items-center gap-2 md:w-54'
             : 'flex items-center gap-2'
         }>
         <label

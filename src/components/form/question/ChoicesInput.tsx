@@ -14,7 +14,7 @@ interface Props {
   firstInputId?: string
 }
 
-const SHOULD_USE_GRID_THRESHOLD = 5
+const SHOULD_USE_GRID_THRESHOLD = 6
 
 export default function ChoicesInput(props: Props) {
   const {
@@ -65,7 +65,7 @@ export default function ChoicesInput(props: Props) {
     <fieldset
       className={
         isGrid
-          ? 'mt-2 grid grid-cols-3 gap-x-4 gap-y-2'
+          ? 'mt-2 grid grid-cols-2 gap-x-4 gap-y-2 md:grid-cols-3'
           : 'mt-2 flex flex-col gap-2'
       }>
       <legend className="sr-only">{label}</legend>
