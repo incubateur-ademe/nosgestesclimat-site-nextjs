@@ -258,7 +258,6 @@ entries:
   Créer un compte: Create an account
   Votre organisation: Your organisation
   Bienvenue: Welcome
-  Accédez à votre espace organisation: Access your organisation area
   Entrez votre code de vérification pour continuer: Enter your verification code to continue
   (une fois par mois maximum !): (once a month maximum!)
   Votre prénom: Your first name
@@ -567,8 +566,8 @@ entries:
   CO₂e / an: CO₂e / year
   contacter le support.: contact support.
   Si le problème persiste, merci de: If the problem persists, please
-  organisations.accueil.titre: Nos Gestes Climat for organisations
-  organisations.accueil.titre.lock: Nos Gestes Climat pour les organisations
+  organisations.accueil.titre: Nos Gestes Climat for organisations and facilitators
+  organisations.accueil.titre.lock: Nos Gestes Climat pour les organisations et les animateurs
   / jour: / day
   / an: / year
   Comment calculer l’empreinte eau ?: How do you calculate your water footprint?
@@ -1260,7 +1259,6 @@ entries:
   actions.thresholdIcon.ariaLabel.lock: Les actions se trouvent en dessous
   actions.engagementDescription: Committed actions to reduce your carbon footprint
   actions.engagementDescription.lock: Actions d'engagement pour réduire votre empreinte carbone
-  C'est gratuit, et ça prend une minute !: It's free, and only takes a minute!
   Pourquoi avons-nous ajouté l'empreinte eau ?: Why have we added the water footprint?
   actions.negativeDescription: Actions that increase your carbon footprint
   actions.negativeDescription.lock: Actions qui augmentent votre empreinte carbone
@@ -1803,9 +1801,6 @@ entries:
   results.saveResults.title.unauthenticated.lock: Recevez-les par e-mail et accédez à votre espace personnel
   results.saveResults.imageAlt: Example of a progression curve for my footprint, and a breakdown of the footprint across the categories of transport, housing, food, miscellaneous and services.
   results.saveResults.imageAlt.lock: Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services.
-  Nous rencontrons actuellement un problème technique avec les adresses Microsoft (@outlook, @hotmail, @live, @msn) et faisons tout pour le résoudre. Merci d'utiliser une autre adresse e-mail en attendant.: We are currently experiencing a technical problem with Microsoft addresses (@outlook, @hotmail, @live, @msn) and are doing everything we can to resolve it. Please use another e-mail address in the meantime.
-  fin.getResultsOnUserProfile.error: An error has occurred while saving your results. Please try again.
-  fin.getResultsOnUserProfile.error.lock: Une erreur est survenue lors de la sauvegarde de vos résultats. Veuillez réessayer.
   cookies.management.googleAds.link: See the official website
   cookies.management.googleAds.link.lock: Voir le site officiel
   cookies.management.posthog.link: See the official website
@@ -1818,3 +1813,5 @@ entries:
   organisations.demanderDemo.title.lock: Demander une démo
   organisations.demanderDemo.subtitle: Book a slot to attend a demonstration of our functionality dedicated to organisations (companies, associations, schools, etc.) and allow you to distribute the Nos Gestes Climat test to your audience.
   organisations.demanderDemo.subtitle.lock: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
+  Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Distribute a collective link from your personal space and access quantified visual summaries of your impact.
+  Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Access your organisation space to easily distribute Nos Gestes Climat

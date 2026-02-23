@@ -18,7 +18,7 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
-import type { CookieState } from './useCookieManagement'
+import { useCookieManagement, type CookieState } from './useCookieManagement'
 
 export default function CookieConsentForm({
   onCancel,
@@ -38,6 +38,8 @@ export default function CookieConsentForm({
   const { register, handleSubmit } = useForm<CookieState>({
     defaultValues,
   })
+
+  const { setCookieBannerDisplayState } = useCookieManagement()
 
   return (
     <Modal
@@ -235,6 +237,7 @@ export default function CookieConsentForm({
                 'cookies.management.audience.linkTitle',
                 'Visiter notre politique de confidentialité'
               )}
+              onClick={() => setCookieBannerDisplayState('hidden')}
               className="text-primary-700 underline">
               <Trans i18nKey="cookies.management.audience.linkText">
                 notre politique de confidentialité

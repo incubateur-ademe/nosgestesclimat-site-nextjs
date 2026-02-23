@@ -45,11 +45,15 @@ export default async function Page({
       <section className="w-full bg-[#fff]">
         <div className="max-w-5xl lg:px-0">
           <h1>
-            <Trans locale={locale}>Accédez à votre espace organisation</Trans>
+            <Trans locale={locale}>
+              Accédez à votre espace organisation pour diffuser facilement Nos
+              Gestes Climat
+            </Trans>
           </h1>
           <p>
             <Trans locale={locale}>
-              C'est gratuit, et ça prend une minute !
+              Diffusez un lien collectif depuis votre espace personnel et
+              accédez à des bilans visuels chiffrés de votre impact.
             </Trans>
           </p>
           <Separator />
