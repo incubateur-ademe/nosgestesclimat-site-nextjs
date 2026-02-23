@@ -1,10 +1,10 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-
+import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useId, useState } from 'react'
 
-export interface AccordionItemType {
+export interface AccordionItemProps {
   title: ReactNode
   name: string
   content: ReactNode
@@ -14,21 +14,21 @@ export interface AccordionItemType {
   ariaLabel?: string
 }
 
-export default function AccordionItem({
+export default function AccordionItemLegacy({
   title,
   name,
   content,
   isReadOnly = false,
   onClick,
   ariaLabel,
-}: AccordionItemType) {
+}: AccordionItemProps) {
   const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const buttonId = useId()
   const panelId = useId()
 
   return (
-    <li className="list-none">
+    <li role="listitem">
       <button
         type="button"
         id={buttonId}
@@ -36,22 +36,20 @@ export default function AccordionItem({
         title={`${ariaLabel ?? name} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
         onClick={() => {
           if (isReadOnly) return
-
           setIsOpen((prevState) => !prevState)
-
           if (onClick) {
             onClick()
           }
         }}
-        className={`focus-visible:ring-primary-700 relative z-10 mb-2 flex w-full items-end justify-between focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-1 ${isReadOnly ? 'cursor-default!' : ''}`}
+        className={`focus:ring-primary-700 relative z-10 flex w-full items-end justify-between py-2 focus:ring-2 focus:ring-offset-3 focus:outline-hidden ${isReadOnly ? 'cursor-default!' : ''}`}
         aria-disabled={isReadOnly}
         aria-expanded={isOpen}
         aria-controls={panelId}>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 
-        <div className="absolute top-1/2 right-6 flex -translate-y-1/2 items-center">
+        <div className="flex items-center gap-4">
           <ChevronRight
-            className={`h-4 w-4 stroke-slate-950 ${isOpen ? '-rotate-90' : 'rotate-90'} ${
+            className={`${isOpen ? 'rotate-90' : ''} ${
               isReadOnly ? 'opacity-20' : ''
             }`}
           />
@@ -59,14 +57,16 @@ export default function AccordionItem({
       </button>
 
       {isOpen && (
-        <div
+        <motion.div
           id={panelId}
           role="region"
           aria-labelledby={buttonId}
           tabIndex={-1}
-          className="animate-fade-in-slide-from-top z-0 motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+          initial={{ opacity: 0.6, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="z-0">
           {content}
-        </div>
+        </motion.div>
       )}
     </li>
   )

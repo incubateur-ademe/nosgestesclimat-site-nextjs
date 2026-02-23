@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 interface Props {
   isRetryButtonDisabled: boolean
-  onResendVerificationCode: () => void
+  onResendVerificationCode: () => void | Promise<void>
   timeLeft: number
 }
 
@@ -28,7 +28,7 @@ export default function ResendButton({
 
   const { t } = useClientTranslation()
 
-  function handleResendVerificationCode() {
+  async function handleResendVerificationCode() {
     if (isRetryButtonDisabled) {
       return
     }
@@ -36,12 +36,12 @@ export default function ResendButton({
     trackEvent(clickResendCode)
     trackPosthogEvent(captureClickResendCode())
 
-    onResendVerificationCode()
+    await onResendVerificationCode()
     setShouldDisplayConfirmation(true)
 
     setTimeout(() => {
       setShouldDisplayConfirmation(false)
-    }, 1500)
+    }, 4000)
   }
 
   return (
@@ -54,11 +54,13 @@ export default function ResendButton({
             ? t('Renvoyer le code, désactivé pendant 30 secondes')
             : ''
         }
-        className="-ml-2 font-normal"
-        onClick={handleResendVerificationCode}>
+        className="dark:text-primary-50 dark:hover:text-primary-50 -ml-2 font-normal"
+        onClick={() => {
+          void handleResendVerificationCode()
+        }}>
         {isRetryButtonDisabled && timeLeft > 0 && (
           <span className="mr-2 flex items-center">
-            <LockIcon className="fill-primary-700 mr-2 h-4 w-4" />
+            <LockIcon className="fill-primary-700 dark:fill-primary-50 mr-2 h-4 w-4" />
             <Trans i18nKey="signIn.verificationForm.notReceived.resendButton">
               Renvoyer le code
             </Trans>
@@ -66,7 +68,7 @@ export default function ResendButton({
         )}
 
         {shouldDisplayConfirmation && (
-          <span className="flex items-center text-green-500 no-underline">
+          <span className="flex items-center text-green-500 no-underline dark:text-green-100">
             <CheckCircleIcon className="mr-2 h-4 w-4 fill-green-500" />
             <Trans i18nKey="signIn.verificationForm.notReceived.resendButton.confirmation">
               Code renvoyé
@@ -83,7 +85,7 @@ export default function ResendButton({
         )}
       </Button>
       {isRetryButtonDisabled && timeLeft > 0 && (
-        <span className="text-xs font-normal text-gray-500 no-underline!">
+        <span className="text-xs font-normal text-slate-500 no-underline! dark:text-slate-100">
           {t(
             'signIn.verificationForm.notReceived.resendButton.timeLeft',
             'Attendre {{timeLeft}} secondes',
