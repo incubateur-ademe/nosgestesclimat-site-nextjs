@@ -1,12 +1,16 @@
 import SimulationResults from '@/components/results/SimulationResults'
+import { USER_ID_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { getUser } from '@/helpers/server/model/user'
 import type { Locale } from '@/i18nConfig'
+import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 export default async function SimulationPage({
   params,
+  searchParams,
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
   const { simulationId, locale } = await params
+  const { userId: userIdParam } = await searchParams
 
   let user
 
@@ -17,7 +21,13 @@ export default async function SimulationPage({
     user = null
   }
 
-  if (!user) {
+  // If not authenticated, we try to get the userId from the cookie or searchParams
+  const userId =
+    user?.id ??
+    (await cookies()).get(USER_ID_COOKIE_NAME)?.value ??
+    (userIdParam as string)
+
+  if (!userId) {
     notFound()
   }
 
@@ -25,7 +35,7 @@ export default async function SimulationPage({
     <SimulationResults
       simulationId={simulationId}
       locale={locale as Locale}
-      userId={user.id}
+      userId={userId}
     />
   )
 }

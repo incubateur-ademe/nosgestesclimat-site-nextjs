@@ -11,7 +11,7 @@ export default function SimulationResolverFallback({
   locale: string
 }) {
   const router = useRouter()
-  const { simulations, currentSimulationId, isInitialized } = useUser()
+  const { simulations, currentSimulationId, isInitialized, user } = useUser()
 
   useLayoutEffect(() => {
     if (!isInitialized) return
@@ -27,13 +27,22 @@ export default function SimulationResolverFallback({
     }
 
     if (targetId) {
-      // Redirect to the resultats page
-      router.replace(`/${locale}/simulation/${targetId}/resultats`)
+      // Redirect to the resultats page with the userId in query params as a fallback for the server
+      router.replace(
+        `/${locale}/simulation/${targetId}/resultats?userId=${user.userId}`
+      )
     } else {
       // If no simulation found at all, go back to the start
       router.replace(`/${locale}${SIMULATOR_PATH}`)
     }
-  }, [isInitialized, simulations, currentSimulationId, locale, router])
+  }, [
+    isInitialized,
+    simulations,
+    currentSimulationId,
+    locale,
+    router,
+    user.userId,
+  ])
 
   return null
 }
