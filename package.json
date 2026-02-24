@@ -39,7 +39,7 @@
     "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:build:github-pages": "cp .storybook/main.github-pages.ts .storybook/main.ts && cp .storybook/preview.github-pages.ts .storybook/preview.ts && storybook build && git checkout .storybook/main.ts .storybook/preview.ts",
+    "storybook:build:github-pages": "cp .storybook/main.github-pages.ts .storybook/main.ts && cp .storybook/preview.github-pages.tsx .storybook/preview.tsx && storybook build && git checkout .storybook/main.ts .storybook/preview.tsx",
     "build-storybook": "storybook build",
     "scalingo-postbuild": "pnpm build && pnpm prune --prod",
     "knip": "knip"
