@@ -54,6 +54,7 @@ export const MUST_SHOW_DESCRIPTION = new Set<DottedName>([
   'transport . voiture . utilisateur',
   'logement . âge',
   'logement . surface',
+  'logement . chauffage . collectif',
   'divers . animaux domestiques . empreinte',
   'alimentation . local . consommation',
   'transport . avion . vols annuels',
