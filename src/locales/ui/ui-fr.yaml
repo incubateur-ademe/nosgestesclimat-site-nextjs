@@ -34,7 +34,6 @@ entries:
   'Quelques suggestions ': 'Quelques suggestions '
   Questions fréquentes: Questions fréquentes
   Rejeter l'action: Rejeter l'action
-  Suivant: Suivant
   Suivez le guide !: Suivez le guide !
   Sur le même sujet: Sur le même sujet
   'Tri :': 'Tri :'
@@ -113,7 +112,6 @@ entries:
   Modifier le nom du groupe: Modifier le nom du groupe
   Ok, sauvegarder la modification: Ok, sauvegarder la modification
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
-  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données
   Supprimer mes données: Supprimer mes données
   Veuillez renseigner un nom.: Veuillez renseigner un nom.
   Créer et passer mon test: Créer et passer mon test
@@ -218,40 +216,29 @@ entries:
   Votre prénom: Votre prénom
   Accueil: Accueil
   Animez un atelier: Animez un atelier
-  Dans quelle ville habitez-vous ?: Dans quelle ville habitez-vous ?
   Empreinte moyenne: Empreinte moyenne
   Exporter les données: Exporter les données
   Kit de diffusion: Kit de diffusion
   Organisations: Organisations
   Paramètres: Paramètres
-  Quelle est votre année de naissance ?: Quelle est votre année de naissance ?
   Voir les paramètres: Voir les paramètres
   Vous avez une question ?: Vous avez une question ?
   Voir mes résultats: Voir mes résultats
-  Commencer un nouveau test: Commencer un nouveau test
   La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
   '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
   Accéder au kit: Accéder au kit
   Administrateur·ice: Administrateur·ice
-  Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.
-  Facultatif: Facultatif
   Impact CO2: Impact CO2
   Mes données restent-elles privées ?: Mes données restent-elles privées ?
   Mon organisation: Mon organisation
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.
   Partagez le test pour obtenir vos premiers résultats.: Partagez le test pour obtenir vos premiers résultats.
-  Pour conserver vos résultats et les retrouver à l’avenir: Pour conserver vos résultats et les retrouver à l’avenir
-  précédent: précédent
   Télécharger le kit, ouvrir dans un nouvel onglet: Télécharger le kit, ouvrir dans un nouvel onglet
   Valorisez vos données carbone: Valorisez vos données carbone
   Veuillez entrer votre code postal: Veuillez entrer votre code postal
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.
-  Votre code postal: Votre code postal
-  Votre date de naissance: Votre date de naissance
-  Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
-  Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
@@ -329,7 +316,6 @@ entries:
   Reprendre mon test: Reprendre mon test
   Votre empreinte: Votre empreinte
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.'
-  Utiliser mes données existantes: Utiliser mes données existantes
   Simulation terminée: Simulation terminée
   Diffusion: Diffusion
   International: International
@@ -337,7 +323,6 @@ entries:
   Créer mon organisation: Créer mon organisation
   Simulations terminées: Simulations terminées
   Votre nom: Votre nom
-  Questions complémentaires: Questions complémentaires
   Association: Association
   Autre: Autre
   Créer ma première campagne: Créer ma première campagne
@@ -364,8 +349,6 @@ entries:
   Cette action est définitive.: Cette action est définitive.
   Confirmer: Confirmer
   Modifier: Modifier
-  Question personnalisée de: Question personnalisée de
-  Questions par défaut: Questions par défaut
   Questions personnalisées: Questions personnalisées
   Supprimer cette question personnalisée ?: Supprimer cette question personnalisée ?
   Une erreur est survenue. Veuillez réessayer.: Une erreur est survenue. Veuillez réessayer.
@@ -393,7 +376,6 @@ entries:
   Voir le détail: Voir le détail
   Vos informations personnelles: Vos informations personnelles
   Votre téléphone: Votre téléphone
-  Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.
   Date (anciennes > récentes): Date (anciennes > récentes)
   Date (récentes > anciennes): Date (récentes > anciennes)
   Masquer les autres campagnes: Masquer les autres campagnes
@@ -764,13 +746,9 @@ entries:
   Nos Gestes Climat, calculez votre empreinte climatique, mode intégré: Nos Gestes Climat, calculez votre empreinte climatique, mode intégré
   Paramètres de ma campagne - Nos Gestes Climat: Paramètres de ma campagne - Nos Gestes Climat
   Paramètres de mon organisation - Nos Gestes Climat: Paramètres de mon organisation - Nos Gestes Climat
-  Question personnalisée, rejoindre une campagne - Nos Gestes Climat: Question personnalisée, rejoindre une campagne - Nos Gestes Climat
   Questions fréquentes - Nos Gestes Climat: Questions fréquentes - Nos Gestes Climat
-  Rejoindre une campagne - Nos Gestes Climat: Rejoindre une campagne - Nos Gestes Climat
   Résultats de ma campagne - Nos Gestes Climat: Résultats de ma campagne - Nos Gestes Climat
   Tutoriel du calculateur - Nos Gestes Climat: Tutoriel du calculateur - Nos Gestes Climat
-  Votre code postal, rejoindre une campagne - Nos Gestes Climat: Votre code postal, rejoindre une campagne - Nos Gestes Climat
-  Votre date de naissance, rejoindre une campagne - Nos Gestes Climat: Votre date de naissance, rejoindre une campagne - Nos Gestes Climat
   Contenu: Contenu
   Menu: Menu
   Pied de page: Pied de page
@@ -852,10 +830,7 @@ entries:
   endPage.carboneChart.gaugeDescription: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
   endPage.carboneChart.progressBarLabel: Barre de progression de votre empreinte carbone
   C'est parti !: C'est parti !
-  Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.
-  Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
   Chargement en cours...: Chargement en cours...
-  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Conditions d’utilisation des données « Base Empreinte »
   <0>L'empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.: <0>L'empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.
   <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.
@@ -1337,7 +1312,6 @@ entries:
   newsletterManagement.title: Sélectionnez les infolettres qui vous intéressent
   newsletterManagement.transportNewsletter.description: 4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers.
   newsletterManagement.transportNewsletter.title: Nos Gestes Transports
-  Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
   simulator.mosaic.noneOfTheseOptions: Aucun
   simulator.mosaic.notConcerned: Je ne suis pas concerné·e
   <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire
