@@ -1,6 +1,6 @@
 import SimulateurSkeleton from '@/app/[locale]/(simulation)/simulateur/[root]/skeleton'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
-import { getUser } from '@/helpers/server/model/user'
+import { getUserOrNull } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
 import { redirect } from 'next/navigation'
 import SimulationResolverFallback from './_components/SimulationResolverFallback'
@@ -11,15 +11,8 @@ export default async function SimulationResultatsResolverPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  // Try to get the user from the session
-  let user
 
-  try {
-    // Always returns a user or throws an error
-    user = await getUser()
-  } catch {
-    user = null
-  }
+  const user = await getUserOrNull()
 
   if (user) {
     // If authenticated, get their simulations

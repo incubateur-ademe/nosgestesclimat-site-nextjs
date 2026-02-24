@@ -3,7 +3,7 @@ import { USER_ID_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getUser } from '@/helpers/server/model/user'
+import { getUserOrNull } from '@/helpers/server/model/user'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import { cookies } from 'next/headers'
@@ -36,14 +36,7 @@ export default async function SimulationPage({
   const { simulationId, locale } = await params
   const { userId: userIdParam } = await searchParams
 
-  let user
-
-  try {
-    // Always returns a user or throws an error
-    user = await getUser()
-  } catch {
-    user = null
-  }
+  const user = await getUserOrNull()
 
   // If not authenticated, we try to get the userId from the cookie or searchParams
   const userId =
