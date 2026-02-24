@@ -5,10 +5,12 @@ import '../src/app/[locale]/globals.css'
 import '../src/design-system/marianne.css'
 import '../src/locales/initClient'
 
-// Initialize MSW for GitHub Pages (using absolute path for the service worker)
+// Initialize MSW for GitHub Pages
+// Custom domain (storybook.nosgestesclimat.fr) serves from root,
+// so no repository prefix is needed.
 initialize({
   serviceWorker: {
-    url: '/nosgestesclimat-site-nextjs/mockServiceWorker.js',
+    url: '/mockServiceWorker.js',
   },
 })
 
