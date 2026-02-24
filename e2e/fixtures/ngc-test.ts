@@ -1,12 +1,12 @@
 import type { Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Page } from '@playwright/test'
-import { type TutorialPage, test as base, expect } from './tutorial'
+import { TutorialPage, test as base, expect } from './tutorial'
 
 export class NGCTest {
   constructor(
     public readonly page: Page,
-    public readonly tutorialPage: TutorialPage
+    public readonly tutorialPage: TutorialPage = new TutorialPage(page)
   ) {}
 
   async goto() {
