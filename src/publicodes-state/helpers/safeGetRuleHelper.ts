@@ -10,6 +10,7 @@ export const safeGetRuleHelper = (
   try {
     rule = engineUsed.getRule(ruleName)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(error)
     captureException(error)
   }

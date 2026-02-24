@@ -1,25 +1,30 @@
 'use client'
 
-import { CookieConsentKey } from '@/types/cookies'
 import Script from 'next/script'
-import { useCookieConsent } from '../cookies/CookieConsentProvider'
 
 export function GoogleTagScript() {
-  const { cookieConsent, cookieCustomChoice } = useCookieConsent()
-
-  const hasConsent =
-    cookieConsent === 'all' || cookieCustomChoice?.[CookieConsentKey.googleAds]
-
-  if (!hasConsent) {
-    return null
-  }
-
   return (
     <Script
       id="google-ads-script"
       strategy="afterInteractive"
       type="text/javascript">
       {`
+        // Initialize dataLayer and gtag function
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Set default consent state to denied for all consent types
+        gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied',
+          'functionality_storage': 'denied',
+          'personalization_storage': 'denied',
+          'security_storage': 'granted'
+        });
+
+        // Load GTM
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

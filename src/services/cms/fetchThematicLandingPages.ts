@@ -29,6 +29,7 @@ export async function fetchThematicLandingPages(): Promise<
     }>(`/api/landing-thematiques?${thematicLPSearchParams}`)
 
     if (!thematicLPResponse?.data) {
+      // eslint-disable-next-line no-console
       console.error('Error: fetchThematicLandingPages - no data returned')
       return
     }

@@ -1,6 +1,5 @@
 'use client'
 
-import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
@@ -13,7 +12,6 @@ import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { useContext, useEffect } from 'react'
 
 export default function Poll() {
   const { polls } = useCurrentSimulation()
@@ -27,15 +25,6 @@ export default function Poll() {
   } = useFetchPublicPoll({
     pollIdOrSlug: lastPollSlug,
   })
-
-  const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
-    useContext(PreventNavigationContext)
-
-  useEffect(() => {
-    if (shouldPreventNavigation) {
-      handleUpdateShouldPreventNavigation(false)
-    }
-  }, [shouldPreventNavigation, handleUpdateShouldPreventNavigation])
 
   // If there is no poll attached to the simulation, we don't display the block
   if (!lastPollSlug) {
@@ -65,7 +54,7 @@ export default function Poll() {
     <Confirmation>
       <Title
         title={
-          <span className="inline-block">
+          <span className="inline-block" data-testid="poll-confirmation-block">
             <Trans>Vous avez terminé le test !</Trans> <Emoji>💪</Emoji>
           </span>
         }
@@ -95,6 +84,7 @@ export default function Poll() {
             orgaSlug: poll?.organisation.slug || '', // TODO: handle this better
             pollSlug: lastPollSlug || '',
           })}
+          data-testid="poll-see-results-button"
           trackingEvent={endClickPoll}>
           <Trans i18nKey="endPage.poll.seeResults.button.label">
             Voir les résultats

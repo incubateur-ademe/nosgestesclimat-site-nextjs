@@ -1,12 +1,12 @@
 import type { Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Page } from '@playwright/test'
-import { type TutorialPage, test as base, expect } from './tutorial'
+import { TutorialPage, test as base, expect } from './tutorial'
 
 export class NGCTest {
   constructor(
     public readonly page: Page,
-    public readonly tutorialPage: TutorialPage
+    public readonly tutorialPage: TutorialPage = new TutorialPage(page)
   ) {}
 
   async goto() {
@@ -62,6 +62,25 @@ export class NGCTest {
       .isVisible()
   }
 
+  async isBooleanQuestion() {
+    // if boolean question, test id contains "oui" or "non"
+    const ouiCount = await this.page.getByTestId(/oui-label/).count()
+    const nonCount = await this.page.getByTestId(/non-label/).count()
+    return ouiCount === 1 && nonCount === 1
+  }
+
+  async isChoicesQuestion() {
+    // we consider that if there are more than 3 labels (question label + at least 3 answers), it's a choices question
+    const labelInput = await this.page.getByTestId(/-label/).count()
+    return labelInput > 3
+  }
+
+  async isSelectionMosaic() {
+    // we consider that if there are more than 2 oui-label, it's a selection mosaic question
+    const labelInput = await this.page.getByTestId(/oui-label/).count()
+    return labelInput > 2
+  }
+
   async skipAll() {
     await this.goto()
     await this.skipAllQuestions()
@@ -75,6 +94,7 @@ export class NGCTest {
   }
 
   async answerTest(situation: Situation) {
+    // @TODO : test that there are no unit warning in publicodes
     while (!(await this.isLastQuestion())) {
       await this.answerQuestion(situation)
     }

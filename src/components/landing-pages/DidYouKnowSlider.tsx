@@ -5,6 +5,7 @@ import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import {
   getLandingDidYouKnowSlider,
+  getLandingDidYouKnowSliderPosthog,
   getLandingDidYouKnowSliderValue,
 } from '@/helpers/tracking/landings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -259,13 +260,25 @@ export default function DidYouKnowSlider({
                 pathname,
                 getLandingDidYouKnowSliderValue(currentSlide + 1)
               ),
+              startPosthog: getLandingDidYouKnowSliderPosthog(
+                pathname,
+                getLandingDidYouKnowSliderValue(currentSlide + 1)
+              ),
+              resumePosthog: getLandingDidYouKnowSliderPosthog(
+                pathname,
+                getLandingDidYouKnowSliderValue(currentSlide + 1)
+              ),
+              resultsPosthog: getLandingDidYouKnowSliderPosthog(
+                pathname,
+                getLandingDidYouKnowSliderValue(currentSlide + 1)
+              ),
             }}
             withRestart={false}
           />
         </div>
       </div>
 
-      <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
+      <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all motion-reduce:animate-none" />
     </div>
   )
 }

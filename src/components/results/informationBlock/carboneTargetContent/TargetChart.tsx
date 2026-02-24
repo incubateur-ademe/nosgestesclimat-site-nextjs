@@ -52,7 +52,7 @@ export default function TargetChart({ isQuestionOpen }: Props) {
         </div>
         <div className="bg-secondary-700 absolute top-full right-full h-3 w-3 -translate-x-1 -translate-y-2/3 rounded-full" />
       </motion.div>
-      <div className="absolute w-11/12 origin-top-left rotate-[19deg]">
+      <div className="absolute w-7/12 origin-top-left rotate-[21deg] md:rotate-[24deg]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
