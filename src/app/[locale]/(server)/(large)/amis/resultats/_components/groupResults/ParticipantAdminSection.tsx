@@ -86,7 +86,11 @@ export default function ParticipantAdminSection({ group }: Props) {
               Annuler
             </Button>
 
-            <Button onClick={handleDelete} size="sm" color="primary">
+            <Button
+              onClick={handleDelete}
+              size="sm"
+              color="primary"
+              data-testid="button-confirm-leave-group">
               Quitter le groupe
             </Button>
           </div>
@@ -94,7 +98,10 @@ export default function ParticipantAdminSection({ group }: Props) {
       )}
 
       {!isConfirming && !isSuccess && (
-        <Button color="link" onClick={() => setIsConfirming(true)}>
+        <Button
+          color="link"
+          onClick={() => setIsConfirming(true)}
+          data-testid="button-leave-group">
           Quitter le groupe
         </Button>
       )}

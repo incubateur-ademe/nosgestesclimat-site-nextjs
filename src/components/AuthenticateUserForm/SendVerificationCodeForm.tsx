@@ -28,6 +28,7 @@ interface Props {
   inputLabel?: ReactNode | string
   required?: boolean
   isVerticalLayout?: boolean
+  additionnalButton?: ReactNode
 }
 
 interface FormData {
@@ -40,6 +41,7 @@ export default function SendVerificationCodeForm({
   mode,
   inputLabel,
   onCodeSent,
+  additionnalButton,
   required = true,
   isVerticalLayout = true,
 }: Props) {
@@ -70,6 +72,7 @@ export default function SendVerificationCodeForm({
       onSubmit={handleSubmit((data) => createVerificationCode(data.email))}
       buttonLabel={buttonLabel ?? t('Accéder à mon espace')}
       buttonColor={buttonColor}
+      additionnalButton={additionnalButton}
       isVerticalLayout={isVerticalLayout}>
       <EmailInput
         data-testid="verification-code-email-input"

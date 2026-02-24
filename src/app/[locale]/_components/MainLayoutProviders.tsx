@@ -7,7 +7,6 @@ import { MotionConfig } from 'framer-motion'
 import { Suspense, type PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from '../_components/mainLayoutProviders/IframeOptionsContext'
 import MainHooks from '../_components/mainLayoutProviders/MainHooks'
-import { PreventNavigationProvider } from '../_components/mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
 
 export default function MainLayoutProviders({ children }: PropsWithChildren) {
@@ -17,14 +16,12 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
         <UserProvider>
           <PartnerProvider>
             <IframeOptionsProvider>
-              <PreventNavigationProvider>
-                <MotionConfig reducedMotion="user">
-                  <Suspense>
-                    <MainHooks />
-                  </Suspense>
-                  {children}
-                </MotionConfig>
-              </PreventNavigationProvider>
+              <MotionConfig reducedMotion="user">
+                <Suspense>
+                  <MainHooks />
+                </Suspense>
+                {children}
+              </MotionConfig>
             </IframeOptionsProvider>
           </PartnerProvider>
         </UserProvider>
