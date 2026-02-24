@@ -42,8 +42,8 @@ export async function generateMetadata({
       canonical: `/blog/${category}/${article}`,
     },
     locales: (await getShouldBeLocalised({ category, article }))
-      ? ([...i18nConfig.locales] as Locale[])
-      : [i18nConfig.defaultLocale as Locale],
+      ? [...i18nConfig.locales]
+      : [i18nConfig.defaultLocale],
   })
 }
 

@@ -60,7 +60,7 @@ export async function generateMetadata({
     alternates: {
       canonical: `/themes/${landingPageSlug}`,
     },
-    locales: [i18nConfig.defaultLocale as Locale],
+    locales: [i18nConfig.defaultLocale],
   })
 }
 

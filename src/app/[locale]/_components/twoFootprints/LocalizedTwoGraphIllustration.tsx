@@ -15,7 +15,7 @@ const getLocalisedSrc = (locale: Locale) => {
 }
 
 export default function LocalizedTwoGraphsIllustration() {
-  const locale = useLocale() as Locale
+  const locale = useLocale()
 
   return (
     <Image
