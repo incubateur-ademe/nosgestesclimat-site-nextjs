@@ -27,7 +27,15 @@ export default async function GroupNamePage({
 }: DefaultPageProps<{ searchParams: { [SHOW_STEP_KEY]: string } }>) {
   const { locale } = await params
   const { [SHOW_STEP_KEY]: showStep } = (await searchParams) ?? {}
-  const user = await getUser()
+
+  let user
+  try {
+    // Always returns a user or throws an error
+    user = await getUser()
+  } catch {
+    user = null
+  }
+
   if (!user) {
     redirect('/mon-espace/groupes')
   }

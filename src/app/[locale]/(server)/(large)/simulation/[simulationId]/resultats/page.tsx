@@ -8,7 +8,14 @@ export default async function SimulationPage({
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
   const { simulationId, locale } = await params
 
-  const user = await getUser()
+  let user
+
+  try {
+    // Always returns a user or throws an error
+    user = await getUser()
+  } catch {
+    user = null
+  }
 
   if (!user) {
     notFound()
@@ -18,7 +25,7 @@ export default async function SimulationPage({
     <SimulationResults
       simulationId={simulationId}
       locale={locale as Locale}
-      userId={user?.id || ''}
+      userId={user.id}
     />
   )
 }
