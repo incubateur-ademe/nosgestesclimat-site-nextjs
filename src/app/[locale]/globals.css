@@ -6,6 +6,7 @@
   --color-heroLightBackground: #f0f8ff;
   --color-default: #1a1a1a;
   --color-water: #5152d0;
+  --font-marianne: 'Marianne', Arial, sans-serif;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

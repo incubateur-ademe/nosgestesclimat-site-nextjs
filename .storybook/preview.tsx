@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/nextjs'
 import i18next from 'i18next'
 import { initialize, mswLoader } from 'msw-storybook-addon'
 import '../src/app/[locale]/globals.css'
+import '../src/design-system/marianne.css'
 import '../src/locales/initClient'
 
 // Initialize MSW
@@ -37,6 +38,14 @@ const preview: Preview = {
       }
 
       return Story()
+    },
+    (Story) => {
+      // Apply the font-sans class and set the variable for Storybook
+      return (
+        <div className="font-sans" style={{ '--font-marianne': '"Marianne"' } as React.CSSProperties}>
+          <Story />
+        </div>
+      )
     },
   ],
 }

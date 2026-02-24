@@ -53,7 +53,7 @@ export default function Form({
           )}
         </div>
 
-        <div className="mt-8 flex gap-4 pb-8">
+        <div className="flex gap-4 pb-8">
           <Button
             className={twMerge(!isVerticalLayout && 'lg:mt-8 lg:h-14')}
             type="submit"
