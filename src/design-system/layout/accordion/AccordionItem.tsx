@@ -43,7 +43,7 @@ export default function AccordionItem({
             onClick()
           }
         }}
-        className={`focus-visible:ring-primary-700 relative z-10 mb-2 flex w-full items-end justify-between focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-1 ${isReadOnly ? 'cursor-default!' : ''}`}
+        className={`focus-visible:ring-primary-700 relative z-10 mb-1 flex w-full items-end justify-between focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-1 ${isReadOnly ? 'cursor-default!' : ''}`}
         aria-disabled={isReadOnly}
         aria-expanded={isOpen}
         aria-controls={panelId}>
