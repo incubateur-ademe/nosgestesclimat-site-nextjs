@@ -6,7 +6,7 @@ import MetricSlider from '@/components/fin/MetricSlider'
 import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
 import HeadingButtons from '@/components/fin/metricSlider/heading/HeadingButtons'
 import Carbone from '@/components/results/Carbone'
-import CategoriesAccordion from '@/components/results/CategoriesAccordion'
+import CategoriesAccordion from '@/components/results/CategoriesAccordionLegacy'
 import DocumentationBlock from '@/components/results/DocumentationBlock'
 import Eau from '@/components/results/Eau'
 import InformationBlock from '@/components/results/InformationBlock'
@@ -69,7 +69,7 @@ function ResultsContentInner({
         <MetricSlider
           isStatic={isStatic}
           carboneTotal={simulation.computedResults.carbone.bilan}
-          waterTotal={simulation.computedResults.eau.bilan}
+          waterTotal={simulation.computedResults.eau?.bilan}
         />
 
         {currentMetric === carboneMetric && (

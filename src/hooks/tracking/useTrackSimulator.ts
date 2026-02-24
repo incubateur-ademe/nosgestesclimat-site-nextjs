@@ -1,3 +1,4 @@
+import { useCookieManagement } from '@/components/cookies/useCookieManagement'
 import {
   captureSimulationCompleted,
   captureSimulationFirstQuestionSeen,
@@ -21,7 +22,6 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect } from 'react'
-import { useGTM } from '../useGTM'
 import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
 
 const FIRST_QUESTION_SEEN = 'first_question_seen'
@@ -61,7 +61,7 @@ export function useTrackSimulator() {
 
   const { progression, foldedSteps } = currentSimulation
 
-  const { isGTMAvailable } = useGTM()
+  const { cookieState } = useCookieManagement()
 
   const { getNumericValue } = useEngine()
 
@@ -96,7 +96,7 @@ export function useTrackSimulator() {
       trackEvent(simulationSimulationStarted)
 
       // Track GTM event if available
-      if (isGTMAvailable) {
+      if (cookieState.googleTag === 'accepted') {
         trackGTMEvent(gtmSimulationStarted)
       }
 
@@ -113,9 +113,9 @@ export function useTrackSimulator() {
     relevantAnsweredQuestions,
     progression,
     foldedSteps,
-    isGTMAvailable,
     simulationId,
     currentSimulation,
+    cookieState,
   ])
 
   useEffect(() => {
@@ -128,7 +128,7 @@ export function useTrackSimulator() {
       trackEvent(simulationSimulationCompleted(bilan))
 
       // Track GTM event if available
-      if (isGTMAvailable) {
+      if (cookieState.googleTag === 'accepted') {
         trackGTMEvent(gtmSimulationCompleted)
       }
 
@@ -146,9 +146,9 @@ export function useTrackSimulator() {
     progression,
     trackTimeOnSimulation,
     getNumericValue,
-    isGTMAvailable,
     simulationId,
     currentSimulation,
+    cookieState,
   ])
 
   useEffect(() => {

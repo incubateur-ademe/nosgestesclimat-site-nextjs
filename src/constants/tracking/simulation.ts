@@ -26,12 +26,6 @@ export const simulationSimulationStarted = [
   'Simulation First answer',
 ]
 
-export const simulationSimulationHalfCompleted = [
-  'trackEvent',
-  'Simulation',
-  'Simulation Half completed',
-]
-
 export const simulationSimulationCompleted = (bilan: number) => [
   'trackEvent',
   'Simulation',
@@ -55,15 +49,3 @@ export const gtmSimulationCompleted = {
 export const gtmSimulationStarted = {
   event: 'start-form',
 }
-
-export const clickSaveSimulationEvent = [
-  'trackEvent',
-  'Simulation',
-  'Click save simulation',
-]
-
-export const confirmSaveSimulationEvent = [
-  'trackEvent',
-  'Simulation',
-  'Confirm save simulation',
-]

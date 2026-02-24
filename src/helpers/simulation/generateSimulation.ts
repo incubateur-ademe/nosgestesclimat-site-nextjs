@@ -29,7 +29,6 @@ export function generateSimulation({
   defaultAdditionalQuestionsAnswers,
   polls,
   groups,
-  savedViaEmail,
   migrationInstructions,
 }: Partial<Simulation> & {
   migrationInstructions?: Migration
@@ -47,12 +46,12 @@ export function generateSimulation({
     defaultAdditionalQuestionsAnswers,
     polls,
     groups,
-    savedViaEmail,
   } as Simulation
 
   try {
     simulation = migrateSimulation(simulation, migrationInstructions)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn('Error trying to migrate Simulation:', error)
     captureException(error)
   }

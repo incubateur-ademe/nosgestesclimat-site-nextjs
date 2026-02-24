@@ -4,8 +4,9 @@ import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMess
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import Alert from '@/design-system/alerts/alert/Alert'
+import type { ButtonColor } from '@/design-system/buttons/Button'
 import Form from '@/design-system/form/Form'
-import TextInput from '@/design-system/inputs/TextInput'
+import EmailInput from '@/design-system/inputs/EmailInput'
 import {
   CREATE_VERIFICATION_CODE_ERROR,
   useCreateVerificationCode,
@@ -21,14 +22,13 @@ import { useForm } from 'react-hook-form'
 
 interface Props {
   buttonLabel?: string | ReactNode
-  buttonColor?: 'primary' | 'secondary'
+  buttonColor?: ButtonColor
   mode?: AuthenticationMode
   onCodeSent: (pendingVerification: PendingVerification) => void
   inputLabel?: ReactNode | string
   required?: boolean
-  onComplete?: ({ email, userId }: { email: string; userId: string }) => void
-  onEmailEntered?: (email: string) => void
-  onEmailEmpty?: () => void
+  isVerticalLayout?: boolean
+  additionnalButton?: ReactNode
 }
 
 interface FormData {
@@ -37,10 +37,13 @@ interface FormData {
 
 export default function SendVerificationCodeForm({
   buttonLabel,
+  buttonColor,
   mode,
   inputLabel,
   onCodeSent,
+  additionnalButton,
   required = true,
+  isVerticalLayout = true,
 }: Props) {
   const { t } = useClientTranslation()
   const { createVerificationCodeError, createVerificationCode } =
@@ -64,31 +67,28 @@ export default function SendVerificationCodeForm({
     },
   })
 
-  const onSubmit = ({ email }: FormData) => {
-    createVerificationCode(email)
-  }
-
   return (
     <Form
-      onSubmit={handleSubmit(onSubmit)}
-      buttonLabel={buttonLabel ?? t('Accéder à mon espace')}>
-      <TextInput
-        type="email"
-        autoComplete="email"
+      onSubmit={handleSubmit((data) => createVerificationCode(data.email))}
+      buttonLabel={buttonLabel ?? t('Accéder à mon espace')}
+      buttonColor={buttonColor}
+      additionnalButton={additionnalButton}
+      isVerticalLayout={isVerticalLayout}>
+      <EmailInput
         data-testid="verification-code-email-input"
+        containerClassName={isVerticalLayout ? 'w-full' : 'max-w-full w-96'}
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
-        placeholder="nom.prenom@domaine.fr"
-        srOnlyHelperText={
-          <Trans i18nKey="organisations.connexion.email.input.helper">
-            Format attendu : nom.prenom@domaine.fr
-          </Trans>
-        }
         {...register('email', {
           required: required
             ? t('Merci de renseigner votre adresse e-mail')
             : undefined,
-          validate: (value) =>
-            isEmailValid(value) || t("L'adresse e-mail est invalide"),
+          validate: (value) => {
+            if (!isEmailValid(value)) {
+              return t("L'adresse e-mail est invalide")
+            }
+
+            return true
+          },
         })}
         error={formErrors.email?.message}
       />

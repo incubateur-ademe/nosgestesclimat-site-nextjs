@@ -18,6 +18,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -203,20 +204,23 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     setIsOpen(false)
 
     await resetLocalState({ setUser, updateSimulations })
+
+    posthog.reset()
+
     onLogout()
   }
 
   const ariaLabelTitle = isOpen
     ? t(
         'header.monEspace.openMenuButton.open.title',
-        'Mon Espace ({{email}}), ouvrir le menu',
+        'Mon espace ({{email}}), ouvrir le menu',
         {
           email,
         }
       )
     : t(
         'header.monEspace.openMenuButton.close.title',
-        'Mon Espace ({{email}}), fermer le menu',
+        'Mon espace ({{email}}), fermer le menu',
         {
           email,
         }
@@ -237,7 +241,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
         title={ariaLabelTitle}
         onClick={handleToggleMenu}
         onKeyDown={handleButtonKeyDown}>
-        <Trans i18nKey="header.monEspace.title">Mon Espace</Trans>{' '}
+        <Trans i18nKey="header.monEspace.title">Mon espace</Trans>{' '}
         <span className="hidden md:inline">({displayEmail})</span>
         <ChevronRight
           className={twMerge(

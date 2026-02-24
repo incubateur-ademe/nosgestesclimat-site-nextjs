@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import type { Page } from '@playwright/test'
+import { copyAndReadClipboard } from '../helpers/clipboard'
 import {
   getPlaywrightState,
   savePlaywrightState,
@@ -12,6 +13,7 @@ import { test as base, expect } from './organisations'
 interface Data {
   name: string
   slug?: string
+  inviteLink?: string
 }
 
 export class Poll {
@@ -31,6 +33,10 @@ export class Poll {
     return `${this.organisation.url}/campagnes/${this.data.slug}`
   }
 
+  get inviteLink() {
+    return this.data.inviteLink!
+  }
+
   get createUrl() {
     return `${this.organisation.url}/creer-campagne`
   }
@@ -48,6 +54,16 @@ export class Poll {
     const pollUrl = /\/campagnes\/([a-z0-9\-]*)/
     await expect(this.page).toHaveURL(pollUrl)
     this.data.slug = pollUrl.exec(this.page.url())![1]
+  }
+
+  async copyInviteLink() {
+    const clipboardContent = await copyAndReadClipboard({
+      page: this.page,
+      copyAction: () =>
+        this.page.getByTestId('poll-invite-copy-button').click(),
+    })
+    this.data.inviteLink = clipboardContent
+    return clipboardContent
   }
 
   async expectCreationConfirmationEmail() {
@@ -92,4 +108,4 @@ const test = base.extend<PollPageFixtures>({
   },
 })
 
-export { expect, test }
+export { test }

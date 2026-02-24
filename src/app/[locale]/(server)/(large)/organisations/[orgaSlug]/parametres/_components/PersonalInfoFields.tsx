@@ -2,9 +2,11 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import CheckboxInput from '@/design-system/inputs/CheckboxInput'
+import EmailInput from '@/design-system/inputs/EmailInput'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
+
 import type { UseFormRegister } from 'react-hook-form'
 
 interface Props {
@@ -69,12 +71,9 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
         {...register('administratorTelephone')}
       />
 
-      <TextInput
-        label={<Trans>Votre adresse e-mail</Trans>}
-        helperText={<Trans>Format attendu : nom.prenom@domaine.fr</Trans>}
+      <EmailInput
         value={defaultValues.email}
         data-testid="input-administrator-email"
-        autoComplete="email"
         {...register('email', {
           required: t('Ce champ est requis'),
         })}

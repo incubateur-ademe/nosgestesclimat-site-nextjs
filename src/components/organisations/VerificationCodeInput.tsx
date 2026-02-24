@@ -3,6 +3,7 @@
 import { marianne } from '@/app/[locale]/layout'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
+
 import Loader from '@/design-system/layout/Loader'
 import type { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import VerificationInput from 'react-verification-input'
@@ -30,6 +31,7 @@ export default function VerificationCodeInput({
         length={6}
         inputProps={
           {
+            autoComplete: 'one-time-code webauthn',
             'data-testid': 'verification-code-input',
             'aria-label': 'Entrez votre code de vérification pour continuer',
             'aria-describedby':
@@ -70,7 +72,9 @@ export default function VerificationCodeInput({
 
       {inputError && (
         <div>
-          <p id="verification-error" className="w- mt-2 text-sm text-red-800">
+          <p
+            id="verification-error"
+            className="mt-2 text-sm text-red-800 dark:text-white">
             <Trans>Le code est invalide</Trans>
           </p>
         </div>
@@ -97,11 +101,11 @@ export default function VerificationCodeInput({
           role="status"
           aria-live="polite">
           <CheckCircleIcon
-            className="h-4 w-4 fill-green-700"
+            className="h-4 w-4 fill-green-700 dark:fill-green-100"
             aria-hidden="true"
           />
 
-          <span className="text-green-700">
+          <span className="text-green-700 dark:text-green-100">
             <Trans>Votre code est valide !</Trans>
           </span>
         </div>

@@ -41,6 +41,7 @@ export async function fetchArticlePageContent({
     }>(`/api/articles?${articleSearchParams}`)
 
     if (articleResponse.data?.length !== 1) {
+      // eslint-disable-next-line no-console
       console.error(
         `Error: fetch article error for articleSlug: ${articleSlug}`
       )

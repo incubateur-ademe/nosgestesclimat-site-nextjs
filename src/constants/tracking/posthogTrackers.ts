@@ -118,42 +118,6 @@ export const captureIframeInteraction = (url: string) => {
 
 // Orga
 
-export const captureDownloadKit = () => {
-  return {
-    eventName: 'click download kit',
-    properties: {
-      module: 'organisation board',
-    },
-  }
-}
-
-export const captureClickAteliers = () => {
-  return {
-    eventName: 'click ateliers',
-    properties: {
-      module: 'organisation board',
-    },
-  }
-}
-
-export const captureClickImpactCo2 = () => {
-  return {
-    eventName: 'click impact co2',
-    properties: {
-      module: 'organisation board',
-    },
-  }
-}
-
-export const captureCopyPollLink = () => {
-  return {
-    eventName: 'copy poll link',
-    properties: {
-      module: 'poll dashboard',
-    },
-  }
-}
-
 export const captureClickFunFactsPlus = () => {
   return {
     eventName: 'click poll fun facts plus',
@@ -210,15 +174,6 @@ export const captureLocale = ({ locale }: Props) => {
   }
 }
 
-export const captureFooterSwitchLanguage = (locale: string) => {
-  return {
-    eventName: 'Switch Language in Footer',
-    properties: {
-      language: locale,
-    },
-  }
-}
-
 export const captureRegion = ({ region }: Props) => {
   return {
     eventName: 'Region used',
@@ -227,31 +182,3 @@ export const captureRegion = ({ region }: Props) => {
     },
   }
 }
-
-export const clickSaveSimulation = ({
-  question,
-  completionPercentage,
-}: {
-  question: string
-  completionPercentage: number
-}) => ({
-  eventName: 'Click save simulation',
-  properties: {
-    question,
-    progression: completionPercentage,
-  },
-})
-
-export const confirmSaveSimulation = ({
-  question,
-  completionPercentage,
-}: {
-  question: string
-  completionPercentage: number
-}) => ({
-  eventName: 'Confirm save simulation',
-  properties: {
-    question,
-    progression: completionPercentage,
-  },
-})

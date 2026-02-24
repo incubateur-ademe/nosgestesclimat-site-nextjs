@@ -1,6 +1,6 @@
 'use client'
 
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useGetDifference } from '@/hooks/simulation/useGetDifference'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 
 export default function ValueChangeDisplay({
   className,
-  metric = defaultMetric,
+  metric = carboneMetric,
   size = 'sm',
 }: {
   className?: string
@@ -44,8 +44,8 @@ export default function ValueChangeDisplay({
       className={twMerge(
         'absolute -top-0.5 right-2 -z-0 w-auto whitespace-nowrap sm:top-1',
         isNegative
-          ? 'animate-valuechange-reverse text-green-700'
-          : 'animate-valuechange text-red-700',
+          ? 'animate-valuechange-reverse text-green-700 motion-reduce:animate-none'
+          : 'animate-valuechange text-red-700 motion-reduce:animate-none',
         className
       )}
       key={updateKey}

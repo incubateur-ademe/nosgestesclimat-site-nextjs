@@ -58,7 +58,6 @@ describe('useSimulations', () => {
         params.defaultAdditionalQuestionsAnswers,
       polls: params.polls,
       groups: params.groups,
-      savedViaEmail: params.savedViaEmail,
     }))
   })
 

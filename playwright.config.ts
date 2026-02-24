@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 import dotenv from 'dotenv'
-import { NEW_VISITOR_STATE } from './e2e/state'
 import { FixturesOptions } from './e2e/fixtures/options'
+import { NEW_VISITOR_STATE } from './e2e/state'
 
 dotenv.config({quiet: true})
 
@@ -13,7 +13,7 @@ export default defineConfig<FixturesOptions>({
   testDir: './e2e',
   fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 6 : undefined,
+  workers: process.env.CI ? 3 : undefined,
   use: {
     baseURL: process.env.NEXT_PUBLIC_SITE_URL,
     trace: process.env.CI ? 'on-first-retry' : 'on',
@@ -45,26 +45,23 @@ export default defineConfig<FixturesOptions>({
         storageState: NEW_VISITOR_STATE,
       },
     },
-    // ...(process.env.CI ? [
-      {
-        name: 'Firefox',
-        dependencies: ['global setup'],
-        use: {
-          ...devices['Desktop Firefox'],
-          storageState: NEW_VISITOR_STATE,
-        },
+    {
+      name: 'Firefox',
+      dependencies: ['global setup'],
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: NEW_VISITOR_STATE,
       },
-      {
-        name: 'Mobile Safari',
-        dependencies: ['global setup'],
-        use: {
-          ...devices['iPhone 12'],
-          storageState: NEW_VISITOR_STATE,
-        },
-       },
-    // ] : []),
+    },
+    {
+      name: 'Mobile Safari',
+      dependencies: ['global setup'],
+      use: {
+        ...devices['iPhone 12'],
+        storageState: NEW_VISITOR_STATE,
+      },
+    },
   ],
-
   /* Run your local dev server before starting the tests */
   webServer: process.env.CI
     ? undefined

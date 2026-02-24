@@ -23,6 +23,7 @@ export default function ThematicPagesSection() {
           setThematicPages(result.thematicLandingPages)
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error loading thematic pages:', error)
       }
     }

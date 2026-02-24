@@ -9,7 +9,6 @@ import MainArticle from '@/design-system/cms/MainArticle'
 import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
 import { getPageNumber } from '@/helpers/blog/getPageNumber'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
@@ -39,7 +38,7 @@ export async function generateMetadata({
       slug: category,
       locale,
       pageNumber,
-    })) || {}
+    })) ?? {}
 
   const dynamicTitle = getDynamicPageTitleWithPagination({
     metaTitle,
@@ -98,11 +97,7 @@ export default async function CategoryPage({
       slug: category,
       page,
       locale,
-    })) || {}
-
-  const langButtonsDisplayed = await getLangButtonsDisplayed({
-    category,
-  })
+    })) ?? {}
 
   //  Firstly redirect to french version if the page is not available in the current locale
   if (locale !== i18nConfig.defaultLocale && (!title || !description)) {
@@ -190,7 +185,7 @@ export default async function CategoryPage({
         />
       </div>
 
-      <Footer langButtonsDisplayed={langButtonsDisplayed} />
+      <Footer backgroundColor="white" locale={locale} params={{ category }} />
     </>
   )
 }

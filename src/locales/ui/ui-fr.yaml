@@ -12,7 +12,6 @@ entries:
   Comprendre le calcul: Comprendre le calcul
   Copier le lien: Copier le lien
   Documentation: Documentation
-  Découvrez la FAQ !: Découvrez la FAQ !
   Démarrer: Démarrer
   En développement actif: En développement actif
   En savoir plus: En savoir plus
@@ -41,7 +40,6 @@ entries:
   'Tri :': 'Tri :'
   'Triées par :': 'Triées par :'
   Un modèle complet: Un modèle complet
-  Une question, un problème ?: Une question, un problème ?
   Une technologie moderne: Une technologie moderne
   actions choisies: actions choisies
   components.localisation.Localisation.warnMessage: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
@@ -106,7 +104,6 @@ entries:
   Partager: Partager
   Rejoindre: Rejoindre
   Retour: Retour
-  Votre prénom (ou pseudo): Votre prénom (ou pseudo)
   Le classement: Le classement
   Par rapport à la moyenne du groupe.: Par rapport à la moyenne du groupe.
   Vos points faibles: Vos points faibles
@@ -128,7 +125,6 @@ entries:
   Comment les mettons-nous à jour ?: Comment les mettons-nous à jour ?
   publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du calculateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le calculateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.
-  Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.
   ' Retour à la liste': ' Retour à la liste'
   10 minutes: 10 minutes
   Avant de commencer: Avant de commencer
@@ -204,14 +200,10 @@ entries:
   Vous êtes le premier: Vous êtes le premier
   mais vous êtes seul·e…: mais vous êtes seul·e…
   (une fois par mois maximum !): (une fois par mois maximum !)
-  2 petites minutes: 2 petites minutes
   Accéder à mon espace: Accéder à mon espace
-  Accédez à votre espace organisation: Accédez à votre espace organisation
   Bienvenue: Bienvenue
   Bienvenue sur votre espace !: Bienvenue sur votre espace !
-  Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.
   Créer un compte: Créer un compte
-  Créez votre compte organisation: Créez votre compte organisation
   Demander une démo: Demander une démo
   Entrez votre code de vérification pour continuer: Entrez votre code de vérification pour continuer
   Explorez, comparez et analysez vos données: Explorez, comparez et analysez vos données
@@ -234,13 +226,10 @@ entries:
   Paramètres: Paramètres
   Quelle est votre année de naissance ?: Quelle est votre année de naissance ?
   Voir les paramètres: Voir les paramètres
-  Votre e-mail: Votre e-mail
   Vous avez une question ?: Vous avez une question ?
   Voir mes résultats: Voir mes résultats
   Commencer un nouveau test: Commencer un nouveau test
   La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
-  pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !
-  '{{category}}': '{{category}}'
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
   '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
   Accéder au kit: Accéder au kit
@@ -254,9 +243,7 @@ entries:
   Partagez le test pour obtenir vos premiers résultats.: Partagez le test pour obtenir vos premiers résultats.
   Pour conserver vos résultats et les retrouver à l’avenir: Pour conserver vos résultats et les retrouver à l’avenir
   précédent: précédent
-  Se déconnecter de votre espace organisation: Se déconnecter de votre espace organisation
   Télécharger le kit, ouvrir dans un nouvel onglet: Télécharger le kit, ouvrir dans un nouvel onglet
-  Valider: Valider
   Valorisez vos données carbone: Valorisez vos données carbone
   Veuillez entrer votre code postal: Veuillez entrer votre code postal
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
@@ -282,10 +269,8 @@ entries:
   Empreinte: Empreinte
   'Je ne trouve pas réponse à ma question ': 'Je ne trouve pas réponse à ma question '
   Les nouveautés: Les nouveautés
-  Oups ! Une erreur est survenue.: Oups ! Une erreur est survenue.
   sélectionnez celles qui vous intéressent: sélectionnez celles qui vous intéressent
   1 minute: 1 minute
-  à tout moment: à tout moment
   Annuler: Annuler
   Invitez d'autres personnes à rejoindre votre groupe: Invitez d'autres personnes à rejoindre votre groupe
   l’équipe de nosgestesclimat.fr: l’équipe de nosgestesclimat.fr
@@ -299,8 +284,6 @@ entries:
   Un modèle inédit d'empreinte des **déchets**: Un modèle inédit d'empreinte des **déchets**
   Lancer le calcul: Lancer le calcul
   Notes: Notes
-  À propos - Nos Gestes Climat: À propos - Nos Gestes Climat
-  Informations relatives à Nos Gestes Climat.: Informations relatives à Nos Gestes Climat.
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.
   Accessibilité - Nos Gestes Climat: Accessibilité - Nos Gestes Climat
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
@@ -350,13 +333,10 @@ entries:
   Simulation terminée: Simulation terminée
   Diffusion: Diffusion
   International: International
-  '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés'
-  "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails"
   Ce champ est requis.: Ce champ est requis.
   Créer mon organisation: Créer mon organisation
   Simulations terminées: Simulations terminées
   Votre nom: Votre nom
-  Vous pouvez vous désincrire à tout moment: Vous pouvez vous désincrire à tout moment
   Questions complémentaires: Questions complémentaires
   Association: Association
   Autre: Autre
@@ -387,12 +367,9 @@ entries:
   Question personnalisée de: Question personnalisée de
   Questions par défaut: Questions par défaut
   Questions personnalisées: Questions personnalisées
-  Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Recevez nos <1>conseils transports</1> directement dans votre boite mail !
   Supprimer cette question personnalisée ?: Supprimer cette question personnalisée ?
   Une erreur est survenue. Veuillez réessayer.: Une erreur est survenue. Veuillez réessayer.
-  Votre inscription est validée ! <1>✨</1>: Votre inscription est validée ! <1>✨</1>
   Votre question à ajouter: Votre question à ajouter
-  Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Vous accompagner pour mieux agir en <2>4 mails seulement</2>.
   Cette opération est définitive.: Cette opération est définitive.
   'Créée le ': 'Créée le '
   Créer une campagne: Créer une campagne
@@ -404,7 +381,6 @@ entries:
   Nom de la campagne: Nom de la campagne
   Nombre de collaborateurs: Nombre de collaborateurs
   Nous récupérons les données de la campagne...: Nous récupérons les données de la campagne...
-  Nous récupérons les données de votre organisation...: Nous récupérons les données de votre organisation...
   Oups, nous n'avons pas trouvé les résultats de cette campagne: Oups, nous n'avons pas trouvé les résultats de cette campagne
   Paramètres de: Paramètres de
   'Paramètres de ': 'Paramètres de '
@@ -440,20 +416,17 @@ entries:
   Les ressources de l'ABC: Les ressources de l'ABC
   Tableau de bord: Tableau de bord
   vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
-  Ils ont testé: Ils ont testé
   'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
   Nos relais - Nos Gestes Climat: Nos relais - Nos Gestes Climat
   ', le': ', le'
   Campagne créée par: Campagne créée par
   Alimentation: Alimentation
-  Divers: Divers
   Logement: Logement
   Transport: Transport
   Voir tous les gestes: Voir tous les gestes
   '{label}': '{label}'
   de votre empreinte: de votre empreinte
   Partager mon résultat: Partager mon résultat
-  "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails": "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails"
   Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.: Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.
   Des enfants sortant de l'école en se tenant la main.: Des enfants sortant de l'école en se tenant la main.
   Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
@@ -477,8 +450,6 @@ entries:
   Autres actions: Autres actions
   Ce champ est obligatoire.: Ce champ est obligatoire.
   Ce champ est trop long: Ce champ est trop long
-  Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
-  Et une illustration: Et une illustration
   Étape: Étape
   Mentions légales: Mentions légales
   Politique de confidentialité: Politique de confidentialité
@@ -516,14 +487,10 @@ entries:
   d'eau par jour: d'eau par jour
   de CO₂e par an: de CO₂e par an
   Liste des questions: Liste des questions
-  Reprendre plus tard: Reprendre plus tard
-  Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
   Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
   Une erreur est survenue: Une erreur est survenue
-  Non, merci: Non, merci
-  Votre test est sauvegardé !: Votre test est sauvegardé !
   <0>Empreinte eau</0> moyenne: <0>Empreinte eau</0> moyenne
   Lire l'article: Lire l'article
   Carbone: Carbone
@@ -532,19 +499,17 @@ entries:
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.
   litres: litres
-  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
   Accepter: Accepter
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).
   Refuser: Refuser
   Au sein de votre organisation: Au sein de votre organisation
   La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.: La catégorie {{title}} représente {{formattedValue}} tonnes de CO₂e.
-  La catégorie {{title}} représente {{value}} tonnes de CO₂e.: La catégorie {{title}} représente {{value}} tonnes de CO₂e.
   Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: Vous souhaitez illustrer une quantité de CO₂e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !
   CO₂e / an: CO₂e / an
   En cours: En cours
   contacter le support.: contacter le support.
   Si le problème persiste, merci de: Si le problème persiste, merci de
-  organisations.accueil.titre: Nos Gestes Climat pour les organisations
+  organisations.accueil.titre: Nos Gestes Climat pour les organisations et les animateurs
   / jour: / jour
   / an: / an
   Comment calculer l’empreinte eau ?: Comment calculer l’empreinte eau ?
@@ -703,20 +668,14 @@ entries:
   'Le dioxyde de carbone, CO2, est le principal gaz à effet de serre, mais il y en a d’autres : méthane, protoxyde d’azote par exemple. C’est pourquoi on parle “d’équivalent carbone”.': 'Le dioxyde de carbone, CO2, est le principal gaz à effet de serre, mais il y en a d’autres : méthane, protoxyde d’azote par exemple. C’est pourquoi on parle “d’équivalent carbone”.'
   Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse): Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse)
   Une fois utilisée, cette eau est <2>dépolluée</2> puis <5>renvoyée</5> dans les cours d'eau locaux.: Une fois utilisée, cette eau est <2>dépolluée</2> puis <5>renvoyée</5> dans les cours d'eau locaux.
-  1 par mois max: 1 par mois max
   À la une !: À la une !
   Accueil Blog: Accueil Blog
   D'autres articles sur le même sujet: D'autres articles sur le même sujet
-  Je m'inscris à l'infolettre: Je m'inscris à l'infolettre
-  Merci de votre inscription !: Merci de votre inscription !
   minutes: minutes
-  personnes inscrites: personnes inscrites
   'Publié le :': 'Publié le :'
-  S'inscrire: S'inscrire
   Sommaire: Sommaire
   'Temps de lecture :': 'Temps de lecture :'
   Toutes les catégories du blog: Toutes les catégories du blog
-  Vous recevrez bientôt nos actualités et conseils directement dans votre boîte mail.: Vous recevrez bientôt nos actualités et conseils directement dans votre boîte mail.
   Lien copié: Lien copié
   Nos derniers articles: Nos derniers articles
   Partager l'article: Partager l'article
@@ -863,7 +822,6 @@ entries:
   Vous avez terminé le test !: Vous avez terminé le test !
   Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.: Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.
   Vous débutez votre test avec un score de départ.: Vous débutez votre test avec un score de départ.
-  Vous souhaitez recevoir nos derniers articles directement ?: Vous souhaitez recevoir nos derniers articles directement ?
   Partagez vos résultats avec notre partenaire - Nos Gestes Climat: Partagez vos résultats avec notre partenaire - Nos Gestes Climat
   Notre partenaire: Notre partenaire
   vous a invité à lui transmettre vos empreintes carbone et eau.: vous a invité à lui transmettre vos empreintes carbone et eau.
@@ -915,27 +873,22 @@ entries:
   footer.thematicLandingPages.title: Pages thématiques
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
-  cookies.banner.description: Nous utilisons des cookies, juste ce qu'il faut pour faire fonctionner le site, améliorer l'expérience et mesurer de manière anonyme l'audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
-  cookies.banner.refuseAll: Tout refuser
+  cookies.banner.description: Nous utilisons des cookies pour améliorer votre expérience, nos services, mesurer l'audience et piloter notre budget de campagnes.
+  cookies.banner.rejectAll: Tout refuser
   cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
   cookies.management.acceptAll: Tout accepter
   cookies.management.confirm: Confirmer mes choix
-  cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
-  cookies.management.googleAds.title: Google Ads
   cookies.management.preferences: 'Préférences pour tous les services. '
   cookies.management.privacyLink: Données personnelles et cookies
   cookies.management.refuse: Refuser
-  cookies.management.refuseAll: Tout refuser
+  cookies.management.rejectAll: Tout refuser
   cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
-  cookies.management.title: Panneau de gestion des cookies
+  cookies.management.title: Gestion des cookies
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Vous pouvez nous contacter via notre page de contact : <2></2>.'
   Gestion des cookies: Gestion des cookies
-  Veuillez entrer une adresse email valide: Veuillez entrer une adresse email valide
-  Veuillez sélectionner au moins une infolettre.: Veuillez sélectionner au moins une infolettre.
-  Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire
   Télécharger le QR Code: Télécharger le QR Code
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.
   copyInput.copied: Copié !
@@ -1003,7 +956,6 @@ entries:
   Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.
   Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
   Chargement du tableau de bord...: Chargement du tableau de bord...
-  Formulaire - Demander une démo: Formulaire - Demander une démo
   Formulaire - nous faire part de vos remarques sur le site: Formulaire - nous faire part de vos remarques sur le site
   Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
   Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
@@ -1035,21 +987,15 @@ entries:
   results.informationBlock.carbon.openButton: Voir le détail de l'objectif 2 tonnes en 2050
   results.informationBlock.water.openButton: Voir l'explication sur l'empreinte eau
   results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}, voir le détail ci-dessous'
-  simulateur.saveModal.title: Fenêtre modale de sauvegarde de test
   simulator.customQuestions.voiture.deleteItem: Supprimer ce trajet
   simulator.customQuestions.voiture.open: Détailler mes trajets
   simulator.label.moreInfoButton: Plus d'informations - {{label}}
-  simulator.topBar.totalButtons.saveButton.ariaLabel: Enregistrer et reprendre plus tard
   blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   common.slider.buttons.next: Aller à la diapositive suivante
   common.slider.buttons.previous: Aller à la diapositive précédente
-  4 infolettres l'impact des transports: 4 infolettres l'impact des transports
-  3 infolettres sur l'impact du logement: 3 infolettres sur l'impact du logement
-  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.
   documentation.total_category_block.title: du total, voir la documentation
-  Inscription en cours...: Inscription en cours...
   Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie
   Accès rapide: Accès rapide
   Arrêter le défilement: Arrêter le défilement
@@ -1111,7 +1057,6 @@ entries:
   actions.negativeIcon.ariaLabel: Les actions se trouvent en dessous
   actions.thresholdDescription: Actions avec un impact de {{label}} ou plus
   actions.thresholdIcon.ariaLabel: Les actions se trouvent en dessous
-  C'est gratuit, et ça prend une minute !: C'est gratuit, et ça prend une minute !
   C'est quoi mon empreinte carbone ?: C'est quoi mon empreinte carbone ?
   Cliquez pour ouvrir la liste des régions disponibles: Cliquez pour ouvrir la liste des régions disponibles
   Comment on la mesure ?: Comment on la mesure ?
@@ -1122,13 +1067,10 @@ entries:
   endpage.title.default: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   Page {{page}} (page actuelle): Page {{page}} (page actuelle)
   Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?
-  Accéder au test: Accéder au test
   Activé: Activé
-  common.inputs.email.label: Entrez votre adresse e-mail
   Désactivé: Désactivé
   Métrique sélectionnée: Métrique sélectionnée
   Option sélectionnée: Option sélectionnée
-  organisations.connexion.email.input.helper: 'Format attendu : nom.prenom@domaine.fr'
   Sélectionné: Sélectionné
   Sélectionner cette métrique: Sélectionner cette métrique
   Sélectionner cette option: Sélectionner cette option
@@ -1278,7 +1220,7 @@ entries:
   sauvegarder: sauvegarder
   settings.newsletters.title: Inscription à nos contenus
   common.metric.choice: Choix de la métrique
-  header.monEspace.title: Mon Espace
+  header.monEspace.title: Mon espace
   header.monEspace.access: Accéder à mon espace
   header.monEspace.logout: Déconnexion
   <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> en 2050 ?
@@ -1316,7 +1258,6 @@ entries:
   Tous ces modes d'action sont complémentaires !: Tous ces modes d'action sont complémentaires !
   Un coup de pouce pour agir ?: Un coup de pouce pour agir ?
   'Voici quelques idées pour vous aider à réduire votre impact :': 'Voici quelques idées pour vous aider à réduire votre impact :'
-  Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
   Mon espace: Mon espace
   mon-espace.groups.loginBlock.buttonLabel: Suivant
   mon-espace.groups.loginBlock.title: Déjà un groupe ou une organisation ?
@@ -1355,34 +1296,22 @@ entries:
   landing.carbon.measure.food: Votre régime alimentaire
   landing.carbon.measure.modes: Vos modes de déplacement
   landing.carbon.measure.shopping: Vos achats
-  Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.: Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.
-  Connaissez-vous votre empreinte carbone et eau ?: Connaissez-vous votre empreinte carbone et eau ?
   la page groupes: la page groupes
-  <0>Invitez vos proches à</0> <2>passer le test</2>: <0>Invitez vos proches à</0> <2>passer le test</2>
   Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.: Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.
   Invitez vos proches à passer le test: Invitez vos proches à passer le test
   Mobilisez votre entourage: Mobilisez votre entourage
-  header.monEspace.openMenuButton.close.title: Mon Espace ({{email}}), fermer le menu
-  header.monEspace.openMenuButton.open.title: Mon Espace ({{email}}), ouvrir le menu
+  header.monEspace.openMenuButton.close.title: Mon espace ({{email}}), fermer le menu
+  header.monEspace.openMenuButton.open.title: Mon espace ({{email}}), ouvrir le menu
   mon-espace.groups.organisation.create.button: Créer mon organisation
   mon-espace.groups.organisation.create.title: Mobiliser mon organisation
   Créer: Créer
   Merci de renseigner votre adresse e-mail: Merci de renseigner votre adresse e-mail
   Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez: Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez
   Votre adresse e-mail: Votre adresse e-mail
-  Entrez votre adresse e-mail: Entrez votre adresse e-mail
   Laissez votre e-mail pour: Laissez votre e-mail pour
-  Recevez par e-mail un lien pour reprendre votre test plus tard.: Recevez par e-mail un lien pour reprendre votre test plus tard.
   Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations: Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations
-  Veuillez entrer une adresse e-mail valide.: Veuillez entrer une adresse e-mail valide.
-  Veuillez renseigner un e-mail.: Veuillez renseigner un e-mail.
   Votre e-mail, rejoindre une campagne - Nos Gestes Climat: Votre e-mail, rejoindre une campagne - Nos Gestes Climat
-  Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver
-  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.: Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.
-  Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.: Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.
-  Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu
   auth.verifyemail: Vérifier mon adresse email
-  Rejoignez le groupe <2>{group?.name}</2> et passez le test.: Rejoignez le groupe <2>{group?.name}</2> et passez le test.
   international.comment.3: Nous l’enrichissons progressivement pour élargir la couverture internationale.
   international.description: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
   international.ensuite.2: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
@@ -1390,31 +1319,75 @@ entries:
   Commencer le test: Commencer le test
   Découvrez votre empreinte carbone: Découvrez votre empreinte carbone
   Résultats immédiats, sans inscription.: Résultats immédiats, sans inscription.
-  Entrez votre email pour sauvegarder vos résultats: Entrez votre email pour sauvegarder vos résultats
-  fin.newsletters.title: Recevez des conseils pour réduire votre empreinte
   Illustration du groupe: Illustration du groupe
   mon-espace.settings.userInfos.editLabel: Modifier
   Nom du groupe: Nom du groupe
-  Retrouvez vos résultats à tout moment sur votre espace personnel: Retrouvez vos résultats à tout moment sur votre espace personnel
   Un compte avec cette adresse e-mail existe déjà: Un compte avec cette adresse e-mail existe déjà
-  Vérifier mon email: Vérifier mon email
   Veuillez entrer votre nom.: Veuillez entrer votre nom.
-  Veuillez renseigner votre prénom.: Veuillez renseigner votre prénom.
-  Votre prénom (ou pseudo) dans le groupe: Votre prénom (ou pseudo) dans le groupe
   '{mainButtonLabel}': '{mainButtonLabel}'
-  'Format attendu : nom.prenom@domaine.fr': 'Format attendu : nom.prenom@domaine.fr'
-  2,7 millions de personnes: 2,7 millions de personnes
-  ont déjà calculé leur empreinte: ont déjà calculé leur empreinte
-  <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>
   <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
+  newsletterManagement.alimentationNewsletter.description: 4 infolettres (sur 4 semaines), pour découvrir l'empreinte de notre alimentation, et comprendre comment aligner son assiette avec les enjeux planétaires.
+  newsletterManagement.alimentationNewsletter.title: Nos Gestes Alimentation
+  newsletterManagement.logementNewsletter.description: 3 infolettres (sur 3 semaines), pour découvrir comment nos choix d'habitat influencent notre empreinte carbone. Pour un logement plus sobre et confortable.
+  newsletterManagement.logementNewsletter.title: Nos Gestes Logement
+  newsletterManagement.mainNewsletter.description: Nos dernières évolutions et nos recommandations d'actions, les articles récents, les contenus du moment, et plus encore. Une fois par mois.
+  newsletterManagement.mainNewsletter.title: Les actualités de Nos Gestes Climat
+  newsletterManagement.saveSubscriptions: Valider mon inscription
+  newsletterManagement.title: Sélectionnez les infolettres qui vous intéressent
+  newsletterManagement.transportNewsletter.description: 4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers.
+  newsletterManagement.transportNewsletter.title: Nos Gestes Transports
+  Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
   simulator.mosaic.noneOfTheseOptions: Aucun
   simulator.mosaic.notConcerned: Je ne suis pas concerné·e
   <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire
-  Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
-  Mon empreinte: Mon empreinte
-  Mon empreinte: Mon empreinte
-  Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
+  newsletterManagement.error.title: Une erreur est survenue lors de la mise à jour des informations.
+  newsletterManagement.message.authenticated: Vous pouvez vous désinscrire à tout moment en un clic !
+  newsletterManagement.message.unauthenticated: Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu
+  newsletterManagement.success.authenticated.description: Nous avons bien pris en compte votre demande.
+  newsletterManagement.success.authenticated.title: Confirmation de votre choix
+  newsletterManagement.success.unauthenticated.description: Consultez votre boîte de réception et confirmez votre adresse pour recevoir nos e-mails.
+  newsletterManagement.success.unauthenticated.title: Un e-mail vient de vous être envoyé
   Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.: Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.
   Connexion à votre espace - Nos Gestes Climat: Connexion à votre espace - Nos Gestes Climat
   Création de compte - Nos Gestes Climat: Création de compte - Nos Gestes Climat
   Mon espace - Nos Gestes Climat: Mon espace - Nos Gestes Climat
+  '{descriptionDefault}': '{descriptionDefault}'
+  '{linkDefault}': '{linkDefault}'
+  '{titleDefault}': '{titleDefault}'
+  cookies.management.audience.description: Pour désactiver tous les cookies de mesure d'audience anonymes, visitez
+  cookies.management.audience.linkText: notre politique de confidentialité
+  cookies.management.audience.linkTitle: Visiter notre politique de confidentialité
+  cookies.management.audience.title: Mesure d'audience
+  privacyPolicy.posthogCheckboxLabel: Désactiver le suivi Posthog
+  privacyPolicy.posthogCheckboxText: Vous êtes suivi de façon anonyme par Posthog. Décochez cette case pour vous exclure également du suivi anonyme.
+  footer.wantToAct.button: Je choisis mes infolettres
+  footer.wantToAct.description: Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.
+  footer.wantToAct.title: Envie d'agir, pas à pas ?
+  ui.emailInput.error.invalid: 'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
+  ui.emailInput.error.required: Veuillez entrer une adresse e-mail
+  ui.emailInput.label: Votre adresse e-mail
+  email.input.helper: 'Format attendu : nom@exemple.org'
+  privacyPolicy.posthogCheckboxTextNotFollowed: Vous n'êtes actuellement pas suivi. Cochez cette case si vous acceptez d'être suivi de façon anonyme avec Posthog
+  Cliquez sur voir le détail pour découvrir également votre empreinte eau: Cliquez sur voir le détail pour découvrir également votre empreinte eau
+  fin.getResultsOnUserProfile.inputLabel: Votre adresse e-mail
+  results.saveResults.buttonLabel.authenticated: Voir l’évolution de mon résultat
+  results.saveResults.imageAlt: Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services.
+  results.saveResults.listItem1: Retrouvez <1>votre historique</1>
+  results.saveResults.listItem2: Suivez <1>votre évolution</1>
+  results.saveResults.listItem3: Découvrez <1>vos actions personnalisées</1>
+  results.saveResults.title.authenticated: Accédez à votre espace personnel
+  results.saveResults.title.unauthenticated: Recevez-les par e-mail et accédez à votre espace personnel
+  cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes publicitaires en ligne. Ceux-ci permettent de suivre votre navigation.
+  cookies.management.googleAds.link: Voir le site officiel
+  cookies.management.posthog.description: Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers.
+  cookies.management.posthog.link: Voir le site officiel
+  organisations.demanderDemo.subtitle: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
+  organisations.demanderDemo.title: Demander une démo
+  Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat
+  Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.
+  Part de la sous-catégorie {{percentage}}: Part de la sous-catégorie {{percentage}}
+  Passer: Passer
+  Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>: Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>
+  results.categories.services.text: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.
+  Vérifier mon adresse email: Vérifier mon adresse email

@@ -1,7 +1,9 @@
 import { TEST_INTRO_TUTO_KEY } from '@/app/[locale]/(simulation)/(large)/tutoriel/_components/ButtonStart'
+import type { CookieState } from '@/components/cookies/useCookieManagement'
 import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import type { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
+import posthog from 'posthog-js'
 import { getUserSimulations } from '../server/model/simulations'
 import { generateSimulation } from '../simulation/generateSimulation'
 
@@ -59,11 +61,12 @@ export async function reconcileUserOnAuth({
   userId,
   email,
   user,
+  cookieState,
 }: {
   userId: string
   email: string
   user: ReturnType<typeof useUser>
-  twoWaySync?: boolean
+  cookieState: CookieState
 }) {
   const {
     user: localUser,
@@ -92,4 +95,10 @@ export async function reconcileUserOnAuth({
 
   updateEmail(email)
   updateUserId(userId)
+
+  // We identify the user to posthog after the reconciliation
+
+  if (cookieState.posthog === 'accepted') {
+    posthog.identify(userId)
+  }
 }

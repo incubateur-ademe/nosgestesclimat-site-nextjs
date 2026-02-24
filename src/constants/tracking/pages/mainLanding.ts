@@ -4,13 +4,25 @@ export const learnMoreCarbonLink = [
   'Click "En savoir plus LP carbone"',
 ]
 
+export const learnMoreCarbonLinkPosthog = {
+  eventName: 'Accueil click En savoir plus LP carbone',
+}
+
 export const learnMoreWaterLink = [
   'trackEvent',
   'Accueil',
   'Click "En savoir plus LP eau"',
 ]
 
+export const learnMoreWaterLinkPosthog = {
+  eventName: 'Accueil click En savoir plus LP eau',
+}
+
 export const createGroupLink = ['trackEvent', 'Accueil', 'Click "Groupes"']
+
+export const createGroupLinkPosthog = {
+  eventName: 'Accueil click Groupes',
+}
 
 export const createOrganisationLink = [
   'trackEvent',

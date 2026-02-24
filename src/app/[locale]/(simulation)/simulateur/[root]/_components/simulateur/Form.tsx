@@ -10,13 +10,12 @@ import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 
-import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { useCallback, useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
-import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
-import ResultsBlocksMobile from './form/ResultsBlocksMobile'
+import ResultsBlocksDesktop from './form/ResultsBlockDesktop'
+import ResultsBlockMobile from './form/ResultsBlockMobile'
 import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
@@ -38,24 +37,11 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
-  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
-    usePreventNavigation()
-
   const handleOnComplete = useCallback(() => {
-    if (shouldPreventNavigation) {
-      handleUpdateShouldPreventNavigation(false)
-    }
     if (progression === 1) {
-      goToEndPage({
-        allowedToGoToGroupDashboard: true,
-      })
+      goToEndPage()
     }
-  }, [
-    shouldPreventNavigation,
-    progression,
-    handleUpdateShouldPreventNavigation,
-    goToEndPage,
-  ])
+  }, [goToEndPage, progression])
 
   useEffect(() => {
     if (!relevantAnsweredQuestions || currentQuestion) {
@@ -90,7 +76,7 @@ export default function Form() {
   return (
     <>
       <ContentLarge className="px-4 pt-2">
-        <ResultsBlocksMobile />
+        <ResultsBlockMobile />
 
         <div className="relative flex flex-1 flex-col gap-2 md:flex-row md:gap-8 lg:mt-0 lg:gap-12">
           <div className="relative flex flex-1 flex-col">

@@ -44,7 +44,7 @@ export async function generateMetadata({
   const { thematicLandingPageMetadata } =
     (await fetchThematicLandingPageMetadata({
       landingPageSlug,
-    })) || {}
+    })) ?? {}
 
   return getMetadataObject({
     locale,
@@ -226,7 +226,13 @@ export default async function ThematicLandingPage({
               ),
             }}
             title={block5.title}
-            description={block5?.htmlDescription ?? ''}
+            description={
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: block5?.htmlDescription ?? '',
+                }}
+              />
+            }
             gestures={{
               default: {
                 imageAlt: block5.image?.alternativeText ?? '',
@@ -296,7 +302,7 @@ export default async function ThematicLandingPage({
         {htmlLegend && <Legend htmlLegend={htmlLegend} />}
       </LandingPage>
 
-      <Footer langButtonsDisplayed={{ fr: false, en: false }} />
+      <Footer params={{ landingPageSlug }} locale={locale} />
     </ClientLayout>
   )
 }

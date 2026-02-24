@@ -140,6 +140,9 @@ const checkValueValidity = ({
       if (value === null) {
         return
       }
+      if (value === undefined) {
+        return "''"
+      }
       const stringValue = typeof value === 'string' ? value : String(value)
       return stringValue?.startsWith("'") ? stringValue : `'${stringValue}'`
     }

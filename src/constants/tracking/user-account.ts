@@ -1,35 +1,7 @@
-export const headerClickMonEspaceAuthenticated = [
-  'trackEvent',
-  'Header',
-  'Click Mon Espace',
-  'Authenticated',
-]
-
-export const headerClickMonEspaceUnauthenticated = [
-  'trackEvent',
-  'Header',
-  'Click Mon Espace',
-  'Unauthenticated',
-]
-
-export const captureClickHeaderMonEspaceAuthenticated = {
-  eventName: 'click header mon espace',
-  properties: {
-    status: 'authenticated',
-  },
-}
-
-export const captureClickHeaderMonEspaceUnauthenticated = {
-  eventName: 'click header mon espace',
-  properties: {
-    status: 'unauthenticated',
-  },
-}
-
 export const headerClickMonEspaceAuthenticatedServer = [
   'trackEvent',
   'Header',
-  'Click Mon Espace',
+  'Click Mon espace',
   'Authenticated',
 ]
 export const captureClickHeaderMonEspaceAuthenticatedServer = {
@@ -42,7 +14,7 @@ export const captureClickHeaderMonEspaceAuthenticatedServer = {
 export const headerClickAccessMySpaceAuthenticatedServer = [
   'trackEvent',
   'Header',
-  'Click Accéder à mon Espace',
+  'Click Accéder à mon espace',
   'Authenticated',
 ]
 export const captureClickHeaderAccessMySpaceAuthenticatedServer = {
@@ -67,7 +39,7 @@ export const captureClickHeaderLogoutAuthenticatedServer = {
 
 /** Server-side tracking */
 export const headerClickMonEspaceUnauthenticatedServer =
-  'Header|Click Mon Espace|Unauthenticated'
+  'Header|Click Mon espace|Unauthenticated'
 
 export const captureClickHeaderMonEspaceUnauthenticatedServer = JSON.stringify({
   eventName: 'click header mon espace',
@@ -173,9 +145,9 @@ export const captureClickUpdateUserEmail = {
 export const clickUpdateUserNewsletters = [
   'trackEvent',
   'User Account Settings',
-  'Click Update User Newsletters',
+  'Click Update Newsletters',
 ]
 
 export const captureClickUpdateUserNewsletters = {
-  eventName: 'click update user newsletters',
+  eventName: 'click update newsletters',
 }

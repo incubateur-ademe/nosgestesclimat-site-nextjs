@@ -2,24 +2,18 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
-import type { ChangeEvent, ForwardedRef, ReactNode } from 'react'
+import type { ComponentPropsWithRef, ForwardedRef, ReactNode } from 'react'
 import { forwardRef, useId } from 'react'
 import { twMerge } from 'tailwind-merge'
 import InputGroup from './InputGroup'
 
-interface Props {
-  name: string
+interface Props extends Omit<ComponentPropsWithRef<'input'>, 'size' | 'value'> {
+  value?: boolean
   label: string | ReactNode
   isInvalid?: boolean
   error?: string
   helperText?: string
-  className?: string
   containerClassName?: string
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  value?: boolean
-  defaultChecked?: boolean
-  required?: boolean
-  disabled?: boolean
   size?: 'sm' | 'lg' | 'xl'
   disableSubmitOnEnter?: boolean
   mention?: string
@@ -52,7 +46,7 @@ export default forwardRef(function CheckboxInput(
 
   return (
     <InputGroup
-      name={name}
+      name={name ?? ''}
       error={error}
       helperText={helperText}
       containerClassName={containerClassName}
@@ -66,7 +60,7 @@ export default forwardRef(function CheckboxInput(
           id={checkboxId}
           type="checkbox"
           className={twMerge(
-            'focus:ring-primary-700 cursor-pointer rounded-xl border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-2xl transition-colors focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
+            'focus:ring-primary-700 accent-primary-700 cursor-pointer rounded-xl border-2 border-solid border-gray-200 bg-gray-100 text-2xl transition-colors focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
             sizesClassNames[size],
             error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
             disabled ? 'cursor-not-allowed opacity-50' : '',
@@ -93,7 +87,7 @@ export default forwardRef(function CheckboxInput(
           id={`${checkboxId}-label`}
           htmlFor={checkboxId}
           className={twMerge(
-            'cursor-pointer text-sm',
+            'cursor-pointer text-base',
             error ? 'text-red-700' : 'text-slate-900',
             disabled ? 'cursor-not-allowed opacity-50' : ''
           )}>

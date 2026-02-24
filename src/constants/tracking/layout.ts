@@ -2,95 +2,8 @@
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
 // Figma comment #1
-export const headerClickLogo = ['trackEvent', 'Header', 'Click Logo']
-
-// Figma comment #2
-export const headerClickTest = ['trackEvent', 'Header', 'Click Test']
-
-// Figma comment #3
-export const headerClickActions = ['trackEvent', 'Header', 'Click Actions']
-
-// Figma comment #4
-export const headerClickClassements = [
-  'trackEvent',
-  'Header',
-  'Click Classements',
-]
 
 // Figma comment #5
-export const headerClickProfil = ['trackEvent', 'Header', 'Click Profil']
-
-// Figma comment #7
-export const headerClickOrganisation = [
-  'trackEvent',
-  'Header',
-  'Click Organisation',
-]
-
-// Figma comment #8
-export const footerClickLogo = ['trackEvent', 'Footer', 'Click Logo']
-
-// Figma comment #9
-export const footerClickNouveautes = [
-  'trackEvent',
-  'Footer',
-  'Click Nouveautés',
-]
-
-// Figma comment #10
-export const footerClickQuiSommesNous = [
-  'trackEvent',
-  'Footer',
-  'Click Qui sommes-nous',
-]
-
-// Figma comment #11
-export const footerClickBlog = ['trackEvent', 'Footer', 'Click Blog']
-
-// Figma comment #12
-export const footerClickDocumentation = [
-  'trackEvent',
-  'Footer',
-  'Click Documentation',
-]
-
-// Figma comment #13
-export const footerClickAmbassadeurs = [
-  'trackEvent',
-  'Footer',
-  'Click Ambassadeurs',
-]
-
-export const footerClickFAQ = ['trackEvent', 'Footer', 'Click FAQ']
-
-export const footerClickContact = ['trackEvent', 'Footer', 'Click Contact']
-
-export const footerClickDiffusion = ['trackEvent', 'Footer', 'Click Diffusion']
-
-// Figma comment #14
-export const footerClickPlanSite = [
-  'trackEvent',
-  'Footer',
-  'Click Plan du site',
-]
-
-// Figma comment #15
-export const footerClickOrganisations = [
-  'trackEvent',
-  'Footer',
-  'Click Organisations',
-]
-
-// Figma comment #16
-export const footerClickInternational = [
-  'trackEvent',
-  'Footer',
-  'Click International',
-]
-
-export const footerClickStats = ['trackEvent', 'Footer', 'Click Statistiques']
-
-export const footerClickImpactco2 = ['trackEvent', 'Footer', 'Click Impact CO2']
 
 // Figma comment #17
 export const footerClickLanguage = (locale: string) => [
@@ -100,6 +13,13 @@ export const footerClickLanguage = (locale: string) => [
   `Click Language ${locale}`,
 ]
 
+export const footerClickLanguagePosthog = (locale: string) => ({
+  eventName: 'Footer click Language',
+  properties: {
+    locale,
+  },
+})
+
 // Figma comment #18
 export const breadcrumbClickLink = (href: string) => [
   'trackEvent',
@@ -107,3 +27,67 @@ export const breadcrumbClickLink = (href: string) => [
   'Click link',
   href,
 ]
+
+export const footerNewsletterCTAClick = 'Footer|Click Newsletter CTA'
+
+export const captureFooterNewsletterClick = () =>
+  JSON.stringify({
+    eventName: 'click footer newsletter cta',
+  })
+
+// Server-side tracking (data-track-event / data-track-posthog)
+export const footerClickLogoServer = 'Footer|Click Logo'
+export const captureFooterClickLogo = () =>
+  JSON.stringify({ eventName: 'click footer logo' })
+
+export const footerClickQuiSommesNousServer = 'Footer|Click Qui sommes-nous'
+export const captureFooterClickQuiSommesNous = () =>
+  JSON.stringify({ eventName: 'click footer qui sommes-nous' })
+
+export const footerClickPlanSiteServer = 'Footer|Click Plan du site'
+export const captureFooterClickPlanSite = () =>
+  JSON.stringify({ eventName: 'click footer plan du site' })
+
+export const footerClickContactServer = 'Footer|Click Contact'
+export const captureFooterClickContact = () =>
+  JSON.stringify({ eventName: 'click footer contact' })
+
+export const footerClickInternationalServer = 'Footer|Click International'
+export const captureFooterClickInternational = () =>
+  JSON.stringify({ eventName: 'click footer international' })
+
+export const footerClickStatsServer = 'Footer|Click Statistiques'
+export const captureFooterClickStats = () =>
+  JSON.stringify({ eventName: 'click footer statistiques' })
+
+export const footerClickDiffusionServer = 'Footer|Click Diffusion'
+export const captureFooterClickDiffusion = () =>
+  JSON.stringify({ eventName: 'click footer diffusion' })
+
+export const footerClickOrganisationsServer = 'Footer|Click Organisations'
+export const captureFooterClickOrganisations = () =>
+  JSON.stringify({ eventName: 'click footer organisations' })
+
+export const footerClickAmbassadeursServer = 'Footer|Click Ambassadeurs'
+export const captureFooterClickAmbassadeurs = () =>
+  JSON.stringify({ eventName: 'click footer ambassadeurs' })
+
+export const footerClickBlogServer = 'Footer|Click Blog'
+export const captureFooterClickBlog = () =>
+  JSON.stringify({ eventName: 'click footer blog' })
+
+export const footerClickDocumentationServer = 'Footer|Click Documentation'
+export const captureFooterClickDocumentation = () =>
+  JSON.stringify({ eventName: 'click footer documentation' })
+
+export const footerClickFAQServer = 'Footer|Click FAQ'
+export const captureFooterClickFAQ = () =>
+  JSON.stringify({ eventName: 'click footer faq' })
+
+export const footerClickNouveautesServer = 'Footer|Click Nouveautés'
+export const captureFooterClickNouveautes = () =>
+  JSON.stringify({ eventName: 'click footer nouveautes' })
+
+export const footerClickImpactco2Server = 'Footer|Click Impact CO2'
+export const captureFooterClickImpactco2 = () =>
+  JSON.stringify({ eventName: 'click footer impact co2' })

@@ -1,7 +1,9 @@
+'use server'
+
 import { GROUP_URL } from '@/constants/urls/main'
 import type { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
-import { fetchWithJWTCookie } from './fetchWithJWTCookie'
+import { fetchServer } from './fetchServer'
 import { getUser } from './user'
 
 export async function getUserGroups(): Promise<Group[]> {
@@ -10,7 +12,7 @@ export async function getUserGroups(): Promise<Group[]> {
     return []
   }
   try {
-    return await fetchWithJWTCookie(`${GROUP_URL}/${user.id}`)
+    return await fetchServer<Group[]>(`${GROUP_URL}/${user.id}`)
   } catch (error) {
     captureException(error)
     return []
