@@ -37,7 +37,7 @@ export default async function CategoriesAccordion({
   })
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       {categories.map((category, index) => (
         <AnimatedAccordionItem key={category.dottedName} index={index}>
           <AccordionItem
@@ -65,7 +65,7 @@ export default async function CategoriesAccordion({
             ariaLabel={`${category.title} - ${category.formattedValue} ${category.unit}`}
             content={
               <Card
-                className={`mb-4 rounded-lg border border-slate-400 ${category.bgLightClassName}`}>
+                className={`rounded-lg border border-slate-400 ${category.bgLightClassName}`}>
                 {category.dottedName.startsWith('services') && (
                   <ServicesDescription />
                 )}

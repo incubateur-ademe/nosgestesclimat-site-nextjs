@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: 'var(--font-marianne)',
+        sans: ['var(--font-marianne)', 'Arial', 'sans-serif'],
       },
       colors: {
         primary: {
