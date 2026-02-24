@@ -1,6 +1,7 @@
 import SimulateurSkeleton from '@/app/[locale]/(simulation)/simulateur/[root]/skeleton'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
 import { getUser } from '@/helpers/server/model/user'
+import { UserProvider } from '@/publicodes-state'
 import { redirect } from 'next/navigation'
 import SimulationResolverFallback from './_components/SimulationResolverFallback'
 
@@ -10,7 +11,6 @@ export default async function SimulationResultatsResolverPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-
   // Try to get the user from the session
   let user
 
@@ -36,8 +36,9 @@ export default async function SimulationResultatsResolverPage({
     <>
       {/* We show a skeleton while the client-side redirection is happening to avoid a flash of white */}
       <SimulateurSkeleton />
-
-      <SimulationResolverFallback locale={locale} />
+      <UserProvider>
+        <SimulationResolverFallback locale={locale} />
+      </UserProvider>
     </>
   )
 }

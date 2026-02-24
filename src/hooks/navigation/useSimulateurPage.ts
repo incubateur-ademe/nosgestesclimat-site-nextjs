@@ -1,3 +1,4 @@
+import { END_PAGE_RESOLVER_PATH } from '@/constants/urls/paths'
 import {
   getLinkToSimulateur,
   getLinkToTutoriel,
@@ -7,7 +8,6 @@ import { useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
 import { useLocale } from '../useLocale'
-import { getEndPageLink } from './_utils/getEndPageLink'
 
 interface GetLinkToSimulateurPageProps {
   newSimulation?: boolean
@@ -26,7 +26,7 @@ export function useSimulateurPage() {
 
   const tutorielSeen = tutorials.testIntro
 
-  const { progression, id } = useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const getLinkToSimulateurPage = useCallback(
     ({
@@ -34,7 +34,7 @@ export function useSimulateurPage() {
     }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault): string => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
       if (progression === 1 && !newSimulation) {
-        return getEndPageLink(id)
+        return END_PAGE_RESOLVER_PATH
       }
 
       // If the user has seen the tutoriel we return the test page link
@@ -48,7 +48,7 @@ export function useSimulateurPage() {
       // else we return the tutoriel page link
       return getLinkToTutoriel({ locale, searchParams })
     },
-    [progression, tutorielSeen, locale, searchParams, id]
+    [progression, tutorielSeen, locale, searchParams]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {

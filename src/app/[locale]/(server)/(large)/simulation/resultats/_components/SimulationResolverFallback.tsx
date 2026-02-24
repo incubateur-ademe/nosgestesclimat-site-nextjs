@@ -3,7 +3,7 @@
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
-import { useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 
 export default function SimulationResolverFallback({
   locale,
@@ -13,7 +13,7 @@ export default function SimulationResolverFallback({
   const router = useRouter()
   const { simulations, currentSimulationId, isInitialized, user } = useUser()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!isInitialized) return
 
     // Try to find the current simulation ID
