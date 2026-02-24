@@ -20,7 +20,7 @@ export default async function SimulationResults({
   userId,
 }: Props) {
   'use cache'
-  cacheLife('days')
+  cacheLife('weeks')
   cacheTag(`simulation-${simulationId}`)
 
   const simulation = await fetchSimulation({
