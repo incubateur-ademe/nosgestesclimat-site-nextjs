@@ -17,7 +17,7 @@ export default async function Page({ params, searchParams }: DefaultPageProps) {
     userId: user.id,
   })
 
-  const latestSimulation = simulations[0]
+  const latestSimulation = simulations?.[0]
 
   return (
     <>

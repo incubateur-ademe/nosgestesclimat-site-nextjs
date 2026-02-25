@@ -11,10 +11,14 @@ export async function getUserSimulations({
   userId,
 }: {
   userId: string
-}): Promise<ClientSimulation[]> {
+}): Promise<ClientSimulation[] | null> {
   const serverSimulations = await fetchServer<ServerSimulation[]>(
     `${SIMULATION_URL}/${userId}?pageSize=50`
   )
+
+  if (!serverSimulations || serverSimulations.length === 0) {
+    return null
+  }
 
   // Map from server format to client format
   const simulations = serverSimulations.map((simulation) => {

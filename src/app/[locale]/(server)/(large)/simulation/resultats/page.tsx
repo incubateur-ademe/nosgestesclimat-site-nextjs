@@ -42,7 +42,7 @@ export default async function SimulationResultatsResolverPage({
     // If authenticated, get their simulations
     const simulations = await getUserSimulations({ userId: user.id })
 
-    if (simulations.length > 0) {
+    if (simulations && simulations.length > 0) {
       // Redirect to the most recent one (getUserSimulations already returns them sorted by date)
       redirect(`/${locale}/simulation/${simulations[0].id}/resultats`)
     }
