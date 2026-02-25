@@ -1,12 +1,10 @@
 import SimulationResults from '@/components/results/SimulationResults'
-import { USER_ID_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getUserOrNull } from '@/helpers/server/model/user'
+import { getUser } from '@/helpers/server/dal/user'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
@@ -31,20 +29,12 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function SimulationPage({
   params,
-  searchParams,
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
   const { simulationId, locale } = await params
-  const { userId: userIdParam } = await searchParams
 
-  const user = await getUserOrNull()
+  const user = await getUser()
 
-  // If not authenticated, we try to get the userId from the cookie or searchParams
-  const userId =
-    user?.id ??
-    (await cookies()).get(USER_ID_COOKIE_NAME)?.value ??
-    (userIdParam as string)
-
-  if (!userId) {
+  if (!user) {
     notFound()
   }
 
@@ -52,7 +42,7 @@ export default async function SimulationPage({
     <SimulationResults
       simulationId={simulationId}
       locale={locale as Locale}
-      userId={userId}
+      userId={user.id}
     />
   )
 }

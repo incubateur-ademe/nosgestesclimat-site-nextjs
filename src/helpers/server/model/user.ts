@@ -1,7 +1,11 @@
-import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
+import {
+  AUTHENTICATION_COOKIE_NAME,
+  USER_ID_COOKIE_NAME,
+} from '@/constants/authentication/cookie'
 
 import { USER_URL } from '@/constants/urls/main'
 import { cookies } from 'next/headers'
+import { v4 as uuid } from 'uuid'
 import { fetchServer } from './fetchServer'
 
 export interface UserServer {
@@ -9,7 +13,7 @@ export interface UserServer {
   email: string
 }
 
-export async function getUser(): Promise<UserServer> {
+export async function getAuthUser(): Promise<UserServer> {
   return fetchServer(USER_URL + '/me')
 }
 
@@ -26,7 +30,9 @@ export async function logout() {
   const domain = new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
   const secure = domain !== 'localhost'
 
-  ;(await cookies()).delete({
+  const cookieStore = await cookies()
+
+  cookieStore.delete({
     name: AUTHENTICATION_COOKIE_NAME,
     httpOnly: true,
     secure,
@@ -34,11 +40,18 @@ export async function logout() {
     partitioned: secure,
     domain,
   })
+
+  // Regenerate anonymous session cookie so the user gets a fresh identity
+  cookieStore.set(USER_ID_COOKIE_NAME, uuid(), {
+    path: '/',
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: 'lax',
+  })
 }
 
-export async function getUserOrNull(): Promise<UserServer | null> {
+export async function getAuthUserOrNull(): Promise<UserServer | null> {
   try {
-    return await getUser()
+    return await getAuthUser()
   } catch {
     return null
   }

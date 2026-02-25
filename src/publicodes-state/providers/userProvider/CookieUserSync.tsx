@@ -4,21 +4,26 @@ import { USER_ID_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { useUser } from '@/publicodes-state'
 import { useEffect } from 'react'
 
+function getCookie(name: string): string | undefined {
+  const match = new RegExp(`(?:^|; )${name}=([^;]*)`).exec(document.cookie)
+  return match?.[1]
+}
+
 /**
- * This component is responsible for syncing the user ID from the client-side state
- * (localStorage) to a cookie, so it can be accessed by Server Components.
+ * Syncs the server-generated userId cookie with the client-side localStorage.
+ * The cookie (set by middleware) is the source of truth for the userId.
  */
 export default function CookieUserSync() {
-  const { user } = useUser()
+  const { user, updateUserId } = useUser()
 
   useEffect(() => {
-    if (user.userId) {
-      // Set the cookie with a long expiration (1 year)
-      // Path=/ ensures it's available across the whole site
-      // SameSite=Lax is a sensible default for this kind of tracking
-      document.cookie = `${USER_ID_COOKIE_NAME}=${user.userId}; path=/; max-age=31536000; SameSite=Lax`
+    const cookieUserId = getCookie(USER_ID_COOKIE_NAME)
+
+    // If the cookie has a userId and it differs from localStorage, sync it
+    if (cookieUserId && cookieUserId !== user.userId) {
+      updateUserId(cookieUserId)
     }
-  }, [user.userId])
+  }, [user.userId, updateUserId])
 
   return null
 }

@@ -2,8 +2,8 @@ import SimulateurSkeleton from '@/app/[locale]/(simulation)/simulateur/[root]/sk
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { getUser } from '@/helpers/server/dal/user'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
-import { getUserOrNull } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
@@ -36,9 +36,9 @@ export default async function SimulationResultatsResolverPage({
 }) {
   const { locale } = await params
 
-  const user = await getUserOrNull()
+  const user = await getUser()
 
-  if (user) {
+  if (user?.isAuth) {
     // If authenticated, get their simulations
     const simulations = await getUserSimulations({ userId: user.id })
 

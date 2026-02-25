@@ -4,10 +4,10 @@ import { GROUP_URL } from '@/constants/urls/main'
 import type { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
-import { getUser } from './user'
+import { getAuthUser } from './user'
 
 export async function getUserGroups(): Promise<Group[]> {
-  const user = await getUser()
+  const user = await getAuthUser()
   if (!user) {
     return []
   }

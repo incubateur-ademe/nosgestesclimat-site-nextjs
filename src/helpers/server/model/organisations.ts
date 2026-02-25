@@ -3,7 +3,7 @@ import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
-import { getUser } from './user'
+import { getAuthUser } from './user'
 
 export async function getOrganisationPolls(
   idOrSlug: string
@@ -14,7 +14,7 @@ export async function getOrganisationPolls(
 }
 
 export async function getUserOrganisation(): Promise<Organisation | undefined> {
-  const user = await getUser()
+  const user = await getAuthUser()
 
   if (!user) {
     return undefined

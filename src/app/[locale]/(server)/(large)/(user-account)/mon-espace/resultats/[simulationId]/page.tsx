@@ -3,7 +3,7 @@ import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getUser } from '@/helpers/server/model/user'
+import { getAuthUser } from '@/helpers/server/model/user'
 import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
 import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
@@ -15,7 +15,7 @@ export default async function DetailledResultsPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const user = await getUser()
+  const user = await getAuthUser()
 
   const simulation = await fetchSimulation({
     simulationId,
