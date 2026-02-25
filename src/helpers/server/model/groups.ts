@@ -18,3 +18,15 @@ export async function getUserGroups(): Promise<Group[]> {
     return []
   }
 }
+
+export async function fetchGroupById(groupId: string): Promise<Group | null> {
+  try {
+    const user = await getAuthUser()
+    if (!user) return null
+
+    return await fetchServer<Group>(`${GROUP_URL}/${user.id}/${groupId}`)
+  } catch (error) {
+    captureException(error)
+    return null
+  }
+}

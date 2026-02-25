@@ -1,7 +1,7 @@
 import FinTabs from '@/app/[locale]/(simulation)/(large-nosticky)/fin/_components/FinTabs'
 import { carboneMetric } from '@/constants/model/metric'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
+import { getSimulationResult } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
 import { cacheLife, cacheTag } from 'next/cache'
 import { notFound, redirect } from 'next/navigation'
@@ -23,14 +23,14 @@ export default async function SimulationResults({
   cacheLife('weeks')
   cacheTag(`simulation-${simulationId}`)
 
-  const simulation = await fetchSimulation({
+  const simulationResult = await getSimulationResult({
     userId,
     simulationId,
   })
 
-  if (!simulation) notFound()
+  if (!simulationResult) notFound()
 
-  if (simulation.progression !== 1) {
+  if (simulationResult.progression !== 1) {
     redirect(SIMULATOR_PATH)
   }
 
@@ -40,7 +40,7 @@ export default async function SimulationResults({
 
       <FootprintBlock
         locale={locale}
-        value={simulation.computedResults.carbone.bilan}
+        value={simulationResult.computedResults.carbone.bilan}
         metric={carboneMetric}
         unitSuffix={
           <Trans locale={locale as string} i18nKey="common.co2eAn">
