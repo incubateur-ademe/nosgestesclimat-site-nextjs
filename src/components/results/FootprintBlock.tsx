@@ -34,7 +34,7 @@ export default async function FootprintBlock({
           })}
         </span>
 
-        <span className="text-primary-600 text-3xl font-bold">
+        <span className="text-primary-600 title-lg font-bold!">
           {formattedValue} {unit} {unitSuffix}
         </span>
       </h1>

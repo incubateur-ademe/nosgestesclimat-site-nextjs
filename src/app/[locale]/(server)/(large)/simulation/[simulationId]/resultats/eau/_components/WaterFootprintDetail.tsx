@@ -17,14 +17,16 @@ export default async function WaterFootprintDetail({
   const rules = await getRules({ locale })
   return (
     <section className="mb-12">
-      <h2 className="mb-6 text-2xl font-normal">
-        <Trans locale={locale} key="eau.resultats.waterFootprintDetail.title">
-          D’où vient votre résultat ?
-        </Trans>
-      </h2>
+      <div className="flex flex-col gap-12 md:flex-row md:justify-between">
+        <div className="md:w-xl">
+          <h2 className="title-lg mb-6">
+            <Trans
+              locale={locale}
+              key="eau.resultats.waterFootprintDetail.title">
+              D’où vient votre résultat ?
+            </Trans>
+          </h2>
 
-      <div className="flex gap-12">
-        <div className="flex-1">
           <CategoriesAccordion
             locale={locale}
             rules={rules}
@@ -33,8 +35,9 @@ export default async function WaterFootprintDetail({
           />
         </div>
 
-        <div className="max-w-96">
+        <div className="w-auto">
           <img
+            className="mx-auto w-72 md:w-xs"
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_achats_be9fd99289.svg"
             alt=""
           />

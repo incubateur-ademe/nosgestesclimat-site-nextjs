@@ -14,7 +14,7 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
   return (
     <div className="mb-12 flex flex-col gap-8 md:flex-row">
       <section className="bg-primary-50 flex-1 p-8">
-        <h2 className="text-lg md:text-3xl">
+        <h2 className="title-lg">
           <Trans
             i18nKey="simulation.eau.whatIsWaterFootprint.title"
             locale={locale}>
@@ -33,8 +33,8 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
           </Trans>
         </p>
         <ul className="mb-4">
-          <li className="mb-1 flex items-start gap-3">
-            <Emoji className="mt-1 text-2xl">🍅</Emoji>
+          <li className="mb-1 flex items-center gap-3">
+            <Emoji className="text-3xl">🍅</Emoji>
             <span className="flex-1">
               <Trans
                 i18nKey="simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables"
@@ -44,8 +44,8 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
               </Trans>
             </span>
           </li>
-          <li className="mb-1 flex items-start gap-3">
-            <Emoji className="mt-1 text-2xl">👕</Emoji>
+          <li className="mb-1 flex items-center gap-3">
+            <Emoji className="text-3xl">👕</Emoji>
             <span className="flex-1">
               <Trans
                 i18nKey="simulation.eau.whatIsWaterFootprint.list.cotton"
@@ -54,8 +54,8 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
               </Trans>
             </span>
           </li>
-          <li className="mb-1 flex items-start gap-3">
-            <Emoji className="mt-1 text-2xl">🐮</Emoji>
+          <li className="mb-1 flex items-center gap-3">
+            <Emoji className="text-3xl">🐮</Emoji>
             <span className="flex-1">
               <Trans
                 i18nKey="simulation.eau.whatIsWaterFootprint.list.animals"
@@ -64,8 +64,8 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
               </Trans>
             </span>
           </li>
-          <li className="mb-1 flex items-start gap-3">
-            <Emoji className="mt-1 text-2xl">📱</Emoji>
+          <li className="mb-1 flex items-center gap-3">
+            <Emoji className="text-3xl">📱</Emoji>
             <span className="flex-1">
               <Trans
                 i18nKey="simulation.eau.whatIsWaterFootprint.list.digitalDevices"
@@ -75,8 +75,8 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
               </Trans>
             </span>
           </li>
-          <li className="mb-1 flex items-start gap-3">
-            <Emoji className="mt-1 text-2xl">⚡️</Emoji>
+          <li className="mb-1 flex items-center gap-3">
+            <Emoji className="text-3xl">⚡️</Emoji>
             <span className="flex-1">
               <Trans
                 i18nKey="simulation.eau.whatIsWaterFootprint.list.electricity"
@@ -85,8 +85,8 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
               </Trans>
             </span>
           </li>
-          <li className="mb-1 flex items-start gap-3">
-            <Emoji className="mt-1 text-2xl">🚫</Emoji>
+          <li className="mb-1 flex items-center gap-3">
+            <Emoji className="text-3xl">🚫</Emoji>
             <span className="flex-1">
               <Trans
                 i18nKey="simulation.eau.whatIsWaterFootprint.list.domesticWater"
@@ -100,7 +100,7 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
       </section>
 
       <section className="bg-secondary-50 flex-1 p-8">
-        <h2>
+        <h2 className="text-lg md:text-3xl">
           <Trans
             i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.title"
             locale={locale}>

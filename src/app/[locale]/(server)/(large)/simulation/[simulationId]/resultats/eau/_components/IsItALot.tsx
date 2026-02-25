@@ -8,7 +8,7 @@ interface Props {
 export default function IsItALot({ locale }: Props) {
   return (
     <section className="mb-12 w-lg max-w-full">
-      <h2>
+      <h2 className="title-lg">
         <Trans locale={locale} key="eau.resultats.isItALot.title">
           Est-ce que c'est beaucoup ?
         </Trans>

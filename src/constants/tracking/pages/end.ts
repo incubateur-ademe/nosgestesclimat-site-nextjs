@@ -53,6 +53,11 @@ export const endClickDocumentation = [
   'Fin',
   'Click Documentation',
 ]
+export const endClickDocumentationServer = 'Fin|Click Documentation'
+
+export const captureEndClickDocumentationServer = JSON.stringify({
+  eventName: 'click documentation',
+})
 
 export const endClickDomesticWater = [
   'trackEvent',
