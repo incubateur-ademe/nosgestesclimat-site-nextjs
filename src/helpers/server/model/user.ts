@@ -35,3 +35,11 @@ export async function logout() {
     domain,
   })
 }
+
+export async function getUserOrNull(): Promise<UserServer | null> {
+  try {
+    return await getUser()
+  } catch {
+    return null
+  }
+}

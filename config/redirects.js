@@ -499,6 +499,11 @@ const redirects = [
     destination: '/',
     permanent: true,
   },
+  {
+    source: '/fin',
+    destination: '/simulation/resultats',
+    permanent: true,
+  },
 ]
 
 export default redirects

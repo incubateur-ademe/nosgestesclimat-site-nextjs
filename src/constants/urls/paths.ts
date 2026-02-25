@@ -3,10 +3,12 @@ export const TUTORIAL_PATH = '/tutoriel'
 export const MON_ESPACE_PATH = '/mon-espace'
 
 export const POLL_START_PATH = '/infos/commencer'
-export const POLL_EMAIL_STEP = '/infos/email'
-export const POLL_POSTAL_CODE_STEP = '/infos/codepostal'
-export const POLL_BIRTHDAY_STEP = '/infos/naissance'
-export const END_PAGE_PATH = '/fin'
+
+export const END_PAGE_PATH = '/simulation/:id/resultats'
+/**
+ * This path points towards the page that helps resolve the userId
+ */
+export const END_PAGE_RESOLVER_PATH = '/simulation/resultats'
 export const DOCUMENTATION_PATH = '/documentation'
 export const CONNEXION_PATH = '/connexion'
 export const INSCRIPTION_PATH = '/inscription'

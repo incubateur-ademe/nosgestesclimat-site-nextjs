@@ -15,6 +15,7 @@ const eslintConfig = defineConfig(
     rules: {
       ...nextVanilla[0].rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
+      'no-console': 'error',
       // @TODO: Remove this eslint-disable-next-line once we have a proper solution for these rules
       'react-hooks/set-state-in-effect': 'warn',
       'react-hooks/refs': 'warn',

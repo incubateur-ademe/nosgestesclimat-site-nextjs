@@ -6,7 +6,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import { getUser } from '@/helpers/server/model/user'
+import { getUserOrNull } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import NameForm from './_components/NameForm'
@@ -27,7 +27,9 @@ export default async function GroupNamePage({
 }: DefaultPageProps<{ searchParams: { [SHOW_STEP_KEY]: string } }>) {
   const { locale } = await params
   const { [SHOW_STEP_KEY]: showStep } = (await searchParams) ?? {}
-  const user = await getUser()
+
+  const user = await getUserOrNull()
+
   if (!user) {
     redirect('/mon-espace/groupes')
   }

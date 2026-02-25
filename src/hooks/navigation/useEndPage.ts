@@ -1,27 +1,10 @@
-import { carboneMetric } from '@/constants/model/metric'
-import { END_PAGE_PATH, POLL_EMAIL_STEP } from '@/constants/urls/paths'
+import { EMAIL_PAGE } from '@/constants/organisations/infosPages'
+import { END_PAGE_RESOLVER_PATH } from '@/constants/urls/paths'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { captureException } from '@sentry/nextjs'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useState } from 'react'
-
-interface GoToEndPageProps {
-  isAllowedToSave?: boolean
-  allowedToGoToGroupDashboard?: boolean
-}
-const goToEndPagePropsDefault = {
-  isAllowedToSave: true,
-  allowedToGoToGroupDashboard: false,
-}
-
-interface GetLinkToEndPageProps {
-  allowedToGoToGroupDashboard?: boolean
-}
-const GetLinkToEndPagePropsDefault = {
-  allowedToGoToGroupDashboard: false,
-}
+import { useCallback, useMemo } from 'react'
 
 export function useEndPage() {
   const router = useRouter()
@@ -29,95 +12,39 @@ export function useEndPage() {
   const searchParams = useSearchParams()
 
   const currentSimulation = useCurrentSimulation()
-  const progression = currentSimulation?.progression
+  const progression = currentSimulation.progression
 
   const { saveSimulation } = useSaveSimulation()
 
-  const [isNavigating, setIsNavigating] = useState(false)
+  const linkToEndPage = useMemo(() => {
+    if (currentSimulation.groups?.length) {
+      const lastGroupId =
+        currentSimulation.groups[currentSimulation.groups.length - 1]
 
-  const redirectToPollQuestionsIfNecessary = useCallback(() => {
-    if (
-      progression === 1 &&
-      currentSimulation.polls &&
-      currentSimulation.polls.length > 0
-    ) {
-      router.push(
-        `${POLL_EMAIL_STEP}?poll=${currentSimulation.polls[currentSimulation.polls.length - 1]}`
-      )
-      return true
+      return getLinkToGroupDashboard({ groupId: lastGroupId })
     }
-    return false
-  }, [currentSimulation.polls, progression, router])
 
-  const goToEndPage = useCallback(
-    ({
-      isAllowedToSave = true,
-      allowedToGoToGroupDashboard = false,
-    }: GoToEndPageProps = goToEndPagePropsDefault) => {
-      // If we are already navigating, we don't do anything
-      // TODO: seems to not be useful ? Function is triggered multiple times (at least twice)
-      if (isNavigating) {
-        return
-      }
-      setIsNavigating(true)
+    return `${END_PAGE_RESOLVER_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
+  }, [currentSimulation, searchParams])
 
-      if (redirectToPollQuestionsIfNecessary()) return
+  const goToEndPage = useCallback(() => {
+    if (progression !== 1) {
+      return
+    }
 
-      // If the simulation is finished and is in a group, we save it (unless save is false)
-      if (progression === 1 && isAllowedToSave && currentSimulation.groups) {
-        if (currentSimulation.computedResults[carboneMetric].bilan === 0) {
-          // Send an error to Sentry
-          captureException(
-            new Error('useEndPage: computedResults[carboneMetric].bilan === 0')
-          )
-        }
+    if (
+      (currentSimulation.polls && currentSimulation.polls.length > 0) ||
+      currentSimulation.groups
+    ) {
+      saveSimulation({
+        simulation: currentSimulation,
+      })
+      router.push(EMAIL_PAGE)
+      return
+    }
 
-        saveSimulation({
-          simulation: currentSimulation,
-        })
-      }
+    router.push(linkToEndPage)
+  }, [progression, currentSimulation, router, linkToEndPage, saveSimulation])
 
-      // if the simulation is in a group and we are allowed to, we redirect to the group results page
-      if (currentSimulation.groups?.length && allowedToGoToGroupDashboard) {
-        const lastGroupId =
-          currentSimulation.groups[currentSimulation.groups.length - 1]
-
-        router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
-        return
-      }
-      // else we redirect to the results page
-      router.push(
-        `${END_PAGE_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
-      )
-    },
-    [
-      isNavigating,
-      redirectToPollQuestionsIfNecessary,
-      progression,
-      currentSimulation,
-      router,
-      saveSimulation,
-      searchParams,
-    ]
-  )
-
-  const getLinkToEndPage = useCallback(
-    ({
-      allowedToGoToGroupDashboard = false,
-    }: GetLinkToEndPageProps = GetLinkToEndPagePropsDefault): string => {
-      // if the simulation is in a group and we are allowed to, we redirect to the group results page
-      if (currentSimulation.groups && allowedToGoToGroupDashboard) {
-        const lastGroupId =
-          currentSimulation.groups[currentSimulation.groups.length - 1]
-
-        return getLinkToGroupDashboard({ groupId: lastGroupId })
-      }
-
-      // else we return the results page
-      return `${END_PAGE_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
-    },
-    [currentSimulation, searchParams]
-  )
-
-  return { goToEndPage, getLinkToEndPage, isNavigating }
+  return { goToEndPage, linkToEndPage }
 }

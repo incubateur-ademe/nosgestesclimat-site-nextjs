@@ -44,6 +44,7 @@ export async function fetchCategoryPageMetadata({
     }>(`/api/blog-categories?${categorySearchParams}`)
 
     if (categoryResponse?.data.length !== 1) {
+      // eslint-disable-next-line no-console
       console.error(`Error: fetch blogCategory error for categorySlug: ${slug}`)
       return
     }

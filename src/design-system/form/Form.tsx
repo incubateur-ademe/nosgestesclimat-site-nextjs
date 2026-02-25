@@ -12,12 +12,14 @@ interface Props {
   error?: string
   onSubmit?: () => void
   className?: string
+  additionnalButton?: React.ReactNode
   isVerticalLayout?: boolean
 }
 
 export default function Form({
   children,
   buttonLabel,
+  additionnalButton,
   buttonColor,
   error,
   className,
@@ -51,13 +53,16 @@ export default function Form({
           )}
         </div>
 
-        <Button
-          className={twMerge(!isVerticalLayout && 'lg:mt-8 lg:h-14')}
-          type="submit"
-          data-testid="button-submit"
-          color={buttonColor}>
-          {buttonLabel ?? <Trans>Enregistrer</Trans>}
-        </Button>
+        <div className="mt-8 flex gap-4 pb-8">
+          <Button
+            className={twMerge(!isVerticalLayout && 'lg:mt-8 lg:h-14')}
+            type="submit"
+            data-testid="button-submit"
+            color={buttonColor}>
+            {buttonLabel ?? <Trans>Enregistrer</Trans>}
+          </Button>
+          {additionnalButton}
+        </div>
       </div>
     </form>
   )

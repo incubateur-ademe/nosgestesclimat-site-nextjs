@@ -11,6 +11,7 @@ import type {
 } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import UserContext from './context'
+import CookieUserSync from './CookieUserSync'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
 import usePersistentSimulations from './hooks/usePersistentSimulations'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
@@ -75,6 +76,7 @@ export default function UserProvider({
         isInitialized,
       }}>
       {children}
+      <CookieUserSync />
     </UserContext.Provider>
   )
 }

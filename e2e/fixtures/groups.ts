@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 import type { Page } from '@playwright/test'
 
+import { copyAndReadClipboard } from '../helpers/clipboard'
 import {
   getPlaywrightState,
   savePlaywrightState,
@@ -66,35 +67,21 @@ export class Group {
     this.data.name = newName
   }
 
-  async joinWithInviteLink(user: User, { fillEmail = false } = {}) {
+  async joinWithInviteLink(user: User) {
     await user.page.goto(this.inviteLink)
     await user.page.getByTestId('member-name').fill(user.firstName)
-    if (fillEmail) {
-      await user.page.getByTestId('email-input').fill(user.email)
-    }
     await user.page.getByTestId('button-join-group').click()
   }
 
-  async leave(user: User) {
-    await user.page.getByTestId('button-leave-group').click()
-    await user.page.getByTestId('button-confirm-leave-group').click()
+  async leave(page: Page) {
+    await page.getByTestId('button-leave-group').click()
+    await page.getByTestId('button-confirm-leave-group').click()
   }
 
   async copyInviteLink() {
-    const browser = this.page.context().browser()
-    if (browser?.browserType().name() === 'chromium') {
-      await this.page
-        .context()
-        .grantPermissions(['clipboard-read', 'clipboard-write'])
-    }
-    if (browser?.browserType().name() === 'webkit') {
-      // We cannot use clipboard read with webkit yet
-      // https://github.com/microsoft/playwright/issues/13037
-      test.skip()
-    }
-    await this.page.getByTestId('invite-button').click()
-    const clipboardContent = await this.page.evaluate(() => {
-      return navigator.clipboard.readText()
+    const clipboardContent = await copyAndReadClipboard({
+      page: this.page,
+      copyAction: () => this.page.getByTestId('invite-button').click(),
     })
     this.data.inviteLink = clipboardContent
     return clipboardContent

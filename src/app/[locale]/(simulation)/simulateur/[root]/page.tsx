@@ -5,18 +5,18 @@ import {
   simulateurCloseSommaire,
   simulateurOpenSommaire,
 } from '@/constants/tracking/pages/simulateur'
-import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
+import { useSimulatorGuard } from '@/hooks/navigation/useSimulatorGuard'
 import { useTrackSimulator } from '@/hooks/tracking/useTrackSimulator'
 import { useIframe } from '@/hooks/useIframe'
+import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Simulateur from './_components/Simulateur'
 
 export default function SimulateurPage() {
-  // Guarding the route and redirecting if necessary
-  const { isGuardInit, isGuardRedirecting } = useSimulateurGuard()
-
+  const { isRedirecting } = useSimulatorGuard()
+  const { isInitialized } = useEngine()
   const { isIframe } = useIframe()
 
   // We track the progression of the user in the simulation
@@ -45,7 +45,7 @@ export default function SimulateurPage() {
       <Simulateur
         toggleQuestionList={toggleQuestionList}
         isQuestionListOpen={isQuestionListOpen}
-        isLoading={!isGuardInit || isGuardRedirecting}
+        isLoading={isRedirecting || !isInitialized}
       />
     </div>
   )

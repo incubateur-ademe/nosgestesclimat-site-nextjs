@@ -1,6 +1,5 @@
 import { IframeOptionsProvider } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import MainHooks from '@/app/[locale]/_components/mainLayoutProviders/MainHooks'
-import { PreventNavigationProvider } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import { CookieConsentProvider } from '@/components/cookies/useCookieManagement'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
@@ -89,7 +88,6 @@ interface ProviderConfig {
   user?: boolean
   partner?: boolean
   iframeOptions?: boolean
-  preventNavigation?: boolean
   mainHooks?: boolean
   engine?: boolean
   prNumber?: boolean
@@ -133,10 +131,6 @@ const TestWrapper = ({
         {wrapped}
       </>
     )
-  }
-
-  if (providers.preventNavigation) {
-    wrapped = <PreventNavigationProvider>{wrapped}</PreventNavigationProvider>
   }
 
   if (providers.iframeOptions) {

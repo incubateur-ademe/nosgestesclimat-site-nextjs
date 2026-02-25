@@ -51,7 +51,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
 
   const currentSimulation = useCurrentSimulation()
   const hasCompletedTest = currentSimulation.progression === 1
-  const { goToSimulateurPage } = useSimulateurPage()
+  const { getLinkToSimulateurPage } = useSimulateurPage()
 
   async function onSubmit({ name, emoji, administratorName }: Inputs) {
     try {
@@ -80,7 +80,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
       if (hasCompletedTest) {
         router.push('/amis/resultats?groupId=' + group.id)
       } else {
-        goToSimulateurPage()
+        router.push(getLinkToSimulateurPage())
       }
     } catch (e) {
       captureException(e)

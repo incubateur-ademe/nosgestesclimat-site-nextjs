@@ -10,6 +10,7 @@ interface Props {
 // fetch file from PR
 export async function importPreviewFile({ fileName, PRNumber }: Props) {
   const previewURL = getPreviewUrl(PRNumber)
+  // eslint-disable-next-line no-console
   console.log('fetching preview file', fileName)
   return axios
     .get(`${previewURL}/${fileName}`)
