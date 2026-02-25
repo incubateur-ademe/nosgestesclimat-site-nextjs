@@ -100,7 +100,7 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
       </section>
 
       <section className="bg-secondary-50 flex-1 p-8">
-        <h2 className="text-lg md:text-3xl">
+        <h2 className="title-lg">
           <Trans
             i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.title"
             locale={locale}>
