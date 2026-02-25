@@ -13,7 +13,6 @@ import Title from '@/design-system/layout/Title'
 import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import type { Locale } from '@/i18nConfig'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
@@ -26,7 +25,7 @@ export default function SaveResultsAndSigninSignUpForm({
   className?: string
 }) {
   const { t } = useClientTranslation()
-  const locale = useLocale() as Locale
+  const locale = useLocale()
   const currentSimulation = useCurrentSimulation()
 
   const router = useRouter()
