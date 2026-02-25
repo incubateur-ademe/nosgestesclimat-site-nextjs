@@ -4,6 +4,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getInitialUserId, getUser } from '@/helpers/server/dal/user'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
+import type { Locale } from '@/i18nConfig'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
@@ -29,13 +30,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default async function SimulationResultatsResolverPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
-
+const handleRedirectIfAuthenticated = async (locale: Locale) => {
   const user = await getUser()
 
   if (user?.isAuth) {
@@ -47,6 +42,16 @@ export default async function SimulationResultatsResolverPage({
       redirect(`/${locale}/simulation/${simulations[0].id}/resultats`)
     }
   }
+}
+
+export default async function SimulationResultatsResolverPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}) {
+  const { locale } = await params
+
+  await handleRedirectIfAuthenticated(locale)
 
   const initialUserId = await getInitialUserId()
 
