@@ -26,7 +26,7 @@ export function generateSimulation({
     return acc
   }, {} as ComputedResults),
   progression = 0,
-  defaultAdditionalQuestionsAnswers,
+  additionalQuestionsAnswers,
   polls,
   groups,
   migrationInstructions,
@@ -43,7 +43,7 @@ export function generateSimulation({
     persona,
     computedResults,
     progression,
-    defaultAdditionalQuestionsAnswers,
+    additionalQuestionsAnswers,
     polls,
     groups,
   } as Simulation

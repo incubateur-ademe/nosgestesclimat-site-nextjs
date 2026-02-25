@@ -8,9 +8,8 @@ import { fetchServer } from './fetchServer'
 import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
 
-export const setDefaultExtendedSituation = (
-  simulation: Simulation
-): Simulation => {
+// eslint-disable-next-line @typescript-eslint/require-await
+export const setDefaultExtendedSituation = async (simulation: Simulation) => {
   const updatedSimulation = { ...simulation }
 
   // Ensure extendedSituation is always defined (for old simulations that might not have it)
@@ -111,7 +110,7 @@ export async function getSimulationResult({
 
   // If no group found, try to find an associated poll/campaign
   if (!group && simulation.polls?.length) {
-    const pollSlug = simulation.polls[0]
+    const pollSlug = simulation.polls[0].slug
     const pollDetails = await fetchPublicPollBySlug({
       userId,
       pollSlug,

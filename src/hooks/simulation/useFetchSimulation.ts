@@ -1,6 +1,5 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
-import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
-import { mapNewSimulationToOld } from '@/helpers/simulation/mapNewSimulation'
+import { setDefaultExtendedSituation } from '@/helpers/server/model/simulations'
 import { useUser } from '@/publicodes-state'
 import { unformatSituation } from '@/utils/formatDataForDB'
 import { useQuery } from '@tanstack/react-query'
@@ -18,17 +17,12 @@ export function useFetchSimulation({ simulationId }: Props) {
     queryKey: ['simulations', simulationId],
     queryFn: () =>
       axios.get(`${SIMULATION_URL}/${userId}/${simulationId}`).then((res) => {
-        const mappedSimulation = mapNewSimulationToOld({
+        const updatedSimulation = {
           ...res.data,
           situation: unformatSituation(res.data.situation),
-        })
-
-        // Ensure extendedSituation is always defined (for old simulations that might not have it)
-        if (!mappedSimulation.extendedSituation) {
-          mappedSimulation.extendedSituation = getInitialExtendedSituation()
         }
 
-        return mappedSimulation
+        return setDefaultExtendedSituation(updatedSimulation)
       }),
     enabled: simulationId ? true : false,
   })

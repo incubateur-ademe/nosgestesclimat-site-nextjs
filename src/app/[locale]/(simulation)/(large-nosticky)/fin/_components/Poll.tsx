@@ -16,7 +16,7 @@ import { useCurrentSimulation } from '@/publicodes-state'
 export default function Poll() {
   const { polls } = useCurrentSimulation()
 
-  const lastPollSlug = polls?.[polls?.length - 1]
+  const lastPollSlug = polls?.[polls?.length - 1]?.slug
 
   const {
     data: poll,

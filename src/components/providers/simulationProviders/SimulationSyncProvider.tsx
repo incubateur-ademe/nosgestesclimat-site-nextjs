@@ -31,7 +31,7 @@ export default function SimulationSyncProvider({
     persona,
     computedResults,
     progression,
-    defaultAdditionalQuestionsAnswers,
+    additionalQuestionsAnswers,
     polls,
     groups,
   } = useCurrentSimulation()
@@ -66,7 +66,7 @@ export default function SimulationSyncProvider({
     persona,
     computedResults,
     progression,
-    defaultAdditionalQuestionsAnswers,
+    additionalQuestionsAnswers,
     polls,
     groups,
   })
@@ -82,7 +82,7 @@ export default function SimulationSyncProvider({
       persona,
       computedResults,
       progression,
-      defaultAdditionalQuestionsAnswers,
+      additionalQuestionsAnswers,
       polls,
       groups,
     })
@@ -97,7 +97,7 @@ export default function SimulationSyncProvider({
       persona,
       computedResults,
       progression,
-      defaultAdditionalQuestionsAnswers,
+      additionalQuestionsAnswers,
       polls,
       groups,
     }
@@ -129,7 +129,7 @@ export default function SimulationSyncProvider({
           persona,
           computedResults,
           progression,
-          defaultAdditionalQuestionsAnswers,
+          additionalQuestionsAnswers,
           polls,
           groups,
         },
@@ -145,7 +145,7 @@ export default function SimulationSyncProvider({
     persona,
     computedResults,
     progression,
-    defaultAdditionalQuestionsAnswers,
+    additionalQuestionsAnswers,
     polls,
     groups,
     saveSimulation,

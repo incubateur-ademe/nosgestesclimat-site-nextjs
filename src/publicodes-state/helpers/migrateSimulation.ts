@@ -1,12 +1,17 @@
+import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
+import { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Migration } from '@publicodes/tools/migration'
 import { migrateSituation } from '@publicodes/tools/migration'
 import type { ComputedResults, Simulation } from '../types'
 
 export function migrateSimulation(
-  simulation: Simulation & {
+  simulation: Omit<Simulation, 'polls'> & {
     group?: string
     poll?: string
+    polls?: { id: string; slug: string }[] | string[] | null
+    defaultAdditionalQuestionsAnswers?: Record<string, string>
+    customAdditionalQuestionsAnswers?: Record<string, string>
     computedResults:
       | ComputedResults
       | { bilan?: number; categories?: Record<string, number> }
@@ -39,8 +44,49 @@ export function migrateSimulation(
   }
 
   if (simulation.poll) {
-    simulation.polls = [simulation.poll]
+    simulation.polls = [{ id: simulation.poll, slug: simulation.poll }]
     delete simulation.poll
+  }
+
+  if (simulation.polls && simulation.polls.length > 0) {
+    if (typeof simulation.polls[0] === 'string') {
+      simulation.polls = (simulation.polls as string[]).map((poll) => ({
+        id: poll,
+        slug: poll,
+      }))
+    }
+  }
+
+  if (
+    simulation.defaultAdditionalQuestionsAnswers ||
+    simulation.customAdditionalQuestionsAnswers
+  ) {
+    simulation.additionalQuestionsAnswers =
+      simulation.additionalQuestionsAnswers || []
+    if (simulation.defaultAdditionalQuestionsAnswers) {
+      Object.entries(simulation.defaultAdditionalQuestionsAnswers).forEach(
+        ([key, answer]) => {
+          simulation.additionalQuestionsAnswers!.push({
+            type: SimulationAdditionalQuestionAnswerType.default,
+            key: key as PollDefaultAdditionalQuestion,
+            answer,
+          })
+        }
+      )
+      delete simulation.defaultAdditionalQuestionsAnswers
+    }
+    if (simulation.customAdditionalQuestionsAnswers) {
+      Object.entries(simulation.customAdditionalQuestionsAnswers).forEach(
+        ([key, answer]) => {
+          simulation.additionalQuestionsAnswers!.push({
+            type: SimulationAdditionalQuestionAnswerType.custom,
+            key,
+            answer,
+          })
+        }
+      )
+      delete simulation.customAdditionalQuestionsAnswers
+    }
   }
 
   // If the computedResults object does not take multiple metrics into account, we add them
@@ -59,5 +105,5 @@ export function migrateSimulation(
     simulation.computedResults = newComputedResults
   }
 
-  return simulation
+  return simulation as Simulation
 }

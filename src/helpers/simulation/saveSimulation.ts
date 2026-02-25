@@ -1,9 +1,5 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
-import {
-  mapNewSimulationToOld,
-  mapOldSimulationToNew,
-} from '@/helpers/simulation/mapNewSimulation'
 import type { Simulation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { sanitizeSimulation } from './sanitizeSimulation'
@@ -29,7 +25,7 @@ export async function saveSimulation({
   const sanitizedSimulation = sanitizeSimulation(simulation)
 
   const payload = {
-    ...mapOldSimulationToNew(sanitizedSimulation),
+    ...sanitizedSimulation,
     model: modelVersion,
     ...(name || email
       ? {
@@ -62,8 +58,7 @@ export async function saveSimulation({
       throw new Error('Failed to save simulation')
     }
 
-    const data = await response.json()
-    return mapNewSimulationToOld(data)
+    return response.json()
   } catch (error) {
     captureException(error)
     return undefined
