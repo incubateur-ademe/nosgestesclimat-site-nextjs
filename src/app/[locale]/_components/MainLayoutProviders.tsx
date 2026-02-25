@@ -9,11 +9,14 @@ import { IframeOptionsProvider } from '../_components/mainLayoutProviders/Iframe
 import MainHooks from '../_components/mainLayoutProviders/MainHooks'
 import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
 
-export default function MainLayoutProviders({ children }: PropsWithChildren) {
+export default function MainLayoutProviders({
+  children,
+  initialUserId,
+}: PropsWithChildren<{ initialUserId?: string }>) {
   return (
     <ErrorBoundary>
       <QueryClientProviderWrapper>
-        <UserProvider>
+        <UserProvider initialUserId={initialUserId}>
           <PartnerProvider>
             <IframeOptionsProvider>
               <MotionConfig reducedMotion="user">

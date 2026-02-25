@@ -1,11 +1,7 @@
-import {
-  AUTHENTICATION_COOKIE_NAME,
-  USER_ID_COOKIE_NAME,
-} from '@/constants/authentication/cookie'
+import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 
 import { USER_URL } from '@/constants/urls/main'
 import { cookies } from 'next/headers'
-import { v4 as uuid } from 'uuid'
 import { fetchServer } from './fetchServer'
 
 export interface UserServer {
@@ -41,12 +37,9 @@ export async function logout() {
     domain,
   })
 
-  // Regenerate anonymous session cookie so the user gets a fresh identity
-  cookieStore.set(USER_ID_COOKIE_NAME, uuid(), {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'lax',
-  })
+  // The anonymous user ID cookie (ngc_user_id) is NOT regenerated here.
+  // The client-side resetLocalState() generates a new UUID in localStorage,
+  // and CookieUserSync syncs it to the cookie automatically.
 }
 
 export async function getAuthUserOrNull(): Promise<UserServer | null> {

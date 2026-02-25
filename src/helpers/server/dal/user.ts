@@ -13,6 +13,14 @@ interface AnonUser {
 }
 export type AppUser = AuthUser | AnonUser
 
+/**
+ * Reads the anonymous user ID from the `ngc_user_id` cookie.
+ * Used as `initialUserId` prop for `UserProvider` in Server Components.
+ */
+export async function getInitialUserId(): Promise<string | undefined> {
+  return (await cookies()).get(USER_ID_COOKIE_NAME)?.value
+}
+
 export async function getUser(): Promise<AppUser | null> {
   // Try authenticated user (via JWT cookie)
   const authUser = await getAuthUserOrNull()
@@ -21,7 +29,7 @@ export async function getUser(): Promise<AppUser | null> {
   }
 
   // Fallback to anonymous user (via session cookie)
-  const userId = (await cookies()).get(USER_ID_COOKIE_NAME)?.value
+  const userId = await getInitialUserId()
   if (userId) {
     return { id: userId, isAuth: false }
   }

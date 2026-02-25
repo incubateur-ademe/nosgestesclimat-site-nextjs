@@ -23,10 +23,12 @@ interface Props {
    */
   storageKey?: string
   serverSimulations?: Simulation[]
+  initialUserId?: string
 }
 export default function UserProvider({
   children,
   serverSimulations,
+  initialUserId,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -42,6 +44,7 @@ export default function UserProvider({
 
   const { user, setUser } = usePersistentUser({
     initialRegion,
+    initialUserId,
   })
 
   const { tutorials, setTutorials } = usePersistentTutorials()

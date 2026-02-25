@@ -8,6 +8,7 @@ import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { getRules } from '@/helpers/modelFetching/getRules'
+import { getInitialUserId } from '@/helpers/server/dal/user'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
 import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
@@ -18,6 +19,7 @@ export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
+  const initialUserId = await getInitialUserId()
   const rules = await getRules({ locale })
   const user = await getAuthUser()
   const simulations = await getUserSimulations({
@@ -37,7 +39,9 @@ export default async function MonEspaceActionsPage({
       {!simulations || simulations.length <= 0 ? (
         <NoResultsBlock locale={locale} />
       ) : (
-        <UserProvider serverSimulations={simulations}>
+        <UserProvider
+          serverSimulations={simulations}
+          initialUserId={initialUserId}>
           <QueryClientProviderWrapper>
             <EngineProvider rules={rules}>
               <FormProvider>

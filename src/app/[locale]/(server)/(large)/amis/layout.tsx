@@ -1,5 +1,13 @@
 import MainLayoutProviders from '@/app/[locale]/_components/MainLayoutProviders'
+import { getInitialUserId } from '@/helpers/server/dal/user'
 
-export default function Layout({ children }: LayoutProps<'/[locale]/amis'>) {
-  return <MainLayoutProviders>{children}</MainLayoutProviders>
+export default async function Layout({
+  children,
+}: LayoutProps<'/[locale]/amis'>) {
+  const initialUserId = await getInitialUserId()
+  return (
+    <MainLayoutProviders initialUserId={initialUserId}>
+      {children}
+    </MainLayoutProviders>
+  )
 }
