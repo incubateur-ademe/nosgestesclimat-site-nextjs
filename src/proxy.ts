@@ -1,4 +1,7 @@
-import { USER_ID_COOKIE_NAME } from '@/constants/authentication/cookie'
+import {
+  USER_ID_COOKIE_NAME,
+  USER_ID_COOKIE_OPTIONS,
+} from '@/constants/authentication/cookie'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
@@ -31,11 +34,7 @@ export function proxy(request: NextRequest) {
 
   // Generate a session cookie for anonymous user identification if not present
   if (!request.cookies.get(USER_ID_COOKIE_NAME)) {
-    response.cookies.set(USER_ID_COOKIE_NAME, uuid(), {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 365, // 1 year
-      sameSite: 'lax',
-    })
+    response.cookies.set(USER_ID_COOKIE_NAME, uuid(), USER_ID_COOKIE_OPTIONS)
   }
 
   return response

@@ -6,9 +6,10 @@ import {
   getNewsletters,
   getNewsletterSubscriptions,
 } from '@/helpers/server/model/newsletter'
-import { getAuthUser } from '@/helpers/server/model/user'
+import { getAuthUserOrNull } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 import ProfileTab from '../_components/ProfileTabs'
 import LocalisationSection from './_components/LocalisationSection'
 import NewsletterSettings from './_components/NewsletterSettings'
@@ -19,8 +20,13 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
   const [subscriptions, newsletters, user] = await Promise.all([
     getNewsletterSubscriptions(),
     getNewsletters({ locale }),
-    getAuthUser(),
+    getAuthUserOrNull(),
   ])
+
+  if (!user) {
+    redirect(`/${locale}/connexion`)
+  }
+
   return (
     <div className="flex flex-col">
       <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} locale={locale} />

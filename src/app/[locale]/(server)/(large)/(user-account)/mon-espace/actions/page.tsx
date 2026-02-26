@@ -9,17 +9,23 @@ import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
-import { getAuthUser } from '@/helpers/server/model/user'
+import { getAuthUserOrNull } from '@/helpers/server/model/user'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 import ProfileTab from '../_components/ProfileTabs'
 
 export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
+
   const rules = await getRules({ locale })
-  const user = await getAuthUser()
+  const user = await getAuthUserOrNull()
+
+  if (!user) {
+    redirect(`/${locale}/connexion`)
+  }
 
   const simulations = await getUserSimulations({
     userId: user.id,
@@ -35,7 +41,7 @@ export default async function MonEspaceActionsPage({
 
       <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
 
-      {!simulations || simulations.length <= 0 ? (
+      {simulations.length <= 0 ? (
         <NoResultsBlock locale={locale} />
       ) : (
         <UserProvider serverSimulations={simulations} initialUserId={user.id}>

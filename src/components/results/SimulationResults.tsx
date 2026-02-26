@@ -14,16 +14,26 @@ interface Props {
   userId: string
 }
 
+async function getCachedSimulationResult({
+  userId,
+  simulationId,
+}: {
+  userId: string
+  simulationId: string
+}) {
+  'use cache'
+  cacheLife('weeks')
+  cacheTag(`simulation-${simulationId}`)
+
+  return getSimulationResult({ userId, simulationId })
+}
+
 export default async function SimulationResults({
   simulationId,
   locale,
   userId,
 }: Props) {
-  'use cache'
-  cacheLife('weeks')
-  cacheTag(`simulation-${simulationId}`)
-
-  const simulationResult = await getSimulationResult({
+  const simulationResult = await getCachedSimulationResult({
     userId,
     simulationId,
   })
