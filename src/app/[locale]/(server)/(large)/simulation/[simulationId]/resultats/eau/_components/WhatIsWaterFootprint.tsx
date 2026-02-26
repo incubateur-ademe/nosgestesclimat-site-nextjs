@@ -1,8 +1,11 @@
 import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Emoji from '@/design-system/utils/Emoji'
+import { getRules } from '@/helpers/modelFetching/getRules'
 import type { Locale } from '@/i18nConfig'
 import type { Situation } from '@/publicodes-state/types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import Engine from 'publicodes'
 import DomesticWaterBlock from './DomesticWaterBlock'
 
 interface Props {
@@ -10,7 +13,40 @@ interface Props {
   situation: Situation
 }
 
-export default function WhatIsWaterFootprint({ locale, situation }: Props) {
+const getDomesticWaterValue = async ({ locale, situation }: Props) => {
+  const rules = await getRules({ locale })
+
+  const engine = new Engine<DottedName>(rules, {
+    strict: {
+      situation: false,
+      noOrphanRule: false,
+      checkPossibleValues: false,
+      noCycleRuntime: false,
+    },
+    warn: {
+      cyclicReferences: false,
+      situationIssues: false,
+    },
+  })
+
+  engine.setSituation(situation)
+
+  const evaluation = engine.evaluate({
+    valeur: 'logement . eau domestique',
+    contexte: {
+      métrique: "'eau'",
+    },
+  })
+
+  return typeof evaluation.nodeValue === 'number' ? evaluation.nodeValue : 149
+}
+
+export default async function WhatIsWaterFootprint({
+  locale,
+  situation,
+}: Props) {
+  const domesticWaterValue = await getDomesticWaterValue({ locale, situation })
+
   return (
     <div className="mb-12 flex flex-col gap-8 md:flex-row">
       <section className="bg-primary-50 flex-1 p-8">
@@ -118,7 +154,10 @@ export default function WhatIsWaterFootprint({ locale, situation }: Props) {
           </Trans>
         </p>
 
-        <DomesticWaterBlock locale={locale} domesticWaterValue={149} />
+        <DomesticWaterBlock
+          locale={locale}
+          domesticWaterValue={domesticWaterValue}
+        />
 
         <p>
           <Trans

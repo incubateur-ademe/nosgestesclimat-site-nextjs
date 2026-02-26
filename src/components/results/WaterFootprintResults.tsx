@@ -7,8 +7,8 @@ import WhatIsWaterFootprint from '@/app/[locale]/(server)/(large)/simulation/[si
 import FinTabs from '@/app/[locale]/(simulation)/(large-nosticky)/fin/_components/FinTabs'
 import SaveResultsBlock from '@/app/[locale]/(simulation)/(large-nosticky)/fin/_components/SaveResultsBlock'
 import { eauMetric } from '@/constants/model/metric'
+import { getSimulationResult } from '@/helpers/server/model/simulations'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
-import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
 import type { Locale } from '@/i18nConfig'
 import { notFound } from 'next/navigation'
 import Trans from '../translation/trans/TransServer'
@@ -31,12 +31,12 @@ export default async function WaterFootprintResults({
 
   const isAuthenticated = await isUserAuthenticated()
 
-  const simulation = await fetchSimulation({
+  const simulationResults = await getSimulationResult({
     userId,
     simulationId,
   })
 
-  if (!simulation) notFound()
+  if (!simulationResults) notFound()
 
   return (
     <>
@@ -44,7 +44,7 @@ export default async function WaterFootprintResults({
 
       <FootprintBlock
         locale={locale}
-        value={simulation.computedResults.eau.bilan}
+        value={simulationResults.computedResults.eau.bilan}
         metric={eauMetric}
         unitSuffix={
           <Trans locale={locale as string} i18nKey="common.parAn">
@@ -56,11 +56,14 @@ export default async function WaterFootprintResults({
       <IsItALot locale={locale} />
 
       <WaterFootprintDetail
-        computedResults={simulation.computedResults}
+        computedResults={simulationResults.computedResults}
         locale={locale}
       />
 
-      <WhatIsWaterFootprint situation={simulation.situation} locale={locale} />
+      <WhatIsWaterFootprint
+        situation={simulationResults.situation}
+        locale={locale}
+      />
 
       <SaveResultsBlock locale={locale} isAuthentified={isAuthenticated} />
 
