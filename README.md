@@ -6,13 +6,13 @@ Un calculateur d'empreinte climat individuelle de consommation à l'année, util
 
 Pour contribuer au modèle, données sous-jacentes et textes du questionnaire (calculs, facteurs d'émission, infos, questions, réponses, suggestions de saisie), [suivez le guide de contribution](https://github.com/incubateur-ademe/nosgestesclimat/blob/master/CONTRIBUTING.md).
 
-Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résultat, code javascript, etc.) c'est ici [sur le dépôt du _site_](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/issues).
+Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résultat, code JavaScript, etc.) c'est ici [sur le dépôt du _site_](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/issues).
 
-> 🇬🇧 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/issues/new) if you are interested and do not speak French.
+> 🇬🇧 Most of the documentation (including issues and the wiki) is written in French, please raise an [issue](https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/issues/new) if you are interested and do not speak French.
 
 ## Et techniquement ?
 
-Le code utilise NextJS / Typescript / React / TailwindCSS, entre autres.
+Le code utilise Next.js / TypeScript / React / Tailwind CSS, entre autres.
 
 ### Installation
 
@@ -28,13 +28,12 @@ pnpm && pnpm dev
 
 #### Tests end-to-end
 
-Nous utilisons [Cypress](https://www.cypress.io/) pour les tests e2e.
+Nous utilisons [Playwright](https://playwright.dev/) pour les tests end-to-end.
 
-Pour lancer les tests:
+Pour lancer les tests :
 
 1. lancez le serveur local : `pnpm dev`
-2. générez les fichiers de spécification des personas sur lesquels sont basés les tests : `pnpm run e2e:generate`
-3. lancez `pnpm run e2e` pour ouvrir l'interface Cypress.
+2. dans un autre terminal, lancez `pnpm run e2e` pour ouvrir l'interface Playwright.
 
 ## Réutilisations de ce code
 
