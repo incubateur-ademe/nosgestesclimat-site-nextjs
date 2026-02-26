@@ -4,13 +4,15 @@ import { GROUP_URL } from '@/constants/urls/main'
 import type { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
-import { getAuthUser } from './user'
+import { getAuthUserOrNull } from './user'
 
 export async function getUserGroups(): Promise<Group[]> {
-  const user = await getAuthUser()
+  const user = await getAuthUserOrNull()
+
   if (!user) {
     return []
   }
+
   try {
     return await fetchServer<Group[]>(`${GROUP_URL}/${user.id}`)
   } catch (error) {
@@ -19,12 +21,15 @@ export async function getUserGroups(): Promise<Group[]> {
   }
 }
 
-export async function fetchGroupById(groupId: string): Promise<Group | null> {
+export async function fetchGroupById({
+  groupId,
+  userId,
+}: {
+  groupId: string
+  userId: string
+}): Promise<Group | null> {
   try {
-    const user = await getAuthUser()
-    if (!user) return null
-
-    return await fetchServer<Group>(`${GROUP_URL}/${user.id}/${groupId}`)
+    return await fetchServer<Group>(`${GROUP_URL}/${userId}/${groupId}`)
   } catch (error) {
     captureException(error)
     return null

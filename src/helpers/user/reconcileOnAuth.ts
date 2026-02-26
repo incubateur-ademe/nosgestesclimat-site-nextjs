@@ -48,7 +48,7 @@ async function loadServerSimulation({
     userId,
   })
 
-  if (!simulations || simulations.length === 0) {
+  if (simulations.length === 0) {
     simulations = [generateSimulation()]
   } else {
     hideTutorial(TEST_INTRO_TUTO_KEY)

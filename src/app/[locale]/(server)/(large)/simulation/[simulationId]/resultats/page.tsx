@@ -29,12 +29,19 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function SimulationPage({
   params,
+  searchParams,
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
   const { simulationId, locale } = await params
+  const { userId: searchParamsUserId } = await searchParams
 
+  // Try cookie-based user first, fallback to userId from query params
+  // (passed by SimulationResolverFallback when cookie isn't set yet)
   const user = await getUser()
+  const userId =
+    user?.id ??
+    (typeof searchParamsUserId === 'string' ? searchParamsUserId : undefined)
 
-  if (!user) {
+  if (!userId) {
     notFound()
   }
 
@@ -42,7 +49,7 @@ export default async function SimulationPage({
     <SimulationResults
       simulationId={simulationId}
       locale={locale as Locale}
-      userId={user.id}
+      userId={userId}
     />
   )
 }

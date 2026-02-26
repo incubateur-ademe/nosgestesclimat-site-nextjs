@@ -30,9 +30,9 @@ import { useState } from 'react'
 const { decodeRuleName } = utils
 
 export default function ActionDetail({
-  params,
+  pathParamsDottedName,
 }: {
-  params: { dottedName: DottedName[] }
+  pathParamsDottedName: string[]
 }) {
   const {
     getCategory,
@@ -41,11 +41,10 @@ export default function ActionDetail({
     everyQuestions,
     everyMosaicChildrenWithParent,
   } = useEngine()
-  const pathParamsDottedName = params?.dottedName
 
   const formattedDottedName = pathParamsDottedName
-    ?.map(decodeURIComponent)
-    ?.join(' . ')
+    .map(decodeURIComponent)
+    .join(' . ')
 
   const { rules, getSpecialRuleObject, extendedFoldedSteps } = useTempEngine()
 
@@ -53,7 +52,7 @@ export default function ActionDetail({
 
   const { actionChoices } = useCurrentSimulation()
 
-  const dottedName = decodeRuleName(formattedDottedName ?? '') as DottedName
+  const dottedName = decodeRuleName(formattedDottedName) as DottedName
 
   const remainingQuestions = filterRelevantMissingVariables({
     missingVariables: Object.keys(

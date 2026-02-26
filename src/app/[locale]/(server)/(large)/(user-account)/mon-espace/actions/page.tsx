@@ -18,6 +18,7 @@ export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
+
   const rules = await getRules({ locale })
   const user = await getAuthUser()
 
@@ -35,7 +36,7 @@ export default async function MonEspaceActionsPage({
 
       <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
 
-      {!simulations || simulations.length <= 0 ? (
+      {simulations.length <= 0 ? (
         <NoResultsBlock locale={locale} />
       ) : (
         <UserProvider serverSimulations={simulations} initialUserId={user.id}>

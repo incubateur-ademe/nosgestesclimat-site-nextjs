@@ -1,36 +1,30 @@
 'use server'
 
 import { SIMULATION_URL } from '@/constants/urls/main'
-import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import type { ComputedResults, Simulation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
 import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
+import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const setDefaultExtendedSituation = async (simulation: Simulation) => {
-  const updatedSimulation = { ...simulation }
-
-  // Ensure extendedSituation is always defined (for old simulations that might not have it)
-  if (!updatedSimulation.extendedSituation) {
-    updatedSimulation.extendedSituation = getInitialExtendedSituation()
-  }
-
-  return updatedSimulation
+export interface SimulationResult {
+  computedResults: ComputedResults
+  progression: number
+  group: { name: string; href: string } | null
 }
 
 export async function getUserSimulations({
   userId,
 }: {
   userId: string
-}): Promise<Simulation[] | null> {
+}): Promise<Simulation[]> {
   const serverSimulations = await fetchServer<Simulation[]>(
     `${SIMULATION_URL}/${userId}?pageSize=50`
   )
 
-  if (!serverSimulations || serverSimulations.length === 0) {
-    return null
+  if (serverSimulations.length === 0) {
+    return []
   }
 
   // Map from server format to client format
@@ -46,23 +40,25 @@ export async function getUserSimulations({
   return sortedSimulations
 }
 
+// Allows unauthenticated users to fetch simulations
 export async function getSimulation({
   userId,
   simulationId,
+  auth = true,
 }: {
   userId: string
   simulationId: string
+  auth?: boolean
 }): Promise<Simulation | undefined> {
   try {
-    const response = await fetch(`${SIMULATION_URL}/${userId}/${simulationId}`)
+    const simulation = await fetchServer<Simulation>(
+      `${SIMULATION_URL}/${userId}/${simulationId}`,
+      {
+        auth,
+      }
+    )
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch simulation')
-    }
-
-    const simulationParsed = await response.json()
-
-    const updatedSimulation = setDefaultExtendedSituation(simulationParsed)
+    const updatedSimulation = setDefaultExtendedSituation(simulation)
 
     return updatedSimulation
   } catch (error) {
@@ -77,28 +73,26 @@ export async function getSimulationResult({
 }: {
   userId: string
   simulationId: string
-}): Promise<{
-  computedResults: ComputedResults
-  progression: number
-  group: { name: string; href: string } | null
-} | null> {
+}): Promise<SimulationResult | null> {
   const simulation = await getSimulation({
     userId,
     simulationId,
+    auth: false,
   })
 
   if (!simulation) {
     return null
   }
 
-  let group: { name: string; href: string } | null = {
-    name: '',
-    href: '',
-  }
+  let group: { name: string; href: string } | null = null
 
   if (simulation.groups?.length) {
     const groupId = simulation.groups[0]
-    const groupData = await fetchGroupById(groupId)
+
+    const groupData = await fetchGroupById({
+      groupId,
+      userId,
+    })
 
     if (groupData) {
       group = {

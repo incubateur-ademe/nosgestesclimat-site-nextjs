@@ -1,6 +1,6 @@
 'use client'
 
-import { USER_ID_COOKIE_NAME } from '@/constants/authentication/cookie'
+import { syncUserIdCookie } from '@/actions/syncUserIdCookie'
 import { useUser } from '@/publicodes-state'
 import { useEffect } from 'react'
 
@@ -13,7 +13,7 @@ export default function CookieUserSync() {
 
   useEffect(() => {
     if (user.userId) {
-      document.cookie = `${USER_ID_COOKIE_NAME}=${user.userId}; path=/; max-age=31536000; SameSite=Lax`
+      void syncUserIdCookie(user.userId)
     }
   }, [user.userId])
 

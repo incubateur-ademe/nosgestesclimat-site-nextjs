@@ -15,7 +15,7 @@ const getLocalisedSrc = (locale: Locale) => {
 }
 
 export default function LocalizedCarbonGraphIllustration() {
-  const locale = useLocale() as Locale
+  const locale = useLocale()
 
   return <Image src={getLocalisedSrc(locale)} alt="" width={300} height={300} />
 }

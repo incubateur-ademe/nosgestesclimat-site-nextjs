@@ -26,9 +26,7 @@ export async function logout() {
   const domain = new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
   const secure = domain !== 'localhost'
 
-  const cookieStore = await cookies()
-
-  cookieStore.delete({
+  ;(await cookies()).delete({
     name: AUTHENTICATION_COOKIE_NAME,
     httpOnly: true,
     secure,

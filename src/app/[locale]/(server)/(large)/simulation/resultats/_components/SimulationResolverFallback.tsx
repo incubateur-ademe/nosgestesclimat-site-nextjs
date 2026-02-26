@@ -19,6 +19,7 @@ export default function SimulationResolverFallback({
 
     if (currentSimulationId) {
       // Redirect to the resultats page with the userId in query params as a fallback
+      // using router.replace or .push doesn't work
       redirect(
         `/${locale}/simulation/${currentSimulationId}/resultats?userId=${user.userId}`
       )

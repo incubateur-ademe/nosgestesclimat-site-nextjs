@@ -2,7 +2,6 @@ import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
 import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { sanitizeSimulation } from '@/helpers/simulation/sanitizeSimulation'
-import type { Locale } from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -91,7 +90,7 @@ export function useSaveSimulation() {
         simulation: sanitizedSimulation,
         userId,
         sendEmail,
-        locale: locale as Locale,
+        locale,
       })
     },
   })

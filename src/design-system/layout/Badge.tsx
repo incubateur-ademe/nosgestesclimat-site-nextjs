@@ -10,6 +10,8 @@ const colorClassNames = {
   secondary: 'border-secondary-700 text-secondary-700 bg-secondary-50',
   green: 'border-green-300 text-green-700 bg-green-50',
   red: 'border-red-300 text-red-700 bg-red-50',
+  purple: 'border-purple-300 text-purple-800 bg-purple-50',
+  yellow: 'border-yellow-300 text-yellow-800 bg-yellow-50',
 }
 const sizeClassNames = {
   xs: 'text-xs py-0.5',
@@ -24,7 +26,7 @@ export default function Badge({
   category,
   tag = 'div',
 }: PropsWithChildren<{
-  color?: 'primary' | 'secondary' | 'green' | 'red'
+  color?: 'primary' | 'secondary' | 'green' | 'red' | 'purple' | 'yellow'
   size?: 'xs' | 'sm' | 'md'
   className?: string
   category?: string
@@ -34,7 +36,7 @@ export default function Badge({
   return (
     <Tag
       className={twMerge(
-        'inline-block rounded-xl border-2 px-2 leading-none font-black whitespace-nowrap',
+        'inline-block rounded-sm border-2 px-2 leading-none font-black whitespace-nowrap',
         sizeClassNames[size],
         category
           ? getBorderColor(category) + ' ' + getTextDarkColor(category)

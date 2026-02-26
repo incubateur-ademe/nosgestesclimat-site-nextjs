@@ -32,8 +32,8 @@ export async function generateMetadata({
 
 export default async function ActionDetailPage({
   params,
-}: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
-  const paramsAwaited = await params
+}: PageProps<'/[locale]/mon-espace/actions/[...dottedName]'>) {
+  const { dottedName } = await params
 
   const rules = await getRules()
 
@@ -54,7 +54,7 @@ export default async function ActionDetailPage({
             <Trans> Retour à la liste</Trans>
           </ButtonLink>
 
-          <ActionDetail params={paramsAwaited} />
+          <ActionDetail pathParamsDottedName={dottedName} />
         </div>
       </EngineProvider>
     </UserProvider>
