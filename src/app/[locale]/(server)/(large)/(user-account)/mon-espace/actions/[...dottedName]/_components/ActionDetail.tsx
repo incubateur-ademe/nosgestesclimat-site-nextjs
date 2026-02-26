@@ -30,9 +30,9 @@ import { useState } from 'react'
 const { decodeRuleName } = utils
 
 export default function ActionDetail({
-  dottedName: dottedNameFromProps,
+  pathParamsDottedName,
 }: {
-  dottedName: string[]
+  pathParamsDottedName: string[]
 }) {
   const {
     getCategory,
@@ -42,7 +42,7 @@ export default function ActionDetail({
     everyMosaicChildrenWithParent,
   } = useEngine()
 
-  const formattedDottedName = dottedNameFromProps
+  const formattedDottedName = pathParamsDottedName
     .map(decodeURIComponent)
     .join(' . ')
 
