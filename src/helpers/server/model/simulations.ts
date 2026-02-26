@@ -1,25 +1,12 @@
 'use server'
 
 import { SIMULATION_URL } from '@/constants/urls/main'
-import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import type { ComputedResults, Simulation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
 import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
-
-export const setDefaultExtendedSituation = (
-  simulation: Simulation
-): Simulation => {
-  const updatedSimulation = { ...simulation }
-
-  // Ensure extendedSituation is always defined (for old simulations that might not have it)
-  if (!updatedSimulation.extendedSituation) {
-    updatedSimulation.extendedSituation = getInitialExtendedSituation()
-  }
-
-  return updatedSimulation
-}
+import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
 export async function getUserSimulations({
   userId,
@@ -30,7 +17,7 @@ export async function getUserSimulations({
     `${SIMULATION_URL}/${userId}?pageSize=50`
   )
 
-  if (!serverSimulations || serverSimulations.length === 0) {
+  if (serverSimulations.length === 0) {
     return null
   }
 
