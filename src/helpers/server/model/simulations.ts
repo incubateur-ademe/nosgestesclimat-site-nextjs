@@ -42,15 +42,14 @@ export async function getSimulation({
   simulationId: string
 }): Promise<Simulation | undefined> {
   try {
-    const response = await fetch(`${SIMULATION_URL}/${userId}/${simulationId}`)
+    const simulation = await fetchServer<Simulation>(
+      `${SIMULATION_URL}/${userId}/${simulationId}`,
+      {
+        auth: false,
+      }
+    )
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch simulation')
-    }
-
-    const simulationParsed = await response.json()
-
-    const updatedSimulation = setDefaultExtendedSituation(simulationParsed)
+    const updatedSimulation = setDefaultExtendedSituation(simulation)
 
     return updatedSimulation
   } catch (error) {
@@ -79,10 +78,7 @@ export async function getSimulationResult({
     return null
   }
 
-  let group: { name: string; href: string } | null = {
-    name: '',
-    href: '',
-  }
+  let group: { name: string; href: string } | null = null
 
   if (simulation.groups?.length) {
     const groupId = simulation.groups[0]
