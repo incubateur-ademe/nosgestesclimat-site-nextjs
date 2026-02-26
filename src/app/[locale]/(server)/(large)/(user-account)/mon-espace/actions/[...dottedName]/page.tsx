@@ -54,7 +54,7 @@ export default async function ActionDetailPage({
             <Trans> Retour à la liste</Trans>
           </ButtonLink>
 
-          <ActionDetail dottedName={dottedName} />
+          <ActionDetail pathParamsDottedName={dottedName} />
         </div>
       </EngineProvider>
     </UserProvider>
