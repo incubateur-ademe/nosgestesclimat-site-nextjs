@@ -4,11 +4,10 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
-import { getAuthUserOrNull } from '@/helpers/server/model/user'
+import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { redirect } from 'next/navigation'
 import ActionDetail from './_components/ActionDetail'
 
 export async function generateMetadata({
@@ -33,20 +32,12 @@ export async function generateMetadata({
 
 export default async function ActionDetailPage({
   params,
-}: PageProps<'/[locale]/mon-espace/actions/[...dottedName]'> & {
-  params: {
-    dottedName: DottedName[]
-  }
-}) {
-  const paramsAwaited = await params
+}: PageProps<'/[locale]/mon-espace/actions/[...dottedName]'>) {
+  const { dottedName } = await params
 
   const rules = await getRules()
 
-  const user = await getAuthUserOrNull()
-
-  if (!user) {
-    redirect(`/${paramsAwaited.locale}/connexion`)
-  }
+  const user = await getAuthUser()
 
   return (
     <UserProvider initialUserId={user.id}>
@@ -63,7 +54,7 @@ export default async function ActionDetailPage({
             <Trans> Retour à la liste</Trans>
           </ButtonLink>
 
-          <ActionDetail params={paramsAwaited} />
+          <ActionDetail dottedName={dottedName} />
         </div>
       </EngineProvider>
     </UserProvider>
