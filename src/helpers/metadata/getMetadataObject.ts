@@ -1,4 +1,5 @@
 import { noIndexObject } from '@/constants/metadata'
+import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 
 interface Props {
@@ -24,6 +25,7 @@ interface Props {
   alternates?: {
     canonical: string
   }
+  locales?: Locale[]
 }
 
 const BASE_URL =
@@ -64,6 +66,7 @@ export function getMetadataObject({
   image,
   alternates,
   locale,
+  locales: localesProp,
   ...props
 }: Props) {
   const url = buildURL({
@@ -71,6 +74,8 @@ export function getMetadataObject({
     searchParams,
     locale: locale ?? i18nConfig.defaultLocale,
   })
+
+  const locales = localesProp ?? i18nConfig.locales
 
   let alternatesWithLanguages = null
 
@@ -80,7 +85,7 @@ export function getMetadataObject({
     // We set the alternates url for each language
     const languages: Record<string, string> = {}
 
-    i18nConfig.locales.map((locale) => {
+    locales.map((locale) => {
       languages[locale] =
         `${BASE_URL}${locale === 'fr' ? '' : `/${locale}`}${canonical}`
     })

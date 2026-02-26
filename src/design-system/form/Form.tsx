@@ -29,7 +29,7 @@ export default function Form({
   const errorId = 'form-error'
 
   return (
-    <form className={className} {...props}>
+    <form className={className} {...props} noValidate>
       <div
         className={twMerge(
           'flex w-full flex-col items-start gap-4 lg:flex-row',
@@ -53,7 +53,7 @@ export default function Form({
           )}
         </div>
 
-        <div className="mt-8 flex gap-4 pb-8">
+        <div className="flex gap-4 pb-8">
           <Button
             className={twMerge(!isVerticalLayout && 'lg:mt-8 lg:h-14')}
             type="submit"

@@ -9,6 +9,7 @@ import MainArticle from '@/design-system/cms/MainArticle'
 import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
 import { getPageNumber } from '@/helpers/blog/getPageNumber'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getShouldBeLocalised } from '@/helpers/language/getShouldBeLocalised'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
@@ -65,6 +66,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `/blog/${category}`,
     },
+    locales: (await getShouldBeLocalised({ category }))
+      ? [...i18nConfig.locales]
+      : [i18nConfig.defaultLocale],
   })
 }
 

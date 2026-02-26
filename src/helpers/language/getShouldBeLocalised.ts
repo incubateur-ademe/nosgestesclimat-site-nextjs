@@ -9,7 +9,7 @@ interface Props {
   landingPageSlug?: string
 }
 
-export async function getShouldDisplayLangButtons({
+export async function getShouldBeLocalised({
   category,
   article,
   landingPageSlug,
