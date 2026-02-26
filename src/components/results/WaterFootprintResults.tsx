@@ -1,3 +1,4 @@
+import FootprintsLinks from '@/app/[locale]/(server)/(large)/simulation/[simulationId]/resultats/_components/FootprintsLinks'
 import ClimateAndWater from '@/app/[locale]/(server)/(large)/simulation/[simulationId]/resultats/eau/_components/ClimateAndWater'
 import DocumentationBlock from '@/app/[locale]/(server)/(large)/simulation/[simulationId]/resultats/eau/_components/DocumentationBlock'
 import IsItALot from '@/app/[locale]/(server)/(large)/simulation/[simulationId]/resultats/eau/_components/IsItALot'
@@ -42,12 +43,23 @@ export default async function WaterFootprintResults({
     <>
       <FinTabs />
 
+      <FootprintsLinks
+        locale={locale}
+        simulationId={simulationId}
+        currentPage="eau"
+      />
+
       <FootprintBlock
         locale={locale}
         value={simulationResults.computedResults.eau.bilan}
+        title={
+          <Trans locale={locale} i18nKey="simulation.eau.title">
+            L’empreinte eau qui sert à produire ce que vous consommez
+          </Trans>
+        }
         metric={eauMetric}
         unitSuffix={
-          <Trans locale={locale as string} i18nKey="common.parAn">
+          <Trans locale={locale} i18nKey="common.parAn">
             / an
           </Trans>
         }
