@@ -21,6 +21,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
     getNewsletters({ locale }),
     getAuthUser(),
   ])
+
   return (
     <div className="flex flex-col">
       <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} locale={locale} />

@@ -12,17 +12,24 @@ import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
+export interface SimulationResult {
+  computedResults: ComputedResults
+  situation: Situation
+  progression: number
+  group: { name: string; href: string } | null
+}
+
 export async function getUserSimulations({
   userId,
 }: {
   userId: string
-}): Promise<Simulation[] | null> {
+}): Promise<Simulation[]> {
   const serverSimulations = await fetchServer<Simulation[]>(
     `${SIMULATION_URL}/${userId}?pageSize=50`
   )
 
   if (serverSimulations.length === 0) {
-    return null
+    return []
   }
 
   // Map from server format to client format
@@ -38,18 +45,21 @@ export async function getUserSimulations({
   return sortedSimulations
 }
 
+// Allows unauthenticated users to fetch simulations
 export async function getSimulation({
   userId,
   simulationId,
+  auth = true,
 }: {
   userId: string
   simulationId: string
+  auth?: boolean
 }): Promise<Simulation | undefined> {
   try {
     const simulation = await fetchServer<Simulation>(
       `${SIMULATION_URL}/${userId}/${simulationId}`,
       {
-        auth: false,
+        auth,
       }
     )
 
@@ -68,15 +78,11 @@ export async function getSimulationResult({
 }: {
   userId: string
   simulationId: string
-}): Promise<{
-  computedResults: ComputedResults
-  situation: Situation
-  progression: number
-  group: { name: string; href: string } | null
-} | null> {
+}): Promise<SimulationResult | null> {
   const simulation = await getSimulation({
     userId,
     simulationId,
+    auth: false,
   })
 
   if (!simulation) {
@@ -87,7 +93,11 @@ export async function getSimulationResult({
 
   if (simulation.groups?.length) {
     const groupId = simulation.groups[0]
-    const groupData = await fetchGroupById(groupId)
+
+    const groupData = await fetchGroupById({
+      groupId,
+      userId,
+    })
 
     if (groupData) {
       group = {
