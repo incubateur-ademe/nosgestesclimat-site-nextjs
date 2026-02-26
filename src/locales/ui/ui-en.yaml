@@ -38,7 +38,6 @@ entries:
   'Quelques suggestions ': 'Some suggestions '
   Questions fréquentes: Frequently asked questions
   Rejeter l'action: Reject the action
-  Suivant: Next
   Suivez le guide !: Follow the guide!
   Sur le même sujet: On the same subject
   'Tri :': 'Sorting:'
@@ -146,7 +145,6 @@ entries:
   Par rapport à la moyenne du groupe.: Compared with the group average.
   Supprimer mes données: Delete my data
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Share this page with your friends and family to let them join your group.
-  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Only to allow you to find your group or delete your data
   Ok, sauvegarder la modification: Ok, save the modification
   Veuillez renseigner un nom.: Please enter a name.
   Données supprimées.: Deleted data.
@@ -270,40 +268,29 @@ entries:
   Exporter les données: Exporting data
   Organisations: Organisations
   Empreinte moyenne: Average footprint
-  Dans quelle ville habitez-vous ?: Where do you live?
   Empreinte carbone: Carbon footprint
   Paramètres: Parameters
   Voir les paramètres: See the parameters
   Kit de diffusion: Broadcast kit
   Vous avez une question ?: Do you have a question?
-  Quelle est votre année de naissance ?: What year were you born?
   Animez un atelier: Run a workshop
   Voir mes résultats: See my results
   Découvrir: Discover
-  Commencer un nouveau test: Start a new test
   La valeur minimum pour ce champ est de: The minimum value for this field is
-  précédent: previous
   Administrateur·ice: Administrator
   Valorisez vos données carbone: Add value to your carbon data
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Your data will be stored securely and anonymously. They will be aggregated for statistical purposes; these statistics will be available on the "Detailed report" page of your survey at the end of the course. This page will remain accessible exclusively to participants and organisers.
-  Votre date de naissance: Your date of birth
   Mes données restent-elles privées ?: Will my data remain private?
-  Facultatif: Optional
   Impact CO2: CO2 impact
   Mon organisation: My organisation
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
-  Votre code postal: Your postcode
-  Pour conserver vos résultats et les retrouver à l’avenir: To keep your results and find them again in the future
   Veuillez entrer votre code postal: Please enter your postcode
-  Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Are you sure you want to leave this page? Your changes will be lost.
   Accéder au kit: Access the kit
   Partagez le test pour obtenir vos premiers résultats.: Share the test to get your first results.
   Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
-  Vous pouvez utiliser vos données existantes, ou recommencer le test.: You can use your existing data, or start the test again.
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organise events and physical exchanges around Nos Gestes Climat to bring people together and reinforce their understanding.
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: See {String(group.participants.length - 5)} other{withS} participant{withS}
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
-  Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
   Oups ! Une erreur est survenue: Oops! An error has occurred
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr is not affiliated to the {{ parent }} website.
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}..lock: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
@@ -384,14 +371,12 @@ entries:
   Votre empreinte: Your footprint
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
   Simulation terminée: Completed simulation
-  Utiliser mes données existantes: Use my existing data
   International: International
   Diffusion: Broadcast
   Créer mon organisation: Create my organisation
   Simulations terminées: Completed simulations
   Ce champ est requis.: This field is required.
   Votre nom: Your name
-  Questions complémentaires: Additional questions
   Le détail de mon empreinte: Details of my footprint
   Mes principaux postes d’émissions: My main emissions
   par an: per year
@@ -415,8 +400,6 @@ entries:
   ' de votre empreinte': '  of your footprint'
   Ajouter une question personnalisée: Add a custom question
   2 tonnes: 2 tonnes
-  Questions par défaut: Default questions
-  Question personnalisée de: Personalised question from
   Ajouter la question: Add question
   Confirmer: Confirm
   Questions personnalisées: Personalised questions
@@ -440,7 +423,6 @@ entries:
   Une erreur est survenue lors de la suppression de la campagne.: An error occurred when deleting the campaign.
   Retrouvez vos campagnes et suivez leurs statistiques.: Find your campaigns and track their statistics.
   Nous récupérons les données de la campagne...: We recover the data from the campaign...
-  Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: You can find the answers to these questions in the export of campaign responses.
   Oups, nous n'avons pas trouvé les résultats de cette campagne: Oops, we couldn't find the results of this campaign
   Une erreur s'est produite lors de la création de la campagne. Veuillez réessayer.: An error has occurred while creating the campaign. Please try again.
   Supprimer cette campagne: Delete this campaign
@@ -808,15 +790,11 @@ entries:
   Paramètres de ma campagne - Nos Gestes Climat: My campaign settings - Nos Gestes Climat
   Le calculateur Nos Gestes Climat, pour les organisations: Nos Gestes Climat calculator, for organisations
   Paramètres de mon organisation - Nos Gestes Climat: Settings for my organisation - Nos Gestes Climat
-  Rejoindre une campagne - Nos Gestes Climat: Join a campaign - Nos Gestes Climat
   Tutoriel du calculateur - Nos Gestes Climat: Calculator tutorial - Nos Gestes Climat
-  Question personnalisée, rejoindre une campagne - Nos Gestes Climat: Personalized question, join a campaign - Nos Gestes Climat
   Questions fréquentes - Nos Gestes Climat: Frequently asked questions - Nos Gestes Climat
   Résultats de ma campagne - Nos Gestes Climat: Results of my campaign - Nos Gestes Climat
-  Votre code postal, rejoindre une campagne - Nos Gestes Climat: Your postcode, join a campaign - Nos Gestes Climat
   Mon groupe - Nos Gestes Climat: My Group - Nos Gestes Climat
   Les nouveautés du calculateur - Nos Gestes Climat: Changelog - Nos Gestes Climat
-  Votre date de naissance, rejoindre une campagne - Nos Gestes Climat: Your date of birth, join a campaign - Nos Gestes Climat
   Mes empreintes carbone et eau partagées - Nos Gestes Climat: My shared carbon and water footprints - Nos Gestes Climat
   Nos Gestes Climat, calculez votre empreinte climatique, mode intégré: Nos Gestes Climat, calculate your climate footprint, integrated mode
   Pied de page: Footer
@@ -899,12 +877,8 @@ entries:
   endPage.tallyForm.buttonLabel: Give your opinion
   endPage.carboneChart.gaugeDescription: Graph showing your carbon footprint of {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes per year.
   endPage.carboneChart.progressBarLabel: Carbon footprint progress bar
-  Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: An error has occurred while saving your data. Please try again shortly.
-  Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: You can add additional questions to the test for your statistics. Your activated additional questions will be asked to each participant before the Nos Gestes Climat test. Answering them will be optional.
   C'est parti !: We're off!
   Chargement en cours...: Loading in progress...
-  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: The format of the email address entered is invalid. The expected format is nom@exemple.org
-  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Conditions of use of "Base Empreinte" data
   footer.thematicLandingPages.title: Thematic pages
   footer.thematicLandingPages.title.lock: Pages thématiques
@@ -1716,7 +1690,6 @@ entries:
   newsletterManagement.logementNewsletter.title.lock: Nos Gestes Logement
   newsletterManagement.saveSubscriptions: Confirm my registration
   newsletterManagement.saveSubscriptions.lock: Valider mon inscription
-  Veuillez entrer une adresse email valide.: Please enter a valid email address.
   newsletterManagement.title: Select the newsletters that interest you
   newsletterManagement.title.lock: Sélectionnez les infolettres qui vous intéressent
   newsletterManagement.alimentationNewsletter.title: Our Food Gestures
@@ -1813,6 +1786,42 @@ entries:
   organisations.demanderDemo.title.lock: Demander une démo
   organisations.demanderDemo.subtitle: Book a slot to attend a demonstration of our functionality dedicated to organisations (companies, associations, schools, etc.) and allow you to distribute the Nos Gestes Climat test to your audience.
   organisations.demanderDemo.subtitle.lock: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
+  results.objective.collectiveEffort.state: The French State
+  results.objective.collectiveEffort.state.lock: L'État français
+  common.parAn: per year
+  common.parAn.lock: par an
+  common.vous: You
+  common.vous.lock: Vous
+  Vous aujourd'hui: You today
+  results.objective.reduction.over7.description: Your indicative pace for achieving <2>{{firstObjectiveNumber}}T en {{year}}</2>
+  results.objective.reduction.over7.description.lock: Votre rythme indicatif pour parvenir à <2>{{firstObjectiveNumber}}T en {{year}}</2>
+  Objectif 2050: Objective 2050
+  common.co2eAn: CO₂e / year
+  common.co2eAn.lock: CO₂e / an
+  results.objective.collectiveEffort.society: The whole company
+  results.objective.collectiveEffort.society.lock: Toute la société
+  results.objective.over7.description: Today, you are <2>above the national average </2>
+  results.objective.over7.description.lock: Aujourd'hui, vous êtes <2>au-dessus de la moyenne nationale </2>
+  results.objective.chart.trajectory: Path proposed by Nos Gestes Climat
+  results.objective.chart.trajectory.lock: Trajectoire proposée par Nos Gestes Climat
+  results.objective.collectiveEffort.title: "Important: it's also a collective effort"
+  results.objective.collectiveEffort.title.lock: "Important : c'est aussi un effort collectif"
+  results.objective.collectiveEffort.societyDescription: 'Reducing the footprint of goods and services through the combined efforts of businesses and local authorities. '
+  results.objective.collectiveEffort.societyDescription.lock: 'Diminution de l’empreinte des biens et des services par l’effort combiné des entreprises et collectivités. '
+  results.objective.title: 'National target: <1>2T</1> per person by 2050'
+  results.objective.title.lock: 'Objectif national : <1>2T</1> par personne en 2050'
+  results.objective.under4.description.title: You're already under {{secondObjectiveNumber}} tonnes - well done!
+  results.objective.under4.description.title.lock: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
+  results.objective.collectiveEffort.stateDescription: Reducing societal services (currently at 1.55T) and decarbonising infrastructures.
+  results.objective.collectiveEffort.stateDescription.lock: Réduction des services sociétaux (aujourd’hui à 1,55T) et décarbonation des infrastructures.
+  results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of <5>{{secondObjectiveNumber}}T en {{year}}</5>
+  results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
+  results.objective.reduction.over4.description: Your indicative pace for achieving <2>{{secondObjectiveNumber}}T en {{year}}</2>
+  results.objective.reduction.over4.description.lock: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
+  results.objective.description: France's objective to achieve carbon neutrality by 2050 and help limit global warming to +2°C.
+  results.objective.description.lock: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à +2 °C.
+  results.objective.under4.description.body: With the work of the government and society as a whole over the coming decades, your footprint should naturally shrink to around {{thirdObjectiveNumber}}T. So what's left for you to do? Persevere and convince others!
+  results.objective.under4.description.body.lock: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des {{thirdObjectiveNumber}}T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
   Diffusez un lien collectif depuis votre espace personnel et accédez à des bilans visuels chiffrés de votre impact.: Distribute a collective link from your personal space and access quantified visual summaries of your impact.
   Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Access your organisation space to easily distribute Nos Gestes Climat
   Vérifier mon adresse email: Check my email address

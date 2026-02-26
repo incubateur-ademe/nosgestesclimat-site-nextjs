@@ -2,7 +2,7 @@
 
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { PropsWithChildren } from 'react'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { PostHog, type PostHogCookieState } from './Posthog'
 
 export const COOKIE_STATE_KEY = 'cookie-management-state'
@@ -31,6 +31,26 @@ function getLocalStorageState(): CookieState {
 const LOCAL_STORAGE_STATE = getLocalStorageState()
 
 const posthog = new PostHog(LOCAL_STORAGE_STATE.posthog)
+
+const handleUpdateGoogleTag = (cookieState: CookieState['googleTag']) => {
+  switch (cookieState) {
+    case 'accepted':
+      window.gtag?.('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+      })
+      break
+    case 'refused':
+      window.gtag?.('consent', 'update', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      })
+      break
+  }
+}
+
 const CookieConsentContext = createContext<{
   cookieBannerDisplayState: CookieBannerDisplayState
   setCookieBannerDisplayState: (state: CookieBannerDisplayState) => void
@@ -51,6 +71,11 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
   const [cookieState, setCookieState] =
     useState<CookieState>(LOCAL_STORAGE_STATE)
 
+  // Restore GTM consent on mount for returning users who already made a choice
+  useEffect(() => {
+    handleUpdateGoogleTag(LOCAL_STORAGE_STATE.googleTag)
+  }, [])
+
   return (
     <CookieConsentContext
       value={{
@@ -62,24 +87,6 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
       {children}
     </CookieConsentContext>
   )
-}
-const handleUpdateGoogleTag = (cookieState: CookieState['googleTag']) => {
-  switch (cookieState) {
-    case 'accepted':
-      window.gtag?.('consent', 'update', {
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-      })
-      break
-    case 'refused':
-      window.gtag?.('consent', 'update', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-      })
-      break
-  }
 }
 
 export function useCookieManagement(): {

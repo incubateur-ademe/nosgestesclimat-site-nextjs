@@ -10,6 +10,7 @@ import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import { getInitialUserId } from '@/helpers/server/dal/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ColourBlock from '../_components/ColourBlocks'
@@ -24,6 +25,7 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
+  const initialUserId = await getInitialUserId()
 
   return (
     <div className="flex justify-center pb-32 lg:justify-start">
@@ -43,7 +45,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
         />
 
         <QueryClientProviderWrapper>
-          <UserProvider>
+          <UserProvider initialUserId={initialUserId}>
             <AuthenticateUserForm
               mode="signIn"
               redirectURL={MON_ESPACE_PATH}

@@ -8,9 +8,9 @@ export const NEXT_LOCALE_COOKIE_NAME = 'NEXT_LOCALE'
 
 export type Locale = 'fr' | 'en'
 
-const i18nConfig: Config = {
-  locales: [LOCALE_FR_KEY, LOCALE_EN_KEY] as Locale[],
-  defaultLocale: LOCALE_FR_KEY as Locale,
+const i18nConfig: Config & { locales: Locale[]; defaultLocale: Locale } = {
+  locales: [LOCALE_FR_KEY, LOCALE_EN_KEY],
+  defaultLocale: LOCALE_FR_KEY,
   cookieOptions: {
     sameSite: 'none' as const,
     path: '/',

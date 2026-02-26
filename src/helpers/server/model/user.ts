@@ -9,7 +9,7 @@ export interface UserServer {
   email: string
 }
 
-export async function getUser(): Promise<UserServer> {
+export async function getAuthUser(): Promise<UserServer> {
   return fetchServer(USER_URL + '/me')
 }
 
@@ -34,11 +34,15 @@ export async function logout() {
     partitioned: secure,
     domain,
   })
+
+  // The anonymous user ID cookie (ngc_user_id) is NOT regenerated here.
+  // The client-side resetLocalState() generates a new UUID in localStorage,
+  // and CookieUserSync syncs it to the cookie automatically.
 }
 
-export async function getUserOrNull(): Promise<UserServer | null> {
+export async function getAuthUserOrNull(): Promise<UserServer | null> {
   try {
-    return await getUser()
+    return await getAuthUser()
   } catch {
     return null
   }

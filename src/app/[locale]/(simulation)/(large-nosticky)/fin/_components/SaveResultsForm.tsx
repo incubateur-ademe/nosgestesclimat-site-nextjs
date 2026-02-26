@@ -11,7 +11,6 @@ import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 
 import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useLocale } from '@/hooks/useLocale'
-import type { Locale } from '@/i18nConfig'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useMutation } from '@tanstack/react-query'
@@ -35,7 +34,7 @@ export default function SaveResultsForm() {
         simulation: currentSimulation,
         sendEmail: true,
         userId: user.userId,
-        locale: locale as Locale,
+        locale,
         code,
         email,
       })

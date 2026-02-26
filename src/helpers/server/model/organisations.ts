@@ -1,9 +1,13 @@
 'use server'
 import { ORGANISATION_URL } from '@/constants/urls/main'
-import type { Organisation, OrganisationPoll } from '@/types/organisations'
+import type {
+  Organisation,
+  OrganisationPoll,
+  PublicOrganisationPoll,
+} from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
-import { getUser } from './user'
+import { getAuthUser } from './user'
 
 export async function getOrganisationPolls(
   idOrSlug: string
@@ -14,7 +18,7 @@ export async function getOrganisationPolls(
 }
 
 export async function getUserOrganisation(): Promise<Organisation | undefined> {
-  const user = await getUser()
+  const user = await getAuthUser()
 
   if (!user) {
     return undefined
@@ -29,5 +33,22 @@ export async function getUserOrganisation(): Promise<Organisation | undefined> {
   } catch (error) {
     captureException(error)
     return undefined
+  }
+}
+
+export async function fetchPublicPollBySlug({
+  userId,
+  pollSlug,
+}: {
+  userId: string
+  pollSlug: string
+}): Promise<PublicOrganisationPoll | null> {
+  try {
+    return await fetchServer<PublicOrganisationPoll>(
+      `${ORGANISATION_URL}/${userId}/public-polls/${pollSlug}`
+    )
+  } catch (error) {
+    captureException(error)
+    return null
   }
 }

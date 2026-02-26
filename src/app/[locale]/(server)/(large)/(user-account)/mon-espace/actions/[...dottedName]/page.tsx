@@ -4,6 +4,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
+import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -36,8 +37,10 @@ export default async function ActionDetailPage({
 
   const rules = await getRules()
 
+  const user = await getAuthUser()
+
   return (
-    <UserProvider>
+    <UserProvider initialUserId={user.id}>
       <EngineProvider rules={rules}>
         <div className="mx-auto my-12 max-w-[600px]">
           <ButtonLink

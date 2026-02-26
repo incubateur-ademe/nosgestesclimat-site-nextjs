@@ -2,8 +2,9 @@ import SimulateurSkeleton from '@/app/[locale]/(simulation)/simulateur/[root]/sk
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { getInitialUserId, getUser } from '@/helpers/server/dal/user'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
-import { getUserOrNull } from '@/helpers/server/model/user'
+import type { Locale } from '@/i18nConfig'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
@@ -29,24 +30,30 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default async function SimulationResultatsResolverPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
+const handleRedirectIfAuthenticated = async (locale: Locale) => {
+  const user = await getUser()
 
-  const user = await getUserOrNull()
-
-  if (user) {
+  if (user?.isAuth) {
     // If authenticated, get their simulations
     const simulations = await getUserSimulations({ userId: user.id })
 
-    if (simulations.length > 0) {
+    if (simulations && simulations.length > 0) {
       // Redirect to the most recent one (getUserSimulations already returns them sorted by date)
       redirect(`/${locale}/simulation/${simulations[0].id}/resultats`)
     }
   }
+}
+
+export default async function SimulationResultatsResolverPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}) {
+  const { locale } = await params
+
+  await handleRedirectIfAuthenticated(locale)
+
+  const initialUserId = await getInitialUserId()
 
   // If not authenticated or no simulations on server, fallback to client-side (localStorage)
   return (
@@ -54,7 +61,7 @@ export default async function SimulationResultatsResolverPage({
       {/* We show a skeleton while the client-side redirection is happening to avoid a flash of white */}
       <SimulateurSkeleton />
 
-      <UserProvider>
+      <UserProvider initialUserId={initialUserId}>
         <SimulationResolverFallback locale={locale} />
       </UserProvider>
     </>

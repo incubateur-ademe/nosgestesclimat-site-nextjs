@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Marianne';
+  src: url('../../public/fonts/Marianne-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('../../public/fonts/Marianne-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('../../public/fonts/Marianne-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('../../public/fonts/Marianne-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('../../public/fonts/Marianne-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('../../public/fonts/Marianne-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}

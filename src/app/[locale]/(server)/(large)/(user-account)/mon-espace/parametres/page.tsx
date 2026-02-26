@@ -6,6 +6,7 @@ import {
   getNewsletters,
   getNewsletterSubscriptions,
 } from '@/helpers/server/model/newsletter'
+import { getAuthUser } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ProfileTab from '../_components/ProfileTabs'
@@ -15,9 +16,10 @@ import UserEmail from './_components/UserEmail'
 
 export default async function SettingsPage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const [subscriptions, newsletters] = await Promise.all([
+  const [subscriptions, newsletters, user] = await Promise.all([
     getNewsletterSubscriptions(),
     getNewsletters({ locale }),
+    getAuthUser(),
   ])
   return (
     <div className="flex flex-col">
@@ -45,7 +47,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
         <div className="flex max-w-[720px] flex-col gap-8">
           <QueryClientProviderWrapper>
-            <UserProvider>
+            <UserProvider initialUserId={user.id}>
               <UserEmail />
             </UserProvider>
           </QueryClientProviderWrapper>

@@ -29,7 +29,7 @@ export default function Form({
   const errorId = 'form-error'
 
   return (
-    <form className={className} {...props}>
+    <form className={className} {...props} noValidate>
       <div
         className={twMerge(
           'flex w-full flex-col items-start gap-4 lg:flex-row',
