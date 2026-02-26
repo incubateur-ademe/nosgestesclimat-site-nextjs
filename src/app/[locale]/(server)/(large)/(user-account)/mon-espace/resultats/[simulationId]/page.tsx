@@ -4,9 +4,9 @@ import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getSimulation } from '@/helpers/server/model/simulations'
-import { getAuthUserOrNull } from '@/helpers/server/model/user'
+import { getAuthUser } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 export default async function DetailledResultsPage({
   params,
@@ -15,11 +15,7 @@ export default async function DetailledResultsPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const user = await getAuthUserOrNull()
-
-  if (!user) {
-    redirect(`/${locale}/connexion`)
-  }
+  const user = await getAuthUser()
 
   const simulation = await getSimulation({
     simulationId,
