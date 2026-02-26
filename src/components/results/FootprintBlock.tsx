@@ -25,7 +25,7 @@ export default function FootprintBlock({
 
   return (
     <div className="bg-primary-50 mb-12 rounded-2xl p-8">
-      <h1>
+      <h1 className="mb-0">
         <span className="mb-1 block text-lg font-normal">{title}</span>
 
         <span className="text-primary-600 title-lg font-bold!">
