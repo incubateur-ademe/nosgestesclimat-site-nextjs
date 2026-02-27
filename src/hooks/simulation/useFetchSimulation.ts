@@ -1,5 +1,5 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
-import { setDefaultExtendedSituation } from '@/helpers/server/model/simulations'
+import { setDefaultExtendedSituation } from '@/helpers/server/model/utils/setDefaultExtendedSituation'
 import { useUser } from '@/publicodes-state'
 import { unformatSituation } from '@/utils/formatDataForDB'
 import { useQuery } from '@tanstack/react-query'
