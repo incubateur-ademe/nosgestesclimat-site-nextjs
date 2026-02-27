@@ -21,9 +21,7 @@ export default async function FootprintDetail({
       <div className="flex flex-col gap-12 md:flex-row md:justify-between">
         <div className="md:w-xl">
           <h2 className="title-md mb-6">
-            <Trans
-              locale={locale}
-              key="eau.resultats.waterFootprintDetail.title">
+            <Trans locale={locale} key="results.where.title">
               D’où vient votre résultat ?
             </Trans>
           </h2>
