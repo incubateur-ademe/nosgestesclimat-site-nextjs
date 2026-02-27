@@ -19,7 +19,7 @@ export default async function WaterFootprintDetail({
     <section className="mb-12">
       <div className="flex flex-col gap-12 md:flex-row md:justify-between">
         <div className="md:w-xl">
-          <h2 className="title-lg mb-6">
+          <h2 className="title-md mb-6">
             <Trans
               locale={locale}
               key="eau.resultats.waterFootprintDetail.title">

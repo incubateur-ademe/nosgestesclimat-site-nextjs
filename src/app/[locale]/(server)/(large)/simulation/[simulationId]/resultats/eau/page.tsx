@@ -1,4 +1,4 @@
-import WaterFootprintResults from '@/components/results/WaterFootprintResults'
+import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
 import { getInitialUserId, getUser } from '@/helpers/server/dal/user'
 import type { Locale } from '@/i18nConfig'
 import { notFound } from 'next/navigation'

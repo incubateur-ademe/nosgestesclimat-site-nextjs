@@ -1,4 +1,3 @@
-import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import Trans from '@/components/translation/trans/TransServer'
 import {
   captureEndClickDocumentationServer,
@@ -35,8 +34,6 @@ export default function DocumentationBlock({ locale }: Props) {
         className="text-primary-700 flex items-center underline"
         data-track-event={endClickDocumentationServer}
         data-track-posthog={captureEndClickDocumentationServer}>
-        <BookClosedIcon className="fill-primary-700 mr-2 w-4" />
-
         <Trans locale={locale} i18nKey="simulation.eau.documentation.link">
           Comprendre le calcul
         </Trans>

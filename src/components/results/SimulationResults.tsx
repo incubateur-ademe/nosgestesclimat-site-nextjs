@@ -1,5 +1,5 @@
-import FootprintsLinks from '@/app/[locale]/(server)/(large)/simulation/[simulationId]/resultats/_components/FootprintsLinks'
-import FinTabs from '@/app/[locale]/(simulation)/(large-nosticky)/fin/_components/FinTabs'
+import FinTabs from '@/components/results/FinTabs'
+import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { getSimulationResult } from '@/helpers/server/model/simulations'
