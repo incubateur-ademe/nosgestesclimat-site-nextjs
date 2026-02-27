@@ -1,4 +1,4 @@
-import SimulationResults from '@/components/results/SimulationResults'
+import SimulationResults from '@/components/results/carbonFootprint/SimulationResults'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'

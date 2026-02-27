@@ -9,12 +9,12 @@ import { cacheLife, cacheTag } from 'next/cache'
 import { notFound, redirect } from 'next/navigation'
 import Trans from '../../translation/trans/TransServer'
 import FootprintBlock from '../FootprintBlock'
+import FootprintDetail from '../FootprintDetail'
 import SaveResultsBlock from '../SaveResultsBlock'
 import ClimateAndWater from './_components/ClimateAndWater'
 import DocumentationBlock from './_components/DocumentationBlock'
 import IsItALot from './_components/IsItALot'
 import WaterActions from './_components/WaterActions'
-import WaterFootprintDetail from './_components/WaterFootprintDetail'
 import WhatIsWaterFootprint from './_components/WhatIsWaterFootprint'
 
 interface Props {
@@ -83,9 +83,10 @@ export default async function WaterFootprintResults({
 
       <IsItALot locale={locale} />
 
-      <WaterFootprintDetail
+      <FootprintDetail
         computedResults={simulationResults.computedResults}
         locale={locale}
+        metric={eauMetric}
       />
 
       <WhatIsWaterFootprint
