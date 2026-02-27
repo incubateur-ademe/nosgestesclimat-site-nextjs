@@ -1,6 +1,8 @@
 import type { Simulation } from '@/publicodes-state/types'
 
-export function sanitizeSimulation(simulation: Simulation): Simulation {
+export function sanitizeSimulation(
+  simulation: Simulation
+): Omit<Simulation, 'user' | 'groups' | 'polls'> {
   const sanitized: Simulation & {
     createdAt?: string
     updatedAt?: string

@@ -1,6 +1,7 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
 import { setDefaultExtendedSituation } from '@/helpers/server/model/utils/setDefaultExtendedSituation'
 import { useUser } from '@/publicodes-state'
+import type { Simulation } from '@/publicodes-state/types'
 import { unformatSituation } from '@/utils/formatDataForDB'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
@@ -20,7 +21,7 @@ export function useFetchSimulation({ simulationId }: Props) {
         const updatedSimulation = {
           ...res.data,
           situation: unformatSituation(res.data.situation),
-        }
+        } as Simulation
 
         return setDefaultExtendedSituation(updatedSimulation)
       }),

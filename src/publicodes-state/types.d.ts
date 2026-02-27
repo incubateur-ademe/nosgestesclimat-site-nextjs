@@ -74,7 +74,7 @@ export interface UpdateCurrentSimulationProps {
     isMosaicParent?: boolean
     isMosaicChild?: boolean
   }
-  actionChoices?: Record<string, boolean>
+  actionChoices?: Partial<Record<DottedName, boolean>>
   additionalQuestionsAnswers?: AdditionalQuestionsAnswer[]
   computedResults?: ComputedResults
   progression?: number
@@ -90,7 +90,7 @@ export interface Simulation {
   situation: Situation
   extendedSituation: ExtendedSituation
   foldedSteps: DottedName[]
-  actionChoices: Record<string, boolean>
+  actionChoices: Partial<Record<DottedName, boolean>>
   persona?: string
   computedResults: ComputedResults
   progression: number
