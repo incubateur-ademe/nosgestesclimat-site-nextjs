@@ -769,3 +769,16 @@ iframe {
 .markdown details summary + * {
   @apply pt-4;
 }
+
+/**
+* Titles
+**/
+.title-xl {
+  @apply text-4xl;
+}
+.title-lg {
+  @apply text-3xl;
+}
+.title-md {
+  @apply text-2xl;
+}

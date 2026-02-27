@@ -1,4 +1,4 @@
-import { END_PAGE_PATH } from '@/constants/urls/paths'
+import { END_PAGE_RESOLVER_PATH } from '@/constants/urls/paths'
 import {
   getLinkToSimulateur,
   getLinkToTutoriel,
@@ -34,7 +34,7 @@ export function useSimulateurPage() {
     }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault): string => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
       if (progression === 1 && !newSimulation) {
-        return END_PAGE_PATH
+        return END_PAGE_RESOLVER_PATH
       }
 
       // If the user has seen the tutoriel we return the test page link

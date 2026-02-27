@@ -1,5 +1,5 @@
 import { EMAIL_PAGE } from '@/constants/organisations/infosPages'
-import { END_PAGE_PATH } from '@/constants/urls/paths'
+import { END_PAGE_RESOLVER_PATH } from '@/constants/urls/paths'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -12,7 +12,7 @@ export function useEndPage() {
   const searchParams = useSearchParams()
 
   const currentSimulation = useCurrentSimulation()
-  const progression = currentSimulation?.progression
+  const progression = currentSimulation.progression
 
   const { saveSimulation } = useSaveSimulation()
 
@@ -24,7 +24,7 @@ export function useEndPage() {
       return getLinkToGroupDashboard({ groupId: lastGroupId })
     }
 
-    return `${END_PAGE_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
+    return `${END_PAGE_RESOLVER_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
   }, [currentSimulation, searchParams])
 
   const goToEndPage = useCallback(() => {

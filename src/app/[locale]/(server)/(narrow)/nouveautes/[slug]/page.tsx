@@ -6,6 +6,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { getInitialUserId } from '@/helpers/server/dal/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -32,6 +33,7 @@ export default async function Release({
 }: DefaultPageProps<{ params: { slug: string } }>) {
   const { slug, locale } = await params
   const nouveaute = getPost(`src/locales/nouveautes/${locale}/`, slug)
+  const initialUserId = await getInitialUserId()
 
   return (
     <div>
@@ -40,7 +42,7 @@ export default async function Release({
       </Link>
 
       <QueryClientProviderWrapper>
-        <UserProvider>
+        <UserProvider initialUserId={initialUserId}>
           <PasserTestBanner />
         </UserProvider>
       </QueryClientProviderWrapper>

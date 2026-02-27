@@ -1,5 +1,10 @@
+import {
+  USER_ID_COOKIE_NAME,
+  USER_ID_COOKIE_OPTIONS,
+} from '@/constants/authentication/cookie'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import { v4 as uuid } from 'uuid'
 import i18nMiddleware from './middlewares/i18nMiddleware'
 
 function isRedirecting(response: NextResponse): boolean {
@@ -26,6 +31,11 @@ export function proxy(request: NextRequest) {
   // Add pathname to headers for server components
   const response = NextResponse.next()
   response.headers.set('x-pathname', request.nextUrl.pathname)
+
+  // Generate a session cookie for anonymous user identification if not present
+  if (!request.cookies.get(USER_ID_COOKIE_NAME)) {
+    response.cookies.set(USER_ID_COOKIE_NAME, uuid(), USER_ID_COOKIE_OPTIONS)
+  }
 
   return response
 }
