@@ -1,7 +1,11 @@
 'use server'
 
 import { SIMULATION_URL } from '@/constants/urls/main'
-import type { ComputedResults, Simulation } from '@/publicodes-state/types'
+import type {
+  ComputedResults,
+  Simulation,
+  Situation,
+} from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
 import { fetchGroupById } from './groups'
@@ -10,6 +14,7 @@ import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation
 
 export interface SimulationResult {
   computedResults: ComputedResults
+  situation: Situation
   progression: number
   group: { name: string; href: string } | null
 }
@@ -120,6 +125,7 @@ export async function getSimulationResult({
 
   return {
     computedResults: simulation.computedResults,
+    situation: simulation.situation,
     progression: simulation.progression,
     group,
   }

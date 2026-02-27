@@ -2,6 +2,7 @@ import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransServer'
 import type { Locale } from '@/i18nConfig'
 
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
@@ -21,13 +22,13 @@ export default async function SaveResultsBlock({
   const { t } = await getServerTranslation({ locale })
   return (
     <section
-      className="bg-primary-700 rounded-2xl p-8"
+      className="bg-primary-700 mb-12 rounded-2xl p-8"
       aria-labelledby="save-results-block-title">
       <div className="flex flex-col flex-wrap items-stretch gap-8 md:flex-row md:items-center lg:flex-nowrap">
         <div className="max-w-full flex-1">
           <h3
             id="save-results-block-title"
-            className="text-2xl font-bold text-white">
+            className="title-md font-bold! text-white">
             {isAuthentified ? (
               <Trans
                 i18nKey="results.saveResults.title.authenticated"
@@ -82,7 +83,9 @@ export default async function SaveResultsBlock({
               </Trans>
             </ButtonLink>
           ) : (
-            <SaveResultsForm />
+            <QueryClientProviderWrapper>
+              <SaveResultsForm />
+            </QueryClientProviderWrapper>
           )}
         </div>
         <div className="max-w-full">

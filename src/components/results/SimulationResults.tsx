@@ -1,4 +1,5 @@
-import FinTabs from '@/app/[locale]/(simulation)/(large-nosticky)/fin/_components/FinTabs'
+import FinTabs from '@/components/results/FinTabs'
+import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { getSimulationResult } from '@/helpers/server/model/simulations'
@@ -48,12 +49,23 @@ export default async function SimulationResults({
     <>
       <FinTabs />
 
+      <FootprintsLinks
+        locale={locale}
+        simulationId={simulationId}
+        currentPage="carbone"
+      />
+
       <FootprintBlock
         locale={locale}
         value={simulationResult.computedResults.carbone.bilan}
+        title={
+          <Trans locale={locale} i18nKey="simulation.carbone.title">
+            Vous émettez environ
+          </Trans>
+        }
         metric={carboneMetric}
         unitSuffix={
-          <Trans locale={locale as string} i18nKey="common.co2eAn">
+          <Trans locale={locale} i18nKey="common.co2eAn">
             CO₂e / an
           </Trans>
         }
