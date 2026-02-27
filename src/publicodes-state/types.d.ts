@@ -1,4 +1,5 @@
 import type { Group } from '@/types/groups'
+import type { AdditionalQuestionsAnswer } from '@/types/organisations'
 import type {
   DottedName,
   ExtendedSituation,
@@ -74,11 +75,10 @@ export interface UpdateCurrentSimulationProps {
     isMosaicChild?: boolean
   }
   actionChoices?: Partial<Record<DottedName, boolean>>
-  defaultAdditionalQuestionsAnswers?: Record<string, string>
-  customAdditionalQuestionsAnswers?: Record<string, string>
+  additionalQuestionsAnswers?: AdditionalQuestionsAnswer[]
   computedResults?: ComputedResults
   progression?: number
-  pollToAdd?: string | null
+  pollToAdd?: { id: string; slug: string } | null
   pollToDelete?: string | null
   groupToAdd?: string | null
   groupToDelete?: string | null
@@ -94,9 +94,9 @@ export interface Simulation {
   persona?: string
   computedResults: ComputedResults
   progression: number
-  defaultAdditionalQuestionsAnswers?: Record<string, string>
-  customAdditionalQuestionsAnswers?: Record<string, string>
-  polls?: string[] | null
+  additionalQuestionsAnswers?: AdditionalQuestionsAnswer[]
+  user?: { id: string; name?: string; email?: string }
+  polls?: { id: string; slug: string }[] | null
   groups?: string[] | null
   model?: string
 }

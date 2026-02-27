@@ -40,7 +40,7 @@ export default function useSimulations({
       persona,
       computedResults,
       progression,
-      defaultAdditionalQuestionsAnswers,
+      additionalQuestionsAnswers,
       polls,
       groups,
     }: Partial<Simulation> = {}) => {
@@ -56,7 +56,7 @@ export default function useSimulations({
         persona,
         computedResults,
         progression,
-        defaultAdditionalQuestionsAnswers,
+        additionalQuestionsAnswers,
         polls,
         groups,
         migrationInstructions,
@@ -90,8 +90,7 @@ export default function useSimulations({
       foldedSteps,
       foldedStepToAdd,
       actionChoices,
-      defaultAdditionalQuestionsAnswers,
-      customAdditionalQuestionsAnswers,
+      additionalQuestionsAnswers,
       computedResults,
       progression,
       pollToAdd,
@@ -208,14 +207,9 @@ export default function useSimulations({
             simulationToUpdate.actionChoices = actionChoices
           }
 
-          if (defaultAdditionalQuestionsAnswers !== undefined) {
-            simulationToUpdate.defaultAdditionalQuestionsAnswers =
-              defaultAdditionalQuestionsAnswers
-          }
-
-          if (customAdditionalQuestionsAnswers !== undefined) {
-            simulationToUpdate.customAdditionalQuestionsAnswers =
-              customAdditionalQuestionsAnswers
+          if (additionalQuestionsAnswers !== undefined) {
+            simulationToUpdate.additionalQuestionsAnswers =
+              additionalQuestionsAnswers
           }
 
           if (computedResults !== undefined) {
@@ -235,7 +229,7 @@ export default function useSimulations({
 
           if (pollToDelete && simulationToUpdate.polls) {
             simulationToUpdate.polls = simulationToUpdate.polls.filter(
-              (poll) => poll !== pollToDelete
+              (poll) => poll.slug !== pollToDelete
             )
           }
 

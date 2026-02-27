@@ -54,8 +54,7 @@ describe('useSimulations', () => {
         eau: { bilan: 0, categories: {} as Record<DottedName, number> },
       },
       progression: params.progression || 0,
-      defaultAdditionalQuestionsAnswers:
-        params.defaultAdditionalQuestionsAnswers,
+      additionalQuestionsAnswers: params.additionalQuestionsAnswers,
       polls: params.polls,
       groups: params.groups,
     }))

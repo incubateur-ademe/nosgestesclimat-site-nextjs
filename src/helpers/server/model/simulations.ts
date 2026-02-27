@@ -104,7 +104,7 @@ export async function getSimulationResult({
 
   // If no group found, try to find an associated poll/campaign
   if (!group && simulation.polls?.length) {
-    const pollSlug = simulation.polls[0]
+    const pollSlug = simulation.polls[0].slug
     const pollDetails = await fetchPublicPollBySlug({
       userId,
       pollSlug,

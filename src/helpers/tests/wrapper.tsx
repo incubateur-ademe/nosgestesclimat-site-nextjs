@@ -65,7 +65,6 @@ const defaultSimulation: Simulation = {
     },
   },
   progression: 0,
-  customAdditionalQuestionsAnswers: {},
 }
 
 const defaultUser = {

@@ -77,8 +77,10 @@ export default function ButtonStart({
 
         // Add poll to simulation only when user clicks the button
         // This triggers saving the simulation with SimulationSyncProvider
-        if (poll && !polls?.includes(poll.slug)) {
-          updateCurrentSimulation({ pollToAdd: poll.slug })
+        if (poll && !polls?.some((p) => p.slug === poll.slug)) {
+          updateCurrentSimulation({
+            pollToAdd: { id: poll.id, slug: poll.slug },
+          })
         }
 
         const endTime = Date.now()

@@ -64,8 +64,8 @@ export function compareTwoSimulations(
     return true
   }
   if (
-    simulation1.defaultAdditionalQuestionsAnswers !==
-    simulation2.defaultAdditionalQuestionsAnswers
+    simulation1.additionalQuestionsAnswers !==
+    simulation2.additionalQuestionsAnswers
   ) {
     return true
   }
@@ -84,7 +84,7 @@ export function compareTwoSimulations(
     return true
   } else {
     for (let i = 0; i < (simulation1.polls?.length ?? 0); i++) {
-      if (simulation1.polls?.[i] !== simulation2.polls?.[i]) {
+      if (simulation1.polls?.[i]?.id !== simulation2.polls?.[i]?.id) {
         return true
       }
     }

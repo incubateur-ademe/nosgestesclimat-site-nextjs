@@ -1,13 +1,11 @@
 import type { Simulation } from '@/publicodes-state/types'
 
-import type { User } from '@/publicodes-state/types'
-
-export function sanitizeSimulation(simulation: Simulation): Simulation {
-  // Strip unrecognized keys before mapping and posting
+export function sanitizeSimulation(
+  simulation: Simulation
+): Omit<Simulation, 'user' | 'groups' | 'polls'> {
   const sanitized: Simulation & {
     createdAt?: string
     updatedAt?: string
-    user?: User
   } = { ...simulation }
   delete sanitized.createdAt
   delete sanitized.updatedAt

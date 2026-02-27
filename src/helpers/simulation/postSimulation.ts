@@ -1,9 +1,7 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
 import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
-import type { Simulation as NewSimulation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
-import { mapNewSimulationToOld } from './mapNewSimulation'
 
 type Props = {
   simulation: Simulation
@@ -43,14 +41,14 @@ export async function postSimulation({
     throw new Error(`HTTP error! status: ${response.status}`)
   }
 
-  let simulationSaved: NewSimulation
+  let simulationSaved: Simulation
 
   try {
-    simulationSaved = (await response.json()) as NewSimulation
+    simulationSaved = await response.json()
   } catch (error) {
     captureException(error)
     throw error
   }
 
-  return mapNewSimulationToOld(simulationSaved)
+  return simulationSaved
 }
