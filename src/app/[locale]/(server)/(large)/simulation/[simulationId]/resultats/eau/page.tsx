@@ -22,7 +22,7 @@ export default async function SimulationPage({
 
   return (
     <WaterFootprintResults
-      simulationId={simulationId as string}
+      simulationId={simulationId}
       locale={locale as Locale}
       userId={userId}
     />
