@@ -66,6 +66,7 @@ export default async function WaterFootprintResults({
       />
 
       <FootprintBlock
+        className="mb-12"
         locale={locale}
         value={simulationResults.computedResults.eau.bilan}
         title={

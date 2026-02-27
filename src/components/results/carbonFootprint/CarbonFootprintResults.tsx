@@ -33,7 +33,7 @@ async function getCachedSimulationResult({
   return getSimulationResult({ userId, simulationId })
 }
 
-export default async function SimulationResults({
+export default async function CarbonFootprintResults({
   simulationId,
   locale,
   userId,
