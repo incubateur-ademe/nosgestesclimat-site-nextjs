@@ -39,7 +39,7 @@ const getObjectiveData = ({
         reductionAmount:
           (carbonFootprint - FIRST_OBJECTIVE.value) /
           Math.max(1, year - currentYear),
-        titleClassName: 'text-red-900',
+        titleClassName: 'text-red-800',
         bgClassName: 'bg-red-50',
         description: (
           <Trans locale={locale} i18nKey="results.objective.over7.description">
@@ -69,7 +69,7 @@ const getObjectiveData = ({
         reductionAmount:
           (carbonFootprint - SECOND_OBJECTIVE.value) /
           Math.max(1, year - currentYear),
-        titleClassName: 'text-orange-900',
+        titleClassName: 'text-orange-800',
         bgClassName: 'bg-orange-50',
         description: (
           <Trans
@@ -103,7 +103,7 @@ const getObjectiveData = ({
 
     return {
       reductionAmount: 0,
-      titleClassName: 'text-green-900',
+      titleClassName: 'text-green-800',
       bgClassName: 'bg-green-50',
       description: (
         <>
@@ -191,7 +191,7 @@ export default function ObjectiveWithRhythm({
           <>
             <DownArrow className="fill-default h-6 w-6 self-center md:-rotate-90" />
 
-            <div className="bg-primary-50 flex-1 rounded-lg px-6 py-4">
+            <div className="flex-1 rounded-lg bg-[#F0F2FC] px-6 py-4">
               <p className="mb-2">{reductionDescription}</p>
 
               <p className="text-2xl font-bold">

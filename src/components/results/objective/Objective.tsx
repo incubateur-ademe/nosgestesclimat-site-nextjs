@@ -14,8 +14,8 @@ export default function Objective({ locale, carbonFootprint }: Props) {
     <div>
       <h2>
         <Trans locale={locale} i18nKey="results.objective.title">
-          Objectif national : <span className="text-secondary-700">2T</span> par
-          personne en 2050
+          Objectif national : <strong className="text-secondary-800">2T</strong>{' '}
+          par personne en 2050
         </Trans>
       </h2>
       <p>
