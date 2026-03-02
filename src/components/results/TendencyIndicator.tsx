@@ -1,4 +1,6 @@
+import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import type { Locale } from '@/i18nConfig'
+import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import DownArrow from '../icons/DownArrow'
 import Trans from '../translation/trans/TransServer'
@@ -17,20 +19,32 @@ export default function TendencyIndicator({
       <DownArrow
         className={twMerge(
           tendency === 'increase'
-            ? 'rotate-180 fill-green-700'
-            : 'rotate-90 fill-red-700'
+            ? '-rotate-135 fill-green-700'
+            : '-rotate-45 fill-red-700'
         )}
       />
-      {tendency === 'increase' && (
-        <Trans locale={locale} i18nKey="carbonResults.tendency.increase">
-          En hausse depuis votre dernier résultat
-        </Trans>
-      )}
-      {tendency === 'decrease' && (
-        <Trans locale={locale} i18nKey="carbonResults.tendency.decrease">
-          En baisse depuis votre dernier résultat
-        </Trans>
-      )}
+
+      <div>
+        <div className="font-bold">
+          {tendency === 'increase' && (
+            <Trans locale={locale} i18nKey="carbonResults.tendency.increase">
+              <span className="block">En hausse depuis</span>
+              <span className="block">votre dernier résultat</span>
+            </Trans>
+          )}
+
+          {tendency === 'decrease' && (
+            <Trans locale={locale} i18nKey="carbonResults.tendency.decrease">
+              <span className="block">En baisse depuis</span>
+              <span className="block">votre dernier résultat</span>
+            </Trans>
+          )}
+        </div>
+
+        <Link className="text-primary-600 underline" href={MON_ESPACE_PATH}>
+          En savoir plus
+        </Link>
+      </div>
     </div>
   )
 }
