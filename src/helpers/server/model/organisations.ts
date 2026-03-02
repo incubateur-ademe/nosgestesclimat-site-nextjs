@@ -31,19 +31,3 @@ export async function getUserOrganisation(): Promise<Organisation | undefined> {
     return undefined
   }
 }
-
-export async function fetchPoll({
-  organisationId,
-  pollId,
-}: {
-  organisationId: string
-  pollId: string
-}) {
-  if (!organisationId || !pollId) {
-    throw new Error('Missing organisationId or pollId')
-  }
-
-  return fetchServer<OrganisationPoll>(
-    `${ORGANISATION_URL}/${organisationId}/polls/${pollId}`
-  )
-}
