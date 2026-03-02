@@ -16,6 +16,7 @@ export interface SimulationResult {
   computedResults: ComputedResults
   situation: Situation
   progression: number
+  date: string | Date
   group: { name: string; href: string } | null
 }
 
@@ -127,6 +128,7 @@ export async function getSimulationResult({
     computedResults: simulation.computedResults,
     situation: simulation.situation,
     progression: simulation.progression,
+    date: simulation.date,
     group,
   }
 }

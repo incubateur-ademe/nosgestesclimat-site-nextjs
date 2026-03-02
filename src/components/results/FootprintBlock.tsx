@@ -4,6 +4,8 @@ import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
+import type { Tendency } from './TendencyIndicator'
+import TendencyIndicator from './TendencyIndicator'
 
 interface Props {
   className?: string
@@ -12,6 +14,7 @@ interface Props {
   title: ReactNode
   metric?: Metric
   unitSuffix: ReactNode
+  tendency?: Tendency
 }
 export default function FootprintBlock({
   className,
@@ -20,6 +23,7 @@ export default function FootprintBlock({
   title,
   metric = carboneMetric,
   unitSuffix,
+  tendency,
 }: Props) {
   const { formattedValue, unit } = formatFootprint(value, {
     locale: locale as string,
@@ -35,6 +39,8 @@ export default function FootprintBlock({
           {formattedValue} {unit} {unitSuffix}
         </span>
       </h1>
+
+      {tendency && <TendencyIndicator tendency={tendency} locale={locale} />}
     </div>
   )
 }
