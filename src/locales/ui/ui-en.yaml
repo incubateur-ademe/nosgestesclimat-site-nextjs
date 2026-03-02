@@ -6,7 +6,7 @@ entries:
   Actions d'engagement: Commitment actions
   Actions négatives: Negative actions
   'Actions écartées :': 'Discarded actions:'
-  Choisir le type de tri des actions: Choose the type of stock sorting
+  Choisir le type de tri des actions: Choose the type of action sort
   Choisir une autre région: Choose another region
   Choisissez une région parmi celles disponibles !: Choose a region among those available!
   Commencer: Start
@@ -51,8 +51,8 @@ entries:
   components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default
   components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
   et: and
-  le + d'impact climat: the + of climate impact
-  le - d'impact climat: the - climate impact
+  le + d'impact climat: highest climate impact
+  le - d'impact climat: lowest climate impact
   minutes: minutes
   model.active.documented: The construction of the model (tracks of work, ongoing reflections, roadmap, etc.) is amply <2>documented publicly</2>.
   model.active.documented.lock: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
@@ -181,7 +181,7 @@ entries:
   publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
   publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   'Revenir à ma région par défaut ': 'Return to my default region '
-  'Vous faites cette simulation depuis :': 'You can run this simulation from :'
+  'Vous faites cette simulation depuis :': 'You are running this simulation from:'
   Sélectionné·e: Selected
   publicodes.Tutoriel.slide2.blockquote: 'Other gases, especially methane <2></2> and nitrous oxide <6></6> also warm the planet: we convert their warming potential into CO₂e to simplify measurement. '
   publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
@@ -200,7 +200,7 @@ entries:
   Comment agir ?: What can you do?
   Ajouter: Add
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': "Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"
-  Retour à la liste des nouveautes: Back to the list of new products
+  Retour à la liste des nouveautes: Back to the list of updates
   Nos outils: Our tools
   Documentations: Documentation
   Informations: Information
@@ -242,7 +242,7 @@ entries:
   Oups ! Nous n'avons pas trouvé votre groupe: Oops! We couldn't find your group
   components.localisation.Localisation.warnMessage2: We were unable to detect your simulation country, so the French model is proposed by default.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
-  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} shares available, '
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions available, '
   publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles, '
   components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, the French model is proposed by default.
   components.localisation.Localisation.warnMessage.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
@@ -526,7 +526,7 @@ entries:
   Votre région a bien été mise à jour.: Your region has been updated.
   de CO₂e par an: of CO₂e per year
   Liste des questions: List of questions
-  '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
+  '{{name}}, supprimer cette participation': '{{name}}, cancel this participation'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
   Une erreur est survenue: An error has occurred
   <0>Empreinte eau</0> moyenne: 'Average <0>water footprint</0> '
@@ -1830,3 +1830,19 @@ entries:
   Part de la sous-catégorie {{percentage}}: Share of sub-category {{percentage}}
   results.categories.services.text: Services (health, education, telecoms, etc.) account for around <2>1.5 tonnes of your footprint</2>. This share is <5>the same for everyone</5> and is <8>gradually decreasing</8> with the ecological transition.
   results.categories.services.text.lock: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.
+  error.contactSupport: If the problem persists, please <1>contact support.</1>
+  error.contactSupport.lock: Si le problème persiste, merci de <1>contacter le support.</1>
+  results.groups.createFirstGroup: <1>Create your first group</1> and invite your friends and family to compare your results. It takes <2>1 minute</2>!
+  results.groups.createFirstGroup.lock: <1>Créez votre premier groupe</1> et invitez vos proches pour comparer vos résultats. Cela prend <2>1 minute</2> !
+  results.groups.ranking.laconic: Which of <1>{{name}}</1> and you will have the smallest footprint?
+  results.groups.ranking.laconic.lock: Qui de <1>{{name}}</1> et vous aura la plus faible empreinte ?
+  results.groups.invite.first: You're the first <1>🥳</1> but you are alone… <2>🥲</2>
+  results.groups.invite.first.lock: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <2>🥲</2>
+  faq.doTheTest.notStarted: You haven't started your test yet, <1>get started!</1>
+  faq.doTheTest.notStarted.lock: Vous n'avez pas encore débuté votre test, <1>lancez-vous !</1>
+  faq.doTheTest.started: You have started your test, <1>click here to pick it up!</1>
+  faq.doTheTest.started.lock: Vous avez commencé votre test, <1>cliquez ici pour le reprendre !</1>
+  tutoriel.title: <1>10 minutes</1> to calculate your carbon and water footprint
+  tutoriel.title.lock: <1>10 minutes</1> chrono pour calculer votre empreinte carbone et eau
+  nos-relais.title: They relay <1>Nos Gestes Climat</1>
+  nos-relais.title.lock: Ils relaient <1>Nos Gestes Climat</1>

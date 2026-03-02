@@ -58,11 +58,10 @@ export default async function OurPartners({
   return (
     <div>
       <Title>
-        <Trans locale={locale}>Ils relaient </Trans>
-
-        <span className="text-primary-700">
-          <Trans locale={locale}>Nos Gestes Climat</Trans>
-        </span>
+        <Trans i18nKey="nos-relais.title" locale={locale}>
+          Ils relaient{' '}
+          <span className="text-primary-700">Nos Gestes Climat</span>
+        </Trans>
       </Title>
 
       <div className="mb-8 flex flex-col items-center md:flex-row md:flex-nowrap md:gap-16">

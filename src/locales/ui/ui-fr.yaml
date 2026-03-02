@@ -1384,3 +1384,11 @@ entries:
   Passer: Passer
   Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>: Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>
   Vérifier mon adresse email: Vérifier mon adresse email
+  error.contactSupport: Si le problème persiste, merci de <1>contacter le support.</1>
+  results.groups.createFirstGroup: <1>Créez votre premier groupe</1> et invitez vos proches pour comparer vos résultats. Cela prend <2>1 minute</2> !
+  results.groups.ranking.laconic: Qui de <1>{{name}}</1> et vous aura la plus faible empreinte ?
+  results.groups.invite.first: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <2>🥲</2>
+  faq.doTheTest.notStarted: Vous n'avez pas encore débuté votre test, <1>lancez-vous !</1>
+  faq.doTheTest.started: Vous avez commencé votre test, <1>cliquez ici pour le reprendre !</1>
+  tutoriel.title: <1>10 minutes</1> chrono pour calculer votre empreinte carbone et eau
+  nos-relais.title: Ils relaient <1>Nos Gestes Climat</1>
