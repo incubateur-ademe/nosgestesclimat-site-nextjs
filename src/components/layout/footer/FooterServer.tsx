@@ -37,6 +37,7 @@ import {
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
+import { cacheLife } from 'next/cache'
 import { twMerge } from 'tailwind-merge'
 import ThematicPagesSection from '../ThematicPagesSection'
 import CookieButton from './CookieButton'
@@ -55,6 +56,9 @@ export default async function FooterServer({
   className = '',
   params,
 }: Props) {
+  'use cache'
+  cacheLife('days')
+
   const { t } = await getServerTranslation({ locale })
 
   return (

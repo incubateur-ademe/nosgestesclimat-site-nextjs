@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { STORAGE_KEY } from '@/constants/storage'
 import { getGeolocation } from '@/helpers/api/getGeolocation'
-import { usePosthogIdentify } from '@/hooks/tracking/usePosthogIdentify'
 import type {
   RegionFromGeolocation,
   Simulation,
@@ -43,8 +42,6 @@ export default function UserProvider({
   const { user, setUser } = usePersistentUser({
     initialRegion,
   })
-
-  usePosthogIdentify({ userId: user?.userId })
 
   const { tutorials, setTutorials } = usePersistentTutorials()
 

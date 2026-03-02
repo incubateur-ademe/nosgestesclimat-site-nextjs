@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { carboneMetric } from '@/constants/model/metric'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'

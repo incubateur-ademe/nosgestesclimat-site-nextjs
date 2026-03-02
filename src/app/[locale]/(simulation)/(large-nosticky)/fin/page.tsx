@@ -5,7 +5,7 @@ import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
 import HeadingButtons from '@/components/fin/metricSlider/heading/HeadingButtons'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import Carbone from '@/components/results/Carbone'
-import CategoriesAccordion from '@/components/results/CategoriesAccordion'
+import CategoriesAccordion from '@/components/results/CategoriesAccordionLegacy'
 import DocumentationBlock from '@/components/results/DocumentationBlock'
 import Eau from '@/components/results/Eau'
 import InformationBlock from '@/components/results/InformationBlock'
@@ -15,7 +15,7 @@ import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { FIN_TAB_QUERY_PARAM } from '@/constants/urls/params'
 import Title from '@/design-system/layout/Title'
 import { fetchUser } from '@/helpers/user/fetchUser'
-import { useEndGuard } from '@/hooks/navigation/useEndGuard'
+import { useEndPageGuard } from '@/hooks/navigation/useSimulatorGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
@@ -23,6 +23,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, type ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
+import SimulateurSkeleton from '../../simulateur/[root]/skeleton'
 import ActionsTabContent from './_components/ActionsTabContent'
 import FinTabs from './_components/FinTabs'
 import GroupsTabContent from './_components/GroupsTabContent'
@@ -30,7 +31,6 @@ import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import SaveResultsAndSigninSignUpForm from './_components/SaveResultsAndSigninSignUpForm'
 import TallyForm from './_components/TallyForm'
-import FinPageSkeleton from './skeleton'
 
 const titles: Record<Metric, ReactElement> = {
   [carboneMetric]: <Trans>carbone</Trans>,
@@ -38,7 +38,7 @@ const titles: Record<Metric, ReactElement> = {
 }
 
 export default function FinPage() {
-  const { isGuardInit, isGuardRedirecting } = useEndGuard()
+  const { isRedirecting } = useEndPageGuard()
 
   const { currentMetric } = useCurrentMetric()
 
@@ -60,8 +60,7 @@ export default function FinPage() {
     }
   }, [])
 
-  // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
-  if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
+  if (isRedirecting) return <SimulateurSkeleton />
 
   return (
     <div className="relative mt-4 mb-16 md:mt-10">

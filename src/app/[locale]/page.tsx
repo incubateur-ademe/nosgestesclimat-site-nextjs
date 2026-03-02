@@ -42,7 +42,7 @@ export const generateMetadata = getCommonMetadata({
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale: string) => ({
-    locale: locale as Locale,
+    locale,
   }))
 }
 

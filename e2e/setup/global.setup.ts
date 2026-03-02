@@ -77,6 +77,7 @@ setup('create an organisation with a poll', async ({ page, organisation, poll, c
   await organisation.admin.fillEmailAndCompleteVerification()
   await organisation.create()
   await poll.create()
+  await poll.copyInviteLink()
 
   await organisation.saveInContext()
   await poll.saveInContext()

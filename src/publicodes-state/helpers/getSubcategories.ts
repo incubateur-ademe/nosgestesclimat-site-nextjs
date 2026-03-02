@@ -25,6 +25,7 @@ export function getSubcategories({
 
       const rule = safeGetRule?.(currentValue)
       if (!rule) {
+        // eslint-disable-next-line no-console
         console.error(
           `[useCategories:subcategories] No rule found for ${currentValue}`
         )
@@ -36,6 +37,7 @@ export function getSubcategories({
 
       const sum = getSomme(rule.rawNode as NGCRule)
       if (!sum) {
+        // eslint-disable-next-line no-console
         console.error(
           `[useCategories:subcategories] No [somme] found for ${currentValue}`
         )

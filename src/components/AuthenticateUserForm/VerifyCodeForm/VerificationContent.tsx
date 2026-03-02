@@ -28,7 +28,7 @@ export default function VerificationContent({
         <Trans i18nKey="signIn.verificationForm.email.verificationCode.prefix">
           Entrez le
         </Trans>{' '}
-        <strong className="text-primary-700">
+        <strong className="text-primary-700 dark:text-primary-50">
           <Trans i18nKey="signIn.verificationForm.email.verificationCode.strong">
             code de vérification
           </Trans>

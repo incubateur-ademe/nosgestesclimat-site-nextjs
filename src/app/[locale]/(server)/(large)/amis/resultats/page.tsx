@@ -13,7 +13,7 @@ import UpdateSimulationUsed from './_components/UpdateSimulationUsed'
 
 export default function GroupResultsPage() {
   // Guarding the route and redirecting if necessary
-  const { isGuardInit, isGuardRedirecting } = useGroupPagesGuard({
+  const { isGuardRedirecting } = useGroupPagesGuard({
     isDashboard: true,
   })
 
@@ -24,9 +24,8 @@ export default function GroupResultsPage() {
     isError,
     refetch: refetchGroup,
   } = useFetchGroup(groupIdInQueryParams)
-
   // If we are still fetching the group (or we are redirecting the user), we display a loader
-  if (!isGuardInit || isGuardRedirecting || isLoading) {
+  if (isGuardRedirecting || isLoading) {
     return <GroupLoader />
   }
 

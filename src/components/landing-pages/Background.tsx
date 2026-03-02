@@ -26,7 +26,7 @@ export default function Background({
         clipPath: `polygon(0 0, 100% 0, 98% 100%, 2% 100%)`,
       }}>
       {withColorLine && (
-        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
+        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all motion-reduce:animate-none" />
       )}
     </div>
   )

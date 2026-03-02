@@ -1,5 +1,4 @@
 import Wave from 'react-wavify'
-import Octopus from './waveContent/Octopus'
 
 export default function WaveContent() {
   return (
@@ -14,7 +13,6 @@ export default function WaveContent() {
           points: 3,
         }}
       />
-      <Octopus />
     </div>
   )
 }

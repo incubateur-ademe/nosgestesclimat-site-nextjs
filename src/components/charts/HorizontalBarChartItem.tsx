@@ -1,39 +1,41 @@
 import BarChart from '@/design-system/utils/BarChart'
-import Emoji from '@/design-system/utils/Emoji'
 import type { ReactNode } from 'react'
 
 interface Props {
-  title?: string
-  icons?: string
-  displayValue: ReactNode
-  shouldDisplayValue?: boolean
+  title?: string | ReactNode
+  icon?: ReactNode
+  displayValue?: ReactNode
   percentageOfTotalValue: number
   minTitleWidth?: number
   index?: number
-  barColor?: string
+  bgBarClassName?: string
+  bgIconClassName?: string
 }
 
 export default function HorizontalBarChartItem({
   title,
-  icons,
+  icon,
   displayValue,
-  shouldDisplayValue = true,
   percentageOfTotalValue,
   minTitleWidth,
   index,
-  barColor,
+  bgBarClassName = 'bg-primary-800',
+  bgIconClassName = 'bg-primary-100',
 }: Props) {
+  const animationDelay = 0.3 + (index ?? 0) * 0.5
+
   return (
-    <div className="w-full">
+    <div className="w-full rounded-lg border border-slate-400 bg-white p-4 pr-12">
       <div
-        className="mb-1.5 flex justify-between text-sm"
+        className="mb-1.5 flex justify-between"
         style={{
           minWidth: (minTitleWidth ?? 10) + 'rem',
         }}>
-        <div className="flex items-center gap-1">
-          <Emoji>{icons}</Emoji> <p className={`mb-0`}>{title}</p>
+        <div className="flex items-center gap-2">
+          <span className={`rounded-sm p-1.5 ${bgIconClassName}`}>{icon}</span>{' '}
+          <p className={`mb-0`}>{title}</p>
         </div>
-        {shouldDisplayValue && (
+        {displayValue && (
           <div className="text-primary-700 mr-4 min-w-20 text-right">
             {displayValue}
           </div>
@@ -43,9 +45,11 @@ export default function HorizontalBarChartItem({
       <div className="mr-4 flex-1" aria-hidden>
         <BarChart
           type="horizontal"
+          className="h-2"
           value={`${percentageOfTotalValue}%`}
           index={index}
-          color={barColor}
+          color={bgBarClassName}
+          delay={animationDelay}
         />
       </div>
     </div>

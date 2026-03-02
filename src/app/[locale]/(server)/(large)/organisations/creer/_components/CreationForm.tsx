@@ -14,7 +14,6 @@ import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import SelectInput from '@/design-system/inputs/SelectInput'
 import TextInput from '@/design-system/inputs/TextInput'
 import Separator from '@/design-system/layout/Separator'
-import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -34,8 +33,6 @@ interface Inputs {
 
 export default function CreationForm() {
   const { user, updateUserOrganisation } = useUser()
-
-  const { handleUpdateShouldPreventNavigation } = usePreventNavigation()
 
   const { t } = useClientTranslation()
 
@@ -70,8 +67,6 @@ export default function CreationForm() {
           },
         ],
       })
-
-      handleUpdateShouldPreventNavigation(false)
 
       updateUserOrganisation({
         name,

@@ -17,6 +17,7 @@ const getIsAllowedToBypassConsentDataShare = () => {
   const windowParentLocation = window.parent.location
 
   if (!windowLocation) {
+    // eslint-disable-next-line no-console
     console.error('Iframe Nos Gestes Climat: window.location is undefined')
     Sentry.captureMessage(
       `Iframe Nos Gestes Climat: window.location is undefined`
@@ -24,6 +25,7 @@ const getIsAllowedToBypassConsentDataShare = () => {
   }
 
   if (!windowParentLocation) {
+    // eslint-disable-next-line no-console
     console.error(
       'Iframe Nos Gestes Climat: window.parent.location is undefined'
     )

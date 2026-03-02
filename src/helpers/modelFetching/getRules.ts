@@ -37,6 +37,7 @@ export async function getRules({
   // We provide the FR version of the model if the region is not supported
   const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'
 
+  // eslint-disable-next-line no-console
   console.log(
     `Getting rules with parameters: isOptim=${isOptim}, regionCode=${regionCodeToProvide}, locale=${locale}, PRNumber=${PRNumber}, ABtesting=${ABtesting}`
   )

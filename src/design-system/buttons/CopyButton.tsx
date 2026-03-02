@@ -18,6 +18,7 @@ interface Props {
   onCopied?: () => void
   canShare?: boolean
   shareTitle?: string
+  'data-testid'?: string
 }
 
 export default function CopyButton({
@@ -29,6 +30,7 @@ export default function CopyButton({
   onCopied,
   canShare = true,
   shareTitle,
+  'data-testid': dataTestId,
 }: PropsWithChildren<Props>) {
   const { t } = useClientTranslation()
   const [isCopied, setIsCopied] = useState(false)
@@ -126,7 +128,8 @@ export default function CopyButton({
         className={twMerge('w-full', className)}
         onClick={handleShareOrCopy}
         aria-label={getButtonAriaLabel()}
-        aria-live="polite">
+        aria-live="polite"
+        data-testid={dataTestId}>
         {getButtonText()}
       </Button>
 

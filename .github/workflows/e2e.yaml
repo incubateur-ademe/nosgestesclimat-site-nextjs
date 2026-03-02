@@ -18,6 +18,7 @@ env:
   NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
   LOCAL_TEST: ${{ !inputs.is_preprod }}
   NEXT_PUBLIC_SITE_URL: ${{ inputs.is_preprod && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
+  COOKIE_NAME: preprod_ngcjwt
 
 jobs:
   # Build and setup job - runs on a single machine

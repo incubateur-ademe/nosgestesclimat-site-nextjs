@@ -25,6 +25,7 @@ export function useCategories({
   const categories = useMemo<DottedName[]>(() => {
     const rootRule = safeGetRule?.(root)
     if (!rootRule) {
+      // eslint-disable-next-line no-console
       console.error(`[useCategories] No rule found for ${root}`)
 
       Sentry.captureMessage(
@@ -34,6 +35,7 @@ export function useCategories({
     }
     const sum = getSomme(rootRule.rawNode)
     if (!sum) {
+      // eslint-disable-next-line no-console
       console.error(`[useCategories] No [somme] found for ${root}`)
 
       Sentry.captureMessage(

@@ -2,7 +2,7 @@ import { twMerge } from 'tailwind-merge'
 
 function FinPageSkeleton() {
   return (
-    <div className="relative mt-10 animate-pulse px-4">
+    <div className="relative mt-10 animate-pulse px-4 motion-reduce:animate-none">
       <div className="lg:hidden">
         <div className="bg-primary-100 mb-6 h-8 w-48 rounded-md"></div>
       </div>
