@@ -29,13 +29,11 @@ async function getCachedSimulationData({
   cacheLife('weeks')
   cacheTag(`simulation-${simulationId}`)
 
-  const simulationResult = await getSimulationResult({
+  return getSimulationResult({
     userId,
     simulationId,
     withPreviousResults: true,
   })
-
-  return simulationResult
 }
 
 export default async function CarbonFootprintResults({
