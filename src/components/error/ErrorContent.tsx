@@ -19,13 +19,15 @@ export default function ErrorContent() {
       </p>
 
       <p>
-        <Trans>Si le problème persiste, merci de</Trans>{' '}
-        <InlineLink
-          href="/contact"
-          className="inline!"
-          onClick={() => window.location.replace('/contact')}>
-          <Trans>contacter le support.</Trans>
-        </InlineLink>
+        <Trans i18nKey="error.contactSupport">
+          Si le problème persiste, merci de{' '}
+          <InlineLink
+            href="/contact"
+            className="inline!"
+            onClick={() => window.location.replace('/contact')}>
+            contacter le support.
+          </InlineLink>
+        </Trans>
       </p>
 
       <div className="mt-10 flex w-full justify-center">
