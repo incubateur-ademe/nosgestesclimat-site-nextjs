@@ -26,7 +26,7 @@ export const simulationSimulationStarted = [
   'Simulation First answer',
 ]
 
-export const simulationSimulationCompleted = (bilan: number) => [
+export const simulationSimulationCompleted = (bilan: number | null) => [
   'trackEvent',
   'Simulation',
   'Simulation Completed',

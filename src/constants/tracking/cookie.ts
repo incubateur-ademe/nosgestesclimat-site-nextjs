@@ -1,3 +1,9 @@
+export const cookieBannerDisplayed = [
+  'trackEvent',
+  'Bandeau cookies',
+  'Bandeau affiché',
+]
+
 export const cookieClickCustomize = [
   'trackEvent',
   'Bandeau cookies',

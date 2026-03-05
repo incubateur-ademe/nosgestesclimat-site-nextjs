@@ -2,10 +2,8 @@
 
 import CloseIcon from '@/components/icons/Close'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  trackingActionClickSortingButton,
-  trackingActionClickSortingButtonPosthog,
-} from '@/constants/tracking/actions'
+import { trackingActionClickSortingButton } from '@/constants/tracking/actions'
+import { captureActionClickSortingButton } from '@/constants/tracking/posthogTrackers'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -35,7 +33,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
           onClick={() => {
             setIsOpen(true)
             trackEvent(trackingActionClickSortingButton)
-            trackPosthogEvent(trackingActionClickSortingButtonPosthog)
+            trackPosthogEvent(captureActionClickSortingButton)
           }}
           className="text-orange-dark focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
           <Emoji role="img" aria-label={t('Ouvrir les options de tri')}>

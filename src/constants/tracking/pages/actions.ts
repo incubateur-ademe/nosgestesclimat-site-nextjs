@@ -6,10 +6,6 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 // Figma comment #67
 export const actionsClickStart = ['trackEvent', 'Actions', 'Click Démarrer']
 
-export const actionsClickStartPosthog = {
-  eventName: 'Actions click Démarrer',
-}
-
 // Figma comment #69
 export const actionsClickYes = (action: DottedName) => [
   'trackEvent',
@@ -18,13 +14,6 @@ export const actionsClickYes = (action: DottedName) => [
   `Click Yes ${action}`,
 ]
 
-export const actionsClickYesPosthog = (action: DottedName) => ({
-  eventName: 'Actions click Yes',
-  properties: {
-    action,
-  },
-})
-
 // Figma comment #70
 export const actionsClickNo = (action: DottedName) => [
   'trackEvent',
@@ -32,13 +21,6 @@ export const actionsClickNo = (action: DottedName) => [
   'Click No',
   `Click No ${action}`,
 ]
-
-export const actionsClickNoPosthog = (action: DottedName) => ({
-  eventName: 'Actions click No',
-  properties: {
-    action,
-  },
-})
 
 // Figma comment #71
 export const actionsClickAdditionalQuestion = (action: DottedName) => [
@@ -56,13 +38,6 @@ export const actionsOpenAction = (action: DottedName) => [
   `Open Action ${action}`,
 ]
 
-export const actionsOpenActionPosthog = (action: DottedName) => ({
-  eventName: 'Actions click open stats',
-  properties: {
-    action,
-  },
-})
-
 // Figma comment #114
 export const actionsClickAdeme = [
   'trackEvent',
@@ -71,10 +46,6 @@ export const actionsClickAdeme = [
   'Click Agir ADEME',
 ]
 
-export const actionsClickAdemePosthog = {
-  eventName: 'Actions click Agir ADEME',
-}
-
 // Click on "Comprendre le calcul" link in action detail
 export const actionsClickUnderstandCalculation = (action: DottedName) => [
   'trackEvent',
@@ -82,12 +53,3 @@ export const actionsClickUnderstandCalculation = (action: DottedName) => [
   'Click Understand Calculation',
   `Click Understand Calculation ${action}`,
 ]
-
-export const actionsClickUnderstandCalculationPosthog = (
-  action: DottedName
-) => ({
-  eventName: 'Actions click understand calculation',
-  properties: {
-    action,
-  },
-})
