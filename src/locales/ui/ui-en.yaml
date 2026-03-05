@@ -897,7 +897,6 @@ entries:
   Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please reload the page. If the problem persists, you can
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please try again later. If the problem persists, you can
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": 'Oops! There was an error retrieving your campaign information. You can retrieve it from '
-  endPage.tallyForm.buttonLabel: Give your opinion
   endPage.carboneChart.gaugeDescription: Graph showing your carbon footprint of {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes per year.
   endPage.carboneChart.progressBarLabel: Carbon footprint progress bar
   Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: An error has occurred while saving your data. Please try again shortly.
@@ -1017,7 +1016,6 @@ entries:
   Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
   Connexion: Connexion
   Visiter cette page: Visit this page
-  endPage.tallyForm.buttonLabel.lock: Donner votre avis
   actions.engagementIcon.ariaLabel: The actions are below
   actions.engagementIcon.ariaLabel.lock: Les actions se trouvent en dessous
   endPage.waterActions.lireArticle: Open article in a new window

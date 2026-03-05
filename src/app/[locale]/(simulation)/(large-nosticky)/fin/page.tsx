@@ -29,7 +29,6 @@ import GroupsTabContent from './_components/GroupsTabContent'
 import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import SaveResultsAndSigninSignUpForm from './_components/SaveResultsAndSigninSignUpForm'
-import TallyForm from './_components/TallyForm'
 import FinPageSkeleton from './skeleton'
 
 const titles: Record<Metric, ReactElement> = {
@@ -68,8 +67,6 @@ export default function FinPage() {
       <IframeDataShareModal />
 
       <FinTabs />
-
-      <TallyForm />
 
       <Poll />
 

@@ -19,8 +19,6 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run unit tests
-        env:
-          NEXT_PUBLIC_TALLY_FORM_ID: ${{ vars.NEXT_PUBLIC_TALLY_FORM_ID }}
         run: pnpm test --coverage
 
   lint:
