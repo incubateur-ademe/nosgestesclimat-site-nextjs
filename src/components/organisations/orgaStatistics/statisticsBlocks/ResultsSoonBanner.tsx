@@ -13,7 +13,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()
 
   return (
-    <div className="relative col-span-1 sm:col-span-2">
+    <div className="relative col-span-1">
       <div className="absolute top-0 left-0 z-10 h-full w-full p-10 pb-0">
         <div className="absolute top-0 right-0 bottom-0 left-0 -z-10 bg-white opacity-50" />
 
