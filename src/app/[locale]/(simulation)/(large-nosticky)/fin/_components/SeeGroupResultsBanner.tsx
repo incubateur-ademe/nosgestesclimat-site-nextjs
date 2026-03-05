@@ -4,13 +4,11 @@ import type { Locale } from '@/i18nConfig'
 
 interface Props {
   locale: Locale
-  name?: string
-  url?: string
+  name: string
+  url: string
 }
 
 export default function SeeGroupResultsBanner({ locale, name, url }: Props) {
-  if (!name || !url) return null
-
   return (
     <div className="bg-secondary-50 flex w-full flex-col items-center gap-4 rounded-lg px-4 py-6">
       <div className="text-center">
