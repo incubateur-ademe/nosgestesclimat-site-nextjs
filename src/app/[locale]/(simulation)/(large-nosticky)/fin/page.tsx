@@ -30,7 +30,6 @@ import GroupsTabContent from './_components/GroupsTabContent'
 import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import SaveResultsAndSigninSignUpForm from './_components/SaveResultsAndSigninSignUpForm'
-import TallyForm from './_components/TallyForm'
 
 const titles: Record<Metric, ReactElement> = {
   [carboneMetric]: <Trans>carbone</Trans>,
@@ -67,8 +66,6 @@ export default function FinPage() {
       <IframeDataShareModal />
 
       <FinTabs />
-
-      <TallyForm />
 
       <Poll />
 
