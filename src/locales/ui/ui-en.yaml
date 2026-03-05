@@ -1786,6 +1786,12 @@ entries:
   organisations.demanderDemo.title.lock: Demander une démo
   organisations.demanderDemo.subtitle: Book a slot to watch a demonstration of our features designed for organisations (companies, associations, schools, etc.) and start distributing the Nos Gestes Climat test to your audience.
   organisations.demanderDemo.subtitle.lock: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
+  fin.seeGroupResultsBanner.title: Thank you for completing the test!
+  fin.seeGroupResultsBanner.title.lock: Merci d'avoir complété le test !
+  fin.seeGroupResultsBanner.button: See the results
+  fin.seeGroupResultsBanner.button.lock: Voir les résultats
+  fin.seeGroupResultsBanner.text: Find out the results of the group test
+  fin.seeGroupResultsBanner.text.lock: Découvrez les résultats du test collectif
   results.objective.collectiveEffort.state: The French State
   results.objective.collectiveEffort.state.lock: L'État français
   common.parAn: per year
