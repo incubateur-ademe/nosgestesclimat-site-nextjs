@@ -11,6 +11,7 @@ import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
 import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
+import { getTendency } from './utils/getTendency'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
 export interface SimulationResult {
@@ -74,24 +75,6 @@ export async function getSimulation({
     captureException(error)
     return undefined
   }
-}
-
-export const getTendency = ({
-  previousCarbonFootprint,
-  currentCarbonFootprint,
-}: {
-  previousCarbonFootprint?: number
-  currentCarbonFootprint: number
-}): Tendency | undefined => {
-  if (
-    !previousCarbonFootprint ||
-    previousCarbonFootprint === currentCarbonFootprint
-  ) {
-    return undefined
-  }
-
-  if (previousCarbonFootprint < currentCarbonFootprint) return 'increase'
-  return 'decrease'
 }
 
 export async function getSimulationResult({
