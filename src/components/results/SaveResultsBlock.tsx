@@ -8,17 +8,17 @@ import Marianne from '@/components/images/partners/Marianne'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { isUserAuthenticated } from '@/helpers/server/model/user'
 import Image from 'next/image'
 import SaveResultsForm from './SaveResultsForm'
 interface Props {
   locale: Locale
-  isAuthentified: boolean
+  isAuthenticated?: boolean
 }
 
-export default async function SaveResultsBlock({
-  locale,
-  isAuthentified,
-}: Props) {
+export default async function SaveResultsBlock({ locale }: Props) {
+  const isAuthenticated = await isUserAuthenticated()
+
   const { t } = await getServerTranslation({ locale })
   return (
     <section
@@ -29,7 +29,7 @@ export default async function SaveResultsBlock({
           <h3
             id="save-results-block-title"
             className="title-md font-bold! text-white">
-            {isAuthentified ? (
+            {isAuthenticated ? (
               <Trans
                 i18nKey="results.saveResults.title.authenticated"
                 locale={locale}>
@@ -74,7 +74,7 @@ export default async function SaveResultsBlock({
             </li>
           </ul>
 
-          {isAuthentified ? (
+          {isAuthenticated ? (
             <ButtonLink color="borderless" href={MON_ESPACE_PATH}>
               <Trans
                 i18nKey="results.saveResults.buttonLabel.authenticated"
@@ -89,7 +89,7 @@ export default async function SaveResultsBlock({
           )}
         </div>
         <div className="max-w-full">
-          {isAuthentified ? (
+          {isAuthenticated ? (
             <div className="flex w-full justify-center">
               <Image
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/visuel_login_cbf2f03684.svg"

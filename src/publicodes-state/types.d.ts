@@ -101,6 +101,8 @@ export interface Simulation {
   model?: string
 }
 
+export type Tendency = 'increase' | 'decrease'
+
 export interface LocalStorage {
   user: User
   tutorials: Tutorials

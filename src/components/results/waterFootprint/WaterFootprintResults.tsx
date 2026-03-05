@@ -3,7 +3,6 @@ import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { eauMetric } from '@/constants/model/metric'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { getSimulationResult } from '@/helpers/server/model/simulations'
-import { isUserAuthenticated } from '@/helpers/server/model/user'
 import type { Locale } from '@/i18nConfig'
 import { cacheLife, cacheTag } from 'next/cache'
 import { notFound, redirect } from 'next/navigation'
@@ -42,8 +41,6 @@ export default async function WaterFootprintResults({
   locale,
   userId,
 }: Props) {
-  const isAuthenticated = await isUserAuthenticated()
-
   const simulationResults = await getCachedSimulationResult({
     userId,
     simulationId,
@@ -100,7 +97,8 @@ export default async function WaterFootprintResults({
           Retrouvez facilement vos résultats{' '}
         </Trans>
       </h2>
-      <SaveResultsBlock locale={locale} isAuthentified={isAuthenticated} />
+
+      <SaveResultsBlock locale={locale} />
 
       <div className="mb-16 w-full md:w-2xl">
         <ClimateAndWater locale={locale} />

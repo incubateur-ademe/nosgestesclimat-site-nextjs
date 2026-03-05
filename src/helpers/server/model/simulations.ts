@@ -5,6 +5,7 @@ import type {
   ComputedResults,
   Simulation,
   Situation,
+  Tendency,
 } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
@@ -14,6 +15,8 @@ import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation
 
 export interface SimulationResult {
   computedResults: ComputedResults
+  previousComputedResults?: ComputedResults
+  tendency?: Tendency
   situation: Situation
   progression: number
   date: string | Date
@@ -73,12 +76,32 @@ export async function getSimulation({
   }
 }
 
+export const getTendency = ({
+  previousCarbonFootprint,
+  currentCarbonFootprint,
+}: {
+  previousCarbonFootprint?: number
+  currentCarbonFootprint: number
+}): Tendency | undefined => {
+  if (
+    !previousCarbonFootprint ||
+    previousCarbonFootprint === currentCarbonFootprint
+  ) {
+    return undefined
+  }
+
+  if (previousCarbonFootprint < currentCarbonFootprint) return 'increase'
+  return 'decrease'
+}
+
 export async function getSimulationResult({
   userId,
   simulationId,
+  withPreviousResults,
 }: {
   userId: string
   simulationId: string
+  withPreviousResults?: boolean
 }): Promise<SimulationResult | null> {
   const simulation = await getSimulation({
     userId,
@@ -124,8 +147,24 @@ export async function getSimulationResult({
     }
   }
 
+  let previousComputedResults = undefined
+  if (withPreviousResults) {
+    const allUserSimulations = await getUserSimulations({ userId })
+
+    previousComputedResults = allUserSimulations.find(
+      (sim) =>
+        new Date(sim.date).getTime() < new Date(simulation.date).getTime() &&
+        sim.progression === 1
+    )?.computedResults
+  }
+
   return {
     computedResults: simulation.computedResults,
+    previousComputedResults,
+    tendency: getTendency({
+      previousCarbonFootprint: previousComputedResults?.carbone.bilan,
+      currentCarbonFootprint: simulation.computedResults.carbone.bilan,
+    }),
     situation: simulation.situation,
     progression: simulation.progression,
     date: simulation.date,
