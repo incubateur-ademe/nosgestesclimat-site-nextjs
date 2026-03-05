@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import CheckboxInput from '@/design-system/inputs/CheckboxInput'
-import EmailInput from '@/design-system/inputs/EmailInput'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
@@ -69,14 +68,6 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
         autoComplete="tel"
         value={defaultValues.administratorTelephone}
         {...register('administratorTelephone')}
-      />
-
-      <EmailInput
-        value={defaultValues.email}
-        data-testid="input-administrator-email"
-        {...register('email', {
-          required: t('Ce champ est requis'),
-        })}
       />
 
       <div className="w-[32rem] max-w-full">
