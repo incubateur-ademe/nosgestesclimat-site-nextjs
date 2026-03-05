@@ -9,16 +9,13 @@ export default function CreateFirstGroupSection() {
   return (
     <section className="mt-4">
       <p className="mb-6">
-        <strong className="text-secondary-700">
-          <Trans>Créez votre premier groupe</Trans>
-        </strong>{' '}
-        <Trans>
-          et invitez vos proches pour comparer vos résultats. Cela prend
-        </Trans>{' '}
-        <strong className="text-secondary-700">
-          <Trans>1 minute</Trans>
-        </strong>{' '}
-        !
+        <Trans i18nKey="results.groups.createFirstGroup">
+          <strong className="text-secondary-700">
+            Créez votre premier groupe
+          </strong>{' '}
+          et invitez vos proches pour comparer vos résultats. Cela prend{' '}
+          <strong className="text-secondary-700">1 minute</strong> !
+        </Trans>
       </p>
       <ButtonLink
         href={linkToGroupCreation}

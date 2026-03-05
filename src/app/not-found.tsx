@@ -5,7 +5,7 @@ import HeaderServer from '@/components/layout/HeaderServer'
 import { noIndexObject } from '@/constants/metadata'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import i18nConfig, { type Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { Suspense } from 'react'
 import './[locale]/globals.css'
 import { marianne } from './[locale]/layout'
@@ -27,14 +27,14 @@ export default function NotFound() {
         <Suspense
           fallback={
             <>
-              <HeaderServer locale={i18nConfig.defaultLocale as Locale} />
+              <HeaderServer locale={i18nConfig.defaultLocale} />
               <ContentLarge>
                 <BlockSkeleton className="mt-10" />
               </ContentLarge>
             </>
           }>
-          <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
-            <Route404 locale={i18nConfig.defaultLocale as Locale} />
+          <ClientLayout locale={i18nConfig.defaultLocale}>
+            <Route404 locale={i18nConfig.defaultLocale} />
           </ClientLayout>
         </Suspense>
       </body>

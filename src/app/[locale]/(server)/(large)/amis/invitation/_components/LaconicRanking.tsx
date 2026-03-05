@@ -15,11 +15,13 @@ export default function LaconicRanking({ group }: Props) {
     return (
       <section className="bg-primary-50 mt-6 rounded-xl p-4">
         <p className="mb-0">
-          <Trans>Qui de </Trans>{' '}
-          <strong className="text-primary-700">
-            {group.participants[0].name}
-          </strong>{' '}
-          <Trans>et vous aura la plus faible empreinte ?</Trans>{' '}
+          <Trans i18nKey="results.groups.ranking.laconic">
+            Qui de{' '}
+            <strong className="text-primary-700">
+              {group.participants[0].name}
+            </strong>{' '}
+            et vous aura la plus faible empreinte ?
+          </Trans>{' '}
           <Emoji>🤓</Emoji>
         </p>
       </section>

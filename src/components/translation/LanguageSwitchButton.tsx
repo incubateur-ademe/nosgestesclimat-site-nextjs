@@ -1,4 +1,4 @@
-import { getShouldDisplayLangButtons } from '@/helpers/language/getShouldDisplayLangButtons'
+import { getShouldBeLocalised } from '@/helpers/language/getShouldBeLocalised'
 import LanguageSwitchButtonClient from './LanguageSwitchButtonClient'
 
 export default async function LanguageSwitchButton({
@@ -10,7 +10,7 @@ export default async function LanguageSwitchButton({
   className?: string
   params?: { category?: string; article?: string; landingPageSlug?: string }
 }) {
-  const shouldDisplayLangButtons = await getShouldDisplayLangButtons(params)
+  const shouldDisplayLangButtons = await getShouldBeLocalised(params)
 
   // Avoid rendering if all buttons are disabled
   if (!shouldDisplayLangButtons) {

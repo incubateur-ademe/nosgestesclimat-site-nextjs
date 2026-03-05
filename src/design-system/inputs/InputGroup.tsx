@@ -35,8 +35,6 @@ export default function InputGroup({
   const srOnlyHelperTextId = `srOnlyHelper-${id}`
   const errorId = `error-${id}`
 
-  const errorColor = 'text-red-800 dark:text-white'
-
   const describedBy = [
     helperText ? helperTextId : undefined,
     error ? errorId : undefined,
@@ -61,7 +59,7 @@ export default function InputGroup({
           <span
             className={twMerge(
               `w-full text-base font-bold text-slate-900`,
-              error ? errorColor : ''
+              error ? 'text-red-800 dark:text-red-50' : ''
             )}>
             {label}
           </span>
@@ -84,7 +82,7 @@ export default function InputGroup({
           id={helperTextId}
           className={twMerge(
             '-mt-1 mb-2 text-base text-slate-900',
-            error ? errorColor : ''
+            error && 'text-red-800 dark:text-red-50'
           )}>
           {helperText}
         </span>
@@ -106,7 +104,7 @@ export default function InputGroup({
           id={errorId}
           role="alert"
           data-testid={`error-${name}`}
-          className={twMerge('mt-2 text-xs dark:text-red-50', errorColor)}>
+          className="mt-2 text-sm text-red-800 dark:text-red-50">
           {error}
         </span>
       )}
