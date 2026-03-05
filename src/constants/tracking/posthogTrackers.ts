@@ -1,3 +1,4 @@
+import type { CookieState } from '@/components/cookies/useCookieManagement'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 interface PosthogProps {
@@ -18,6 +19,7 @@ interface PosthogProps {
   url?: string
   tab?: string
   status?: 'authenticated' | 'unauthenticated'
+  cookieState?: CookieState
 }
 
 // Form
@@ -405,3 +407,13 @@ export const captureClickUpdateUserEmail = {
 export const captureClickUpdateUserNewsletters = {
   eventName: 'click update newsletters',
 }
+
+// Cookies
+
+export const captureCookieBannerStatus = ({ cookieState }: PosthogProps) => ({
+  eventName: 'Cookie banner status',
+  properties: {
+    posthogCookie: cookieState?.posthog,
+    googleTagCookie: cookieState?.googleTag,
+  },
+})
