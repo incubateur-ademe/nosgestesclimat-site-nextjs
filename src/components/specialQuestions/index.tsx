@@ -1,6 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
-import Chauffage from './Chauffage'
 import Plats from './Plats'
 import Textile from './Textile'
 import Voiture from './Voiture'
@@ -16,7 +15,6 @@ type SpecialQuestionProps = Props & { question: DottedName }
 const PLAT_RULENAME: DottedName = 'alimentation . plats'
 const VOITURE_RULENAME: DottedName = 'transport . voiture . km'
 const TEXTILE_RULENAME: DottedName = 'divers . textile . volume'
-const CHAUFFAGE_RULENAME: DottedName = 'logement . chauffage'
 
 const specialQuestions: Record<
   string,
@@ -30,13 +28,6 @@ const specialQuestions: Record<
   ),
   [TEXTILE_RULENAME]: (props: Props) => (
     <Textile key={TEXTILE_RULENAME} question={TEXTILE_RULENAME} {...props} />
-  ),
-  [CHAUFFAGE_RULENAME]: (props: Props) => (
-    <Chauffage
-      key={CHAUFFAGE_RULENAME}
-      question={CHAUFFAGE_RULENAME}
-      {...props}
-    />
   ),
 }
 
