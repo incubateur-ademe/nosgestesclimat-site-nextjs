@@ -5,6 +5,7 @@ import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadat
 
 import Footer from '@/components/layout/Footer'
 import Badge from '@/design-system/layout/Badge'
+import { getShouldBeLocalised } from '@/helpers/language/getShouldBeLocalised'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
@@ -40,6 +41,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `/blog/${category}/${article}`,
     },
+    locales: (await getShouldBeLocalised({ category, article }))
+      ? [...i18nConfig.locales]
+      : [i18nConfig.defaultLocale],
   })
 }
 

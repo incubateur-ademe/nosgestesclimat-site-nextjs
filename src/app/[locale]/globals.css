@@ -753,19 +753,3 @@ a[name='variations'] {
 #documentation-rule-root article h2 {
   @apply text-base! font-normal!;
 }
-
-/**
-** Tally
-**/
-iframe {
-  @apply bg-white;
-}
-.markdown details {
-  @apply bg-primary-50 mt-3 mb-6 cursor-pointer rounded-lg px-4 py-4;
-}
-.markdown details summary {
-  @apply font-medium;
-}
-.markdown details summary + * {
-  @apply pt-4;
-}

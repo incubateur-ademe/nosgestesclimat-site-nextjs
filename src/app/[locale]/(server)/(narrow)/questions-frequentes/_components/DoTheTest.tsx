@@ -11,25 +11,24 @@ export default function DoTheTest() {
   if (progression === 0) {
     return (
       <div>
-        <Trans>Vous n'avez pas encore débuté votre test,</Trans>{' '}
-        <InlineLink href={getLinkToSimulateur()}>
-          <strong>
-            <Trans>lancez-vous !</Trans>
-          </strong>
-        </InlineLink>
+        <Trans i18nKey="faq.doTheTest.notStarted">
+          Vous n'avez pas encore débuté votre test,{' '}
+          <InlineLink href={getLinkToSimulateur()}>
+            <strong>lancez-vous !</strong>
+          </InlineLink>
+        </Trans>
       </div>
     )
   }
 
   return (
     <div>
-      <Trans>Vous avez commencé votre test,</Trans>{' '}
-      <InlineLink href={getLinkToSimulateur()}>
-        <strong>
-          {' '}
-          <Trans>cliquez ici pour le reprendre !</Trans>
-        </strong>
-      </InlineLink>
+      <Trans i18nKey="faq.doTheTest.started">
+        Vous avez commencé votre test,{' '}
+        <InlineLink href={getLinkToSimulateur()}>
+          <strong>cliquez ici pour le reprendre !</strong>
+        </InlineLink>
+      </Trans>
     </div>
   )
 }

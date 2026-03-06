@@ -22,7 +22,7 @@ export default function CreateOrganisation() {
         tag="h2"
       />
 
-      <div className="max-w-3xl" data-testid="create-organisation">
+      <div className="mb-4 max-w-3xl" data-testid="create-organisation">
         <Baseline />
       </div>
 
