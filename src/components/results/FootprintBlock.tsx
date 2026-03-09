@@ -1,10 +1,10 @@
 import { carboneMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import type { Tendency } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import type { Tendency } from './TendencyIndicator'
 import TendencyIndicator from './TendencyIndicator'
 
 interface Props {

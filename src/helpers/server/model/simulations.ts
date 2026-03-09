@@ -5,7 +5,6 @@ import type {
   ComputedResults,
   Simulation,
   Situation,
-  Tendency,
 } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
@@ -13,6 +12,8 @@ import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
 import { getTendency } from './utils/getTendency'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
+
+export type Tendency = 'increase' | 'decrease'
 
 export interface SimulationResult {
   computedResults: ComputedResults

@@ -1,4 +1,4 @@
-import type { Tendency } from '@/publicodes-state/types'
+import type { Tendency } from '../simulations'
 
 export const getTendency = ({
   previousCarbonFootprint,
