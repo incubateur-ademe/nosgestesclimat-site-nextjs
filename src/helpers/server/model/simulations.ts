@@ -41,7 +41,6 @@ export async function getUserSimulations({
   return sortedSimulations
 }
 
-// Allows unauthenticated users to fetch simulations
 export async function getSimulation({
   userId,
   simulationId,
