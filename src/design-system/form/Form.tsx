@@ -10,7 +10,7 @@ interface Props {
   buttonLabel?: React.ReactNode
   buttonColor?: ButtonColor
   error?: string
-  onSubmit?: () => void
+  onSubmit?: React.FormEventHandler<HTMLFormElement>
   className?: string
   additionnalButton?: React.ReactNode
   isVerticalLayout?: boolean
