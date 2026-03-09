@@ -3,6 +3,7 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
 import type { ComputedResults, Simulation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
+import { cacheLife, cacheTag } from 'next/cache'
 import { fetchServer } from './fetchServer'
 import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
@@ -74,6 +75,10 @@ export async function getSimulationResult({
   userId: string
   simulationId: string
 }): Promise<SimulationResult | null> {
+  'use cache'
+  cacheLife('weeks')
+  cacheTag(`simulation-${simulationId}`)
+
   const simulation = await getSimulation({
     userId,
     simulationId,
