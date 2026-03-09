@@ -77,6 +77,7 @@ export default async function WaterFootprintResults({
             / an
           </Trans>
         }
+        tendency={simulationResults.tendency}
       />
 
       <IsItALot locale={locale} />

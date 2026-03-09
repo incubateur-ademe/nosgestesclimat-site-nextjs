@@ -32,7 +32,6 @@ async function getCachedSimulationData({
   return getSimulationResult({
     userId,
     simulationId,
-    withPreviousResults: true,
   })
 }
 

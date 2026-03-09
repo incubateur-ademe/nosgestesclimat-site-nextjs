@@ -81,11 +81,9 @@ export async function getSimulation({
 export async function getSimulationResult({
   userId,
   simulationId,
-  withPreviousResults,
 }: {
   userId: string
   simulationId: string
-  withPreviousResults?: boolean
 }): Promise<SimulationResult | null> {
   const simulation = await getSimulation({
     userId,
@@ -131,10 +129,10 @@ export async function getSimulationResult({
     }
   }
 
-  let previousComputedResults = undefined
-  if (withPreviousResults) {
-    const allUserSimulations = await getUserSimulations({ userId })
+  const allUserSimulations = await getUserSimulations({ userId })
 
+  let previousComputedResults
+  if (allUserSimulations.length > 1) {
     previousComputedResults = allUserSimulations.find(
       (sim) =>
         new Date(sim.date).getTime() < new Date(simulation.date).getTime() &&
