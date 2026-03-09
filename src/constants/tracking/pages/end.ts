@@ -22,13 +22,6 @@ export const endClickCategory = (category: DottedName) => [
   `Click Category ${category}`,
 ]
 
-export const endClickCategoryPosthog = (category: DottedName) => ({
-  eventName: 'Fin click Category',
-  properties: {
-    category,
-  },
-})
-
 // Figma comment #63
 export const endClickAction = (action: DottedName) => [
   'trackEvent',
@@ -39,13 +32,6 @@ export const endClickAction = (action: DottedName) => [
 
 // Figma comment #64
 export const endClickActions = ['trackEvent', 'Fin', 'Click Actions']
-
-export const endClickActionsPosthog = (subcategory: string) => ({
-  eventName: 'Fin click Actions',
-  properties: {
-    subcategory,
-  },
-})
 
 // Figma comment #65
 export const endClickDocumentation = [
@@ -59,10 +45,6 @@ export const endClickDomesticWater = [
   'Fin',
   'Click Eau domestique',
 ]
-
-export const endClickDomesticWaterPosthog = {
-  eventName: 'Fin click Eau domestique',
-}
 
 export const endClickJagisFirstBlock = [
   'trackEvent',

@@ -5,10 +5,8 @@ import {
   postNewsletterFormAction,
 } from '@/actions/newsletters/postNewsletterFormAction'
 import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
-import {
-  captureClickUpdateUserNewsletters,
-  clickUpdateUserNewsletters,
-} from '@/constants/tracking/user-account'
+import { captureClickUpdateUserNewsletters } from '@/constants/tracking/posthogTrackers'
+import { clickUpdateUserNewsletters } from '@/constants/tracking/user-account'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 

@@ -3,10 +3,8 @@
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  endClickDomesticWater,
-  endClickDomesticWaterPosthog,
-} from '@/constants/tracking/pages/end'
+import { endClickDomesticWater } from '@/constants/tracking/pages/end'
+import { captureEndClickDomesticWater } from '@/constants/tracking/posthogTrackers'
 import Button from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
@@ -45,7 +43,7 @@ export default function DomesticWater() {
         className="absolute top-4 right-4 h-12 w-12 p-0!"
         onClick={() => {
           trackEvent(endClickDomesticWater)
-          trackPosthogEvent(endClickDomesticWaterPosthog)
+          trackPosthogEvent(captureEndClickDomesticWater)
           setIsOpen((prevIsOpen) => !prevIsOpen)
         }}>
         {isOpen ? (

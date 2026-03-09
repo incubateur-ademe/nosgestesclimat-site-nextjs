@@ -7,6 +7,8 @@ import {
   captureClickHeaderAccessMySpaceAuthenticatedServer,
   captureClickHeaderLogoutAuthenticatedServer,
   captureClickHeaderMonEspaceAuthenticatedServer,
+} from '@/constants/tracking/posthogTrackers'
+import {
   headerClickAccessMySpaceAuthenticatedServer,
   headerClickLogoutAuthenticatedServer,
   headerClickMonEspaceAuthenticatedServer,

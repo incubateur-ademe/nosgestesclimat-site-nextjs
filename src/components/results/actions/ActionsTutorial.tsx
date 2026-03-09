@@ -1,10 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  actionsClickStart,
-  actionsClickStartPosthog,
-} from '@/constants/tracking/pages/actions'
+import { actionsClickStart } from '@/constants/tracking/pages/actions'
+import { captureActionsClickStart } from '@/constants/tracking/posthogTrackers'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
@@ -89,7 +87,7 @@ export default function ActionsTutorial() {
         onClick={() => {
           hideTutorial('actions')
           trackEvent(actionsClickStart)
-          trackPosthogEvent(actionsClickStartPosthog)
+          trackPosthogEvent(captureActionsClickStart)
         }}>
         <Trans>Démarrer</Trans>
       </Button>

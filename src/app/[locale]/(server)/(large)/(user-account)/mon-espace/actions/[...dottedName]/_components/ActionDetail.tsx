@@ -4,10 +4,12 @@ import ActionForm from '@/components/results/actions/actionsContent/actions/Acti
 import Trans from '@/components/translation/trans/TransClient'
 import {
   actionsClickUnderstandCalculation,
-  actionsClickUnderstandCalculationPosthog,
   actionsClickYes,
-  actionsClickYesPosthog,
 } from '@/constants/tracking/pages/actions'
+import {
+  captureActionsClickUnderstandCalculation,
+  captureActionsClickYes,
+} from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
@@ -107,7 +109,9 @@ export default function ActionDetail({
               onClick={() => {
                 trackEvent(actionsClickUnderstandCalculation(dottedName))
                 trackPosthogEvent(
-                  actionsClickUnderstandCalculationPosthog(dottedName)
+                  captureActionsClickUnderstandCalculation({
+                    action: dottedName,
+                  })
                 )
               }}>
               <span role="img" aria-hidden className="mr-3 text-xl">
@@ -137,7 +141,9 @@ export default function ActionDetail({
 
                   if (!actionChoices[dottedName]) {
                     trackEvent(actionsClickYes(dottedName))
-                    trackPosthogEvent(actionsClickYesPosthog(dottedName))
+                    trackPosthogEvent(
+                      captureActionsClickYes({ action: dottedName })
+                    )
                   }
                 }}
                 action={{ ...rule, dottedName } as unknown as Action}
