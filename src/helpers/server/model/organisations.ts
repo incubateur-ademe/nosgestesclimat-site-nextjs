@@ -43,7 +43,7 @@ export async function getPublicPollBySlug({
   userId: string
   pollSlug: string
 }): Promise<PublicOrganisationPoll | null> {
-  return await fetchServer<PublicOrganisationPoll>(
+  return fetchServer<PublicOrganisationPoll>(
     `${ORGANISATION_URL}/${userId}/public-polls/${pollSlug}`
   )
 }

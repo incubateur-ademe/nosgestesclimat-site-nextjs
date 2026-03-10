@@ -8,7 +8,7 @@ import { getAuthUser } from './user'
 export async function getUserGroups(): Promise<Group[]> {
   const user = await getAuthUser()
 
-  return await fetchServer<Group[]>(`${GROUP_URL}/${user.id}`)
+  return fetchServer<Group[]>(`${GROUP_URL}/${user.id}`)
 }
 
 export async function getGroupById({
@@ -18,5 +18,5 @@ export async function getGroupById({
   groupId: string
   userId: string
 }): Promise<Group | null> {
-  return await fetchServer<Group>(`${GROUP_URL}/${userId}/${groupId}`)
+  return fetchServer<Group>(`${GROUP_URL}/${userId}/${groupId}`)
 }
