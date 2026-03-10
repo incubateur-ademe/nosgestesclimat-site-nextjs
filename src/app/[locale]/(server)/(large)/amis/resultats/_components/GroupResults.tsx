@@ -2,7 +2,7 @@
 
 import HowToAct from '@/components/actions/HowToAct'
 import FootprintSelector from '@/components/footprints/FootprintSelector'
-import CategoriesAccordion from '@/components/results/CategoriesAccordionLegacy'
+import CategoriesAccordionLegacy from '@/components/results/CategoriesAccordionLegacy'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
@@ -85,7 +85,7 @@ export default function GroupResults({
 
             <CategoriesChart />
 
-            <CategoriesAccordion />
+            <CategoriesAccordionLegacy />
 
             <Separator className="my-6" />
 

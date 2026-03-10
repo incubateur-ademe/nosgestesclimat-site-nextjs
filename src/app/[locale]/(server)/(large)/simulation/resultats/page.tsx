@@ -2,7 +2,7 @@ import SimulateurSkeleton from '@/app/[locale]/(simulation)/simulateur/[root]/sk
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getInitialUserId, getUser } from '@/helpers/server/dal/user'
+import { getUser } from '@/helpers/server/dal/user'
 import { getUserSimulations } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
 import { UserProvider } from '@/publicodes-state'
@@ -53,7 +53,7 @@ export default async function SimulationResultatsResolverPage({
 
   await handleRedirectIfAuthenticated(locale)
 
-  const initialUserId = await getInitialUserId()
+  const { id: initialUserId } = await getUser()
 
   // If not authenticated or no simulations on server, fallback to client-side (localStorage)
   return (
