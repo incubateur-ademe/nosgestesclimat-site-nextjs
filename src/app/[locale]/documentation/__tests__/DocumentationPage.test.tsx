@@ -10,10 +10,6 @@ vi.mock('@/helpers/modelFetching/getRules', () => ({
   getRules: vi.fn(),
 }))
 
-vi.mock('@/helpers/modelFetching/getSupportedRegions', () => ({
-  getSupportedRegions: vi.fn(() => ['FR', 'BE']),
-}))
-
 vi.mock('@/utils/decodeRuleNameFromPath', () => ({
   decodeRuleNameFromPath: vi.fn(),
 }))

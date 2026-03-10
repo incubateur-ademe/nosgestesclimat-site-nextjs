@@ -1,66 +1,29 @@
-import Trans from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransClient'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Emoji from '@/design-system/utils/Emoji'
-import { getRules } from '@/helpers/modelFetching/getRules'
-import type { Locale } from '@/i18nConfig'
-import type { Situation } from '@/publicodes-state/types'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import Engine from 'publicodes'
+
+import { useLocale } from '@/hooks/useLocale'
+import { useRules } from '@/hooks/useRules'
+import { EngineProvider, useRule } from '@/publicodes-state'
 import DomesticWaterBlock from './DomesticWaterBlock'
 
-interface Props {
-  locale: Locale
-  situation: Situation
-}
+function WhatIsWaterFootprintView() {
+  const { numericValue: domesticWaterValue } = useRule(
+    'logement . eau domestique'
+  )
 
-const getDomesticWaterValue = async ({ locale, situation }: Props) => {
-  const rules = await getRules({ locale })
-
-  const engine = new Engine<DottedName>(rules, {
-    strict: {
-      situation: false,
-      noOrphanRule: false,
-      checkPossibleValues: false,
-      noCycleRuntime: false,
-    },
-    warn: {
-      cyclicReferences: false,
-      situationIssues: false,
-    },
-  })
-
-  engine.setSituation(situation)
-
-  const evaluation = engine.evaluate({
-    valeur: 'logement . eau domestique',
-    contexte: {
-      métrique: "'eau'",
-    },
-  })
-
-  return typeof evaluation.nodeValue === 'number' ? evaluation.nodeValue : 149
-}
-
-export default async function WhatIsWaterFootprint({
-  locale,
-  situation,
-}: Props) {
-  const domesticWaterValue = await getDomesticWaterValue({ locale, situation })
+  const locale = useLocale()
 
   return (
     <div className="mb-12 flex flex-col gap-8 md:flex-row">
       <section className="bg-primary-50 flex-1 p-8">
         <h2 className="title-lg">
-          <Trans
-            i18nKey="simulation.eau.whatIsWaterFootprint.title"
-            locale={locale}>
+          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.title">
             L'empreinte eau, c'est quoi ?
           </Trans>
         </h2>
         <p>
-          <Trans
-            i18nKey="simulation.eau.whatIsWaterFootprint.description"
-            locale={locale}>
+          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.description">
             L'empreinte eau, c'est{' '}
             <strong>l'ensemble de l'eau consommée</strong> pour{' '}
             <strong>produire</strong>
@@ -72,9 +35,7 @@ export default async function WhatIsWaterFootprint({
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">🍅</Emoji>
             <span className="flex-1">
-              <Trans
-                i18nKey="simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables"
-                locale={locale}>
+              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables">
                 les <strong>fruits, légumes</strong> et{' '}
                 <strong>céréales</strong> que vous mangez
               </Trans>
@@ -83,9 +44,7 @@ export default async function WhatIsWaterFootprint({
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">👕</Emoji>
             <span className="flex-1">
-              <Trans
-                i18nKey="simulation.eau.whatIsWaterFootprint.list.cotton"
-                locale={locale}>
+              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.cotton">
                 la culture du <strong>coton</strong> que vous portez
               </Trans>
             </span>
@@ -93,9 +52,7 @@ export default async function WhatIsWaterFootprint({
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">🐮</Emoji>
             <span className="flex-1">
-              <Trans
-                i18nKey="simulation.eau.whatIsWaterFootprint.list.animals"
-                locale={locale}>
+              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.animals">
                 l'alimentation des <strong>animaux</strong> que vous consommez
               </Trans>
             </span>
@@ -103,9 +60,7 @@ export default async function WhatIsWaterFootprint({
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">📱</Emoji>
             <span className="flex-1">
-              <Trans
-                i18nKey="simulation.eau.whatIsWaterFootprint.list.digitalDevices"
-                locale={locale}>
+              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.digitalDevices">
                 l'extraction des matériaux de vos{' '}
                 <strong>appareils numériques</strong>
               </Trans>
@@ -114,9 +69,7 @@ export default async function WhatIsWaterFootprint({
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">⚡️</Emoji>
             <span className="flex-1">
-              <Trans
-                i18nKey="simulation.eau.whatIsWaterFootprint.list.electricity"
-                locale={locale}>
+              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.electricity">
                 la production de votre <strong>électricité</strong>
               </Trans>
             </span>
@@ -124,9 +77,7 @@ export default async function WhatIsWaterFootprint({
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">🚫</Emoji>
             <span className="flex-1">
-              <Trans
-                i18nKey="simulation.eau.whatIsWaterFootprint.list.domesticWater"
-                locale={locale}>
+              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.domesticWater">
                 <strong>attention</strong> : l'eau domestique (par exemple l'eau
                 de vos douches) ne fait pas partie de l'empreinte eau
               </Trans>
@@ -137,16 +88,12 @@ export default async function WhatIsWaterFootprint({
 
       <section className="bg-secondary-50 flex-1 p-8">
         <h2 className="title-lg">
-          <Trans
-            i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.title"
-            locale={locale}>
+          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.title">
             Et l'eau de ma douche dans tout ça ?
           </Trans>
         </h2>
         <p>
-          <Trans
-            i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description1"
-            locale={locale}>
+          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description1">
             L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas
             comprise dans votre empreinte eau, puisqu’elle est restituée. Par
             exemple, l’eau de votre douche, après dépollution, est rendue aux
@@ -160,9 +107,7 @@ export default async function WhatIsWaterFootprint({
         />
 
         <p>
-          <Trans
-            i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description2"
-            locale={locale}>
+          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description2">
             L’eau domestique peut avoir <strong>un impact très fort</strong>{' '}
             selon la <strong>saison</strong> et la <strong>localisation</strong>
             .
@@ -171,14 +116,21 @@ export default async function WhatIsWaterFootprint({
 
         <div>
           <InlineLink href="https://vigieau.gouv.fr/">
-            <Trans
-              i18nKey="simulation.eau.whatIsWaterFootprint.vigieEau"
-              locale={locale}>
+            <Trans i18nKey="simulation.eau.whatIsWaterFootprint.vigieEau">
               Rendez-vous sur VigiEau pour en savoir plus.
             </Trans>
           </InlineLink>
         </div>
       </section>
     </div>
+  )
+}
+export default function WhatIsWaterFootprint() {
+  const { data: rules } = useRules()
+
+  return (
+    <EngineProvider rules={rules}>
+      <WhatIsWaterFootprintView />
+    </EngineProvider>
   )
 }

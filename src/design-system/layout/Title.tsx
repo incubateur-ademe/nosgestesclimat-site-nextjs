@@ -16,9 +16,9 @@ export interface TitleProps {
 }
 
 const sizesClassNames: Record<Sizes, string> = {
-  xl: 'text-4xl',
-  lg: 'text-3xl',
-  md: 'text-2xl',
+  xl: 'text-3xl font-bold md:text-4xl',
+  lg: 'text-2xl font-medium md:text-3xl',
+  md: 'text-xl font-normal md:text-2xl',
 }
 
 export default function Title({

@@ -49,6 +49,7 @@ export default async function SimulationPage({
   return (
     <SimulationResults
       simulationResult={simulationResult}
+      simulationId={simulationId}
       locale={locale as Locale}
     />
   )

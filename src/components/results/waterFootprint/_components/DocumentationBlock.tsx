@@ -1,10 +1,10 @@
+import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import {
   captureEndClickDocumentationServer,
   endClickDocumentationServer,
 } from '@/constants/tracking/pages/end'
 import type { Locale } from '@/i18nConfig'
-import Link from 'next/link'
 
 interface Props {
   locale: Locale
@@ -31,7 +31,7 @@ export default function DocumentationBlock({ locale }: Props) {
 
       <Link
         href="/documentation/bilan"
-        className="text-primary-700 flex items-center underline"
+        className="flex items-center"
         data-track-event={endClickDocumentationServer}
         data-track-posthog={captureEndClickDocumentationServer}>
         <Trans locale={locale} i18nKey="simulation.eau.documentation.link">

@@ -1,12 +1,11 @@
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import FinTabs from '@/components/results/FinTabs'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { eauMetric } from '@/constants/model/metric'
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { getSimulationResult } from '@/helpers/server/model/simulations'
-import { isUserAuthenticated } from '@/helpers/server/model/user'
+import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
-import { cacheLife, cacheTag } from 'next/cache'
-import { notFound, redirect } from 'next/navigation'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 import Trans from '../../translation/trans/TransServer'
 import FootprintBlock from '../FootprintBlock'
 import SaveResultsBlock from '../SaveResultsBlock'
@@ -15,46 +14,22 @@ import DocumentationBlock from './_components/DocumentationBlock'
 import IsItALot from './_components/IsItALot'
 import WaterActions from './_components/WaterActions'
 import WaterFootprintDetail from './_components/WaterFootprintDetail'
-import WhatIsWaterFootprint from './_components/WhatIsWaterFootprint'
 
 interface Props {
   simulationId: string
+  simulationResult: SimulationResult
   locale: Locale
-  userId: string
 }
 
-async function getCachedSimulationResult({
-  userId,
-  simulationId,
-}: {
-  userId: string
-  simulationId: string
-}) {
-  'use cache'
-  cacheLife('weeks')
-  cacheTag(`simulation-${simulationId}`)
+const WhatIsWaterFootprint = dynamic(
+  () => import('./_components/WhatIsWaterFootprint')
+)
 
-  return getSimulationResult({ userId, simulationId })
-}
-
-export default async function WaterFootprintResults({
+export default function WaterFootprintResults({
   simulationId,
+  simulationResult,
   locale,
-  userId,
 }: Props) {
-  const isAuthenticated = await isUserAuthenticated()
-
-  const simulationResults = await getCachedSimulationResult({
-    userId,
-    simulationId,
-  })
-
-  if (!simulationResults) notFound()
-
-  if (simulationResults.progression !== 1) {
-    redirect(SIMULATOR_PATH)
-  }
-
   return (
     <>
       <FinTabs />
@@ -67,7 +42,7 @@ export default async function WaterFootprintResults({
 
       <FootprintBlock
         locale={locale}
-        value={simulationResults.computedResults.eau.bilan}
+        value={simulationResult.computedResults.eau.bilan}
         title={
           <Trans locale={locale} i18nKey="simulation.eau.title">
             L’empreinte eau qui sert à produire ce que vous consommez
@@ -84,21 +59,23 @@ export default async function WaterFootprintResults({
       <IsItALot locale={locale} />
 
       <WaterFootprintDetail
-        computedResults={simulationResults.computedResults}
+        computedResults={simulationResult.computedResults}
         locale={locale}
       />
 
-      <WhatIsWaterFootprint
-        situation={simulationResults.situation}
-        locale={locale}
-      />
+      <Suspense>
+        <QueryClientProviderWrapper>
+          <WhatIsWaterFootprint />
+        </QueryClientProviderWrapper>
+      </Suspense>
 
       <h2 className="title-lg mb-8">
         <Trans locale={locale} i18nKey="simulation.eau.saveBlock.title">
           Retrouvez facilement vos résultats{' '}
         </Trans>
       </h2>
-      <SaveResultsBlock locale={locale} isAuthentified={isAuthenticated} />
+
+      <SaveResultsBlock locale={locale} />
 
       <div className="mb-16 w-full md:w-2xl">
         <ClimateAndWater locale={locale} />

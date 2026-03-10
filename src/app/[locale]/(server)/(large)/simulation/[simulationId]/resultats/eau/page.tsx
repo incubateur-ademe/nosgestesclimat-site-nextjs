@@ -1,30 +1,33 @@
 import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
-import { getInitialUserId, getUser } from '@/helpers/server/dal/user'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import { getUser } from '@/helpers/server/dal/user'
+import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export default async function SimulationPage({
   params,
-  searchParams,
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats/eau'>) {
   const { simulationId, locale } = await params
-  const { userId: userIdParam } = await searchParams
 
-  const user = await getUser()
+  let simulationResult
+  try {
+    const user = await getUser()
 
-  // If not authenticated, we try to get the userId from the cookie or searchParams
-  const userId =
-    user?.id ?? (await getInitialUserId()) ?? (userIdParam as string)
+    simulationResult = await getSimulationResult({ user, simulationId: '' })
 
-  if (!userId) {
+    if (simulationResult.progression !== 1) {
+      redirect(SIMULATOR_PATH)
+    }
+  } catch {
     notFound()
   }
 
   return (
     <WaterFootprintResults
-      simulationId={simulationId as string}
+      simulationId={simulationId}
+      simulationResult={simulationResult}
       locale={locale as Locale}
-      userId={userId}
     />
   )
 }

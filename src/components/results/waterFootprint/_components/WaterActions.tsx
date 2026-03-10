@@ -38,6 +38,10 @@ export default async function WaterActions({ locale }: Props) {
         <li>
           <Link
             href={'/blog/consommation/reflexes-textile-econome-empreinte-eau'}
+            aria-label={t(
+              'endPage.waterActions.lireArticle',
+              "Ouvrir l'article dans une nouvelle fenêtre"
+            )}
             target="_blank"
             className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
             <div>
@@ -46,7 +50,7 @@ export default async function WaterActions({ locale }: Props) {
                 width="400"
                 height="200"
                 className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
-                alt={`Les 3 réflexes à adopter pour une garde-robe économe en eau`}
+                alt=""
               />
               <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
                 <Trans
@@ -60,14 +64,7 @@ export default async function WaterActions({ locale }: Props) {
               <Trans locale={locale} i18nKey="endPage.waterActions.readArticle">
                 Lire l'article
               </Trans>{' '}
-              <ExternalLinkIcon
-                role="img"
-                aria-label={t(
-                  'endPage.waterActions.lireArticle',
-                  "Ouvrir l'article dans une nouvelle fenêtre"
-                )}
-                className="stroke-primary-700 ml-2"
-              />
+              <ExternalLinkIcon className="stroke-primary-700 ml-2" />
             </div>
           </Link>
         </li>
@@ -76,6 +73,10 @@ export default async function WaterActions({ locale }: Props) {
             href={
               '/blog/alimentation/8-facons-ameliorer-empreinte-de-mon-assiette'
             }
+            aria-label={t(
+              'endPage.waterActions.lireArticle',
+              "Ouvrir l'article dans une nouvelle fenêtre"
+            )}
             target="_blank"
             className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
             <div>
@@ -84,7 +85,7 @@ export default async function WaterActions({ locale }: Props) {
                 width="400"
                 height="200"
                 className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
-                alt={`Les 8 manières d'améliorer l'empreinte eau de mon assiette`}
+                alt=""
               />
               <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
                 <Trans
@@ -98,14 +99,7 @@ export default async function WaterActions({ locale }: Props) {
               <Trans locale={locale} i18nKey="endPage.waterActions.readArticle">
                 Lire l'article
               </Trans>{' '}
-              <ExternalLinkIcon
-                role="img"
-                aria-label={t(
-                  'endPage.waterActions.lireArticle',
-                  "Ouvrir l'article dans une nouvelle fenêtre"
-                )}
-                className="stroke-primary-700 ml-2"
-              />
+              <ExternalLinkIcon className="stroke-primary-700 ml-2" />
             </div>
           </Link>
         </li>

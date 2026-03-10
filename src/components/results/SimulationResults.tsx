@@ -8,10 +8,15 @@ import FootprintBlock from './FootprintBlock'
 
 interface Props {
   simulationResult: SimulationResult
+  simulationId: string
   locale: Locale
 }
 
-export default function SimulationResults({ simulationResult, locale }: Props) {
+export default function SimulationResults({
+  simulationResult,
+  simulationId,
+  locale,
+}: Props) {
   return (
     <>
       <FinTabs />

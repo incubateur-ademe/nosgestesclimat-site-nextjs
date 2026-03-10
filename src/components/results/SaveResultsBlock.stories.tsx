@@ -64,13 +64,11 @@ type Story = StoryObj<typeof SaveResultsBlock>
 export const Unauthenticated: Story = {
   args: {
     locale: 'fr',
-    isAuthentified: false,
   },
 }
 
 export const Authenticated: Story = {
   args: {
     locale: 'fr',
-    isAuthentified: true,
   },
 }
