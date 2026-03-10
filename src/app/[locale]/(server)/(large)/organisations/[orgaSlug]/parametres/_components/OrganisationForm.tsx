@@ -1,15 +1,9 @@
 'use client'
-import VerifyCodeForm from '@/components/AuthenticateUserForm/VerifyCodeForm'
 import Trans from '@/components/translation/trans/TransClient'
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
-import Modal from '@/design-system/modals/Modal'
-import { useCreateVerificationCode } from '@/hooks/authentication/useCreateVerificationCode'
-import { usePendingVerification } from '@/hooks/authentication/usePendingVerification'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
-import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
 import {
   type SubmitHandler,
@@ -25,28 +19,12 @@ export default function OrganisationForm({
   defaultValues: OrgaSettingsInputsType
   slug: string
 }) {
-  const { t } = useClientTranslation()
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useReactHookForm({
     defaultValues,
-  })
-  const formData = watch()
-
-  const {
-    pendingVerification,
-    registerVerification,
-    resetVerification,
-    completeVerification,
-  } = usePendingVerification({})
-
-  // @TODO : handle error code
-  const { createVerificationCode } = useCreateVerificationCode({
-    onComplete: registerVerification,
   })
 
   const updateOrganisation = useUpdateOrganisation()
@@ -54,12 +32,6 @@ export default function OrganisationForm({
   const handleUpdateOrganisation: SubmitHandler<
     OrgaSettingsInputsType
   > = async (formData) => {
-    const nextEmail = formatEmail(formData.email)
-    // Switch to the update email user flow
-    if (nextEmail !== defaultValues.email) {
-      await createVerificationCode(nextEmail)
-      return
-    }
     try {
       await updateOrganisation.mutateAsync({
         organisationIdOrSlug: slug,
@@ -72,27 +44,11 @@ export default function OrganisationForm({
 
   return (
     <>
-      {pendingVerification && (
-        <Modal
-          ariaLabel={t(
-            'organisations.emailVerificationModal.title',
-            "Fenêtre modale de confirmation d'e-mail"
-          )}
-          isOpen
-          closeModal={() => resetVerification()}
-          hasAbortCross={false}>
-          <VerifyCodeForm
-            onRegisterNewVerification={registerVerification}
-            email={pendingVerification.email}
-            onVerificationCompleted={completeVerification}
-            verificationMutation={updateOrganisation}
-            mutationPayload={{ organisationIdOrSlug: slug, formData }}
-          />
-        </Modal>
-      )}
       <Form
         className="mt-8 mb-4"
-        onSubmit={handleSubmit(handleUpdateOrganisation)}>
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+          void handleSubmit(handleUpdateOrganisation)(e)
+        }}>
         <h2>
           <Trans>Votre organisation</Trans>
         </h2>
