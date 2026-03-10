@@ -11,7 +11,7 @@ import type {
 } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import UserContext from './context'
-import CookieUserSync from './CookieUserSync'
+import { useHandleSyncUserIdCookie } from './hooks/useHandleSyncUserIdCookie'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
 import usePersistentSimulations from './hooks/usePersistentSimulations'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
@@ -49,6 +49,10 @@ export default function UserProvider({
 
   const { tutorials, setTutorials } = usePersistentTutorials()
 
+  // Syncs the userId stored locally with the one store
+  // via the cookies, server-side in NextJS
+  useHandleSyncUserIdCookie(user.userId)
+
   const {
     simulations,
     setSimulations,
@@ -79,7 +83,6 @@ export default function UserProvider({
         isInitialized,
       }}>
       {children}
-      <CookieUserSync />
     </UserContext.Provider>
   )
 }
