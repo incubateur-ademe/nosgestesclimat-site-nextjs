@@ -14,9 +14,11 @@ export interface SimulationResult {
 export async function getSimulationResult({
   user,
   simulationId,
+  ngcCookie,
 }: {
   user: AppUser
   simulationId: string
+  ngcCookie: string
 }): Promise<SimulationResult> {
   'use cache'
   cacheLife('weeks')
@@ -26,6 +28,7 @@ export async function getSimulationResult({
   const simulation = await getSimulation({
     user,
     simulationId,
+    ngcCookie,
   })
 
   let group: { name: string; href: string } | null = null
@@ -36,6 +39,7 @@ export async function getSimulationResult({
     const groupData = await getGroupById({
       groupId,
       userId: user.id,
+      ngcCookie,
     })
 
     if (groupData) {
@@ -52,6 +56,7 @@ export async function getSimulationResult({
     const pollDetails = await getPublicPollBySlug({
       userId: user.id,
       pollSlug,
+      ngcCookie,
     })
 
     if (pollDetails) {

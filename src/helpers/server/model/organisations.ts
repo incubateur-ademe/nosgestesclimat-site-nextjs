@@ -39,11 +39,16 @@ export async function getUserOrganisation(): Promise<Organisation | undefined> {
 export async function getPublicPollBySlug({
   userId,
   pollSlug,
+  ngcCookie,
 }: {
   userId: string
   pollSlug: string
+  ngcCookie?: string
 }): Promise<PublicOrganisationPoll | null> {
   return fetchServer<PublicOrganisationPoll>(
-    `${ORGANISATION_URL}/${userId}/public-polls/${pollSlug}`
+    `${ORGANISATION_URL}/${userId}/public-polls/${pollSlug}`,
+    {
+      ngcCookie,
+    }
   )
 }
