@@ -501,7 +501,7 @@ const redirects = [
   },
   {
     source: '/fin',
-    destination: '/simulation/resultats',
+    destination: '/',
     permanent: true,
   },
 ]
