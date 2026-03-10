@@ -1,10 +1,16 @@
 import { overrideServerUserId } from '@/actions/overrideServerUserId'
 import { useEffect } from 'react'
 
-export function useHandleSyncUserIdCookie(userId: string) {
+export function useHandleSyncUserIdCookie({
+  initialUserId,
+  currentUserId,
+}: {
+  initialUserId: string
+  currentUserId: string
+}) {
   useEffect(() => {
-    if (userId) {
-      void overrideServerUserId(userId)
+    if (initialUserId !== currentUserId) {
+      void overrideServerUserId(currentUserId)
     }
-  }, [userId])
+  }, [initialUserId, currentUserId])
 }
