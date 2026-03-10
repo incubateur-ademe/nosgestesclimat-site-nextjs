@@ -10,7 +10,7 @@ interface Props {
   buttonLabel?: React.ReactNode
   buttonColor?: ButtonColor
   error?: string
-  onSubmit?: () => void
+  onSubmit?: React.FormEventHandler<HTMLFormElement>
   className?: string
   additionnalButton?: React.ReactNode
   isVerticalLayout?: boolean
@@ -53,7 +53,7 @@ export default function Form({
           )}
         </div>
 
-        <div className="flex gap-4 pb-8">
+        <div className="flex w-full flex-col items-stretch gap-2 pb-8 sm:flex-row md:items-start md:gap-4">
           <Button
             className={twMerge(!isVerticalLayout && 'lg:mt-8 lg:h-14')}
             type="submit"

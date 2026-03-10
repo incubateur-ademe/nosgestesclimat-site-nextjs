@@ -1,8 +1,6 @@
 import Trans from '@/components/translation/trans/TransServer'
-import {
-  captureClickHeaderMonEspaceUnauthenticatedServer,
-  headerClickMonEspaceUnauthenticatedServer,
-} from '@/constants/tracking/user-account'
+import { captureClickHeaderMonEspaceUnauthenticatedServer } from '@/constants/tracking/posthogTrackers'
+import { headerClickMonEspaceUnauthenticatedServer } from '@/constants/tracking/user-account'
 import { CONNEXION_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import { getAuthUser, logout } from '@/helpers/server/model/user'

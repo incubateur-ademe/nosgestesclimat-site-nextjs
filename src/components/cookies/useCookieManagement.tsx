@@ -1,5 +1,7 @@
 'use client'
 
+import { captureCookieBannerStatus } from '@/constants/tracking/posthogTrackers'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { PropsWithChildren } from 'react'
 import { createContext, useContext, useEffect, useState } from 'react'
@@ -110,6 +112,7 @@ export function useCookieManagement(): {
     posthog.update(cookieState.posthog)
     handleUpdateGoogleTag(cookieState.googleTag)
     safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
+    trackPosthogEvent(captureCookieBannerStatus({ cookieState }))
   }
 
   return {

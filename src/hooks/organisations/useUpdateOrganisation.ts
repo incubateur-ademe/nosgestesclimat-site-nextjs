@@ -27,7 +27,7 @@ export function useUpdateOrganisation() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({
+    mutationFn: async ({
       organisationIdOrSlug,
       formData,
       code,
@@ -39,9 +39,7 @@ export function useUpdateOrganisation() {
     }) => {
       const organisationToUpdate: OrganisationToUpdate = {
         ...(formData.name ? { name: formData.name } : {}),
-        ...(formData.organisationType
-          ? { type: formData.organisationType }
-          : { type: null }),
+        type: formData.organisationType,
         ...(formData.numberOfCollaborators && +formData.numberOfCollaborators
           ? { numberOfCollaborators: +formData.numberOfCollaborators }
           : { numberOfCollaborators: null }),
@@ -58,13 +56,6 @@ export function useUpdateOrganisation() {
             ...(formData.position
               ? { position: formData.position }
               : { position: null }),
-            ...(formData.hasOptedInForCommunications
-              ? {
-                  optedInForCommunications:
-                    formData.hasOptedInForCommunications,
-                }
-              : {}),
-            ...(formData.email ? { email: formData.email } : {}),
           },
         ],
       }
@@ -82,13 +73,12 @@ export function useUpdateOrganisation() {
         )
         .then((response) => ({
           ...response.data,
-          userId: response.data.administrators?.[0]?.userId ?? '',
+          userId: response.data.administrators[0].userId,
         }))
     },
-    onSuccess: () => {
+    onSuccess: () =>
       queryClient.invalidateQueries({
         queryKey: ['organisations'],
-      })
-    },
+      }),
   })
 }

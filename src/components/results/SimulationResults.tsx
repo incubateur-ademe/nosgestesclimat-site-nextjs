@@ -1,32 +1,17 @@
 import FinTabs from '@/components/results/FinTabs'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { getSimulationResult } from '@/helpers/server/model/simulations'
+import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
-import { notFound, redirect } from 'next/navigation'
 import Trans from '../translation/trans/TransServer'
 import FootprintBlock from './FootprintBlock'
 
 interface Props {
-  simulationId: string
+  simulationResult: SimulationResult
   locale: Locale
-  userId: string
 }
 
-export default async function SimulationResults({
-  simulationId,
-  locale,
-  userId,
-}: Props) {
-  const simulationResult = await getSimulationResult({ userId, simulationId })
-
-  if (!simulationResult) notFound()
-
-  if (simulationResult.progression !== 1) {
-    redirect(SIMULATOR_PATH)
-  }
-
+export default function SimulationResults({ simulationResult, locale }: Props) {
   return (
     <>
       <FinTabs />

@@ -2,10 +2,8 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickResultsListResultViewDetail,
-  clickResultsListResultViewDetail,
-} from '@/constants/tracking/user-account'
+import { captureClickResultsListResultViewDetail } from '@/constants/tracking/posthogTrackers'
+import { clickResultsListResultViewDetail } from '@/constants/tracking/user-account'
 import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 

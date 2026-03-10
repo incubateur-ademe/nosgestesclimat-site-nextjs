@@ -2,10 +2,8 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  endClickActions,
-  endClickActionsPosthog,
-} from '@/constants/tracking/pages/end'
+import { endClickActions } from '@/constants/tracking/pages/end'
+import { captureEndClickActions } from '@/constants/tracking/posthogTrackers'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { useEngine, useRule } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
@@ -73,7 +71,9 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
           <Link
             onClick={() => {
               trackEvent(endClickActions)
-              trackPosthogEvent(endClickActionsPosthog(title ?? ''))
+              trackPosthogEvent(
+                captureEndClickActions({ subcategory: title ?? '' })
+              )
             }}
             href={MON_ESPACE_ACTIONS_PATH}
             className="text-center text-xs">

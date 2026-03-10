@@ -5,7 +5,7 @@ export const USER_ID_COOKIE_NAME = 'ngc_user_id'
 
 export const USER_ID_COOKIE_OPTIONS: Partial<ResponseCookie> = {
   path: '/',
-  maxAge: 60 * 60 * 24 * 365, // 1 year
+  maxAge: 60 * 60 * 24 * 365 * 2, // 2 years
   sameSite: 'lax',
   secure: true,
   httpOnly: true,

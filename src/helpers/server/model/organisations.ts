@@ -36,19 +36,14 @@ export async function getUserOrganisation(): Promise<Organisation | undefined> {
   }
 }
 
-export async function fetchPublicPollBySlug({
+export async function getPublicPollBySlug({
   userId,
   pollSlug,
 }: {
   userId: string
   pollSlug: string
 }): Promise<PublicOrganisationPoll | null> {
-  try {
-    return await fetchServer<PublicOrganisationPoll>(
-      `${ORGANISATION_URL}/${userId}/public-polls/${pollSlug}`
-    )
-  } catch (error) {
-    captureException(error)
-    return null
-  }
+  return fetchServer<PublicOrganisationPoll>(
+    `${ORGANISATION_URL}/${userId}/public-polls/${pollSlug}`
+  )
 }

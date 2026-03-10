@@ -2,19 +2,17 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  learnMoreWaterLink,
-  learnMoreWaterLinkPosthog,
-} from '@/constants/tracking/pages/mainLanding'
+import { learnMoreWaterLink } from '@/constants/tracking/pages/mainLanding'
+import { captureLearnMoreWaterLink } from '@/constants/tracking/posthogTrackers'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
-export default function LearnMoreCarbonLink() {
+export default function LearnMoreWaterLink() {
   return (
     <Link
       href="/empreinte-eau"
       onClick={() => {
         trackEvent(learnMoreWaterLink)
-        trackPosthogEvent(learnMoreWaterLinkPosthog)
+        trackPosthogEvent(captureLearnMoreWaterLink)
       }}
       className="text-[13px] md:text-base">
       <Trans>En savoir plus sur l'empreinte eau</Trans>
