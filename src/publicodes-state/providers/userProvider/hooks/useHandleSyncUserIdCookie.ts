@@ -5,11 +5,11 @@ export function useHandleSyncUserIdCookie({
   initialUserId,
   currentUserId,
 }: {
-  initialUserId: string
+  initialUserId: string | undefined
   currentUserId: string
 }) {
   useEffect(() => {
-    if (initialUserId !== currentUserId) {
+    if (initialUserId && initialUserId !== currentUserId) {
       void overrideServerUserId(currentUserId)
     }
   }, [initialUserId, currentUserId])
