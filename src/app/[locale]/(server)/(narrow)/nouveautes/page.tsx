@@ -9,7 +9,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import { getInitialUserId } from '@/helpers/server/dal/user'
+import { getUser } from '@/helpers/server/dal/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
@@ -29,7 +29,7 @@ export default async function Releases({ params }: DefaultPageProps) {
   const releases = getPosts(`src/locales/nouveautes/${locale}/`)
 
   const { t } = await getServerTranslation({ locale })
-  const initialUserId = await getInitialUserId()
+  const { id: initialUserId } = await getUser()
 
   return (
     <>

@@ -4,7 +4,6 @@ import { carboneMetric } from '@/constants/model/metric'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { getSimulationResult } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
-import { cacheLife, cacheTag } from 'next/cache'
 import { notFound, redirect } from 'next/navigation'
 import Trans from '../translation/trans/TransServer'
 import FootprintBlock from './FootprintBlock'
@@ -15,29 +14,12 @@ interface Props {
   userId: string
 }
 
-async function getCachedSimulationResult({
-  userId,
-  simulationId,
-}: {
-  userId: string
-  simulationId: string
-}) {
-  'use cache'
-  cacheLife('weeks')
-  cacheTag(`simulation-${simulationId}`)
-
-  return getSimulationResult({ userId, simulationId })
-}
-
 export default async function SimulationResults({
   simulationId,
   locale,
   userId,
 }: Props) {
-  const simulationResult = await getCachedSimulationResult({
-    userId,
-    simulationId,
-  })
+  const simulationResult = await getSimulationResult({ userId, simulationId })
 
   if (!simulationResult) notFound()
 
