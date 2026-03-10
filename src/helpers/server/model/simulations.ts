@@ -10,14 +10,11 @@ import { captureException } from '@sentry/nextjs'
 import { fetchServer } from './fetchServer'
 import { fetchGroupById } from './groups'
 import { fetchPublicPollBySlug } from './organisations'
-import { getTendency } from './utils/getTendency'
+import { getTendency, type Tendency } from './utils/getTendency'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
-
-export type Tendency = 'increase' | 'decrease'
 
 export interface SimulationResult {
   computedResults: ComputedResults
-  previousComputedResults?: ComputedResults
   tendency?: Tendency
   situation: Situation
   progression: number
@@ -142,10 +139,9 @@ export async function getSimulationResult({
 
   return {
     computedResults: simulation.computedResults,
-    previousComputedResults,
     tendency: getTendency({
-      previousCarbonFootprint: previousComputedResults?.carbone.bilan,
-      currentCarbonFootprint: simulation.computedResults.carbone.bilan,
+      previousValue: previousComputedResults?.carbone.bilan,
+      currentValue: simulation.computedResults.carbone.bilan,
     }),
     situation: simulation.situation,
     progression: simulation.progression,

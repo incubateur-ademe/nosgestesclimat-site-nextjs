@@ -1,19 +1,16 @@
-import type { Tendency } from '../simulations'
+export type Tendency = 'increase' | 'decrease'
 
 export const getTendency = ({
-  previousCarbonFootprint,
-  currentCarbonFootprint,
+  previousValue,
+  currentValue,
 }: {
-  previousCarbonFootprint?: number
-  currentCarbonFootprint: number
+  previousValue?: number
+  currentValue: number
 }): Tendency | undefined => {
-  if (
-    !previousCarbonFootprint ||
-    previousCarbonFootprint === currentCarbonFootprint
-  ) {
+  if (!previousValue || previousValue === currentValue) {
     return undefined
   }
 
-  if (previousCarbonFootprint < currentCarbonFootprint) return 'increase'
+  if (previousValue < currentValue) return 'increase'
   return 'decrease'
 }
