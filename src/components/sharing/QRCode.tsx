@@ -25,7 +25,7 @@ export default function QRCode({ value, className }: QRCodeProps) {
     if (!svg) return
 
     trackEvent(pollDashboardClickQRCodeDownload)
-    trackPosthogEvent(captureDownloadPollQRCode())
+    trackPosthogEvent(captureDownloadPollQRCode)
 
     const zip = new JSZip()
 

@@ -1,9 +1,7 @@
 'use client'
 
-import {
-  captureClickShareSimulationButton,
-  clickShareSimulationButton,
-} from '@/constants/tracking/user-account'
+import { captureClickShareSimulationButton } from '@/constants/tracking/posthogTrackers'
+import { clickShareSimulationButton } from '@/constants/tracking/user-account'
 import {
   FACEBOOK_SHARE_URL,
   LINKEDIN_SHARE_URL,

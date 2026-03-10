@@ -826,7 +826,6 @@ entries:
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis "
   Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez
-  endPage.tallyForm.buttonLabel: Donner votre avis
   endPage.carboneChart.gaugeDescription: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
   endPage.carboneChart.progressBarLabel: Barre de progression de votre empreinte carbone
   C'est parti !: C'est parti !
@@ -1358,6 +1357,9 @@ entries:
   cookies.management.posthog.link: Voir le site officiel
   organisations.demanderDemo.subtitle: Réservez un créneau pour assister à une démonstration de notre fonctionnalité dédiée aux organisations (entreprises, associations, écoles…) et vous permettre de diffuser le test de Nos Gestes Climat à votre audience.
   organisations.demanderDemo.title: Demander une démo
+  fin.seeGroupResultsBanner.button: Voir les résultats
+  fin.seeGroupResultsBanner.text: Découvrez les résultats du test collectif
+  fin.seeGroupResultsBanner.title: Merci d'avoir complété le test !
   common.co2eAn: CO₂e / an
   common.parAn: par an
   common.vous: Vous
@@ -1384,3 +1386,11 @@ entries:
   Passer: Passer
   Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>: Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>
   Vérifier mon adresse email: Vérifier mon adresse email
+  error.contactSupport: Si le problème persiste, merci de <1>contacter le support.</1>
+  results.groups.createFirstGroup: <1>Créez votre premier groupe</1> et invitez vos proches pour comparer vos résultats. Cela prend <2>1 minute</2> !
+  results.groups.ranking.laconic: Qui de <1>{{name}}</1> et vous aura la plus faible empreinte ?
+  results.groups.invite.first: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <2>🥲</2>
+  faq.doTheTest.notStarted: Vous n'avez pas encore débuté votre test, <1>lancez-vous !</1>
+  faq.doTheTest.started: Vous avez commencé votre test, <1>cliquez ici pour le reprendre !</1>
+  tutoriel.title: <1>10 minutes</1> chrono pour calculer votre empreinte carbone et eau
+  nos-relais.title: Ils relaient <1>Nos Gestes Climat</1>

@@ -60,7 +60,7 @@ export default function DetailedStatistics({ funFacts, className }: Props) {
         color="link"
         onClick={() => {
           trackEvent(organisationsDashboardClickFunFacts)
-          trackPosthogEvent(captureClickFunFactsPlus())
+          trackPosthogEvent(captureClickFunFactsPlus)
           setIsSectionVisible(!isSectionVisible)
         }}>
         <ChevronRight

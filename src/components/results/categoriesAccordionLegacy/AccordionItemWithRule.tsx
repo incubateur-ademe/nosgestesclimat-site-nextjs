@@ -3,10 +3,8 @@
 import HorizontalBarChartItemLegacy from '@/components/charts/HorizontalBarChartItemLegacy'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
-import {
-  endClickCategory,
-  endClickCategoryPosthog,
-} from '@/constants/tracking/pages/end'
+import { endClickCategory } from '@/constants/tracking/pages/end'
+import { captureEndClickCategory } from '@/constants/tracking/posthogTrackers'
 import Card from '@/design-system/layout/Card'
 import AccordionItemLegacy from '@/design-system/layout/accordion/AccordionItemLegacy'
 import Emoji from '@/design-system/utils/Emoji'
@@ -42,7 +40,7 @@ export default function AccordionItemWithRule({
     <AccordionItemLegacy
       onClick={() => {
         trackEvent(endClickCategory(dottedName))
-        trackPosthogEvent(endClickCategoryPosthog(dottedName))
+        trackPosthogEvent(captureEndClickCategory({ category: dottedName }))
       }}
       title={
         <HorizontalBarChartItemLegacy

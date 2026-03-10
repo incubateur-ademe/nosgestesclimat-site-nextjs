@@ -2,10 +2,8 @@
 
 import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickDashboardGroupPageCreateOrganisation,
-  clickDashboardGroupPageCreateOrganisation,
-} from '@/constants/tracking/user-account'
+import { captureClickDashboardGroupPageCreateOrganisation } from '@/constants/tracking/posthogTrackers'
+import { clickDashboardGroupPageCreateOrganisation } from '@/constants/tracking/user-account'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
@@ -22,7 +20,7 @@ export default function CreateOrganisation() {
         tag="h2"
       />
 
-      <div className="max-w-3xl" data-testid="create-organisation">
+      <div className="mb-4 max-w-3xl" data-testid="create-organisation">
         <Baseline />
       </div>
 

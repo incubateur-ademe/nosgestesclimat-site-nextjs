@@ -3,10 +3,8 @@
 import VerifyCodeForm from '@/components/AuthenticateUserForm/VerifyCodeForm'
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickUpdateUserEmail,
-  clickUpdateUserEmail,
-} from '@/constants/tracking/user-account'
+import { captureClickUpdateUserEmail } from '@/constants/tracking/posthogTrackers'
+import { clickUpdateUserEmail } from '@/constants/tracking/user-account'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
