@@ -31,14 +31,17 @@ export async function getUserSimulations({
 export async function getSimulation({
   user,
   simulationId,
+  ngcCookie,
 }: {
   user: AppUser
   simulationId: string
+  ngcCookie?: string
 }): Promise<Simulation> {
   const simulation = await fetchServer<Simulation>(
     `${SIMULATION_URL}/${user.id}/${simulationId}`,
     {
       auth: user.isAuth,
+      ngcCookie,
     }
   )
 

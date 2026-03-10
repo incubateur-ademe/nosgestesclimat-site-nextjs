@@ -14,9 +14,13 @@ export async function getUserGroups(): Promise<Group[]> {
 export async function getGroupById({
   groupId,
   userId,
+  ngcCookie,
 }: {
   groupId: string
   userId: string
+  ngcCookie?: string
 }): Promise<Group | null> {
-  return fetchServer<Group>(`${GROUP_URL}/${userId}/${groupId}`)
+  return fetchServer<Group>(`${GROUP_URL}/${userId}/${groupId}`, {
+    ngcCookie,
+  })
 }
