@@ -33,7 +33,7 @@ export default function FootprintBlock({
   return (
     <div
       className={twMerge(
-        'bg-primary-50 flex flex-row justify-between rounded-2xl p-8',
+        'bg-primary-50 flex flex-row items-center justify-between rounded-2xl p-8',
         className
       )}>
       <h1 className="mb-0">

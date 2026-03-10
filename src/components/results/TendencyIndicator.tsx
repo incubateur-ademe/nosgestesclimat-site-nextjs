@@ -18,8 +18,8 @@ export default function TendencyIndicator({
       <DownArrow
         className={twMerge(
           tendency === 'increase'
-            ? '-rotate-135 fill-green-700'
-            : '-rotate-45 fill-red-700'
+            ? '-rotate-135 fill-red-700'
+            : '-rotate-45 fill-green-700'
         )}
       />
 
