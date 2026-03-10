@@ -1361,7 +1361,7 @@ entries:
   fin.seeGroupResultsBanner.text: Découvrez les résultats du test collectif
   fin.seeGroupResultsBanner.title: Merci d'avoir complété le test !
   common.co2eAn: CO₂e / an
-  common.parAn: par an
+  common.parAn: / an
   common.vous: Vous
   Objectif 2050: Objectif 2050
   results.objective.chart.trajectory: Trajectoire proposée par Nos Gestes Climat
@@ -1386,11 +1386,49 @@ entries:
   Passer: Passer
   Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>: Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>
   Vérifier mon adresse email: Vérifier mon adresse email
-  error.contactSupport: Si le problème persiste, merci de <1>contacter le support.</1>
-  results.groups.createFirstGroup: <1>Créez votre premier groupe</1> et invitez vos proches pour comparer vos résultats. Cela prend <2>1 minute</2> !
-  results.groups.ranking.laconic: Qui de <1>{{name}}</1> et vous aura la plus faible empreinte ?
-  results.groups.invite.first: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <2>🥲</2>
-  faq.doTheTest.notStarted: Vous n'avez pas encore débuté votre test, <1>lancez-vous !</1>
-  faq.doTheTest.started: Vous avez commencé votre test, <1>cliquez ici pour le reprendre !</1>
-  tutoriel.title: <1>10 minutes</1> chrono pour calculer votre empreinte carbone et eau
-  nos-relais.title: Ils relaient <1>Nos Gestes Climat</1>
+  error.contactSupport: Si le problème persiste, merci de <2>contacter le support.</2>
+  results.groups.createFirstGroup: <0>Créez votre premier groupe</0> et invitez vos proches pour comparer vos résultats. Cela prend <4>1 minute</4> !
+  results.groups.ranking.laconic: Qui de <2>{group.participants[0].name}</2> et vous aura la plus faible empreinte ?
+  results.groups.invite.first: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <4>🥲</4>
+  faq.doTheTest.notStarted: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
+  faq.doTheTest.started: Vous avez commencé votre test, <2><0>cliquez ici pour le reprendre !</0></2>
+  tutoriel.title: <0>10 minutes</0> chrono pour calculer votre empreinte carbone et eau
+  nos-relais.title: Ils relaient <2>Nos Gestes Climat</2>
+  common.carbonFootprint: Empreinte carbone
+  common.waterFootprint: Empreinte eau
+  Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  eau.resultats.isItALot.text1: En règle générale, les valeurs d'empreinte eau varient entre <2>3 000 et 9 000 litres</2> par jour. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
+  eau.resultats.isItALot.text2: Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.
+  eau.resultats.isItALot.title: Est-ce que c'est beaucoup ?
+  eau.resultats.waterFootprintDetail.title: D’où vient votre résultat ?
+  endpage.meta.title.carbon: Mon empreinte carbone - Nos Gestes Climat
+  endPage.waterActions.article1Title: Les 3 réflexes à adopter pour une garde-robe économe en eau
+  endPage.waterActions.article2Title: Les 8 manières d'améliorer l'empreinte eau de mon assiette
+  endPage.waterActions.description1: <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.
+  endPage.waterActions.description2: 'Retrouvez nos conseils dans ces articles :'
+  endPage.waterActions.readArticle: Lire l'article
+  endPage.waterActions.title: Comment agir ?
+  Landing page thématique - Nos Gestes Climat: Landing page thématique - Nos Gestes Climat
+  simulation.carbone.title: Vous émettez environ
+  simulation.eau.climateAndWater.description1: Les activités humaines menacent les équilibres naturels de notre planète.
+  simulation.eau.climateAndWater.description2: "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2> : accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
+  simulation.eau.climateAndWater.title: Eau, climat, même combat ?
+  simulation.eau.documentation.description: Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  simulation.eau.documentation.link: Comprendre le calcul
+  simulation.eau.documentation.title: Comment est calculée votre empreinte ?
+  simulation.eau.saveBlock.title: 'Retrouvez facilement vos résultats '
+  simulation.eau.title: L’empreinte eau qui sert à produire ce que vous consommez
+  simulation.eau.whatIsWaterFootprint.description: "L'empreinte eau, c'est <2>l'ensemble de l'eau consommée</2> pour <5>produire</5>et <7>distribuer</7> les biens et services de votre quotidien. Par exemple il faut de l'eau pour :"
+  simulation.eau.whatIsWaterFootprint.list.animals: l'alimentation des <1>animaux</1> que vous consommez
+  simulation.eau.whatIsWaterFootprint.list.cotton: la culture du <1>coton</1> que vous portez
+  simulation.eau.whatIsWaterFootprint.list.digitalDevices: l'extraction des matériaux de vos <2>appareils numériques</2>
+  simulation.eau.whatIsWaterFootprint.list.domesticWater: "<0>attention</0> : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau"
+  simulation.eau.whatIsWaterFootprint.list.electricity: la production de votre <1>électricité</1>
+  simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables: les <1>fruits, légumes</1> et <4>céréales</4> que vous mangez
+  simulation.eau.whatIsWaterFootprint.showerWater.average: '*La moyenne française est de {{average}} litres par jour'
+  simulation.eau.whatIsWaterFootprint.showerWater.description1: L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.
+  simulation.eau.whatIsWaterFootprint.showerWater.description2: L’eau domestique peut avoir <1>un impact très fort</1> selon la <4>saison</4> et la <6>localisation</6>.
+  simulation.eau.whatIsWaterFootprint.showerWater.mainText: <0>Vous utilisez</0><1><0>{{formattedValue}} {{unit}}</0> <2>d'eau domestique par jour</2></1>
+  simulation.eau.whatIsWaterFootprint.showerWater.title: Et l'eau de ma douche dans tout ça ?
+  simulation.eau.whatIsWaterFootprint.title: L'empreinte eau, c'est quoi ?
+  simulation.eau.whatIsWaterFootprint.vigieEau: Rendez-vous sur VigiEau pour en savoir plus.

@@ -1,29 +1,31 @@
-import Trans from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Emoji from '@/design-system/utils/Emoji'
 
-import { useLocale } from '@/hooks/useLocale'
-import { useRules } from '@/hooks/useRules'
-import { EngineProvider, useRule } from '@/publicodes-state'
+import type { Locale } from '@/i18nConfig'
+import type { Situation } from '@/publicodes-state/types'
 import DomesticWaterBlock from './DomesticWaterBlock'
 
-function WhatIsWaterFootprintView() {
-  const { numericValue: domesticWaterValue } = useRule(
-    'logement . eau domestique'
-  )
+interface Props {
+  situation: Situation
+  locale: Locale
+}
 
-  const locale = useLocale()
-
+export default function WhatIsWaterFootprint({ situation, locale }: Props) {
   return (
     <div className="mb-12 flex flex-col gap-8 md:flex-row">
       <section className="bg-primary-50 flex-1 p-8">
         <h2 className="title-lg">
-          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.title">
+          <Trans
+            locale={locale}
+            i18nKey="simulation.eau.whatIsWaterFootprint.title">
             L'empreinte eau, c'est quoi ?
           </Trans>
         </h2>
         <p>
-          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.description">
+          <Trans
+            locale={locale}
+            i18nKey="simulation.eau.whatIsWaterFootprint.description">
             L'empreinte eau, c'est{' '}
             <strong>l'ensemble de l'eau consommée</strong> pour{' '}
             <strong>produire</strong>
@@ -35,7 +37,9 @@ function WhatIsWaterFootprintView() {
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">🍅</Emoji>
             <span className="flex-1">
-              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables">
+              <Trans
+                locale={locale}
+                i18nKey="simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables">
                 les <strong>fruits, légumes</strong> et{' '}
                 <strong>céréales</strong> que vous mangez
               </Trans>
@@ -44,7 +48,9 @@ function WhatIsWaterFootprintView() {
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">👕</Emoji>
             <span className="flex-1">
-              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.cotton">
+              <Trans
+                locale={locale}
+                i18nKey="simulation.eau.whatIsWaterFootprint.list.cotton">
                 la culture du <strong>coton</strong> que vous portez
               </Trans>
             </span>
@@ -52,7 +58,9 @@ function WhatIsWaterFootprintView() {
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">🐮</Emoji>
             <span className="flex-1">
-              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.animals">
+              <Trans
+                locale={locale}
+                i18nKey="simulation.eau.whatIsWaterFootprint.list.animals">
                 l'alimentation des <strong>animaux</strong> que vous consommez
               </Trans>
             </span>
@@ -60,7 +68,9 @@ function WhatIsWaterFootprintView() {
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">📱</Emoji>
             <span className="flex-1">
-              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.digitalDevices">
+              <Trans
+                locale={locale}
+                i18nKey="simulation.eau.whatIsWaterFootprint.list.digitalDevices">
                 l'extraction des matériaux de vos{' '}
                 <strong>appareils numériques</strong>
               </Trans>
@@ -69,7 +79,9 @@ function WhatIsWaterFootprintView() {
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">⚡️</Emoji>
             <span className="flex-1">
-              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.electricity">
+              <Trans
+                locale={locale}
+                i18nKey="simulation.eau.whatIsWaterFootprint.list.electricity">
                 la production de votre <strong>électricité</strong>
               </Trans>
             </span>
@@ -77,7 +89,9 @@ function WhatIsWaterFootprintView() {
           <li className="mb-1 flex items-center gap-3">
             <Emoji className="text-3xl">🚫</Emoji>
             <span className="flex-1">
-              <Trans i18nKey="simulation.eau.whatIsWaterFootprint.list.domesticWater">
+              <Trans
+                locale={locale}
+                i18nKey="simulation.eau.whatIsWaterFootprint.list.domesticWater">
                 <strong>attention</strong> : l'eau domestique (par exemple l'eau
                 de vos douches) ne fait pas partie de l'empreinte eau
               </Trans>
@@ -88,12 +102,16 @@ function WhatIsWaterFootprintView() {
 
       <section className="bg-secondary-50 flex-1 p-8">
         <h2 className="title-lg">
-          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.title">
+          <Trans
+            locale={locale}
+            i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.title">
             Et l'eau de ma douche dans tout ça ?
           </Trans>
         </h2>
         <p>
-          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description1">
+          <Trans
+            locale={locale}
+            i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description1">
             L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas
             comprise dans votre empreinte eau, puisqu’elle est restituée. Par
             exemple, l’eau de votre douche, après dépollution, est rendue aux
@@ -101,13 +119,12 @@ function WhatIsWaterFootprintView() {
           </Trans>
         </p>
 
-        <DomesticWaterBlock
-          locale={locale}
-          domesticWaterValue={domesticWaterValue}
-        />
+        <DomesticWaterBlock situation={situation} />
 
         <p>
-          <Trans i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description2">
+          <Trans
+            locale={locale}
+            i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.description2">
             L’eau domestique peut avoir <strong>un impact très fort</strong>{' '}
             selon la <strong>saison</strong> et la <strong>localisation</strong>
             .
@@ -116,21 +133,14 @@ function WhatIsWaterFootprintView() {
 
         <div>
           <InlineLink href="https://vigieau.gouv.fr/">
-            <Trans i18nKey="simulation.eau.whatIsWaterFootprint.vigieEau">
+            <Trans
+              locale={locale}
+              i18nKey="simulation.eau.whatIsWaterFootprint.vigieEau">
               Rendez-vous sur VigiEau pour en savoir plus.
             </Trans>
           </InlineLink>
         </div>
       </section>
     </div>
-  )
-}
-export default function WhatIsWaterFootprint() {
-  const { data: rules } = useRules()
-
-  return (
-    <EngineProvider rules={rules}>
-      <WhatIsWaterFootprintView />
-    </EngineProvider>
   )
 }

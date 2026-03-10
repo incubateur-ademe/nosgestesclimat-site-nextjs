@@ -1,19 +1,61 @@
+'use client'
+
 import Trans from '@/components/translation/trans/TransClient'
 import { formatWaterFootprint } from '@/helpers/formatters/formatWaterFootprint'
-import type { Locale } from '@/i18nConfig'
+import { useLocale } from '@/hooks/useLocale'
+import { useRules } from '@/hooks/useRules'
+import type { Situation } from '@/publicodes-state/types'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import Engine from 'publicodes'
 import type { ReactNode } from 'react'
 
-const average = 149
+const AVERAGE_CONSUMPTION_IN_LITERS = 149
 
 interface Props {
-  locale: Locale
-  domesticWaterValue: number
+  situation: Situation
 }
 
-export default function DomesticWaterBlock({
-  locale,
-  domesticWaterValue,
-}: Props) {
+interface FuncProps {
+  situation: Situation
+  rules: Partial<NGCRules>
+}
+
+const getDomesticWaterValue = ({ situation, rules }: FuncProps) => {
+  const engine = new Engine<DottedName>(rules, {
+    strict: {
+      situation: false,
+      noOrphanRule: false,
+      checkPossibleValues: false,
+      noCycleRuntime: false,
+    },
+    warn: {
+      cyclicReferences: false,
+      situationIssues: false,
+    },
+  })
+
+  engine.setSituation(situation)
+
+  const evaluation = engine.evaluate({
+    valeur: 'logement . eau domestique',
+    contexte: {
+      métrique: "'eau'",
+    },
+  })
+
+  return typeof evaluation.nodeValue === 'number' ? evaluation.nodeValue : 149
+}
+
+export default function DomesticWaterBlock({ situation }: Props) {
+  const { data: rules, isLoading } = useRules()
+  const locale = useLocale()
+
+  if (isLoading || !rules) {
+    return null
+  }
+
+  const domesticWaterValue = getDomesticWaterValue({ situation, rules })
+
   const { formattedValue, unit } = formatWaterFootprint(domesticWaterValue, {
     locale,
   })
@@ -39,13 +81,13 @@ export default function DomesticWaterBlock({
               unit,
             }}>
             <span className="block">Vous utilisez</span>
-            <span className="block">
+            <span>
               <strong className="font-black">
                 {{ formattedValue } as unknown as ReactNode}{' '}
                 {{ unit } as unknown as ReactNode}
-              </strong>
+              </strong>{' '}
+              <span>d'eau domestique par jour</span>
             </span>
-            <span className="block">d'eau domestique par jour</span>
           </Trans>
         </p>
       </div>
@@ -53,8 +95,9 @@ export default function DomesticWaterBlock({
       <p className="mb-0 w-full text-center text-sm italic">
         <Trans
           i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.average"
-          values={{ average }}>
-          *La moyenne française est de {{ average } as unknown as ReactNode}{' '}
+          values={{ average: AVERAGE_CONSUMPTION_IN_LITERS }}>
+          *La moyenne française est de{' '}
+          {{ average: AVERAGE_CONSUMPTION_IN_LITERS } as unknown as ReactNode}{' '}
           litres par jour
         </Trans>
       </p>

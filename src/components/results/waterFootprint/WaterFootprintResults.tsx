@@ -65,7 +65,7 @@ export default function WaterFootprintResults({
 
       <Suspense>
         <QueryClientProviderWrapper>
-          <WhatIsWaterFootprint />
+          <WhatIsWaterFootprint situation={simulationResult.situation} />
         </QueryClientProviderWrapper>
       </Suspense>
 

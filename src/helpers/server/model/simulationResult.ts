@@ -1,4 +1,4 @@
-import type { ComputedResults } from '@/publicodes-state/types'
+import type { ComputedResults, Situation } from '@/publicodes-state/types'
 import { cacheLife, cacheTag } from 'next/cache'
 import type { AppUser } from '../dal/user'
 import { getGroupById } from './groups'
@@ -9,6 +9,11 @@ export interface SimulationResult {
   computedResults: ComputedResults
   progression: number
   group: { name: string; href: string } | null
+  /* @TODO we ship the whole situation because we need some dynamic result
+  computed by the engine for the water result page. Once we have a proper
+  logic for handling funfact, this should be removed, and the `eau domestique`
+  should become a funfact / result, computed server side. */
+  situation: Situation
 }
 
 export async function getSimulationResult({
@@ -71,5 +76,6 @@ export async function getSimulationResult({
     computedResults: simulation.computedResults,
     progression: simulation.progression,
     group,
+    situation: simulation.situation,
   }
 }

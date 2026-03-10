@@ -49,13 +49,13 @@ export default async function CategoriesAccordion({
                 index={index}
                 icon={category.icon}
                 title={
-                  <div className="flex items-center gap-2">
+                  <span className="flex items-center gap-2">
                     <strong>{category.title}</strong>
                     <span>
                       {category.formattedValue} {category.unit} -{' '}
                       {category.displayPercentage}
                     </span>
-                  </div>
+                  </span>
                 }
                 bgBarClassName={category.bgBarClassName}
                 bgIconClassName={category.bgIconClassName}
