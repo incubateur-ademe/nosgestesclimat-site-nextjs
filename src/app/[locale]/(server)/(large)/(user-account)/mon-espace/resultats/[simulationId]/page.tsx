@@ -15,17 +15,18 @@ export default async function DetailledResultsPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const user = await getAuthUser()
+  let simulation
+  try {
+    const user = await getAuthUser()
 
-  const simulation = await getSimulation({
-    simulationId,
-    user: {
-      ...user,
-      isAuth: true,
-    },
-  })
-
-  if (!simulation) {
+    simulation = await getSimulation({
+      simulationId,
+      user: {
+        ...user,
+        isAuth: true,
+      },
+    })
+  } catch {
     notFound()
   }
 
