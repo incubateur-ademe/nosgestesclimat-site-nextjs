@@ -2,6 +2,7 @@
 
 import { SIMULATION_URL } from '@/constants/urls/main'
 import type { Simulation } from '@/publicodes-state/types'
+import type { AppUser } from '../dal/user'
 import { fetchServer } from './fetchServer'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
@@ -28,18 +29,16 @@ export async function getUserSimulations({
 }
 
 export async function getSimulation({
-  userId,
+  user,
   simulationId,
-  auth = true,
 }: {
-  userId: string
+  user: AppUser
   simulationId: string
-  auth?: boolean
-}): Promise<Simulation | undefined> {
+}): Promise<Simulation> {
   const simulation = await fetchServer<Simulation>(
-    `${SIMULATION_URL}/${userId}/${simulationId}`,
+    `${SIMULATION_URL}/${user.id}/${simulationId}`,
     {
-      auth,
+      auth: user.isAuth,
     }
   )
 

@@ -39,11 +39,3 @@ export async function logout() {
   // The client-side resetLocalState() generates a new UUID in localStorage,
   // and CookieUserSync syncs it to the cookie automatically.
 }
-
-export async function getAuthUserOrNull(): Promise<UserServer | null> {
-  try {
-    return await getAuthUser()
-  } catch {
-    return null
-  }
-}

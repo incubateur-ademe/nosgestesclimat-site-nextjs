@@ -19,7 +19,10 @@ export default async function DetailledResultsPage({
 
   const simulation = await getSimulation({
     simulationId,
-    userId: user.id,
+    user: {
+      ...user,
+      isAuth: true,
+    },
   })
 
   if (!simulation) {

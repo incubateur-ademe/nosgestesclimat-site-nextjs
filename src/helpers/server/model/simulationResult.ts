@@ -1,5 +1,6 @@
 import type { ComputedResults } from '@/publicodes-state/types'
 import { cacheLife, cacheTag } from 'next/cache'
+import type { AppUser } from '../dal/user'
 import { getGroupById } from './groups'
 import { getPublicPollBySlug } from './organisations'
 import { getSimulation } from './simulations'
@@ -11,26 +12,21 @@ export interface SimulationResult {
 }
 
 export async function getSimulationResult({
-  userId,
+  user,
   simulationId,
 }: {
-  userId: string
+  user: AppUser
   simulationId: string
-}): Promise<SimulationResult | null> {
+}): Promise<SimulationResult> {
   'use cache'
   cacheLife('weeks')
   cacheTag(`simulation-${simulationId}`)
 
   // This throws if no simulation is found
   const simulation = await getSimulation({
-    userId,
+    user,
     simulationId,
-    auth: false,
   })
-
-  // If no simulation an error is thrown by getSimulation
-  // but we need this to avoid typing issues below
-  if (!simulation) return null
 
   let group: { name: string; href: string } | null = null
 
@@ -39,7 +35,7 @@ export async function getSimulationResult({
 
     const groupData = await getGroupById({
       groupId,
-      userId,
+      userId: user.id,
     })
 
     if (groupData) {
@@ -54,7 +50,7 @@ export async function getSimulationResult({
   if (!group && simulation.polls?.length) {
     const pollSlug = simulation.polls[0]
     const pollDetails = await getPublicPollBySlug({
-      userId,
+      userId: user.id,
       pollSlug,
     })
 

@@ -39,11 +39,11 @@ export default async function SimulationPage({
     const user = await getUser()
 
     simulationResult = await getSimulationResult({
-      userId: user.id,
+      user,
       simulationId,
     })
   } catch {
-    return notFound()
+    notFound()
   }
 
   return (
