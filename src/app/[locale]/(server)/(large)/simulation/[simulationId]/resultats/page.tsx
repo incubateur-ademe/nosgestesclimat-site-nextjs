@@ -3,6 +3,7 @@ import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
+import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
@@ -29,27 +30,26 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function SimulationPage({
   params,
-  searchParams,
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
   const { simulationId, locale } = await params
-  const { userId: searchParamsUserId } = await searchParams
 
-  // Try cookie-based user first, fallback to userId from query params
-  // (passed by SimulationResolverFallback when cookie isn't set yet)
-  const user = await getUser()
-  const userId =
-    user?.id ??
-    (typeof searchParamsUserId === 'string' ? searchParamsUserId : undefined)
+  let simulationResult
 
-  if (!userId) {
-    notFound()
+  try {
+    const user = await getUser()
+
+    simulationResult = await getSimulationResult({
+      userId: user.id,
+      simulationId,
+    })
+  } catch {
+    return notFound()
   }
 
   return (
     <SimulationResults
-      simulationId={simulationId}
+      simulationResult={simulationResult}
       locale={locale as Locale}
-      userId={userId}
     />
   )
 }

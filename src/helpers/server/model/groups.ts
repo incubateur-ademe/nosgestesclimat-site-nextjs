@@ -21,7 +21,7 @@ export async function getUserGroups(): Promise<Group[]> {
   }
 }
 
-export async function fetchGroupById({
+export async function getGroupById({
   groupId,
   userId,
 }: {

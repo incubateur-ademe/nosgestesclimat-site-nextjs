@@ -36,7 +36,7 @@ export async function getUserOrganisation(): Promise<Organisation | undefined> {
   }
 }
 
-export async function fetchPublicPollBySlug({
+export async function getPublicPollBySlug({
   userId,
   pollSlug,
 }: {
