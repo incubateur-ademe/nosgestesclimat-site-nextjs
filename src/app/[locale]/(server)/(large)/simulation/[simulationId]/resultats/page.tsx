@@ -22,9 +22,6 @@ export async function generateMetadata({ params }: DefaultPageProps) {
       "Vos résultats de tests de notre calculateur d'empreinte carbone."
     ),
     robots: noIndexObject,
-    alternates: {
-      canonical: '/simulation/resultats',
-    },
   })
 }
 
