@@ -8,51 +8,47 @@ import {
   captureClickFinTab,
   finTabTrackEvent,
 } from '@/constants/tracking/pages/end'
-import { FIN_TAB_QUERY_PARAM } from '@/constants/urls/params'
+import { END_PAGE_PATH } from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { use } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type TabValue = 'results' | 'actions' | 'groups'
+type Tabs = 'results' | 'actions' | 'groups'
 
-export default function FinTabs() {
+interface Props {
+  params: Promise<{ simulationId: string }>
+}
+
+export default function FinTabs({ params }: Props) {
+  const { simulationId } = use(params)
+
   const router = useRouter()
   const pathname = usePathname()
-  const searchParams = useSearchParams()
   const { t } = useClientTranslation()
 
-  const activeTab = (searchParams?.get(FIN_TAB_QUERY_PARAM) ||
-    'results') as TabValue
-
-  const handleTabClick = (tab: TabValue) => {
-    if (activeTab === tab) return
-
-    const urlSearchParams = new URLSearchParams(searchParams?.toString())
-    if (tab === 'results') {
-      urlSearchParams.delete(FIN_TAB_QUERY_PARAM)
-    } else {
-      urlSearchParams.set(FIN_TAB_QUERY_PARAM, tab)
-    }
-
-    const search = urlSearchParams.toString()
-    const query = search ? `?${search}` : ''
-    router.replace(`${pathname}${query}`)
-
-    // Track events
+  const handleTabClick = (tab: Tabs) => {
     if (tab === 'results') {
       trackEvent(finTabTrackEvent('results'))
       trackPosthogEvent(captureClickFinTab({ tab: 'results' }))
+      router.replace(`${END_PAGE_PATH.replace(':id', simulationId)}`)
     } else if (tab === 'actions') {
       trackEvent(finTabTrackEvent('actions'))
       trackPosthogEvent(captureClickFinTab({ tab: 'actions' }))
-    } else if (tab === 'groups') {
+      router.replace(`${END_PAGE_PATH.replace(':id', simulationId)}/actions`)
+    } else {
       trackEvent(finTabTrackEvent('groups'))
       trackPosthogEvent(captureClickFinTab({ tab: 'groups' }))
+      router.replace(`${END_PAGE_PATH.replace(':id', simulationId)}/groupes`)
     }
   }
+
+  const isActionsActive = pathname.endsWith('actions')
+  const isGroupsActive = pathname.endsWith('groupes')
+  const isResultsActive = !isActionsActive && !isGroupsActive
 
   const tabsItems: TabItem[] = [
     {
@@ -62,7 +58,7 @@ export default function FinTabs() {
           <BilanIcon
             className={twMerge(
               'h-6 w-6',
-              activeTab === 'results' ? 'fill-primary-600' : 'fill-default'
+              isResultsActive ? 'fill-primary-600' : 'fill-default'
             )}
           />
           <span className="hidden md:block">
@@ -73,8 +69,8 @@ export default function FinTabs() {
           </span>
         </span>
       ),
-      href: `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`,
-      isActive: activeTab === 'results',
+      href: `${pathname}`,
+      isActive: isResultsActive,
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         handleTabClick('results')
@@ -87,7 +83,7 @@ export default function FinTabs() {
           <ActionsIcon
             className={twMerge(
               'h-6 w-6',
-              activeTab === 'actions' ? 'fill-primary-600' : 'fill-default'
+              isActionsActive ? 'fill-primary-600' : 'fill-default'
             )}
           />
           <span className="hidden md:block">
@@ -98,8 +94,8 @@ export default function FinTabs() {
           </span>
         </span>
       ),
-      href: `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`,
-      isActive: activeTab === 'actions',
+      href: `${pathname}/actions`,
+      isActive: isActionsActive,
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         handleTabClick('actions')
@@ -114,7 +110,7 @@ export default function FinTabs() {
           <AmisIcon
             className={twMerge(
               'h-6 w-6',
-              activeTab === 'groups'
+              isGroupsActive
                 ? 'stroke-primary-600 fill-primary-600'
                 : 'stroke-default'
             )}
@@ -127,8 +123,8 @@ export default function FinTabs() {
           </span>
         </span>
       ),
-      href: `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`,
-      isActive: activeTab === 'groups',
+      href: `${pathname}/groupes`,
+      isActive: isGroupsActive,
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         handleTabClick('groups')
