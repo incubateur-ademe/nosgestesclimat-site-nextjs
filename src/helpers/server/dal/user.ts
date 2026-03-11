@@ -1,11 +1,9 @@
-import {
-  AUTHENTICATION_COOKIE_NAME,
-  USER_ID_COOKIE_NAME,
-  USER_ID_COOKIE_OPTIONS,
-} from '@/constants/authentication/cookie'
-import { cookies } from 'next/headers'
-import { randomUUID } from 'node:crypto'
+'use server'
+
+import { cookies, headers } from 'next/headers'
+import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'
+import { AUTHENTICATED_COOKIE_NAME } from './sessionCookie'
 
 export interface AnonUser {
   id: string
@@ -16,24 +14,15 @@ export type AppUser = AuthUser | AnonUser
 
 export async function getUser(): Promise<AppUser> {
   try {
-    return getAuthUser()
+    return await getAuthUser()
   } catch {
     // Fallback to anonymous user (via session cookie)
-    const userId = (await cookies()).get(USER_ID_COOKIE_NAME)?.value
-    if (userId) {
-      return { id: userId, isAuth: false }
+    const id = (await headers()).get('x-anon-user-id')
+    if (!id) {
+      throw new InternalServerError()
     }
-
-    // No user found create a userId cookie
-    const newUserId = randomUUID()
-    ;(await cookies()).set(
-      USER_ID_COOKIE_NAME,
-      newUserId,
-      USER_ID_COOKIE_OPTIONS
-    )
-
     return {
-      id: newUserId,
+      id,
       isAuth: false,
     }
   }
@@ -44,7 +33,7 @@ export async function logout() {
   const secure = domain !== 'localhost'
 
   ;(await cookies()).delete({
-    name: AUTHENTICATION_COOKIE_NAME,
+    name: AUTHENTICATED_COOKIE_NAME,
     httpOnly: true,
     secure,
     sameSite: 'lax',

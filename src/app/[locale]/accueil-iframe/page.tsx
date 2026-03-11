@@ -15,7 +15,6 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
-import { headers } from 'next/headers'
 import { Suspense } from 'react'
 import { ClientLayout } from '../../../components/layout/ClientLayout'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
@@ -37,8 +36,6 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const headersList = await headers()
-  const pathname = headersList.get('x-pathname') || '/'
 
   return (
     <ClientLayout locale={locale}>
@@ -70,19 +67,19 @@ export default async function Homepage({ params }: DefaultPageProps) {
                 <DynamicCTAButtons
                   trackingEvents={{
                     start: getLandingClickCTAStart(
-                      pathname,
+                      '/accueil-iframe',
                       trackingActionClickCTA
                     ),
                     resume: getLandingClickCTAResume(
-                      pathname,
+                      '/accueil-iframe',
                       trackingActionClickCTA
                     ),
                     results: getLandingClickCTAResults(
-                      pathname,
+                      '/accueil-iframe',
                       trackingActionClickCTA
                     ),
                     restart: getLandingClickCTARestart(
-                      pathname,
+                      '/accueil-iframe',
                       trackingActionClickCTA
                     ),
                   }}

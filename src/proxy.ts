@@ -1,33 +1,9 @@
 import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { userMiddleware } from './helpers/server/dal/middleware'
 import i18nMiddleware from './middlewares/i18nMiddleware'
 
-function isRedirecting(response: NextResponse): boolean {
-  return response.status === 307 || response.status === 308
-}
-function isRewriting(response: NextResponse): boolean {
-  return response.headers.has('x-middleware-rewrite')
-}
-function isI18n(response: NextResponse): boolean {
-  return response.headers.has('x-next-i18n-router-locale')
-}
-
 export function proxy(request: NextRequest) {
-  const middlewareResponse = i18nMiddleware(request)
-
-  if (
-    isRedirecting(middlewareResponse) ||
-    isRewriting(middlewareResponse) ||
-    isI18n(middlewareResponse)
-  ) {
-    return middlewareResponse
-  }
-
-  // Add pathname to headers for server components
-  const response = NextResponse.next()
-  response.headers.set('x-pathname', request.nextUrl.pathname)
-
-  return response
+  return userMiddleware(request, i18nMiddleware)
 }
 
 export const config = {
