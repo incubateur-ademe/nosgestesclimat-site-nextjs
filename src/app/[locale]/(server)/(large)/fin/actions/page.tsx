@@ -5,9 +5,8 @@ import ActionsContent from '@/components/results/actions/ActionsContent'
 import ActionsTutorial from '@/components/results/actions/ActionsTutorial'
 import TopBar from '@/components/simulation/TopBar'
 import { getRules } from '@/helpers/modelFetching/getRules'
-import { throwNextError } from '@/helpers/server/error'
+import { getUser } from '@/helpers/server/dal/user'
 import { getSimulations } from '@/helpers/server/model/simulations'
-import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 
@@ -15,8 +14,8 @@ export default async function ResultatsActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
-  const user = await throwNextError(getAuthUser)
-  const simulations = await throwNextError(() => getSimulations({ user }))
+  const user = await getUser()
+  const simulations = await getSimulations({ user })
   const rules = await getRules({ locale })
 
   return (
