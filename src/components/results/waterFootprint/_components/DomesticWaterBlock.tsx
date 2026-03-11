@@ -92,7 +92,7 @@ export default function DomesticWaterBlock({ situation }: Props) {
         </p>
       </div>
 
-      <p className="mb-0 w-full text-center text-sm italic">
+      <p className="mt-1 mb-0 w-full text-center">
         <Trans
           i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.average"
           values={{ average: AVERAGE_CONSUMPTION_IN_LITERS }}>

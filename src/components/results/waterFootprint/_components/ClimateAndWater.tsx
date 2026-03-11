@@ -1,15 +1,17 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import Title from '@/design-system/layout/Title'
 
 export default function ClimateAndWater() {
   return (
     <div className="mb-12">
-      <h2 className="title-lg">
+      <Title hasSeparator={false} size="lg">
         <Trans i18nKey="simulation.eau.climateAndWater.title">
           Eau, climat, même combat ?
         </Trans>
-      </h2>
+      </Title>
+
       <p>
         <Trans i18nKey="simulation.eau.climateAndWater.description1">
           Les activités humaines menacent les équilibres naturels de notre

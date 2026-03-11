@@ -906,7 +906,7 @@ entries:
   Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre
   endPage.blogArticles.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
   endPage.carboneTarget.enSavoirPlus: Ouvrir la page dans une nouvelle fenêtre
-  endPage.waterActions.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
+  endPage.waterActions.lireArticle: Les 8 manières d'améliorer l'empreinte eau de mon assiette, ouvrir l'article dans une nouvelle fenêtre
   international.electricityMaps.ariaLabel: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
   l'objectif pour 2050: l'objectif pour 2050
   organisations.ourTools.newTab: Ouvrir dans une nouvelle fenêtre
@@ -1433,3 +1433,4 @@ entries:
   simulation.eau.whatIsWaterFootprint.title: L'empreinte eau, c'est quoi ?
   simulation.eau.whatIsWaterFootprint.vigieEau: Rendez-vous sur VigiEau pour en savoir plus.
   "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
+  simulation.eau.whatIsWaterFootprint.titleInsec: L'empreinte eau, c'est quoi ?

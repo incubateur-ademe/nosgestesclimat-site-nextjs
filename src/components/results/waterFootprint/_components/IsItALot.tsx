@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
+import Title from '@/design-system/layout/Title'
 import type { Locale } from '@/i18nConfig'
 
 interface Props {
@@ -8,11 +9,11 @@ interface Props {
 export default function IsItALot({ locale }: Props) {
   return (
     <section className="mb-12 w-lg max-w-full">
-      <h2 className="title-lg">
+      <Title tag="h2" hasSeparator={false} size="lg">
         <Trans locale={locale} key="eau.resultats.isItALot.title">
           Est-ce que c'est beaucoup ?
         </Trans>
-      </h2>
+      </Title>
       <p>
         <Trans locale={locale} key="eau.resultats.isItALot.text1">
           En règle générale, les valeurs d'empreinte eau varient entre{' '}

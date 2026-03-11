@@ -4,6 +4,7 @@ import {
   captureEndClickDocumentationServer,
   endClickDocumentationServer,
 } from '@/constants/tracking/pages/end'
+import Title from '@/design-system/layout/Title'
 import type { Locale } from '@/i18nConfig'
 
 interface Props {
@@ -13,11 +14,11 @@ interface Props {
 export default function DocumentationBlock({ locale }: Props) {
   return (
     <div>
-      <h2 className="title-lg">
+      <Title tag="h2" size="lg" hasSeparator={false}>
         <Trans locale={locale} i18nKey="simulation.eau.documentation.title">
           Comment est calculée votre empreinte ?
         </Trans>
-      </h2>
+      </Title>
 
       <p>
         <Trans

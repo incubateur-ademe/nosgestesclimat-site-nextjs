@@ -3,26 +3,29 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Emoji from '@/design-system/utils/Emoji'
 
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
+import Title from '@/design-system/layout/Title'
 import type { Locale } from '@/i18nConfig'
 import type { Situation } from '@/publicodes-state/types'
-import DomesticWaterBlock from './DomesticWaterBlock'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 
 interface Props {
   situation: Situation
   locale: Locale
 }
+const DomesticWaterBlock = dynamic(() => import('./DomesticWaterBlock'))
 
 export default function WhatIsWaterFootprint({ situation, locale }: Props) {
   return (
     <div className="mb-12 flex flex-col gap-8 md:flex-row">
-      <section className="bg-primary-50 flex-1 p-8">
-        <h2 className="title-lg">
+      <section className="bg-primary-100 flex-1 p-8">
+        <Title hasSeparator={false} tag="h2" size="lg">
           <Trans
             locale={locale}
-            i18nKey="simulation.eau.whatIsWaterFootprint.title">
-            L'empreinte eau, c'est quoi ?
+            i18nKey="simulation.eau.whatIsWaterFootprint.titleInsec">
+            L'empreinte eau, c'est quoi&nbsp;?
           </Trans>
-        </h2>
+        </Title>
         <p>
           <Trans
             locale={locale}
@@ -87,7 +90,7 @@ export default function WhatIsWaterFootprint({ situation, locale }: Props) {
               </Trans>
             </span>
           </li>
-          <li className="mb-1 flex items-center gap-3">
+          <li className="mb-1 flex items-start gap-3">
             <Emoji className="text-3xl">🚫</Emoji>
             <span className="flex-1">
               <Trans
@@ -101,14 +104,14 @@ export default function WhatIsWaterFootprint({ situation, locale }: Props) {
         </ul>
       </section>
 
-      <section className="bg-secondary-50 flex-1 p-8">
-        <h2 className="title-lg">
+      <section className="bg-secondary-100 flex-1 p-8">
+        <Title tag="h2" size="lg" hasSeparator={false}>
           <Trans
             locale={locale}
             i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.title">
             Et l'eau de ma douche dans tout ça ?
           </Trans>
-        </h2>
+        </Title>
         <p>
           <Trans
             locale={locale}
@@ -119,9 +122,13 @@ export default function WhatIsWaterFootprint({ situation, locale }: Props) {
             cours d’eau de votre territoire.
           </Trans>
         </p>
-        <QueryClientProviderWrapper>
-          <DomesticWaterBlock situation={situation} />
-        </QueryClientProviderWrapper>
+
+        <Suspense>
+          <QueryClientProviderWrapper>
+            <DomesticWaterBlock situation={situation} />
+          </QueryClientProviderWrapper>
+        </Suspense>
+
         <p>
           <Trans
             locale={locale}

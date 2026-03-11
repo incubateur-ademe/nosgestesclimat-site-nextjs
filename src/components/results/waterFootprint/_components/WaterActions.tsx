@@ -1,6 +1,7 @@
 import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
+import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
@@ -14,11 +15,12 @@ export default async function WaterActions({ locale }: Props) {
 
   return (
     <div className="mb-12">
-      <h2 className="title-lg">
+      <Title hasSeparator={false} tag="h2" size="lg" className="title-lg">
         <Trans locale={locale} i18nKey="endPage.waterActions.title">
           Comment agir ?
         </Trans>
-      </h2>
+      </Title>
+
       <p>
         <Trans locale={locale} i18nKey="endPage.waterActions.description1">
           <strong>
@@ -29,11 +31,13 @@ export default async function WaterActions({ locale }: Props) {
           obtenir la matière première de nombre de nos vêtements.
         </Trans>
       </p>
+
       <p className="mb-6">
         <Trans locale={locale} i18nKey="endPage.waterActions.description2">
           Retrouvez nos conseils dans ces articles :
         </Trans>
       </p>
+
       <ul className="mb-4 flex justify-center gap-4">
         <li>
           <Link
@@ -68,6 +72,7 @@ export default async function WaterActions({ locale }: Props) {
             </div>
           </Link>
         </li>
+
         <li>
           <Link
             href={

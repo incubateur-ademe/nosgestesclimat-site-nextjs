@@ -1,11 +1,9 @@
-import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import FinTabs from '@/components/results/FinTabs'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { eauMetric } from '@/constants/model/metric'
+import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import Trans from '../../translation/trans/TransServer'
 import FootprintBlock from '../FootprintBlock'
 import SaveResultsBlock from '../SaveResultsBlock'
@@ -14,16 +12,13 @@ import DocumentationBlock from './_components/DocumentationBlock'
 import IsItALot from './_components/IsItALot'
 import WaterActions from './_components/WaterActions'
 import WaterFootprintDetail from './_components/WaterFootprintDetail'
+import WhatIsWaterFootprint from './_components/WhatIsWaterFootprint'
 
 interface Props {
   simulationId: string
   simulationResult: SimulationResult
   locale: Locale
 }
-
-const WhatIsWaterFootprint = dynamic(
-  () => import('./_components/WhatIsWaterFootprint')
-)
 
 export default function WaterFootprintResults({
   simulationId,
@@ -63,20 +58,16 @@ export default function WaterFootprintResults({
         locale={locale}
       />
 
-      <Suspense>
-        <QueryClientProviderWrapper>
-          <WhatIsWaterFootprint
-            situation={simulationResult.situation}
-            locale={locale}
-          />
-        </QueryClientProviderWrapper>
-      </Suspense>
+      <WhatIsWaterFootprint
+        situation={simulationResult.situation}
+        locale={locale}
+      />
 
-      <h2 className="title-lg mb-8">
+      <Title tag="h2" hasSeparator={false} size="lg" className="mb-8">
         <Trans locale={locale} i18nKey="simulation.eau.saveBlock.title">
           Retrouvez facilement vos résultats{' '}
         </Trans>
-      </h2>
+      </Title>
 
       <SaveResultsBlock locale={locale} />
 
