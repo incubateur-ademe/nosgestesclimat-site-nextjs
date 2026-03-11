@@ -3,20 +3,18 @@
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { useRules } from '@/hooks/useRules'
 import { EngineProvider, useCurrentSimulation } from '@/publicodes-state'
-import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import type { PropsWithChildren } from 'react'
 import { Suspense, useState } from 'react'
 import Error500 from '../layout/500'
 import PRNumberHook from './simulationProviders/PRNumberHook'
 
 interface Props {
-  supportedRegions: SupportedRegions
   isOptim?: boolean
 }
 
 export default function EngineProviders({
   children,
-  supportedRegions,
   isOptim = true,
 }: PropsWithChildren<Props>) {
   const { id } = useCurrentSimulation()

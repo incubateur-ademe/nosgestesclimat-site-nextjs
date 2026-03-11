@@ -2,23 +2,17 @@
 
 import EngineProviders from '@/components/providers/EngineProviders'
 import { useCurrentSimulation } from '@/publicodes-state'
-import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
 import { useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationClient from './documentationRouter/DocumentationClient'
 
 interface Props {
-  supportedRegions: SupportedRegions
   slug: string[]
   serverComponent: JSX.Element
 }
 
-export default function DocumentationRouter({
-  supportedRegions,
-  slug,
-  serverComponent,
-}: Props) {
+export default function DocumentationRouter({ slug, serverComponent }: Props) {
   const { isDocumentationClient, setIsDocumentationClient } = useContext(
     IsDocumentationClientContext
   )
@@ -36,7 +30,7 @@ export default function DocumentationRouter({
 
   if (isDocumentationClient)
     return (
-      <EngineProviders supportedRegions={supportedRegions} isOptim={false}>
+      <EngineProviders isOptim={false}>
         <DocumentationClient slugs={slug} />
       </EngineProviders>
     )

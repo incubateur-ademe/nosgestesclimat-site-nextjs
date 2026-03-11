@@ -1,4 +1,5 @@
 'use server'
+
 import { cookies, headers } from 'next/headers'
 import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'

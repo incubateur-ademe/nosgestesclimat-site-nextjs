@@ -1,24 +1,24 @@
-import type { JSX, PropsWithChildren } from 'react'
+import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 
 import { twMerge } from 'tailwind-merge'
 import Separator from './Separator'
 
 type Sizes = 'xl' | 'lg' | 'md'
 
-export interface TitleProps {
+export interface TitleProps
+  extends Omit<HTMLAttributes<HTMLHeadingElement>, 'title'> {
   title?: string | JSX.Element
   subtitle?: string | JSX.Element
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   hasSeparator?: boolean
-  className?: string
   containerClassName?: string
   size?: Sizes
 }
 
-const sizesClassNames: Record<Sizes, string> = {
-  xl: 'text-4xl',
-  lg: 'text-3xl',
-  md: 'text-2xl',
+export const titleSizesClassNames: Record<Sizes, string> = {
+  xl: 'text-3xl font-bold md:text-4xl',
+  lg: 'text-2xl font-medium md:text-3xl',
+  md: 'text-xl font-normal md:text-2xl',
 }
 
 export default function Title({
@@ -37,7 +37,7 @@ export default function Title({
     <div className={twMerge('relative', containerClassName)}>
       <div className="mb-6">
         <Tag
-          className={twMerge('mb-2', sizesClassNames[size], className)}
+          className={twMerge('mb-2', titleSizesClassNames[size], className)}
           {...props}>
           {title ?? children}
         </Tag>

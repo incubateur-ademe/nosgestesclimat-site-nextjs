@@ -2,7 +2,6 @@ import { DOCUMENTATION_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -59,7 +58,6 @@ export default async function DocumentationPage({
   params: { slug: string[] }
 }>) {
   const { locale, slug } = await params
-  const supportedRegions = getSupportedRegions()
 
   const rules = (await getRules({
     isOptim: false,
@@ -81,7 +79,6 @@ export default async function DocumentationPage({
 
   return (
     <DocumentationRouter
-      supportedRegions={supportedRegions}
       slug={slug}
       serverComponent={
         <DocumentationServer

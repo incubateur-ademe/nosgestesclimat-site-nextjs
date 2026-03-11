@@ -1,4 +1,4 @@
-import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
+import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function SimulationPage({
   params,
-}: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
+}: PageProps<'/[locale]/simulation/[simulationId]/resultats/eau'>) {
   const { simulationId, locale } = await params
 
   const simulationResult = await throwNextError(async () => {
@@ -39,9 +39,9 @@ export default async function SimulationPage({
   })
 
   return (
-    <CarbonFootprintResults
-      simulationResult={simulationResult}
+    <WaterFootprintResults
       simulationId={simulationId}
+      simulationResult={simulationResult}
       locale={locale as Locale}
     />
   )
