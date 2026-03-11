@@ -14,6 +14,8 @@ import { twMerge } from 'tailwind-merge'
 interface Props {
   carbonFootprint: number
   locale: Locale
+  className?: string
+  shouldDisplayBadge?: boolean
 }
 
 const getObjectiveData = ({
@@ -145,6 +147,8 @@ const getObjectiveData = ({
 export default function ObjectiveWithRhythm({
   locale,
   carbonFootprint,
+  className,
+  shouldDisplayBadge = true,
 }: Props) {
   const {
     displayValue,
@@ -167,14 +171,18 @@ export default function ObjectiveWithRhythm({
       : {}
 
   return (
-    <div className="rounded-lg border border-slate-300 p-6">
-      <div className="mb-2">
-        <Badge className="border-none text-base" color="secondary">
-          <Trans locale={locale} i18nKey="common.vous">
-            Vous
-          </Trans>
-        </Badge>
-      </div>
+    <div
+      className={twMerge('rounded-lg border border-slate-300 p-6', className)}>
+      {shouldDisplayBadge && (
+        <div className="mb-2">
+          <Badge className="border-none text-base" color="secondary">
+            <Trans locale={locale} i18nKey="common.vous">
+              Vous
+            </Trans>
+          </Badge>
+        </div>
+      )}
+
       <div className="flex w-full flex-col gap-4 md:flex-row">
         <div className={twMerge('flex-1 rounded-lg px-6 py-4', bgClassName)}>
           <h3 className={twMerge('mb-2 text-2xl font-bold', titleClassName)}>

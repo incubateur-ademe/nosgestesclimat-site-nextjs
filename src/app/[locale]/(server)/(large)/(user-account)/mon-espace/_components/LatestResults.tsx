@@ -1,5 +1,4 @@
-import MetricSlider from '@/components/fin/MetricSlider'
-import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
+import ObjectiveWithRhythm from '@/components/results/objective/_components/ObjectiveWithRhythm'
 import Trans from '@/components/translation/trans/TransServer'
 import Separator from '@/design-system/layout/Separator'
 import type { Locale } from '@/i18nConfig'
@@ -13,10 +12,6 @@ export default function LatestResults({
   locale: Locale
   simulation: Simulation
 }) {
-  if (!simulation) {
-    return null
-  }
-
   return (
     <div className="border-primary-200 rounded-lg border-1 bg-white px-6 py-8">
       <div className="mb-8">
@@ -48,7 +43,7 @@ export default function LatestResults({
               Test effectué le
             </Trans>
           </span>{' '}
-          {new Date(simulation?.date)?.toLocaleDateString(locale, {
+          {new Date(simulation.date).toLocaleDateString(locale, {
             day: 'numeric',
             month: 'long',
             year: 'numeric',
@@ -56,17 +51,11 @@ export default function LatestResults({
         </p>
       </div>
 
-      <MetricSlider
-        carboneTotal={simulation.computedResults.carbone.bilan}
-        waterTotal={simulation.computedResults.eau?.bilan}
-        className="mb-0 h-auto"
-        isStatic
-        isSharePage
-      />
-      <CarboneTotalChart
-        className="mt-10 block md:hidden"
-        total={simulation.computedResults.carbone.bilan}
-        shouldShowOnlyGauge
+      <ObjectiveWithRhythm
+        locale={locale}
+        carbonFootprint={simulation.computedResults.carbone.bilan}
+        className="border-none p-0"
+        shouldDisplayBadge={false}
       />
 
       <SeeDetailLink className="flex md:hidden" simulationId={simulation.id} />
