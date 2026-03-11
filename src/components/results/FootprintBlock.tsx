@@ -1,8 +1,10 @@
 import { carboneMetric } from '@/constants/model/metric'
+import { titleSizesClassNames } from '@/design-system/layout/Title'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface Props {
   locale: Locale
@@ -28,7 +30,11 @@ export default function FootprintBlock({
       <h1 className="mb-0">
         <span className="mb-1 block text-lg font-normal">{title}</span>
 
-        <span className="text-primary-600 title-lg font-bold!">
+        <span
+          className={twMerge(
+            titleSizesClassNames.lg,
+            'text-primary-600 font-bold!'
+          )}>
           {formattedValue} {unit} {unitSuffix}
         </span>
       </h1>

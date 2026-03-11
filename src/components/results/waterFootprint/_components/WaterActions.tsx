@@ -15,7 +15,7 @@ export default async function WaterActions({ locale }: Props) {
 
   return (
     <div className="mb-12">
-      <Title hasSeparator={false} tag="h2" size="lg" className="title-lg">
+      <Title hasSeparator={false} tag="h2" size="lg">
         <Trans locale={locale} i18nKey="endPage.waterActions.title">
           Comment agir ?
         </Trans>

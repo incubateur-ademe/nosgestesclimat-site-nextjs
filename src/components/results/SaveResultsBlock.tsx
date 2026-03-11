@@ -11,6 +11,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
 import Image from 'next/image'
 import SaveResultsForm from './SaveResultsForm'
+import Title from '@/design-system/layout/Title'
 
 interface Props {
   locale: Locale
@@ -27,9 +28,12 @@ export default async function SaveResultsBlock({ locale }: Props) {
       aria-labelledby="save-results-block-title">
       <div className="flex flex-col flex-wrap items-stretch gap-8 md:flex-row md:items-center lg:flex-nowrap">
         <div className="max-w-full flex-1">
-          <h3
+          <Title
+            tag="h3"
+            size="md"
+            hasSeparator={false}
             id="save-results-block-title"
-            className="title-md font-bold! text-white">
+            className="font-bold! text-white">
             {isAuthenticated ? (
               <Trans
                 i18nKey="results.saveResults.title.authenticated"
@@ -43,7 +47,7 @@ export default async function SaveResultsBlock({ locale }: Props) {
                 Recevez-les par e-mail et accédez à votre espace personnel
               </Trans>
             )}
-          </h3>
+          </>
 
           <ul role="list" className="mb-6 flex max-w-full flex-col gap-2">
             <li className="flex gap-2 text-white">
