@@ -13,12 +13,16 @@ interface Props {
   simulationId: string
   simulationResult: SimulationResult
   locale: Locale
+  hideSaveBlock?: boolean
+  basePathname: string
 }
 
 export default function CarbonFootprintResults({
   simulationId,
   simulationResult,
   locale,
+  basePathname,
+  hideSaveBlock = false,
 }: Props) {
   return (
     <>
@@ -26,6 +30,7 @@ export default function CarbonFootprintResults({
         locale={locale}
         simulationId={simulationId}
         currentPage="carbone"
+        basePathname={basePathname}
       />
 
       <FootprintBlock
@@ -57,7 +62,7 @@ export default function CarbonFootprintResults({
         </Trans>
       </Title>
 
-      <SaveResultsBlock locale={locale} />
+      {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 
       <Objective
         locale={locale}

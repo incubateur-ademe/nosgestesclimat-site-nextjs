@@ -1,4 +1,4 @@
-import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
+import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
 import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -7,7 +7,7 @@ import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import type { DefaultPageProps } from '@/types'
 
-export default async function DetailledResultsPage({
+export default async function DetailledResultsWaterPage({
   params,
 }: DefaultPageProps<{ params: { locale: string; simulationId: string } }>) {
   const { simulationId, locale } = await params
@@ -40,12 +40,19 @@ export default async function DetailledResultsPage({
               'mon-espace.resultsDetail.breadcrumb.resultDetail',
               'Détail des résultats'
             ),
+          },
+          {
+            href: `/mon-espace/resultats/${simulationId}/eau`,
+            label: t(
+              'mon-espace.resultsDetail.breadcrumb.waterFootprint',
+              'Empreinte eau'
+            ),
             isActive: true,
           },
         ]}
       />
 
-      <CarbonFootprintResults
+      <WaterFootprintResults
         simulationId={simulationId}
         simulationResult={simulationResult}
         locale={locale}

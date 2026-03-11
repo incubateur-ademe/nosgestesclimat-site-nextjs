@@ -1,5 +1,6 @@
 import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
 import { noIndexObject } from '@/constants/metadata'
+import { END_PAGE_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
@@ -43,6 +44,7 @@ export default async function SimulationPage({
       simulationId={simulationId}
       simulationResult={simulationResult}
       locale={locale as Locale}
+      basePathname={`${END_PAGE_PATH.replace(':id', simulationId)}`}
     />
   )
 }

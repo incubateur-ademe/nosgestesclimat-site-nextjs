@@ -8,12 +8,13 @@ interface Props {
   locale: Locale
   simulationId: string
   currentPage: 'carbone' | 'eau'
+  basePathname: string
 }
 
 export default async function FootprintsLinks({
   locale,
-  simulationId,
   currentPage,
+  basePathname,
 }: Props) {
   const { t } = await getServerTranslation({ locale })
 
@@ -31,7 +32,7 @@ export default async function FootprintsLinks({
               Empreinte carbone
             </Trans>
           ),
-          href: `/${locale}/simulation/${simulationId}/resultats`,
+          href: basePathname,
           isSelected: currentPage === 'carbone',
         },
         {
@@ -43,7 +44,7 @@ export default async function FootprintsLinks({
               <Emoji className="text-base">💧</Emoji>
             </>
           ),
-          href: `/${locale}/simulation/${simulationId}/resultats/eau`,
+          href: `${basePathname}/eau`,
           isSelected: currentPage === 'eau',
         },
       ]}

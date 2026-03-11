@@ -18,7 +18,7 @@ const DomesticWaterBlock = dynamic(() => import('./DomesticWaterBlock'))
 export default function WhatIsWaterFootprint({ situation, locale }: Props) {
   return (
     <div className="mb-12 flex flex-col gap-8 md:flex-row">
-      <section className="bg-primary-100 flex-1 p-8">
+      <section className="bg-primary-100 flex-1 rounded-2xl p-8">
         <Title hasSeparator={false} tag="h2" size="lg">
           <Trans
             locale={locale}
@@ -104,7 +104,7 @@ export default function WhatIsWaterFootprint({ situation, locale }: Props) {
         </ul>
       </section>
 
-      <section className="bg-secondary-100 flex-1 p-8">
+      <section className="bg-secondary-100 flex-1 rounded-2xl p-8">
         <Title tag="h2" size="lg" hasSeparator={false}>
           <Trans
             locale={locale}

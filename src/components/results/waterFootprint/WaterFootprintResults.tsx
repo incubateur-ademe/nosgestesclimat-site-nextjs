@@ -17,12 +17,16 @@ interface Props {
   simulationId: string
   simulationResult: SimulationResult
   locale: Locale
+  hideSaveBlock?: boolean
+  basePathname: string
 }
 
 export default function WaterFootprintResults({
   simulationId,
   simulationResult,
   locale,
+  hideSaveBlock = false,
+  basePathname,
 }: Props) {
   return (
     <>
@@ -30,6 +34,7 @@ export default function WaterFootprintResults({
         locale={locale}
         simulationId={simulationId}
         currentPage="eau"
+        basePathname={basePathname}
       />
 
       <FootprintBlock
@@ -68,7 +73,7 @@ export default function WaterFootprintResults({
         </Trans>
       </Title>
 
-      <SaveResultsBlock locale={locale} />
+      {hideSaveBlock && <SaveResultsBlock locale={locale} />}
 
       <div className="mb-16 w-full md:w-2xl">
         <ClimateAndWater />
