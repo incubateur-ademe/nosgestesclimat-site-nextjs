@@ -14,7 +14,7 @@ interface Props {
   value: number
   title: ReactNode
   metric: Metric
-  tendency: Tendency | undefined
+  tendency?: Tendency
   unitSuffix: ReactNode
 }
 export default function FootprintBlock({

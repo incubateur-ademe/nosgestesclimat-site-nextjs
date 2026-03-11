@@ -59,6 +59,7 @@ export default async function SimulationPage({
       <WaterFootprintResults
         simulationResult={simulationResult}
         locale={locale as Locale}
+        hideSaveBlock={user.isAuth}
       />
     </>
   )

@@ -3,9 +3,10 @@ import WaterFootprintResults from '@/components/results/waterFootprint/WaterFoot
 import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getUser } from '@/helpers/server/dal/user'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
+import { getSimulation } from '@/helpers/server/model/simulations'
+import { getAuthUser } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 
 export default async function DetailledResultsWaterPage({
@@ -15,14 +16,14 @@ export default async function DetailledResultsWaterPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const user = await getUser()
-
-  const simulationResult = await throwNextError(() =>
-    getSimulationResult({
-      simulationId,
+  const simulationResult = await throwNextError(async () => {
+    const user = await getAuthUser()
+    const simulation = await getSimulation({ user, simulationId })
+    return getSimulationResult({
+      simulation,
       user,
     })
-  )
+  })
 
   return (
     <>
@@ -55,7 +56,6 @@ export default async function DetailledResultsWaterPage({
 
       <FootprintsLinks
         locale={locale}
-        simulationId={simulationId}
         currentPage="eau"
         basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />

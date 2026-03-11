@@ -70,6 +70,7 @@ export default async function SimulationPage({
         simulationResult={simulationResult}
         locale={locale as Locale}
         tendency={tendency}
+        hideSaveBlock={user.isAuth}
       />
     </>
   )
