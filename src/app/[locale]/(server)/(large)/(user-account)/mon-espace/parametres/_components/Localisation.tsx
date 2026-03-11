@@ -8,7 +8,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
@@ -18,9 +18,9 @@ export default function Localisation() {
   const locale = useLocale()
 
   const { user, updateRegion, tutorials, showTutorial } = useUser()
-  const { region, initialRegion } = user || {}
+  const { region, initialRegion } = user
 
-  const isRegionSupported = Object.keys(supportedRegions)?.some(
+  const isRegionSupported = Object.keys(supportedRegions).some(
     (supportedRegion: string) => supportedRegion === region?.code
   )
 
