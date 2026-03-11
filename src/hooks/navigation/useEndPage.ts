@@ -12,30 +12,27 @@ export function useEndPage() {
   const searchParams = useSearchParams()
 
   const currentSimulation = useCurrentSimulation()
-  const progression = currentSimulation?.progression
+
+  const { progression, id, groups, polls } = currentSimulation
 
   const { saveSimulation } = useSaveSimulation()
 
   const linkToEndPage = useMemo(() => {
-    if (currentSimulation.groups?.length) {
-      const lastGroupId =
-        currentSimulation.groups[currentSimulation.groups.length - 1]
+    if (groups?.length) {
+      const lastGroupId = groups[groups.length - 1]
 
       return getLinkToGroupDashboard({ groupId: lastGroupId })
     }
 
-    return `${END_PAGE_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
-  }, [currentSimulation, searchParams])
+    return `${END_PAGE_PATH.replace(':id', id)}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
+  }, [groups, id, searchParams])
 
   const goToEndPage = useCallback(() => {
     if (progression !== 1) {
       return
     }
 
-    if (
-      (currentSimulation.polls && currentSimulation.polls.length > 0) ||
-      currentSimulation.groups
-    ) {
+    if ((polls && polls.length > 0) || groups) {
       saveSimulation({
         simulation: currentSimulation,
       })
@@ -44,7 +41,15 @@ export function useEndPage() {
     }
 
     router.push(linkToEndPage)
-  }, [progression, currentSimulation, router, linkToEndPage, saveSimulation])
+  }, [
+    progression,
+    groups,
+    polls,
+    currentSimulation,
+    router,
+    linkToEndPage,
+    saveSimulation,
+  ])
 
   return { goToEndPage, linkToEndPage }
 }

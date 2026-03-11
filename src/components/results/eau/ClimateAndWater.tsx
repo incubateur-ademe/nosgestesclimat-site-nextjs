@@ -15,10 +15,7 @@ export default function ClimateAndWater() {
       <p>
         <Trans>
           Les activités humaines menacent les équilibres naturels de notre
-          planète.
-        </Trans>{' '}
-        <Trans>
-          Comme le climat,{' '}
+          planète. Comme le climat,{' '}
           <strong className="text-secondary-700">
             le cycle de l'eau est fortement impacté partout dans le monde
           </strong>

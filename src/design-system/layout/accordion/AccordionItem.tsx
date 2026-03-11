@@ -1,3 +1,5 @@
+'use client'
+
 import ChevronRight from '@/components/icons/ChevronRight'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 

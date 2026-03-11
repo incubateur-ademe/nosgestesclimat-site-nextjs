@@ -8,8 +8,9 @@ import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { getRules } from '@/helpers/modelFetching/getRules'
-import { getUserSimulations } from '@/helpers/server/model/simulations'
-import { getUser } from '@/helpers/server/model/user'
+import { throwNextError } from '@/helpers/server/error'
+import { getSimulations } from '@/helpers/server/model/simulations'
+import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ProfileTab from '../_components/ProfileTabs'
@@ -18,12 +19,9 @@ export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
+  const user = await throwNextError(getAuthUser)
+  const simulations = await throwNextError(() => getSimulations({ user }))
   const rules = await getRules({ locale })
-  const user = await getUser()
-  const simulations = await getUserSimulations({
-    userId: user.id,
-  })
-
   return (
     <div className="flex flex-col">
       <h1 className="sr-only mb-6 text-2xl font-bold">
@@ -34,10 +32,10 @@ export default async function MonEspaceActionsPage({
 
       <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
 
-      {!simulations || simulations?.length <= 0 ? (
+      {simulations.length <= 0 ? (
         <NoResultsBlock locale={locale} />
       ) : (
-        <UserProvider serverSimulations={simulations}>
+        <UserProvider serverSimulations={simulations} initialUserId={user.id}>
           <QueryClientProviderWrapper>
             <EngineProvider rules={rules}>
               <FormProvider>

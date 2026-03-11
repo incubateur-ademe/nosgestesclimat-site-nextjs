@@ -10,7 +10,6 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import type { DefaultPageProps } from '@/types'
 import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
@@ -121,7 +120,6 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
       },
     },
   }
-  const supportedRegions = getSupportedRegions()
 
   return (
     <div data-testid="plan-links" className="mb-12">
@@ -162,7 +160,7 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
       </section>
 
       <section>
-        <EngineProviders supportedRegions={supportedRegions}>
+        <EngineProviders>
           <Actions />
         </EngineProviders>
       </section>

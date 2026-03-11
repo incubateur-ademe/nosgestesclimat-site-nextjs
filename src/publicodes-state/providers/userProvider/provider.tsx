@@ -11,6 +11,7 @@ import type {
 } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import UserContext from './context'
+import { useHandleSyncUserIdCookie } from './hooks/useHandleSyncUserIdCookie'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
 import usePersistentSimulations from './hooks/usePersistentSimulations'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
@@ -22,10 +23,12 @@ interface Props {
    */
   storageKey?: string
   serverSimulations?: Simulation[]
+  initialUserId?: string
 }
 export default function UserProvider({
   children,
   serverSimulations,
+  initialUserId,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -41,9 +44,17 @@ export default function UserProvider({
 
   const { user, setUser } = usePersistentUser({
     initialRegion,
+    initialUserId,
   })
 
   const { tutorials, setTutorials } = usePersistentTutorials()
+
+  // Syncs the userId stored locally with the one store
+  // via the cookies, server-side in NextJS
+  useHandleSyncUserIdCookie({
+    initialUserId,
+    currentUserId: user.userId,
+  })
 
   const {
     simulations,

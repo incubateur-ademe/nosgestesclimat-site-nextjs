@@ -8,7 +8,7 @@ import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import TextInput from '@/design-system/inputs/TextInput'
-import type { UserServer } from '@/helpers/server/model/user'
+import type { AuthUser } from '@/helpers/server/model/user'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -24,7 +24,7 @@ interface Inputs {
   emoji: string
 }
 
-export default function NameForm({ user }: { user: UserServer | null }) {
+export default function NameForm({ user }: { user: AuthUser | null }) {
   const { t } = useClientTranslation()
 
   const { user: userFromLocalStorage } = useUser()

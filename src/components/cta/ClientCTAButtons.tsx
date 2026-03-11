@@ -100,23 +100,23 @@ export default function ClientCTAButtons({
 
   const handleMainButtonClick = () => {
     if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
-      trackEvent(trackingEvents?.results)
-      if (trackingEvents?.resultsPosthog) {
+      trackEvent(trackingEvents.results)
+      if (trackingEvents.resultsPosthog) {
         trackPosthogEvent(trackingEvents.resultsPosthog)
       }
       return
     }
 
     if (progression > 0) {
-      trackEvent(trackingEvents?.resume)
-      if (trackingEvents?.resumePosthog) {
+      trackEvent(trackingEvents.resume)
+      if (trackingEvents.resumePosthog) {
         trackPosthogEvent(trackingEvents.resumePosthog)
       }
       return
     }
 
-    trackEvent(trackingEvents?.start)
-    if (trackingEvents?.startPosthog) {
+    trackEvent(trackingEvents.start)
+    if (trackingEvents.startPosthog) {
       trackPosthogEvent(trackingEvents.startPosthog)
     }
   }
@@ -163,9 +163,7 @@ export default function ClientCTAButtons({
             color="secondary"
             className="leading-none"
             trackingEvent={
-              progression !== 1
-                ? trackingEvents?.resume
-                : trackingEvents?.restart
+              progression !== 1 ? trackingEvents.resume : trackingEvents.restart
             }
             onClick={handleRestartClick}
             href={getLinkToSimulateurPage({

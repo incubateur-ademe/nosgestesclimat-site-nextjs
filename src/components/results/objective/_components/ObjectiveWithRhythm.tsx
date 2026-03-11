@@ -191,7 +191,7 @@ export default function ObjectiveWithRhythm({
           <>
             <DownArrow className="fill-default h-6 w-6 self-center md:-rotate-90" />
 
-            <div className="bg-primary-50 flex-1 rounded-lg px-6 py-4">
+            <div className="bg-primary-100 flex-1 rounded-lg px-6 py-4">
               <p className="mb-2">{reductionDescription}</p>
 
               <p className="text-2xl font-bold">

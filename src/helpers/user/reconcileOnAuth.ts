@@ -33,20 +33,16 @@ async function uploadLocalSimulations({
 }
 
 async function loadServerSimulation({
-  userId,
   updateSimulations,
   setCurrentSimulationId,
   hideTutorial,
 }: {
-  userId: string
   updateSimulations: (simulations: Simulation[]) => void
   setCurrentSimulationId: (simulationId: string) => void
   hideTutorial: (tutorialId: string) => void
 }) {
   // Fetch simulations from server
-  let simulations = await getUserSimulations({
-    userId,
-  })
+  let simulations = await getUserSimulations()
 
   if (simulations.length === 0) {
     simulations = [generateSimulation()]
@@ -87,7 +83,6 @@ export async function reconcileUserOnAuth({
   }
 
   await loadServerSimulation({
-    userId,
     updateSimulations,
     setCurrentSimulationId,
     hideTutorial,

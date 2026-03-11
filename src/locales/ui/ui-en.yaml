@@ -991,8 +991,8 @@ entries:
   Visiter cette page: Visit this page
   actions.engagementIcon.ariaLabel: The actions are below
   actions.engagementIcon.ariaLabel.lock: Les actions se trouvent en dessous
-  endPage.waterActions.lireArticle: Open article in a new window
-  endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
+  endPage.waterActions.lireArticle: 8 ways to improve the water footprint of my food, open article in new window
+  endPage.waterActions.lireArticle.lock: Les 8 manières d'améliorer l'empreinte eau de mon assiette, ouvrir l'article dans une nouvelle fenêtre
   organisations.ourTools.newTab: Open in a new window
   organisations.ourTools.newTab.lock: Ouvrir dans une nouvelle fenêtre
   endPage.carboneTarget.enSavoirPlus: Open the page in a new window
@@ -1792,8 +1792,8 @@ entries:
   fin.seeGroupResultsBanner.text.lock: Découvrez les résultats du test collectif
   results.objective.collectiveEffort.state: The French State
   results.objective.collectiveEffort.state.lock: L'État français
-  common.parAn: per year
-  common.parAn.lock: par an
+  common.parAn: / year
+  common.parAn.lock: / an
   common.vous: You
   common.vous.lock: Vous
   Vous aujourd'hui: You today
@@ -1834,19 +1834,98 @@ entries:
   Part de la sous-catégorie {{percentage}}: Share of sub-category {{percentage}}
   results.categories.services.text: Services (health, education, telecoms, etc.) account for around <2>1.5 tonnes of your footprint</2>. This share is <5>the same for everyone</5> and is <8>gradually decreasing</8> with the ecological transition.
   results.categories.services.text.lock: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.
-  error.contactSupport: If the problem persists, please <1>contact support.</1>
-  error.contactSupport.lock: Si le problème persiste, merci de <1>contacter le support.</1>
-  results.groups.createFirstGroup: <1>Create your first group</1> and invite your friends and family to compare your results. It takes <2>1 minute</2>!
-  results.groups.createFirstGroup.lock: <1>Créez votre premier groupe</1> et invitez vos proches pour comparer vos résultats. Cela prend <2>1 minute</2> !
-  results.groups.ranking.laconic: Which of <1>{{name}}</1> and you will have the smallest footprint?
-  results.groups.ranking.laconic.lock: Qui de <1>{{name}}</1> et vous aura la plus faible empreinte ?
-  results.groups.invite.first: You're the first <1>🥳</1> but you are alone… <2>🥲</2>
-  results.groups.invite.first.lock: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <2>🥲</2>
-  faq.doTheTest.notStarted: You haven't started your test yet, <1>get started!</1>
-  faq.doTheTest.notStarted.lock: Vous n'avez pas encore débuté votre test, <1>lancez-vous !</1>
-  faq.doTheTest.started: You have started your test, <1>click here to pick it up!</1>
-  faq.doTheTest.started.lock: Vous avez commencé votre test, <1>cliquez ici pour le reprendre !</1>
-  tutoriel.title: <1>10 minutes</1> to calculate your carbon and water footprint
-  tutoriel.title.lock: <1>10 minutes</1> chrono pour calculer votre empreinte carbone et eau
-  nos-relais.title: They relay <1>Nos Gestes Climat</1>
-  nos-relais.title.lock: Ils relaient <1>Nos Gestes Climat</1>
+  error.contactSupport: If the problem persists, please <2>contact support.</2>
+  error.contactSupport.lock: Si le problème persiste, merci de <2>contacter le support.</2>
+  results.groups.createFirstGroup: <0>Create your first group</0> and invite your friends and family to compare your results. It only takes <4>1 minute</4>!
+  results.groups.createFirstGroup.lock: <0>Créez votre premier groupe</0> et invitez vos proches pour comparer vos résultats. Cela prend <4>1 minute</4> !
+  results.groups.ranking.laconic: Which of you and <2>{group.participants[0].name}</2> will have the smallest footprint?
+  results.groups.ranking.laconic.lock: Qui de <2>{group.participants[0].name}</2> et vous aura la plus faible empreinte ?
+  results.groups.invite.first: You're first <1>🥳</1> but you're alone. <4>.. 🥲</4>
+  results.groups.invite.first.lock: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <4>🥲</4>
+  faq.doTheTest.notStarted: You haven't started your test yet, <2><0>get started!</0></2>
+  faq.doTheTest.notStarted.lock: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
+  faq.doTheTest.started: You've started your test, <2><0>click here to start again!</0></2>
+  faq.doTheTest.started.lock: Vous avez commencé votre test, <2><0>cliquez ici pour le reprendre !</0></2>
+  tutoriel.title: <0>10 minutes</0> to calculate your carbon and water footprint
+  tutoriel.title.lock: <0>10 minutes</0> chrono pour calculer votre empreinte carbone et eau
+  nos-relais.title: They relay <2>Our Gestes Climat</2>
+  nos-relais.title.lock: Ils relaient <2>Nos Gestes Climat</2>
+  common.carbonFootprint: Carbon footprint
+  common.carbonFootprint.lock: Empreinte carbone
+  simulation.eau.saveBlock.title: 'Find your results easily '
+  simulation.eau.saveBlock.title.lock: 'Retrouvez facilement vos résultats '
+  simulation.eau.whatIsWaterFootprint.list.animals: the feed of the <1>animals</1> you eat
+  simulation.eau.whatIsWaterFootprint.list.animals.lock: l'alimentation des <1>animaux</1> que vous consommez
+  endPage.waterActions.description2: 'Read our advice in these articles:'
+  endPage.waterActions.description2.lock: 'Retrouvez nos conseils dans ces articles :'
+  simulation.eau.whatIsWaterFootprint.showerWater.title: What about the water in my shower?
+  simulation.eau.whatIsWaterFootprint.showerWater.title.lock: Et l'eau de ma douche dans tout ça ?
+  simulation.eau.whatIsWaterFootprint.showerWater.description2: Domestic water can have <1>a very strong impact</1> depending on the <4>season</4> and <6>location</6>.
+  simulation.eau.whatIsWaterFootprint.showerWater.description2.lock: L’eau domestique peut avoir <1>un impact très fort</1> selon la <4>saison</4> et la <6>localisation</6>.
+  simulation.eau.whatIsWaterFootprint.title: What is the water footprint?
+  simulation.eau.whatIsWaterFootprint.title.lock: L'empreinte eau, c'est quoi ?
+  endPage.waterActions.readArticle: Read the article
+  endPage.waterActions.readArticle.lock: Lire l'article
+  common.waterFootprint: Water footprint
+  common.waterFootprint.lock: Empreinte eau
+  simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables: the <1>fruit, vegetables</1> and <4>cereals</4> you eat
+  simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables.lock: les <1>fruits, légumes</1> et <4>céréales</4> que vous mangez
+  simulation.eau.documentation.link: Understanding calculations
+  simulation.eau.documentation.link.lock: Comprendre le calcul
+  simulation.carbone.title: You emit approximately
+  simulation.carbone.title.lock: Vous émettez environ
+  simulation.eau.whatIsWaterFootprint.list.digitalDevices: extracting materials from your <2>digital devices</2>
+  simulation.eau.whatIsWaterFootprint.list.digitalDevices.lock: l'extraction des matériaux de vos <2>appareils numériques</2>
+  endPage.waterActions.article1Title: 3 tips for a water-efficient wardrobe
+  endPage.waterActions.article1Title.lock: Les 3 réflexes à adopter pour une garde-robe économe en eau
+  simulation.eau.whatIsWaterFootprint.showerWater.mainText: <0>You use</0><1><0>{{formattedValue}} {{unit}}</0> <2>domestic water per day</2></1>
+  simulation.eau.whatIsWaterFootprint.showerWater.mainText.lock: <0>Vous utilisez</0><1><0>{{formattedValue}} {{unit}}</0> <2>d'eau domestique par jour</2></1>
+  simulation.eau.whatIsWaterFootprint.list.electricity: the production of your <1>electricity</1>
+  simulation.eau.whatIsWaterFootprint.list.electricity.lock: la production de votre <1>électricité</1>
+  simulation.eau.whatIsWaterFootprint.showerWater.average: '*The French average is {{average}} litres per day'
+  simulation.eau.whatIsWaterFootprint.showerWater.average.lock: '*La moyenne française est de {{average}} litres par jour'
+  eau.resultats.isItALot.title: Is it a lot?
+  eau.resultats.isItALot.title.lock: Est-ce que c'est beaucoup ?
+  endPage.waterActions.title: What can we do?
+  endPage.waterActions.title.lock: Comment agir ?
+  eau.resultats.waterFootprintDetail.title: Where do your results come from?
+  eau.resultats.waterFootprintDetail.title.lock: D’où vient votre résultat ?
+  simulation.eau.climateAndWater.title: Water, climate, same battle?
+  simulation.eau.climateAndWater.title.lock: Eau, climat, même combat ?
+  Landing page thématique - Nos Gestes Climat: Thematic landing page - Nos Gestes Climat
+  endpage.meta.title.carbon: My carbon footprint - Nos Gestes Climat
+  endpage.meta.title.carbon.lock: Mon empreinte carbone - Nos Gestes Climat
+  simulation.eau.title: The water footprint used to produce what you consume
+  simulation.eau.title.lock: L’empreinte eau qui sert à produire ce que vous consommez
+  simulation.eau.whatIsWaterFootprint.vigieEau: Visit VigiEau to find out more.
+  simulation.eau.whatIsWaterFootprint.vigieEau.lock: Rendez-vous sur VigiEau pour en savoir plus.
+  simulation.eau.documentation.title: How is your footprint calculated?
+  simulation.eau.documentation.title.lock: Comment est calculée votre empreinte ?
+  Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Discover practical tips for reducing your ecological footprint.
+  simulation.eau.whatIsWaterFootprint.list.cotton: the <1>cotton</1> you wear
+  simulation.eau.whatIsWaterFootprint.list.cotton.lock: la culture du <1>coton</1> que vous portez
+  simulation.eau.climateAndWater.description1: Human activities are threatening the natural balance of our planet.
+  simulation.eau.climateAndWater.description1.lock: Les activités humaines menacent les équilibres naturels de notre planète.
+  endPage.waterActions.article2Title: 8 ways to improve the water footprint of my plate
+  endPage.waterActions.article2Title.lock: Les 8 manières d'améliorer l'empreinte eau de mon assiette
+  eau.resultats.isItALot.text1: As a general rule, water footprint values vary between <2>3,000 and 9,000 litres</2> per day. Unlike carbon, there is no quantified target for the water footprint.
+  eau.resultats.isItALot.text1.lock: En règle générale, les valeurs d'empreinte eau varient entre <2>3 000 et 9 000 litres</2> par jour. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
+  simulation.eau.documentation.description: Our calculator is based on a data model, with all calculations documented; the data displayed is directly associated with your test.
+  simulation.eau.documentation.description.lock: Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  simulation.eau.whatIsWaterFootprint.description: 'The water footprint is <2>the total amount of water consumed</2> to <5>produce and</5> <7>distribute</7> the goods and services you use every day. For example, it takes water to :'
+  simulation.eau.whatIsWaterFootprint.description.lock: "L'empreinte eau, c'est <2>l'ensemble de l'eau consommée</2> pour <5>produire</5>et <7>distribuer</7> les biens et services de votre quotidien. Par exemple il faut de l'eau pour :"
+  endPage.waterActions.description1: <0>Most of our water footprint is generated by growing plants,</0> whether to feed ourselves or our livestock, or to provide the raw material for many of our clothes.
+  endPage.waterActions.description1.lock: <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.
+  simulation.eau.whatIsWaterFootprint.list.domesticWater: '<0>please note</0>: domestic water (e.g. the water from your showers) is not included in the water footprint'
+  simulation.eau.whatIsWaterFootprint.list.domesticWater.lock: "<0>attention</0> : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau"
+  eau.resultats.isItALot.text2: We do not display the default value at the start of the test. As our water model is the first of its kind in France, we don't want it to be perceived as the national average.
+  eau.resultats.isItALot.text2.lock: Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.
+  simulation.eau.climateAndWater.description2: 'Like the climate, <2>the water cycle is having a major impact throughout the world</2>: access to drinking water, disappearance and migration of species (animal and plant), displacement of populations.'
+  simulation.eau.climateAndWater.description2.lock: "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2> : accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
+  simulation.eau.whatIsWaterFootprint.showerWater.description1: Domestic water, i.e. the water that comes out of your taps, is not included in your water footprint, as it is returned to the environment. For example, the water from your shower, once it has been treated, is returned to the watercourses in your area.
+  simulation.eau.whatIsWaterFootprint.showerWater.description1.lock: L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.
+  "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": Human activities are threatening the natural balance of our planet. Like the climate, <2>the water cycle is having a major impact around the world</2>, in terms of access to drinking water, the disappearance and migration of species (animal and plant) and the displacement of populations.
+  simulation.eau.whatIsWaterFootprint.titleInsec: What is the water footprint?
+  simulation.eau.whatIsWaterFootprint.titleInsec.lock: L'empreinte eau, c'est quoi ?
+  results.footprintsLinks.ariaLabel: Impression type selector
+  results.footprintsLinks.ariaLabel.lock: Sélecteur de type d'empreinte

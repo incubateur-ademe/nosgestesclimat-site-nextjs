@@ -1,6 +1,7 @@
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
-import { getUserSimulations } from '@/helpers/server/model/simulations'
-import { getUser } from '@/helpers/server/model/user'
+import { throwNextError } from '@/helpers/server/error'
+import { getSimulations } from '@/helpers/server/model/simulations'
+import { getAuthUser } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 import NoResultsView from './_components/NoResultsView'
 import ResultsView from './_components/ResultsView'
@@ -11,13 +12,11 @@ export default async function Page({ params, searchParams }: DefaultPageProps) {
   const { [SHOW_WELCOME_BANNER_QUERY_PARAM]: showWelcomeBanner } =
     (await searchParams) ?? {}
 
-  const user = await getUser()
-
-  const simulations = await getUserSimulations({
-    userId: user.id,
+  const simulations = await throwNextError(async () => {
+    const user = await getAuthUser()
+    return getSimulations({ user })
   })
-
-  const latestSimulation = simulations?.[0]
+  const latestSimulation = simulations.length > 0 ? simulations[0] : undefined
 
   return (
     <>

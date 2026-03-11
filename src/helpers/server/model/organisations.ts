@@ -1,9 +1,7 @@
 'use server'
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
-import { captureException } from '@sentry/nextjs'
-import { fetchServer } from './fetchServer'
-import { getUser } from './user'
+import { fetchServer } from '../fetchServer'
 
 export async function getOrganisationPolls(
   idOrSlug: string
@@ -14,20 +12,7 @@ export async function getOrganisationPolls(
 }
 
 export async function getUserOrganisation(): Promise<Organisation | undefined> {
-  const user = await getUser()
-
-  if (!user) {
-    return undefined
-  }
-
-  try {
-    const organisations = await fetchServer<Organisation[]>(ORGANISATION_URL)
-
-    if (organisations.length === 0) return undefined
-
-    return organisations[0]
-  } catch (error) {
-    captureException(error)
-    return undefined
-  }
+  const organisations = await fetchServer<Organisation[]>(ORGANISATION_URL)
+  if (organisations.length === 0) return undefined
+  return organisations[0]
 }

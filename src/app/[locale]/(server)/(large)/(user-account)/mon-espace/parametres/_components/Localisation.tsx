@@ -4,11 +4,12 @@ import FlagIcon from '@/components/icons/FlagIcon'
 import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
+import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 
@@ -16,12 +17,10 @@ export default function Localisation() {
   const { t } = useClientTranslation()
   const locale = useLocale()
 
-  const supportedRegions = getSupportedRegions()
-
   const { user, updateRegion, tutorials, showTutorial } = useUser()
-  const { region, initialRegion } = user || {}
+  const { region, initialRegion } = user
 
-  const isRegionSupported = Object.keys(supportedRegions)?.some(
+  const isRegionSupported = Object.keys(supportedRegions).some(
     (supportedRegion: string) => supportedRegion === region?.code
   )
 
@@ -77,7 +76,10 @@ export default function Localisation() {
             )}
             {isRegionSupported && (
               <RegionModelAuthors
-                authors={supportedRegions[region.code][locale].authors}
+                authors={
+                  (supportedRegions as SupportedRegions)[region.code][locale]
+                    .authors
+                }
               />
             )}
           </div>
