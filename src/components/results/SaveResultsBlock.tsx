@@ -7,11 +7,11 @@ import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
 import Image from 'next/image'
 import SaveResultsForm from './SaveResultsForm'
-import Title from '@/design-system/layout/Title'
 
 interface Props {
   locale: Locale
@@ -47,7 +47,7 @@ export default async function SaveResultsBlock({ locale }: Props) {
                 Recevez-les par e-mail et accédez à votre espace personnel
               </Trans>
             )}
-          </>
+          </Title>
 
           <ul role="list" className="mb-6 flex max-w-full flex-col gap-2">
             <li className="flex gap-2 text-white">
