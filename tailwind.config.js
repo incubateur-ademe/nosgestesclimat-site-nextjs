@@ -273,7 +273,7 @@ export default {
         'bar-grow-horizontal': 'bar-grow-horizontal 0.8s ease-out forwards',
         'slide-in-from-bottom':
           'slide-in-from-bottom 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
-        'fade-in-slide-from-top': 'fade-in-slide-from-top 0.3s ease-out forwards',
+        'fade-in-slide-from-top': 'fade-in-slide-from-top 0.3s ease-out forwards ',
       },
       screens: {
         xs: '320px',

@@ -5,6 +5,7 @@ import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
+import AnimatedNumber from './footprintBlock/AnimatedNumber'
 
 interface Props {
   className?: string
@@ -23,12 +24,16 @@ export default function FootprintBlock({
   unitSuffix,
 }: Props) {
   const { formattedValue, unit } = formatFootprint(value, {
-    locale: locale as string,
+    localize: false,
     metric,
   })
 
   return (
-    <div className={twMerge('bg-primary-100 rounded-2xl p-8', className)}>
+    <div
+      className={twMerge(
+        'bg-primary-100 animate-fade-in-slide-from-top rounded-2xl p-8 [animation-delay:200ms] [animation-fill-mode:both]',
+        className
+      )}>
       <h1 className="mb-0">
         <span className="mb-1 block text-lg font-normal">{title}</span>
 
@@ -37,7 +42,7 @@ export default function FootprintBlock({
             titleSizesClassNames.lg,
             'text-primary-600 font-bold!'
           )}>
-          {formattedValue} {unit} {unitSuffix}
+          <AnimatedNumber value={Number(formattedValue)} /> {unit} {unitSuffix}
         </span>
       </h1>
     </div>

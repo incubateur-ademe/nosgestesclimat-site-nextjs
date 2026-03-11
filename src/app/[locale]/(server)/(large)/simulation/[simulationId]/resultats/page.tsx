@@ -1,3 +1,4 @@
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { noIndexObject } from '@/constants/metadata'
@@ -52,9 +53,11 @@ export default async function SimulationPage({
       />
 
       {/* Displays specific banner for partners */}
-      <PartnerProvider>
-        <PartnerRedirectionAlert />
-      </PartnerProvider>
+      <QueryClientProviderWrapper>
+        <PartnerProvider>
+          <PartnerRedirectionAlert />
+        </PartnerProvider>
+      </QueryClientProviderWrapper>
 
       <CarbonFootprintResults
         simulationResult={simulationResult}
