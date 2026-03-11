@@ -270,6 +270,9 @@ importers:
       mailisk:
         specifier: ^2.2.2
         version: 2.2.2
+      micromatch:
+        specifier: ^4.0.8
+        version: 4.0.8
       msw:
         specifier: ^2.11.6
         version: 2.11.6(@types/node@24.8.1)(typescript@5.9.3)
