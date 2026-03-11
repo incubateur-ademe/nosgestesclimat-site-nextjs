@@ -31,6 +31,7 @@ const titles: Record<Metric, ReactElement> = {
 interface Props {
   simulation: Simulation
   isStatic?: boolean
+  userId: string
   title?: string | ReactNode
 }
 
@@ -129,10 +130,15 @@ function ResultsContentInner({
   )
 }
 
-export default function ResultsContent({ simulation, isStatic, title }: Props) {
+export default function ResultsContent({
+  simulation,
+  isStatic,
+  title,
+  userId,
+}: Props) {
   return (
     <QueryClientProviderWrapper>
-      <UserProvider>
+      <UserProvider initialUserId={userId}>
         <IframeOptionsProvider>
           <ResultsContentInner
             isStatic={isStatic}

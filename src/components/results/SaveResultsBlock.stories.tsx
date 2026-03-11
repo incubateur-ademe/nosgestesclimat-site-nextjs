@@ -3,6 +3,7 @@ import UserProvider from '@/publicodes-state/providers/userProvider/provider'
 import type { Meta, StoryObj } from '@storybook/nextjs'
 import { http, HttpResponse } from 'msw'
 import SaveResultsBlock from './SaveResultsBlock'
+import { randomUUID } from "crypto"
 
 const meta: Meta<typeof SaveResultsBlock> = {
   title: 'App/Simulation/Fin/Components/SaveResultsBlock',
@@ -42,7 +43,7 @@ const meta: Meta<typeof SaveResultsBlock> = {
   decorators: [
     (Story) => (
       <QueryClientProviderWrapper>
-        <UserProvider>
+        <UserProvider initialUserId={randomUUID()}>
           <Story />
         </UserProvider>
       </QueryClientProviderWrapper>
@@ -64,13 +65,11 @@ type Story = StoryObj<typeof SaveResultsBlock>
 export const Unauthenticated: Story = {
   args: {
     locale: 'fr',
-    isAuthenticated: false,
   },
 }
 
 export const Authenticated: Story = {
   args: {
     locale: 'fr',
-    isAuthenticated: true,
   },
 }

@@ -1,11 +1,9 @@
 import FinTabs from '@/components/results/FinTabs'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { eauMetric } from '@/constants/model/metric'
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { getSimulationResult } from '@/helpers/server/model/simulations'
+import Title from '@/design-system/layout/Title'
+import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
-import { cacheLife, cacheTag } from 'next/cache'
-import { notFound, redirect } from 'next/navigation'
 import Trans from '../../translation/trans/TransServer'
 import FootprintBlock from '../FootprintBlock'
 import FootprintDetail from '../FootprintDetail'
@@ -18,40 +16,15 @@ import WhatIsWaterFootprint from './_components/WhatIsWaterFootprint'
 
 interface Props {
   simulationId: string
+  simulationResult: SimulationResult
   locale: Locale
-  userId: string
 }
 
-async function getCachedSimulationResult({
-  userId,
+export default function WaterFootprintResults({
   simulationId,
-}: {
-  userId: string
-  simulationId: string
-}) {
-  'use cache'
-  cacheLife('weeks')
-  cacheTag(`simulation-${simulationId}`)
-
-  return getSimulationResult({ userId, simulationId })
-}
-
-export default async function WaterFootprintResults({
-  simulationId,
+  simulationResult,
   locale,
-  userId,
 }: Props) {
-  const simulationResults = await getCachedSimulationResult({
-    userId,
-    simulationId,
-  })
-
-  if (!simulationResults) notFound()
-
-  if (simulationResults.progression !== 1) {
-    redirect(SIMULATOR_PATH)
-  }
-
   return (
     <>
       <FinTabs />
@@ -65,7 +38,7 @@ export default async function WaterFootprintResults({
       <FootprintBlock
         className="mb-12"
         locale={locale}
-        value={simulationResults.computedResults.eau.bilan}
+        value={simulationResult.computedResults.eau.bilan}
         title={
           <Trans locale={locale} i18nKey="simulation.eau.title">
             L’empreinte eau qui sert à produire ce que vous consommez
@@ -77,32 +50,31 @@ export default async function WaterFootprintResults({
             / an
           </Trans>
         }
-        tendency={simulationResults.tendency}
       />
 
       <IsItALot locale={locale} />
 
       <FootprintDetail
-        computedResults={simulationResults.computedResults}
+        computedResults={simulationResult.computedResults}
         locale={locale}
         metric={eauMetric}
       />
 
       <WhatIsWaterFootprint
-        situation={simulationResults.situation}
+        situation={simulationResult.situation}
         locale={locale}
       />
 
-      <h2 className="title-lg mb-8">
+      <Title tag="h2" hasSeparator={false} size="lg" className="mb-8">
         <Trans locale={locale} i18nKey="simulation.eau.saveBlock.title">
           Retrouvez facilement vos résultats{' '}
         </Trans>
-      </h2>
+      </Title>
 
       <SaveResultsBlock locale={locale} />
 
       <div className="mb-16 w-full md:w-2xl">
-        <ClimateAndWater locale={locale} />
+        <ClimateAndWater />
 
         <WaterActions locale={locale} />
 

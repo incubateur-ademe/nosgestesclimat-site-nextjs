@@ -1,10 +1,16 @@
-import { overrideServerUserId } from '@/actions/overrideServerUserId'
+import { setAnonSessionCookie } from '@/helpers/server/actions/setAnonSessionCookie'
 import { useEffect } from 'react'
 
-export function useHandleSyncUserIdCookie(userId: string) {
+export function useHandleSyncUserIdCookie({
+  initialUserId,
+  currentUserId,
+}: {
+  initialUserId: string | undefined
+  currentUserId: string
+}) {
   useEffect(() => {
-    if (userId) {
-      void overrideServerUserId(userId)
+    if (initialUserId && initialUserId !== currentUserId) {
+      void setAnonSessionCookie(currentUserId)
     }
-  }, [userId])
+  }, [initialUserId, currentUserId])
 }

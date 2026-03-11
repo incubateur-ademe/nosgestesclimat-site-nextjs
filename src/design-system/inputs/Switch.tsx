@@ -19,6 +19,7 @@ interface ButtonOption extends Option {
 interface Props {
   options: LinkOption[] | ButtonOption[]
   className?: string
+  'aria-label': string
 }
 
 function isButtonOptions(
@@ -28,7 +29,7 @@ function isButtonOptions(
 }
 
 const commonClassName =
-  'border border-slate-300 text-default font-medium no-underline py-1 px-3'
+  'border border-slate-300 text-sm font-medium no-underline py-1 px-3'
 
 const selectedClassName =
   'border-primary-600 text-primary-600 rounded-sm border bg-white relative'
@@ -51,15 +52,21 @@ const getFullClassName = ({
     isSelected ? selectedClassName : ''
   )
 
-export default function Switch({ options, className }: Props) {
+export default function Switch({
+  options,
+  className,
+  'aria-label': ariaLabel,
+}: Props) {
   if (isButtonOptions(options)) {
     return (
-      <div className={className}>
+      <div role="group" aria-label={ariaLabel} className={className}>
         {options.map(({ label, isSelected, onClick }, index) => (
           <button
             key={`switch-${index}`}
+            type="button"
             className={getFullClassName({ isSelected, index, options })}
-            onClick={onClick}>
+            onClick={onClick}
+            aria-pressed={isSelected ?? false}>
             {label}
           </button>
         ))}
@@ -68,15 +75,16 @@ export default function Switch({ options, className }: Props) {
   }
 
   return (
-    <div className={className}>
+    <nav aria-label={ariaLabel} className={className}>
       {options.map(({ label, isSelected, href }, index) => (
         <Link
           key={`switch-${index}`}
           className={getFullClassName({ isSelected, index, options })}
-          href={href}>
+          href={href}
+          aria-current={isSelected ? 'page' : undefined}>
           {label}
         </Link>
       ))}
-    </div>
+    </nav>
   )
 }

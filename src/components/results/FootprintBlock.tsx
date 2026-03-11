@@ -1,11 +1,10 @@
 import { carboneMetric } from '@/constants/model/metric'
+import { titleSizesClassNames } from '@/design-system/layout/Title'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import type { Tendency } from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import TendencyIndicator from './TendencyIndicator'
 
 interface Props {
   className?: string
@@ -14,7 +13,6 @@ interface Props {
   title: ReactNode
   metric?: Metric
   unitSuffix: ReactNode
-  tendency?: Tendency
 }
 export default function FootprintBlock({
   className,
@@ -23,7 +21,6 @@ export default function FootprintBlock({
   title,
   metric = carboneMetric,
   unitSuffix,
-  tendency,
 }: Props) {
   const { formattedValue, unit } = formatFootprint(value, {
     locale: locale as string,
@@ -31,20 +28,18 @@ export default function FootprintBlock({
   })
 
   return (
-    <div
-      className={twMerge(
-        'bg-primary-50 flex flex-row items-center justify-between rounded-2xl p-8',
-        className
-      )}>
+    <div className={twMerge('bg-primary-100 rounded-2xl p-8', className)}>
       <h1 className="mb-0">
         <span className="mb-1 block text-lg font-normal">{title}</span>
 
-        <span className="text-primary-600 title-lg font-bold!">
+        <span
+          className={twMerge(
+            titleSizesClassNames.lg,
+            'text-primary-600 font-bold!'
+          )}>
           {formattedValue} {unit} {unitSuffix}
         </span>
       </h1>
-
-      {tendency && <TendencyIndicator tendency={tendency} locale={locale} />}
     </div>
   )
 }
