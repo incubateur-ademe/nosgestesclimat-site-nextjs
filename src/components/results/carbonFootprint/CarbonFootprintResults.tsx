@@ -4,6 +4,7 @@ import { carboneMetric } from '@/constants/model/metric'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
 import Trans from '../../translation/trans/TransServer'
+import ActionsBlock from '../ActionsBlock'
 import FootprintBlock from '../FootprintBlock'
 import FootprintDetail from '../FootprintDetail'
 import SaveResultsBlock from '../SaveResultsBlock'
@@ -72,6 +73,8 @@ export default function CarbonFootprintResults({
           on contribue à hauteur de ses possibilités, on veut vous y aider.
         </Trans>
       </p>
+
+      <ActionsBlock locale={locale} simulationId={simulationId} />
     </>
   )
 }
