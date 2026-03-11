@@ -134,6 +134,7 @@
     "jsdom": "^27.0.1",
     "knip": "^5.82.1",
     "mailisk": "^2.2.2",
+    "micromatch": "^4.0.8",
     "msw": "^2.11.6",
     "msw-storybook-addon": "^2.0.5",
     "playwright": "^1.57.0",
