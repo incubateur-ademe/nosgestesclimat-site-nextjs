@@ -19,7 +19,6 @@ interface ButtonOption extends Option {
 interface Props {
   options: LinkOption[] | ButtonOption[]
   className?: string
-  /** Accessible label describing the purpose of this switch group (required for screen readers). */
   'aria-label': string
 }
 
