@@ -1,4 +1,4 @@
-import { overrideServerUserId } from '@/helpers/server/model/actions/overrideServerUserId'
+import { overrideServerUserId } from '@/helpers/server/dal/overrideServerUserId'
 import { useEffect } from 'react'
 
 export function useHandleSyncUserIdCookie({

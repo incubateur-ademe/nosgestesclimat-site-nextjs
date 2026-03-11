@@ -2,8 +2,7 @@
 
 import { NEWSLETTER_URL, USER_URL } from '@/constants/urls/main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { fetchServer } from './fetchServer'
-import { isUserAuthenticated } from './user'
+import { fetchServer } from '../fetchServer'
 
 export async function updateNewsletterSubscription({
   email,
@@ -14,7 +13,6 @@ export async function updateNewsletterSubscription({
 }): Promise<void> {
   await fetchServer(`${NEWSLETTER_URL}/inscription`, {
     method: 'POST',
-    auth: await isUserAuthenticated(),
     body: {
       email,
       listIds,
