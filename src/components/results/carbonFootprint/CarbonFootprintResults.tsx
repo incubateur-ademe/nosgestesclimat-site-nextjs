@@ -1,6 +1,6 @@
-import { carboneMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
+import type { Tendency } from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import Trans from '../../translation/trans/TransServer'
 import ActionsBlock from '../ActionsBlock'
@@ -13,17 +13,20 @@ interface Props {
   simulationResult: SimulationResult
   locale: Locale
   hideSaveBlock?: boolean
+  tendency: Tendency | undefined
 }
 
 export default function CarbonFootprintResults({
   simulationResult,
   locale,
+  tendency,
   hideSaveBlock = false,
 }: Props) {
   return (
     <>
       <FootprintBlock
         className="mb-12"
+        tendency={tendency}
         locale={locale}
         value={simulationResult.computedResults.carbone.bilan}
         title={
@@ -31,7 +34,7 @@ export default function CarbonFootprintResults({
             Vous émettez environ
           </Trans>
         }
-        metric={carboneMetric}
+        metric="carbone"
         unitSuffix={
           <Trans locale={locale} i18nKey="common.co2eAn">
             CO₂e / an
@@ -42,7 +45,7 @@ export default function CarbonFootprintResults({
       <FootprintDetail
         computedResults={simulationResult.computedResults}
         locale={locale}
-        metric={carboneMetric}
+        metric="carbone"
       />
 
       <Title tag="h2" size="lg" hasSeparator={false} className="mb-8">
@@ -67,7 +70,7 @@ export default function CarbonFootprintResults({
         </Trans>
       </p>
 
-      <ActionsBlock locale={locale} simulationId={simulationId} />
+      <ActionsBlock locale={locale} />
     </>
   )
 }

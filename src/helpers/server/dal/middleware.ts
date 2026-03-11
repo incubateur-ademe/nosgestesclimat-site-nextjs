@@ -9,7 +9,7 @@ import {
 const PATHS_WITH_ANON_SESSION = [
   `/`,
   `/simulateur/**`,
-  `/simulation/**`,
+  `/fin/**`,
   `/connexion`,
   `/inscription`,
   `/amis/**`,

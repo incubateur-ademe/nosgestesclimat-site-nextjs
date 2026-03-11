@@ -1,26 +1,29 @@
-import { carboneMetric } from '@/constants/model/metric'
 import { titleSizesClassNames } from '@/design-system/layout/Title'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import type { Tendency } from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import AnimatedNumber from './footprintBlock/AnimatedNumber'
+import TendencyIndicator from './TendencyIndicator'
 
 interface Props {
   className?: string
   locale: Locale
   value: number
   title: ReactNode
-  metric?: Metric
+  metric: Metric
+  tendency: Tendency | undefined
   unitSuffix: ReactNode
 }
 export default function FootprintBlock({
   className,
-  locale,
+  tendency,
   value,
   title,
-  metric = carboneMetric,
+  metric,
+  locale,
   unitSuffix,
 }: Props) {
   const { formattedValue, unit } = formatFootprint(value, {
@@ -45,6 +48,7 @@ export default function FootprintBlock({
           <AnimatedNumber value={Number(formattedValue)} /> {unit} {unitSuffix}
         </span>
       </h1>
+      {tendency && <TendencyIndicator locale={locale} tendency={tendency} />}
     </div>
   )
 }
