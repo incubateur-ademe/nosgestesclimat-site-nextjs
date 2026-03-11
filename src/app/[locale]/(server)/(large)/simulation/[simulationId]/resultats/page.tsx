@@ -3,9 +3,10 @@ import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
+import { throwNextError } from '@/helpers/server/error'
+import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -21,35 +22,27 @@ export async function generateMetadata({ params }: DefaultPageProps) {
       "Vos résultats de tests de notre calculateur d'empreinte carbone."
     ),
     robots: noIndexObject,
-    alternates: {
-      canonical: '/simulation/resultats',
-    },
   })
 }
 
 export default async function SimulationPage({
   params,
-  searchParams,
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
   const { simulationId, locale } = await params
-  const { userId: searchParamsUserId } = await searchParams
 
-  // Try cookie-based user first, fallback to userId from query params
-  // (passed by SimulationResolverFallback when cookie isn't set yet)
-  const user = await getUser()
-  const userId =
-    user?.id ??
-    (typeof searchParamsUserId === 'string' ? searchParamsUserId : undefined)
-
-  if (!userId) {
-    notFound()
-  }
+  const simulationResult = await throwNextError(async () => {
+    const user = await getUser()
+    return getSimulationResult({
+      user,
+      simulationId,
+    })
+  })
 
   return (
     <CarbonFootprintResults
+      simulationResult={simulationResult}
       simulationId={simulationId}
       locale={locale as Locale}
-      userId={userId}
     />
   )
 }

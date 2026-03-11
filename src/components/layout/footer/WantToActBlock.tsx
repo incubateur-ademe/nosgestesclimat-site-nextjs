@@ -1,8 +1,6 @@
 import Trans from '@/components/translation/trans/TransServer'
-import {
-  captureFooterNewsletterClick,
-  footerNewsletterCTAClick,
-} from '@/constants/tracking/layout'
+import { footerNewsletterCTAClick } from '@/constants/tracking/layout'
+import { captureFooterNewsletterClick } from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import type { Locale } from '@/i18nConfig'
 

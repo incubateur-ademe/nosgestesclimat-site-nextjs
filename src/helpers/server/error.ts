@@ -1,3 +1,5 @@
+import { notFound, unauthorized } from 'next/navigation'
+
 export class NotFoundError extends Error {
   constructor() {
     super('Not Found')
@@ -44,5 +46,21 @@ export class InvalidInputError extends Error {
   constructor(public errorObject: unknown) {
     super('Invalid Input')
     this.name = 'InvalidInputError'
+  }
+}
+export async function throwNextError<T>(fn: () => Promise<T>): Promise<T> {
+  try {
+    return await fn()
+  } catch (error) {
+    if (error instanceof NotFoundError) {
+      notFound()
+    } else if (
+      error instanceof UnauthorizedError ||
+      error instanceof ForbiddenError
+    ) {
+      unauthorized()
+    } else {
+      throw error
+    }
   }
 }

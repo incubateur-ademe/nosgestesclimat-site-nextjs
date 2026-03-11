@@ -3,7 +3,6 @@ import Title from '@/design-system/layout/Title'
 
 import OrganisationFilAriane from '@/components/layout/FilAriane'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
-import { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type {
   Organisation,
@@ -12,7 +11,6 @@ import type {
 import { organisationAdminGuard } from '../organisation-guard'
 import OrganisationForm from './_components/OrganisationForm'
 
-/* global PageProps */
 export default async function ParametresPage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]/parametres'>) {
@@ -38,7 +36,7 @@ export default async function ParametresPage({
           title={
             <span>
               <Trans>Paramètres de </Trans>
-              <strong className="text-primary-700">{organisation?.name}</strong>
+              <strong className="text-primary-700">{organisation.name}</strong>
             </span>
           }
         />
@@ -56,13 +54,7 @@ const getFormDefaultValues = (
 ): OrgaSettingsInputsType => {
   const {
     administrators: [
-      {
-        email,
-        optedInForCommunications,
-        position,
-        name: administratorName,
-        telephone: administratorTelephone,
-      },
+      { position, name: administratorName, telephone: administratorTelephone },
     ],
     numberOfCollaborators,
     type: organisationType,
@@ -74,10 +66,8 @@ const getFormDefaultValues = (
 
   return {
     name,
-    email,
     numberOfCollaborators: numberOfCollaborators ?? 0,
-    hasOptedInForCommunications: optedInForCommunications ?? false,
-    organisationType: organisationType ?? OrganisationTypeEnum.other,
+    organisationType,
     ...(position ? { position } : {}),
     ...(administratorName
       ? {

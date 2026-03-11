@@ -11,17 +11,15 @@ import {
   TooManyRequestsError,
   UnauthorizedError,
   UnknownError,
-} from '../error'
+} from './error'
 
 export async function fetchServer<T = unknown>(
   url: string,
   {
     method = 'GET',
     body,
-    auth = true,
   }: {
     method?: 'GET' | 'POST' | 'PUT'
-    auth?: boolean
     body?: Record<string, unknown>
   } = {}
 ): Promise<T> {
@@ -33,12 +31,9 @@ export async function fetchServer<T = unknown>(
     'Content-Type': 'application/json',
   }
 
-  if (auth) {
-    const cookieStore = await cookies()
-    const ngcCookie = cookieStore.get(AUTHENTICATION_COOKIE_NAME)
-    if (!ngcCookie) {
-      throw new UnauthorizedError()
-    }
+  const cookieStore = await cookies()
+  const ngcCookie = cookieStore.get(AUTHENTICATION_COOKIE_NAME)
+  if (ngcCookie) {
     headers.cookie = `${ngcCookie.name}=${ngcCookie.value}`
   }
 

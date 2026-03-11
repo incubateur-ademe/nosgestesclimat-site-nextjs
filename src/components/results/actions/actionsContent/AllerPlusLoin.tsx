@@ -3,10 +3,8 @@
 import Link from '@/components/Link'
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  actionsClickAdeme,
-  actionsClickAdemePosthog,
-} from '@/constants/tracking/pages/actions'
+import { actionsClickAdeme } from '@/constants/tracking/pages/actions'
+import { captureActionsClickAdeme } from '@/constants/tracking/posthogTrackers'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
@@ -32,7 +30,7 @@ export default function AllerPlusLoin() {
               href="https://agirpourlatransition.ademe.fr/particuliers/"
               onClick={() => {
                 trackEvent(actionsClickAdeme)
-                trackPosthogEvent(actionsClickAdemePosthog)
+                trackPosthogEvent(captureActionsClickAdeme)
               }}
               aria-label={t(
                 "Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet"

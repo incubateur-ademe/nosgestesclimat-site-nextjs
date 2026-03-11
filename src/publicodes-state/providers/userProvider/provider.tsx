@@ -51,7 +51,10 @@ export default function UserProvider({
 
   // Syncs the userId stored locally with the one store
   // via the cookies, server-side in NextJS
-  useHandleSyncUserIdCookie(user.userId)
+  useHandleSyncUserIdCookie({
+    initialUserId,
+    currentUserId: user.userId,
+  })
 
   const {
     simulations,

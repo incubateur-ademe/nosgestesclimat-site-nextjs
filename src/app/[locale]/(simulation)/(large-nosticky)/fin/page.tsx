@@ -8,6 +8,7 @@ import Carbone from '@/components/results/Carbone'
 import CategoriesAccordion from '@/components/results/CategoriesAccordionLegacy'
 import DocumentationBlock from '@/components/results/DocumentationBlock'
 import Eau from '@/components/results/Eau'
+import FinTabs from '@/components/results/FinTabs'
 import InformationBlock from '@/components/results/InformationBlock'
 import ShareBlock from '@/components/results/ShareBlock'
 import Trans from '@/components/translation/trans/TransClient'
@@ -23,14 +24,12 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, type ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
-import FinTabs from '../../../../../components/results/FinTabs'
 import SimulateurSkeleton from '../../simulateur/[root]/skeleton'
 import ActionsTabContent from './_components/ActionsTabContent'
 import GroupsTabContent from './_components/GroupsTabContent'
 import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import SaveResultsAndSigninSignUpForm from './_components/SaveResultsAndSigninSignUpForm'
-import TallyForm from './_components/TallyForm'
 
 const titles: Record<Metric, ReactElement> = {
   [carboneMetric]: <Trans>carbone</Trans>,
@@ -67,8 +66,6 @@ export default function FinPage() {
       <IframeDataShareModal />
 
       <FinTabs />
-
-      <TallyForm />
 
       <Poll />
 

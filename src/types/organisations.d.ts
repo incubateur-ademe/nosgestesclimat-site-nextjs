@@ -130,14 +130,12 @@ export type PublicPollSimulation = Pick<
 
 export interface OrgaSettingsInputsType {
   name: string
-  email: string
   position?: string
   administratorFirstName?: string
   administratorLastName?: string
   administratorPosition?: string
   numberOfCollaborators?: number
   administratorTelephone?: string
-  hasOptedInForCommunications?: boolean
   organisationType: OrganisationTypeEnum
 }
 

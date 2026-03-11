@@ -6,13 +6,11 @@ export function useUpdateUserSettings() {
   return useMutation({
     mutationKey: ['updateUserSettings'],
     mutationFn: async ({
-      newsletterIds,
       userId,
       email,
       name,
       code,
     }: {
-      newsletterIds?: number[]
       userId: string
       email?: string
       name?: string
@@ -24,9 +22,6 @@ export function useUpdateUserSettings() {
           {
             email,
             name,
-            contact: {
-              listIds: newsletterIds,
-            },
           },
           {
             params: {

@@ -8,28 +8,33 @@ import Marianne from '@/components/images/partners/Marianne'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { isUserAuthenticated } from '@/helpers/server/model/user'
 import Image from 'next/image'
 import SaveResultsForm from './SaveResultsForm'
+import Title from '@/design-system/layout/Title'
+
 interface Props {
   locale: Locale
-  isAuthentified: boolean
 }
 
-export default async function SaveResultsBlock({
-  locale,
-  isAuthentified,
-}: Props) {
+export default async function SaveResultsBlock({ locale }: Props) {
+  const isAuthenticated = await isUserAuthenticated()
+
   const { t } = await getServerTranslation({ locale })
+
   return (
     <section
       className="bg-primary-700 mb-12 rounded-2xl p-8"
       aria-labelledby="save-results-block-title">
       <div className="flex flex-col flex-wrap items-stretch gap-8 md:flex-row md:items-center lg:flex-nowrap">
         <div className="max-w-full flex-1">
-          <h3
+          <Title
+            tag="h3"
+            size="md"
+            hasSeparator={false}
             id="save-results-block-title"
-            className="title-md font-bold! text-white">
-            {isAuthentified ? (
+            className="font-bold! text-white">
+            {isAuthenticated ? (
               <Trans
                 i18nKey="results.saveResults.title.authenticated"
                 locale={locale}>
@@ -42,7 +47,7 @@ export default async function SaveResultsBlock({
                 Recevez-les par e-mail et accédez à votre espace personnel
               </Trans>
             )}
-          </h3>
+          </>
 
           <ul role="list" className="mb-6 flex max-w-full flex-col gap-2">
             <li className="flex gap-2 text-white">
@@ -74,7 +79,7 @@ export default async function SaveResultsBlock({
             </li>
           </ul>
 
-          {isAuthentified ? (
+          {isAuthenticated ? (
             <ButtonLink color="borderless" href={MON_ESPACE_PATH}>
               <Trans
                 i18nKey="results.saveResults.buttonLabel.authenticated"
@@ -89,7 +94,7 @@ export default async function SaveResultsBlock({
           )}
         </div>
         <div className="max-w-full">
-          {isAuthentified ? (
+          {isAuthenticated ? (
             <div className="flex w-full justify-center">
               <Image
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/visuel_login_cbf2f03684.svg"

@@ -1,10 +1,8 @@
 'use client'
 
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
-import {
-  trackingCategoryFilter,
-  trackingCategoryFilterPosthog,
-} from '@/constants/tracking/misc'
+import { trackingCategoryFilter } from '@/constants/tracking/misc'
+import { captureTrackingCategoryFilter } from '@/constants/tracking/posthogTrackers'
 import { baseClassNames } from '@/design-system/buttons/Button'
 import {
   getBackgroundColor,
@@ -64,7 +62,7 @@ export default function CategoryFilter({
     onTabActivate()
     trackEvent(trackingCategoryFilter(dottedName, window.location.pathname))
 
-    trackPosthogEvent(trackingCategoryFilterPosthog(dottedName))
+    trackPosthogEvent(captureTrackingCategoryFilter({ category: dottedName }))
 
     router.replace(buildURL(), {
       scroll: false,

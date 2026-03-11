@@ -71,3 +71,6 @@ coverage
 
 storybook-static
 package-lock.json
+
+# IDE
+.history/

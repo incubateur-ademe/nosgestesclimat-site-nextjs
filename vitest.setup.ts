@@ -86,10 +86,6 @@ vi.mock('uuid', () => ({
   v4: vi.fn(() => faker.string.uuid()),
 }))
 
-// Mock syncUserIdCookie server action (uses cookies() which requires a request scope)
-vi.mock('@/actions/syncUserIdCookie', () => ({
-  syncUserIdCookie: vi.fn(),
-}))
 
 // Mock Sentry
 vi.mock('@sentry/nextjs', () => ({

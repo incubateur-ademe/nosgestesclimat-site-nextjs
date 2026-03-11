@@ -93,8 +93,10 @@ export default function InviteBlock({ group }: { group: Group }) {
   return (
     <div className="rainbow-border mt-4 rounded-xl p-4">
       <h2 className="mt-0 flex items-center text-base md:text-lg">
-        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji> 
-        <Trans>mais vous êtes seul·e…</Trans> <Emoji>🥲</Emoji>
+        <Trans i18nKey="results.groups.invite.first">
+          Vous êtes le premier <Emoji>🥳</Emoji> mais vous êtes seul·e…{' '}
+          <Emoji>🥲</Emoji>
+        </Trans>
       </h2>
       <p className="mb-4 text-sm md:text-base">
         <Trans>

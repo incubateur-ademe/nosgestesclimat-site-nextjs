@@ -84,10 +84,6 @@ test.describe('The parameters page', () => {
     await expect(page.getByTestId('input-administrator-last-name')).toHaveValue(
       organisation.admin.lastName
     )
-
-    await expect(page.getByTestId('input-administrator-email')).toHaveValue(
-      organisation.admin.email
-    )
   })
 
   test('should have a working logout button', async ({
@@ -112,7 +108,6 @@ test.describe('The parameters page', () => {
       .fill(admin.firstName)
 
     await page.getByTestId('input-administrator-last-name').fill(admin.lastName)
-    await page.getByTestId('input-administrator-email').fill(admin.email)
 
     await page.getByTestId('button-submit').click()
 
@@ -129,9 +124,6 @@ test.describe('The parameters page', () => {
 
     await page.reload()
 
-    await expect(page.getByTestId('input-administrator-email')).toHaveValue(
-      admin.email
-    )
     // We update the admin info in playwright state
     organisation.admin = admin
     await organisation.saveInContext()

@@ -7,7 +7,6 @@ import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
 import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
 import { faker } from '@faker-js/faker'
@@ -117,11 +116,7 @@ const TestWrapper = ({
   }
 
   if (providers.engine) {
-    wrapped = (
-      <EngineProviders supportedRegions={getSupportedRegions()} isOptim={false}>
-        {wrapped}
-      </EngineProviders>
-    )
+    wrapped = <EngineProviders isOptim={false}>{wrapped}</EngineProviders>
   }
 
   if (providers.mainHooks) {
