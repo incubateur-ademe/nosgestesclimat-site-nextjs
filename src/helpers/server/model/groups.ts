@@ -2,7 +2,8 @@
 
 import { GROUP_URL } from '@/constants/urls/main'
 import type { Group } from '@/types/groups'
-import { fetchServer } from './fetchServer'
+import type { AppUser } from '../dal/user'
+import { fetchServer } from '../fetchServer'
 import { getAuthUser } from './user'
 
 export async function getUserGroups(): Promise<Group[]> {
@@ -11,16 +12,12 @@ export async function getUserGroups(): Promise<Group[]> {
   return fetchServer<Group[]>(`${GROUP_URL}/${user.id}`)
 }
 
-export async function getGroupById({
+export async function getGroup({
   groupId,
-  userId,
-  ngcCookie,
+  user,
 }: {
   groupId: string
-  userId: string
-  ngcCookie?: string
-}): Promise<Group | null> {
-  return fetchServer<Group>(`${GROUP_URL}/${userId}/${groupId}`, {
-    ngcCookie,
-  })
+  user: AppUser
+}): Promise<Group> {
+  return fetchServer<Group>(`${GROUP_URL}/${user.id}/${groupId}`)
 }

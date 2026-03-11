@@ -2,17 +2,17 @@
 
 import { SIMULATION_URL } from '@/constants/urls/main'
 import type { Simulation } from '@/publicodes-state/types'
-import type { AppUser } from '../dal/user'
-import { fetchServer } from './fetchServer'
+import { getUser, type AppUser } from '../dal/user'
+import { fetchServer } from '../fetchServer'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
-export async function getUserSimulations({
-  userId,
+export async function getSimulations({
+  user,
 }: {
-  userId: string
+  user: AppUser
 }): Promise<Simulation[]> {
   const serverSimulations = await fetchServer<Simulation[]>(
-    `${SIMULATION_URL}/${userId}?pageSize=50`
+    `${SIMULATION_URL}/${user.id}?pageSize=50`
   )
 
   // Map from server format to client format
@@ -22,30 +22,26 @@ export async function getUserSimulations({
     return updatedSimulation
   })
 
-  const sortedSimulations = simulations.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
-  return sortedSimulations
+  return simulations
 }
 
 export async function getSimulation({
   user,
   simulationId,
-  ngcCookie,
 }: {
   user: AppUser
   simulationId: string
-  ngcCookie?: string
 }): Promise<Simulation> {
   const simulation = await fetchServer<Simulation>(
-    `${SIMULATION_URL}/${user.id}/${simulationId}`,
-    {
-      auth: user.isAuth,
-      ngcCookie,
-    }
+    `${SIMULATION_URL}/${user.id}/${simulationId}`
   )
 
   const updatedSimulation = setDefaultExtendedSituation(simulation)
 
   return updatedSimulation
+}
+
+export async function getUserSimulations() {
+  const user = await getUser()
+  return getSimulations({ user })
 }
