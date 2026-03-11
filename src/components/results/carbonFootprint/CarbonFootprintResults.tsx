@@ -13,7 +13,7 @@ interface Props {
   simulationResult: SimulationResult
   locale: Locale
   hideSaveBlock?: boolean
-  tendency: Tendency | undefined
+  tendency?: Tendency
 }
 
 export default function CarbonFootprintResults({

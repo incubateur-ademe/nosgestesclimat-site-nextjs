@@ -11,10 +11,9 @@ import Trans from '../translation/trans/TransServer'
 
 interface Props {
   locale: Locale
-  simulationId: string
 }
 
-export default function ActionsBlock({ locale, simulationId }: Props) {
+export default function ActionsBlock({ locale }: Props) {
   return (
     <Card className="mb-20">
       <Title

@@ -19,7 +19,6 @@ export default async function GroupsDashboard() {
   return (
     <>
       <Organisation organisation={organisation} />
-
       <Groups groups={groups} />
     </>
   )
