@@ -1,12 +1,8 @@
 import FinTabs from '@/components/results/FinTabs'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { getSimulationResult } from '@/helpers/server/model/simulations'
-import { isUserAuthenticated } from '@/helpers/server/model/user'
+import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
-import { cacheLife, cacheTag } from 'next/cache'
-import { notFound, redirect } from 'next/navigation'
 import Trans from '../../translation/trans/TransServer'
 import FootprintBlock from '../FootprintBlock'
 import FootprintDetail from '../FootprintDetail'
@@ -15,42 +11,15 @@ import Objective from '../objective/Objective'
 
 interface Props {
   simulationId: string
+  simulationResult: SimulationResult
   locale: Locale
-  userId: string
 }
 
-async function getCachedSimulationResult({
-  userId,
+export default function CarbonFootprintResults({
   simulationId,
-}: {
-  userId: string
-  simulationId: string
-}) {
-  'use cache'
-  cacheLife('weeks')
-  cacheTag(`simulation-${simulationId}`)
-
-  return getSimulationResult({ userId, simulationId })
-}
-
-export default async function CarbonFootprintResults({
-  simulationId,
+  simulationResult,
   locale,
-  userId,
 }: Props) {
-  const isAuthenticated = await isUserAuthenticated()
-
-  const simulationResult = await getCachedSimulationResult({
-    userId,
-    simulationId,
-  })
-
-  if (!simulationResult) notFound()
-
-  if (simulationResult.progression !== 1) {
-    redirect(SIMULATOR_PATH)
-  }
-
   return (
     <>
       <FinTabs />
@@ -95,7 +64,7 @@ export default async function CarbonFootprintResults({
         </Trans>
       </h2>
 
-      <SaveResultsBlock locale={locale} isAuthentified={isAuthenticated} />
+      <SaveResultsBlock locale={locale} />
 
       <Objective
         locale={locale}
