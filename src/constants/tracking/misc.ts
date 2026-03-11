@@ -53,13 +53,6 @@ export const trackingCategoryFilter = (category: DottedName, path: string) => [
   `Click Filter ${category}`,
 ]
 
-export const trackingCategoryFilterPosthog = (category: DottedName) => ({
-  eventName: 'Actions click category filter',
-  properties: {
-    category,
-  },
-})
-
 // Cookies
 export const trackingCookiesAccept = [
   'trackEvent',

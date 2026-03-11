@@ -133,7 +133,7 @@ export function useTrackIframe(isIframe: boolean) {
       const urlInteractor = getIntegratorUrl(isIframe)
 
       trackEvent(trackingIframeVisit(urlInteractor))
-      trackPosthogEvent(captureIframeVisit(urlInteractor))
+      trackPosthogEvent(captureIframeVisit({ url: urlInteractor }))
     }
   }, [entry, observed, url, isIframe, anonymizedUrl])
 
@@ -149,7 +149,7 @@ export function useTrackIframe(isIframe: boolean) {
       const urlInteractor = getIntegratorUrl(isIframe)
 
       trackEvent(trackingIframeInteraction(urlInteractor))
-      trackPosthogEvent(captureIframeInteraction(urlInteractor))
+      trackPosthogEvent(captureIframeInteraction({ url: urlInteractor }))
     }
   }, [entry, observed, path, isIframe, hasInteracted])
 }

@@ -2,10 +2,8 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
-import {
-  captureSignupComplete,
-  signupComplete,
-} from '@/constants/tracking/pages/mon-espace'
+import { signupComplete } from '@/constants/tracking/pages/mon-espace'
+import { captureSignupComplete } from '@/constants/tracking/posthogTrackers'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'

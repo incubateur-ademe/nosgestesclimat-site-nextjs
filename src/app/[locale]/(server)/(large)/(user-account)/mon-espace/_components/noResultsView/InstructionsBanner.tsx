@@ -1,9 +1,7 @@
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/trans/TransServer'
-import {
-  captureClickMySpaceNoResultsStartTest,
-  clickMySpaceNoResultsStartTest,
-} from '@/constants/tracking/pages/mon-espace'
+import { clickMySpaceNoResultsStartTest } from '@/constants/tracking/pages/mon-espace'
+import { captureClickMySpaceNoResultsStartTest } from '@/constants/tracking/posthogTrackers'
 import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,

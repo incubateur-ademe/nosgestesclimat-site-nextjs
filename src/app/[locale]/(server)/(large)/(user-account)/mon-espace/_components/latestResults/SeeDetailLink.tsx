@@ -1,8 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickLatestResultsViewDetail,
-  clickLatestResultsViewDetail,
-} from '@/constants/tracking/user-account'
+import { captureClickLatestResultsViewDetail } from '@/constants/tracking/posthogTrackers'
+import { clickLatestResultsViewDetail } from '@/constants/tracking/user-account'
 import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,

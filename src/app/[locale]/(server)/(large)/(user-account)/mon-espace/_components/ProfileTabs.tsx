@@ -3,10 +3,8 @@ import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import Trans from '@/components/translation/trans/TransServer'
-import {
-  captureClickMonEspaceTabServer,
-  monEspaceTabTrackEventServer,
-} from '@/constants/tracking/pages/mon-espace'
+import { monEspaceTabTrackEventServer } from '@/constants/tracking/pages/mon-espace'
+import { captureClickMonEspaceTabServer } from '@/constants/tracking/posthogTrackers'
 import {
   MON_ESPACE_ACTIONS_PATH,
   MON_ESPACE_GROUPS_PATH,
@@ -60,7 +58,7 @@ export default async function ProfileTab({
           : undefined,
       'data-track-posthog':
         activePath !== MON_ESPACE_PATH
-          ? captureClickMonEspaceTabServer('results')
+          ? captureClickMonEspaceTabServer({ tab: 'results' })
           : undefined,
       prefetch: false,
     },
@@ -96,7 +94,7 @@ export default async function ProfileTab({
           : undefined,
       'data-track-posthog':
         activePath !== MON_ESPACE_ACTIONS_PATH
-          ? captureClickMonEspaceTabServer('actions')
+          ? captureClickMonEspaceTabServer({ tab: 'actions' })
           : undefined,
       prefetch: false,
     },
@@ -134,7 +132,7 @@ export default async function ProfileTab({
           : undefined,
       'data-track-posthog':
         activePath !== MON_ESPACE_GROUPS_PATH
-          ? captureClickMonEspaceTabServer('groups')
+          ? captureClickMonEspaceTabServer({ tab: 'groups' })
           : undefined,
       prefetch: false,
     },
@@ -165,7 +163,7 @@ export default async function ProfileTab({
           : undefined,
       'data-track-posthog':
         activePath !== MON_ESPACE_SETTINGS_PATH
-          ? captureClickMonEspaceTabServer('settings')
+          ? captureClickMonEspaceTabServer({ tab: 'settings' })
           : undefined,
       containerClassName: 'md:ml-auto',
       prefetch: false,

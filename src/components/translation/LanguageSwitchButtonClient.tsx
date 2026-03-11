@@ -1,9 +1,7 @@
 'use client'
 
-import {
-  footerClickLanguage,
-  footerClickLanguagePosthog,
-} from '@/constants/tracking/layout'
+import { footerClickLanguage } from '@/constants/tracking/layout'
+import { captureFooterClickLanguage } from '@/constants/tracking/posthogTrackers'
 import ButtonAnchor from '@/design-system/buttons/ButtonAnchor'
 import Emoji from '@/design-system/utils/Emoji'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
@@ -38,7 +36,7 @@ const generateLanguageUrl = (newLocale: Locale): string => {
 
 const handleLanguageClick = (newLocale: Locale) => {
   trackEvent(footerClickLanguage(newLocale))
-  trackPosthogEvent(footerClickLanguagePosthog(newLocale))
+  trackPosthogEvent(captureFooterClickLanguage({ locale: newLocale }))
   updateLangCookie(newLocale)
 }
 

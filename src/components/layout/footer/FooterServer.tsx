@@ -5,20 +5,6 @@ import Logo from '@/components/misc/Logo'
 import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
 import Trans from '@/components/translation/trans/TransServer'
 import {
-  captureFooterClickAmbassadeurs,
-  captureFooterClickBlog,
-  captureFooterClickContact,
-  captureFooterClickDiffusion,
-  captureFooterClickDocumentation,
-  captureFooterClickFAQ,
-  captureFooterClickImpactco2,
-  captureFooterClickInternational,
-  captureFooterClickLogo,
-  captureFooterClickNouveautes,
-  captureFooterClickOrganisations,
-  captureFooterClickPlanSite,
-  captureFooterClickQuiSommesNous,
-  captureFooterClickStats,
   footerClickAmbassadeursServer,
   footerClickBlogServer,
   footerClickContactServer,
@@ -34,6 +20,22 @@ import {
   footerClickQuiSommesNousServer,
   footerClickStatsServer,
 } from '@/constants/tracking/layout'
+import {
+  captureFooterClickAmbassadeurs,
+  captureFooterClickBlog,
+  captureFooterClickContact,
+  captureFooterClickDiffusion,
+  captureFooterClickDocumentation,
+  captureFooterClickFAQ,
+  captureFooterClickImpactco2,
+  captureFooterClickInternational,
+  captureFooterClickLogo,
+  captureFooterClickNouveautes,
+  captureFooterClickOrganisations,
+  captureFooterClickPlanSite,
+  captureFooterClickQuiSommesNous,
+  captureFooterClickStats,
+} from '@/constants/tracking/posthogTrackers'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'

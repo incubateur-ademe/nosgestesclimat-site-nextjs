@@ -80,7 +80,7 @@ export default function DetailedFunFacts({
           color="secondary"
           onClick={() => {
             trackEvent(organisationsDashboardClickFunFactsDownload)
-            trackPosthogEvent(captureDownloadFunFactsPlus())
+            trackPosthogEvent(captureDownloadFunFactsPlus)
 
             const funFactsPlus = document.getElementById('funFactsPlus')!
 
