@@ -7,7 +7,6 @@ import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import type { NGCRule, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import { redirect } from 'next/navigation'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
@@ -80,7 +79,6 @@ export default async function DocumentationPage({
 
   return (
     <DocumentationRouter
-      supportedRegions={supportedRegions}
       slug={slug}
       serverComponent={
         <DocumentationServer

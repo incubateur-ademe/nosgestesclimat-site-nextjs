@@ -1,7 +1,7 @@
 import { USER_URL } from '@/constants/urls/main'
 import { fetchServer } from '../fetchServer'
 
-interface UserServer {
+export interface UserServer {
   id: string
   email: string
 }
