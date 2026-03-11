@@ -3,32 +3,23 @@ import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getUser } from '@/helpers/server/dal/user'
+import { throwNextError } from '@/helpers/server/error'
 import { getSimulation } from '@/helpers/server/model/simulations'
-import { getAuthUser } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
-import { notFound } from 'next/navigation'
 
 export default async function DetailledResultsPage({
   params,
 }: DefaultPageProps<{ params: { locale: string; simulationId: string } }>) {
   const { simulationId, locale } = await params
-
   const { t } = await getServerTranslation({ locale })
-
-  let simulation
-  try {
-    const user = await getAuthUser()
-
-    simulation = await getSimulation({
+  const user = await getUser()
+  const simulation = await throwNextError(() =>
+    getSimulation({
       simulationId,
-      user: {
-        ...user,
-        isAuth: true,
-      },
+      user,
     })
-  } catch {
-    notFound()
-  }
+  )
 
   return (
     <>
@@ -54,6 +45,7 @@ export default async function DetailledResultsPage({
       <ResultsContent
         simulation={simulation}
         isStatic
+        userId={user.id}
         title={
           <div className="flex flex-col gap-2" key={simulation.id}>
             <Title

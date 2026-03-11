@@ -1,8 +1,8 @@
 'use server'
 
-import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { SERVER_URL } from '@/constants/urls/main'
 import { cookies } from 'next/headers'
+import { AUTHENTICATED_COOKIE_NAME } from './dal/sessionCookie'
 import {
   ForbiddenError,
   InternalServerError,
@@ -11,19 +11,17 @@ import {
   TooManyRequestsError,
   UnauthorizedError,
   UnknownError,
-} from '../error'
-
-interface Props {
-  method?: 'GET' | 'POST' | 'PUT'
-  auth?: boolean
-  body?: Record<string, unknown>
-  // Pass userId cookie to allow caching when necessary
-  ngcCookie?: string
-}
+} from './error'
 
 export async function fetchServer<T = unknown>(
   url: string,
-  { method = 'GET', body, auth = true, ngcCookie }: Props = {}
+  {
+    method = 'GET',
+    body,
+  }: {
+    method?: 'GET' | 'POST' | 'PUT'
+    body?: Record<string, unknown>
+  } = {}
 ): Promise<T> {
   if (!url.startsWith(SERVER_URL)) {
     throw new InternalServerError()
@@ -33,20 +31,10 @@ export async function fetchServer<T = unknown>(
     'Content-Type': 'application/json',
   }
 
-  if (auth) {
-    let cookieValue = ngcCookie
-    let cookieName = AUTHENTICATION_COOKIE_NAME
-
-    if (!cookieValue) {
-      const cookieObj = (await cookies()).get(AUTHENTICATION_COOKIE_NAME)
-      if (!cookieObj) {
-        throw new UnauthorizedError()
-      }
-      cookieValue = cookieObj.value
-      cookieName = cookieObj.name
-    }
-
-    headers.cookie = `${cookieName}=${cookieValue}`
+  const cookieStore = await cookies()
+  const ngcCookie = cookieStore.get(AUTHENTICATED_COOKIE_NAME)
+  if (ngcCookie) {
+    headers.cookie = `${ngcCookie.name}=${ngcCookie.value}`
   }
 
   const response = await fetch(url, {

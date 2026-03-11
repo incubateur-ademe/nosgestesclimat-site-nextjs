@@ -8,7 +8,8 @@ import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { getRules } from '@/helpers/modelFetching/getRules'
-import { getUserSimulations } from '@/helpers/server/model/simulations'
+import { throwNextError } from '@/helpers/server/error'
+import { getSimulations } from '@/helpers/server/model/simulations'
 import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
@@ -18,14 +19,9 @@ export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
-
+  const user = await throwNextError(getAuthUser)
+  const simulations = await throwNextError(() => getSimulations({ user }))
   const rules = await getRules({ locale })
-  const user = await getAuthUser()
-
-  const simulations = await getUserSimulations({
-    userId: user.id,
-  })
-
   return (
     <div className="flex flex-col">
       <h1 className="sr-only mb-6 text-2xl font-bold">

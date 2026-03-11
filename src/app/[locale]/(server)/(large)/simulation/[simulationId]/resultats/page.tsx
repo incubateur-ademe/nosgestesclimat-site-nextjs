@@ -1,14 +1,12 @@
 import SimulationResults from '@/components/results/SimulationResults'
-import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
+import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import { cookies } from 'next/headers'
-import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -35,22 +33,13 @@ export default async function SimulationPage({
 }: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
   const { simulationId, locale } = await params
 
-  let simulationResult
-
-  try {
+  const simulationResult = await throwNextError(async () => {
     const user = await getUser()
-
-    const ngcCookie =
-      (await cookies()).get(AUTHENTICATION_COOKIE_NAME)?.value ?? ''
-
-    simulationResult = await getSimulationResult({
+    return getSimulationResult({
       user,
       simulationId,
-      ngcCookie,
     })
-  } catch {
-    notFound()
-  }
+  })
 
   return (
     <SimulationResults
