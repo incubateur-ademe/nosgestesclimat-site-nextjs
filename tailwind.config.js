@@ -252,6 +252,16 @@ export default {
           '0%': { opacity: '0', transform: 'translateY(-10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        'button-lift': {
+          '0%': {
+            transform: 'scale(1)',
+            boxShadow: '0 1px 3px 0 rgba(73, 73, 186, 0.2), 0 1px 2px -1px rgba(73, 73, 186, 0.15)',
+          },
+          '100%': {
+            transform: 'scale(1.07)',
+            boxShadow: '0 22px 35px -6px rgba(73, 73, 186, 0.45), 0 10px 16px -4px rgba(73, 73, 186, 0.28)',
+          },
+        },
       },
       animation: {
         valuechange: 'valuechange 0.5s ease-out forwards',
@@ -274,6 +284,7 @@ export default {
         'slide-in-from-bottom':
           'slide-in-from-bottom 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
         'fade-in-slide-from-top': 'fade-in-slide-from-top 0.3s ease-out forwards',
+        'button-lift': 'button-lift 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
       },
       screens: {
         xs: '320px',

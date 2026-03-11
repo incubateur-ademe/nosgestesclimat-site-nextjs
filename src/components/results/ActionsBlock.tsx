@@ -14,7 +14,7 @@ interface Props {
 
 export default function ActionsBlock({ locale, simulationId }: Props) {
   return (
-    <Card>
+    <Card className="mb-20">
       <Title
         tag="h2"
         size="md"
@@ -41,7 +41,8 @@ export default function ActionsBlock({ locale, simulationId }: Props) {
           </p>
 
           <ButtonLink
-            href={`${END_PAGE_PATH.replace(':id', simulationId)}/actions`}>
+            href={`${END_PAGE_PATH.replace(':id', simulationId)}/actions`}
+            className="hover:animate-button-lift transition-[transform,box-shadow] duration-200 ease-out">
             <Trans locale={locale} i18nKey="results.actions.linkLabel">
               Construire mon plan d’action
             </Trans>
