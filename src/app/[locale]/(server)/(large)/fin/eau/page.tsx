@@ -7,9 +7,10 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
-import { getSimulation } from '@/helpers/server/model/simulations'
+import { getSimulations } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
+import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -30,14 +31,20 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function SimulationPage({
   params,
-}: PageProps<'/[locale]/simulation/[simulationId]/resultats/eau'>) {
-  const { simulationId, locale } = await params
-
+}: PageProps<'/[locale]/fin/eau'>) {
+  const { locale } = await params
+  const user = await getUser()
+  const [simulation] = (
+    await getSimulations({ user }, { onlyCompleted: true, pageSize: 1 })
+  ).reverse()
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!simulation) {
+    notFound()
+  }
   const simulationResult = await throwNextError(async () => {
-    const user = await getUser()
     return getSimulationResult({
       user,
-      simulation: await getSimulation({ user, simulationId }),
+      simulation,
     })
   })
 
@@ -45,9 +52,8 @@ export default async function SimulationPage({
     <>
       <FootprintsLinks
         locale={locale as Locale}
-        simulationId={simulationId}
         currentPage="eau"
-        basePathname={`${END_PAGE_PATH.replace(':id', simulationId)}`}
+        basePathname={END_PAGE_PATH}
       />
 
       <WaterFootprintResults

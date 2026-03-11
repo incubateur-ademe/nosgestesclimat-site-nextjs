@@ -14,25 +14,17 @@ import Tabs from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { usePathname, useRouter } from 'next/navigation'
-import { use } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type TabsType = 'results' | 'actions' | 'groups'
 
-interface Props {
-  params: Promise<{ simulationId: string }>
-}
-
-export default function FinTabs({ params }: Props) {
-  const { simulationId } = use(params)
-
+export default function FinTabs() {
   const router = useRouter()
   const pathname = usePathname()
   const { t } = useClientTranslation()
-
-  const resultsHref = `${END_PAGE_PATH.replace(':id', simulationId)}`
-  const actionsHref = `${END_PAGE_PATH.replace(':id', simulationId)}/actions`
-  const groupsHref = `${END_PAGE_PATH.replace(':id', simulationId)}/groupes`
+  const resultsHref = `${END_PAGE_PATH}`
+  const actionsHref = `${END_PAGE_PATH}/actions`
+  const groupsHref = `${END_PAGE_PATH}/groupes`
 
   const handleTabClick = (tab: TabsType) => {
     if (tab === 'results') {

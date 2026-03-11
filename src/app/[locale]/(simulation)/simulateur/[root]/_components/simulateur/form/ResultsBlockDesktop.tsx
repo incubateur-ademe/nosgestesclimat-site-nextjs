@@ -1,7 +1,6 @@
 import PlusIcon from '@/components/icons/PlusIcon'
 import TotalFootprintNumber from '@/components/misc/TotalFootprintNumber'
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
-import { carboneMetric } from '@/constants/model/metric'
 import CategoriesResultList from './resultsBlocksDesktop/CategoriesResultList'
 
 export default function ResultsBlockDesktop() {
@@ -24,10 +23,10 @@ export default function ResultsBlockDesktop() {
           <div className="relative w-full">
             <div className="flex items-center gap-2">
               <h2 className="-mb-2 text-[13px] font-bold md:text-base">
-                <TotalFootprintNumber metric={carboneMetric} />
+                <TotalFootprintNumber metric="carbone" />
               </h2>
             </div>
-            <ValueChangeDisplay metric={carboneMetric} size="md" />
+            <ValueChangeDisplay metric="carbone" size="md" />
           </div>
 
           <PlusIcon className="stroke-primary-800 inline-block h-4 w-4 min-w-4 origin-center transform transition-transform duration-300 group-open:rotate-45" />
@@ -39,7 +38,7 @@ export default function ResultsBlockDesktop() {
         <div className="border-primary-10 -z-10 -mt-2 grid cursor-default grid-rows-[0fr] overflow-hidden rounded-b-xl border-2 border-gray-200 pt-2 transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">
           <div className="overflow-hidden">
             <div className="pt-1 text-sm md:text-base">
-              <CategoriesResultList metric={carboneMetric} />
+              <CategoriesResultList metric="carbone" />
             </div>
           </div>
         </div>

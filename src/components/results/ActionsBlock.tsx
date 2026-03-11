@@ -43,7 +43,7 @@ export default function ActionsBlock({ locale, simulationId }: Props) {
           </p>
 
           <ButtonLink
-            href={`${END_PAGE_PATH.replace(':id', simulationId)}/actions`}
+            href={`${END_PAGE_PATH}/actions`}
             className="hover:animate-button-lift w-full transition-[transform,box-shadow] duration-200 ease-out sm:w-auto">
             <Trans locale={locale} i18nKey="results.actions.linkLabel">
               Construire mon plan d’action
