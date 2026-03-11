@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function ActionsBlock({ locale, simulationId }: Props) {
+  return (
     <Card>
       <Title
         tag="h2"
