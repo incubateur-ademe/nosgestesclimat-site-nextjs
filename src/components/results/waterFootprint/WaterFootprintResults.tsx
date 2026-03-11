@@ -65,7 +65,10 @@ export default function WaterFootprintResults({
 
       <Suspense>
         <QueryClientProviderWrapper>
-          <WhatIsWaterFootprint situation={simulationResult.situation} />
+          <WhatIsWaterFootprint
+            situation={simulationResult.situation}
+            locale={locale}
+          />
         </QueryClientProviderWrapper>
       </Suspense>
 
@@ -78,7 +81,7 @@ export default function WaterFootprintResults({
       <SaveResultsBlock locale={locale} />
 
       <div className="mb-16 w-full md:w-2xl">
-        <ClimateAndWater locale={locale} />
+        <ClimateAndWater />
 
         <WaterActions locale={locale} />
 

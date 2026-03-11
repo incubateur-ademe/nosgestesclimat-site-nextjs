@@ -28,7 +28,7 @@ function isButtonOptions(
 }
 
 const commonClassName =
-  'border border-slate-300 text-default font-medium no-underline py-1 px-3'
+  'border border-slate-300 text-sm font-medium no-underline py-1 px-3'
 
 const selectedClassName =
   'border-primary-600 text-primary-600 rounded-sm border bg-white relative'
