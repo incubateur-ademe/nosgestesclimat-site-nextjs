@@ -12,7 +12,7 @@ import {
 } from '@/constants/tracking/pages/end'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
 import { fetchOrganisationsClient } from '@/helpers/organisations/fetchOrganisationsClient'
-import type { UserServer } from '@/helpers/server/model/user'
+import type { AuthUser } from '@/helpers/server/model/user'
 import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
 import type { Organisation as OrganisationT } from '@/types/organisations'
@@ -20,7 +20,7 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useQuery } from '@tanstack/react-query'
 import FinPageSkeleton from '../skeleton'
 
-export default function GroupsTabContent({ user }: { user?: UserServer }) {
+export default function GroupsTabContent({ user }: { user?: AuthUser }) {
   const clientUserId = useUser()?.user.userId
   const userId = user?.id ?? clientUserId
   // Fetch groups if authenticated

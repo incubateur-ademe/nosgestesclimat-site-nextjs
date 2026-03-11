@@ -2,6 +2,7 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_SETTINGS_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
+import { throwNextError } from '@/helpers/server/error'
 import {
   getNewsletters,
   getNewsletterSubscriptions,
@@ -16,11 +17,13 @@ import UserEmail from './_components/UserEmail'
 
 export default async function SettingsPage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const [subscriptions, newsletters, user] = await Promise.all([
-    getNewsletterSubscriptions(),
-    getNewsletters({ locale }),
-    getAuthUser(),
-  ])
+  const [subscriptions, newsletters, user] = await throwNextError(() =>
+    Promise.all([
+      getNewsletterSubscriptions(),
+      getNewsletters({ locale }),
+      getAuthUser(),
+    ])
+  )
 
   return (
     <div className="flex flex-col">

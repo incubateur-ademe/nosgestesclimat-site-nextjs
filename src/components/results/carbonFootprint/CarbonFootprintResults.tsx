@@ -1,6 +1,7 @@
 import FinTabs from '@/components/results/FinTabs'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
+import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
 import Trans from '../../translation/trans/TransServer'
@@ -32,7 +33,7 @@ export default function CarbonFootprintResults({
       />
 
       <FootprintBlock
-        className="mb-12 flex-1"
+        className="mb-12"
         locale={locale}
         value={simulationResult.computedResults.carbone.bilan}
         title={
@@ -54,11 +55,11 @@ export default function CarbonFootprintResults({
         metric={carboneMetric}
       />
 
-      <h2 className="title-lg mb-8">
+      <Title tag="h2" size="lg" hasSeparator={false} className="mb-8">
         <Trans locale={locale} i18nKey="carbonResults.saveBlock.title">
           Retrouvez facilement vos résultats
         </Trans>
-      </h2>
+      </Title>
 
       <SaveResultsBlock locale={locale} />
 
