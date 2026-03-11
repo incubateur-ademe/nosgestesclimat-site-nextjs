@@ -2,6 +2,7 @@ import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Emoji from '@/design-system/utils/Emoji'
 
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import type { Locale } from '@/i18nConfig'
 import type { Situation } from '@/publicodes-state/types'
 import DomesticWaterBlock from './DomesticWaterBlock'
@@ -118,9 +119,9 @@ export default function WhatIsWaterFootprint({ situation, locale }: Props) {
             cours d’eau de votre territoire.
           </Trans>
         </p>
-
-        <DomesticWaterBlock situation={situation} />
-
+        <QueryClientProviderWrapper>
+          <DomesticWaterBlock situation={situation} />
+        </QueryClientProviderWrapper>
         <p>
           <Trans
             locale={locale}
