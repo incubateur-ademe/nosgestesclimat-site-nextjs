@@ -7,6 +7,7 @@ import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
+  className?: string
   locale: Locale
   value: number
   title: ReactNode
@@ -14,6 +15,7 @@ interface Props {
   unitSuffix: ReactNode
 }
 export default function FootprintBlock({
+  className,
   locale,
   value,
   title,
@@ -26,7 +28,7 @@ export default function FootprintBlock({
   })
 
   return (
-    <div className="bg-primary-50 mb-12 rounded-2xl p-8">
+    <div className={twMerge('bg-primary-100 rounded-2xl p-8', className)}>
       <h1 className="mb-0">
         <span className="mb-1 block text-lg font-normal">{title}</span>
 

@@ -1,4 +1,4 @@
-import SimulationResults from '@/components/results/SimulationResults'
+import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -39,7 +39,7 @@ export default async function SimulationPage({
   })
 
   return (
-    <SimulationResults
+    <CarbonFootprintResults
       simulationResult={simulationResult}
       simulationId={simulationId}
       locale={locale as Locale}
