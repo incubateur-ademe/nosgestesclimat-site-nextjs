@@ -12,9 +12,11 @@ export default function AnimatedNumber({ value }: Props) {
 
   useEffect(() => {
     // Wait for the entering FootprintBlock animation to complete
-    setTimeout(() => {
+    const id = setTimeout(() => {
       setIsCounting(true)
     }, 200)
+
+    return () => clearTimeout(id)
   }, [])
 
   return (

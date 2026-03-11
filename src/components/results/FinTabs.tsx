@@ -17,7 +17,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { use } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Tabs = 'results' | 'actions' | 'groups'
+type TabsType = 'results' | 'actions' | 'groups'
 
 interface Props {
   params: Promise<{ simulationId: string }>
@@ -30,19 +30,23 @@ export default function FinTabs({ params }: Props) {
   const pathname = usePathname()
   const { t } = useClientTranslation()
 
-  const handleTabClick = (tab: Tabs) => {
+  const resultsHref = `${END_PAGE_PATH.replace(':id', simulationId)}`
+  const actionsHref = `${END_PAGE_PATH.replace(':id', simulationId)}/actions`
+  const groupsHref = `${END_PAGE_PATH.replace(':id', simulationId)}/groupes`
+
+  const handleTabClick = (tab: TabsType) => {
     if (tab === 'results') {
       trackEvent(finTabTrackEvent('results'))
       trackPosthogEvent(captureClickFinTab({ tab: 'results' }))
-      router.replace(`${END_PAGE_PATH.replace(':id', simulationId)}`)
+      router.replace(resultsHref)
     } else if (tab === 'actions') {
       trackEvent(finTabTrackEvent('actions'))
       trackPosthogEvent(captureClickFinTab({ tab: 'actions' }))
-      router.replace(`${END_PAGE_PATH.replace(':id', simulationId)}/actions`)
+      router.replace(actionsHref)
     } else {
       trackEvent(finTabTrackEvent('groups'))
       trackPosthogEvent(captureClickFinTab({ tab: 'groups' }))
-      router.replace(`${END_PAGE_PATH.replace(':id', simulationId)}/groupes`)
+      router.replace(groupsHref)
     }
   }
 
@@ -69,7 +73,7 @@ export default function FinTabs({ params }: Props) {
           </span>
         </span>
       ),
-      href: `${pathname}`,
+      href: resultsHref,
       isActive: isResultsActive,
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
@@ -94,7 +98,7 @@ export default function FinTabs({ params }: Props) {
           </span>
         </span>
       ),
-      href: `${pathname}/actions`,
+      href: actionsHref,
       isActive: isActionsActive,
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
@@ -123,7 +127,7 @@ export default function FinTabs({ params }: Props) {
           </span>
         </span>
       ),
-      href: `${pathname}/groupes`,
+      href: groupsHref,
       isActive: isGroupsActive,
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()

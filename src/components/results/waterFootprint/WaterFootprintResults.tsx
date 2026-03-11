@@ -61,7 +61,7 @@ export default function WaterFootprintResults({
         </Trans>
       </Title>
 
-      {hideSaveBlock && <SaveResultsBlock locale={locale} />}
+      {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 
       <div className="mb-16 w-full md:w-2xl">
         <ClimateAndWater />

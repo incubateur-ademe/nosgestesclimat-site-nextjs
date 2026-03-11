@@ -6,7 +6,6 @@ import type { Locale } from '@/i18nConfig'
 
 interface Props {
   locale: Locale
-  simulationId: string
   currentPage: 'carbone' | 'eau'
   basePathname: string
 }
