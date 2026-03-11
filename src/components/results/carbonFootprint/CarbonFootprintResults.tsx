@@ -69,7 +69,9 @@ export default function CarbonFootprintResults({
 
       <p className="text-primary-600 mx-auto mb-12 w-2xl max-w-full text-center">
         <Trans locale={locale} i18nKey="carbonResults.objective.description">
-          <strong>Vous n’êtes pas seul. Chaque contexte est différent</strong>,{' '}
+          <strong className="block">
+            Vous n’êtes pas seul. Chaque contexte est différent,
+          </strong>{' '}
           on contribue à hauteur de ses possibilités, on veut vous y aider.
         </Trans>
       </p>

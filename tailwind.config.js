@@ -262,6 +262,10 @@ export default {
             boxShadow: '0 22px 35px -6px rgba(73, 73, 186, 0.45), 0 10px 16px -4px rgba(73, 73, 186, 0.28)',
           },
         },
+        'float-badge': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
       },
       animation: {
         valuechange: 'valuechange 0.5s ease-out forwards',
@@ -285,6 +289,9 @@ export default {
           'slide-in-from-bottom 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
         'fade-in-slide-from-top': 'fade-in-slide-from-top 0.3s ease-out forwards',
         'button-lift': 'button-lift 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+        'float-leaf-1': 'float-badge 4s ease-in-out infinite',
+        'float-leaf-2': 'float-badge 5.5s ease-in-out 0.8s infinite',
+        'float-leaf-3': 'float-badge 4.8s ease-in-out 1.5s infinite',
       },
       screens: {
         xs: '320px',
