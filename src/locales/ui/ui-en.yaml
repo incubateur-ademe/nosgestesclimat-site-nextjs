@@ -1929,3 +1929,23 @@ entries:
   simulation.eau.whatIsWaterFootprint.titleInsec.lock: L'empreinte eau, c'est quoi ?
   results.footprintsLinks.ariaLabel: Impression type selector
   results.footprintsLinks.ariaLabel.lock: Sélecteur de type d'empreinte
+  results.actions.title: Your action plan
+  results.actions.title.lock: Votre plan d'action
+  results.actions.subtitle: Find out how you can make it happen
+  results.actions.subtitle.lock: Découvrez des gestes concrets pour y arriver
+  carbonResults.saveBlock.title: Find your results easily
+  carbonResults.saveBlock.title.lock: Retrouvez facilement vos résultats
+  results.actions.linkLabel: Building my action plan
+  results.actions.linkLabel.lock: Construire mon plan d’action
+  common.transport: Transport
+  common.transport.lock: Transport
+  carbonResults.objective.description: <0>You're not on your own. Every situation is different, and</0> we want to help you make the most of it.
+  carbonResults.objective.description.lock: <0>Vous n’êtes pas seul. Chaque contexte est différent,</0> on contribue à hauteur de ses possibilités, on veut vous y aider.
+  results.where.title: Where do your results come from?
+  results.where.title.lock: D’où vient votre résultat ?
+  common.housing: Housing
+  common.housing.lock: Logement
+  common.alimentation: Power supply
+  common.alimentation.lock: Alimentation
+  results.actions.text: We've put together a range of <1>personalised actions</1> to help you go further
+  results.actions.text.lock: Nous avons préparé des <1>actions personnalisées</1> pour vous aider à aller plus loin

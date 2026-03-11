@@ -7,6 +7,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
+import { getSimulation } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 
@@ -36,7 +37,7 @@ export default async function SimulationPage({
     const user = await getUser()
     return getSimulationResult({
       user,
-      simulationId,
+      simulation: await getSimulation({ user, simulationId }),
     })
   })
 
