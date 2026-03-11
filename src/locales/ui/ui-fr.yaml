@@ -1434,3 +1434,4 @@ entries:
   simulation.eau.whatIsWaterFootprint.vigieEau: Rendez-vous sur VigiEau pour en savoir plus.
   "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
   simulation.eau.whatIsWaterFootprint.titleInsec: L'empreinte eau, c'est quoi ?
+  results.footprintsLinks.ariaLabel: Sélecteur de type d'empreinte

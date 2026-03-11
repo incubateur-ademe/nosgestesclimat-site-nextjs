@@ -19,6 +19,8 @@ interface ButtonOption extends Option {
 interface Props {
   options: LinkOption[] | ButtonOption[]
   className?: string
+  /** Accessible label describing the purpose of this switch group (required for screen readers). */
+  'aria-label': string
 }
 
 function isButtonOptions(
@@ -51,15 +53,21 @@ const getFullClassName = ({
     isSelected ? selectedClassName : ''
   )
 
-export default function Switch({ options, className }: Props) {
+export default function Switch({
+  options,
+  className,
+  'aria-label': ariaLabel,
+}: Props) {
   if (isButtonOptions(options)) {
     return (
-      <div className={className}>
+      <div role="group" aria-label={ariaLabel} className={className}>
         {options.map(({ label, isSelected, onClick }, index) => (
           <button
             key={`switch-${index}`}
+            type="button"
             className={getFullClassName({ isSelected, index, options })}
-            onClick={onClick}>
+            onClick={onClick}
+            aria-pressed={isSelected ?? false}>
             {label}
           </button>
         ))}
@@ -68,15 +76,16 @@ export default function Switch({ options, className }: Props) {
   }
 
   return (
-    <div className={className}>
+    <nav aria-label={ariaLabel} className={className}>
       {options.map(({ label, isSelected, href }, index) => (
         <Link
           key={`switch-${index}`}
           className={getFullClassName({ isSelected, index, options })}
-          href={href}>
+          href={href}
+          aria-current={isSelected ? 'page' : undefined}>
           {label}
         </Link>
       ))}
-    </div>
+    </nav>
   )
 }

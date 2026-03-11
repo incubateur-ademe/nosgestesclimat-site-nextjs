@@ -17,6 +17,7 @@ type Story = StoryObj<typeof Switch>
 
 export const WithLinkOptions: Story = {
   args: {
+    'aria-label': 'Sélecteur de type d\'empreinte',
     options: [
       {
         label: 'Empreinte carbone',
@@ -38,6 +39,7 @@ export const WithButtonOptions: Story = {
 
     return (
       <Switch
+        aria-label="Sélecteur de type d'empreinte"
         options={[
           {
             label: 'Empreinte carbone',

@@ -1927,3 +1927,5 @@ entries:
   "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": Human activities are threatening the natural balance of our planet. Like the climate, <2>the water cycle is having a major impact around the world</2>, in terms of access to drinking water, the disappearance and migration of species (animal and plant) and the displacement of populations.
   simulation.eau.whatIsWaterFootprint.titleInsec: What is the water footprint?
   simulation.eau.whatIsWaterFootprint.titleInsec.lock: L'empreinte eau, c'est quoi ?
+  results.footprintsLinks.ariaLabel: Impression type selector
+  results.footprintsLinks.ariaLabel.lock: Sélecteur de type d'empreinte
