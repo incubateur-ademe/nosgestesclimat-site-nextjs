@@ -1,8 +1,11 @@
-import type { ComputedResults, Situation } from '@/publicodes-state/types'
+import type {
+  ComputedResults,
+  Simulation,
+  Situation,
+} from '@/publicodes-state/types'
 import type { AppUser } from '../dal/user'
 import { getGroup } from './groups'
 import { getPublicPoll } from './poll'
-import { getSimulation } from './simulations'
 
 export interface SimulationResult {
   computedResults: ComputedResults
@@ -16,17 +19,12 @@ export interface SimulationResult {
 }
 
 export async function getSimulationResult({
-  simulationId,
+  simulation,
   user,
 }: {
-  simulationId: string
+  simulation: Simulation
   user: AppUser
 }): Promise<SimulationResult> {
-  const simulation = await getSimulation({
-    user,
-    simulationId,
-  })
-
   let group: { name: string; href: string } | null = null
 
   if (simulation.groups?.length) {
