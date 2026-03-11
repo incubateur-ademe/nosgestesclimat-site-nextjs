@@ -12,6 +12,8 @@ const colorClassNames = {
   red: 'border-red-300 text-red-700 bg-red-50',
   purple: 'border-purple-300 text-purple-800 bg-purple-50',
   yellow: 'border-yellow-300 text-yellow-800 bg-yellow-50',
+  blue: 'border-blue-300 text-blue-800 bg-blue-50',
+  orange: 'border-orange-300 text-orange-800 bg-orange-50',
 }
 const sizeClassNames = {
   xs: 'text-xs py-0.5',
@@ -26,7 +28,7 @@ export default function Badge({
   category,
   tag = 'div',
 }: PropsWithChildren<{
-  color?: 'primary' | 'secondary' | 'green' | 'red' | 'purple' | 'yellow'
+  color?: keyof typeof colorClassNames
   size?: 'xs' | 'sm' | 'md'
   className?: string
   category?: string
