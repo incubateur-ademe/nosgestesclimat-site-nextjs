@@ -6,13 +6,21 @@ import { getUser, type AppUser } from '../dal/user'
 import { fetchServer } from '../fetchServer'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
-export async function getSimulations({
-  user,
-}: {
-  user: AppUser
-}): Promise<Simulation[]> {
+export interface SimulationFilter {
+  onlyCompleted?: boolean
+  pageSize?: number
+}
+
+export async function getSimulations(
+  {
+    user,
+  }: {
+    user: AppUser
+  },
+  { onlyCompleted = false, pageSize = 50 }: SimulationFilter = {}
+): Promise<Simulation[]> {
   const serverSimulations = await fetchServer<Simulation[]>(
-    `${SIMULATION_URL}/${user.id}?pageSize=50`
+    `${SIMULATION_URL}/${user.id}?onlyCompleted=${onlyCompleted}&pageSize=${pageSize}`
   )
 
   // Map from server format to client format
