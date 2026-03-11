@@ -30,27 +30,22 @@ export default function CarbonFootprintResults({
         currentPage="carbone"
       />
 
-      <div className="mb-12 flex flex-col gap-4 md:flex-row">
-        <FootprintBlock
-          className="flex-1"
-          locale={locale}
-          value={simulationResult.computedResults.carbone.bilan}
-          title={
-            <Trans locale={locale} i18nKey="simulation.carbone.title">
-              Vous émettez environ
-            </Trans>
-          }
-          metric={carboneMetric}
-          unitSuffix={
-            <Trans locale={locale} i18nKey="common.co2eAn">
-              CO₂e / an
-            </Trans>
-          }
-        />
-        <div className="bg-secondary-100 max-w-full flex-1 rounded-lg md:w-sm">
-          Placeholder for fun facts
-        </div>
-      </div>
+      <FootprintBlock
+        className="mb-12 flex-1"
+        locale={locale}
+        value={simulationResult.computedResults.carbone.bilan}
+        title={
+          <Trans locale={locale} i18nKey="simulation.carbone.title">
+            Vous émettez environ
+          </Trans>
+        }
+        metric={carboneMetric}
+        unitSuffix={
+          <Trans locale={locale} i18nKey="common.co2eAn">
+            CO₂e / an
+          </Trans>
+        }
+      />
 
       <FootprintDetail
         computedResults={simulationResult.computedResults}

@@ -28,7 +28,7 @@ export default function FootprintBlock({
   })
 
   return (
-    <div className={twMerge('bg-primary-50 rounded-2xl p-8', className)}>
+    <div className={twMerge('bg-primary-100 rounded-2xl p-8', className)}>
       <h1 className="mb-0">
         <span className="mb-1 block text-lg font-normal">{title}</span>
 
