@@ -1,4 +1,3 @@
-import FinTabs from '@/components/results/FinTabs'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
@@ -23,8 +22,6 @@ export default function CarbonFootprintResults({
 }: Props) {
   return (
     <>
-      <FinTabs />
-
       <FootprintsLinks
         locale={locale}
         simulationId={simulationId}
