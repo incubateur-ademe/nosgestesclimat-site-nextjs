@@ -1,4 +1,3 @@
-import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
@@ -10,29 +9,18 @@ import SaveResultsBlock from '../SaveResultsBlock'
 import Objective from '../objective/Objective'
 
 interface Props {
-  simulationId: string
   simulationResult: SimulationResult
   locale: Locale
   hideSaveBlock?: boolean
-  basePathname: string
 }
 
 export default function CarbonFootprintResults({
-  simulationId,
   simulationResult,
   locale,
-  basePathname,
   hideSaveBlock = false,
 }: Props) {
   return (
     <>
-      <FootprintsLinks
-        locale={locale}
-        simulationId={simulationId}
-        currentPage="carbone"
-        basePathname={basePathname}
-      />
-
       <FootprintBlock
         className="mb-12"
         locale={locale}

@@ -1,4 +1,5 @@
 import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
+import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { noIndexObject } from '@/constants/metadata'
 import { END_PAGE_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -40,11 +41,18 @@ export default async function SimulationPage({
   })
 
   return (
-    <CarbonFootprintResults
-      simulationResult={simulationResult}
-      simulationId={simulationId}
-      locale={locale as Locale}
-      basePathname={`${END_PAGE_PATH.replace(':id', simulationId)}`}
-    />
+    <>
+      <FootprintsLinks
+        locale={locale as Locale}
+        simulationId={simulationId}
+        currentPage="carbone"
+        basePathname={`${END_PAGE_PATH.replace(':id', simulationId)}`}
+      />
+
+      <CarbonFootprintResults
+        simulationResult={simulationResult}
+        locale={locale as Locale}
+      />
+    </>
   )
 }

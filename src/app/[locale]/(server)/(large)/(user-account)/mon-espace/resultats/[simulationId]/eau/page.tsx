@@ -1,3 +1,4 @@
+import FootprintsLinks from '@/components/results/FootprintsLinks'
 import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
 import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
@@ -52,12 +53,17 @@ export default async function DetailledResultsWaterPage({
         ]}
       />
 
-      <WaterFootprintResults
+      <FootprintsLinks
+        locale={locale}
         simulationId={simulationId}
+        currentPage="eau"
+        basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
+      />
+
+      <WaterFootprintResults
         simulationResult={simulationResult}
         locale={locale}
         hideSaveBlock
-        basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />
     </>
   )

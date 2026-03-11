@@ -1,4 +1,3 @@
-import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { eauMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
@@ -14,29 +13,18 @@ import WaterActions from './_components/WaterActions'
 import WhatIsWaterFootprint from './_components/WhatIsWaterFootprint'
 
 interface Props {
-  simulationId: string
   simulationResult: SimulationResult
   locale: Locale
   hideSaveBlock?: boolean
-  basePathname: string
 }
 
 export default function WaterFootprintResults({
-  simulationId,
   simulationResult,
   locale,
   hideSaveBlock = false,
-  basePathname,
 }: Props) {
   return (
     <>
-      <FootprintsLinks
-        locale={locale}
-        simulationId={simulationId}
-        currentPage="eau"
-        basePathname={basePathname}
-      />
-
       <FootprintBlock
         className="mb-12"
         locale={locale}

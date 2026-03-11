@@ -1,3 +1,4 @@
+import FootprintsLinks from '@/components/results/FootprintsLinks'
 import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
 import { noIndexObject } from '@/constants/metadata'
 import { END_PAGE_PATH } from '@/constants/urls/paths'
@@ -40,11 +41,18 @@ export default async function SimulationPage({
   })
 
   return (
-    <WaterFootprintResults
-      simulationId={simulationId}
-      simulationResult={simulationResult}
-      locale={locale as Locale}
-      basePathname={`${END_PAGE_PATH.replace(':id', simulationId)}`}
-    />
+    <>
+      <FootprintsLinks
+        locale={locale as Locale}
+        simulationId={simulationId}
+        currentPage="eau"
+        basePathname={`${END_PAGE_PATH.replace(':id', simulationId)}`}
+      />
+
+      <WaterFootprintResults
+        simulationResult={simulationResult}
+        locale={locale as Locale}
+      />
+    </>
   )
 }

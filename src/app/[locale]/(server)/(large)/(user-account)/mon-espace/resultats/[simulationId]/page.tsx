@@ -1,4 +1,5 @@
 import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
+import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -45,12 +46,17 @@ export default async function DetailledResultsPage({
         ]}
       />
 
-      <CarbonFootprintResults
+      <FootprintsLinks
+        locale={locale}
         simulationId={simulationId}
+        currentPage="carbone"
+        basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
+      />
+
+      <CarbonFootprintResults
         simulationResult={simulationResult}
         locale={locale}
         hideSaveBlock
-        basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />
     </>
   )
