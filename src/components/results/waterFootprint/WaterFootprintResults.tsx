@@ -1,5 +1,3 @@
-import FinTabs from '@/components/results/FinTabs'
-import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { eauMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
@@ -15,26 +13,18 @@ import WaterActions from './_components/WaterActions'
 import WhatIsWaterFootprint from './_components/WhatIsWaterFootprint'
 
 interface Props {
-  simulationId: string
   simulationResult: SimulationResult
   locale: Locale
+  hideSaveBlock?: boolean
 }
 
 export default function WaterFootprintResults({
-  simulationId,
   simulationResult,
   locale,
+  hideSaveBlock = false,
 }: Props) {
   return (
     <>
-      <FinTabs />
-
-      <FootprintsLinks
-        locale={locale}
-        simulationId={simulationId}
-        currentPage="eau"
-      />
-
       <FootprintBlock
         className="mb-12"
         locale={locale}
@@ -71,7 +61,7 @@ export default function WaterFootprintResults({
         </Trans>
       </Title>
 
-      <SaveResultsBlock locale={locale} />
+      {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 
       <div className="mb-16 w-full md:w-2xl">
         <ClimateAndWater />

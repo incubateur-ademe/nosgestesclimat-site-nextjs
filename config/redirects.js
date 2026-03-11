@@ -504,6 +504,11 @@ const redirects = [
     destination: '/',
     permanent: true,
   },
+  {
+    source: '/partage',
+    destination: '/',
+    permanent: true,
+  },
 ]
 
 export default redirects

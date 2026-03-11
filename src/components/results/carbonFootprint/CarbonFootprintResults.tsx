@@ -1,5 +1,3 @@
-import FinTabs from '@/components/results/FinTabs'
-import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { carboneMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
@@ -12,26 +10,18 @@ import SaveResultsBlock from '../SaveResultsBlock'
 import Objective from '../objective/Objective'
 
 interface Props {
-  simulationId: string
   simulationResult: SimulationResult
   locale: Locale
+  hideSaveBlock?: boolean
 }
 
 export default function CarbonFootprintResults({
-  simulationId,
   simulationResult,
   locale,
+  hideSaveBlock = false,
 }: Props) {
   return (
     <>
-      <FinTabs />
-
-      <FootprintsLinks
-        locale={locale}
-        simulationId={simulationId}
-        currentPage="carbone"
-      />
-
       <FootprintBlock
         className="mb-12"
         locale={locale}
@@ -61,7 +51,7 @@ export default function CarbonFootprintResults({
         </Trans>
       </Title>
 
-      <SaveResultsBlock locale={locale} />
+      {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 
       <Objective
         locale={locale}
