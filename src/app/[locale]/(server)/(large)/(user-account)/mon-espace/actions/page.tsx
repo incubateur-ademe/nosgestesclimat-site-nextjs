@@ -3,7 +3,6 @@ import NoResultsBlock from '@/components/dashboard/NoResultsBlock'
 import ActionAutoSave from '@/components/results/actions/ActionAutoSave'
 import ActionsContent from '@/components/results/actions/ActionsContent'
 import ActionsTutorial from '@/components/results/actions/ActionsTutorial'
-import JagisActionBanner from '@/components/results/actions/JagisActionBanner'
 import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
@@ -48,8 +47,6 @@ export default async function MonEspaceActionsPage({
                 <ActionsTutorial />
 
                 <ActionsContent />
-
-                <JagisActionBanner />
               </FormProvider>
             </EngineProvider>
           </QueryClientProviderWrapper>
