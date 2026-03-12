@@ -1,6 +1,6 @@
 'use client'
 
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import isMobile from 'is-mobile'
 import {
@@ -29,7 +29,7 @@ export default function FootprintBarChart({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const groupFormatted = formatCarbonFootprint(groupFootprint, {
+  const groupFormatted = formatFootprint(groupFootprint, {
     maximumFractionDigits: 1,
   })
 
@@ -53,7 +53,7 @@ export default function FootprintBarChart({
     ) * 5
 
   const userFormatted = userFootprint
-    ? formatCarbonFootprint(userFootprint, {
+    ? formatFootprint(userFootprint, {
         maximumFractionDigits: 1,
       })
     : null

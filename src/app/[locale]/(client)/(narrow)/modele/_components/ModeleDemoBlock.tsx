@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import type { Situation } from '@/publicodes-state/types'
@@ -102,8 +102,8 @@ export default function ModeleDemoBlock() {
 
       <div className="mt-4 text-center">
         <span className="block text-2xl font-bold md:text-3xl">
-          {formatCarbonFootprint(indicators?.bilan as string).formattedValue}{' '}
-          {formatCarbonFootprint(indicators.bilan as string).unit}
+          {formatFootprint(indicators?.bilan as string).formattedValue}{' '}
+          {formatFootprint(indicators.bilan as string).unit}
         </span>
         <span className="block text-sm md:text-base">
           de CO<sub>2</sub>e / an

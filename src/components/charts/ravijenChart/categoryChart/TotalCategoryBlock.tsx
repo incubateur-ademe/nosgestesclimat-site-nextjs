@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -18,7 +18,7 @@ export default function TotalCategoryBlock({
 
   const { title, numericValue } = useRule(category)
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
+  const { formattedValue, unit } = formatFootprint(numericValue, {
     shouldUseAbbreviation: true,
   })
 

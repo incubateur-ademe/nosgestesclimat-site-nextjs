@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -35,7 +35,7 @@ export default function SubcategoryChartBlock({
   const subcategoryObject = useRule(subcategory)
   const { title, abbreviatedTitle, numericValue } = subcategoryObject
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+  const { formattedValue, unit } = formatFootprint(numericValue)
 
   // Here we compare the value of the current category to the value of the
   // category with the highest value. We then use this ratio to calculate the

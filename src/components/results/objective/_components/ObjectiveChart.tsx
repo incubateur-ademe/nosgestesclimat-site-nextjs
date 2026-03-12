@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -87,7 +87,7 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
         {pointsWithCoords.map((p, index) => {
           const isLastPoint = index === pointsWithCoords.length - 1
 
-          const { formattedValue, unit } = formatCarbonFootprint(p.value, {
+          const { formattedValue, unit } = formatFootprint(p.value, {
             locale,
             t,
             shouldUseAbbreviation: !isLastPoint,

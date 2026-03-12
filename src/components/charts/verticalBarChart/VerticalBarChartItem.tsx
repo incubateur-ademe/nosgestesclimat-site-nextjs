@@ -3,7 +3,7 @@
 import Badge from '@/design-system/layout/Badge'
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
@@ -30,13 +30,10 @@ export default function VerticalBarChartItem({
   className,
   ...props
 }: Props) {
-  const { formattedValue, unit } = formatCarbonFootprint(
-    parseFloat(value) * 1000,
-    {
-      maximumFractionDigits: 1,
-      shouldUseAbbreviation: true,
-    }
-  )
+  const { formattedValue, unit } = formatFootprint(parseFloat(value) * 1000, {
+    maximumFractionDigits: 1,
+    shouldUseAbbreviation: true,
+  })
 
   return (
     <li

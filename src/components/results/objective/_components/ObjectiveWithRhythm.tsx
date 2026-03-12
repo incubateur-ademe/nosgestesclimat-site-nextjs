@@ -6,7 +6,7 @@ import {
 } from '@/components/results/objective/_constants/objectives'
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Locale } from '@/i18nConfig'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -27,7 +27,7 @@ const getObjectiveData = ({
 }) => {
   const currentYear = new Date().getFullYear()
 
-  const { formattedValue, unit } = formatCarbonFootprint(carbonFootprint, {
+  const { formattedValue, unit } = formatFootprint(carbonFootprint, {
     locale,
   })
 
@@ -165,7 +165,7 @@ export default function ObjectiveWithRhythm({
 
   const { formattedValue: reductionDisplayValue, unit: reductionUnit } =
     reductionAmount
-      ? formatCarbonFootprint(reductionAmount, {
+      ? formatFootprint(reductionAmount, {
           locale,
         })
       : {}

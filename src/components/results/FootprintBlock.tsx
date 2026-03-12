@@ -27,7 +27,8 @@ export default function FootprintBlock({
   unitSuffix,
 }: Props) {
   const { formattedValue, unit } = formatFootprint(value, {
-    localize: false,
+    localize: true,
+    locale,
     metric,
   })
   return (

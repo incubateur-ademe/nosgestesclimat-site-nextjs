@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { formatWaterFootprint } from '@/helpers/formatters/formatWaterFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import type { Situation } from '@/publicodes-state/types'
@@ -61,7 +61,8 @@ export default function DomesticWaterBlock({ situation }: Props) {
     return null
   }
 
-  const { formattedValue, unit } = formatWaterFootprint(domesticWaterValue, {
+  const { formattedValue, unit } = formatFootprint(domesticWaterValue, {
+    metric: 'eau',
     locale,
   })
 
