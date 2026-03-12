@@ -36,9 +36,10 @@ export default async function SimulationPage({
   const { locale } = await params
   const user = await getUser()
 
-  const [simulation, previousSimulation] = (
-    await getSimulations({ user }, { onlyCompleted: true, pageSize: 2 })
-  ).reverse()
+  const [simulation, previousSimulation] = await getSimulations(
+    { user },
+    { onlyCompleted: true, pageSize: 2 }
+  )
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!simulation) {
     notFound()

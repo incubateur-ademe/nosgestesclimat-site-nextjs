@@ -37,7 +37,7 @@ export default async function FootprintBlock({
   return (
     <div
       className={twMerge(
-        'bg-primary-100 animate-fade-in-slide-from-top rounded-2xl p-8 [animation-delay:200ms] [animation-fill-mode:both] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100',
+        'bg-primary-100 animate-fade-in-slide-from-top flex justify-between gap-4 rounded-2xl p-8 [animation-delay:200ms] [animation-fill-mode:both] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100',
         className
       )}>
       <h1 className="mb-0">
