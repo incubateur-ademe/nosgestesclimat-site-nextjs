@@ -1,5 +1,6 @@
 import { titleSizesClassNames } from '@/design-system/layout/Title'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Tendency } from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
@@ -17,7 +18,7 @@ interface Props {
   tendency?: Tendency
   unitSuffix: ReactNode
 }
-export default function FootprintBlock({
+export default async function FootprintBlock({
   className,
   tendency,
   value,
@@ -26,9 +27,11 @@ export default function FootprintBlock({
   locale,
   unitSuffix,
 }: Props) {
+  const { t } = await getServerTranslation({ locale })
   const { formattedValue, unit } = formatFootprint(value, {
-    localize: true,
+    localize: false,
     locale,
+    t,
     metric,
   })
   return (

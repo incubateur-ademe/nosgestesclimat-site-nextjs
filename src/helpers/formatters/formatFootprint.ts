@@ -21,7 +21,7 @@ export function formatFootprint(
     t = (key) => key,
     metric = carboneMetric,
     shouldDivideBy365 = true,
-  }: Options = {}
+  }: Options
 ): {
   formattedValue: string
   unit: string | null

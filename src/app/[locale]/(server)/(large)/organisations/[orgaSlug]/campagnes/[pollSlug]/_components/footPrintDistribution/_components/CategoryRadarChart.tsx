@@ -66,9 +66,11 @@ export default function CategoryRadarChart({
       average: averageValue,
       userFormatted: formatFootprint(userValue, {
         maximumFractionDigits: 1,
+        t,
       }),
       averageFormatted: formatFootprint(averageValue, {
         maximumFractionDigits: 1,
+        t,
       }),
     }
   })
@@ -117,9 +119,11 @@ export default function CategoryRadarChart({
 
       const userFormatted = formatFootprint(userValue, {
         maximumFractionDigits: 1,
+        t,
       })
       const averageFormatted = formatFootprint(averageValue, {
         maximumFractionDigits: 1,
+        t,
       })
 
       return (
@@ -196,6 +200,7 @@ export default function CategoryRadarChart({
               tickFormatter={(value) => {
                 const formatted = formatFootprint(value, {
                   maximumFractionDigits: 1,
+                  t,
                 })
                 if (!formatted.formattedValue || value === maxValue) return ''
                 return `${formatted.formattedValue} ${formatted.unit ?? ''}`

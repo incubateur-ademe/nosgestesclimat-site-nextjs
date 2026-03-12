@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRules } from '@/hooks/useRules'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import type { Situation } from '@/publicodes-state/types'
@@ -19,6 +20,8 @@ const demoDottedNames: DottedName[] = [
 const indicatorsKeys = ['bilan', 'transport', 'logement']
 
 export default function ModeleDemoBlock() {
+  const { t } = useClientTranslation()
+
   const [situation, setSituation] = useState<Situation>({})
   const [indicators, setIndicators] = useState<
     Record<(typeof indicatorsKeys)[number], Evaluation | null>
@@ -102,8 +105,8 @@ export default function ModeleDemoBlock() {
 
       <div className="mt-4 text-center">
         <span className="block text-2xl font-bold md:text-3xl">
-          {formatFootprint(indicators?.bilan as string).formattedValue}{' '}
-          {formatFootprint(indicators.bilan as string).unit}
+          {formatFootprint(indicators?.bilan as string, { t }).formattedValue}{' '}
+          {formatFootprint(indicators.bilan as string, { t }).unit}
         </span>
         <span className="block text-sm md:text-base">
           de CO<sub>2</sub>e / an

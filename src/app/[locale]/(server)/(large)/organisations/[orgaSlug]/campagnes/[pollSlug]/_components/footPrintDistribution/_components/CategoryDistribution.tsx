@@ -45,6 +45,7 @@ export default function CategoryDistribution({
   const formattedData = Object.entries(categoryValues).map(([key, value]) => {
     const formattedValue = formatFootprint(value, {
       maximumFractionDigits: 1,
+      t,
     })
     return {
       name: `${categoryLabels[key as Categories]}`,

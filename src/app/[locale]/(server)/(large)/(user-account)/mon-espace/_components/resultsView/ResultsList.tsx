@@ -28,7 +28,8 @@ export default async function ResultsList({ locale, simulations }: Props) {
           )
           .map((simulation) => {
             const { formattedValue, unit } = formatFootprint(
-              simulation.computedResults.carbone.bilan
+              simulation.computedResults.carbone.bilan,
+              { t }
             )
             return (
               <li key={simulation.id}>

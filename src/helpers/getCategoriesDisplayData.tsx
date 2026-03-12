@@ -103,11 +103,13 @@ export function getCategoriesDisplayData({
   rules,
   metric = carboneMetric,
   locale,
+  t,
 }: {
   computedResults: ComputedResults
   rules: Partial<NGCRules>
   metric?: Metric
   locale: Locale
+  t?: (key: string) => string
 }): CategoryDisplayData[] {
   const categoriesData = computedResults[metric].categories
   const subcategoriesData = computedResults[metric].subcategories
@@ -142,10 +144,12 @@ export function getCategoriesDisplayData({
         rules,
         metric,
         locale,
+        t,
       }),
       ...formatFootprint(value, {
         metric,
         shouldUseAbbreviation: true,
+        t,
       }),
     }
   })
@@ -158,6 +162,7 @@ function getSubcategoriesDisplayData({
   rules,
   metric = carboneMetric,
   locale,
+  t,
 }: {
   categoryDottedName: DottedName
   categoryValue: number
@@ -165,6 +170,7 @@ function getSubcategoriesDisplayData({
   rules: Partial<NGCRules>
   metric?: Metric
   locale: Locale
+  t?: (key: string) => string
 }): SubcategoryDisplayData[] {
   if (!subcategoriesData) return []
 
@@ -189,6 +195,7 @@ function getSubcategoriesDisplayData({
       ...formatFootprint(value, {
         metric,
         shouldUseAbbreviation: true,
+        t,
       }),
     }
   })

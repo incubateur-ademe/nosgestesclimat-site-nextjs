@@ -20,6 +20,7 @@ export default function TotalCategoryBlock({
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
     shouldUseAbbreviation: true,
+    t,
   })
 
   const percentage = ((numericValue / totalNumericValue) * 100).toFixed(1)

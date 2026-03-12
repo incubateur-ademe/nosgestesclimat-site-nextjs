@@ -31,6 +31,7 @@ export default function FootprintBarChart({
 
   const groupFormatted = formatFootprint(groupFootprint, {
     maximumFractionDigits: 1,
+    t,
   })
 
   // Convert to tonnes for consistent display
@@ -55,6 +56,7 @@ export default function FootprintBarChart({
   const userFormatted = userFootprint
     ? formatFootprint(userFootprint, {
         maximumFractionDigits: 1,
+        t,
       })
     : null
 

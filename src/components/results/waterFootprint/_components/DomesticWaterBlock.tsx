@@ -8,6 +8,7 @@ import type { Situation } from '@/publicodes-state/types'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 import { useMemo, type ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const AVERAGE_CONSUMPTION_IN_LITERS = 149
 
@@ -51,6 +52,7 @@ const getDomesticWaterValue = ({ situation, rules }: FuncProps) => {
 export default function DomesticWaterBlock({ situation }: Props) {
   const { data: rules, isLoading } = useRules()
   const locale = useLocale()
+  const { t } = useTranslation()
 
   const domesticWaterValue = useMemo(
     () => getDomesticWaterValue({ situation, rules }),
@@ -64,6 +66,7 @@ export default function DomesticWaterBlock({ situation }: Props) {
   const { formattedValue, unit } = formatFootprint(domesticWaterValue, {
     metric: 'eau',
     locale,
+    t,
   })
 
   return (
