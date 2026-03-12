@@ -21,6 +21,7 @@ export default function SimulationSyncProvider({
 }: {
   children: React.ReactNode
 }) {
+  const currentSimulation = useCurrentSimulation()
   const {
     id,
     date,
@@ -34,7 +35,7 @@ export default function SimulationSyncProvider({
     defaultAdditionalQuestionsAnswers,
     polls,
     groups,
-  } = useCurrentSimulation()
+  } = currentSimulation
 
   const { isInitialized } = useEngine()
 
@@ -161,7 +162,11 @@ export default function SimulationSyncProvider({
       }
     }
   }, [])
-
+  useEffect(() => {
+    if (currentSimulation.progression === 1) {
+      saveSimulation({ simulation: currentSimulation })
+    }
+  }, [currentSimulation.progression])
   return (
     <SimulationSyncContext.Provider
       value={{
