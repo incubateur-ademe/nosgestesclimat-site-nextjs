@@ -71,15 +71,8 @@ export default function EvolutionGraph({
         },
       ]
     : (() => {
-        // Sort simulations by date (oldest to newest)
-        const sortedSimulations = [...simulations].sort((a, b) => {
-          const dateA = new Date(a.date).getTime()
-          const dateB = new Date(b.date).getTime()
-          return dateA - dateB
-        })
-
         // Transform data for the chart
-        return sortedSimulations.map((simulation) => {
+        return simulations.map((simulation) => {
           const date = new Date(simulation.date)
           const value =
             activeTab === 'global'

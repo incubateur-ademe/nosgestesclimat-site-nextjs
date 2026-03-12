@@ -20,7 +20,9 @@ export default async function MonEspaceActionsPage({
 }: DefaultPageProps) {
   const { locale } = await params
   const user = await throwNextError(getAuthUser)
-  const simulations = await throwNextError(() => getSimulations({ user }))
+  const simulations = await throwNextError(() =>
+    getSimulations({ user }, { onlyCompleted: true, pageSize: 1 })
+  )
   const rules = await getRules({ locale })
   return (
     <div className="flex flex-col">
