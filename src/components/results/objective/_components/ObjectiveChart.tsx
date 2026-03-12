@@ -19,7 +19,6 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
     useObjectiveChart(carbonFootprint)
 
   const shouldReduceMotion = useReducedMotion()
-
   return (
     <div className="bg-primary-100 mt-8 w-full overflow-visible rounded-xl px-8 pt-12 pb-6">
       <div className="relative flex aspect-[4/3] w-full items-center justify-center md:mx-auto md:max-w-[400px]">

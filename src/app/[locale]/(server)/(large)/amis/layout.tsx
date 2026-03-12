@@ -1,5 +1,6 @@
-import MainLayoutProviders from '@/app/[locale]/_components/MainLayoutProviders'
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import { getUser } from '@/helpers/server/dal/user'
+import { UserProvider } from '@/publicodes-state'
 
 export default async function Layout({
   children,
@@ -7,8 +8,8 @@ export default async function Layout({
   const { id: initialUserId } = await getUser()
 
   return (
-    <MainLayoutProviders initialUserId={initialUserId}>
-      {children}
-    </MainLayoutProviders>
+    <QueryClientProviderWrapper>
+      <UserProvider initialUserId={initialUserId}>{children}</UserProvider>
+    </QueryClientProviderWrapper>
   )
 }

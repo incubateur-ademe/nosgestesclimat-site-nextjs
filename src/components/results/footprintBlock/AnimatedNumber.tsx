@@ -1,5 +1,6 @@
 'use client'
 
+import { useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { CountUp } from 'use-count-up'
 
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function AnimatedNumber({ value }: Props) {
+  const reducedMotion = useReducedMotion()
   const [isCounting, setIsCounting] = useState(false)
 
   useEffect(() => {
@@ -24,6 +26,7 @@ export default function AnimatedNumber({ value }: Props) {
       isCounting={isCounting}
       end={value}
       duration={1.5}
+      start={reducedMotion ? value : 0}
       updateInterval={0.033}
       easing="linear"
       decimalSeparator=","

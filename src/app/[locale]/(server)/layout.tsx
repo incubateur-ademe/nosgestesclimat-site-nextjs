@@ -4,6 +4,7 @@ import HeaderServer from '@/components/layout/HeaderServer'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
+import { MotionConfig } from 'framer-motion'
 
 export default async function LargeLayout({
   children,
@@ -15,8 +16,7 @@ export default async function LargeLayout({
       <SkipToMainContentLink />
       <Banner locale={locale as Locale} />
       <HeaderServer locale={locale} />
-      {children}
-
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
       <GoogleTagScript />
       <GoogleTagIframe />
     </>
