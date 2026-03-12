@@ -1,5 +1,4 @@
 import { eauMetric } from '@/constants/model/metric'
-import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Locale } from '@/i18nConfig'
 import Trans from '../../translation/trans/TransServer'
@@ -54,12 +53,6 @@ export default function WaterFootprintResults({
         situation={simulationResult.situation}
         locale={locale}
       />
-
-      <Title tag="h2" hasSeparator={false} size="lg" className="mb-8">
-        <Trans locale={locale} i18nKey="simulation.eau.saveBlock.title">
-          Retrouvez facilement vos résultats{' '}
-        </Trans>
-      </Title>
 
       {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 

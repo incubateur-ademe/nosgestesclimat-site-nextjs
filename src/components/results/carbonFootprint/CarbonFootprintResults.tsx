@@ -1,4 +1,3 @@
-import Title from '@/design-system/layout/Title'
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import type { Tendency } from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
@@ -47,12 +46,6 @@ export default function CarbonFootprintResults({
         locale={locale}
         metric="carbone"
       />
-
-      <Title tag="h2" size="lg" hasSeparator={false} className="mb-8">
-        <Trans locale={locale} i18nKey="carbonResults.saveBlock.title">
-          Retrouvez facilement vos résultats
-        </Trans>
-      </Title>
 
       {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 
