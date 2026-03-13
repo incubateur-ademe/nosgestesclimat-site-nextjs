@@ -9,7 +9,6 @@ import { getPublicPoll } from './poll'
 
 export interface SimulationResult {
   computedResults: ComputedResults
-  progression: number
   group: { name: string; href: string } | null
   /* @TODO we ship the whole situation because we need some dynamic result
   computed by the engine for the water result page. Once we have a proper
@@ -54,7 +53,6 @@ export async function getSimulationResult({
 
   return {
     computedResults: simulation.computedResults,
-    progression: simulation.progression,
     group,
     situation: simulation.situation,
   }

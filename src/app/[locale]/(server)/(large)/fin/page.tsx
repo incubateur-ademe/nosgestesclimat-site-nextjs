@@ -1,17 +1,23 @@
 import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { noIndexObject } from '@/constants/metadata'
-import { END_PAGE_PATH } from '@/constants/urls/paths'
+import {
+  END_PAGE_PATH,
+  MON_ESPACE_RESULTS_DETAIL_PATH,
+} from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import { getSimulations } from '@/helpers/server/model/simulations'
-import { getTendency, Tendency } from '@/helpers/server/model/utils/getTendency'
+import {
+  getTendency,
+  type Tendency,
+} from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -32,10 +38,18 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function SimulationPage({
   params,
+  searchParams,
 }: PageProps<'/[locale]/fin'>) {
   const { locale } = await params
-  const user = await getUser()
+  const { sid } = await searchParams
 
+  if (sid) {
+    redirect(
+      `${MON_ESPACE_RESULTS_DETAIL_PATH.replace(':simulationId', sid as string)}`
+    )
+  }
+
+  const user = await getUser()
   const [simulation, previousSimulation] = await getSimulations(
     { user },
     { onlyCompleted: true, pageSize: 2 }

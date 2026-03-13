@@ -11,6 +11,7 @@ const PATHS_WITH_ANON_SESSION = [
   `/connexion`,
   `/inscription`,
   `/amis/**`,
+  `/mon-espace/**`,
 ]
 
 /**
@@ -34,7 +35,6 @@ export async function userMiddleware(
   }
 
   const response = next(request)
-
   const session = await getIronSession<AnonSessionData>(
     request,
     response,

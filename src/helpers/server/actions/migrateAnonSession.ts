@@ -1,20 +1,21 @@
 'use server'
 
+import { validate } from 'uuid'
 import { getAnonSession } from '../dal/anonSession'
-
-const UUID_REGEX =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+import { InvalidInputError } from '../error'
 
 /**
  * One-shot migration: seeds the server session with the client's localStorage
- * userId.  This is only allowed once — after that, the server owns the userId
+ * userId, in order to keep the simulation associated with the previous userID.
+ *
+ * This is only allowed once — after that, the server owns the userId
  * and the client can no longer overwrite it.
  *
- * This action is meant to be removed once the migration window is over.
+ * This action is meant to be removed once the migration window is over (once every active user has connect, e.g ).
  */
 export async function migrateAnonSession(userId: string) {
-  if (!UUID_REGEX.test(userId)) {
-    throw new Error('Invalid userId: must be a valid UUID')
+  if (!validate(userId)) {
+    throw new InvalidInputError('Invalid userId: must be a valid UUID')
   }
 
   const session = await getAnonSession()

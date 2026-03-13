@@ -1,6 +1,9 @@
 import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
-import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
+import {
+  MON_ESPACE_RESULTS_DETAIL_PATH,
+  MON_ESPACE_RESULTS_PATH,
+} from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { throwNextError } from '@/helpers/server/error'
@@ -37,7 +40,7 @@ export default async function DetailledResultsPage({
             ),
           },
           {
-            href: `/mon-espace/resultats/${simulationId}`,
+            href: `${MON_ESPACE_RESULTS_DETAIL_PATH.replace(':simulationId', simulationId)}`,
             label: t(
               'mon-espace.resultsDetail.breadcrumb.resultDetail',
               'Détail des résultats'
