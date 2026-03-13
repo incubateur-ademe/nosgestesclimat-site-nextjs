@@ -1,6 +1,5 @@
 import Footer from '@/components/layout/Footer'
 import EngineProviders from '@/components/providers/EngineProviders'
-import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 import { ClientLayout } from '../../../components/layout/ClientLayout'
@@ -18,8 +17,7 @@ export default async function SimulateurLayout({
       skipLinksDisplayed={new Set(['main', 'footer'])}
       locale={locale}>
       <EngineProviders>
-        <SimulationSyncProvider>{children}</SimulationSyncProvider>
-
+        {children}
         <Footer locale={locale} />
       </EngineProviders>
     </ClientLayout>

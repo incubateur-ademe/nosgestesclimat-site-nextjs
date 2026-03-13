@@ -9,7 +9,6 @@ import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useLocale } from '../useLocale'
-import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 
 interface Props {
   simulation: Simulation
@@ -24,8 +23,6 @@ export function useSaveSimulation() {
   } = useUser()
   const locale = useLocale()
 
-  const { resetSyncTimer } = useBackgroundSyncSimulation()
-
   const {
     mutate: saveSimulationMutation,
     isPending,
@@ -38,7 +35,6 @@ export function useSaveSimulation() {
       sendEmail,
     }: Props): Promise<Simulation | undefined> => {
       // We reset the sync timer to avoid saving the simulation in the background
-      resetSyncTimer()
 
       const modelVersion = await getModelVersion()
 

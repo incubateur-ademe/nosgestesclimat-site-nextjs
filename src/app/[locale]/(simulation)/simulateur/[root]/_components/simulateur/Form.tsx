@@ -5,7 +5,7 @@ import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useGoToEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
@@ -33,7 +33,7 @@ export default function Form() {
 
   const { questionInQueryParams } = useQuestionInQueryParams(currentQuestion)
 
-  const { goToEndPage } = useEndPage()
+  const { goToEndPage } = useGoToEndPage()
 
   const { isIframe } = useIframe()
 

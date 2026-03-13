@@ -5,7 +5,6 @@ import { CookieConsentProvider } from '@/components/cookies/useCookieManagement'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
-import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
@@ -90,7 +89,6 @@ interface ProviderConfig {
   mainHooks?: boolean
   engine?: boolean
   prNumber?: boolean
-  simulationSync?: boolean
   cookieConsent?: boolean
 }
 
@@ -110,10 +108,6 @@ const TestWrapper = ({
   userProviderProps?: UserProviderProps
 }) => {
   let wrapped = children
-
-  if (providers.simulationSync) {
-    wrapped = <SimulationSyncProvider>{wrapped}</SimulationSyncProvider>
-  }
 
   if (providers.engine) {
     wrapped = <EngineProviders isOptim={false}>{wrapped}</EngineProviders>

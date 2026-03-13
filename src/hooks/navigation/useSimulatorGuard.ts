@@ -3,7 +3,6 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useLocale } from '../useLocale'
-import { useEndPage } from './useEndPage'
 
 export function useSimulatorGuard() {
   const searchParams = useSearchParams()
@@ -11,7 +10,6 @@ export function useSimulatorGuard() {
   const router = useRouter()
   const { tutorials } = useUser()
   const { progression } = useCurrentSimulation()
-  const { linkToEndPage } = useEndPage()
   const [isRedirecting] = useState(progression === 1 || !tutorials.testIntro)
 
   useEffect(() => {
