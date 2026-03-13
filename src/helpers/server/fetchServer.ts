@@ -2,7 +2,7 @@
 
 import { SERVER_URL } from '@/constants/urls/main'
 import { cookies } from 'next/headers'
-import { AUTHENTICATED_COOKIE_NAME } from './dal/sessionCookie'
+import { AUTHENTICATED_COOKIE_NAME } from './dal/authCookie'
 import {
   ForbiddenError,
   InternalServerError,

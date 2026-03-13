@@ -1,9 +1,10 @@
 'use server'
 
-import { cookies, headers } from 'next/headers'
+import { cookies } from 'next/headers'
 import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'
-import { AUTHENTICATED_COOKIE_NAME } from './sessionCookie'
+import { getAnonSession } from './anonSession'
+import { AUTHENTICATED_COOKIE_NAME } from './authCookie'
 
 export interface AnonUser {
   id: string
@@ -16,13 +17,13 @@ export async function getUser(): Promise<AppUser> {
   try {
     return await getAuthUser()
   } catch {
-    // Fallback to anonymous user (via session cookie)
-    const id = (await headers()).get('x-anon-user-id')
-    if (!id) {
+    // Fallback to anonymous user (via encrypted session cookie)
+    const session = await getAnonSession()
+    if (!session.userId) {
       throw new InternalServerError()
     }
     return {
-      id,
+      id: session.userId,
       isAuth: false,
     }
   }

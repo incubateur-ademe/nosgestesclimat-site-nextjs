@@ -2,8 +2,8 @@ import type { NextRequest } from 'next/server'
 import { userMiddleware } from './helpers/server/dal/middleware'
 import i18nMiddleware from './middlewares/i18nMiddleware'
 
-export function proxy(request: NextRequest) {
-  return userMiddleware(request, i18nMiddleware)
+export async function proxy(request: NextRequest) {
+  return await userMiddleware(request, i18nMiddleware)
 }
 
 export const config = {
