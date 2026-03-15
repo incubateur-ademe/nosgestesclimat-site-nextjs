@@ -24,7 +24,7 @@ export function useSaveSimulation() {
   const locale = useLocale()
 
   const {
-    mutate: saveSimulationMutation,
+    mutateAsync: saveSimulation,
     isPending,
     isSuccess,
     isError,
@@ -93,7 +93,7 @@ export function useSaveSimulation() {
   })
 
   return {
-    saveSimulation: saveSimulationMutation,
+    saveSimulation,
     isPending,
     isSuccess,
     isError,

@@ -10,8 +10,8 @@ import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 
-import { useCurrentSimulation, useFormState } from '@/publicodes-state'
-import { useCallback, useEffect } from 'react'
+import { useFormState } from '@/publicodes-state'
+import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlockDesktop'
@@ -20,8 +20,6 @@ import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
   const isDebug = useDebug()
-
-  const { progression } = useCurrentSimulation()
 
   const {
     remainingQuestions,
@@ -36,12 +34,6 @@ export default function Form() {
   const { goToEndPage } = useGoToEndPage()
 
   const { isIframe } = useIframe()
-
-  const handleOnComplete = useCallback(() => {
-    if (progression === 1) {
-      goToEndPage()
-    }
-  }, [goToEndPage, progression])
 
   useEffect(() => {
     if (!relevantAnsweredQuestions || currentQuestion) {
@@ -90,7 +82,7 @@ export default function Form() {
                 key="iframe-navigation"
                 question={currentQuestion}
                 remainingQuestions={remainingQuestions}
-                onComplete={handleOnComplete}
+                onComplete={goToEndPage}
               />
             )}
           </div>
@@ -117,7 +109,7 @@ export default function Form() {
           key="default-navigation"
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
-          onComplete={handleOnComplete}
+          onComplete={goToEndPage}
         />
       )}
     </>
