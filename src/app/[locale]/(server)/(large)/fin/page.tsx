@@ -17,7 +17,7 @@ import {
 } from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import { notFound, redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -56,7 +56,7 @@ export default async function SimulationPage({
   )
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!simulation) {
-    notFound()
+    redirect('/')
   }
   const simulationResult = await throwNextError(async () => {
     return getSimulationResult({
