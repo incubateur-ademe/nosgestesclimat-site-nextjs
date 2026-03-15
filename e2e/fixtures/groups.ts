@@ -88,8 +88,8 @@ export class Group {
   }
 
   async goFromGroupTabs(page: Page) {
-    await page.waitForTimeout(500)
     await page.getByTestId('my-groups-tab').click()
+    await page.waitForTimeout(500)
     await page.getByText(this.name).click()
   }
 

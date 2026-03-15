@@ -71,7 +71,7 @@ export function useSaveSimulation() {
 
         return axios
           .post(
-            `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1]}/simulations`,
+            `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1].id}/simulations`,
             payload,
             {
               params: {

@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge'
 
 interface Option {
   label: React.ReactNode | string
+  'data-testid'?: string
   isSelected?: boolean
 }
 
@@ -60,13 +61,13 @@ export default function Switch({
   if (isButtonOptions(options)) {
     return (
       <div role="group" aria-label={ariaLabel} className={className}>
-        {options.map(({ label, isSelected, onClick }, index) => (
+        {options.map(({ label, isSelected, ...props }, index) => (
           <button
             key={`switch-${index}`}
             type="button"
             className={getFullClassName({ isSelected, index, options })}
-            onClick={onClick}
-            aria-pressed={isSelected ?? false}>
+            aria-pressed={isSelected ?? false}
+            {...props}>
             {label}
           </button>
         ))}
@@ -76,12 +77,12 @@ export default function Switch({
 
   return (
     <nav aria-label={ariaLabel} className={className}>
-      {options.map(({ label, isSelected, href }, index) => (
+      {options.map(({ label, isSelected, ...props }, index) => (
         <Link
           key={`switch-${index}`}
           className={getFullClassName({ isSelected, index, options })}
-          href={href}
-          aria-current={isSelected ? 'page' : undefined}>
+          aria-current={isSelected ? 'page' : undefined}
+          {...props}>
           {label}
         </Link>
       ))}

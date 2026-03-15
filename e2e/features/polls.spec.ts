@@ -90,6 +90,7 @@ test.describe('A new user', () => {
     await page.goto(poll.inviteLink)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
+    await expect(page).toHaveURL('/simulateur/email')
     await user.fillEmailAndCompleteVerification()
     if (browser?.browserType().name() === 'webkit') {
       // @TODO on safari, this test fails systematically (500 error on a server component POST request)
@@ -109,6 +110,7 @@ test.describe('A new user', () => {
     await page.goto(poll.inviteLink)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
+    await expect(page).toHaveURL('/simulateur/email')
     await page.getByTestId('skip-email-button').click()
     await expect(page).toHaveURL(/\/fin/)
   })
@@ -157,7 +159,7 @@ test.describe('A user with a completed test that joined a poll', () => {
 
   test('can access the poll dashboard from the end page', async ({ poll }) => {
     await page.goto('/fin')
-    await page.getByTestId('poll-see-results-button').click()
+    await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(poll.url)
   })
 
