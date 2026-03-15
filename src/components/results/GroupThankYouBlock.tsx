@@ -9,7 +9,9 @@ interface Props {
 
 export default function GroupThankYouBlock({ locale, group }: Props) {
   return (
-    <section className="mb-12 rounded-2xl bg-pink-100 px-8 py-10 text-center">
+    <section
+      className="mb-12 rounded-2xl bg-pink-100 px-8 py-10 text-center"
+      data-testid="poll-confirmation-block">
       <p className="mb-1 text-lg font-bold">
         <Trans locale={locale} i18nKey="results.groupThankYou.title">
           Merci d'avoir complété le test !
@@ -25,7 +27,11 @@ export default function GroupThankYouBlock({ locale, group }: Props) {
         </Trans>
       </p>
 
-      <ButtonLink href={group.href} color="primary" size="md">
+      <ButtonLink
+        href={group.href}
+        color="primary"
+        size="md"
+        data-testid="see-group-result-button">
         <Trans locale={locale} i18nKey="results.groupThankYou.cta">
           Voir les résultats
         </Trans>
