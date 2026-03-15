@@ -5,6 +5,7 @@ import Trans from '../../translation/trans/TransServer'
 import ActionsBlock from '../ActionsBlock'
 import FootprintBlock from '../FootprintBlock'
 import FootprintDetail from '../FootprintDetail'
+import GroupThankYouBlock from '../GroupThankYouBlock'
 import SaveResultsBlock from '../SaveResultsBlock'
 import Objective from '../objective/Objective'
 
@@ -47,6 +48,10 @@ export default function CarbonFootprintResults({
         metric="carbone"
       />
 
+      {simulationResult.group && (
+        <GroupThankYouBlock locale={locale} group={simulationResult.group} />
+      )}
+
       {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 
       <Objective
@@ -57,7 +62,7 @@ export default function CarbonFootprintResults({
       <p className="text-primary-600 mx-auto mb-12 w-2xl max-w-full text-center">
         <Trans locale={locale} i18nKey="carbonResults.objective.description">
           <strong className="block">
-            Vous n’êtes pas seul. Chaque contexte est différent,
+            Vous n'êtes pas seul. Chaque contexte est différent,
           </strong>{' '}
           on contribue à hauteur de ses possibilités, on veut vous y aider.
         </Trans>
