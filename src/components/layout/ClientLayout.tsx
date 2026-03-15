@@ -16,6 +16,7 @@ import { Suspense } from 'react'
 
 type RootLayoutProps = PropsWithChildren & {
   locale: string
+  serverUserId?: string
   skipLinksDisplayed?: SkipLinksDisplayed
 }
 
@@ -23,10 +24,11 @@ export const ClientLayout = ({
   children,
   skipLinksDisplayed,
   locale,
+  serverUserId,
 }: RootLayoutProps) => (
   <ErrorBoundary>
     <QueryClientProviderWrapper>
-      <UserProvider>
+      <UserProvider serverUserId={serverUserId}>
         <PartnerProvider>
           <IframeOptionsProvider>
             <MotionConfig reducedMotion="user">

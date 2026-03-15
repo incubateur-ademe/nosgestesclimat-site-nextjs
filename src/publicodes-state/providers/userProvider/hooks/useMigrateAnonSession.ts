@@ -12,15 +12,15 @@ import { useEffect } from 'react'
  * is over (i.e. all active users have visited the site at least once).
  */
 export function useMigrateAnonSession({
-  initialUserId,
+  serverUserId,
   currentUserId,
 }: {
-  initialUserId: string | undefined
+  serverUserId?: string
   currentUserId: string
 }) {
   useEffect(() => {
-    if (initialUserId && initialUserId !== currentUserId) {
+    if (serverUserId && serverUserId !== currentUserId) {
       void migrateAnonSession(currentUserId)
     }
-  }, [initialUserId, currentUserId])
+  }, [serverUserId, currentUserId])
 }

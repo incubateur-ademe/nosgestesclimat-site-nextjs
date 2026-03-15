@@ -9,7 +9,7 @@ import { UserProvider } from '@/publicodes-state'
 
 export default function SaveResultsForm({ userId }: { userId: string }) {
   return (
-    <UserProvider initialUserId={userId}>
+    <UserProvider serverUserId={userId}>
       <div className="dark">
         <AuthenticateUserForm
           buttonColor="borderless"

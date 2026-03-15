@@ -40,7 +40,7 @@ export default async function ActionDetailPage({
   const user = await getAuthUser()
 
   return (
-    <UserProvider initialUserId={user.id}>
+    <UserProvider serverUserId={user.id}>
       <EngineProvider rules={rules}>
         <div className="mx-auto my-12 max-w-[600px]">
           <ButtonLink

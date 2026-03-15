@@ -1,3 +1,4 @@
+import { END_PAGE_PATH } from '@/constants/urls/paths'
 import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -14,7 +15,7 @@ export function useSimulatorGuard() {
 
   useEffect(() => {
     if (progression === 1) {
-      router.replace(linkToEndPage)
+      router.replace(END_PAGE_PATH)
     }
     if (!tutorials.testIntro) {
       router.replace(getLinkToTutoriel({ locale, searchParams }))

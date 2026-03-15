@@ -42,7 +42,7 @@ export default async function Release({
       </Link>
 
       <QueryClientProviderWrapper>
-        <UserProvider initialUserId={initialUserId}>
+        <UserProvider serverUserId={initialUserId}>
           <PasserTestBanner />
         </UserProvider>
       </QueryClientProviderWrapper>

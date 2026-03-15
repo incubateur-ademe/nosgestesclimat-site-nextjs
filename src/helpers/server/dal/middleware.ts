@@ -4,25 +4,21 @@ import { type NextRequest, type NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
 import { type AnonSessionData, anonSessionOptions } from './anonSession'
 
-const PATHS_WITH_ANON_SESSION = [
-  `/`,
-  `/simulateur/**`,
-  `/fin/**`,
-  `/connexion`,
-  `/inscription`,
-  `/amis/**`,
-  `/mon-espace/**`,
+const PATHS_WITHOUT_ANON_SESSION = [
+  `/blog/**`,
+  `/accessibilite`,
+  `/mentions-legales`,
 ]
 
 /**
  * Middleware that ensures an encrypted anonymous session cookie exists for
- * whitelisted routes.  The session contains a `userId` (UUID) that identifies
- * the anonymous user.
+ * all routes except blacklisted ones. The session contains a `userId` (UUID)
+ * that identifies the anonymous user.
  *
  * Server components and server actions read the session directly via
  * `getAnonSession()` — no request header forwarding needed.
  *
- * Routes not in `PATHS_WITH_ANON_SESSION` are passed through without creating
+ * Routes in `PATHS_WITHOUT_ANON_SESSION` are passed through without creating
  * a session, but an existing session cookie is still readable from anywhere via
  * `getAnonSession()`.
  */
@@ -30,7 +26,7 @@ export async function userMiddleware(
   request: NextRequest,
   next: (req: NextRequest) => NextResponse
 ) {
-  if (!isMatch(request.nextUrl.pathname, PATHS_WITH_ANON_SESSION)) {
+  if (isMatch(request.nextUrl.pathname, PATHS_WITHOUT_ANON_SESSION)) {
     return next(request)
   }
 

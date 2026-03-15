@@ -22,7 +22,7 @@ export function ActionPage({ simulations, user, rules, locale }: Props) {
       {simulations.length <= 0 ? (
         <NoResultsBlock locale={locale} />
       ) : (
-        <UserProvider serverSimulations={simulations} initialUserId={user.id}>
+        <UserProvider serverSimulations={simulations} serverUserId={user.id}>
           <QueryClientProviderWrapper>
             <EngineProvider rules={rules}>
               <FormProvider>

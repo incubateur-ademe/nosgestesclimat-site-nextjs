@@ -51,7 +51,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
         <div className="flex max-w-[720px] flex-col gap-8">
           <QueryClientProviderWrapper>
-            <UserProvider initialUserId={user.id}>
+            <UserProvider serverUserId={user.id}>
               <UserEmail />
             </UserProvider>
           </QueryClientProviderWrapper>
@@ -66,7 +66,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
       </section>
       <section className="mt-2">
         <QueryClientProviderWrapper>
-          <UserProvider initialUserId={user.id}>
+          <UserProvider serverUserId={user.id}>
             <Localisation />
           </UserProvider>
         </QueryClientProviderWrapper>

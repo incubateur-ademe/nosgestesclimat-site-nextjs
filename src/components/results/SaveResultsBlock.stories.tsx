@@ -43,7 +43,7 @@ const meta: Meta<typeof SaveResultsBlock> = {
   decorators: [
     (Story) => (
       <QueryClientProviderWrapper>
-        <UserProvider initialUserId={randomUUID()}>
+        <UserProvider serverUserId={randomUUID()}>
           <Story />
         </UserProvider>
       </QueryClientProviderWrapper>

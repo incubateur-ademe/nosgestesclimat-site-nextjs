@@ -93,9 +93,8 @@ interface ProviderConfig {
 }
 
 interface UserProviderProps {
-  initialSimulations?: Simulation[]
-  initialCurrentSimulationId?: string
-  initialUserId?: string
+  serverSimulations?: Simulation[]
+  serverUserId?: string
 }
 
 const TestWrapper = ({
@@ -131,7 +130,13 @@ const TestWrapper = ({
   }
 
   if (providers.user) {
-    wrapped = <UserProvider {...userProviderProps}>{wrapped}</UserProvider>
+    wrapped = (
+      <UserProvider
+        serverUserId={userProviderProps?.serverUserId}
+        serverSimulations={userProviderProps?.serverSimulations}>
+        {wrapped}
+      </UserProvider>
+    )
   }
 
   if (providers.queryClient) {
@@ -192,10 +197,8 @@ export const renderWithWrapper = (
   // Pass user provider props for server-hydrated mode to avoid async localStorage loading issues
   const userProviderProps: UserProviderProps | undefined = providers.user
     ? {
-        initialSimulations: simulations,
-        initialCurrentSimulationId:
-          currentSimulation?.id ?? defaultSimulation?.id,
-        initialUserId: userMerged.userId,
+        serverSimulations: simulations,
+        serverUserId: userMerged.userId,
       }
     : undefined
 

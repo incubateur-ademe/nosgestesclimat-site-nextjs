@@ -8,6 +8,7 @@ import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import { getUser } from '@/helpers/server/dal/user'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -36,9 +37,10 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params
+  const { id: serverUserId } = await getUser()
 
   return (
-    <ClientLayout locale={locale}>
+    <ClientLayout locale={locale} serverUserId={serverUserId}>
       <LandingPage
         locale={locale}
         heroIllustration={<InteractiveIllustration />}

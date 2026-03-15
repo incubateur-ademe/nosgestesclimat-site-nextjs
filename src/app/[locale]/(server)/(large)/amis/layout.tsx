@@ -9,7 +9,7 @@ export default async function Layout({
 
   return (
     <QueryClientProviderWrapper>
-      <UserProvider initialUserId={initialUserId}>{children}</UserProvider>
+      <UserProvider serverUserId={initialUserId}>{children}</UserProvider>
     </QueryClientProviderWrapper>
   )
 }
