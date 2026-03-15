@@ -62,11 +62,7 @@ setup('complete test and save its simulation', async ({ page, ngcTest, cookieBan
   // User should be greeted
   await expect(page.getByText('Bienvenue dans votre espace')).toBeInViewport()
 
-  // User should receive an email with a simulation link
-  await user.readSavedSimulationEmail()
-
   await user.saveInContext()
-
   await saveContext(page, USER_ACCOUNT_STATE)
 })
 

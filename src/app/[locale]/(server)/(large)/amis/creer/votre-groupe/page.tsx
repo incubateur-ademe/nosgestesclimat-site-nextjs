@@ -6,9 +6,10 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import { throwNextError } from '@/helpers/server/error'
+import { getSimulations } from '@/helpers/server/model/simulations'
 import { getAuthUser } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
 import NameForm from './_components/NameForm'
 
 export const generateMetadata = getCommonMetadata({
@@ -28,13 +29,10 @@ export default async function GroupNamePage({
   const { locale } = await params
   const { [SHOW_STEP_KEY]: showStep } = (await searchParams) ?? {}
 
-  let user
-  try {
-    user = await getAuthUser()
-  } catch {
-    redirect('/mon-espace/groupes')
-  }
-
+  const user = await throwNextError(getAuthUser)
+  const [lastSimulation] = await throwNextError(() =>
+    getSimulations({ user }, { onlyCompleted: true, pageSize: 1 })
+  )
   const { t } = await getServerTranslation({ locale })
 
   return (
@@ -50,7 +48,7 @@ export default async function GroupNamePage({
         title={t("Créer un groupe d'amis")}
         subtitle={t('Invitez vos proches à passer le test')}
       />
-      <NameForm user={user} />
+      <NameForm user={user} lastSimulation={lastSimulation} />
     </div>
   )
 }
