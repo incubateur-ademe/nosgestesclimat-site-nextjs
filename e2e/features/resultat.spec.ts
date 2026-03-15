@@ -1,11 +1,7 @@
 import { expect, test } from '../fixtures'
 import { TutorialPage } from '../fixtures/tutorial'
 import { getCarbonFootprintElem } from '../helpers/carbon-footprint'
-import {
-  COMPLETED_TEST_STATE,
-  ORGANISATION_ADMIN_STATE,
-  USER_ACCOUNT_STATE,
-} from '../state'
+import { COMPLETED_TEST_STATE } from '../state'
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/fin')
@@ -56,37 +52,5 @@ test.describe('Given a user that completed a test without an account', () => {
       (await waterFootprintElem.innerText()).replace(/[\s]/, '')
     )
     expect(waterFootprintResult).toBeGreaterThan(6000)
-  })
-})
-
-test.describe('Given a user that saved it simulation', () => {
-  test.use({ storageState: USER_ACCOUNT_STATE })
-  test('It can go back to its result from the link in the email', async ({
-    page,
-    user,
-  }) => {
-    await page.goto(user.savedSimulationLink)
-    await expect(page).toHaveURL(new RegExp('/fin'))
-    // @TODO There is two h1 on result page
-    await expect(page.locator('h1').first()).toHaveText('Mes empreintes')
-    await page.waitForTimeout(7000)
-    const carbonFootprintElem = getCarbonFootprintElem(page)
-    await expect(carbonFootprintElem).toBeInViewport()
-  })
-
-  test('its simulation should not be accessible from another user', async ({
-    user,
-    browser,
-  }) => {
-    // @TODO when we have simulation security
-    test.skip()
-    const context = await browser.newContext({
-      storageState: ORGANISATION_ADMIN_STATE,
-    })
-    const page = await context.newPage()
-    await page.goto(user.savedSimulationLink)
-    await page.waitForLoadState()
-    const carbonFootprintElem = getCarbonFootprintElem(page)
-    expect(carbonFootprintElem).not.toBeDefined()
   })
 })

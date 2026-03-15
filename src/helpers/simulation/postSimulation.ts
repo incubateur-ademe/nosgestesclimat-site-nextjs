@@ -3,7 +3,6 @@ import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
 import type { Simulation as NewSimulation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
-import { mapNewSimulationToOld } from './mapNewSimulation'
 
 type Props = {
   simulation: Simulation
@@ -52,5 +51,5 @@ export async function postSimulation({
     throw error
   }
 
-  return mapNewSimulationToOld(simulationSaved)
+  return simulationSaved
 }

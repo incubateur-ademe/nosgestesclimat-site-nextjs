@@ -49,7 +49,7 @@ export default function ButtonStart({
         </p>
 
         <ButtonLink
-          href={`/organisations/${poll?.organisation.slug}/campagnes/${poll?.slug}`}>
+          href={`/organisations/${poll.organisation.slug}/campagnes/${poll.slug}`}>
           <Trans>Voir mes résultats</Trans>
         </ButtonLink>
       </div>
@@ -77,8 +77,9 @@ export default function ButtonStart({
 
         // Add poll to simulation only when user clicks the button
         // This triggers saving the simulation with SimulationSyncProvider
-        if (poll && !polls?.includes(poll.slug)) {
-          updateCurrentSimulation({ pollToAdd: poll.slug })
+        const pollToAdd = poll && polls?.find(({ slug }) => slug === poll.slug)
+        if (pollToAdd) {
+          updateCurrentSimulation({ pollToAdd })
         }
 
         const endTime = Date.now()

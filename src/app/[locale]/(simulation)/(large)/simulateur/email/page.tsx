@@ -12,7 +12,7 @@ import { useCurrentSimulation } from '@/publicodes-state'
 export default function Email() {
   const { t } = useClientTranslation()
   const { polls } = useCurrentSimulation()
-  const pollSlug = polls?.[0]
+  const pollSlug = polls?.[0].slug
   const hasContest =
     pollSlug &&
     (process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS ?? '')

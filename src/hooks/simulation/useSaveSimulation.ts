@@ -1,6 +1,5 @@
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
-import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
 import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { sanitizeSimulation } from '@/helpers/simulation/sanitizeSimulation'
 import { useUser } from '@/publicodes-state'
@@ -40,9 +39,9 @@ export function useSaveSimulation() {
 
       const { groups = [], polls = [] } = simulation
 
-      if (groups?.length) {
+      if (groups.length) {
         return updateGroupParticipant({
-          groupId: groups[groups.length - 1],
+          groupId: groups.at(-1)!.id,
           email,
           simulation: {
             ...simulation,
@@ -58,7 +57,7 @@ export function useSaveSimulation() {
 
       if (polls?.length) {
         const payload = {
-          ...mapOldSimulationToNew(sanitizedSimulation),
+          ...sanitizedSimulation,
           model: modelVersion,
           ...(name || email
             ? {

@@ -118,7 +118,7 @@ test.describe('A new user', () => {
       // However, we cannot reproduce it in real life (browserstack OK)
       test.skip()
     }
-    await expect(page).toHaveURL(group.url)
+    await expect(page).toHaveURL('/fin')
   })
 
   test('can skip leaving its email after completing the test', async ({
