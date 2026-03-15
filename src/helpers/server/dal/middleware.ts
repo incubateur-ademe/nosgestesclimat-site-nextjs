@@ -1,8 +1,14 @@
 import { getIronSession } from 'iron-session'
 import { isMatch } from 'micromatch'
-import { type NextRequest, type NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
-import { type AnonSessionData, anonSessionOptions } from './anonSession'
+import {
+  AnonSessionData,
+  anonSessionOptions,
+  getAnonSession,
+} from './anonSession'
+
+export const ANON_USER_ID_HEADER = 'x-anon-user-id'
 
 const PATHS_WITHOUT_ANON_SESSION = [
   `/blog/**`,
@@ -15,8 +21,7 @@ const PATHS_WITHOUT_ANON_SESSION = [
  * all routes except blacklisted ones. The session contains a `userId` (UUID)
  * that identifies the anonymous user.
  *
- * Server components and server actions read the session directly via
- * `getAnonSession()` — no request header forwarding needed.
+ * Server actions read the session directly via `getAnonSession()`.
  *
  * Routes in `PATHS_WITHOUT_ANON_SESSION` are passed through without creating
  * a session, but an existing session cookie is still readable from anywhere via
@@ -30,17 +35,21 @@ export async function userMiddleware(
     return next(request)
   }
 
+  const session = await getAnonSession()
+  if (session.userId) {
+    return next(request)
+  }
+
+  const userId = randomUUID()
+  request.headers.set(ANON_USER_ID_HEADER, userId)
   const response = next(request)
-  const session = await getIronSession<AnonSessionData>(
+  const newSession = await getIronSession<AnonSessionData>(
     request,
     response,
     anonSessionOptions
   )
-
-  if (!session.userId) {
-    session.userId = randomUUID()
-    await session.save()
-  }
+  newSession.userId = userId
+  await newSession.save()
 
   return response
 }

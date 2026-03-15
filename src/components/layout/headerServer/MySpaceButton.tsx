@@ -12,6 +12,7 @@ import MySpaceDropdown from './MySpaceDropdown'
 async function logoutAndRedirect() {
   'use server'
   await logout()
+
   revalidatePath('/')
   redirect('/')
 }

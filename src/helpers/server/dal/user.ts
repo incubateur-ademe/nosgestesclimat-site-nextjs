@@ -1,10 +1,11 @@
 'use server'
 
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'
 import { getAnonSession } from './anonSession'
 import { AUTHENTICATED_COOKIE_NAME } from './authCookie'
+import { ANON_USER_ID_HEADER } from './middleware'
 
 export interface AnonUser {
   id: string
@@ -17,15 +18,29 @@ export async function getUser(): Promise<AppUser> {
   try {
     return await getAuthUser()
   } catch {
-    // Fallback to anonymous user (via encrypted session cookie)
+    // Fallback to anonymous user.
+    // 1. Try the session cookie first (set on previous visits).
     const session = await getAnonSession()
-    if (!session.userId) {
-      throw new InternalServerError()
+    if (session.userId) {
+      return {
+        id: session.userId,
+        isAuth: false,
+      }
     }
-    return {
-      id: session.userId,
-      isAuth: false,
+
+    // 2. For brand-new users the Set-Cookie header has not been flushed yet
+    //    when the Server Component renders, so the cookie is not readable via
+    //    getAnonSession(). The middleware injects the freshly-generated userId
+    //    as a trusted request header instead.
+    const userId = (await headers()).get(ANON_USER_ID_HEADER)
+    if (userId) {
+      return {
+        id: userId,
+        isAuth: false,
+      }
     }
+
+    throw new InternalServerError()
   }
 }
 
@@ -42,7 +57,7 @@ export async function logout() {
     domain,
   })
 
-  // The anonymous user ID cookie (ngc_user_id) is NOT regenerated here.
+  // The anonymous user ID cookie (ngc_anon_session) is NOT regenerated here.
   // The client-side resetLocalState() generates a new UUID in localStorage,
-  // which is synced to the cookie automatically.
+  // which is synced to the cookie automatically via migrateAnonSession.
 }

@@ -2,7 +2,7 @@ import { getIronSession, type SessionOptions } from 'iron-session'
 import { cookies } from 'next/headers'
 
 export interface AnonSessionData {
-  userId: string
+  userId?: string
   /**
    * Whether the session has been seeded from the client's localStorage userId.
    * Once `true`, the userId can no longer be overwritten by the client.
