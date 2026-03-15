@@ -23,7 +23,7 @@ export function useGoToEndPage() {
       return
     }
     router.push(END_PAGE_PATH)
-  }, [progression, polls, groups, userId, currentSimulation, router])
+  }, [progression, polls, groups, router])
 
   return { goToEndPage }
 }

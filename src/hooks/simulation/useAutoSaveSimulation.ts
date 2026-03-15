@@ -10,10 +10,14 @@ export function useAutoSaveSimulation() {
     async (props: Parameters<typeof saveSimulation>[0]) => {
       await saveSimulation(props)
     },
-    3000
+    5000
   )
   useEffect(() => {
-    debouncedSaveSimulation({ simulation: currentSimulation })
+    if (currentSimulation.progression === 1) {
+      void saveSimulation({ simulation: currentSimulation })
+    } else {
+      debouncedSaveSimulation({ simulation: currentSimulation })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(currentSimulation.foldedSteps)])
+  }, [currentSimulation.progression])
 }
