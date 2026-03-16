@@ -104,6 +104,7 @@ export default function ElectricityConsumption() {
           )}
           options={[
             {
+              // Leave white space around symbol to have a similar width
               label: '  €  ',
               isSelected: isCostMode,
               'data-testid': 'switch-electricity-cost',
