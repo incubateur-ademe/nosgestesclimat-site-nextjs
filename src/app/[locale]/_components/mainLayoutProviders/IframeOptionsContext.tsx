@@ -2,7 +2,6 @@
 
 import { verifyIfIntegratorBypassRights } from '@/helpers/iframe/verifyIntegratorBypassRights'
 import { getIsFrenchRegion } from '@/helpers/regions/getIsFrenchRegion'
-import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import * as Sentry from '@sentry/nextjs'
 import { createContext, useEffect, useState } from 'react'
@@ -62,8 +61,6 @@ export const IframeOptionsProvider = ({
     typeof window !== 'undefined' ? window.location.search : ''
   )
 
-  const { user } = useUser()
-
   // Detect iframe mode using window check
   const isIframe = getIsIframe()
 
@@ -110,18 +107,16 @@ export const IframeOptionsProvider = ({
     }
   }, [isIframeOnlySimulation])
 
-  const regionCode = user?.region?.code
-
   const isFrenchRegion = getIsFrenchRegion({
-    isIframe: isIframe ?? false,
-    iframeRegion: regionCode,
+    isIframe,
+    iframeRegion: iframeRegion ?? 'FR',
   })
 
   return (
     <IframeOptionsContext.Provider
       value={{
         isIframeShareData: isIframe && isIframeShareData,
-        iframeRegion: regionCode,
+        iframeRegion,
         isIframe,
         isIframeOnlySimulation,
         isIntegratorAllowedToBypassConsentDataShare:
@@ -129,7 +124,7 @@ export const IframeOptionsProvider = ({
         iframeLang,
         isFrenchRegion,
       }}>
-      <div id={CONTAINER_ID}>{children}</div>
+      {children}
     </IframeOptionsContext.Provider>
   )
 }

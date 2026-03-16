@@ -6,6 +6,7 @@ import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { Suspense } from 'react'
+import { IframeOptionsProvider } from './_components/mainLayoutProviders/IframeOptionsContext'
 import ServerTracking from './_components/scripts/ServerTracking'
 import './globals.css'
 
@@ -129,7 +130,7 @@ export default async function RootLayout({
       </head>
       <body
         className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
-        {children}
+        <IframeOptionsProvider>{children}</IframeOptionsProvider>
       </body>
     </html>
   )
