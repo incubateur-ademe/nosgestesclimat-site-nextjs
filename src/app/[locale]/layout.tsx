@@ -6,7 +6,10 @@ import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { Suspense } from 'react'
-import { BODY_ID, IframeOptionsProvider } from './_components/mainLayoutProviders/IframeOptionsContext'
+import {
+  BODY_ID,
+  IframeOptionsProvider,
+} from './_components/mainLayoutProviders/IframeOptionsContext'
 import ServerTracking from './_components/scripts/ServerTracking'
 import './globals.css'
 
