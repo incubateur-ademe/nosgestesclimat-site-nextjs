@@ -14,7 +14,7 @@ export default async function GroupResultsPage() {
         className="mb-4 font-bold"
         href={user.isAuth ? MON_ESPACE_GROUPS_PATH : END_PAGE_GROUPS_PATH}
       />
-      <GroupPage />{' '}
+      <GroupPage />
     </div>
   )
 }
