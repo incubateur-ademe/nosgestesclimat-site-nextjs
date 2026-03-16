@@ -43,7 +43,7 @@ export default async function SimulationPage({
   const { locale } = await params
   const { sid } = await searchParams
 
-// Legacy feature, allowed to load a simulation data by passing an sid param in the URL, used in transactionnal e-mailing
+  // Legacy feature, allowed to load a simulation data by passing an sid param in the URL, used in transactionnal e-mailing
   if (sid) {
     redirect(
       `${MON_ESPACE_RESULTS_DETAIL_PATH.replace(':simulationId', sid as string)}`

@@ -1,6 +1,7 @@
 'use server'
 
 import { cookies, headers } from 'next/headers'
+import { cache } from 'react'
 import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'
 import { getAnonSession } from './anonSession'
@@ -14,7 +15,7 @@ export interface AnonUser {
 
 export type AppUser = AuthUser | AnonUser
 
-export async function getUser(): Promise<AppUser> {
+export const getUser = cache(async function (): Promise<AppUser> {
   try {
     return await getAuthUser()
   } catch {
@@ -42,7 +43,7 @@ export async function getUser(): Promise<AppUser> {
 
     throw new InternalServerError()
   }
-}
+})
 
 export async function logout() {
   ;(await cookies()).delete({
