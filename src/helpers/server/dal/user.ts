@@ -4,7 +4,7 @@ import { cookies, headers } from 'next/headers'
 import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'
 import { getAnonSession } from './anonSession'
-import { AUTHENTICATED_COOKIE_NAME } from './authCookie'
+import { AUTHENTICATED_COOKIE_NAME, DEFAULT_COOKIE_OPTION } from './authCookie'
 import { ANON_USER_ID_HEADER } from './middleware'
 
 export interface AnonUser {
@@ -45,16 +45,9 @@ export async function getUser(): Promise<AppUser> {
 }
 
 export async function logout() {
-  const domain = new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
-  const secure = domain !== 'localhost'
-
   ;(await cookies()).delete({
     name: AUTHENTICATED_COOKIE_NAME,
-    httpOnly: true,
-    secure,
-    sameSite: 'lax',
-    partitioned: secure,
-    domain,
+    ...DEFAULT_COOKIE_OPTION,
   })
 
   // The anonymous user ID cookie (ngc_anon_session) is NOT regenerated here.

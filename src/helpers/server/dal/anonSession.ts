@@ -1,5 +1,6 @@
 import { getIronSession, type SessionOptions } from 'iron-session'
 import { cookies } from 'next/headers'
+import { DEFAULT_COOKIE_OPTION } from './authCookie'
 
 export interface AnonSessionData {
   userId?: string
@@ -23,12 +24,7 @@ export const anonSessionOptions: SessionOptions = {
   password: process.env.IRON_SESSION_PASSWORD,
   cookieName: 'ngc_anon_session',
   ttl: TWO_YEARS_IN_SECONDS,
-  cookieOptions: {
-    path: '/',
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
-  },
+  cookieOptions: DEFAULT_COOKIE_OPTION,
 }
 
 export async function getAnonSession() {

@@ -90,6 +90,7 @@ export class NGCTest {
     while (!(await this.isLastQuestion())) {
       await this.clickOnSkip()
     }
+    await this.page.waitForTimeout(500)
     await this.page.getByTestId('end-test-button').click()
   }
 
@@ -98,6 +99,7 @@ export class NGCTest {
     while (!(await this.isLastQuestion())) {
       await this.answerQuestion(situation)
     }
+    await this.page.waitForTimeout(500)
     await this.page.getByTestId('end-test-button').click()
   }
 }
