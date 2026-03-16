@@ -11,7 +11,7 @@ import { getAuthUser } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ProfileTab from '../_components/ProfileTabs'
-import LocalisationSection from './_components/LocalisationSection'
+import Localisation from './_components/Localisation'
 import NewsletterSettings from './_components/NewsletterSettings'
 import UserEmail from './_components/UserEmail'
 
@@ -51,7 +51,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
         <div className="flex max-w-[720px] flex-col gap-8">
           <QueryClientProviderWrapper>
-            <UserProvider initialUserId={user.id}>
+            <UserProvider serverUserId={user.id}>
               <UserEmail />
             </UserProvider>
           </QueryClientProviderWrapper>
@@ -64,10 +64,13 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
           <NewsletterSettings {...{ newsletters, subscriptions }} />
         </div>
       </section>
-
-      <QueryClientProviderWrapper>
-        <LocalisationSection />
-      </QueryClientProviderWrapper>
+      <section className="mt-2">
+        <QueryClientProviderWrapper>
+          <UserProvider serverUserId={user.id}>
+            <Localisation />
+          </UserProvider>
+        </QueryClientProviderWrapper>
+      </section>
     </div>
   )
 }

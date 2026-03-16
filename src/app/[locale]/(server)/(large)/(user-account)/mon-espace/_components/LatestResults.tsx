@@ -22,10 +22,7 @@ export default function LatestResults({
             </Trans>
           </h2>
 
-          <SeeDetailLink
-            className="hidden md:flex"
-            simulationId={simulation.id}
-          />
+          <SeeDetailLink className="hidden md:flex" />
         </div>
 
         <Separator className="mt-8 mb-6" />
@@ -58,7 +55,7 @@ export default function LatestResults({
         shouldDisplayBadge={false}
       />
 
-      <SeeDetailLink className="flex md:hidden" simulationId={simulation.id} />
+      <SeeDetailLink className="flex md:hidden" />
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
-import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
 import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { sanitizeSimulation } from '@/helpers/simulation/sanitizeSimulation'
 import { useUser } from '@/publicodes-state'
@@ -9,7 +8,6 @@ import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useLocale } from '../useLocale'
-import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 
 interface Props {
   simulation: Simulation
@@ -24,10 +22,8 @@ export function useSaveSimulation() {
   } = useUser()
   const locale = useLocale()
 
-  const { resetSyncTimer } = useBackgroundSyncSimulation()
-
   const {
-    mutate: saveSimulationMutation,
+    mutateAsync: saveSimulation,
     isPending,
     isSuccess,
     isError,
@@ -38,15 +34,14 @@ export function useSaveSimulation() {
       sendEmail,
     }: Props): Promise<Simulation | undefined> => {
       // We reset the sync timer to avoid saving the simulation in the background
-      resetSyncTimer()
 
       const modelVersion = await getModelVersion()
 
       const { groups = [], polls = [] } = simulation
 
-      if (groups?.length) {
+      if (groups.length) {
         return updateGroupParticipant({
-          groupId: groups[groups.length - 1],
+          groupId: groups.at(-1)!.id,
           email,
           simulation: {
             ...simulation,
@@ -62,7 +57,7 @@ export function useSaveSimulation() {
 
       if (polls?.length) {
         const payload = {
-          ...mapOldSimulationToNew(sanitizedSimulation),
+          ...sanitizedSimulation,
           model: modelVersion,
           ...(name || email
             ? {
@@ -76,7 +71,7 @@ export function useSaveSimulation() {
 
         return axios
           .post(
-            `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1]}/simulations`,
+            `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1].id}/simulations`,
             payload,
             {
               params: {
@@ -97,7 +92,7 @@ export function useSaveSimulation() {
   })
 
   return {
-    saveSimulation: saveSimulationMutation,
+    saveSimulation,
     isPending,
     isSuccess,
     isError,

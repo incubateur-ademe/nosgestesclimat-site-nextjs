@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -19,7 +19,6 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
     useObjectiveChart(carbonFootprint)
 
   const shouldReduceMotion = useReducedMotion()
-
   return (
     <div className="bg-primary-100 mt-8 w-full overflow-visible rounded-xl px-8 pt-12 pb-6">
       <div className="relative flex aspect-[4/3] w-full items-center justify-center md:mx-auto md:max-w-[400px]">
@@ -88,7 +87,7 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
         {pointsWithCoords.map((p, index) => {
           const isLastPoint = index === pointsWithCoords.length - 1
 
-          const { formattedValue, unit } = formatCarbonFootprint(p.value, {
+          const { formattedValue, unit } = formatFootprint(p.value, {
             locale,
             t,
             shouldUseAbbreviation: !isLastPoint,

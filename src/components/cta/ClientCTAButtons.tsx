@@ -1,6 +1,7 @@
 'use client'
-import { MON_ESPACE_PATH } from '@/constants/urls/paths'
+import { END_PAGE_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import { revalidatePathAction } from '@/helpers/server/revalidate'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
@@ -124,6 +125,7 @@ export default function ClientCTAButtons({
   const handleRestartClick = () => {
     if (progression === 1) {
       initSimulation()
+      void revalidatePathAction(END_PAGE_PATH)
     }
   }
 
@@ -166,6 +168,7 @@ export default function ClientCTAButtons({
               progression !== 1 ? trackingEvents.resume : trackingEvents.restart
             }
             onClick={handleRestartClick}
+            data-testid="restart-link"
             href={getLinkToSimulateurPage({
               newSimulation: progression === 1,
             })}>

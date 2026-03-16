@@ -1,17 +1,23 @@
-import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import { noIndexObject } from '@/constants/metadata'
-import { END_PAGE_PATH } from '@/constants/urls/paths'
-import { PartnerProvider } from '@/contexts/partner/PartnerContext'
+import {
+  END_PAGE_PATH,
+  MON_ESPACE_RESULTS_DETAIL_PATH,
+} from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
+import { getSimulations } from '@/helpers/server/model/simulations'
+import {
+  getTendency,
+  type Tendency,
+} from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
+import { redirect } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -32,36 +38,56 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function SimulationPage({
   params,
-}: PageProps<'/[locale]/simulation/[simulationId]/resultats'>) {
-  const { simulationId, locale } = await params
+  searchParams,
+}: PageProps<'/[locale]/fin'>) {
+  const { locale } = await params
+  const { sid } = await searchParams
 
+  // Legacy feature, allowed to load a simulation data by passing an sid param in the URL, used in transactionnal e-mailing
+  if (sid) {
+    redirect(
+      `${MON_ESPACE_RESULTS_DETAIL_PATH.replace(':simulationId', sid as string)}`
+    )
+  }
+
+  const user = await getUser()
+  const simulations = await getSimulations(
+    { user },
+    { onlyCompleted: true, pageSize: 2 }
+  )
+  const [simulation, previousSimulation] = simulations
+
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!simulation) {
+    redirect('/')
+  }
   const simulationResult = await throwNextError(async () => {
-    const user = await getUser()
     return getSimulationResult({
       user,
-      simulationId,
+      simulation,
     })
   })
+  let tendency: Tendency | undefined
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (previousSimulation) {
+    tendency = getTendency({
+      previousValue: previousSimulation.computedResults.carbone.bilan,
+      currentValue: simulation.computedResults.carbone.bilan,
+    })
+  }
 
   return (
     <>
       <FootprintsLinks
         locale={locale as Locale}
-        simulationId={simulationId}
         currentPage="carbone"
-        basePathname={`${END_PAGE_PATH.replace(':id', simulationId)}`}
+        basePathname={END_PAGE_PATH}
       />
-
-      {/* Displays specific banner for partners */}
-      <QueryClientProviderWrapper>
-        <PartnerProvider>
-          <PartnerRedirectionAlert />
-        </PartnerProvider>
-      </QueryClientProviderWrapper>
 
       <CarbonFootprintResults
         simulationResult={simulationResult}
         locale={locale as Locale}
+        tendency={tendency}
       />
     </>
   )

@@ -78,7 +78,7 @@ export interface UpdateCurrentSimulationProps {
   customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
   progression?: number
-  pollToAdd?: string | null
+  pollToAdd?: { id: string; slug: string } | null
   pollToDelete?: string | null
   groupToAdd?: string | null
   groupToDelete?: string | null
@@ -96,9 +96,10 @@ export interface Simulation {
   progression: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
-  polls?: string[] | null
-  groups?: string[] | null
   model?: string
+  user?: { id: string; name?: string; email?: string }
+  polls?: { id: string; slug: string }[]
+  groups?: { id: string }[]
 }
 
 export interface LocalStorage {

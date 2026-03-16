@@ -6,12 +6,12 @@ import { fetchServer } from '../fetchServer'
 
 export async function getPublicPoll({
   user,
-  pollSlug,
+  pollIdOrSlug: pollIdOrSlug,
 }: {
   user: AppUser
-  pollSlug: string
+  pollIdOrSlug: string
 }): Promise<PublicOrganisationPoll> {
   return fetchServer<PublicOrganisationPoll>(
-    `${ORGANISATION_URL}/${user.id}/public-polls/${pollSlug}`
+    `${ORGANISATION_URL}/${user.id}/public-polls/${pollIdOrSlug}`
   )
 }

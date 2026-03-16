@@ -16,11 +16,11 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default async function Layout({ children }: PropsWithChildren) {
-  const { id: initialUserId } = await getUser()
+  const user = await getUser()
   // @TODO : remove userProvider
   return (
     <QueryClientProviderWrapper>
-      <UserProvider initialUserId={initialUserId}>
+      <UserProvider serverUserId={user.id}>
         <div className="bg-white md:-mt-8">{children}</div>
       </UserProvider>
     </QueryClientProviderWrapper>

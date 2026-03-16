@@ -11,7 +11,7 @@ import type {
 } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import UserContext from './context'
-import { useHandleSyncUserIdCookie } from './hooks/useHandleSyncUserIdCookie'
+import { useMigrateAnonSession } from './hooks/useMigrateAnonSession'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
 import usePersistentSimulations from './hooks/usePersistentSimulations'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
@@ -23,12 +23,12 @@ interface Props {
    */
   storageKey?: string
   serverSimulations?: Simulation[]
-  initialUserId?: string
+  serverUserId: string
 }
 export default function UserProvider({
   children,
   serverSimulations,
-  initialUserId,
+  serverUserId,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -44,15 +44,16 @@ export default function UserProvider({
 
   const { user, setUser } = usePersistentUser({
     initialRegion,
-    initialUserId,
+    serverUserId,
   })
 
   const { tutorials, setTutorials } = usePersistentTutorials()
 
-  // Syncs the userId stored locally with the one store
-  // via the cookies, server-side in NextJS
-  useHandleSyncUserIdCookie({
-    initialUserId,
+  // One-shot migration: seeds the server's encrypted session with the
+  // client's localStorage userId.  Can be removed once all active users
+  // have visited the site at least once after deployment.
+  useMigrateAnonSession({
+    serverUserId,
     currentUserId: user.userId,
   })
 

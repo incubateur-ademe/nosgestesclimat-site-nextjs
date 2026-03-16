@@ -235,20 +235,20 @@ export default function useSimulations({
 
           if (pollToDelete && simulationToUpdate.polls) {
             simulationToUpdate.polls = simulationToUpdate.polls.filter(
-              (poll) => poll !== pollToDelete
+              (poll) => poll.slug !== pollToDelete
             )
           }
 
           if (groupToAdd) {
             simulationToUpdate.groups = [
               ...(simulationToUpdate.groups ?? []),
-              groupToAdd,
+              { id: groupToAdd },
             ]
           }
 
           if (groupToDelete && simulationToUpdate.groups) {
             simulationToUpdate.groups = simulationToUpdate.groups.filter(
-              (group) => group !== groupToDelete
+              (group) => group.id !== groupToDelete
             )
           }
 

@@ -1,17 +1,10 @@
-import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
-import NoResultsBlock from '@/components/dashboard/NoResultsBlock'
-import ActionAutoSave from '@/components/results/actions/ActionAutoSave'
-import ActionsContent from '@/components/results/actions/ActionsContent'
-import ActionsTutorial from '@/components/results/actions/ActionsTutorial'
-import JagisActionBanner from '@/components/results/actions/JagisActionBanner'
-import TopBar from '@/components/simulation/TopBar'
+import { ActionPage } from '@/components/results/ActionPage'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulations } from '@/helpers/server/model/simulations'
 import { getAuthUser } from '@/helpers/server/model/user'
-import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ProfileTab from '../_components/ProfileTabs'
 
@@ -20,7 +13,10 @@ export default async function MonEspaceActionsPage({
 }: DefaultPageProps) {
   const { locale } = await params
   const user = await throwNextError(getAuthUser)
-  const simulations = await throwNextError(() => getSimulations({ user }))
+  const simulations = await getSimulations(
+    { user },
+    { onlyCompleted: true, pageSize: 1 }
+  )
   const rules = await getRules({ locale })
   return (
     <div className="flex flex-col">
@@ -31,28 +27,12 @@ export default async function MonEspaceActionsPage({
       </h1>
 
       <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
-
-      {simulations.length <= 0 ? (
-        <NoResultsBlock locale={locale} />
-      ) : (
-        <UserProvider serverSimulations={simulations} initialUserId={user.id}>
-          <QueryClientProviderWrapper>
-            <EngineProvider rules={rules}>
-              <FormProvider>
-                <ActionAutoSave />
-
-                <TopBar className="mb-6" simulationMode={false} showTotal />
-
-                <ActionsTutorial />
-
-                <ActionsContent />
-
-                <JagisActionBanner />
-              </FormProvider>
-            </EngineProvider>
-          </QueryClientProviderWrapper>
-        </UserProvider>
-      )}
+      <ActionPage
+        simulations={simulations}
+        user={user}
+        rules={rules}
+        locale={locale}
+      />
     </div>
   )
 }

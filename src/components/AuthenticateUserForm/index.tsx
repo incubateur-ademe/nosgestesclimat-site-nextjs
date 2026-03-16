@@ -22,7 +22,7 @@ import Trans from '../translation/trans/TransClient'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
 import VerifyCodeForm from './VerifyCodeForm'
 
-interface Props<T extends object> {
+interface Props {
   buttonLabel?: string | ReactNode
   buttonColor?: ButtonColor
   inputLabel?: ReactNode | string
@@ -45,7 +45,7 @@ interface Props<T extends object> {
   verificationMutation?: UseMutationResult<
     { userId: string },
     Error,
-    { email: string; code: string } & T,
+    { email: string; code: string },
     unknown
   >
   verificationClassName?: string
@@ -64,7 +64,7 @@ export default function AuthenticateUserForm({
   isVerticalLayout = true,
   verificationMutation,
   verificationClassName,
-}: Props<object>) {
+}: Props) {
   const router = useRouter()
   const { user } = useUser()
 

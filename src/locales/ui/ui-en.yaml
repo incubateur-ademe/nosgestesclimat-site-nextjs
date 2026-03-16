@@ -1949,3 +1949,11 @@ entries:
   common.alimentation.lock: Alimentation
   results.actions.text: We've put together a range of <1>personalised actions</1> to help you go further
   results.actions.text.lock: Nous avons préparé des <1>actions personnalisées</1> pour vous aider à aller plus loin
+  carbonResults.tendency.decrease: <0>Down since</0><1>your last result</1>
+  carbonResults.tendency.decrease.lock: <0>En baisse depuis</0><1>votre dernier résultat</1>
+  carbonResults.tendency.increase: <0>Up since</0><1>your last result</1>
+  carbonResults.tendency.increase.lock: <0>En hausse depuis</0><1>votre dernier résultat</1>
+  mon-espace.resultsDetail.breadcrumb.waterFootprint: Water footprint
+  mon-espace.resultsDetail.breadcrumb.waterFootprint.lock: Empreinte eau
+  results.saveResults.title: 'Find your results easily '
+  results.saveResults.title.lock: 'Retrouvez facilement vos résultats '

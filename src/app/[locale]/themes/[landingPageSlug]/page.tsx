@@ -19,6 +19,7 @@ import {
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { getUser } from '@/helpers/server/dal/user'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -70,6 +71,7 @@ export default async function ThematicLandingPage({
   params: Promise<{ landingPageSlug: string; locale: Locale }>
 }>) {
   const { landingPageSlug, locale } = await params
+  const { id: serverUserId } = await getUser()
   const { thematicLandingPage } =
     (await fetchThematicLandingPage({
       landingPageSlug,
@@ -95,7 +97,7 @@ export default async function ThematicLandingPage({
   } = thematicLandingPage
 
   return (
-    <ClientLayout locale={locale}>
+    <ClientLayout locale={locale} serverUserId={serverUserId}>
       <JSONLD
         jsonLd={[
           {

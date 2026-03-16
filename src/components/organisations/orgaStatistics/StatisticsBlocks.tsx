@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import type { ComputedResults } from '@/publicodes-state/types'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
@@ -27,6 +28,7 @@ export default function StatisticsBlocks({
   computedResults?: ComputedResults | null
 }) {
   const locale = useLocale()
+  const { t } = useClientTranslation()
 
   const hasLessThan3Participants = simulationsCount < 3
 
@@ -40,6 +42,7 @@ export default function StatisticsBlocks({
       metric: carboneMetric,
       maximumFractionDigits: 1,
       localize: true,
+      t,
     }
   )
 

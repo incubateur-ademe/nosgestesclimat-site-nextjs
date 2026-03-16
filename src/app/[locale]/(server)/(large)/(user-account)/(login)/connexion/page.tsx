@@ -43,7 +43,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
         />
 
         <QueryClientProviderWrapper>
-          <UserProvider initialUserId={initialUserId}>
+          <UserProvider serverUserId={initialUserId}>
             <AuthenticateUserForm
               mode="signIn"
               redirectURL={MON_ESPACE_PATH}

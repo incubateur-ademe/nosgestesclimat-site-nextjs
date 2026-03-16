@@ -118,6 +118,8 @@ test.describe('A new user', () => {
       // However, we cannot reproduce it in real life (browserstack OK)
       test.skip()
     }
+    await expect(page).toHaveURL('/fin')
+    await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(group.url)
   })
 
@@ -133,6 +135,8 @@ test.describe('A new user', () => {
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await page.getByTestId('skip-email-button').click()
+    await expect(page).toHaveURL('/fin')
+    await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(group.url)
   })
 })
@@ -182,6 +186,13 @@ test.describe('A user with a completed test that joined a group', () => {
   test('can go to the group from the end page of his test', async ({
     group,
   }) => {
+    await page.goto('/fin')
+    await page.getByTestId('see-group-result-button').click()
+    await expect(page).toHaveURL(group.url)
+    await expect(page.locator('h1')).toContainText(group.name)
+  })
+
+  test('can see the group in the « mes groupes » tab', async ({ group }) => {
     await page.goto('/fin')
     await group.goFromGroupTabs(page)
     await expect(page).toHaveURL(group.url)

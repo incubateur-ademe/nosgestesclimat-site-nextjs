@@ -1,17 +1,10 @@
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
-import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
-import type { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
 import type { ComputedResults, Situation } from '@/publicodes-state/types'
 import type {
   DottedName,
   ExtendedSituation,
   FunFacts,
 } from '@incubateur-ademe/nosgestesclimat'
-
-interface CustomAdditionalQuestions {
-  question: string
-  isEnabled: boolean
-}
 
 interface User {
   id: string
@@ -61,8 +54,6 @@ interface BaseOrganisationPoll {
   name: string
   slug: string
   expectedNumberOfParticipants?: number
-  defaultAdditionalQuestions?: PollDefaultAdditionalQuestion[]
-  customAdditionalQuestions?: CustomAdditionalQuestions[]
   createdAt: string
   updatedAt: string
   organisation: Omit<Organisation, 'polls'> | PublicOrganisation
@@ -94,18 +85,6 @@ export type PublicOrganisationPoll = BaseOrganisationPoll & {
   organisation: PublicOrganisation
 }
 
-export type AdditionalQuestionsAnswer =
-  | {
-      type: SimulationAdditionalQuestionAnswerType.default
-      key: PollDefaultAdditionalQuestion
-      answer: string
-    }
-  | {
-      type: SimulationAdditionalQuestionAnswerType.custom
-      key: string
-      answer: string
-    }
-
 export interface Simulation {
   id: string
   date: Date | string
@@ -115,7 +94,6 @@ export interface Simulation {
   actionChoices: Record<string, boolean>
   computedResults: ComputedResults
   progression: number
-  additionalQuestionsAnswers: AdditionalQuestionsAnswer[]
   /**
    * user is defined only for the current user and undefined for others
    */

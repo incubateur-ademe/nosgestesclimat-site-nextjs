@@ -1,11 +1,15 @@
 import CarbonFootprintResults from '@/components/results/carbonFootprint/CarbonFootprintResults'
 import FootprintsLinks from '@/components/results/FootprintsLinks'
-import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
+import {
+  MON_ESPACE_RESULTS_DETAIL_PATH,
+  MON_ESPACE_RESULTS_PATH,
+} from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getUser } from '@/helpers/server/dal/user'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
+import { getSimulation } from '@/helpers/server/model/simulations'
+import { getAuthUser } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 
 export default async function DetailledResultsPage({
@@ -15,14 +19,14 @@ export default async function DetailledResultsPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const user = await getUser()
-
-  const simulationResult = await throwNextError(() =>
-    getSimulationResult({
-      simulationId,
+  const simulationResult = await throwNextError(async () => {
+    const user = await getAuthUser()
+    const simulation = await getSimulation({ user, simulationId })
+    return getSimulationResult({
+      simulation,
       user,
     })
-  )
+  })
 
   return (
     <>
@@ -36,7 +40,7 @@ export default async function DetailledResultsPage({
             ),
           },
           {
-            href: `/mon-espace/resultats/${simulationId}`,
+            href: `${MON_ESPACE_RESULTS_DETAIL_PATH.replace(':simulationId', simulationId)}`,
             label: t(
               'mon-espace.resultsDetail.breadcrumb.resultDetail',
               'Détail des résultats'
@@ -48,7 +52,6 @@ export default async function DetailledResultsPage({
 
       <FootprintsLinks
         locale={locale}
-        simulationId={simulationId}
         currentPage="carbone"
         basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />

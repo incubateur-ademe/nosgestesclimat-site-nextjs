@@ -48,7 +48,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
         />
 
         <QueryClientProviderWrapper>
-          <UserProvider initialUserId={initialUserId}>
+          <UserProvider serverUserId={initialUserId}>
             <AuthenticateUserForm
               mode="signUp"
               buttonLabel={t('signup.button.label', "M'inscrire")}

@@ -5,7 +5,6 @@ import { CookieConsentProvider } from '@/components/cookies/useCookieManagement'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
-import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
@@ -15,6 +14,7 @@ import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr
 import '@testing-library/jest-dom'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
+import { randomUUID } from 'crypto'
 import type { ReactElement } from 'react'
 import { vi } from 'vitest'
 import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
@@ -90,14 +90,12 @@ interface ProviderConfig {
   mainHooks?: boolean
   engine?: boolean
   prNumber?: boolean
-  simulationSync?: boolean
   cookieConsent?: boolean
 }
 
 interface UserProviderProps {
-  initialSimulations?: Simulation[]
-  initialCurrentSimulationId?: string
-  initialUserId?: string
+  serverSimulations?: Simulation[]
+  serverUserId?: string
 }
 
 const TestWrapper = ({
@@ -110,10 +108,6 @@ const TestWrapper = ({
   userProviderProps?: UserProviderProps
 }) => {
   let wrapped = children
-
-  if (providers.simulationSync) {
-    wrapped = <SimulationSyncProvider>{wrapped}</SimulationSyncProvider>
-  }
 
   if (providers.engine) {
     wrapped = <EngineProviders isOptim={false}>{wrapped}</EngineProviders>
@@ -137,7 +131,13 @@ const TestWrapper = ({
   }
 
   if (providers.user) {
-    wrapped = <UserProvider {...userProviderProps}>{wrapped}</UserProvider>
+    wrapped = (
+      <UserProvider
+        serverUserId={userProviderProps?.serverUserId ?? randomUUID()}
+        serverSimulations={userProviderProps?.serverSimulations}>
+        {wrapped}
+      </UserProvider>
+    )
   }
 
   if (providers.queryClient) {
@@ -198,10 +198,8 @@ export const renderWithWrapper = (
   // Pass user provider props for server-hydrated mode to avoid async localStorage loading issues
   const userProviderProps: UserProviderProps | undefined = providers.user
     ? {
-        initialSimulations: simulations,
-        initialCurrentSimulationId:
-          currentSimulation?.id ?? defaultSimulation?.id,
-        initialUserId: userMerged.userId,
+        serverSimulations: simulations,
+        serverUserId: userMerged.userId,
       }
     : undefined
 

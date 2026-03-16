@@ -32,9 +32,11 @@ export default async function FootprintsLinks({
             </Trans>
           ),
           href: basePathname,
+          'data-testid': 'carbon-footprint-link',
           isSelected: currentPage === 'carbone',
         },
         {
+          'data-testid': 'water-footprint-link',
           label: (
             <>
               <Trans locale={locale} i18nKey="common.waterFootprint">

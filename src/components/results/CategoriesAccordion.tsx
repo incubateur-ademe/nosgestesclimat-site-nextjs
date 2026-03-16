@@ -34,6 +34,7 @@ export default async function CategoriesAccordion({
     rules,
     metric,
     locale,
+    t,
   })
 
   return (

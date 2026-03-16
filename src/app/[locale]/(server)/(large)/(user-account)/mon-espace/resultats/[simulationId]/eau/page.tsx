@@ -1,11 +1,15 @@
 import FootprintsLinks from '@/components/results/FootprintsLinks'
 import WaterFootprintResults from '@/components/results/waterFootprint/WaterFootprintResults'
-import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
+import {
+  MON_ESPACE_RESULTS_DETAIL_PATH,
+  MON_ESPACE_RESULTS_PATH,
+} from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getUser } from '@/helpers/server/dal/user'
 import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
+import { getSimulation } from '@/helpers/server/model/simulations'
+import { getAuthUser } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 
 export default async function DetailledResultsWaterPage({
@@ -15,14 +19,14 @@ export default async function DetailledResultsWaterPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const user = await getUser()
-
-  const simulationResult = await throwNextError(() =>
-    getSimulationResult({
-      simulationId,
+  const simulationResult = await throwNextError(async () => {
+    const user = await getAuthUser()
+    const simulation = await getSimulation({ user, simulationId })
+    return getSimulationResult({
+      simulation,
       user,
     })
-  )
+  })
 
   return (
     <>
@@ -36,14 +40,14 @@ export default async function DetailledResultsWaterPage({
             ),
           },
           {
-            href: `/mon-espace/resultats/${simulationId}`,
+            href: `${MON_ESPACE_RESULTS_DETAIL_PATH.replace(':simulationId', simulationId)}`,
             label: t(
               'mon-espace.resultsDetail.breadcrumb.resultDetail',
               'Détail des résultats'
             ),
           },
           {
-            href: `/mon-espace/resultats/${simulationId}/eau`,
+            href: `${MON_ESPACE_RESULTS_DETAIL_PATH.replace(':simulationId', simulationId)}/eau`,
             label: t(
               'mon-espace.resultsDetail.breadcrumb.waterFootprint',
               'Empreinte eau'
@@ -55,7 +59,6 @@ export default async function DetailledResultsWaterPage({
 
       <FootprintsLinks
         locale={locale}
-        simulationId={simulationId}
         currentPage="eau"
         basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />
