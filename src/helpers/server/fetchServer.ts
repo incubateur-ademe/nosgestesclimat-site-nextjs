@@ -18,9 +18,11 @@ export async function fetchServer<T = unknown>(
   {
     method = 'GET',
     body,
+    next,
   }: {
     method?: 'GET' | 'POST' | 'PUT'
     body?: Record<string, unknown>
+    next?: NextFetchRequestConfig
   } = {}
 ): Promise<T> {
   if (!url.startsWith(SERVER_URL)) {
@@ -42,6 +44,7 @@ export async function fetchServer<T = unknown>(
     body: body ? JSON.stringify(body) : undefined,
     headers,
     credentials: 'include',
+    next,
   })
 
   if (!response.ok) {

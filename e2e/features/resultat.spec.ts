@@ -49,4 +49,40 @@ test.describe('Given a user that completed a test without an account', () => {
     )
     expect(waterFootprintResult).toBeGreaterThan(6000)
   })
+
+  test('should not display a tendency indicator on the first simulation', async ({
+    page,
+  }) => {
+    await page.waitForTimeout(3500)
+    await expect(page.getByTestId('tendency-indicator')).not.toBeVisible()
+  })
+})
+
+test.describe('Given a user that completed the test twice with different results', () => {
+  test.setTimeout(120_000)
+
+  test('should display a tendency indicator on the result page', async ({
+    page,
+    ngcTest,
+  }) => {
+    // 1. First simulation: skip all questions
+    //    (cookie banner is already dismissed via NEW_VISITOR_STATE)
+    await ngcTest.skipAll()
+    await expect(page).toHaveURL(/\/fin/)
+
+    await page.goto('/')
+    await page.getByTestId('restart-link').click()
+    const differentSituation = {
+      'transport . voiture . utilisateur': "'jamais'",
+    }
+    await ngcTest.answerTest(differentSituation)
+    await expect(page).toHaveURL(/\/fin/)
+
+    // 3. Verify the tendency indicator is visible
+    const tendencyIndicator = page.getByTestId('tendency-indicator')
+    await expect(tendencyIndicator).toBeVisible()
+
+    // Verify it shows the correct text (increase or decrease)
+    await expect(page.getByText(/votre dernier résultat/)).toBeVisible()
+  })
 })

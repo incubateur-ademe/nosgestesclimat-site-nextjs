@@ -166,6 +166,7 @@ export default function ClientCTAButtons({
               progression !== 1 ? trackingEvents.resume : trackingEvents.restart
             }
             onClick={handleRestartClick}
+            data-testid="restart-link"
             href={getLinkToSimulateurPage({
               newSimulation: progression === 1,
             })}>
