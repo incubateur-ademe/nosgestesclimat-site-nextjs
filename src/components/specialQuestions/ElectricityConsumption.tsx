@@ -97,7 +97,7 @@ export default function ElectricityConsumption() {
           className="mb-2"
           aria-label={t(
             'simulator.specialQuestions.electricity_consumption',
-            'Sélectionner le mode de remplissage, {{mode}} sélectionné',
+            'Sélectionner le mode de saisie, {{mode}} sélectionné',
             {
               mode: modeString,
             }

@@ -1834,19 +1834,25 @@ entries:
   Part de la sous-catégorie {{percentage}}: Share of sub-category {{percentage}}
   results.categories.services.text: Services (health, education, telecoms, etc.) account for around <2>1.5 tonnes of your footprint</2>. This share is <5>the same for everyone</5> and is <8>gradually decreasing</8> with the ecological transition.
   results.categories.services.text.lock: Les services (santé, éducation, télécoms…) représentent environ <2>1,5 t de votre empreinte</2>. Cette part est <5>la même pour tous</5> et <8>diminue progressivement</8> avec la transition écologique.
-  error.contactSupport: If the problem persists, please <1>contact support.</1>
-  error.contactSupport.lock: Si le problème persiste, merci de <1>contacter le support.</1>
-  results.groups.createFirstGroup: <1>Create your first group</1> and invite your friends and family to compare your results. It takes <2>1 minute</2>!
-  results.groups.createFirstGroup.lock: <1>Créez votre premier groupe</1> et invitez vos proches pour comparer vos résultats. Cela prend <2>1 minute</2> !
-  results.groups.ranking.laconic: Which of <1>{{name}}</1> and you will have the smallest footprint?
-  results.groups.ranking.laconic.lock: Qui de <1>{{name}}</1> et vous aura la plus faible empreinte ?
-  results.groups.invite.first: You're the first <1>🥳</1> but you are alone… <2>🥲</2>
-  results.groups.invite.first.lock: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <2>🥲</2>
-  faq.doTheTest.notStarted: You haven't started your test yet, <1>get started!</1>
-  faq.doTheTest.notStarted.lock: Vous n'avez pas encore débuté votre test, <1>lancez-vous !</1>
-  faq.doTheTest.started: You have started your test, <1>click here to pick it up!</1>
-  faq.doTheTest.started.lock: Vous avez commencé votre test, <1>cliquez ici pour le reprendre !</1>
-  tutoriel.title: <1>10 minutes</1> to calculate your carbon and water footprint
-  tutoriel.title.lock: <1>10 minutes</1> chrono pour calculer votre empreinte carbone et eau
-  nos-relais.title: They relay <1>Nos Gestes Climat</1>
-  nos-relais.title.lock: Ils relaient <1>Nos Gestes Climat</1>
+  error.contactSupport: If the problem persists, please <2>contact support.</2>
+  error.contactSupport.lock: Si le problème persiste, merci de <2>contacter le support.</2>
+  results.groups.createFirstGroup: <0>Create your first group</0> and invite your friends and family to compare your results. It only takes <4>1 minute</4>!
+  results.groups.createFirstGroup.lock: <0>Créez votre premier groupe</0> et invitez vos proches pour comparer vos résultats. Cela prend <4>1 minute</4> !
+  results.groups.ranking.laconic: Which of you and <2>{group.participants[0].name}</2> will have the smallest footprint?
+  results.groups.ranking.laconic.lock: Qui de <2>{group.participants[0].name}</2> et vous aura la plus faible empreinte ?
+  results.groups.invite.first: You're first <1>🥳</1> but you're alone. <4>.. 🥲</4>
+  results.groups.invite.first.lock: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <4>🥲</4>
+  faq.doTheTest.notStarted: You haven't started your test yet, <2><0>get started!</0></2>
+  faq.doTheTest.notStarted.lock: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
+  faq.doTheTest.started: You've started your test, <2><0>click here to start again!</0></2>
+  faq.doTheTest.started.lock: Vous avez commencé votre test, <2><0>cliquez ici pour le reprendre !</0></2>
+  tutoriel.title: <0>10 minutes</0> to calculate your carbon and water footprint
+  tutoriel.title.lock: <0>10 minutes</0> chrono pour calculer votre empreinte carbone et eau
+  nos-relais.title: They relay <2>Our Gestes Climat</2>
+  nos-relais.title.lock: Ils relaient <2>Nos Gestes Climat</2>
+  coût: cost
+  simulator.specialQuestions.electricity_consumption: Select input mode, {{mode}} selected
+  simulator.specialQuestions.electricity_consumption.lock: Sélectionner le mode de saisie, {{mode}} sélectionné
+  consommation en kWh: consumption in kWh
+  Landing page thématique - Nos Gestes Climat: Thematic landing page - Nos Gestes Climat
+  Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Discover practical tips for reducing your ecological footprint.
