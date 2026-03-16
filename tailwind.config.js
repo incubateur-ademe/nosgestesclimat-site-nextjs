@@ -258,8 +258,8 @@ export default {
             boxShadow: '0 1px 3px 0 rgba(73, 73, 186, 0.2), 0 1px 2px -1px rgba(73, 73, 186, 0.15)',
           },
           '100%': {
-            transform: 'scale(1.07)',
-            boxShadow: '0 22px 35px -6px rgba(73, 73, 186, 0.45), 0 10px 16px -4px rgba(73, 73, 186, 0.28)',
+            transform: 'scale(1.03)',
+            boxShadow: '0 8px 16px -4px rgba(73, 73, 186, 0.32), 0 4px 8px -2px rgba(73, 73, 186, 0.2)',
           },
         },
         'float-badge': {
