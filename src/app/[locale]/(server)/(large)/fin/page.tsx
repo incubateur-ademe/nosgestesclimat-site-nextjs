@@ -50,10 +50,12 @@ export default async function SimulationPage({
   }
 
   const user = await getUser()
-  const [simulation, previousSimulation] = await getSimulations(
+  const simulations = await getSimulations(
     { user },
     { onlyCompleted: true, pageSize: 2 }
   )
+  const [simulation, previousSimulation] = simulations
+
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!simulation) {
     redirect('/')

@@ -14,7 +14,7 @@ export default function TendencyIndicator({
   locale: Locale
 }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1" data-testid="tendency-indicator">
       <DownArrow
         className={twMerge(
           tendency === 'increase'

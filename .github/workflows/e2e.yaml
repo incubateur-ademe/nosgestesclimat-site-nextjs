@@ -19,6 +19,7 @@ env:
   LOCAL_TEST: ${{ !inputs.is_preprod }}
   NEXT_PUBLIC_SITE_URL: ${{ inputs.is_preprod && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
   COOKIE_NAME: preprod_ngcjwt
+  IRON_SESSION_PASSWORD: ${{ secrets.IRON_SESSION_PASSWORD }}
 
 jobs:
   # Build and setup job - runs on a single machine

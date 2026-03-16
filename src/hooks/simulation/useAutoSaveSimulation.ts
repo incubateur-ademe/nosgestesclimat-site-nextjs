@@ -12,12 +12,14 @@ export function useAutoSaveSimulation() {
     },
     5000
   )
+  const { progression } = currentSimulation
   useEffect(() => {
-    if (currentSimulation.progression === 1) {
+    if (progression === 1) {
+      debouncedSaveSimulation.cancel()
       void saveSimulation({ simulation: currentSimulation })
-    } else {
+    } else if (progression > 0) {
       debouncedSaveSimulation({ simulation: currentSimulation })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSimulation.progression])
+  }, [currentSimulation.situation, progression])
 }

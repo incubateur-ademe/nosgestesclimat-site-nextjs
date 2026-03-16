@@ -1,9 +1,9 @@
 import { getIronSession } from 'iron-session'
 import { isMatch } from 'micromatch'
-import { type NextRequest, NextResponse } from 'next/server'
+import type { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
 import {
-  AnonSessionData,
+  type AnonSessionData,
   anonSessionOptions,
   getAnonSession,
 } from './anonSession'

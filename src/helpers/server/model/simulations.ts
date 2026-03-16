@@ -20,7 +20,8 @@ export async function getSimulations(
   { onlyCompleted = false, pageSize = 50 }: SimulationFilter = {}
 ): Promise<Simulation[]> {
   const serverSimulations = await fetchServer<Simulation[]>(
-    `${SIMULATION_URL}/${user.id}?onlyCompleted=${onlyCompleted}&pageSize=${pageSize}`
+    `${SIMULATION_URL}/${user.id}?onlyCompleted=${onlyCompleted}&pageSize=${pageSize}`,
+    { next: { revalidate: 0 } }
   )
 
   // Map from server format to client format
