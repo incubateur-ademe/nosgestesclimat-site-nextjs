@@ -6,7 +6,6 @@ import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import AnimatedNumber from './footprintBlock/AnimatedNumber'
 import TendencyIndicator from './TendencyIndicator'
 
 interface Props {
@@ -25,11 +24,9 @@ export default async function FootprintBlock({
   title,
   metric,
   locale,
-  unitSuffix,
 }: Props) {
   const { t } = await getServerTranslation({ locale })
   const { formattedValue, unit } = formatFootprint(value, {
-    localize: false,
     locale,
     t,
     metric,
@@ -48,7 +45,7 @@ export default async function FootprintBlock({
             titleSizesClassNames.lg,
             'text-primary-600 font-bold!'
           )}>
-          <AnimatedNumber value={Number(formattedValue)} /> {unit} {unitSuffix}
+          {formattedValue} {unit}
         </span>
       </h1>
       {tendency && <TendencyIndicator locale={locale} tendency={tendency} />}
