@@ -1,6 +1,7 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
 import Chauffage from './Chauffage'
+import ElectricityConsumption from './ElectricityConsumption'
 import Plats from './Plats'
 import Textile from './Textile'
 import Voiture from './Voiture'
@@ -17,6 +18,8 @@ const PLAT_RULENAME: DottedName = 'alimentation . plats'
 const VOITURE_RULENAME: DottedName = 'transport . voiture . km'
 const TEXTILE_RULENAME: DottedName = 'divers . textile . volume'
 const CHAUFFAGE_RULENAME: DottedName = 'logement . chauffage'
+export const ELECTRICITY_CONSUMPTION_RULENAME: DottedName =
+  'logement . électricité . réseau . consommation précise'
 
 const specialQuestions: Record<
   string,
@@ -37,6 +40,9 @@ const specialQuestions: Record<
       question={CHAUFFAGE_RULENAME}
       {...props}
     />
+  ),
+  [ELECTRICITY_CONSUMPTION_RULENAME]: (props: Props) => (
+    <ElectricityConsumption key={ELECTRICITY_CONSUMPTION_RULENAME} {...props} />
   ),
 }
 
