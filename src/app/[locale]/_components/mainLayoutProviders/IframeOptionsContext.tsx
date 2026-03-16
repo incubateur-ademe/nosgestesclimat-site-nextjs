@@ -6,7 +6,7 @@ import { getIsIframe } from '@/utils/getIsIframe'
 import * as Sentry from '@sentry/nextjs'
 import { createContext, useEffect, useState } from 'react'
 
-export const CONTAINER_ID = 'nosgestesclimat-container'
+export const BODY_ID = 'ngc-body'
 
 const getIsAllowedToBypassConsentDataShare = () => {
   if (typeof window === 'undefined') return false
