@@ -104,7 +104,7 @@ export default function CampagnePage() {
                 href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
                 onClick={() => {
                   trackEvent(pollDashboardClickParameters)
-                  trackPosthogEvent(captureClickPollSettings())
+                  trackPosthogEvent(captureClickPollSettings)
                 }}
                 color="secondary"
                 size="sm"

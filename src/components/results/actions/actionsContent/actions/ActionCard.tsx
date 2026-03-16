@@ -5,12 +5,14 @@ import CloseIcon from '@/components/icons/Close'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
   actionsClickNo,
-  actionsClickNoPosthog,
   actionsClickYes,
-  actionsClickYesPosthog,
   actionsOpenAction,
-  actionsOpenActionPosthog,
 } from '@/constants/tracking/pages/actions'
+import {
+  captureActionsClickNo,
+  captureActionsClickYes,
+  captureActionsOpenAction,
+} from '@/constants/tracking/posthogTrackers'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
@@ -119,7 +121,7 @@ export default function ActionCard({
 
     if (!isSelected) {
       trackEvent(actionsClickYes(dottedName))
-      trackPosthogEvent(actionsClickYesPosthog(dottedName))
+      trackPosthogEvent(captureActionsClickYes({ action: dottedName }))
     }
   }, [
     dottedName,
@@ -140,7 +142,7 @@ export default function ActionCard({
 
     if (!isSelected) {
       trackEvent(actionsClickNo(dottedName))
-      trackPosthogEvent(actionsClickNoPosthog(dottedName))
+      trackPosthogEvent(captureActionsClickNo({ action: dottedName }))
     }
   }
 
@@ -166,7 +168,7 @@ export default function ActionCard({
           className="z-10 w-full underline"
           onClick={() => {
             trackEvent(actionsOpenAction(dottedName))
-            trackPosthogEvent(actionsOpenActionPosthog(dottedName))
+            trackPosthogEvent(captureActionsOpenAction({ action: dottedName }))
           }}
           href={`${MON_ESPACE_ACTIONS_PATH}/${encodeRuleName(dottedName)}`}>
           {icons && (
