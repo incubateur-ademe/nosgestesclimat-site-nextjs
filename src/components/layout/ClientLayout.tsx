@@ -16,7 +16,7 @@ import { Suspense } from 'react'
 
 type RootLayoutProps = PropsWithChildren & {
   locale: string
-  serverUserId?: string
+  serverUserId: string
   skipLinksDisplayed?: SkipLinksDisplayed
 }
 

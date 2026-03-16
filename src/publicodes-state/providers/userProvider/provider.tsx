@@ -23,12 +23,12 @@ interface Props {
    */
   storageKey?: string
   serverSimulations?: Simulation[]
-  serverUserId?: string
+  serverUserId: string
 }
 export default function UserProvider({
   children,
   serverSimulations,
-  serverUserId: initialUserId,
+  serverUserId,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -44,7 +44,7 @@ export default function UserProvider({
 
   const { user, setUser } = usePersistentUser({
     initialRegion,
-    initialUserId,
+    serverUserId,
   })
 
   const { tutorials, setTutorials } = usePersistentTutorials()
@@ -53,7 +53,7 @@ export default function UserProvider({
   // client's localStorage userId.  Can be removed once all active users
   // have visited the site at least once after deployment.
   useMigrateAnonSession({
-    serverUserId: initialUserId,
+    serverUserId,
     currentUserId: user.userId,
   })
 

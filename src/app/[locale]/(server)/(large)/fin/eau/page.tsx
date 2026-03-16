@@ -34,8 +34,9 @@ export default async function SimulationPage({
 }: PageProps<'/[locale]/fin/eau'>) {
   const { locale } = await params
   const user = await getUser()
-  const [simulation] = (
-    await getSimulations({ user }, { onlyCompleted: true, pageSize: 1 })
+  const [simulation] = await getSimulations(
+    { user },
+    { onlyCompleted: true, pageSize: 1 }
   )
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!simulation) {

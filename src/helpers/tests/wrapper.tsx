@@ -14,6 +14,7 @@ import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr
 import '@testing-library/jest-dom'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
+import { randomUUID } from 'crypto'
 import type { ReactElement } from 'react'
 import { vi } from 'vitest'
 import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
@@ -132,7 +133,7 @@ const TestWrapper = ({
   if (providers.user) {
     wrapped = (
       <UserProvider
-        serverUserId={userProviderProps?.serverUserId}
+        serverUserId={userProviderProps?.serverUserId ?? randomUUID()}
         serverSimulations={userProviderProps?.serverSimulations}>
         {wrapped}
       </UserProvider>
