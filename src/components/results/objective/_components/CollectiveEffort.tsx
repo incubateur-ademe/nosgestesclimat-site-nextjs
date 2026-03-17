@@ -2,15 +2,17 @@ import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
 import Card from '@/design-system/layout/Card'
 import type { Locale } from '@/i18nConfig'
+import { twMerge } from 'tailwind-merge'
 
 interface Props {
   locale: Locale
+  className?: string
 }
 
-export default function CollectiveEfforts({ locale }: Props) {
+export default function CollectiveEfforts({ locale, className }: Props) {
   return (
-    <div className="mt-6">
-      <Badge className="text-default border-none">
+    <div className={twMerge('mt-6', className)}>
+      <Badge className="text-default border-none text-sm md:text-base">
         <Trans
           locale={locale}
           i18nKey="results.objective.collectiveEffort.title">

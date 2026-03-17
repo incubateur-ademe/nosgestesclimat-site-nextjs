@@ -10,9 +10,10 @@ import { useObjectiveChart } from './_hooks/useObjectiveChart'
 
 interface Props {
   carbonFootprint: number
+  className?: string
 }
 
-export default function ObjectiveChart({ carbonFootprint }: Props) {
+export default function ObjectiveChart({ carbonFootprint, className }: Props) {
   const { t } = useClientTranslation()
   const locale = useLocale()
   const { firstPoint, lastPoint, linePath, pointsWithCoords } =
@@ -20,7 +21,11 @@ export default function ObjectiveChart({ carbonFootprint }: Props) {
 
   const shouldReduceMotion = useReducedMotion()
   return (
-    <div className="bg-primary-100 mt-8 w-full overflow-visible rounded-xl px-8 pt-12 pb-6">
+    <div
+      className={twMerge(
+        'bg-primary-100 mt-8 w-full overflow-visible rounded-xl px-8 pt-12 pb-6',
+        className
+      )}>
       <div className="relative flex aspect-[4/3] w-full items-center justify-center md:mx-auto md:max-w-[400px]">
         {/* SVG line */}
         <svg

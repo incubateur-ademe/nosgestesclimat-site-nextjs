@@ -20,7 +20,7 @@ export default function ActionsBlock({ locale }: Props) {
         tag="h2"
         size="md"
         hasSeparator={false}
-        className="text-secondary-700">
+        className="text-secondary-700 mb-2 font-medium">
         <Trans locale={locale} i18nKey="results.actions.title">
           Votre plan d'action
         </Trans>

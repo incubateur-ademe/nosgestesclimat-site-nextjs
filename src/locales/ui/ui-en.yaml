@@ -1812,8 +1812,8 @@ entries:
   results.objective.collectiveEffort.title.lock: "Important : c'est aussi un effort collectif"
   results.objective.collectiveEffort.societyDescription: 'Reducing the footprint of goods and services through the combined efforts of businesses and local authorities. '
   results.objective.collectiveEffort.societyDescription.lock: 'Diminution de l’empreinte des biens et des services par l’effort combiné des entreprises et collectivités. '
-  results.objective.title: 'National target: <1>2T</1> per person by 2050'
-  results.objective.title.lock: 'Objectif national : <1>2T</1> par personne en 2050'
+  results.objective.title: 'National target: <2>2T of CO₂e</2> per person by 2050'
+  results.objective.title.lock: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
   results.objective.under4.description.title: You're already under {{secondObjectiveNumber}} tonnes - well done!
   results.objective.under4.description.title.lock: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
   results.objective.collectiveEffort.stateDescription: Reducing societal services (currently at 1.55T) and decarbonising infrastructures.
@@ -1940,7 +1940,7 @@ entries:
   common.transport: Transport
   common.transport.lock: Transport
   carbonResults.objective.description: <0>You're not on your own. Every situation is different, and</0> we want to help you make the most of it.
-  carbonResults.objective.description.lock: <0>Vous n’êtes pas seul. Chaque contexte est différent,</0> on contribue à hauteur de ses possibilités, on veut vous y aider.
+  carbonResults.objective.description.lock: <0>Vous n'êtes pas seul. Chaque contexte est différent,</0> on contribue à hauteur de ses possibilités, on veut vous y aider.
   results.where.title: Where do your results come from?
   results.where.title.lock: D’où vient votre résultat ?
   common.housing: Housing
@@ -1957,3 +1957,15 @@ entries:
   mon-espace.resultsDetail.breadcrumb.waterFootprint.lock: Empreinte eau
   results.saveResults.title: 'Find your results easily '
   results.saveResults.title.lock: 'Retrouvez facilement vos résultats '
+  results.year: an
+  results.year.lock: an
+  results.groupThankYou.cta: See the results
+  results.groupThankYou.cta.lock: Voir les résultats
+  results.groupThankYou.title: Thank you for completing the test!
+  results.groupThankYou.title.lock: Merci d'avoir complété le test !
+  results.groupThankYou.description: Discover the results of the "{group.name}" group test
+  results.groupThankYou.description.lock: Découvrez les résultats du test collectif "{group.name}"
+  pages.result.unauthorized: <0>These results are protected</0><1>To access them, you need to log in with the same email address you used to save them.</1><2>Connect me</2>
+  pages.result.unauthorized.lock: <0>Ces résultats sont protégés</0><1>Pour y accéder, vous devez vous connectez avec le même email que celui utilisé lors de leur sauvegarde.</1><2>Me connecter</2>
+  pages.result.notfound: <0>Impossible to find these results</0><1>This means that they do not exist, or that they are not linked to your e-mail.</1><2>In the latter case, you can try logging in again with a different username and password.</2><3>Back to my space</3>
+  pages.result.notfound.lock: <0>Impossible de retrouver ces résultats</0><1>Cela signifie qu'ils n'existent pas, ou qu'ils ne sont pas reliés à votre e-mail.</1><2>Dans ce dernier cas, vous pouvez essayer de vous re-connecter avec d'autres identifiants.</2><3>Retour à mon espace</3>
