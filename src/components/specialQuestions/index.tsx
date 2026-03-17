@@ -1,7 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
 import Chauffage from './Chauffage'
-import ElectricityConsumption from './ElectricityConsumption'
 import Plats from './Plats'
 import Textile from './Textile'
 import Voiture from './Voiture'
@@ -40,9 +39,6 @@ const specialQuestions: Record<
       question={CHAUFFAGE_RULENAME}
       {...props}
     />
-  ),
-  [ELECTRICITY_CONSUMPTION_RULENAME]: (props: Props) => (
-    <ElectricityConsumption key={ELECTRICITY_CONSUMPTION_RULENAME} {...props} />
   ),
 }
 

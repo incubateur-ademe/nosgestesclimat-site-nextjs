@@ -1,6 +1,5 @@
 'use client'
 
-import Assistance from '@/components/form/question/Assistance'
 import BooleanInput from '@/components/form/question/BooleanInput'
 import ChoicesInput from '@/components/form/question/ChoicesInput'
 import Label from '@/components/form/question/Label'
@@ -105,6 +104,7 @@ export default function Question({
           <>
             {type === 'number' && (
               <NumberInput
+                question={question}
                 unit={unit}
                 value={situationValue as Evaluation<number>}
                 setValue={(value) => {
@@ -121,6 +121,7 @@ export default function Question({
                 id={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
                 aria-labelledby="question-label"
+                assistance={assistance}
               />
             )}
 
@@ -188,10 +189,6 @@ export default function Question({
           unit={unit}
         />
       )}
-
-      {assistance ? (
-        <Assistance question={question} assistance={assistance} />
-      ) : null}
 
       {activeNotifications.length > 0 && (
         <Notification
