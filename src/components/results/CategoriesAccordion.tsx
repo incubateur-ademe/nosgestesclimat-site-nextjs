@@ -53,7 +53,8 @@ export default async function CategoriesAccordion({
                   <span className="flex items-center gap-2">
                     <strong>{category.title}</strong>
                     <span>
-                      {category.formattedValue} {category.unit} -{' '}
+                      {category.formattedValue}&nbsp;{category.unit}
+                      &nbsp;-&nbsp;
                       {category.displayPercentage}
                     </span>
                   </span>

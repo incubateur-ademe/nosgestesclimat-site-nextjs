@@ -37,7 +37,7 @@ export default async function FootprintDetail({
 
         <div className="w-auto">
           <img
-            className="mx-auto w-72 md:w-xs"
+            className="mx-auto w-48 md:w-72 md:w-xs"
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_achats_be9fd99289.svg"
             alt=""
           />

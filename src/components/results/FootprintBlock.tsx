@@ -45,7 +45,7 @@ export default async function FootprintBlock({
             titleSizesClassNames.lg,
             'text-primary-600 font-bold!'
           )}>
-          {formattedValue} {unit}
+          {formattedValue}&nbsp;{unit}&nbsp;/&nbsp;{t('results.year', 'an')}
         </span>
       </h1>
       {tendency && <TendencyIndicator locale={locale} tendency={tendency} />}

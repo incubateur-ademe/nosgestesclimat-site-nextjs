@@ -23,8 +23,8 @@ export default function SubcategoryItem({
       <div className="flex flex-col gap-2">
         <div className="flex items-baseline gap-2">
           <strong>{capitalizeString(subcategory.title)}</strong>
-          <span>
-            {subcategory.formattedValue} {subcategory.unit} -{' '}
+          <span className="whitespace-nowrap">
+            {subcategory.formattedValue} {subcategory.unit}&nbsp;-&nbsp;
             {subcategory.displayPercentage}
           </span>
         </div>
