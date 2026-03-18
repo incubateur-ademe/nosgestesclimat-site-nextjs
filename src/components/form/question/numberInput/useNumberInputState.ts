@@ -35,17 +35,19 @@ const getWhichUnitToShowByDefault = ({
 }: FuncProps) => {
   if (!assistance) return defaultUnit
 
-  // Default case
   if (
+    // Question unanswered default case
     (!assistanceValue && !questionValue) ||
+    // Assistance answered
     (assistanceValue && questionValue)
   ) {
     return assistanceUnit
   }
 
-  // Case where user has directly answer the question
+  // Case where user has directly answered the question
   if (!assistanceValue && questionValue) return defaultUnit
 
+  // Should not happen, but well..
   return defaultUnit
 }
 
