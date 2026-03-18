@@ -8,6 +8,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
+import { useIsNotApplicableHack } from '../useIsNotApplicableHack'
 
 interface Props {
   question: DottedName
@@ -43,6 +44,12 @@ export default function MosaicBooleanInput({
   isInactive,
 }: Props) {
   const { t } = useClientTranslation()
+
+  const isNotApplicableOption = useIsNotApplicableHack(question)
+
+  if (isNotApplicableOption) {
+    return null
+  }
 
   const status = isInactive
     ? 'inactive'

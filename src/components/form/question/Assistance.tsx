@@ -59,10 +59,7 @@ export default function Assistance({ question, assistance }: Props) {
         className="mb-2"
       />
       {type === 'number' && (
-        <NumberInput
-          unit={unit ? unit.split('/')[0] : ''}
-          setValue={handleSetValueOfAssistance}
-        />
+        <NumberInput unit={unit ?? ''} setValue={handleSetValueOfAssistance} />
       )}
     </div>
   )
