@@ -72,7 +72,13 @@ export const useNumberInputState = ({
 
   // Back-propagate the derived value to the parent question rule
   // so both stay consistent in the simulation situation
-  function syncQuestionAndAssistance(nextValue: number | undefined) {
+  function syncQuestionAndAssistance({
+    nextValue,
+    assistanceDottedName,
+  }: {
+    nextValue: number | undefined
+    assistanceDottedName: DottedName
+  }) {
     // Mark the question as answered in the foldedSteps when
     // updating the assistance value
     const newFoldedSteps = foldedSteps.includes(question)
@@ -82,16 +88,14 @@ export const useNumberInputState = ({
     // Speculatively apply the assistance value to compute what the question's
     // value would be, without committing to the global situation yet.
     const newEngine = engine!.setSituation(
-      // @ts-expect-error syncQuestionAndAssistance is only called if assistance is defined
-      { [assistance]: nextValue },
+      { [assistanceDottedName]: nextValue },
       { keepPreviousSituation: true }
     )
     const questionNodeValue = safeEvaluateHelper(assistanceParent, newEngine)
 
     // Persist both the assistance and the derived question values atomically.
     const safeAndCleanSituation = addToEngineSituation({
-      // @ts-expect-error syncQuestionAndAssistance is only called if assistance is defined
-      [assistance]: nextValue,
+      [assistanceDottedName]: nextValue,
       [question]: questionNodeValue?.nodeValue,
     })
 
@@ -117,7 +121,10 @@ export const useNumberInputState = ({
     // When the displayed unit matches the assistance unit, route through the
     // sync helper so both rules are updated together.
     if (assistance && currentUnit === assistanceUnit) {
-      debouncedSyncQuestionAndAssistance(values.floatValue)
+      debouncedSyncQuestionAndAssistance({
+        nextValue: values.floatValue,
+        assistanceDottedName: assistance,
+      })
       return
     }
 
