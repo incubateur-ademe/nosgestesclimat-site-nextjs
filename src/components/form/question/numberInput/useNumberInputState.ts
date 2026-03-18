@@ -6,7 +6,7 @@ import type { Evaluation } from 'publicodes'
 import { useEffect, useState } from 'react'
 import type { NumberFormatValues, SourceInfo } from 'react-number-format'
 
-interface FuncProps {
+export interface NumberInputStateProps {
   question: DottedName
   unit?: string
   value?: Evaluation<number>
@@ -24,7 +24,7 @@ export const useNumberInputState = ({
   placeholder,
   assistance,
   setValue,
-}: FuncProps) => {
+}: NumberInputStateProps) => {
   const { engine, addToEngineSituation } = useEngine()
 
   const { updateCurrentSimulation, foldedSteps } = useCurrentSimulation()

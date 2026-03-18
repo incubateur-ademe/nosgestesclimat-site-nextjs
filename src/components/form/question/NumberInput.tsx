@@ -1,22 +1,18 @@
 'use client'
 
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
 import { type ComponentProps } from 'react'
 import type { NumericFormat } from 'react-number-format'
 import AssistanceSwitch from './numberInput/AssistanceSwitch'
 import RawNumberInput from './numberInput/RawNumberInput'
-import { useNumberInputState } from './numberInput/useNumberInputState'
+import {
+  type NumberInputStateProps,
+  useNumberInputState,
+} from './numberInput/useNumberInputState'
 
-interface Props {
-  question: DottedName
-  unit?: string
-  value?: Evaluation<number>
-  placeholder?: string
-  setValue: (value: number | undefined) => void
+interface Props extends NumberInputStateProps {
   id?: string
   className?: string
-  assistance?: DottedName
 }
 
 export default function NumberInput({
