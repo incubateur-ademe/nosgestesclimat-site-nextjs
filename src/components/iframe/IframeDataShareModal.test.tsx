@@ -1,242 +1,195 @@
-import { IframeOptionsProvider } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import '@testing-library/jest-dom'
 import { act, fireEvent, render, screen } from '@testing-library/react'
 import { vi } from 'vitest'
 import IframeDataShareModal from './IframeDataShareModal'
 
-// Mock des hooks et fonctions
+// Mock useIframe — the only context dependency of the component
 const mockUseIframe = vi.fn()
 vi.mock('@/hooks/useIframe', () => ({
   useIframe: () => mockUseIframe(),
 }))
 
-const mockGetIsIframe = vi.fn()
-vi.mock('@/utils/getIsIframe', () => ({
-  getIsIframe: () => mockGetIsIframe(),
+// Mock shareDataWithIntegrator — we test the component's behaviour,
+// not the internal implementation details of the helper
+const mockShareDataWithIntegrator = vi.fn()
+vi.mock('@/helpers/iframe/shareDataWithIntegrator', () => ({
+  shareDataWithIntegrator: (...args: unknown[]) =>
+    mockShareDataWithIntegrator(...args),
 }))
 
-// Mock simple pour useClientTranslation
+// Translation: returns the key as-is, sufficient for the tests
 vi.mock('@/hooks/useClientTranslation', () => ({
   useClientTranslation: () => ({
-    t: (key: string) => {
-      if (key === 'Partage de vos résultats à {{ parent }} ?') {
-        return 'Partage de vos résultats à site parent inconnu ?'
-      }
-      if (key === 'Accepter') return 'Accepter'
-      if (key === 'Refuser') return 'Refuser'
-      return key
-    },
+    t: (key: string) => key,
   }),
 }))
 
-// Mock pour useCurrentSimulation et useUser
+const mockComputedResults = {
+  carbone: {
+    bilan: 15000,
+    categories: {
+      transport: 1000,
+      alimentation: 2000,
+      logement: 3000,
+      divers: 4000,
+      'services sociétaux': 5000,
+    },
+  },
+  eau: {
+    bilan: 0,
+    categories: {
+      transport: 0,
+      alimentation: 0,
+      logement: 0,
+      divers: 0,
+      'services sociétaux': 0,
+    },
+  },
+}
+
 vi.mock('@/publicodes-state', () => ({
   useCurrentSimulation: () => ({
-    computedResults: {
-      carbone: {
-        bilan: 15000,
-        categories: {
-          transport: 1000,
-          alimentation: 2000,
-          logement: 3000,
-          divers: 4000,
-          'services sociétaux': 5000,
-        },
-      },
-      eau: {
-        bilan: 0,
-        categories: {
-          transport: 0,
-          alimentation: 0,
-          logement: 0,
-          divers: 0,
-          'services sociétaux': 0,
-        },
-      },
-    },
-  }),
-  useUser: () => ({
-    user: {
-      region: {
-        code: 'FR',
-      },
-    },
+    computedResults: mockComputedResults,
   }),
 }))
-
-// Wrapper simple pour le test
-const TestWrapper = ({ children }: { children: React.ReactNode }) => (
-  <IframeOptionsProvider>{children}</IframeOptionsProvider>
-)
 
 describe('IframeDataShareModal', () => {
   beforeEach(() => {
     vi.useFakeTimers()
     vi.clearAllMocks()
-    mockGetIsIframe.mockReturnValue(true)
-    mockUseIframe.mockReturnValue({ isIframeShareData: true })
+    // Default state: inside an iframe with data sharing enabled, no bypass
+    mockUseIframe.mockReturnValue({
+      isIframeShareData: true,
+      isIntegratorAllowedToBypassConsentDataShare: false,
+    })
   })
 
   afterEach(() => {
     vi.useRealTimers()
-    vi.clearAllMocks()
+    document.body.style.overflow = ''
   })
 
-  it('should not render when not in iframe', () => {
-    // Given
-    mockGetIsIframe.mockReturnValue(false)
-
-    // When
-    const { container } = render(
-      <TestWrapper>
-        <IframeDataShareModal />
-      </TestWrapper>
-    )
-
-    // Then
-    expect(container.firstChild).toBeInstanceOf(HTMLDivElement)
-    expect(container.firstChild).toBeEmptyDOMElement()
-  })
-
-  it('should not render when iframe share data is disabled', () => {
-    // Given
-    mockUseIframe.mockReturnValue({ isIframeShareData: false })
-
-    // When
-    const { container } = render(
-      <TestWrapper>
-        <IframeDataShareModal />
-      </TestWrapper>
-    )
-
-    // Then
-    expect(container.firstChild).toBeInstanceOf(HTMLDivElement)
-    expect(container.firstChild).toBeEmptyDOMElement()
-  })
-
-  it('should show modal after timeout', () => {
-    // Given
-    render(
-      <TestWrapper>
-        <IframeDataShareModal />
-      </TestWrapper>
-    )
-
-    // When
-    act(() => {
-      vi.advanceTimersByTime(3500)
+  it('renders nothing when isIframeShareData is false', () => {
+    mockUseIframe.mockReturnValue({
+      isIframeShareData: false,
+      isIntegratorAllowedToBypassConsentDataShare: false,
     })
 
-    // Then
-    expect(screen.getByTestId('iframe-datashare-title')).toBeInTheDocument()
-    expect(document.body.style.overflow).toBe('hidden')
+    const { container } = render(<IframeDataShareModal />)
+
+    expect(container.firstChild).toBeNull()
   })
 
-  it('should send data to parent window when accepting', () => {
-    // Given
-    const mockPostMessage = vi.fn()
-    window.parent.postMessage = mockPostMessage
-    render(
-      <TestWrapper>
-        <IframeDataShareModal />
-      </TestWrapper>
-    )
+  describe('standard consent flow (isIframeShareData: true, bypass: false)', () => {
+    it('does not show the modal before the 3500ms timeout', () => {
+      render(<IframeDataShareModal />)
 
-    // When
-    act(() => {
-      vi.advanceTimersByTime(3500)
+      expect(
+        screen.queryByTestId('iframe-datashare-modal')
+      ).not.toBeInTheDocument()
     })
 
-    // Vérifier que le bouton est bien détecté
-    const acceptButton = screen.getByTestId('iframe-datashare-accepter')
-    expect(acceptButton).toBeInTheDocument()
-    expect(acceptButton).toBeEnabled()
+    it('shows the modal after the 3500ms timeout', () => {
+      render(<IframeDataShareModal />)
 
-    // Vérifier que le clic fonctionne
-    fireEvent.click(acceptButton)
+      act(() => {
+        vi.advanceTimersByTime(3500)
+      })
 
-    // Then
-    expect(mockPostMessage).toHaveBeenCalled()
-    expect(mockPostMessage).toHaveBeenCalledWith(
-      {
-        messageType: 'ngc-iframe-share',
-        data: {
-          t: 1000,
-          a: 2000,
-          l: 3000,
-          d: 4000,
-          s: 5000,
-          footprints: {
-            carbon: {
-              bilan: 15000,
-              categories: {
-                transport: 1000,
-                alimentation: 2000,
-                logement: 3000,
-                divers: 4000,
-                'services sociétaux': 5000,
-              },
-            },
-            water: {
-              bilan: 0,
-              categories: {
-                transport: 0,
-                alimentation: 0,
-                logement: 0,
-                divers: 0,
-                'services sociétaux': 0,
-              },
-            },
+      expect(screen.getByTestId('iframe-datashare-modal')).toBeInTheDocument()
+    })
+
+    it('locks the body scroll as soon as the component mounts', () => {
+      render(<IframeDataShareModal />)
+
+      expect(document.body.style.overflow).toBe('hidden')
+    })
+
+    describe('actions from the open modal', () => {
+      beforeEach(() => {
+        render(<IframeDataShareModal />)
+        act(() => {
+          vi.advanceTimersByTime(3500)
+        })
+      })
+
+      it('shares data via shareDataWithIntegrator when accepting', () => {
+        fireEvent.click(screen.getByTestId('iframe-datashare-accepter'))
+
+        expect(mockShareDataWithIntegrator).toHaveBeenCalledWith(
+          mockComputedResults
+        )
+      })
+
+      it('closes the modal and restores body scroll when accepting', () => {
+        fireEvent.click(screen.getByTestId('iframe-datashare-accepter'))
+
+        expect(
+          screen.queryByTestId('iframe-datashare-modal')
+        ).not.toBeInTheDocument()
+        expect(document.body.style.overflow).toBe('auto')
+      })
+
+      it('sends an error message to the parent window when rejecting', () => {
+        const mockPostMessage = vi.fn()
+        window.parent.postMessage = mockPostMessage
+
+        fireEvent.click(screen.getByTestId('iframe-datashare-refuser'))
+
+        expect(mockPostMessage).toHaveBeenCalledWith(
+          {
+            messageType: 'ngc-iframe-share',
+            error: 'The user refused to share his result.',
           },
-        },
-      },
-      '*'
-    )
+          '*'
+        )
+      })
+
+      it('closes the modal and restores body scroll when rejecting', () => {
+        window.parent.postMessage = vi.fn()
+
+        fireEvent.click(screen.getByTestId('iframe-datashare-refuser'))
+
+        expect(
+          screen.queryByTestId('iframe-datashare-modal')
+        ).not.toBeInTheDocument()
+        expect(document.body.style.overflow).toBe('auto')
+      })
+    })
   })
 
-  it('should send error message to parent window when rejecting', () => {
-    // Given
-    const mockPostMessage = vi.fn()
-    window.parent.postMessage = mockPostMessage
-    render(
-      <TestWrapper>
-        <IframeDataShareModal />
-      </TestWrapper>
-    )
-
-    // When
-    act(() => {
-      vi.advanceTimersByTime(3500)
+  describe('consent bypass (isIntegratorAllowedToBypassConsentDataShare: true)', () => {
+    beforeEach(() => {
+      mockUseIframe.mockReturnValue({
+        isIframeShareData: true,
+        isIntegratorAllowedToBypassConsentDataShare: true,
+      })
     })
 
-    fireEvent.click(screen.getByTestId('iframe-datashare-refuser'))
+    it('shares data immediately without waiting for the timeout', () => {
+      render(<IframeDataShareModal />)
 
-    // Then
-    expect(mockPostMessage).toHaveBeenCalledWith(
-      {
-        messageType: 'ngc-iframe-share',
-        error: 'The user refused to share his result.',
-      },
-      '*'
-    )
-  })
-
-  it('should reset body overflow when modal is closed', () => {
-    // Given
-    render(
-      <TestWrapper>
-        <IframeDataShareModal />
-      </TestWrapper>
-    )
-
-    // When
-    act(() => {
-      vi.advanceTimersByTime(3500)
+      expect(mockShareDataWithIntegrator).toHaveBeenCalledWith(
+        mockComputedResults
+      )
     })
 
-    fireEvent.click(screen.getByText('Accepter'))
+    it('never shows the modal, even after the timeout', () => {
+      render(<IframeDataShareModal />)
 
-    // Then
-    expect(document.body.style.overflow).toBe('auto')
+      act(() => {
+        vi.advanceTimersByTime(3500)
+      })
+
+      expect(
+        screen.queryByTestId('iframe-datashare-modal')
+      ).not.toBeInTheDocument()
+    })
+
+    it('does not lock the body scroll', () => {
+      render(<IframeDataShareModal />)
+
+      expect(document.body.style.overflow).not.toBe('hidden')
+    })
   })
 })
