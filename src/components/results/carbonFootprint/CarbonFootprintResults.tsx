@@ -14,6 +14,7 @@ interface Props {
   locale: Locale
   hideSaveBlock?: boolean
   tendency?: Tendency
+  hasPreviousSimulation?: boolean
 }
 
 export default function CarbonFootprintResults({
@@ -21,6 +22,7 @@ export default function CarbonFootprintResults({
   locale,
   tendency,
   hideSaveBlock = false,
+  hasPreviousSimulation = false,
 }: Props) {
   return (
     <>
@@ -52,7 +54,12 @@ export default function CarbonFootprintResults({
         <GroupThankYouBlock locale={locale} group={simulationResult.group} />
       )}
 
-      {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
+      {!hideSaveBlock && (
+        <SaveResultsBlock
+          hasPreviousSimulation={hasPreviousSimulation}
+          locale={locale}
+        />
+      )}
 
       <Objective
         locale={locale}
@@ -61,7 +68,7 @@ export default function CarbonFootprintResults({
 
       <p className="text-primary-600 mx-auto mb-12 w-2xl max-w-full text-center">
         <Trans locale={locale} i18nKey="carbonResults.objective.description">
-          <strong className="block">
+          <strong className="md:block">
             Vous n'êtes pas seul. Chaque contexte est différent,
           </strong>{' '}
           on contribue à hauteur de ses possibilités, on veut vous y aider.

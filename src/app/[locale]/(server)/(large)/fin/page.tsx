@@ -86,6 +86,7 @@ export default async function SimulationPage({
 
       <CarbonFootprintResults
         simulationResult={simulationResult}
+        hasPreviousSimulation={!!previousSimulation}
         locale={locale as Locale}
         tendency={tendency}
       />

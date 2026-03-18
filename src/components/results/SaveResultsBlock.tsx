@@ -15,9 +15,13 @@ import SaveResultsForm from './SaveResultsForm'
 
 interface Props {
   locale: Locale
+  hasPreviousSimulation?: boolean
 }
 
-export default async function SaveResultsBlock({ locale }: Props) {
+export default async function SaveResultsBlock({
+  locale,
+  hasPreviousSimulation,
+}: Props) {
   const user = await getUser()
 
   const { t } = await getServerTranslation({ locale })
@@ -93,12 +97,22 @@ export default async function SaveResultsBlock({ locale }: Props) {
             </ul>
 
             {user.isAuth ? (
-              <ButtonLink color="borderless" href={MON_ESPACE_PATH}>
-                <Trans
-                  i18nKey="results.saveResults.buttonLabel.authenticated"
-                  locale={locale}>
-                  Voir l’évolution de mon résultat
-                </Trans>
+              <ButtonLink
+                color="borderless"
+                href={`${MON_ESPACE_PATH}${hasPreviousSimulation ? '#chart' : ''}`}>
+                {hasPreviousSimulation ? (
+                  <Trans
+                    i18nKey="results.saveResults.buttonLabel.authenticated.withPreviousResults"
+                    locale={locale}>
+                    Voir l’évolution de mon résultat
+                  </Trans>
+                ) : (
+                  <Trans
+                    i18nKey="results.saveResults.buttonLabel.authenticated.noPreviousResults"
+                    locale={locale}>
+                    Accéder à mon espace
+                  </Trans>
+                )}
               </ButtonLink>
             ) : (
               <QueryClientProviderWrapper>
