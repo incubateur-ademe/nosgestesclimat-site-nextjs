@@ -17,7 +17,8 @@ export default function useChoices({ rule, type }: Props) {
         .getPossibilitiesFor(rule?.dottedName as DottedName)
         ?.reduce(
           (acc, { nodeValue }) => {
-            // We can't use `filterNotApplicable` option from `getPossibilitiesFor` here because we can't enable filterNotApplicablePossibilities engine flag as it raises a "Maximum call stack size exceeded" error difficult to investigate. So we filter manually here.
+            // This remove all the possibilities that evaluate to `non applicable`
+            // We can't use the native publicodes option `filterNotApplicable` from `getPossibilitiesFor` here because we can't enable filterNotApplicablePossibilities engine flag as it raises a "Maximum call stack size exceeded" error difficult to investigate. So we filter manually here.
             const fullPossibilityDottedName = utils.disambiguateReference(
               engine.getParsedRules() ?? {},
               rule?.dottedName,
