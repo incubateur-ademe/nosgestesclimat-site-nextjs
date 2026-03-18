@@ -29,7 +29,6 @@ export default function AssistanceSwitch({
         )}
         options={[
           {
-            // Leave white space around symbol to have a similar width
             label: assistanceUnit,
             isSelected: currentUnit === assistanceUnit,
             'data-testid': 'switch-assistance-unit',
