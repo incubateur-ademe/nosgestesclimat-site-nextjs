@@ -1,6 +1,6 @@
 import { useCurrentSimulation, useEngine, useRule } from '@/publicodes-state'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
-import { PublicodesValue } from '@/publicodes-state/types'
+import type { PublicodesValue } from '@/publicodes-state/types'
 import { useDebounce } from '@/utils/debounce'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
