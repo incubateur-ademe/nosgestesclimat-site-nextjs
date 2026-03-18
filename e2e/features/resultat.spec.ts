@@ -1,5 +1,6 @@
 import { expect, test } from '../fixtures'
 import { getCarbonFootprintElem } from '../helpers/carbon-footprint'
+import { skipOnSafari } from '../helpers/skip-on-safari'
 import { COMPLETED_TEST_STATE } from '../state'
 
 test.beforeEach(async ({ page }) => {
@@ -64,7 +65,9 @@ test.describe('Given a user that completed the test twice with different results
   test('should display a tendency indicator on the result page', async ({
     page,
     ngcTest,
+    browser,
   }) => {
+    skipOnSafari(browser)
     // 1. First simulation: skip all questions
     //    (cookie banner is already dismissed via NEW_VISITOR_STATE)
     await ngcTest.skipAll()

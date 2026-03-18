@@ -21,6 +21,7 @@ test('should only be displayed once when coming from home', async ({
 }) => {
   await tutorialPage.goto()
   await tutorialPage.skip()
+  await page.waitForURL(/\/simulateur\/bilan\?question=/)
   await page.goto('/')
   await page.getByTestId('do-the-test-link').first().click()
   await expect(page).toHaveURL(new RegExp('/simulateur/bilan'))
