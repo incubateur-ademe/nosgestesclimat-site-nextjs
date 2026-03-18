@@ -11,9 +11,8 @@ import {
 import { END_PAGE_PATH } from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
-import { shouldHideIfIframe } from '@/helpers/iframe/shouldHideIfIframe'
+import { useShouldHideIfIframe } from '@/hooks/iframe/useShouldHideIfIframe'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframe } from '@/hooks/useIframe'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { usePathname, useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
@@ -48,12 +47,7 @@ export default function FinTabs() {
   const isGroupsActive = pathname.endsWith('groupes')
   const isResultsActive = !isActionsActive && !isGroupsActive
 
-  const { isIframe, isFrenchRegion, isIframeOnlySimulation } = useIframe()
-
-  const shouldHideGroupTab = shouldHideIfIframe({
-    isIframe,
-    isFrenchRegion,
-    isIframeOnlySimulation,
+  const shouldHideGroupTab = useShouldHideIfIframe({
     hideIfNotFrenchRegion: true,
   })
 

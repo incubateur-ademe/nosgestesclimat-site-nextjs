@@ -1,16 +1,12 @@
+import { useIframe } from '../useIframe'
+
 interface Props {
-  isIframe?: boolean
   hideIfNotFrenchRegion?: boolean
-  isFrenchRegion?: boolean
-  isIframeOnlySimulation?: boolean
 }
 
-export function shouldHideIfIframe({
-  isIframe,
-  hideIfNotFrenchRegion,
-  isFrenchRegion,
-  isIframeOnlySimulation,
-}: Props) {
+export function useShouldHideIfIframe({ hideIfNotFrenchRegion }: Props) {
+  const { isIframeOnlySimulation, isFrenchRegion, isIframe } = useIframe()
+
   // Allows hiding not internationalized features (like the ones involving transactional e-mails)
   if (isIframe && hideIfNotFrenchRegion && !isFrenchRegion) return true
 
