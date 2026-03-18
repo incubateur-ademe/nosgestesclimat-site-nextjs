@@ -179,6 +179,7 @@ export default function Question({
           </>
         )}
       </div>
+
       {typeof situationValue === 'number' && (
         <Warning
           type={type}
