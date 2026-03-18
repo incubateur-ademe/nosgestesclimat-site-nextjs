@@ -2,7 +2,6 @@
 
 import useEngine from '@/publicodes-state/hooks/useEngine/useEngine'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { utils } from 'publicodes'
 import { useMemo } from 'react'
 interface Props {
   rule: NGCRuleNode | undefined
@@ -15,27 +14,16 @@ export default function useChoices({ rule, type }: Props) {
     if (type === 'choices' && engine) {
       const possibilities = engine
         .getPossibilitiesFor(rule?.dottedName as DottedName)
-        ?.reduce(
-          (acc, { nodeValue }) => {
-            // This remove all the possibilities that evaluate to `non applicable`
-            // We can't use the native publicodes option `filterNotApplicable` from `getPossibilitiesFor` here because we can't enable filterNotApplicablePossibilities engine flag as it raises a "Maximum call stack size exceeded" error difficult to investigate. So we filter manually here.
-            const fullPossibilityDottedName = utils.disambiguateReference(
-              engine.getParsedRules() ?? {},
-              rule?.dottedName,
-              nodeValue as string
-            )
-            const isPossibilityApplicable =
-              safeEvaluate({
-                'est applicable': fullPossibilityDottedName,
-              })?.nodeValue === true
-
-            if (isPossibilityApplicable) {
-              acc.push(nodeValue)
-            }
-            return acc
-          },
-          [] as (string | number)[]
-        )
+        ?.filter(({ dottedName: possibilityDottedName }) => {
+          // This removes all the possibilities that evaluate to `non applicable`
+          // We can't use the native publicodes option `filterNotApplicable` from `getPossibilitiesFor` here because we can't enable filterNotApplicablePossibilities engine flag as it raises a "Maximum call stack size exceeded" error difficult to investigate. So we filter manually here.
+          return (
+            safeEvaluate({
+              'est applicable': possibilityDottedName,
+            })?.nodeValue === true
+          )
+        })
+        .map(({ nodeValue }) => nodeValue)
 
       return possibilities ?? []
     }
