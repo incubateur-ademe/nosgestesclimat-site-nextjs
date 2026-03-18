@@ -1,11 +1,11 @@
 'use client'
 
+import { useEndTest } from '@/app/[locale]/(simulation)/simulateur/[root]/_hooks/useEndPage'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
-import { useGoToEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
@@ -31,7 +31,7 @@ export default function Form() {
 
   const { questionInQueryParams } = useQuestionInQueryParams(currentQuestion)
 
-  const { goToEndPage, isPending } = useGoToEndPage()
+  const { endTest, isPending } = useEndTest()
 
   const { isIframe } = useIframe()
 
@@ -82,7 +82,7 @@ export default function Form() {
                 key="iframe-navigation"
                 question={currentQuestion}
                 remainingQuestions={remainingQuestions}
-                onComplete={goToEndPage}
+                onComplete={endTest}
                 isPending={isPending}
               />
             )}
@@ -110,7 +110,7 @@ export default function Form() {
           key="default-navigation"
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
-          onComplete={goToEndPage}
+          onComplete={endTest}
           isPending={isPending}
         />
       )}

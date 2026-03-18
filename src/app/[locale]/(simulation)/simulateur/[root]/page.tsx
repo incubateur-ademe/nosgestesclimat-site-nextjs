@@ -5,7 +5,6 @@ import {
   simulateurCloseSommaire,
   simulateurOpenSommaire,
 } from '@/constants/tracking/pages/simulateur'
-import { useSimulatorGuard } from '@/hooks/navigation/useSimulatorGuard'
 import { useTrackSimulator } from '@/hooks/tracking/useTrackSimulator'
 import { useIframe } from '@/hooks/useIframe'
 import { useEngine } from '@/publicodes-state'
@@ -13,6 +12,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Simulateur from './_components/Simulateur'
+import { useSimulatorGuard } from './_hooks/useSimulatorGuard'
 
 export default function SimulateurPage() {
   const { isRedirecting } = useSimulatorGuard()
