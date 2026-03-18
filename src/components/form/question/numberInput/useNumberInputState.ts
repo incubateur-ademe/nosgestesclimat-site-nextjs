@@ -101,6 +101,11 @@ export const useNumberInputState = ({
     })
   }
 
+  const debouncedSyncQuestionAndAssistance = useDebounce(
+    syncQuestionAndAssistance,
+    300
+  )
+
   const handleValueChange = (
     values: NumberFormatValues,
     sourceInfo: SourceInfo
@@ -112,7 +117,7 @@ export const useNumberInputState = ({
     // When the displayed unit matches the assistance unit, route through the
     // sync helper so both rules are updated together.
     if (assistance && currentUnit === assistanceUnit) {
-      syncQuestionAndAssistance(values.floatValue)
+      debouncedSyncQuestionAndAssistance(values.floatValue)
       return
     }
 
