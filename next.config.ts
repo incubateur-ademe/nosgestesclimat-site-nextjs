@@ -20,7 +20,7 @@ const sameOrigin = new URL(serverUrl).origin.endsWith(new URL(siteUrl).origin)
 const rewrites = !sameOrigin ? {
   rewrites: () => [{
     source: '/api/server/:path*',
-    destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+    destination: `${serverUrl}/:path*`,
   }]
 } : {}
 
