@@ -40,7 +40,7 @@ export default function AssistanceSwitch({
           {
             label: defaultUnit,
             isSelected: currentUnit === defaultUnit,
-            'data-testid': `switch-main-unit`,
+            'data-testid': 'switch-main-unit',
             onClick: () => {
               if (currentUnit !== defaultUnit) updateCurrentUnit(defaultUnit)
             },
