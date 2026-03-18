@@ -11,6 +11,7 @@ import {
 import { END_PAGE_PATH } from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
+import { useShouldHideIfIframe } from '@/hooks/iframe/useShouldHideIfIframe'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { usePathname, useRouter } from 'next/navigation'
@@ -45,6 +46,10 @@ export default function FinTabs() {
   const isActionsActive = pathname.endsWith('actions')
   const isGroupsActive = pathname.endsWith('groupes')
   const isResultsActive = !isActionsActive && !isGroupsActive
+
+  const shouldHideGroupTab = useShouldHideIfIframe({
+    hideIfNotFrenchRegion: true,
+  })
 
   const tabsItems: TabItem[] = [
     {
@@ -97,35 +102,39 @@ export default function FinTabs() {
         handleTabClick('actions')
       },
     },
-    {
-      id: 'groups',
-      label: (
-        <span
-          className="flex flex-col items-center gap-1 md:flex-row"
-          data-testid="my-groups-tab">
-          <AmisIcon
-            className={twMerge(
-              'h-6 w-6',
-              isGroupsActive
-                ? 'stroke-primary-600 fill-primary-600'
-                : 'stroke-default'
-            )}
-          />
-          <span className="hidden md:block">
-            <Trans i18nKey="mon-espace.tabs.myGroups">Mes groupes</Trans>
-          </span>
-          <span className="block text-center text-sm md:hidden">
-            <Trans i18nKey="mon-espace.tabs.groups">Groupes</Trans>
-          </span>
-        </span>
-      ),
-      href: groupsHref,
-      isActive: isGroupsActive,
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
-        handleTabClick('groups')
-      },
-    },
+    ...(!shouldHideGroupTab
+      ? [
+          {
+            id: 'groups',
+            label: (
+              <span
+                className="flex flex-col items-center gap-1 md:flex-row"
+                data-testid="my-groups-tab">
+                <AmisIcon
+                  className={twMerge(
+                    'h-6 w-6',
+                    isGroupsActive
+                      ? 'stroke-primary-600 fill-primary-600'
+                      : 'stroke-default'
+                  )}
+                />
+                <span className="hidden md:block">
+                  <Trans i18nKey="mon-espace.tabs.myGroups">Mes groupes</Trans>
+                </span>
+                <span className="block text-center text-sm md:hidden">
+                  <Trans i18nKey="mon-espace.tabs.groups">Groupes</Trans>
+                </span>
+              </span>
+            ),
+            href: groupsHref,
+            isActive: isGroupsActive,
+            onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault()
+              handleTabClick('groups')
+            },
+          },
+        ]
+      : []),
   ]
 
   return (

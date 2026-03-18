@@ -1,4 +1,3 @@
-import { IframeOptionsProvider } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import MainHooks from '@/app/[locale]/_components/mainLayoutProviders/MainHooks'
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
@@ -30,19 +29,17 @@ export const ClientLayout = ({
     <QueryClientProviderWrapper>
       <UserProvider serverUserId={serverUserId}>
         <PartnerProvider>
-          <IframeOptionsProvider>
-            <MotionConfig reducedMotion="user">
-              <Suspense>
-                <MainHooks />
-              </Suspense>
-              <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
+          <MotionConfig reducedMotion="user">
+            <Suspense>
+              <MainHooks />
+            </Suspense>
+            <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
 
-              <Banner locale={locale as Locale} />
-              {children}
-              <GoogleTagScript />
-              <GoogleTagIframe />
-            </MotionConfig>
-          </IframeOptionsProvider>
+            <Banner locale={locale as Locale} />
+            {children}
+            <GoogleTagScript />
+            <GoogleTagIframe />
+          </MotionConfig>
         </PartnerProvider>
       </UserProvider>
     </QueryClientProviderWrapper>
