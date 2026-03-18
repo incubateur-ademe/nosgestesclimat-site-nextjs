@@ -139,7 +139,8 @@ export default function ObjectiveChart({ carbonFootprint, className }: Props) {
               <div
                 className={twMerge(
                   'absolute flex w-max flex-col',
-                  'bottom-2 left-5 items-start text-left'
+                  'bottom-2 left-5 items-start text-left',
+                  p.year === 2050 && '-bottom-6'
                 )}>
                 <span className="text-secondary-700 text-xs font-bold md:text-sm">
                   {index === 0 ? (
@@ -150,11 +151,15 @@ export default function ObjectiveChart({ carbonFootprint, className }: Props) {
                     p.year
                   )}
                 </span>
-                <span className="text-primary-950 text-xl font-black md:text-2xl">
+                <span className="text-primary-950 text-lg font-black md:text-2xl">
                   {p.year === 2050 ? (
-                    <div className="flex flex-col">
+                    <div className="flex flex-col sm:flex-row sm:gap-2">
                       <span>
                         <Trans>2 tonnes</Trans>
+                      </span>{' '}
+                      <span>
+                        CO₂e&nbsp;/&nbsp;
+                        <Trans i18nKey="results.year">an</Trans>
                       </span>
                     </div>
                   ) : (

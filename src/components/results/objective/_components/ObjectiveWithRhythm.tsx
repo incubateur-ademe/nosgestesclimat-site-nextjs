@@ -48,8 +48,8 @@ const getObjectiveData = ({
         bgClassName: 'bg-red-50',
         description: (
           <Trans locale={locale} i18nKey="results.objective.over7.description">
-            Aujourd'hui, vous êtes{' '}
-            <strong>au-dessus de la moyenne nationale </strong>
+            Aujourd’hui, <strong>vous êtes au-dessus des 7 tonnes</strong>,
+            l’objectif intermédiaire que nous proposons pour 2030.
           </Trans>
         ),
         reductionDescription: (
@@ -125,13 +125,10 @@ const getObjectiveData = ({
           <span className="block w-lg max-w-full">
             <Trans
               locale={locale}
-              i18nKey="results.objective.under4.description.body"
-              values={{ thirdObjectiveNumber }}>
-              Avec le travail de l'Etat et toute la société dans les décennies à
+              i18nKey="results.objective.under4.description.body">
+              Avec le travail de l’État et toute la société dans les années à
               venir, votre empreinte devrait naturellement diminuer pour se
-              rapprocher des {{ thirdObjectiveNumber } as unknown as ReactNode}
-              T. Ce qu'il vous reste à faire ? Persévérer dans votre être et…
-              convaincre les autres !
+              rapprocher des 2 tonnes.
             </Trans>
           </span>
         </>

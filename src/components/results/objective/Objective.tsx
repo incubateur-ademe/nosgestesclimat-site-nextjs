@@ -24,7 +24,7 @@ export default function Objective({ locale, carbonFootprint }: Props) {
         <p>
           <Trans locale={locale} i18nKey="results.objective.description">
             L'objectif de la France pour atteindre la neutralité carbone en 2050
-            et aider à limiter le réchauffement mondial à +2 °C.
+            et aider à limiter le réchauffement mondial à +&nbsp;2 °C.
           </Trans>
         </p>
       </div>
