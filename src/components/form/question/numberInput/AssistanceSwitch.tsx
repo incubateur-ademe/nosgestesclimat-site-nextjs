@@ -21,7 +21,7 @@ export default function AssistanceSwitch({
       <Switch
         className="mb-2 w-36"
         aria-label={t(
-          'simulator.specialQuestions.electricity_consumption',
+          'simulator.assistanceSwitch.ariaLabel',
           'Sélectionner le mode de saisie, {{currentUnit}} sélectionné',
           {
             currentUnit,

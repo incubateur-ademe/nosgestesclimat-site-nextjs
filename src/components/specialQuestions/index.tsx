@@ -17,8 +17,6 @@ const PLAT_RULENAME: DottedName = 'alimentation . plats'
 const VOITURE_RULENAME: DottedName = 'transport . voiture . km'
 const TEXTILE_RULENAME: DottedName = 'divers . textile . volume'
 const CHAUFFAGE_RULENAME: DottedName = 'logement . chauffage'
-export const ELECTRICITY_CONSUMPTION_RULENAME: DottedName =
-  'logement . électricité . réseau . consommation précise'
 
 const specialQuestions: Record<
   string,

@@ -1851,8 +1851,8 @@ entries:
   nos-relais.title: They relay <2>Our Gestes Climat</2>
   nos-relais.title.lock: Ils relaient <2>Nos Gestes Climat</2>
   coût: cost
-  simulator.specialQuestions.electricity_consumption: Select input mode, {{mode}} selected
-  simulator.specialQuestions.electricity_consumption.lock: Sélectionner le mode de saisie, {{mode}} sélectionné
   consommation en kWh: consumption in kWh
   Landing page thématique - Nos Gestes Climat: Thematic landing page - Nos Gestes Climat
   Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Discover practical tips for reducing your ecological footprint.
+  simulator.assistanceSwitch.ariaLabel: Select input mode, {{currentUnit}} selected
+  simulator.assistanceSwitch.ariaLabel.lock: Sélectionner le mode de saisie, {{currentUnit}} sélectionné

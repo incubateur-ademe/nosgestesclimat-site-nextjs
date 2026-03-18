@@ -1398,4 +1398,4 @@ entries:
   coût: coût
   Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   Landing page thématique - Nos Gestes Climat: Landing page thématique - Nos Gestes Climat
-  simulator.specialQuestions.electricity_consumption: Sélectionner le mode de saisie, {{mode}} sélectionné
+  simulator.assistanceSwitch.ariaLabel: Sélectionner le mode de saisie, {{currentUnit}} sélectionné

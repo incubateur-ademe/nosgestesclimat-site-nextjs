@@ -4,7 +4,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
 import { type ComponentProps } from 'react'
 import type { NumericFormat } from 'react-number-format'
-import AssistanceSwitch from './numberInput/AssistanceSwtich'
+import AssistanceSwitch from './numberInput/AssistanceSwitch'
 import RawNumberInput from './numberInput/RawNumberInput'
 import { useNumberInputState } from './numberInput/useNumberInputState'
 
