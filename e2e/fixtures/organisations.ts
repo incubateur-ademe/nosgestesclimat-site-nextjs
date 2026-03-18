@@ -4,6 +4,7 @@ import {
   getPlaywrightState,
   savePlaywrightState,
 } from '../helpers/save-context'
+import { skipOnSafari } from '../helpers/skip-on-safari'
 import { ORGANISATION_ADMIN_STATE } from '../state'
 import { test as base, expect, User } from './user'
 
@@ -95,7 +96,7 @@ const test = base.extend<OrganisationPageFixtures>({
     if (useCurrentContext) {
       return use(await Organisation.fromContext(page))
     }
-
+    skipOnSafari(browser)
     const context = await browser.newContext({
       storageState: ORGANISATION_ADMIN_STATE,
     })

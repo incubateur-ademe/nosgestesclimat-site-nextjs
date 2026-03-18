@@ -6,6 +6,7 @@ import {
   getPlaywrightState,
   savePlaywrightState,
 } from '../helpers/save-context'
+import { skipOnSafari } from '../helpers/skip-on-safari'
 import { GROUP_ADMIN_STATE } from '../state'
 import { test as base, expect, User } from './user'
 
@@ -121,7 +122,7 @@ const test = base.extend<GroupPageFixtures>({
     if (useCurrentContext) {
       return use(await Group.fromContext(page))
     }
-
+    skipOnSafari(browser)
     const context = await browser.newContext({
       storageState: GROUP_ADMIN_STATE,
     })

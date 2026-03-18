@@ -7,6 +7,7 @@ import {
 } from '../helpers/save-context'
 import type { Organisation } from './organisations'
 
+import { skipOnSafari } from '../helpers/skip-on-safari'
 import { ORGANISATION_ADMIN_STATE } from '../state'
 import { test as base, expect } from './organisations'
 
@@ -97,7 +98,7 @@ const test = base.extend<PollPageFixtures>({
     if (useCurrentContext) {
       return use(await Poll.fromContext(page, organisation))
     }
-
+    skipOnSafari(browser)
     const context = await browser.newContext({
       storageState: ORGANISATION_ADMIN_STATE,
     })
