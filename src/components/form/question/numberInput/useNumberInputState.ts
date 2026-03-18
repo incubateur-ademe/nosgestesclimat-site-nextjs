@@ -1,5 +1,6 @@
 import { useCurrentSimulation, useEngine, useRule } from '@/publicodes-state'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
+import { PublicodesValue } from '@/publicodes-state/types'
 import { useDebounce } from '@/utils/debounce'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
@@ -15,6 +16,37 @@ export interface NumberInputStateProps {
   // An optional related publicodes rule whose value drives the question's value
   // (e.g. entering a distance in km to compute a yearly footprint).
   assistance?: DottedName
+}
+
+interface FuncProps {
+  assistance?: DottedName
+  assistanceValue?: Evaluation<PublicodesValue>
+  questionValue: Evaluation<number>
+  assistanceUnit?: string
+  defaultUnit?: string
+}
+
+const getWhichUnitToShowByDefault = ({
+  assistance,
+  assistanceValue,
+  questionValue,
+  assistanceUnit,
+  defaultUnit,
+}: FuncProps) => {
+  if (!assistance) return defaultUnit
+
+  // Default case
+  if (
+    (!assistanceValue && !questionValue) ||
+    (assistanceValue && questionValue)
+  ) {
+    return assistanceUnit
+  }
+
+  // Case where user has directly answer the question
+  if (!assistanceValue && questionValue) return defaultUnit
+
+  return defaultUnit
 }
 
 export const useNumberInputState = ({
@@ -58,7 +90,13 @@ export const useNumberInputState = ({
   // Default to the assistance unit when an assistance rule is provided,
   // so the input label matches the unit the user is expected to type in.
   const [currentUnit, updateCurrentUnit] = useState(
-    assistance ? assistanceUnit : defaultUnit
+    getWhichUnitToShowByDefault({
+      assistance,
+      assistanceUnit,
+      assistanceValue: situationValueAssistance,
+      questionValue: currentValues.floatValue,
+      defaultUnit,
+    })
   )
 
   const debouncedSetValue = useDebounce((nextValue: number | undefined) => {
