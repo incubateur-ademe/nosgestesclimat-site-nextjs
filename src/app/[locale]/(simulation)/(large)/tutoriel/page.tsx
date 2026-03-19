@@ -26,7 +26,6 @@ export default function Tutoriel() {
         />
 
         <AvantDeCommencer />
-
         <div className={twMerge('mb-12 flex w-full gap-4 sm:px-4 md:px-0')}>
           <ButtonBack />
 

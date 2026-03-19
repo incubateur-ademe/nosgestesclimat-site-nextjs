@@ -1452,10 +1452,15 @@ entries:
   pages.result.notfound: <0>Impossible de retrouver ces résultats</0><1>Cela signifie qu'ils n'existent pas, ou qu'ils ne sont pas reliés à votre e-mail.</1><2>Dans ce dernier cas, vous pouvez essayer de vous re-connecter avec d'autres identifiants.</2><3>Retour à mon espace</3>
   pages.result.unauthorized: <0>Ces résultats sont protégés</0><1>Pour y accéder, vous devez vous connectez avec le même email que celui utilisé lors de leur sauvegarde.</1><2>Me connecter</2>
   results.groupThankYou.cta: Voir les résultats
-  results.groupThankYou.description: Découvrez les résultats du test collectif "{group.name}"
   results.groupThankYou.title: Merci d'avoir complété le test !
   results.year: an
   common.navigation.nextQuestion.loading.label: Terminer le test et accéder à la page de résultats, chargement en cours
   results.saveResults.buttonLabel.authenticated.noPreviousResults: Accéder à mon espace
   results.saveResults.buttonLabel.authenticated.withPreviousResults: Voir l’évolution de mon résultat
   simulator.navigation.nextButton.loading: <0></0> Terminer
+  Commencer un nouveau test: Commencer un nouveau test
+  Rejoindre une campagne - Nos Gestes Climat: Rejoindre une campagne - Nos Gestes Climat
+  Utiliser mes données existantes: Utiliser mes données existantes
+  Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
+  Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
+  results.groupThankYou.description: Découvrez les résultats du test collectif <2>"{{groupName}}"</2>

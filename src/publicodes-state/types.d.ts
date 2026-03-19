@@ -94,8 +94,6 @@ export interface Simulation {
   persona?: string
   computedResults: ComputedResults
   progression: number
-  defaultAdditionalQuestionsAnswers?: Record<string, string>
-  customAdditionalQuestionsAnswers?: Record<string, string>
   model?: string
   user?: { id: string; name?: string; email?: string }
   polls?: { id: string; slug: string }[]

@@ -1,67 +1,55 @@
-import { SIMULATION_URL } from '@/constants/urls/main'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
+import { postSimulation } from '@/helpers/simulation/postSimulation'
+import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
-import { captureException } from '@sentry/nextjs'
-import { sanitizeSimulation } from './sanitizeSimulation'
+import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
+import axios from 'axios'
 
-interface SaveSimulationParams {
+export interface SaveSimulationPayload {
   simulation: Simulation
   userId: string
-  email?: string
   name?: string
-  sendEmail?: true
+  locale?: Locale
 }
 
 export async function saveSimulation({
   simulation,
   userId,
-  email,
+  locale,
   name,
-  sendEmail,
-}: SaveSimulationParams): Promise<Simulation | undefined> {
-  const modelVersion = await getModelVersion()
+}: SaveSimulationPayload): Promise<Simulation | undefined> {
+  // We reset the sync timer to avoid saving the simulation in the background
 
-  // Strip unrecognized keys before mapping and posting
-  const sanitizedSimulation = sanitizeSimulation(simulation)
+  simulation = { ...simulation, model: getModelVersion() }
+  const { groups = [], polls = [] } = simulation
 
-  const payload = {
-    ...sanitizedSimulation,
-    model: modelVersion,
-    ...(name || email
-      ? {
-          user: {
-            ...(email ? { email } : {}),
-            ...(name ? { name } : {}),
+  if (groups.length) {
+    return updateGroupParticipant({
+      groupId: groups.at(-1)!.id,
+      simulation,
+      userId,
+      name,
+    }).then((response) => response.data.simulation as Simulation)
+  }
+
+  if (polls.length) {
+    return axios
+      .post(
+        `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1].id}/simulations`,
+        simulation,
+        {
+          params: {
+            locale,
           },
         }
-      : {}),
+      )
+      .then((response) => response.data as Simulation)
   }
 
-  // Build URL with query params
-  const url = new URL(`${SIMULATION_URL}/${userId}`)
-
-  if (sendEmail) {
-    url.searchParams.set('sendEmail', 'true')
-  }
-
-  try {
-    const response = await fetch(url.toString(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-      credentials: 'include',
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to save simulation')
-    }
-
-    const data = await response.json()
-    return data
-  } catch (error) {
-    captureException(error)
-    return undefined
-  }
+  return postSimulation({
+    simulation,
+    userId,
+    locale,
+  })
 }

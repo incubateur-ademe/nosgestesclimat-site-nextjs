@@ -8,6 +8,6 @@ export function useEndTest() {
 
   return {
     isPending,
-    endTest: startTransition(() => endTestAction(currentSimulation)),
+    endTest: () => startTransition(() => endTestAction(currentSimulation)),
   }
 }

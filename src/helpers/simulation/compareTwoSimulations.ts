@@ -63,12 +63,7 @@ export function compareTwoSimulations(
   if (simulation1.progression !== simulation2.progression) {
     return true
   }
-  if (
-    simulation1.defaultAdditionalQuestionsAnswers !==
-    simulation2.defaultAdditionalQuestionsAnswers
-  ) {
-    return true
-  }
+
   if (
     (simulation1.groups?.length ?? 0) !== (simulation2?.groups?.length ?? 0)
   ) {

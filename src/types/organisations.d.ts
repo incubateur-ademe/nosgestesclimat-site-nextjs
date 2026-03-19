@@ -1,10 +1,6 @@
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
-import type { ComputedResults, Situation } from '@/publicodes-state/types'
-import type {
-  DottedName,
-  ExtendedSituation,
-  FunFacts,
-} from '@incubateur-ademe/nosgestesclimat'
+import type { ComputedResults } from '@/publicodes-state/types'
+import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 interface User {
   id: string
@@ -83,22 +79,6 @@ export type OrganisationPoll = BaseOrganisationPoll & {
 
 export type PublicOrganisationPoll = BaseOrganisationPoll & {
   organisation: PublicOrganisation
-}
-
-export interface Simulation {
-  id: string
-  date: Date | string
-  situation: Situation
-  extendedSituation: ExtendedSituation
-  foldedSteps: DottedName[]
-  actionChoices: Record<string, boolean>
-  computedResults: ComputedResults
-  progression: number
-  /**
-   * user is defined only for the current user and undefined for others
-   */
-  user?: User
-  polls?: { id: string; slug: string }[]
 }
 
 export type PublicPollSimulation = Pick<
