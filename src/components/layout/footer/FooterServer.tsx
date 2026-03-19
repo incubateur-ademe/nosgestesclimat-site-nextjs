@@ -41,6 +41,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import { cacheLife } from 'next/cache'
 import { twMerge } from 'tailwind-merge'
+import HideInIframe from '../HideInIframe'
 import ThematicPagesSection from '../ThematicPagesSection'
 import CookieButton from './CookieButton'
 import WantToActBlock from './WantToActBlock'
@@ -249,7 +250,9 @@ export default async function FooterServer({
           </div>
           {locale === 'fr' ? (
             <div className="hidden md:block">
-              <WantToActBlock locale={locale} />
+              <HideInIframe hideIfNotFrenchRegion>
+                <WantToActBlock locale={locale} />
+              </HideInIframe>
             </div>
           ) : null}
         </div>

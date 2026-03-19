@@ -42,7 +42,6 @@ export function useSaveSimulation() {
       if (groups.length) {
         return updateGroupParticipant({
           groupId: groups.at(-1)!.id,
-          email,
           simulation: {
             ...simulation,
             model: modelVersion,

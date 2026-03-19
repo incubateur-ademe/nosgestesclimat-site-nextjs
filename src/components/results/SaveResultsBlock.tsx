@@ -11,6 +11,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getUser } from '@/helpers/server/dal/user'
 import Image from 'next/image'
+import HideInIframe from '../layout/HideInIframe'
 import SaveResultsForm from './SaveResultsForm'
 
 interface Props {
@@ -27,7 +28,7 @@ export default async function SaveResultsBlock({
   const { t } = await getServerTranslation({ locale })
 
   return (
-    <>
+    <HideInIframe hideIfNotFrenchRegion>
       <Title tag="h2" hasSeparator={false} size="lg" className="mb-8">
         <Trans locale={locale} i18nKey="results.saveResults.title">
           Retrouvez facilement vos résultats{' '}
@@ -143,6 +144,6 @@ export default async function SaveResultsBlock({
           </div>
         </div>
       </section>
-    </>
+    </HideInIframe>
   )
 }

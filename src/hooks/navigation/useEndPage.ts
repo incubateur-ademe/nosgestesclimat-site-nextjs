@@ -9,7 +9,6 @@ export function useGoToEndPage() {
   const [isPending, startTransition] = useTransition()
 
   const router = useRouter()
-  const { saveSimulation } = useSaveSimulation()
   const currentSimulation = useCurrentSimulation()
 
   const { progression, groups, polls } = currentSimulation
@@ -29,7 +28,7 @@ export function useGoToEndPage() {
       return
     }
     router.push(END_PAGE_PATH)
-  }, [progression, saveSimulation, currentSimulation, polls, groups, router])
+  }, [progression, polls, groups, router])
 
   return { goToEndPage, isPending }
 }
