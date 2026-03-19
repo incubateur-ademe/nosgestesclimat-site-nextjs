@@ -20,7 +20,7 @@ export default function ActionsBlock({ locale }: Props) {
         tag="h2"
         size="md"
         hasSeparator={false}
-        className="text-secondary-700">
+        className="text-secondary-700 mb-2 font-medium">
         <Trans locale={locale} i18nKey="results.actions.title">
           Votre plan d'action
         </Trans>
@@ -33,7 +33,7 @@ export default function ActionsBlock({ locale }: Props) {
       </Title>
 
       <div className="flex flex-col items-stretch gap-10 md:flex-row md:gap-4">
-        <div className="w-md max-w-full">
+        <div className="w-full max-w-full sm:w-md">
           <p className="mb-6">
             <Trans locale={locale} i18nKey="results.actions.text">
               Nous avons préparé des <strong>actions personnalisées</strong>{' '}
@@ -43,7 +43,7 @@ export default function ActionsBlock({ locale }: Props) {
 
           <ButtonLink
             href={`${END_PAGE_PATH}/actions`}
-            className="hover:animate-button-lift w-full transition-[transform,box-shadow] duration-200 ease-out sm:w-auto">
+            className="hover:animate-button-lift w-full text-base transition-[transform,box-shadow] duration-200 ease-out sm:w-auto">
             <Trans locale={locale} i18nKey="results.actions.linkLabel">
               Construire mon plan d’action
             </Trans>

@@ -104,7 +104,10 @@ export default function EvolutionGraph({
   const minValue = Math.min(0, Math.min(...values) - 1)
 
   return (
-    <div className="mb-16">
+    <div className="relative mb-16">
+      <div id="chart" className="absolute -top-24">
+        {/* Compense the height of the sticky header */}
+      </div>
       <h2 className="mb-6 text-2xl md:mb-8">
         <Trans i18nKey="mon-espace.evolutionGraph.title">
           Evolution de mes résultats d'empreinte

@@ -31,7 +31,7 @@ export default function Form() {
 
   const { questionInQueryParams } = useQuestionInQueryParams(currentQuestion)
 
-  const { goToEndPage } = useGoToEndPage()
+  const { goToEndPage, isPending } = useGoToEndPage()
 
   const { isIframe } = useIframe()
 
@@ -83,6 +83,7 @@ export default function Form() {
                 question={currentQuestion}
                 remainingQuestions={remainingQuestions}
                 onComplete={goToEndPage}
+                isPending={isPending}
               />
             )}
           </div>
@@ -110,6 +111,7 @@ export default function Form() {
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
           onComplete={goToEndPage}
+          isPending={isPending}
         />
       )}
     </>

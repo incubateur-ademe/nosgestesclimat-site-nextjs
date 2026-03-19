@@ -906,7 +906,7 @@ entries:
   Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre
   endPage.blogArticles.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
   endPage.carboneTarget.enSavoirPlus: Ouvrir la page dans une nouvelle fenêtre
-  endPage.waterActions.lireArticle: Les 8 manières d'améliorer l'empreinte eau de mon assiette, ouvrir l'article dans une nouvelle fenêtre
+  endPage.waterActions.lireArticle: Les 9 manières d'améliorer l'empreinte eau de mon assiette, ouvrir l'article dans une nouvelle fenêtre
   international.electricityMaps.ariaLabel: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
   l'objectif pour 2050: l'objectif pour 2050
   organisations.ourTools.newTab: Ouvrir dans une nouvelle fenêtre
@@ -1370,13 +1370,13 @@ entries:
   results.objective.collectiveEffort.state: L'État français
   results.objective.collectiveEffort.stateDescription: Réduction des services sociétaux (aujourd’hui à 1,55T) et décarbonation des infrastructures.
   results.objective.collectiveEffort.title: "Important : c'est aussi un effort collectif"
-  results.objective.description: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à +2 °C.
+  results.objective.description: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à + 2 °C.
   results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
-  results.objective.over7.description: Aujourd'hui, vous êtes <2>au-dessus de la moyenne nationale </2>
+  results.objective.over7.description: Aujourd’hui, <1>vous êtes au-dessus des 7 tonnes</1>, l’objectif intermédiaire que nous proposons pour 2030.
   results.objective.reduction.over4.description: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
   results.objective.reduction.over7.description: Votre rythme indicatif pour parvenir à <2>{{firstObjectiveNumber}}T en {{year}}</2>
-  results.objective.title: 'Objectif national : <1>2T</1> par personne en 2050'
-  results.objective.under4.description.body: Avec le travail de l'Etat et toute la société dans les décennies à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des {{thirdObjectiveNumber}}T. Ce qu'il vous reste à faire ? Persévérer dans votre être et… convaincre les autres !
+  results.objective.title: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
+  results.objective.under4.description.body: Avec le travail de l’État et toute la société dans les années à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2 tonnes.
   results.objective.under4.description.title: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
   Vous aujourd'hui: Vous aujourd'hui
   Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat: Accédez à votre espace organisation pour diffuser facilement Nos Gestes Climat
@@ -1402,8 +1402,8 @@ entries:
   eau.resultats.isItALot.title: Est-ce que c'est beaucoup ?
   eau.resultats.waterFootprintDetail.title: D’où vient votre résultat ?
   endpage.meta.title.carbon: Mon empreinte carbone - Nos Gestes Climat
-  endPage.waterActions.article1Title: Les 3 réflexes à adopter pour une garde-robe économe en eau
-  endPage.waterActions.article2Title: Les 8 manières d'améliorer l'empreinte eau de mon assiette
+  endPage.waterActions.article1Title: Les 4 réflexes à adopter pour une garde-robe économe en eau
+  endPage.waterActions.article2Title: Les 9 manières d'améliorer l'empreinte eau de mon assiette
   endPage.waterActions.description1: <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.
   endPage.waterActions.description2: 'Retrouvez nos conseils dans ces articles :'
   endPage.waterActions.readArticle: Lire l'article
@@ -1435,7 +1435,7 @@ entries:
   "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
   simulation.eau.whatIsWaterFootprint.titleInsec: L'empreinte eau, c'est quoi ?
   results.footprintsLinks.ariaLabel: Sélecteur de type d'empreinte
-  carbonResults.objective.description: <0>Vous n’êtes pas seul. Chaque contexte est différent,</0> on contribue à hauteur de ses possibilités, on veut vous y aider.
+  carbonResults.objective.description: <0>Vous n'êtes pas seul. Chaque contexte est différent,</0> on contribue à hauteur de ses possibilités, on veut vous y aider.
   carbonResults.saveBlock.title: Retrouvez facilement vos résultats
   common.alimentation: Alimentation
   common.housing: Logement
@@ -1449,3 +1449,13 @@ entries:
   carbonResults.tendency.increase: <0>En hausse depuis</0><1>votre dernier résultat</1>
   mon-espace.resultsDetail.breadcrumb.waterFootprint: Empreinte eau
   results.saveResults.title: 'Retrouvez facilement vos résultats '
+  pages.result.notfound: <0>Impossible de retrouver ces résultats</0><1>Cela signifie qu'ils n'existent pas, ou qu'ils ne sont pas reliés à votre e-mail.</1><2>Dans ce dernier cas, vous pouvez essayer de vous re-connecter avec d'autres identifiants.</2><3>Retour à mon espace</3>
+  pages.result.unauthorized: <0>Ces résultats sont protégés</0><1>Pour y accéder, vous devez vous connectez avec le même email que celui utilisé lors de leur sauvegarde.</1><2>Me connecter</2>
+  results.groupThankYou.cta: Voir les résultats
+  results.groupThankYou.description: Découvrez les résultats du test collectif "{group.name}"
+  results.groupThankYou.title: Merci d'avoir complété le test !
+  results.year: an
+  common.navigation.nextQuestion.loading.label: Terminer le test et accéder à la page de résultats, chargement en cours
+  results.saveResults.buttonLabel.authenticated.noPreviousResults: Accéder à mon espace
+  results.saveResults.buttonLabel.authenticated.withPreviousResults: Voir l’évolution de mon résultat
+  simulator.navigation.nextButton.loading: <0></0> Terminer

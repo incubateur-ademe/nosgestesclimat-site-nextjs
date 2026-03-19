@@ -44,7 +44,7 @@ export default async function WaterActions({ locale }: Props) {
             href={'/blog/consommation/reflexes-textile-econome-empreinte-eau'}
             aria-label={t(
               'endPage.waterActions.lireArticle',
-              "Les 3 réflexes à adopter pour une garde-robe économe en eau, ouvrir l'article dans une nouvelle fenêtre"
+              "Les 4 réflexes à adopter pour une garde-robe économe en eau, ouvrir l'article dans une nouvelle fenêtre"
             )}
             target="_blank"
             className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
@@ -60,7 +60,7 @@ export default async function WaterActions({ locale }: Props) {
                 <Trans
                   locale={locale}
                   i18nKey="endPage.waterActions.article1Title">
-                  Les 3 réflexes à adopter pour une garde-robe économe en eau
+                  Les 4 réflexes à adopter pour une garde-robe économe en eau
                 </Trans>
               </p>
             </div>
@@ -80,7 +80,7 @@ export default async function WaterActions({ locale }: Props) {
             }
             aria-label={t(
               'endPage.waterActions.lireArticle',
-              "Les 8 manières d'améliorer l'empreinte eau de mon assiette, ouvrir l'article dans une nouvelle fenêtre"
+              "Les 9 manières d'améliorer l'empreinte eau de mon assiette, ouvrir l'article dans une nouvelle fenêtre"
             )}
             target="_blank"
             className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
@@ -96,7 +96,7 @@ export default async function WaterActions({ locale }: Props) {
                 <Trans
                   locale={locale}
                   i18nKey="endPage.waterActions.article2Title">
-                  Les 8 manières d'améliorer l'empreinte eau de mon assiette
+                  Les 9 manières d'améliorer l'empreinte eau de mon assiette
                 </Trans>
               </p>
             </div>
