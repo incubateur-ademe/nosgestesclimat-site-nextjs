@@ -154,15 +154,6 @@ export const captureExportPollData = {
 
 // Language / Region
 
-export const captureLocale = ({ locale }: PosthogProps) => {
-  return {
-    eventName: 'Locale used',
-    properties: {
-      language: locale,
-    },
-  }
-}
-
 export const captureRegion = ({ region }: PosthogProps) => {
   return {
     eventName: 'Region used',

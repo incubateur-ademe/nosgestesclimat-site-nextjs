@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/nextjs'
-import { PostHog } from './components/cookies/Posthog'
+import { PostHog } from './services/tracking/Posthog'
 
 Sentry.init({
   dsn: 'https://75dcf9dfe74c4439977a517be2805122@sentry.incubateur.net/118',

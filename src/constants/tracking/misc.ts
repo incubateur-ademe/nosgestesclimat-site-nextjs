@@ -3,20 +3,6 @@
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-const trackingIframeVisit = (url: string) => [
-  'trackEvent',
-  'Misc',
-  'Iframe visit',
-  `Iframe visit from ${url}`,
-]
-
-const trackingIframeInteraction = (url: string) => [
-  'trackEvent',
-  'Misc',
-  'Iframe interaction',
-  `Iframe interaction from ${url}`,
-]
-
 export const trackingLocale = (locale: string) => [
   'trackEvent',
   'Misc',
@@ -53,27 +39,9 @@ export const trackingCategoryFilter = (category: DottedName, path: string) => [
   `Click Filter ${category}`,
 ]
 
-// Cookies
-const trackingCookiesAccept = [
-  'trackEvent',
-  'Cookies',
-  'Click accepter tout',
-]
-
-const trackingCookiesRefuse = [
-  'trackEvent',
-  'Cookies',
-  'Click tout refuser',
-]
-
-const trackingCookiesCustomChoice = [
-  'trackEvent',
-  'Cookies',
-  'Click choix personnalisés',
-]
-
-const trackingCookiesCustomChoiceSave = [
-  'trackEvent',
-  'Cookies',
-  'Enregistrer choix personnalisés',
-]
+export const trackingCategoryFilterPosthog = (category: DottedName) => ({
+  eventName: 'Actions click category filter',
+  properties: {
+    category,
+  },
+})

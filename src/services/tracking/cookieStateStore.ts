@@ -1,11 +1,12 @@
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
+import type { GoogleTagCookieState } from './GoogleTagManager'
 import type { PostHogCookieState } from './Posthog'
 
 const COOKIE_STATE_KEY = 'cookie-management-state'
 
 export interface CookieState {
   posthog: PostHogCookieState
-  googleTag: 'accepted' | 'refused'
+  googleTag: GoogleTagCookieState
 }
 
 const DEFAULT_COOKIE_STATE: CookieState = {
@@ -13,19 +14,21 @@ const DEFAULT_COOKIE_STATE: CookieState = {
   googleTag: 'refused',
 }
 
-export let COOKIE_STATE: CookieState
-export let IS_COOKIE_STATE_INITIALIZED: boolean
+export let savedCookieState: CookieState
+export let isCookieStateInitialized: boolean
 
 try {
   const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
-  COOKIE_STATE = json ? (JSON.parse(json) as CookieState) : DEFAULT_COOKIE_STATE
-  IS_COOKIE_STATE_INITIALIZED = true
+  savedCookieState = json
+    ? (JSON.parse(json) as CookieState)
+    : DEFAULT_COOKIE_STATE
+  isCookieStateInitialized = true
 } catch {
-  COOKIE_STATE = DEFAULT_COOKIE_STATE
-  IS_COOKIE_STATE_INITIALIZED = false
+  savedCookieState = DEFAULT_COOKIE_STATE
+  isCookieStateInitialized = false
 }
 
 export function saveCookieState(state: CookieState) {
-  COOKIE_STATE = state
+  savedCookieState = state
   safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(state))
 }

@@ -1,10 +1,10 @@
 import posthog, { type PostHogConfig } from 'posthog-js'
-import { COOKIE_STATE } from './cookieLocalStorage'
+import { savedCookieState } from './cookieStateStore'
 
 export type PostHogCookieState = 'accepted' | 'refused' | 'do_not_track'
 
 export class PostHog {
-  private intersectionObserverThreshold = 0.1
+  private INTERSECTION_OBSERVER_THRESHOLD = 0.1
 
   update(cookieState: PostHogCookieState) {
     // Set config to cookieless mode, in case we come from DNT mode on
@@ -24,6 +24,9 @@ export class PostHog {
       case 'do_not_track':
         this.switchDNTOn()
         break
+
+      default:
+        cookieState satisfies never
     }
   }
 
@@ -36,6 +39,8 @@ export class PostHog {
   }
 
   init() {
+    // Only initialized posthog if the document is in the viewport
+    // (in case the app is in a iframe)
     const observer = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
@@ -47,7 +52,7 @@ export class PostHog {
       },
       {
         root: null,
-        threshold: this.intersectionObserverThreshold, // Trigger when at least 10% of the page is visible
+        threshold: this.INTERSECTION_OBSERVER_THRESHOLD,
       }
     )
 
@@ -79,7 +84,7 @@ export class PostHog {
         'poll',
       ], // Enable to set query parameters as properties on the events
     })
-    if (COOKIE_STATE.posthog === 'do_not_track') {
+    if (savedCookieState.posthog === 'do_not_track') {
       this.switchDNTOn()
     }
   }

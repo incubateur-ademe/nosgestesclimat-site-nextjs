@@ -1,16 +1,12 @@
-import Trackers from '@/components/tracking/Trackers'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
-import Script from 'next/script'
-import { Suspense } from 'react'
 import {
   BODY_ID,
   IframeOptionsProvider,
 } from './_components/mainLayoutProviders/IframeOptionsContext'
-import ServerTracking from './_components/scripts/ServerTracking'
 import './globals.css'
 
 export const marianne = localFont({
@@ -63,27 +59,13 @@ export default async function RootLayout({
     <html lang={locale} dir={dir(locale)}>
       <head>
         <link rel="icon" href="/favicon.png" />
-
         <meta
           name="google-site-verification"
           content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
         />
-
         <meta property="twitter:card" content="summary_large_image" />
-
         <link rel="manifest" href="/manifest.webmanifest" />
-
         <meta name="theme-color" content="#4949ba" />
-
-        <Suspense>
-          <Trackers locale={locale} />
-        </Suspense>
-
-        <Script
-          src="https://tally.so/widgets/embed.js"
-          strategy="lazyOnload"></Script>
-
-        <ServerTracking />
       </head>
       <IframeOptionsProvider>
         <body

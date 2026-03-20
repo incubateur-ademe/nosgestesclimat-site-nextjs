@@ -69,27 +69,6 @@ export const getLandingClickNouveautes = (pathname: string) => [
   'Click nouveautés',
 ]
 
-// PostHog specific helpers
-const getLandingClickCTAStartPosthog = (pathname: string) => ({
-  eventName: `Click Passer le test`,
-  properties: { category: getLandingCategory(pathname) },
-})
-
-const getLandingClickCTAResumePosthog = (pathname: string) => ({
-  eventName: `Click Reprendre le test`,
-  properties: { category: getLandingCategory(pathname) },
-})
-
-const getLandingClickCTAResultsPosthog = (pathname: string) => ({
-  eventName: `Click Voir les résultats`,
-  properties: { category: getLandingCategory(pathname) },
-})
-
-const getLandingClickCTARestartPosthog = (pathname: string) => ({
-  eventName: `Click Recommencer`,
-  properties: { category: getLandingCategory(pathname) },
-})
-
 export const getLandingDidYouKnowSliderPosthog = (
   pathname: string,
   value: string

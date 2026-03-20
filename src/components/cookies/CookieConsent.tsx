@@ -1,8 +1,8 @@
 'use client'
 
+import { isCookieStateInitialized } from '../../services/tracking/cookieStateStore'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentForm from './CookieConsentForm'
-import { IS_COOKIE_STATE_INITIALIZED } from './cookieLocalStorage'
 import { useCookieManagement } from './useCookieManagement'
 
 export default function CookieConsent() {
@@ -27,7 +27,7 @@ export default function CookieConsent() {
         <CookieConsentForm
           onCancel={() =>
             setCookieBannerDisplayState(
-              IS_COOKIE_STATE_INITIALIZED ? 'hidden' : 'banner'
+              isCookieStateInitialized ? 'hidden' : 'banner'
             )
           }
           rejectAll={rejectAll}

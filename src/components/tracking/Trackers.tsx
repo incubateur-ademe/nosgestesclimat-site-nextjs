@@ -8,6 +8,5 @@ import type { Locale } from '@/i18nConfig'
  */
 export default function Trackers({ locale }: { locale: Locale }) {
   useTrackLocale({ locale })
-
   return null
 }
