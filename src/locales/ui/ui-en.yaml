@@ -1816,8 +1816,8 @@ entries:
   results.objective.title.lock: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
   results.objective.under4.description.title: You're already under {{secondObjectiveNumber}} tonnes - well done!
   results.objective.under4.description.title.lock: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
-  results.objective.collectiveEffort.stateDescription: Reducing societal services (currently at 1.55T) and decarbonising infrastructures.
-  results.objective.collectiveEffort.stateDescription.lock: Réduction des services sociétaux (aujourd’hui à 1,55T) et décarbonation des infrastructures.
+  results.objective.collectiveEffort.stateDescription: It can accelerate the <1>decarbonisation of</1> society by <3>passing laws</3> and <6>providing targeted financial aid.</6> Through its investments, it can gradually reduce the footprint of societal services.
+  results.objective.collectiveEffort.stateDescription.lock: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et <6>des aides financières ciblées.</6> Grâce à ses investissements, il réduit progressivement l'empreinte des services sociétaux.
   results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of <5>{{secondObjectiveNumber}}T en {{year}}</5>
   results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
   results.objective.reduction.over4.description: Your indicative pace for achieving <2>{{secondObjectiveNumber}}T en {{year}}</2>
@@ -1982,3 +1982,11 @@ entries:
   Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
   results.groupThankYou.description: Find out the results of the group test <2> at{{groupName}}</2>
   results.groupThankYou.description.lock: Découvrez les résultats du test collectif <2>"{{groupName}}"</2>
+  results.objective.collectiveEffort.companies: The companies
+  results.objective.collectiveEffort.companies.lock: Les entreprises
+  results.objective.collectiveEffort.collectivities: Local authorities
+  results.objective.collectiveEffort.collectivities.lock: Les collectivités
+  results.objective.collectiveEffort.companiesDescription: At the instigation of the State and the general public, businesses are working to <2>gradually reduce the footprint of goods and services.</2> In the end, this helps to reduce the footprint of each and every one of our purchases and uses.
+  results.objective.collectiveEffort.companiesDescription.lock: Sous l'impulsion de l'État et des citoyens, les entreprises travaillent à la <2>réduction progressive de l'empreinte des bien et services.</2> Cela contribue à réduire, à la fin, l'empreinte de chacun de nos achats et usages.
+  results.objective.collectiveEffort.collectivitiesDescription: Through their land-use planning choices, they contribute to <2>the adoption of new, more sustainable practices</2> (mobility, housing, food, etc.) at local level.
+  results.objective.collectiveEffort.collectivitiesDescription.lock: Par leurs choix d'aménagements du territoire, elles participent à <2>l'adoption de nouvelles pratiques plus durables</2> (mobilités, logement, alimentation...) à l'échelle locale.
