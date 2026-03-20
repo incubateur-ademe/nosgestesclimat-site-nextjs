@@ -9,17 +9,26 @@ interface Props {
 }
 
 export default function useChoices({ rule, type }: Props) {
-  const { engine } = useEngine()
+  const { safeEvaluate, engine } = useEngine()
   const choices = useMemo<(string | number)[] | null>(() => {
     if (type === 'choices' && engine) {
       const possibilities = engine
         .getPossibilitiesFor(rule?.dottedName as DottedName)
-        ?.map(({ nodeValue }) => nodeValue)
+        ?.filter(({ dottedName: possibilityDottedName }) => {
+          // This removes all the possibilities that evaluate to `non applicable`
+          // We can't use the native publicodes option `filterNotApplicable` from `getPossibilitiesFor` here because we can't enable filterNotApplicablePossibilities engine flag as it raises a "Maximum call stack size exceeded" error difficult to investigate. So we filter manually here.
+          return (
+            safeEvaluate({
+              'est applicable': possibilityDottedName,
+            })?.nodeValue === true
+          )
+        })
+        .map(({ nodeValue }) => nodeValue)
 
       return possibilities ?? []
     }
     return null
-  }, [rule, type, engine])
+  }, [rule, type, engine, safeEvaluate])
 
   return choices
 }

@@ -44,6 +44,11 @@ export function useEngine(rules?: Partial<NGCRules>) {
           }
         },
       },
+      // This flag doesn't work with `checkPossibleValues` strict mode for us as we set some default values to non applicable rules.
+      // Even ignoring strict mode, it still raises a "Maximum call stack size exceeded" error difficult to investigate.
+      // flag: {
+      //   filterNotApplicablePossibilities: true,
+      // },
       strict: {
         situation: false,
         noOrphanRule: false,
