@@ -1,5 +1,6 @@
 import posthog, { type PostHogConfig } from 'posthog-js'
 import { savedCookieState } from './cookieStateStore'
+import { getIframeInformation } from './iframeInformation'
 
 export type PostHogCookieState = 'accepted' | 'refused' | 'do_not_track'
 
@@ -86,6 +87,15 @@ export class PostHog {
     })
     if (savedCookieState.posthog === 'do_not_track') {
       this.switchDNTOn()
+    }
+
+    const iframeInformation = getIframeInformation()
+    if (iframeInformation.iframe) {
+      posthog.register_for_session({
+        iframe: true,
+        $referrer: iframeInformation.referrer,
+        $referring_domain: iframeInformation.referringDomain,
+      })
     }
   }
 }
