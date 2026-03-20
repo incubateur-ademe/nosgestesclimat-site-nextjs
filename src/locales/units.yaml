@@ -1,6 +1,7 @@
 # NOTE: This list should be auto generated
 fr:
   €/an: € / an
+  €/mois: € / mois
   an: an(s)
   h: heure(s)
   heure: heure(s)
@@ -33,6 +34,7 @@ fr:
 # NOTE: Should we use `(s)` for en as well ?
 en:
   €/an: € / year
+  €/mois: € / month
   an: year
   h: hour
   heure: hour
@@ -61,65 +63,3 @@ en:
   oui: yes
   non: no
   Non applicable: inapplicable
-
-es:
-  €/an: € / año
-  an: año
-  h: hora
-  heure: hora
-  h/jour: h/día
-  h/semaine: h/semana
-  h/an: h/año
-  jour: día
-  km/an: km/año
-  km: km
-  litre: liter
-  l/semaine: l/semana
-  mois: mes
-  personne: persona
-  semaine: semana
-  voyageur: viajero
-  l/centkm: l/100km
-  stère: metro cúbico
-  nuit: noche
-  tasse: taza
-  tasse/semaine: taza/semana
-  bouteille: botella
-  climatiseur: aire acondicionado
-  paquet/semaine: paquete/semana
-  m2: m²
-  # NOTE: following entries should be moved in a separated file?
-  oui: sí
-  non: no
-  Non applicable: inaplicable
-# it:
-#   € / an: € / anno
-#   an: anno
-#   année: anno
-#   années: anni
-#   ans: anni
-#   climatiseur: condizionatore
-#   h / an: o / anno
-#   heure: ora
-#   heures: ore
-#   h / semaine: o / settimiana
-#   jour: giorno
-#   jours: giorni
-#   km / an: km / anno
-#   km: km
-#   litre: litro
-#   litres: litri
-#   l / semaine: l / settimiana
-#   mois: mese
-#   personne: persona
-#   personnes: persone
-#   point: punto
-#   points: punti
-#   semaine: settimana
-#   semaines: settimane
-#   voyageurs: viaggiatori
-#   voyageur: viaggiatore
-#   l / centkm: l / cento km
-#   oui: sí
-#   non: no
-#   Non applicable: non applicabile

@@ -1,11 +1,5 @@
-import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
-import { openSubQuestion } from '@/constants/tracking/question'
-import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 import MosaicBooleanInput from './mosaic/mosaicQuestion/MosaicBooleanInput'
 import { useMosaicState } from './mosaic/useMosaicState'
@@ -13,7 +7,6 @@ import { useMosaicState } from './mosaic/useMosaicState'
 interface Props {
   question: DottedName
   questionsOfMosaic: DottedName[]
-  secondaryQuestionsOfMosaic?: DottedName[]
   firstInputId: string
   label: string
 }
@@ -21,7 +14,6 @@ interface Props {
 export default function Mosaic({
   question,
   questionsOfMosaic,
-  secondaryQuestionsOfMosaic = [],
   firstInputId,
   label,
 }: Props) {
@@ -30,17 +22,7 @@ export default function Mosaic({
     question,
   })
 
-  const [isMoreOptionsVisible, setIsMoreOptionsVisible] = useState(
-    secondaryQuestionsOfMosaic.some((question) => values[question])
-  )
   const { t } = useClientTranslation()
-
-  // Remove secondary questions from the list of questions of the mosaic
-  if (secondaryQuestionsOfMosaic.length) {
-    questionsOfMosaic = questionsOfMosaic.filter((q) => {
-      return !secondaryQuestionsOfMosaic.includes(q)
-    })
-  }
 
   return (
     <>
@@ -76,49 +58,6 @@ export default function Mosaic({
           />
         )}
       </fieldset>
-
-      {!!secondaryQuestionsOfMosaic.length && (
-        <div className="w-full">
-          <Button
-            color="link"
-            size="sm"
-            onClick={() => {
-              trackEvent(openSubQuestion({ question }))
-              trackPosthogEvent(
-                captureSubQuestion({
-                  question,
-                  state: isMoreOptionsVisible ? 'closed' : 'opened',
-                })
-              )
-              setIsMoreOptionsVisible(!isMoreOptionsVisible)
-            }}
-            className="mt-2 w-30 md:mt-4">
-            {isMoreOptionsVisible
-              ? t('simulator.mosaic.closeMoreOptions', 'Moins d’options')
-              : t('simulator.mosaic.openMoreOptions', 'Plus d’options')}
-          </Button>{' '}
-          {isMoreOptionsVisible && (
-            <motion.div
-              initial={{ opacity: 0, y: '-1rem' }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}>
-              <fieldset className="mt-2 grid gap-2 md:mt-4 md:grid-cols-2 md:gap-4">
-                {secondaryQuestionsOfMosaic.map((questionOfMosaic, index) => (
-                  <MosaicQuestion
-                    key={questionOfMosaic}
-                    parentMosaic={question}
-                    question={questionOfMosaic}
-                    index={questionsOfMosaic.length + index}
-                    firstInputId={firstInputId}
-                    setValue={setValue}
-                    value={values[questionOfMosaic]}
-                  />
-                ))}
-              </fieldset>
-            </motion.div>
-          )}
-        </div>
-      )}
     </>
   )
 }
