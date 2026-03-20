@@ -8,10 +8,8 @@ import { InvalidInputError } from '../error'
  * One-shot migration: seeds the server session with the client's localStorage
  * userId, in order to keep the simulation associated with the previous userID.
  *
- * This is only allowed once — after that, the server owns the userId
- * and the client can no longer overwrite it.
- *
- * This action is meant to be removed once the migration window is over (once every active user has connect, e.g ).
+ * This action is meant to be removed once the migration window is over
+ * (once every active user has connected, e.g ).
  */
 export async function migrateAnonSession(userId: string) {
   if (!validate(userId)) {
@@ -20,11 +18,6 @@ export async function migrateAnonSession(userId: string) {
 
   const session = await getAnonSession()
 
-  if (session.migrated) {
-    return
-  }
-
   session.userId = userId
-  session.migrated = true
   await session.save()
 }

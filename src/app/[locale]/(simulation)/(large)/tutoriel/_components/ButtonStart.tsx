@@ -26,7 +26,6 @@ export default function ButtonStart({
   const searchParamsString = useSearchParams().toString()
 
   const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
-
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
   // When component renders, user has seen the tutorial

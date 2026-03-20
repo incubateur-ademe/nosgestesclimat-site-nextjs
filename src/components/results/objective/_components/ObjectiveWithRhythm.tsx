@@ -2,7 +2,6 @@ import DownArrow from '@/components/icons/DownArrow'
 import {
   FIRST_OBJECTIVE,
   SECOND_OBJECTIVE,
-  THIRD_OBJECTIVE,
 } from '@/components/results/objective/_constants/objectives'
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
@@ -103,8 +102,6 @@ const getObjectiveData = ({
         ),
       }
     }
-
-    const thirdObjectiveNumber = THIRD_OBJECTIVE.value / 1000
 
     return {
       reductionAmount: 0,

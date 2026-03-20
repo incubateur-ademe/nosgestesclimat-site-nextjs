@@ -50,7 +50,7 @@ export async function getSimulation({
   return updatedSimulation
 }
 
-export async function getUserSimulations() {
+export async function getUserSimulations(simulationFilter?: SimulationFilter) {
   const user = await getUser()
-  return getSimulations({ user })
+  return getSimulations({ user }, simulationFilter)
 }

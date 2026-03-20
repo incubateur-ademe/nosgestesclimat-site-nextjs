@@ -2,11 +2,11 @@ import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { getLocaleForNotFoundOrUnauthorizedPage } from '@/helpers/server/getLocaleForNotFoundOrUnautorizedPage'
+import { getLocaleFromHeaders } from '@/helpers/server/getLocaleForNotFoundOrUnautorizedPage'
 import ErrorPage from './_components/ErrorPage'
 
 export default async function Unauthorized() {
-  const locale = await getLocaleForNotFoundOrUnauthorizedPage()
+  const locale = await getLocaleFromHeaders()
   return (
     <ErrorPage locale={locale}>
       <Trans i18nKey="pages.result.notfound" locale={locale}>

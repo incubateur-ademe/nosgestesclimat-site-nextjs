@@ -1,11 +1,12 @@
 import { TEST_INTRO_TUTO_KEY } from '@/app/[locale]/(simulation)/(large)/tutoriel/_components/ButtonStart'
 import type { CookieState } from '@/components/cookies/useCookieManagement'
-import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import type { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import posthog from 'posthog-js'
 import { getUserSimulations } from '../server/model/simulations'
 import { generateSimulation } from '../simulation/generateSimulation'
+import { postSimulation } from '../simulation/postSimulation'
+import { sanitizeSimulation } from '../simulation/sanitizeSimulation'
 
 // This is the date when we started to save all simulations started on the server
 const LIMIT_DATE = new Date('2025-11-27')
@@ -17,18 +18,15 @@ async function uploadLocalSimulations({
   simulations: Simulation[]
   userId: string
 }) {
-  // Save all simulation started before the LIMIT_DATE
-  const simulationsToSave = simulations.filter(
-    (simulation) => new Date(simulation.date) < LIMIT_DATE
-  )
-
-  await Promise.allSettled(
-    simulationsToSave.map((simulation) =>
-      saveSimulation({
-        simulation,
-        userId,
-      })
-    )
+  return Promise.allSettled(
+    simulations
+      .filter((simulation) => new Date(simulation.date) < LIMIT_DATE)
+      .map((simulation) =>
+        postSimulation({
+          simulation: sanitizeSimulation(simulation),
+          userId,
+        })
+      )
   )
 }
 

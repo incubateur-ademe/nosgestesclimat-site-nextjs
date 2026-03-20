@@ -4,12 +4,6 @@ import { DEFAULT_COOKIE_OPTION } from './authCookie'
 
 export interface AnonSessionData {
   userId?: string
-  /**
-   * Whether the session has been seeded from the client's localStorage userId.
-   * Once `true`, the userId can no longer be overwritten by the client.
-   * Stays `undefined` for new users (no prior localStorage to migrate).
-   */
-  migrated?: boolean
 }
 
 if (!process.env.IRON_SESSION_PASSWORD) {

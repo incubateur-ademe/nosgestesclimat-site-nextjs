@@ -3,6 +3,7 @@ import { headers } from 'next/headers'
 
 /**
  * Retrieves the locale for Next.js special convention pages such as `unauthorized.tsx` or `not-found.tsx`.
+ * This can also be used to retrieve locale in server actions
  *
  * Special convention files do not receive route params, so the locale cannot be extracted
  * from the page props. Instead, we read the locale from the `x-next-i18n-router-locale`
@@ -12,7 +13,7 @@ import { headers } from 'next/headers'
  *
  * @returns A promise that resolves to the current {@link Locale}.
  */
-export async function getLocaleForNotFoundOrUnauthorizedPage(): Promise<Locale> {
+export async function getLocaleFromHeaders(): Promise<Locale> {
   const headersList = await headers()
   const locale = headersList.get('x-next-i18n-router-locale')
   return locale as Locale

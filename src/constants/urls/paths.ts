@@ -2,11 +2,12 @@ export const SIMULATOR_PATH = '/simulateur/bilan'
 export const TUTORIAL_PATH = '/tutoriel'
 export const MON_ESPACE_PATH = '/mon-espace'
 
-export const POLL_START_PATH = '/infos/commencer'
+export const POLL_START_PATH = '/simulateur/commencer'
 
 export const END_PAGE_PATH = '/fin'
 export const END_PAGE_GROUPS_PATH = '/fin/groupes'
 
+export const EMAIL_PAGE_PATH = '/simulateur/email'
 export const DOCUMENTATION_PATH = '/documentation'
 export const CONNEXION_PATH = '/connexion'
 export const INSCRIPTION_PATH = '/inscription'
