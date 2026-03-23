@@ -50,8 +50,11 @@ export default async function CategoriesAccordion({
                 index={index}
                 icon={category.icon}
                 title={
-                  <span className="flex items-center gap-2">
-                    <strong>{category.title}</strong>
+                  <span className="flex items-center gap-2 text-sm sm:text-base">
+                    <strong className="whitespace-nowrap">
+                      {category.title}
+                    </strong>
+
                     <span className="whitespace-nowrap">
                       {category.formattedValue}&nbsp;
                       <span className={metric === 'eau' ? 'capitalize' : ''}>

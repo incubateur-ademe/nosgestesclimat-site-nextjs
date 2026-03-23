@@ -68,9 +68,8 @@ export default function CarbonFootprintResults({
 
       <p className="text-primary-600 mx-auto mb-12 w-2xl max-w-full text-center">
         <Trans locale={locale} i18nKey="carbonResults.objective.description">
-          <strong className="md:block">
-            Vous avez votre rôle à jouer. Nous sommes là pour vous aider.
-          </strong>
+          <strong className="md:block">Vous avez votre rôle à jouer.</strong>{' '}
+          Nous sommes là pour vous aider.
         </Trans>
       </p>
 
