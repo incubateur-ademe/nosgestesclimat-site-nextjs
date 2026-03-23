@@ -13,7 +13,7 @@ async function logoutAndRedirect() {
   'use server'
   await logout()
 
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
   redirect('/')
 }
 
