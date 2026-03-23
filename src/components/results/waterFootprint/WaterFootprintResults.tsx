@@ -49,10 +49,7 @@ export default function WaterFootprintResults({
         metric={eauMetric}
       />
 
-      <WhatIsWaterFootprint
-        situation={simulationResult.situation}
-        locale={locale}
-      />
+      <WhatIsWaterFootprint locale={locale} />
 
       {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
 

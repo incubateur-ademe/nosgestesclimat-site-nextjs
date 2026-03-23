@@ -1425,7 +1425,7 @@ entries:
   simulation.eau.whatIsWaterFootprint.list.domesticWater: "<0>attention</0> : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau"
   simulation.eau.whatIsWaterFootprint.list.electricity: la production de votre <1>électricité</1>
   simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables: les <1>fruits, légumes</1> et <4>céréales</4> que vous mangez
-  simulation.eau.whatIsWaterFootprint.showerWater.average: '*La moyenne française est de {{average}} litres par jour'
+  simulation.eau.whatIsWaterFootprint.showerWater.average: La moyenne française est de <2>{{average}} litres par jour</2>
   simulation.eau.whatIsWaterFootprint.showerWater.description1: L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.
   simulation.eau.whatIsWaterFootprint.showerWater.description2: L’eau domestique peut avoir <1>un impact très fort</1> selon la <4>saison</4> et la <6>localisation</6>.
   simulation.eau.whatIsWaterFootprint.showerWater.mainText: <0>Vous utilisez</0><1><0>{{formattedValue}} {{unit}}</0> <2>d'eau domestique par jour</2></1>

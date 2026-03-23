@@ -1882,8 +1882,8 @@ entries:
   simulation.eau.whatIsWaterFootprint.showerWater.mainText.lock: <0>Vous utilisez</0><1><0>{{formattedValue}} {{unit}}</0> <2>d'eau domestique par jour</2></1>
   simulation.eau.whatIsWaterFootprint.list.electricity: the production of your <1>electricity</1>
   simulation.eau.whatIsWaterFootprint.list.electricity.lock: la production de votre <1>électricité</1>
-  simulation.eau.whatIsWaterFootprint.showerWater.average: '*The French average is {{average}} litres per day'
-  simulation.eau.whatIsWaterFootprint.showerWater.average.lock: '*La moyenne française est de {{average}} litres par jour'
+  simulation.eau.whatIsWaterFootprint.showerWater.average: The French average consumption is <2>{{average}} litres per day</2>
+  simulation.eau.whatIsWaterFootprint.showerWater.average.lock: La moyenne française est de <2>{{average}} litres par jour</2>
   eau.resultats.isItALot.title: Is it a lot?
   eau.resultats.isItALot.title.lock: Est-ce que c'est beaucoup ?
   endPage.waterActions.title: What can we do?
