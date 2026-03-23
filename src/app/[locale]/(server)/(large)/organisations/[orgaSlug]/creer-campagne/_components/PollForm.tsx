@@ -7,6 +7,7 @@ import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
+import { revalidatePath } from 'next/cache'
 import { useRouter } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
@@ -43,11 +44,10 @@ export default function PollForm({ organisation }: Props) {
         expectedNumberOfParticipants: expectedNumberOfParticipants || undefined,
       })
 
-      if (pollCreated) {
-        router.push(
-          `/organisations/${organisation.slug}/campagnes/${pollCreated.slug}`
-        )
-      }
+      revalidatePath(`/organisations/${organisation.slug}`)
+      router.push(
+        `/organisations/${organisation.slug}/campagnes/${pollCreated.slug}`
+      )
     } catch (error) {
       captureException(error)
     }
