@@ -53,7 +53,7 @@ export default async function SimulationPage({
   const user = await getUser()
   const simulations = await getSimulations(
     { user },
-    { onlyCompleted: true, pageSize: 2 }
+    { onlyCompleted: true, pageSize: user.id ? 2 : 1 }
   )
   const [simulation, previousSimulation] = simulations
 
@@ -86,7 +86,7 @@ export default async function SimulationPage({
 
       <CarbonFootprintResults
         simulationResult={simulationResult}
-        hasPreviousSimulation={user.isAuth && !!previousSimulation}
+        hasPreviousSimulation={!!previousSimulation}
         locale={locale as Locale}
         tendency={tendency}
       />
