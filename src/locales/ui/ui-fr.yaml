@@ -1435,7 +1435,7 @@ entries:
   "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": "Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
   simulation.eau.whatIsWaterFootprint.titleInsec: L'empreinte eau, c'est quoi ?
   results.footprintsLinks.ariaLabel: Sélecteur de type d'empreinte
-  carbonResults.objective.description: C'est en combinant tous ces efforts, individuels comme collectifs, que nous atteindrons les 2 tonnes.<1>Vous avez votre rôle à jouer. Nous sommes là pour vous aider.</1>
+  carbonResults.objective.description: <0>Vous avez votre rôle à jouer. Nous sommes là pour vous aider.</0>
   carbonResults.saveBlock.title: Retrouvez facilement vos résultats
   common.alimentation: Alimentation
   common.housing: Logement

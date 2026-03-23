@@ -68,8 +68,6 @@ export default function CarbonFootprintResults({
 
       <p className="text-primary-600 mx-auto mb-12 w-2xl max-w-full text-center">
         <Trans locale={locale} i18nKey="carbonResults.objective.description">
-          C'est en combinant tous ces efforts, individuels comme collectifs, que
-          nous atteindrons les 2 tonnes.
           <strong className="md:block">
             Vous avez votre rôle à jouer. Nous sommes là pour vous aider.
           </strong>

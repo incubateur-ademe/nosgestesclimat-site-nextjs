@@ -1939,8 +1939,8 @@ entries:
   results.actions.linkLabel.lock: Construire mon plan d’action
   common.transport: Transport
   common.transport.lock: Transport
-  carbonResults.objective.description: "It's by combining both individual and collective efforts, that we will reach the 2 tons target.<1>You have a role to play: we're here to help.</1>"
-  carbonResults.objective.description.lock: C'est en combinant tous ces efforts, individuels comme collectifs, que nous atteindrons les 2 tonnes.<1>Vous avez votre rôle à jouer. Nous sommes là pour vous aider.</1>
+  carbonResults.objective.description: <0>You have a role to play. We are here to help you.</0>
+  carbonResults.objective.description.lock: <0>Vous avez votre rôle à jouer. Nous sommes là pour vous aider.</0>
   results.where.title: How are your emissions distributed?
   results.where.title.lock: D’où vient votre résultat ?
   common.housing: Housing
