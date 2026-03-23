@@ -86,7 +86,7 @@ export default async function SimulationPage({
 
       <CarbonFootprintResults
         simulationResult={simulationResult}
-        hasPreviousSimulation={!!previousSimulation}
+        hasPreviousSimulation={user.isAuth && !!previousSimulation}
         locale={locale as Locale}
         tendency={tendency}
       />
