@@ -8,7 +8,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function endTestAction(simulation: Simulation) {
-  revalidatePath('/fin')
+  revalidatePath(END_PAGE_PATH, 'layout')
   const locale = await getLocaleFromHeaders()
   const user = await getUser()
   await saveSimulation({ simulation, userId: user.id, locale })

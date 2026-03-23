@@ -123,7 +123,7 @@ export default function ClientCTAButtons({
   const handleRestartClick = () => {
     if (progression === 1) {
       initSimulation()
-      void revalidatePathAction(END_PAGE_PATH)
+      void revalidatePathAction(END_PAGE_PATH, 'layout')
     }
   }
 
