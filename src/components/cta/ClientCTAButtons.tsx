@@ -74,17 +74,8 @@ export default function ClientCTAButtons({
       return t('Voir mes résultats')
     }
 
-    if (userIsAuthenticatedAndHasMultipleSimulations) {
-      return t('Voir mes résultats')
-    }
-
     return linkToSimulateurPageLabel
-  }, [
-    userIsAuthenticatedAndHasMultipleSimulations,
-    linkToSimulateurPageLabel,
-    t,
-    progression,
-  ])
+  }, [linkToSimulateurPageLabel, t, progression])
 
   const mainButtonHref = useMemo(() => {
     if (
