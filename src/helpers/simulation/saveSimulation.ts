@@ -19,7 +19,9 @@ export async function saveSimulation({
   locale,
   name,
 }: SaveSimulationPayload): Promise<Simulation | undefined> {
-  // We reset the sync timer to avoid saving the simulation in the background
+  // Prevent persona saving on production
+  if (process.env.NEXT_PUBLIC_ENV === 'production' && !!simulation.persona)
+    return
 
   simulation = { ...simulation, model: getModelVersion() }
   const { groups = [], polls = [] } = simulation
