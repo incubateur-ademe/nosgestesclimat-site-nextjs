@@ -38,7 +38,7 @@ export default function CollectiveEfforts({ locale, className }: Props) {
                 i18nKey="results.objective.collectiveEffort.stateDescription">
                 Il peut accélérer la <strong>décarbonation</strong> de la
                 société en <strong>votant des lois</strong> et des{' '}
-                <strong>aides financières ciblées.</strong>, ainsi qu'au travers
+                <strong>aides financières ciblées</strong>, ainsi qu'au travers
                 de ses investissements.
               </Trans>
             </p>
@@ -83,7 +83,7 @@ export default function CollectiveEfforts({ locale, className }: Props) {
                 Sous l'impulsion de l'État et des citoyens, les entreprises
                 travaillent à la{' '}
                 <strong>
-                  réduction progressive de l'empreinte des bien et services
+                  réduction progressive de l'empreinte des biens et services
                 </strong>
                 .
               </Trans>
