@@ -70,12 +70,17 @@ export default function ClientCTAButtons({
 
   const mainButtonLabel = useMemo(() => {
     // Default case for both unauthenticated and authenticated users
-    if (progression === 1) {
+    if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
       return t('Voir mes résultats')
     }
 
     return linkToSimulateurPageLabel
-  }, [linkToSimulateurPageLabel, t, progression])
+  }, [
+    linkToSimulateurPageLabel,
+    t,
+    progression,
+    userIsAuthenticatedAndHasMultipleSimulations,
+  ])
 
   const mainButtonHref = useMemo(() => {
     if (
