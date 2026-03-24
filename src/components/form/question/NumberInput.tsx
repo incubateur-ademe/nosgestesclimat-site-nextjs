@@ -36,6 +36,7 @@ export default function NumberInput({
       placeholder={value === undefined ? placeholder : ''}
       handleValueChange={onChange}
       id={id}
+      unit={unit}
       {...props}
     />
   )
