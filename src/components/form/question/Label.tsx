@@ -73,7 +73,7 @@ export default function Label({
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
             data-testid="question-label">
-            {label}
+            <Markdown>{label}</Markdown>
           </h1>
         ) : headingLevel === 2 ? (
           <h2
@@ -85,9 +85,9 @@ export default function Label({
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
             data-testid="question-label">
-            {label}
+            <Markdown>{label}</Markdown>
           </h2>
-        ) : headingLevel === 3 ? (
+        ) : (
           <h3
             className={twMerge(
               'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
@@ -97,10 +97,8 @@ export default function Label({
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
             data-testid="question-label">
-            {label}
+            <Markdown>{label}</Markdown>
           </h3>
-        ) : (
-          ''
         )}
         {description && !MUST_SHOW_DESCRIPTION.has(question) ? (
           <Button

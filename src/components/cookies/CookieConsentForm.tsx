@@ -157,6 +157,46 @@ export default function CookieConsentForm({
                   être désactivés.
                 </Trans>
               </p>
+
+              <details className="bg-primary-50 rounded-xl p-4">
+                <summary className="cursor-pointer">
+                  <Trans i18nKey="cookies.management.required.detail.title">
+                    Voir le détail des cookies
+                  </Trans>
+                </summary>
+
+                <ul className="mt-2 flex flex-col gap-2 pl-4">
+                  <li>
+                    <pre className="block font-bold">NEXT_LOCALE</pre>
+                    <Trans i18nKey="cookies.management.required.detail.description1">
+                      Choix de langue
+                    </Trans>
+                  </li>
+
+                  <li>
+                    <pre className="block font-bold">ngcjwt2</pre>
+                    <Trans i18nKey="cookies.management.required.detail.description2">
+                      Authentification sur l'espace personnel
+                    </Trans>
+                  </li>
+
+                  <li>
+                    <pre className="block font-bold">nosgestesclimat::v3</pre>
+                    <Trans i18nKey="cookies.management.required.detail.description3">
+                      Sauvegarde des données de simulation en local
+                    </Trans>
+                  </li>
+
+                  <li>
+                    <pre className="block font-bold">
+                      cookie-management-state
+                    </pre>
+                    <Trans i18nKey="cookies.management.required.detail.description4">
+                      Sauvegarde des préférences de cookie (cette banière)
+                    </Trans>
+                  </li>
+                </ul>
+              </details>
             </fieldset>
 
             <CookieFieldset
