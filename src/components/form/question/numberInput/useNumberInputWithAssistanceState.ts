@@ -7,34 +7,28 @@ import type { Evaluation } from 'publicodes'
 import { useEffect, useState } from 'react'
 import type { NumberFormatValues, SourceInfo } from 'react-number-format'
 
-export interface NumberInputStateProps {
+export interface NumberInputWithAssistanceStateProps {
   question: DottedName
-  unit?: string
-  value?: Evaluation<number>
-  placeholder?: string
+  unit: string
+  value: Evaluation<number>
+  placeholder: string
   setValue: (value: number | undefined) => void
-  // An optional related publicodes rule whose value drives the question's value
-  // (e.g. entering a distance in km to compute a yearly footprint).
-  assistance?: DottedName
+  assistance: DottedName
 }
 
 interface FuncProps {
-  assistance?: DottedName
-  assistanceValue?: Evaluation<PublicodesValue>
+  assistanceValue: Evaluation<PublicodesValue>
   questionValue: Evaluation<number>
   assistanceUnit?: string
-  defaultUnit?: string
+  defaultUnit: string
 }
 
 const getWhichUnitToShowByDefault = ({
-  assistance,
   assistanceValue,
   questionValue,
   assistanceUnit,
   defaultUnit,
 }: FuncProps) => {
-  if (!assistance) return defaultUnit
-
   if (
     // Question unanswered default case
     (!assistanceValue && !questionValue) ||
@@ -51,14 +45,14 @@ const getWhichUnitToShowByDefault = ({
   return defaultUnit
 }
 
-export const useNumberInputState = ({
+export const useNumberInputWithAssistanceState = ({
   question,
   unit: defaultUnit,
   value,
   placeholder,
   assistance,
   setValue,
-}: NumberInputStateProps) => {
+}: NumberInputWithAssistanceStateProps) => {
   const { engine, addToEngineSituation } = useEngine()
 
   const { updateCurrentSimulation, foldedSteps } = useCurrentSimulation()
@@ -86,14 +80,12 @@ export const useNumberInputState = ({
     parent: assistanceParent,
     unit: assistanceUnit,
     situationValue: situationValueAssistance,
-    // Default to "bilan" to avoid an error
-  } = useRule(assistance ?? 'bilan')
+  } = useRule(assistance)
 
   // Default to the assistance unit when an assistance rule is provided,
   // so the input label matches the unit the user is expected to type in.
   const [currentUnit, updateCurrentUnit] = useState(
     getWhichUnitToShowByDefault({
-      assistance,
       assistanceUnit,
       assistanceValue: situationValueAssistance,
       questionValue: currentValues.floatValue,
@@ -160,7 +152,7 @@ export const useNumberInputState = ({
 
     // When the displayed unit matches the assistance unit, route through the
     // sync helper so both rules are updated together.
-    if (assistance && currentUnit === assistanceUnit) {
+    if (currentUnit === assistanceUnit) {
       debouncedSyncQuestionAndAssistance({
         nextValue: values.floatValue,
         assistanceDottedName: assistance,

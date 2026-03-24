@@ -1,68 +1,69 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
+import { useDebounce } from '@/utils/debounce'
 import type { Evaluation } from 'publicodes'
-import { type ComponentProps } from 'react'
-import type { NumericFormat } from 'react-number-format'
-import AssistanceSwitch from './numberInput/AssistanceSwitch'
+import { useEffect, useState, type ComponentProps } from 'react'
+import type { NumberFormatValues, NumericFormat } from 'react-number-format'
 import RawNumberInput from './numberInput/RawNumberInput'
-import {
-  type NumberInputStateProps,
-  useNumberInputState,
-} from './numberInput/useNumberInputState'
 
-interface Props extends NumberInputStateProps {
+interface Props {
+  unit?: string
+  value?: Evaluation<number>
+  placeholder?: string
+  setValue: (value: number | undefined) => void
   id?: string
   className?: string
 }
 
 export default function NumberInput({
-  question,
-  unit: defaultUnit,
+  unit,
   value,
   placeholder,
   setValue,
   className,
   id,
-  assistance,
   ...props
 }: ComponentProps<typeof NumericFormat> & Props) {
-  const {
-    currentUnit,
-    assistanceUnit,
-    updateCurrentUnit,
-    value: currentValue,
-    placeholder: currentPlaceholder,
-    handleValueChange,
-  } = useNumberInputState({
-    question,
-    value,
-    unit: defaultUnit,
-    placeholder,
-    setValue,
-    assistance,
-  })
+  const debouncedSetValue = useDebounce(setValue, 300)
+  const defaultValue: Partial<NumberFormatValues> = {
+    value: undefined,
+    floatValue: value ?? undefined,
+  }
+  const [currentValues, setCurrentValues] = useState(defaultValue)
+
+  const handleValueChange = (values: NumberFormatValues) => {
+    setCurrentValues(values)
+    debouncedSetValue(values.floatValue)
+  }
+
+  // La valeur peut être mise à jour depuis l'exterieur (via les boutons de suggestion par exemple)
+  // Quand ça arrive, la valeur de `value` et `currentValues` sont désynchronisées.
+  // Pour reset le champs avec la valeur passée en prop, on reset `currentValues.value` a undefined.
+  useEffect(() => {
+    if (value !== null && value != currentValues.floatValue) {
+      setCurrentValues(defaultValue)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
 
   return (
-    <>
-      {assistance && currentUnit && defaultUnit && assistanceUnit && (
-        <AssistanceSwitch
-          currentUnit={currentUnit}
-          defaultUnit={defaultUnit}
-          assistanceUnit={assistanceUnit}
-          updateCurrentUnit={updateCurrentUnit}
-        />
-      )}
-
+    <div className="flex items-center justify-start gap-1">
       <RawNumberInput
         className={className}
-        key={currentUnit}
-        value={currentValue as Evaluation<number>}
-        placeholder={currentPlaceholder}
+        value={currentValues.value ?? currentValues.floatValue}
+        placeholder={currentValues.value === undefined ? placeholder : ''}
         handleValueChange={handleValueChange}
-        unit={currentUnit}
         id={id}
         {...props}
       />
-    </>
+
+      {unit ? (
+        <span className="whitespace-nowrap">
+          &nbsp;
+          <Trans>{unit}</Trans>
+        </span>
+      ) : null}
+    </div>
   )
 }
