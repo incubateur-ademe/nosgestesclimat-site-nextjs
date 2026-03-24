@@ -11,7 +11,7 @@ export default async function ResultatsActionsPage({
   const user = await getUser()
   const simulations = await getSimulations(
     { user },
-    { onlyCompleted: true, pageSize: 1 }
+    { completedOnly: true, pageSize: 1 }
   )
   const rules = await getRules({ locale })
 

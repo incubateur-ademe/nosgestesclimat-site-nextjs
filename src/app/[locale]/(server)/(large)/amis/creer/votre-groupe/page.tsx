@@ -31,7 +31,7 @@ export default async function GroupNamePage({
 
   const user = await throwNextError(getAuthUser)
   const [lastSimulation] = await throwNextError(() =>
-    getSimulations({ user }, { onlyCompleted: true, pageSize: 1 })
+    getSimulations({ user }, { completedOnly: true, pageSize: 1 })
   )
   const { t } = await getServerTranslation({ locale })
 

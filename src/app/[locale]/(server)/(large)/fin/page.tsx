@@ -51,9 +51,10 @@ export default async function SimulationPage({
   }
 
   const user = await getUser()
+
   const simulations = await getSimulations(
     { user },
-    { onlyCompleted: true, pageSize: user.isAuth ? 2 : 1 }
+    { completedOnly: true, pageSize: user.isAuth ? 2 : 1 }
   )
   const [simulation, previousSimulation] = simulations
 

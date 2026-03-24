@@ -13,7 +13,7 @@ export default async function Page({ params, searchParams }: DefaultPageProps) {
 
   const simulations = await throwNextError(async () => {
     const user = await getAuthUser()
-    return getSimulations({ user }, { onlyCompleted: true })
+    return getSimulations({ user }, { completedOnly: true })
   })
 
   return (

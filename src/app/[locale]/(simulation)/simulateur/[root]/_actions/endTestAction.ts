@@ -11,7 +11,12 @@ export async function endTestAction(simulation: Simulation) {
   revalidatePath(END_PAGE_PATH, 'layout')
   const locale = await getLocaleFromHeaders()
   const user = await getUser()
-  await saveSimulation({ simulation, userId: user.id, locale })
+  await saveSimulation({
+    // This is a failsafe : Progression should always be of 1 on the final saving
+    simulation: { ...simulation, progression: 1 },
+    userId: user.id,
+    locale,
+  })
   if (!user.isAuth && (simulation.polls?.length || simulation.groups?.length)) {
     redirect(EMAIL_PAGE_PATH)
   }
