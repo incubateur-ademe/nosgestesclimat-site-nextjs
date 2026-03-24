@@ -7,6 +7,7 @@ import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useEngine, useUser } from '@/publicodes-state'
 import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
 import type {
@@ -37,6 +38,8 @@ export default function Persona({ persona, personaDottedName }: Props) {
     categories,
     subcategories,
   } = useEngine()
+
+  const { saveSimulation } = useSaveSimulation()
 
   const [isPending, startTransition] = useTransition()
 
@@ -74,28 +77,29 @@ export default function Persona({ persona, personaDottedName }: Props) {
 
               const engineCopy = pristineEngine?.shallowCopy() ?? null
 
-              initSimulation(
-                generateSimulation({
-                  situation: fixedSituation,
-                  persona: personaDottedName,
-                  computedResults: getComputedResults({
-                    metrics,
-                    categories,
-                    subcategories,
-                    getNumericValue,
-                  }),
-                  foldedSteps: getPersonaFoldedSteps({
-                    situation: persona.situation,
-                    everyMosaicChildrenWithParent,
-                    everyQuestions,
-                    everyRules,
-                    engine: engineCopy,
-                    safeGetRule,
-                    safeEvaluate,
-                  }) as DottedName[],
-                  progression: 1,
-                })
-              )
+              const simulation = generateSimulation({
+                situation: fixedSituation,
+                persona: personaDottedName,
+                computedResults: getComputedResults({
+                  metrics,
+                  categories,
+                  subcategories,
+                  getNumericValue,
+                }),
+                foldedSteps: getPersonaFoldedSteps({
+                  situation: persona.situation,
+                  everyMosaicChildrenWithParent,
+                  everyQuestions,
+                  everyRules,
+                  engine: engineCopy,
+                  safeGetRule,
+                  safeEvaluate,
+                }) as DottedName[],
+                progression: 1,
+              })
+
+              initSimulation(simulation)
+              saveSimulation({ simulation })
               hideTutorial('testIntro')
               router.refresh()
             })
