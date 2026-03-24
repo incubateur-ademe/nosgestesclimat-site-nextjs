@@ -58,6 +58,7 @@ export default function NumberInputWithAssistance({
         placeholder={currentPlaceholder}
         handleValueChange={handleValueChange}
         unit={currentUnit}
+        id={id}
         {...props}
       />
     </>

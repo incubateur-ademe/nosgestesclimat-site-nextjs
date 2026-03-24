@@ -143,7 +143,6 @@ export default function Question({
                   id={DEFAULT_FOCUS_ELEMENT_ID}
                   aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
                   aria-labelledby="question-label"
-                  assistance={assistance}
                 />
               ))}
 

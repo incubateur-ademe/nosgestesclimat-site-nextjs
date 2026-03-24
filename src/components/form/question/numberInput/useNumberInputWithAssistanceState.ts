@@ -4,8 +4,9 @@ import type { PublicodesValue } from '@/publicodes-state/types'
 import { useDebounce } from '@/utils/debounce'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { NumberFormatValues, SourceInfo } from 'react-number-format'
+import { useNumberInputState } from './useNumberInputState'
 
 export interface NumberInputWithAssistanceStateProps {
   question: DottedName
@@ -48,33 +49,21 @@ const getWhichUnitToShowByDefault = ({
 export const useNumberInputWithAssistanceState = ({
   question,
   unit: defaultUnit,
-  value,
+  value: defaultValue,
   placeholder,
   assistance,
   setValue,
 }: NumberInputWithAssistanceStateProps) => {
+  const { value, onChange } = useNumberInputState({
+    value: defaultValue,
+    setValue,
+  })
+
   const { engine, addToEngineSituation } = useEngine()
 
   const { updateCurrentSimulation, foldedSteps } = useCurrentSimulation()
 
   const { situationValue: situationValueQuestion } = useRule(question)
-
-  // `value` (string) drives react-number-format display; `floatValue` is the numeric truth.
-  // Starting with value=undefined lets react-number-format manage its own display string.
-  const defaultValue: Partial<NumberFormatValues> = {
-    value: undefined,
-    floatValue: value ?? undefined,
-  }
-  const [currentValues, setCurrentValues] = useState(defaultValue)
-
-  // Keep local state in sync when the value prop changes externally
-  // (e.g. a suggestion button sets a new value).
-  useEffect(() => {
-    if (value !== null && value != currentValues.floatValue) {
-      setCurrentValues(defaultValue)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value])
 
   const {
     parent: assistanceParent,
@@ -88,19 +77,10 @@ export const useNumberInputWithAssistanceState = ({
     getWhichUnitToShowByDefault({
       assistanceUnit,
       assistanceValue: situationValueAssistance,
-      questionValue: currentValues.floatValue,
+      questionValue: value!,
       defaultUnit,
     })
   )
-
-  const debouncedSetValue = useDebounce((nextValue: number | undefined) => {
-    setCurrentValues({
-      value: undefined,
-      floatValue: nextValue,
-    })
-
-    setValue(nextValue)
-  }, 300)
 
   // Back-propagate the derived value to the parent question rule
   // so both stay consistent in the simulation situation
@@ -161,7 +141,7 @@ export const useNumberInputWithAssistanceState = ({
     }
 
     // Default case
-    debouncedSetValue(values.floatValue)
+    onChange(values)
   }
 
   return {
@@ -171,14 +151,12 @@ export const useNumberInputWithAssistanceState = ({
     value:
       currentUnit && currentUnit === assistanceUnit
         ? situationValueAssistance
-        : (currentValues.value ??
-          currentValues.floatValue ??
-          situationValueQuestion),
+        : (value ?? situationValueQuestion),
     placeholder:
       currentUnit && currentUnit === assistanceUnit
         ? // There is no placeholder value for assistance
           '0'
-        : currentValues.value === undefined
+        : value === undefined
           ? placeholder
           : '',
     handleValueChange,
