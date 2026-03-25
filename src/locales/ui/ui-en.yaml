@@ -1366,8 +1366,8 @@ entries:
   mon-espace.welcome.description.part1.lock: Ici, vous pourrez <1>suivre vos résultats</1>, passer à <4>l’action</4>, et <7>embarquer d’autres personnes</7> avec vous.
   mon-espace.tabs.actions: Actions
   mon-espace.tabs.actions.lock: Actions
-  mon-espace.tabs.groups: Collectives
-  mon-espace.tabs.groups.lock: Collectifs
+  mon-espace.tabs.groups: Groups
+  mon-espace.tabs.groups.lock: Groupes
   mon-espace.instructions.link.text: Taking the test
   mon-espace.instructions.link.text.lock: Passer le test
   mon-espace.instructions.list.item3.part3: find your group tests
@@ -1862,3 +1862,7 @@ entries:
   cookies.management.required.detail.description4: Saving cookie preferences (this banner)
   cookies.management.required.detail.description4.lock: Sauvegarde des préférences de cookie (cette bannière)
   Landing page thématique - Nos Gestes Climat: Thematic landing page - Nos Gestes Climat
+  results.tabs.groups: Group test
+  results.tabs.groups.lock: Test collectif
+  results.tabs.myGroups: Create a group test
+  results.tabs.myGroups.lock: Créer un test collectif

@@ -1126,7 +1126,7 @@ entries:
   mon-espace.noResults.link.text: Je calcule mon empreinte
   mon-espace.settings.title: Paramètres
   mon-espace.tabs.actions: Actions
-  mon-espace.tabs.groups: Collectifs
+  mon-espace.tabs.groups: Groupes
   mon-espace.tabs.results: Résultats
   mon-espace.tabs.settings: Paramètres
   mon-espace.welcome.close-banner: Fermer la bannière de bienvenue
@@ -1401,3 +1401,5 @@ entries:
   cookies.management.required.detail.title: Voir le détail des cookies
   Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   Landing page thématique - Nos Gestes Climat: Landing page thématique - Nos Gestes Climat
+  results.tabs.groups: Test collectif
+  results.tabs.myGroups: Créer un test collectif
