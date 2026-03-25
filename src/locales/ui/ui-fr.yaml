@@ -1401,3 +1401,5 @@ entries:
   cookies.management.required.detail.title: Voir le détail des cookies
   Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   Landing page thématique - Nos Gestes Climat: Landing page thématique - Nos Gestes Climat
+  banner.link.ariaLabel: "{{label}}, s'ouvre dans une nouvelle fenêtre"
+  organisations.askDemo.iframe.title: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
