@@ -1358,16 +1358,16 @@ entries:
   signIn.verificationForm.notReceived.text.lock: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, rising from 23 to 40 m² per person, i.e.
-  mon-espace.groups.title: My "Friends" and "Family" groups
-  mon-espace.groups.title.lock: Mes groupes "Amis" et "Famille"
+  mon-espace.groups.title: My "Friends" and "Family" group tests
+  mon-espace.groups.title.lock: Mes tests collectifs "Amis" et "Famille"
   mon-espace.instructions.list.item1.part2: your footprint results
   mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
   mon-espace.welcome.description.part1: Here you can <1>track your results</1>, take <4>action</4> and <7>get other people on board</7>.
   mon-espace.welcome.description.part1.lock: Ici, vous pourrez <1>suivre vos résultats</1>, passer à <4>l’action</4>, et <7>embarquer d’autres personnes</7> avec vous.
   mon-espace.tabs.actions: Actions
   mon-espace.tabs.actions.lock: Actions
-  mon-espace.tabs.groups: Groups
-  mon-espace.tabs.groups.lock: Groupes
+  mon-espace.tabs.groups: Collectives
+  mon-espace.tabs.groups.lock: Collectifs
   mon-espace.instructions.link.text: Taking the test
   mon-espace.instructions.link.text.lock: Passer le test
   mon-espace.instructions.list.item3.part3: find your group tests
@@ -1426,8 +1426,8 @@ entries:
   mon-espace.evolutionGraph.chartLabel.lock: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
   mon-espace.tabs.myActions: My actions
   mon-espace.tabs.myActions.lock: Mes actions
-  mon-espace.tabs.myGroups: My groups
-  mon-espace.tabs.myGroups.lock: Mes groupes
+  mon-espace.tabs.myGroups: Group tests
+  mon-espace.tabs.myGroups.lock: Tests collectifs
   mon-espace.resultsList.result.viewDetail: See details
   mon-espace.resultsList.result.viewDetail.lock: Voir le détail
   mon-espace.resultsList.title: All my results

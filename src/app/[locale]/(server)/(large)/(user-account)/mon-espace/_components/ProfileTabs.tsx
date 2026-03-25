@@ -114,7 +114,7 @@ export default async function ProfileTab({
           />
           <span className="hidden md:block">
             <Trans locale={locale} i18nKey="mon-espace.tabs.myGroups">
-              Mes groupes
+              Tests collectifs
             </Trans>
           </span>
           <span className="block text-center text-sm md:hidden">

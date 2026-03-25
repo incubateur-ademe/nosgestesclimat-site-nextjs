@@ -14,7 +14,7 @@ export default async function MonEspaceGroupesPage({
     <div className="flex flex-col">
       <h1 className="sr-only mb-6 text-2xl font-bold">
         <Trans i18nKey="mon-espace.groups.title" locale={locale}>
-          Mes groupes
+          Tests collections
         </Trans>
       </h1>
 
