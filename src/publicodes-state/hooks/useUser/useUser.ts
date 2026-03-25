@@ -41,6 +41,7 @@ export default function useUser() {
     currentSimulation,
     updateCurrentSimulation,
     updateSimulations,
+    setCurrentSimulationId: wrappedSetCurrentSimulationId,
   } = useSimulations({
     simulations,
     setSimulations,
@@ -122,9 +123,10 @@ export default function useUser() {
      */
     currentSimulationId,
     /**
-     * Set the current simulation ID
+     * Set the current simulation ID (wrapped to keep the internal ref in sync
+     * so that updateCurrentSimulation always targets the correct simulation)
      */
-    setCurrentSimulationId,
+    setCurrentSimulationId: wrappedSetCurrentSimulationId,
     /**
      * Update the current simulation
      */

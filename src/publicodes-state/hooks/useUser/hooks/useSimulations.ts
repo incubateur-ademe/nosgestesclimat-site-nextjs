@@ -11,7 +11,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import type { Migration } from '@publicodes/tools/migration'
 import type { Dispatch, SetStateAction } from 'react'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import type { Simulation, UpdateCurrentSimulationProps } from '../../../types'
 
 interface Props {
@@ -26,9 +26,33 @@ export default function useSimulations({
   simulations,
   setSimulations,
   currentSimulationId,
-  setCurrentSimulationId,
+  setCurrentSimulationId: rawSetCurrentSimulationId,
   migrationInstructions,
 }: Props) {
+  // Keep a ref that always holds the latest currentSimulationId.
+  // The wrapped setCurrentSimulationId below updates it synchronously
+  // (before React re-renders), and this effect is a safety-net for any
+  // change that comes from the parent/context without going through the
+  // wrapper. Because updateCurrentSimulation is only ever called from
+  // effects or event handlers (never during render), the effect-based
+  // sync is sufficient.
+  const currentSimulationIdRef = useRef(currentSimulationId)
+
+  useEffect(() => {
+    currentSimulationIdRef.current = currentSimulationId
+  }, [currentSimulationId])
+
+  // Wrapped setter that also updates the ref synchronously, so any
+  // subsequent call to updateCurrentSimulation (even before re-render)
+  // reads the correct id from the ref.
+  const setCurrentSimulationId = useCallback(
+    (id: string) => {
+      currentSimulationIdRef.current = id
+      rawSetCurrentSimulationId(id)
+    },
+    [rawSetCurrentSimulationId]
+  )
+
   const initSimulation = useCallback(
     ({
       id,
@@ -97,7 +121,12 @@ export default function useSimulations({
     }: UpdateCurrentSimulationProps) => {
       setSimulations((prevSimulations: Simulation[]) =>
         prevSimulations.map((simulation) => {
-          if (simulation.id !== currentSimulationId) return simulation
+          // Read the latest currentSimulationId from the ref instead of
+          // the closure to avoid stale-closure bugs when setSimulations
+          // and setCurrentSimulationId are called separately (e.g. during
+          // reconcileUserOnAuth).
+          if (simulation.id !== currentSimulationIdRef.current)
+            return simulation
 
           const simulationToUpdate = { ...simulation }
 
@@ -242,7 +271,13 @@ export default function useSimulations({
         })
       )
     },
-    [currentSimulationId, setSimulations]
+    // currentSimulationId is intentionally NOT in this dependency array.
+    // We read it from currentSimulationIdRef.current instead, which is
+    // always kept in sync synchronously. This avoids the stale-closure
+    // problem where updateCurrentSimulation captures an outdated
+    // currentSimulationId when setSimulations and setCurrentSimulationId
+    // are called separately (e.g. during auth reconciliation).
+    [setSimulations]
   )
 
   const currentSimulation = useMemo<Readonly<Simulation>>(
@@ -270,6 +305,7 @@ export default function useSimulations({
     currentSimulation,
     updateCurrentSimulation,
     updateSimulations,
+    setCurrentSimulationId,
   }
 }
 
