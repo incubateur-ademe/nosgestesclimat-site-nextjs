@@ -1386,11 +1386,18 @@ entries:
   Passer: Passer
   Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>: Pour conserver vos résultats et les retrouver à l’avenir dans <2>votre espace personnel</2>
   Vérifier mon adresse email: Vérifier mon adresse email
-  error.contactSupport: Si le problème persiste, merci de <1>contacter le support.</1>
-  results.groups.createFirstGroup: <1>Créez votre premier groupe</1> et invitez vos proches pour comparer vos résultats. Cela prend <2>1 minute</2> !
-  results.groups.ranking.laconic: Qui de <1>{{name}}</1> et vous aura la plus faible empreinte ?
-  results.groups.invite.first: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <2>🥲</2>
-  faq.doTheTest.notStarted: Vous n'avez pas encore débuté votre test, <1>lancez-vous !</1>
-  faq.doTheTest.started: Vous avez commencé votre test, <1>cliquez ici pour le reprendre !</1>
-  tutoriel.title: <1>10 minutes</1> chrono pour calculer votre empreinte carbone et eau
-  nos-relais.title: Ils relaient <1>Nos Gestes Climat</1>
+  error.contactSupport: Si le problème persiste, merci de <2>contacter le support.</2>
+  results.groups.createFirstGroup: <0>Créez votre premier groupe</0> et invitez vos proches pour comparer vos résultats. Cela prend <4>1 minute</4> !
+  results.groups.ranking.laconic: Qui de <2>{group.participants[0].name}</2> et vous aura la plus faible empreinte ?
+  results.groups.invite.first: Vous êtes le premier <1>🥳</1> mais vous êtes seul·e… <4>🥲</4>
+  faq.doTheTest.notStarted: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
+  faq.doTheTest.started: Vous avez commencé votre test, <2><0>cliquez ici pour le reprendre !</0></2>
+  tutoriel.title: <0>10 minutes</0> chrono pour calculer votre empreinte carbone et eau
+  nos-relais.title: Ils relaient <2>Nos Gestes Climat</2>
+  cookies.management.required.detail.description1: Choix de langue
+  cookies.management.required.detail.description2: Authentification sur l'espace personnel
+  cookies.management.required.detail.description3: Sauvegarde des données de simulation en local
+  cookies.management.required.detail.description4: Sauvegarde des préférences de cookie (cette bannière)
+  cookies.management.required.detail.title: Voir le détail des cookies
+  Découvrez des conseils pratiques pour réduire votre empreinte écologique.: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  Landing page thématique - Nos Gestes Climat: Landing page thématique - Nos Gestes Climat
