@@ -51,9 +51,7 @@ export default async function CategoriesAccordion({
                 icon={category.icon}
                 title={
                   <span className="flex items-center gap-2 text-sm sm:text-base">
-                    <strong className="whitespace-nowrap">
-                      {category.title}
-                    </strong>
+                    <strong className="text-left">{category.title}</strong>
 
                     <span className="whitespace-nowrap">
                       {category.formattedValue}&nbsp;
