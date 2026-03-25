@@ -1366,8 +1366,8 @@ entries:
   mon-espace.welcome.description.part1.lock: Ici, vous pourrez <1>suivre vos résultats</1>, passer à <4>l’action</4>, et <7>embarquer d’autres personnes</7> avec vous.
   mon-espace.tabs.actions: Actions
   mon-espace.tabs.actions.lock: Actions
-  mon-espace.tabs.groups: Groups
-  mon-espace.tabs.groups.lock: Groupes
+  mon-espace.tabs.groups: Collectives
+  mon-espace.tabs.groups.lock: Collectifs
   mon-espace.instructions.link.text: Taking the test
   mon-espace.instructions.link.text.lock: Passer le test
   mon-espace.instructions.list.item3.part3: find your group tests
@@ -1866,3 +1866,7 @@ entries:
   results.tabs.groups.lock: Test collectif
   results.tabs.myGroups: Create a group test
   results.tabs.myGroups.lock: Créer un test collectif
+  banner.link.ariaLabel: '{{label}}opens in a new window'
+  banner.link.ariaLabel.lock: "{{label}}, s'ouvre dans une nouvelle fenêtre"
+  organisations.askDemo.iframe.title: Form - book an appointment for a demo of our functions for organisations
+  organisations.askDemo.iframe.title.lock: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
