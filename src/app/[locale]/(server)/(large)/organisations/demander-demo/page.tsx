@@ -2,7 +2,6 @@ import OrganisationFilAriane from '@/components/layout/FilAriane'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import CalendlyWidget from './_components/CalendlyWidget'
 
 /* global PageProps */
 
@@ -40,7 +39,20 @@ export default async function DemanderDemoPage({
               </Trans>
             }
           />
-          <CalendlyWidget />
+          <div className="w-full max-w-full overflow-visible">
+            <iframe
+              loading="lazy"
+              title={t(
+                'organisations.askDemo.iframe.title',
+                'Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations'
+              )}
+              width="110%"
+              height="1000px"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+              className="focus-visible:ring-primary-800 mt-8 -ml-[5%] rounded-lg focus:outline-none focus-visible:ring-1 sm:h-[600px]"
+              src="https://rdv.incubateur.ademe.fr/team/nos-gestes-climat/demo?overlayCalendar=true&month=2026-04&theme=light"
+            />
+          </div>
         </div>
       </section>
     </>
