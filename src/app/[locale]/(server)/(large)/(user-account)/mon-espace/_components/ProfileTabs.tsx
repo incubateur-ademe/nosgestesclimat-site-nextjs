@@ -112,12 +112,12 @@ export default async function ProfileTab({
                 : 'stroke-default'
             )}
           />
-          <span className="hidden md:block">
+          <span className="hidden text-sm sm:block md:text-lg">
             <Trans locale={locale} i18nKey="mon-espace.tabs.myGroups">
               Tests collectifs
             </Trans>
           </span>
-          <span className="block text-center text-sm md:hidden">
+          <span className="block text-center text-sm sm:hidden">
             <Trans locale={locale} i18nKey="mon-espace.tabs.groups">
               Groupes
             </Trans>

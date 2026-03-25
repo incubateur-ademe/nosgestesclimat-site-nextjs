@@ -1862,6 +1862,10 @@ entries:
   cookies.management.required.detail.description4: Saving cookie preferences (this banner)
   cookies.management.required.detail.description4.lock: Sauvegarde des préférences de cookie (cette bannière)
   Landing page thématique - Nos Gestes Climat: Thematic landing page - Nos Gestes Climat
+  results.tabs.groups: Group test
+  results.tabs.groups.lock: Test collectif
+  results.tabs.myGroups: Create a group test
+  results.tabs.myGroups.lock: Créer un test collectif
   banner.link.ariaLabel: '{{label}}opens in a new window'
   banner.link.ariaLabel.lock: "{{label}}, s'ouvre dans une nouvelle fenêtre"
   organisations.askDemo.iframe.title: Form - book an appointment for a demo of our functions for organisations
