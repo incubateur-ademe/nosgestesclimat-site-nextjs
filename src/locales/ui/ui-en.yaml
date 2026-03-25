@@ -1816,8 +1816,8 @@ entries:
   results.objective.title.lock: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
   results.objective.under4.description.title: You're already under {{secondObjectiveNumber}} tonnes - well done!
   results.objective.under4.description.title.lock: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
-  results.objective.collectiveEffort.stateDescription: It can accelerate the <1>decarbonisation</1> of society by <3>passing laws</3> and providing <6>targeted financial aid</6>, as well as through its investments.
-  results.objective.collectiveEffort.stateDescription.lock: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées.</6>, ainsi qu'au travers de ses investissements.
+  results.objective.collectiveEffort.stateDescription: It can accelerate the <1>decarbonisation of</1> society by <3>passing laws</3> and providing <6>targeted financial aid</6>, as well as through its investments.
+  results.objective.collectiveEffort.stateDescription.lock: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées</6>, ainsi qu'au travers de ses investissements.
   results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of <5>{{secondObjectiveNumber}}T en {{year}}</5>
   results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
   results.objective.reduction.over4.description: Your indicative pace for achieving <2>{{secondObjectiveNumber}}T in {{year}}</2>
@@ -1986,7 +1986,8 @@ entries:
   results.objective.collectiveEffort.companies.lock: Les entreprises
   results.objective.collectiveEffort.collectivities: Local authorities
   results.objective.collectiveEffort.collectivities.lock: Les collectivités
-  results.objective.collectiveEffort.companiesDescription: With the push of the State and the general public, businesses are working to <2>gradually reduce the footprint of their goods and services</2>.
-  results.objective.collectiveEffort.companiesDescription.lock: Sous l'impulsion de l'État et des citoyens, les entreprises travaillent à la <2>réduction progressive de l'empreinte des bien et services</2>.
+  results.objective.collectiveEffort.companiesDescription: At the instigation of the state and the general public, businesses are working to <2>gradually reduce the footprint of their goods and services</2>.
+  results.objective.collectiveEffort.companiesDescription.lock: Sous l'impulsion de l'État et des citoyens, les entreprises travaillent à la <2>réduction progressive de l'empreinte des biens et services</2>.
   results.objective.collectiveEffort.collectivitiesDescription: Through their land-use planning choices, they are contributing to <2>the adoption of new, more sustainable practices</2> locally.
   results.objective.collectiveEffort.collectivitiesDescription.lock: Par leurs choix d’aménagements du territoire, elles participent à <2>l'adoption de nouvelles pratiques plus durables</2> à l’échelle locale.
+  Chargement...: Loading...

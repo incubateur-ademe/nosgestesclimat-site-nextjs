@@ -1368,7 +1368,7 @@ entries:
   results.objective.collectiveEffort.society: Toute la société
   results.objective.collectiveEffort.societyDescription: 'Diminution de l’empreinte des biens et des services par l’effort combiné des entreprises et collectivités. '
   results.objective.collectiveEffort.state: L'État français
-  results.objective.collectiveEffort.stateDescription: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées.</6>, ainsi qu'au travers de ses investissements.
+  results.objective.collectiveEffort.stateDescription: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées</6>, ainsi qu'au travers de ses investissements.
   results.objective.collectiveEffort.title: "Important : c'est aussi un effort collectif"
   results.objective.description: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à + 2 °C.
   results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
@@ -1467,4 +1467,5 @@ entries:
   results.objective.collectiveEffort.collectivities: Les collectivités
   results.objective.collectiveEffort.collectivitiesDescription: Par leurs choix d’aménagements du territoire, elles participent à <2>l'adoption de nouvelles pratiques plus durables</2> à l’échelle locale.
   results.objective.collectiveEffort.companies: Les entreprises
-  results.objective.collectiveEffort.companiesDescription: Sous l'impulsion de l'État et des citoyens, les entreprises travaillent à la <2>réduction progressive de l'empreinte des bien et services</2>.
+  results.objective.collectiveEffort.companiesDescription: Sous l'impulsion de l'État et des citoyens, les entreprises travaillent à la <2>réduction progressive de l'empreinte des biens et services</2>.
+  Chargement...: Chargement...
