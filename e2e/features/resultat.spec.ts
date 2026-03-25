@@ -8,7 +8,6 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('Should redirect to the home if no simulation', async ({ page }) => {
-  await page.waitForTimeout(3500)
   await expect(page).toHaveURL('/')
 })
 
