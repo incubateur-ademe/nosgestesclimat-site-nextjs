@@ -45,7 +45,7 @@ export default function ActionsBlock({ locale }: Props) {
             href={`${END_PAGE_PATH}/actions`}
             className="hover:animate-button-lift w-full text-base transition-[transform,box-shadow] duration-200 ease-out sm:w-auto">
             <Trans locale={locale} i18nKey="results.actions.linkLabel">
-              Construire mon plan d’action
+              Découvrir mes actions
             </Trans>
             <DownArrow className="ml-2 w-6 -rotate-90" />
           </ButtonLink>

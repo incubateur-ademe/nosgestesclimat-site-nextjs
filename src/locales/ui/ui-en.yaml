@@ -1935,8 +1935,8 @@ entries:
   results.actions.subtitle.lock: Découvrez des gestes concrets pour y arriver
   carbonResults.saveBlock.title: Find your results easily
   carbonResults.saveBlock.title.lock: Retrouvez facilement vos résultats
-  results.actions.linkLabel: Build my action plan
-  results.actions.linkLabel.lock: Construire mon plan d’action
+  results.actions.linkLabel: Discover my actions
+  results.actions.linkLabel.lock: Découvrir mes actions
   common.transport: Transport
   common.transport.lock: Transport
   carbonResults.objective.description: <0>You have a role to play.</0> We are here to help you.
