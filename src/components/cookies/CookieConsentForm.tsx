@@ -192,7 +192,7 @@ export default function CookieConsentForm({
                       cookie-management-state
                     </pre>
                     <Trans i18nKey="cookies.management.required.detail.description4">
-                      Sauvegarde des préférences de cookie (cette banière)
+                      Sauvegarde des préférences de cookie (cette bannière)
                     </Trans>
                   </li>
                 </ul>
