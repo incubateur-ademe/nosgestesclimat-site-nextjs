@@ -8,7 +8,9 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('Should redirect to the home if no simulation', async ({ page }) => {
-  await expect(page).toHaveURL('/')
+  await expect(page).toHaveURL('/', {
+    timeout: 3000,
+  })
 })
 
 test.describe('Given a user that completed a test without an account', () => {
