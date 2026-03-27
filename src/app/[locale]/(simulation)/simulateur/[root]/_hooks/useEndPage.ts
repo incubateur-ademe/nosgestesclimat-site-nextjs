@@ -10,6 +10,7 @@ export function useEndTest() {
   return {
     isPending,
     endTest: () =>
+      currentSimulation.progression === 1 &&
       startTransition(() => endTestAction(currentSimulation, user.name)),
   }
 }
