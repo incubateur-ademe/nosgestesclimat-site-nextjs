@@ -47,8 +47,8 @@ async function loadServerSimulation({
   } else {
     hideTutorial(TEST_INTRO_TUTO_KEY)
   }
-  updateSimulations(simulations)
   setCurrentSimulationId(simulations[0].id)
+  updateSimulations(simulations)
 }
 
 export async function reconcileUserOnAuth({

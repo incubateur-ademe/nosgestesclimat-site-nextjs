@@ -21,7 +21,14 @@ export function generateSimulation({
   computedResults = metrics.reduce((acc, metric) => {
     acc[metric] = {
       bilan: 0,
-      categories: {},
+      categories: {
+        transport: 0,
+        alimentation: 0,
+        logement: 0,
+        divers: 0,
+        'services sociétaux': 0,
+      },
+      subcategories: {},
     } as ComputedResultsFootprint
     return acc
   }, {} as ComputedResults),

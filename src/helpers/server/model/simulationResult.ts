@@ -1,8 +1,4 @@
-import type {
-  ComputedResults,
-  Simulation,
-  Situation,
-} from '@/publicodes-state/types'
+import type { ComputedResults, Simulation } from '@/publicodes-state/types'
 import type { AppUser } from '../dal/user'
 import { getGroup } from './groups'
 import { getPublicPoll } from './poll'
@@ -10,11 +6,6 @@ import { getPublicPoll } from './poll'
 export interface SimulationResult {
   computedResults: ComputedResults
   group: { name: string; href: string } | null
-  /* @TODO we ship the whole situation because we need some dynamic result
-  computed by the engine for the water result page. Once we have a proper
-  logic for handling funfact, this should be removed, and the `eau domestique`
-  should become a funfact / result, computed server side. */
-  situation: Situation
 }
 
 export async function getSimulationResult({
@@ -53,6 +44,5 @@ export async function getSimulationResult({
   return {
     computedResults: simulation.computedResults,
     group,
-    situation: simulation.situation,
   }
 }

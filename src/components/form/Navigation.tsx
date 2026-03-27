@@ -161,7 +161,7 @@ export default function Navigation({
       remainingQuestions[0] === question) ||
     remainingQuestions?.length === 0
 
-  const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
+  const finalNoNextQuestion = isSingleQuestionEmbeddedFinal || noNextQuestion
 
   const isFirstOrOnlyQuestion =
     noPrevQuestion ||

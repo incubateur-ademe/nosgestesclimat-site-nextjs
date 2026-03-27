@@ -15,7 +15,7 @@ export default async function MonEspaceActionsPage({
   const user = await throwNextError(getAuthUser)
   const simulations = await getSimulations(
     { user },
-    { onlyCompleted: true, pageSize: 1 }
+    { completedOnly: true, pageSize: 1 }
   )
   const rules = await getRules({ locale })
   return (

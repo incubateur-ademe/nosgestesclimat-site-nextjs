@@ -148,7 +148,6 @@ export function getCategoriesDisplayData({
       }),
       ...formatFootprint(value, {
         metric,
-        shouldUseAbbreviation: true,
         t,
       }),
     }
@@ -194,7 +193,6 @@ function getSubcategoriesDisplayData({
       displayPercentage: displayPercentages[i],
       ...formatFootprint(value, {
         metric,
-        shouldUseAbbreviation: true,
         t,
       }),
     }

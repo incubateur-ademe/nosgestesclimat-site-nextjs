@@ -24,7 +24,7 @@ export default function CollectiveEfforts({ locale, className }: Props) {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <article>
             <h3 className="mb-5">
-              <Badge color="blue" className="border-none">
+              <Badge color="purple" className="border-none">
                 <Trans
                   locale={locale}
                   i18nKey="results.objective.collectiveEffort.state">
@@ -37,17 +37,16 @@ export default function CollectiveEfforts({ locale, className }: Props) {
                 locale={locale}
                 i18nKey="results.objective.collectiveEffort.stateDescription">
                 Il peut accélérer la <strong>décarbonation</strong> de la
-                société en <strong>votant des lois</strong> et{' '}
-                <strong>des aides financières ciblées.</strong> Grâce à ses
-                investissements, il réduit progressivement l'empreinte des
-                services sociétaux.
+                société en <strong>votant des lois</strong> et des{' '}
+                <strong>aides financières ciblées</strong>, ainsi qu'au travers
+                de ses investissements.
               </Trans>
             </p>
           </article>
 
           <article>
             <h3 className="mb-5">
-              <Badge color="blue" className="border-none">
+              <Badge color="yellow" className="border-none">
                 <Trans
                   locale={locale}
                   i18nKey="results.objective.collectiveEffort.collectivities">
@@ -59,17 +58,17 @@ export default function CollectiveEfforts({ locale, className }: Props) {
               <Trans
                 locale={locale}
                 i18nKey="results.objective.collectiveEffort.collectivitiesDescription">
-                Par leurs choix d'aménagements du territoire, elles participent
+                Par leurs choix d’aménagements du territoire, elles participent
                 à{' '}
                 <strong>l'adoption de nouvelles pratiques plus durables</strong>{' '}
-                (mobilités, logement, alimentation...) à l'échelle locale.
+                à l’échelle locale.
               </Trans>
             </p>
           </article>
 
           <article>
             <h3 className="mb-5">
-              <Badge color="blue" className="border-none">
+              <Badge color="red" className="border-none">
                 <Trans
                   locale={locale}
                   i18nKey="results.objective.collectiveEffort.companies">
@@ -84,10 +83,9 @@ export default function CollectiveEfforts({ locale, className }: Props) {
                 Sous l'impulsion de l'État et des citoyens, les entreprises
                 travaillent à la{' '}
                 <strong>
-                  réduction progressive de l'empreinte des bien et services.
-                </strong>{' '}
-                Cela contribue à réduire, à la fin, l'empreinte de chacun de nos
-                achats et usages.
+                  réduction progressive de l'empreinte des biens et services
+                </strong>
+                .
               </Trans>
             </p>
           </article>

@@ -1,14 +1,16 @@
 import { expect, test } from '../fixtures'
 import { getCarbonFootprintElem } from '../helpers/carbon-footprint'
 import { skipOnSafari } from '../helpers/skip-on-safari'
-import { COMPLETED_TEST_STATE } from '../state'
+import { COMPLETED_TEST_STATE, USER_ACCOUNT_STATE } from '../state'
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/fin')
 })
 
 test('Should redirect to the home if no simulation', async ({ page }) => {
-  await expect(page).toHaveURL('/')
+  await expect(page).toHaveURL('/', {
+    timeout: 3000,
+  })
 })
 
 test.describe('Given a user that completed a test without an account', () => {
@@ -59,7 +61,8 @@ test.describe('Given a user that completed a test without an account', () => {
   })
 })
 
-test.describe('Given a user that completed the test twice with different results', () => {
+test.describe('Given an authenticated user that completed the test twice with different results', () => {
+  test.use({ storageState: USER_ACCOUNT_STATE })
   test.setTimeout(120_000)
 
   test('should display a tendency indicator on the result page', async ({
@@ -68,11 +71,10 @@ test.describe('Given a user that completed the test twice with different results
     browser,
   }) => {
     skipOnSafari(browser)
-    // 1. First simulation: skip all questions
-    //    (cookie banner is already dismissed via NEW_VISITOR_STATE)
-    await ngcTest.skipAll()
+    // The authenticated user already has a completed simulation saved in their account
     await expect(page).toHaveURL(/\/fin/)
 
+    // 2. Restart and do a second simulation with different answers
     await page.goto('/')
     await page.getByTestId('restart-link').click()
     const differentSituation = {

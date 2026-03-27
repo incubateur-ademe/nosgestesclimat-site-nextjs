@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default async function SimulationPage({
+export default async function FinPage({
   params,
   searchParams,
 }: PageProps<'/[locale]/fin'>) {
@@ -51,10 +51,18 @@ export default async function SimulationPage({
   }
 
   const user = await getUser()
-  const simulations = await getSimulations(
-    { user },
-    { onlyCompleted: true, pageSize: 2 }
-  )
+
+  let simulations
+
+  try {
+    simulations = await getSimulations(
+      { user },
+      { completedOnly: true, pageSize: user.isAuth ? 2 : 1 }
+    )
+  } catch {
+    redirect('/')
+  }
+
   const [simulation, previousSimulation] = simulations
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
