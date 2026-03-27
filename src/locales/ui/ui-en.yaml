@@ -1358,8 +1358,8 @@ entries:
   signIn.verificationForm.notReceived.text.lock: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, rising from 23 to 40 m² per person, i.e.
-  mon-espace.groups.title: My "Friends" and "Family" groups
-  mon-espace.groups.title.lock: Mes groupes "Amis" et "Famille"
+  mon-espace.groups.title: My "Friends" and "Family" group tests
+  mon-espace.groups.title.lock: Mes tests collectifs "Amis" et "Famille"
   mon-espace.instructions.list.item1.part2: your footprint results
   mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
   mon-espace.welcome.description.part1: Here you can <1>track your results</1>, take <4>action</4> and <7>get other people on board</7>.
@@ -1426,8 +1426,8 @@ entries:
   mon-espace.evolutionGraph.chartLabel.lock: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
   mon-espace.tabs.myActions: My actions
   mon-espace.tabs.myActions.lock: Mes actions
-  mon-espace.tabs.myGroups: My groups
-  mon-espace.tabs.myGroups.lock: Mes groupes
+  mon-espace.tabs.myGroups: Group tests
+  mon-espace.tabs.myGroups.lock: Tests collectifs
   mon-espace.resultsList.result.viewDetail: See details
   mon-espace.resultsList.result.viewDetail.lock: Voir le détail
   mon-espace.resultsList.title: All my results
@@ -1991,3 +1991,21 @@ entries:
   results.objective.collectiveEffort.collectivitiesDescription: Through their land-use planning choices, they are contributing to <2>the adoption of new, more sustainable practices</2> locally.
   results.objective.collectiveEffort.collectivitiesDescription.lock: Par leurs choix d’aménagements du territoire, elles participent à <2>l'adoption de nouvelles pratiques plus durables</2> à l’échelle locale.
   Chargement...: Loading...
+  banner.link.ariaLabel: '{{label}}opens in a new window'
+  banner.link.ariaLabel.lock: "{{label}}, s'ouvre dans une nouvelle fenêtre"
+  cookies.management.required.detail.description2: Authentication on the personal space
+  cookies.management.required.detail.description2.lock: Authentification sur l'espace personnel
+  cookies.management.required.detail.description1: Choice of language
+  cookies.management.required.detail.description1.lock: Choix de langue
+  cookies.management.required.detail.description3: Local backup of simulation data
+  cookies.management.required.detail.description3.lock: Sauvegarde des données de simulation en local
+  results.tabs.myGroups: Create a group test
+  results.tabs.myGroups.lock: Créer un test collectif
+  cookies.management.required.detail.title: See details of cookies
+  cookies.management.required.detail.title.lock: Voir le détail des cookies
+  results.tabs.groups: Group test
+  results.tabs.groups.lock: Test collectif
+  cookies.management.required.detail.description4: Saving cookie preferences (this banner)
+  cookies.management.required.detail.description4.lock: Sauvegarde des préférences de cookie (cette bannière)
+  organisations.askDemo.iframe.title: Form - book an appointment for a demo of our functions for organisations
+  organisations.askDemo.iframe.title.lock: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
