@@ -1,3 +1,4 @@
+import type { Situation } from '@/publicodes-state/types'
 import { expect, test } from '../fixtures'
 import { getCarbonFootprintElem } from '../helpers/carbon-footprint'
 import { skipOnSafari } from '../helpers/skip-on-safari'
@@ -27,7 +28,6 @@ test.describe('Given a user that completed a test without an account', () => {
   })
 
   test('should display the carbon footprint', async ({ page }) => {
-    await page.waitForTimeout(3500)
     const carbonFootprintElem = getCarbonFootprintElem(page)
     await expect(carbonFootprintElem).toBeInViewport()
 
@@ -40,7 +40,6 @@ test.describe('Given a user that completed a test without an account', () => {
   test('should display the water footprint on water page', async ({ page }) => {
     // Wait for animation to finish
     await page.getByTestId('water-footprint-link').click()
-    await page.waitForTimeout(3500)
     const waterFootprintElem = page
       .getByText(/[\d]+[\s]?litres/)
       .filter({ visible: true })
@@ -77,8 +76,8 @@ test.describe('Given an authenticated user that completed the test twice with di
     // 2. Restart and do a second simulation with different answers
     await page.goto('/')
     await page.getByTestId('restart-link').click()
-    const differentSituation = {
-      'transport . voiture . utilisateur': "'jamais'",
+    const differentSituation: Situation = {
+      'transport . voiture . km': Math.random() * 10000,
     }
     await ngcTest.answerTest(differentSituation)
     await expect(page).toHaveURL(/\/fin/)
