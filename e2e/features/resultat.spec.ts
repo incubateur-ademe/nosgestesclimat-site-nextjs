@@ -77,7 +77,8 @@ test.describe('Given an authenticated user that completed the test twice with di
     await page.goto('/')
     await page.getByTestId('restart-link').click()
     const differentSituation: Situation = {
-      'transport . voiture . km': Math.random() * 10000,
+      'transport . voiture . utilisateur': "'propriétaire'",
+      'transport . voiture . km': Math.round(Math.random() * 10000),
     }
     await ngcTest.answerTest(differentSituation)
     await expect(page).toHaveURL(/\/fin/)

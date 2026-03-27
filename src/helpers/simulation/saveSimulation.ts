@@ -23,7 +23,8 @@ export async function saveSimulation({
   if (process.env.NEXT_PUBLIC_ENV === 'production' && !!simulation.persona)
     return
 
-  simulation = { ...simulation, model: getModelVersion() }
+  simulation.model = getModelVersion()
+
   const { groups = [], polls = [] } = simulation
 
   if (groups.length) {

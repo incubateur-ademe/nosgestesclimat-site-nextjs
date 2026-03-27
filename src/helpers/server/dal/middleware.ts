@@ -1,5 +1,4 @@
 import { getIronSession } from 'iron-session'
-import { isMatch } from 'micromatch'
 import type { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
 import {
@@ -10,31 +9,16 @@ import {
 
 export const ANON_USER_ID_HEADER = 'x-anon-user-id'
 
-const PATHS_WITHOUT_ANON_SESSION = [
-  `/blog/**`,
-  `/accessibilite`,
-  `/mentions-legales`,
-]
-
 /**
  * Middleware that ensures an encrypted anonymous session cookie exists for
- * all routes except blacklisted ones. The session contains a `userId` (UUID)
- * that identifies the anonymous user.
+ * all routes. The session contains a `userId` (UUID) that identifies the anonymous user.
  *
- * Server actions read the session directly via `getAnonSession()`.
- *
- * Routes in `PATHS_WITHOUT_ANON_SESSION` are passed through without creating
- * a session, but an existing session cookie is still readable from anywhere via
- * `getAnonSession()`.
+ * Server actions must read the session directly via {@link getAnonSession}.
  */
 export async function userMiddleware(
   request: NextRequest,
   next: (req: NextRequest) => NextResponse
 ) {
-  if (isMatch(request.nextUrl.pathname, PATHS_WITHOUT_ANON_SESSION)) {
-    return next(request)
-  }
-
   const session = await getAnonSession()
   if (session.userId) {
     return next(request)

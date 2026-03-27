@@ -16,12 +16,10 @@ export const config: ProxyConfig = {
      * - favicon.ico (favicon file)
      * - manifest.webmanifest (manifest file)
      * - robots.txt (robots file)
-     * - RSC payload (rsc query params in missing field)
      */
     {
       source:
         '/((?!api|_next/static|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos|robots.txt|datashare).*)',
-      missing: [{ type: 'query', key: '_rsc' }],
     },
   ],
 }

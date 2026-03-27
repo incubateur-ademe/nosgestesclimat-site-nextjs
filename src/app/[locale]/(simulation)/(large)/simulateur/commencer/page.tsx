@@ -59,7 +59,7 @@ export default function Commencer() {
         <Button
           onClick={() => {
             trackEvent(infosCommencerClickCtaCommencer)
-            endTestAction({
+            void endTestAction({
               ...currentSimulation,
               polls: [...(polls ?? []), poll],
             })
