@@ -1,6 +1,8 @@
 'use client'
+import { useEndTest } from '@/app/[locale]/(simulation)/simulateur/[root]/_hooks/useEndPage'
 import { END_PAGE_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import Loader from '@/design-system/layout/Loader'
 import { revalidatePathAction } from '@/helpers/server/revalidate'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -98,15 +100,20 @@ export default function ClientCTAButtons({
     isAuthenticated,
   ])
 
+  const { endTest, isPending } = useEndTest()
   if (!isHydrated) {
     return <CTAButtonsPlaceholder className={className} />
   }
-
-  const handleMainButtonClick = () => {
+  const handleMainButtonClick = (e) => {
     if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
       trackEvent(trackingEvents.results)
       if (trackingEvents.resultsPosthog) {
         trackPosthogEvent(trackingEvents.resultsPosthog)
+      }
+      if (!isAuthenticated) {
+        e.preventDefault()
+        // Save on server
+        void endTest()
       }
       return
     }
@@ -145,19 +152,23 @@ export default function ClientCTAButtons({
             className
           )}
           href={mainButtonHref}
+          aria-disabled={isPending}
           data-testid="do-the-test-link"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           onClick={handleMainButtonClick}>
-          <span
-            className={twMerge(
-              isHover
-                ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000 motion-reduce:animate-none'
-                : '',
-              'leading-none'
-            )}>
-            <Trans>{mainButtonLabel}</Trans>
-          </span>
+          <>
+            {isPending && <Loader color="light" size="sm" className="mr-2" />}
+            <span
+              className={twMerge(
+                isHover
+                  ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000 motion-reduce:animate-none'
+                  : '',
+                'leading-none'
+              )}>
+              <Trans>{mainButtonLabel}</Trans>
+            </span>
+          </>
         </ButtonLink>
       </MainButtonContainerTag>
 
