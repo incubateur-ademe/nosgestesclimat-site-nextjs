@@ -1126,7 +1126,7 @@ entries:
   mon-espace.noResults.link.text: Je calcule mon empreinte
   mon-espace.settings.title: Paramètres
   mon-espace.tabs.actions: Actions
-  mon-espace.tabs.groups: Collectifs
+  mon-espace.tabs.groups: Groupes
   mon-espace.tabs.results: Résultats
   mon-espace.tabs.settings: Paramètres
   mon-espace.welcome.close-banner: Fermer la bannière de bienvenue
@@ -1405,3 +1405,6 @@ entries:
   results.tabs.myGroups: Créer un test collectif
   banner.link.ariaLabel: "{{label}}, s'ouvre dans une nouvelle fenêtre"
   organisations.askDemo.iframe.title: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
+  mySpace.resultList.item.delete.mainButton.label: Supprimer
+  mySpace.resultList.item.delete.modal.confirm: Confirmer la suppression
+  mySpace.resultList.item.delete.modal.title: Êtes-vous sûr(e) de vouloir supprimer ce résultat ?
