@@ -8,6 +8,7 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import type { MouseEvent } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -104,7 +105,7 @@ export default function ClientCTAButtons({
   if (!isHydrated) {
     return <CTAButtonsPlaceholder className={className} />
   }
-  const handleMainButtonClick = (e) => {
+  const handleMainButtonClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
       trackEvent(trackingEvents.results)
       if (trackingEvents.resultsPosthog) {
