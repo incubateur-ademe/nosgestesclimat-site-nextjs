@@ -20,7 +20,7 @@ export async function fetchServer<T = unknown>(
     body,
     auth = true,
   }: {
-    method?: 'GET' | 'POST' | 'PUT'
+    method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
     auth?: boolean
     body?: Record<string, unknown>
   } = {}
