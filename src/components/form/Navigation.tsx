@@ -89,11 +89,12 @@ export default function Navigation({
     isNextDisabled = isBelowFloor || isOverCeiling
   }
 
+  // @TODO : fix this, sometimes without this hack, not all remaining questions
+  // are displayed to the user
   const isSingleQuestionEmbeddedFinal =
-    isEmbedded &&
-    ((remainingQuestions.length === 1 && remainingQuestions[0] === question) ||
-      remainingQuestions.length === 0)
+    isEmbedded && remainingQuestions.length === 0
 
+  // Determines if the current question is the last one of the test
   const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
 
   const isFirstOrOnlyQuestion =
