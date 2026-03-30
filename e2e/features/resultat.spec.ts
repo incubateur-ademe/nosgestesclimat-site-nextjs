@@ -1,18 +1,17 @@
+import type { Situation } from '@/publicodes-state/types'
 import { expect, test } from '../fixtures'
-import { TutorialPage } from '../fixtures/tutorial'
 import { getCarbonFootprintElem } from '../helpers/carbon-footprint'
-import {
-  COMPLETED_TEST_STATE,
-  ORGANISATION_ADMIN_STATE,
-  USER_ACCOUNT_STATE,
-} from '../state'
+import { skipOnSafari } from '../helpers/skip-on-safari'
+import { COMPLETED_TEST_STATE, USER_ACCOUNT_STATE } from '../state'
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/fin')
 })
 
-test('Should redirect to the tutorial if no simulation', async ({ page }) => {
-  await expect(page).toHaveURL(TutorialPage.URL)
+test('Should redirect to the home if no simulation', async ({ page }) => {
+  await expect(page).toHaveURL('/', {
+    timeout: 3000,
+  })
 })
 
 test.describe('Given a user that completed a test without an account', () => {
@@ -29,9 +28,6 @@ test.describe('Given a user that completed a test without an account', () => {
   })
 
   test('should display the carbon footprint', async ({ page }) => {
-    // @TODO : two h1 in page
-    await page.locator('h1').first().isVisible()
-    await page.waitForTimeout(7000)
     const carbonFootprintElem = getCarbonFootprintElem(page)
     await expect(carbonFootprintElem).toBeInViewport()
 
@@ -41,11 +37,9 @@ test.describe('Given a user that completed a test without an account', () => {
     expect(carbonFootprintResult).toBeGreaterThan(7)
   })
 
-  test('should display the water footprint', async ({ page }) => {
-    // @TODO : two h1 in page
-    await page.locator('h1').first().isVisible()
+  test('should display the water footprint on water page', async ({ page }) => {
     // Wait for animation to finish
-    await page.waitForTimeout(4000)
+    await page.getByTestId('water-footprint-link').click()
     const waterFootprintElem = page
       .getByText(/[\d]+[\s]?litres/)
       .filter({ visible: true })
@@ -57,36 +51,43 @@ test.describe('Given a user that completed a test without an account', () => {
     )
     expect(waterFootprintResult).toBeGreaterThan(6000)
   })
+
+  test('should not display a tendency indicator on the first simulation', async ({
+    page,
+  }) => {
+    await page.waitForTimeout(3500)
+    await expect(page.getByTestId('tendency-indicator')).not.toBeVisible()
+  })
 })
 
-test.describe('Given a user that saved it simulation', () => {
+test.describe('Given an authenticated user that completed the test twice with different results', () => {
   test.use({ storageState: USER_ACCOUNT_STATE })
-  test('It can go back to its result from the link in the email', async ({
-    page,
-    user,
-  }) => {
-    await page.goto(user.savedSimulationLink)
-    await expect(page).toHaveURL(new RegExp('/fin'))
-    // @TODO There is two h1 on result page
-    await expect(page.locator('h1').first()).toHaveText('Mes empreintes')
-    await page.waitForTimeout(7000)
-    const carbonFootprintElem = getCarbonFootprintElem(page)
-    await expect(carbonFootprintElem).toBeInViewport()
-  })
+  test.setTimeout(120_000)
 
-  test('its simulation should not be accessible from another user', async ({
-    user,
+  test('should display a tendency indicator on the result page', async ({
+    page,
+    ngcTest,
     browser,
   }) => {
-    // @TODO when we have simulation security
-    test.skip()
-    const context = await browser.newContext({
-      storageState: ORGANISATION_ADMIN_STATE,
-    })
-    const page = await context.newPage()
-    await page.goto(user.savedSimulationLink)
-    await page.waitForLoadState()
-    const carbonFootprintElem = getCarbonFootprintElem(page)
-    expect(carbonFootprintElem).not.toBeDefined()
+    skipOnSafari(browser)
+    // The authenticated user already has a completed simulation saved in their account
+    await expect(page).toHaveURL(/\/fin/)
+
+    // 2. Restart and do a second simulation with different answers
+    await page.goto('/')
+    await page.getByTestId('restart-link').click()
+    const differentSituation: Situation = {
+      'transport . voiture . utilisateur': "'propriétaire'",
+      'transport . voiture . km': Math.round(Math.random() * 10000),
+    }
+    await ngcTest.answerTest(differentSituation)
+    await expect(page).toHaveURL(/\/fin/)
+
+    // 3. Verify the tendency indicator is visible
+    const tendencyIndicator = page.getByTestId('tendency-indicator')
+    await expect(tendencyIndicator).toBeVisible()
+
+    // Verify it shows the correct text (increase or decrease)
+    await expect(page.getByText(/votre dernier résultat/)).toBeVisible()
   })
 })

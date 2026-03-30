@@ -1,4 +1,4 @@
-import { CONTAINER_ID } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
+import { BODY_ID } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import {
   trackingIframeInteraction,
   trackingIframeVisit,
@@ -54,10 +54,7 @@ export function useTrackIframe(isIframe: boolean) {
     }
 
     const node =
-      typeof window !== 'undefined'
-        ? // Element located in MainLayoutProviders
-          document.getElementById(CONTAINER_ID)
-        : null
+      typeof window !== 'undefined' ? document.getElementById(BODY_ID) : null
 
     if (!node) return
 

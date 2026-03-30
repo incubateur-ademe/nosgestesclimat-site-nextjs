@@ -4,6 +4,11 @@ import React from 'react'
 import { vi } from 'vitest'
 import { mswServer } from './src/__tests__/server'
 
+// Mock migrateAnonSession server action to avoid IRON_SESSION_PASSWORD requirement
+vi.mock('@/helpers/server/actions/migrateAnonSession', () => ({
+  migrateAnonSession: vi.fn().mockResolvedValue(undefined),
+}))
+
 
 // Mock next-i18n-router/client
 vi.mock('next-i18n-router/client', () => ({
@@ -85,6 +90,7 @@ vi.mock('next/navigation', () => ({
 vi.mock('uuid', () => ({
   v4: vi.fn(() => faker.string.uuid()),
 }))
+
 
 // Mock Sentry
 vi.mock('@sentry/nextjs', () => ({

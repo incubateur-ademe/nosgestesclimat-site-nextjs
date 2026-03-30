@@ -34,6 +34,7 @@ export default async function CategoriesAccordion({
     rules,
     metric,
     locale,
+    t,
   })
 
   return (
@@ -49,13 +50,18 @@ export default async function CategoriesAccordion({
                 index={index}
                 icon={category.icon}
                 title={
-                  <div className="flex items-center gap-2">
-                    <strong>{category.title}</strong>
-                    <span>
-                      {category.formattedValue} {category.unit} -{' '}
+                  <span className="flex items-center gap-2 text-sm sm:text-base">
+                    <strong className="text-left">{category.title}</strong>
+
+                    <span className="whitespace-nowrap">
+                      {category.formattedValue}&nbsp;
+                      <span className={metric === 'eau' ? 'capitalize' : ''}>
+                        {category.unit}
+                      </span>
+                      &nbsp;-&nbsp;
                       {category.displayPercentage}
                     </span>
-                  </div>
+                  </span>
                 }
                 bgBarClassName={category.bgBarClassName}
                 bgIconClassName={category.bgIconClassName}
@@ -72,6 +78,7 @@ export default async function CategoriesAccordion({
                 <SubcategoriesList
                   subcategories={category.subcategories}
                   bgBarClassName={category.bgBarClassName}
+                  metric={metric}
                   t={t}
                 />
               </Card>

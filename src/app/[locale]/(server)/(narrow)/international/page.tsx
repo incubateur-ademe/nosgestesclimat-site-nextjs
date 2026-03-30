@@ -8,9 +8,9 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import type { DefaultPageProps } from '@/types'
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import Image from 'next/image'
 
 export const generateMetadata = getCommonMetadata({
@@ -27,8 +27,6 @@ export default async function International({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const { t } = await getServerTranslation({ locale })
-
-  const supportedRegions = getSupportedRegions()
 
   // TODO: add back full width somehow
   return (

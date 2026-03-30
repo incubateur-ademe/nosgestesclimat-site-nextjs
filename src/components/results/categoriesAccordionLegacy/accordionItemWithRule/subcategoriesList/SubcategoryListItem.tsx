@@ -4,6 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -21,7 +22,9 @@ export default function SubcategoryListItem({
 }: Props) {
   const { numericValue, title, icons } = useRule(subcategory, metric)
 
-  const { formattedValue, unit } = formatFootprint(numericValue, { metric })
+  const { t } = useClientTranslation()
+
+  const { formattedValue, unit } = formatFootprint(numericValue, { metric, t })
   if (formattedValue === '0') return null
 
   const percentageOfCategoryValue =

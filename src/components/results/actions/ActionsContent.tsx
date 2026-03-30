@@ -12,7 +12,6 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import Actions from './actionsContent/Actions'
-import AllerPlusLoin from './actionsContent/AllerPlusLoin'
 import OptionBar from './actionsContent/OptionBar'
 
 export default function ActionsContent() {
@@ -110,8 +109,6 @@ export default function ActionsContent() {
           radical={radical}
           key={`update-key-${category}-${Object.keys(actionChoices).length}`}
         />
-
-        <AllerPlusLoin />
       </CategoryTabs>
     </div>
   )

@@ -2,19 +2,19 @@
 
 import { GROUP_URL } from '@/constants/urls/main'
 import type { Group } from '@/types/groups'
-import { captureException } from '@sentry/nextjs'
-import { fetchServer } from './fetchServer'
-import { getUser } from './user'
+import type { AppUser } from '../dal/user'
+import { fetchServer } from '../fetchServer'
 
-export async function getUserGroups(): Promise<Group[]> {
-  const user = await getUser()
-  if (!user) {
-    return []
-  }
-  try {
-    return await fetchServer<Group[]>(`${GROUP_URL}/${user.id}`)
-  } catch (error) {
-    captureException(error)
-    return []
-  }
+export async function getGroups({ user }: { user: AppUser }): Promise<Group[]> {
+  return fetchServer<Group[]>(`${GROUP_URL}/${user.id}`)
+}
+
+export async function getGroup({
+  groupId,
+  user,
+}: {
+  groupId: string
+  user: AppUser
+}): Promise<Group> {
+  return fetchServer<Group>(`${GROUP_URL}/${user.id}/${groupId}`)
 }

@@ -26,7 +26,6 @@ interface Data {
   firstName: string
   lastName: string
   email: string
-  savedSimulationLink?: string
 }
 
 export class User {
@@ -52,22 +51,6 @@ export class User {
 
   get lastName() {
     return this.data.lastName
-  }
-
-  get savedSimulationLink() {
-    return this.data.savedSimulationLink!
-  }
-
-  async readSavedSimulationEmail() {
-    // User should receive a confirmation email
-    const confirmationEmail = await this.mailbox.lookup(
-      'Retrouvez vos résultats dans votre espace Nos Gestes Climat'
-    )
-    expect(confirmationEmail).toBeDefined()
-    const simulationUrl = new RegExp(`/fin\\?sid=[^\\s]+`)
-    const match = simulationUrl.exec(confirmationEmail!.text!)
-    expect(match).not.toBeNull()
-    this.data.savedSimulationLink = match![0]
   }
 
   async fillEmailAndCompleteVerification() {

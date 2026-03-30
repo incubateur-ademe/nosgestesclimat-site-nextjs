@@ -18,24 +18,24 @@ export default function usePersistentSimulations({
     const parsedStorage = getCurrentStorage()
 
     let initSimulations: Simulation[] = parsedStorage.simulations
-    let initCurrentSimulationId: string | undefined =
-      parsedStorage.currentSimulationId
 
     if (serverSimulations?.length) {
       initSimulations = serverSimulations
-    } else if (!initSimulations || !initCurrentSimulationId) {
+    }
+
+    if (!initSimulations?.length) {
       initSimulations = [generateSimulation()]
     }
 
-    initCurrentSimulationId ??= initSimulations[0].id
+    initSimulations = initSimulations.sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
 
-    const currentSimulationIndex = initSimulations.findIndex(
-      (simulation) => simulation.id === initCurrentSimulationId
-    )
+    const initCurrentSimulationId: string | undefined = initSimulations[0].id
 
     // Migrate the current simulation
-    initSimulations[currentSimulationIndex] = generateSimulation({
-      ...initSimulations[currentSimulationIndex],
+    initSimulations[0] = generateSimulation({
+      ...initSimulations[0],
       migrationInstructions,
     })
 
