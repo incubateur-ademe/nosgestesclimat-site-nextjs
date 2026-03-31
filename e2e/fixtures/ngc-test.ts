@@ -53,9 +53,6 @@ export class NGCTest {
       }
     }
     if (isAnswered) {
-      await this.page
-        .getByTestId('next-question-button')
-        .waitFor({ state: 'visible', timeout: 5000 })
       await this.page.getByTestId('next-question-button').click()
     } else {
       await this.clickOnSkip()
