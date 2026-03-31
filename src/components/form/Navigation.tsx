@@ -214,11 +214,6 @@ export default function Navigation({
       // Hack in order to reset the notifications when the question changes
       resetNotification()
 
-      if (finalNoNextQuestion) {
-        onComplete()
-        return
-      }
-
       if (
         isEmbedded &&
         persistedRemainingQuestionsRef.current &&
@@ -240,12 +235,10 @@ export default function Navigation({
       startTime,
       isMissing,
       resetNotification,
-      finalNoNextQuestion,
       isEmbedded,
       question,
       value,
       handleAnswerQuestion,
-      onComplete,
       setCurrentQuestion,
       gotoNextQuestion,
     ]
@@ -355,7 +348,12 @@ export default function Navigation({
                     'Aller à la question suivante'
                   )
           }
-          onClick={handleGoToNextQuestion}>
+          onClick={(e) => {
+            handleGoToNextQuestion(e)
+            if (finalNoNextQuestion) {
+              onComplete()
+            }
+          }}>
           {finalNoNextQuestion ? (
             <span data-testid="end-test-button">
               <Trans i18nKey="simulator.navigation.nextButton.finished">
