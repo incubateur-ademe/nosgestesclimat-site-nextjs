@@ -135,6 +135,41 @@ export default function Navigation({
     })
   }
 
+  const handleAnswerQuestion = useCallback(() => {
+    if (questionsOfMosaicFromParent.length > 0) {
+      questionsOfMosaicFromParent.forEach((question) => {
+        updateCurrentSimulation({
+          foldedStepToAdd: {
+            foldedStep: question,
+            value: getValue(question),
+            isMosaicChild: true,
+          },
+        })
+      })
+    }
+
+    updateCurrentSimulation({
+      foldedStepToAdd: {
+        foldedStep: question,
+        value: value,
+        isMosaicParent: questionsOfMosaicFromParent.length > 0,
+      },
+    })
+  }, [
+    getValue,
+    question,
+    questionsOfMosaicFromParent,
+    updateCurrentSimulation,
+    value,
+  ])
+
+  useEffect(() => {
+    if (finalNoNextQuestion) {
+      handleAnswerQuestion()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finalNoNextQuestion])
+
   const handleGoToNextQuestion = useCallback(
     (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
@@ -171,35 +206,19 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        if (questionsOfMosaicFromParent?.length > 0) {
-          questionsOfMosaicFromParent.forEach((question) => {
-            updateCurrentSimulation({
-              foldedStepToAdd: {
-                foldedStep: question,
-                value: getValue(question),
-                isMosaicChild: true,
-              },
-            })
-          })
-        }
-
-        updateCurrentSimulation({
-          foldedStepToAdd: {
-            foldedStep: question,
-            value: value,
-            isMosaicParent: questionsOfMosaicFromParent?.length > 0,
-          },
-        })
+        handleAnswerQuestion()
       }
 
       handleMoveFocus()
 
       // Hack in order to reset the notifications when the question changes
       resetNotification()
+
       if (finalNoNextQuestion) {
         onComplete()
         return
       }
+
       if (
         isEmbedded &&
         persistedRemainingQuestionsRef.current &&
@@ -225,9 +244,7 @@ export default function Navigation({
       isEmbedded,
       question,
       value,
-      questionsOfMosaicFromParent,
-      updateCurrentSimulation,
-      getValue,
+      handleAnswerQuestion,
       onComplete,
       setCurrentQuestion,
       gotoNextQuestion,
