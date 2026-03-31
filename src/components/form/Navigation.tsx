@@ -66,10 +66,10 @@ export default function Navigation({
   const { getValue } = useEngine()
 
   // Hack in order to reset the notification when the question changes
-  const hasActiveNotifications = activeNotifications?.length > 0
+  const hasActiveNotifications = activeNotifications.length > 0
   const { setValue: setNotificationValue } = useRule(
     hasActiveNotifications
-      ? activeNotifications?.[activeNotifications.length - 1]
+      ? activeNotifications[activeNotifications.length - 1]
       : question
   )
   const resetNotification = useCallback(() => {
@@ -102,18 +102,16 @@ export default function Navigation({
   const isFirstOrOnlyQuestion =
     noPrevQuestion ||
     (isEmbedded &&
-      (persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
-        persistedRemainingQuestionsRef.current?.indexOf(question) ===
-          (persistedRemainingQuestionsRef.current?.length || 0) - 1))
+      (persistedRemainingQuestionsRef.current.indexOf(question) === 0 ||
+        persistedRemainingQuestionsRef.current.indexOf(question) ===
+          (persistedRemainingQuestionsRef.current.length || 0) - 1))
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
   const [startTime, setStartTime] = useState(() => Date.now())
 
   useEffect(() => {
-    if (question) {
-      setStartTime(Date.now())
-    }
+    setStartTime(Date.now())
   }, [question])
 
   const handleMoveFocus = () => {
@@ -132,7 +130,7 @@ export default function Navigation({
         document.getElementById(`${DEFAULT_FOCUS_ELEMENT_ID}-0`)
 
       if (focusedElement) {
-        focusedElement?.focus()
+        focusedElement.focus()
       }
     })
   }
@@ -216,16 +214,12 @@ export default function Navigation({
       // Hack in order to reset the notifications when the question changes
       resetNotification()
 
-      if (
-        isEmbedded &&
-        persistedRemainingQuestionsRef.current &&
-        persistedRemainingQuestionsRef.current.length > 0
-      ) {
+      if (isEmbedded && persistedRemainingQuestionsRef.current.length > 0) {
         setCurrentQuestion(
-          persistedRemainingQuestionsRef.current?.find(
+          persistedRemainingQuestionsRef.current.find(
             (dottedName, index) =>
               index ===
-              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) +
+              (persistedRemainingQuestionsRef.current.indexOf(question) || 0) +
                 1
           ) ?? null
         )
@@ -268,10 +262,10 @@ export default function Navigation({
 
       if (isEmbedded) {
         setCurrentQuestion(
-          persistedRemainingQuestionsRef.current?.find(
+          persistedRemainingQuestionsRef.current.find(
             (dottedName, index) =>
               index ===
-              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) -
+              (persistedRemainingQuestionsRef.current.indexOf(question) || 0) -
                 1
           ) ?? null
         )
