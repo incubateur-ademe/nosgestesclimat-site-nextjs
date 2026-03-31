@@ -10,6 +10,7 @@ import AccordionItemLegacy from '@/design-system/layout/accordion/AccordionItemL
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
@@ -32,7 +33,9 @@ export default function AccordionItemWithRule({
 
   const { subcategories } = useEngine()
 
-  const { formattedValue, unit } = formatFootprint(numericValue, { metric })
+  const { t } = useClientTranslation()
+
+  const { formattedValue, unit } = formatFootprint(numericValue, { metric, t })
 
   const percentageOfTotalValue = (numericValue / maxValue) * 100
 

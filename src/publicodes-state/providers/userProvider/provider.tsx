@@ -11,6 +11,7 @@ import type {
 } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import UserContext from './context'
+import { useMigrateAnonSession } from './hooks/useMigrateAnonSession'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
 import usePersistentSimulations from './hooks/usePersistentSimulations'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
@@ -22,10 +23,12 @@ interface Props {
    */
   storageKey?: string
   serverSimulations?: Simulation[]
+  serverUserId: string
 }
 export default function UserProvider({
   children,
   serverSimulations,
+  serverUserId,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -41,9 +44,18 @@ export default function UserProvider({
 
   const { user, setUser } = usePersistentUser({
     initialRegion,
+    serverUserId,
   })
 
   const { tutorials, setTutorials } = usePersistentTutorials()
+
+  // One-shot migration: seeds the server's encrypted session with the
+  // client's localStorage userId.  Can be removed once all active users
+  // have visited the site at least once after deployment.
+  useMigrateAnonSession({
+    serverUserId,
+    currentUserId: user.userId,
+  })
 
   const {
     simulations,

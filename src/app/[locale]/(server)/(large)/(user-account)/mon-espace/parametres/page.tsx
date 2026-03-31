@@ -2,23 +2,29 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_SETTINGS_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
+import { throwNextError } from '@/helpers/server/error'
 import {
   getNewsletters,
   getNewsletterSubscriptions,
 } from '@/helpers/server/model/newsletter'
+import { getAuthUser } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ProfileTab from '../_components/ProfileTabs'
-import LocalisationSection from './_components/LocalisationSection'
+import Localisation from './_components/Localisation'
 import NewsletterSettings from './_components/NewsletterSettings'
 import UserEmail from './_components/UserEmail'
 
 export default async function SettingsPage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const [subscriptions, newsletters] = await Promise.all([
-    getNewsletterSubscriptions(),
-    getNewsletters({ locale }),
-  ])
+  const [subscriptions, newsletters, user] = await throwNextError(() =>
+    Promise.all([
+      getNewsletterSubscriptions(),
+      getNewsletters({ locale }),
+      getAuthUser(),
+    ])
+  )
+
   return (
     <div className="flex flex-col">
       <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} locale={locale} />
@@ -45,7 +51,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
         <div className="flex max-w-[720px] flex-col gap-8">
           <QueryClientProviderWrapper>
-            <UserProvider>
+            <UserProvider serverUserId={user.id}>
               <UserEmail />
             </UserProvider>
           </QueryClientProviderWrapper>
@@ -58,10 +64,13 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
           <NewsletterSettings {...{ newsletters, subscriptions }} />
         </div>
       </section>
-
-      <QueryClientProviderWrapper>
-        <LocalisationSection />
-      </QueryClientProviderWrapper>
+      <section className="mt-2">
+        <QueryClientProviderWrapper>
+          <UserProvider serverUserId={user.id}>
+            <Localisation />
+          </UserProvider>
+        </QueryClientProviderWrapper>
+      </section>
     </div>
   )
 }

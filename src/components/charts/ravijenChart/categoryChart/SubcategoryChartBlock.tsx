@@ -2,8 +2,9 @@
 
 import Link from '@/components/Link'
 import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { removePercentageFromString } from '@/utils/removePercentageFromString'
@@ -30,12 +31,14 @@ export default function SubcategoryChartBlock({
   sumSquashedSubcategoriesPercentage,
   shouldAlwaysDisplayValue,
 }: Props) {
+  const { t } = useClientTranslation()
+
   const { numericValue: categoryNumericvalue } = useRule(category)
 
   const subcategoryObject = useRule(subcategory)
   const { title, abbreviatedTitle, numericValue } = subcategoryObject
 
-  const { formattedValue, unit } = formatCarbonFootprint(numericValue)
+  const { formattedValue, unit } = formatFootprint(numericValue, { t })
 
   // Here we compare the value of the current category to the value of the
   // category with the highest value. We then use this ratio to calculate the

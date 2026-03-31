@@ -6,18 +6,18 @@ import type { RegionFromGeolocation, User } from '../../../types'
 
 interface Props {
   initialRegion?: RegionFromGeolocation
-  initialUserId?: string
+  serverUserId: string
 }
 export default function usePersistentUser({
   initialRegion,
-  initialUserId,
+  serverUserId,
 }: Props) {
   // Upon first render, check if there is a user in local storage and format it
   // and save it to the user state
   let localUser: User = {
     region: initialRegion,
     initialRegion: initialRegion,
-    userId: initialUserId || uuid(),
+    userId: serverUserId,
   }
   if (typeof window !== 'undefined') {
     const currentStorage = safeLocalStorage.getItem(STORAGE_KEY)
@@ -51,8 +51,8 @@ export default function usePersistentUser({
           code: '',
           name: '',
         },
-        // Use initialUserId or localUser.userId to maintain consistency across renders
-        userId: initialUserId || localUser.userId,
+        // Use serverUserId or localUser.userId to maintain consistency across renders
+        userId: serverUserId,
       },
       setUser: () => {},
     }

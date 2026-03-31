@@ -1,16 +1,21 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { metrics } from '@/constants/model/metric'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
-import { useDisposableEngine, useEngine, useUser } from '@/publicodes-state'
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useEngine, useUser } from '@/publicodes-state'
+import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
 import type {
   DottedName,
   Persona as PersonaType,
 } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
+import { useTransition } from 'react'
 
 interface Props {
   persona: PersonaType
@@ -22,15 +27,21 @@ export default function Persona({ persona, personaDottedName }: Props) {
 
   const { initSimulation, hideTutorial, currentSimulation } = useUser()
 
-  const { engine } = useDisposableEngine({ situation: {} })
-
   const {
+    pristineEngine,
     everyMosaicChildrenWithParent,
     everyQuestions,
     everyRules,
     safeEvaluate,
     safeGetRule,
+    getNumericValue,
+    categories,
+    subcategories,
   } = useEngine()
+
+  const { saveSimulation } = useSaveSimulation()
+
+  const [isPending, startTransition] = useTransition()
 
   const isCurrentPersonaSelected =
     currentSimulation.persona === personaDottedName
@@ -47,39 +58,57 @@ export default function Persona({ persona, personaDottedName }: Props) {
       <h2>{persona.nom}</h2>
 
       <p className="text-center text-sm">
-        {persona['résumé'] || persona.description}
+        {persona['résumé'] ?? persona.description}
       </p>
 
       {!isCurrentPersonaSelected && (
         <Button
           size="sm"
           className="align-self-end mt-auto"
-          disabled={isCurrentPersonaSelected}
+          disabled={isPending}
           onClick={() => {
-            const fixedSituation = fixSituationWithPartialMosaic({
-              situation: persona.situation,
-              everyMosaicChildrenWithParent,
-              safeGetRule,
-              safeEvaluate,
-            })
-            initSimulation({
-              situation: fixedSituation,
-              persona: personaDottedName,
-              foldedSteps: getPersonaFoldedSteps({
+            startTransition(() => {
+              const fixedSituation = fixSituationWithPartialMosaic({
                 situation: persona.situation,
                 everyMosaicChildrenWithParent,
-                everyQuestions,
-                everyRules,
-                engine,
                 safeGetRule,
                 safeEvaluate,
-              }) as DottedName[],
-              progression: 1,
+              })
+
+              const engineCopy = pristineEngine?.shallowCopy() ?? null
+
+              const simulation = generateSimulation({
+                situation: fixedSituation,
+                persona: personaDottedName,
+                computedResults: getComputedResults({
+                  metrics,
+                  categories,
+                  subcategories,
+                  getNumericValue,
+                }),
+                foldedSteps: getPersonaFoldedSteps({
+                  situation: persona.situation,
+                  everyMosaicChildrenWithParent,
+                  everyQuestions,
+                  everyRules,
+                  engine: engineCopy,
+                  safeGetRule,
+                  safeEvaluate,
+                }) as DottedName[],
+                progression: 1,
+              })
+
+              initSimulation(simulation)
+              saveSimulation({ simulation })
+              hideTutorial('testIntro')
+              router.refresh()
             })
-            hideTutorial('testIntro')
-            router.refresh()
           }}>
-          <Trans>Sélectionner</Trans>
+          {isPending ? (
+            <Trans>Chargement...</Trans>
+          ) : (
+            <Trans>Sélectionner</Trans>
+          )}
         </Button>
       )}
 

@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
+import HideInIframe from './HideInIframe'
 import MySpaceButton from './headerServer/MySpaceButton'
 
 interface Props {
@@ -25,7 +26,9 @@ export default function HeaderServer({ isSticky = true, locale }: Props) {
           <div className="flex h-full items-center">
             <Suspense>
               {/*Suspense for enabling partial prerendering */}
-              <MySpaceButton locale={locale} />
+              <HideInIframe hideIfNotFrenchRegion>
+                <MySpaceButton locale={locale} />
+              </HideInIframe>
             </Suspense>
           </div>
         </div>
