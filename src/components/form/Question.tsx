@@ -23,6 +23,7 @@ import type { Evaluation } from 'publicodes'
 import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
+import DontKnowButton from './question/DontKnowButton'
 import Warning from './question/Warning'
 
 interface Props {
@@ -185,6 +186,8 @@ export default function Question({
           unit={unit}
         />
       )}
+
+      <DontKnowButton question={question} type={type} />
 
       {assistance ? (
         <Assistance question={question} assistance={assistance} />

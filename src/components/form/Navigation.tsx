@@ -26,9 +26,10 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { TFunction } from 'i18next'
 import type { MouseEvent } from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
+import { useStartTime } from './hooks/useStartTime'
 
 interface FuncProps {
   isPending?: boolean
@@ -170,16 +171,6 @@ export default function Navigation({
         persistedRemainingQuestionsRef.current?.indexOf(question) ===
           (persistedRemainingQuestionsRef.current?.length || 0) - 1))
 
-  // Start time of the question
-  //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
-  const [startTime, setStartTime] = useState(() => Date.now())
-
-  useEffect(() => {
-    if (question) {
-      setStartTime(Date.now())
-    }
-  }, [question])
-
   const handleMoveFocus = () => {
     // Focus the question title upon question change
     setTimeout(() => {
@@ -200,6 +191,8 @@ export default function Navigation({
       }
     })
   }
+
+  const startTime = useStartTime(question)
 
   const handleGoToNextQuestion = useCallback(
     (e: KeyboardEvent | MouseEvent) => {
