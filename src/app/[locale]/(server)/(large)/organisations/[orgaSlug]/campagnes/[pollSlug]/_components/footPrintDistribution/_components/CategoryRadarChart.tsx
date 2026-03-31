@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import isMobile from 'is-mobile'
@@ -64,11 +64,13 @@ export default function CategoryRadarChart({
       nameFull: categoryLabelsFull[category],
       user: userValue,
       average: averageValue,
-      userFormatted: formatCarbonFootprint(userValue, {
+      userFormatted: formatFootprint(userValue, {
         maximumFractionDigits: 1,
+        t,
       }),
-      averageFormatted: formatCarbonFootprint(averageValue, {
+      averageFormatted: formatFootprint(averageValue, {
         maximumFractionDigits: 1,
+        t,
       }),
     }
   })
@@ -115,11 +117,13 @@ export default function CategoryRadarChart({
       const averageValue =
         payload.find((p) => p.dataKey === 'average')?.value || 0
 
-      const userFormatted = formatCarbonFootprint(userValue, {
+      const userFormatted = formatFootprint(userValue, {
         maximumFractionDigits: 1,
+        t,
       })
-      const averageFormatted = formatCarbonFootprint(averageValue, {
+      const averageFormatted = formatFootprint(averageValue, {
         maximumFractionDigits: 1,
+        t,
       })
 
       return (
@@ -194,8 +198,9 @@ export default function CategoryRadarChart({
                 dominantBaseline: 'middle',
               }}
               tickFormatter={(value) => {
-                const formatted = formatCarbonFootprint(value, {
+                const formatted = formatFootprint(value, {
                   maximumFractionDigits: 1,
+                  t,
                 })
                 if (!formatted.formattedValue || value === maxValue) return ''
                 return `${formatted.formattedValue} ${formatted.unit ?? ''}`

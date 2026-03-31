@@ -21,12 +21,18 @@ export function generateSimulation({
   computedResults = metrics.reduce((acc, metric) => {
     acc[metric] = {
       bilan: 0,
-      categories: {},
+      categories: {
+        transport: 0,
+        alimentation: 0,
+        logement: 0,
+        divers: 0,
+        'services sociétaux': 0,
+      },
+      subcategories: {},
     } as ComputedResultsFootprint
     return acc
   }, {} as ComputedResults),
   progression = 0,
-  defaultAdditionalQuestionsAnswers,
   polls,
   groups,
   migrationInstructions,
@@ -43,7 +49,6 @@ export function generateSimulation({
     persona,
     computedResults,
     progression,
-    defaultAdditionalQuestionsAnswers,
     polls,
     groups,
   } as Simulation

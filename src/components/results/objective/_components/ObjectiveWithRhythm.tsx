@@ -2,11 +2,11 @@ import DownArrow from '@/components/icons/DownArrow'
 import {
   FIRST_OBJECTIVE,
   SECOND_OBJECTIVE,
-  THIRD_OBJECTIVE,
 } from '@/components/results/objective/_constants/objectives'
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -14,18 +14,22 @@ import { twMerge } from 'tailwind-merge'
 interface Props {
   carbonFootprint: number
   locale: Locale
+  className?: string
+  shouldDisplayBadge?: boolean
 }
 
 const getObjectiveData = ({
   carbonFootprint,
   locale,
+  t,
 }: {
   carbonFootprint: number
   locale: Locale
+  t: (key: string) => string
 }) => {
   const currentYear = new Date().getFullYear()
-
-  const { formattedValue, unit } = formatCarbonFootprint(carbonFootprint, {
+  const { formattedValue, unit } = formatFootprint(carbonFootprint, {
+    t,
     locale,
   })
 
@@ -43,8 +47,8 @@ const getObjectiveData = ({
         bgClassName: 'bg-red-50',
         description: (
           <Trans locale={locale} i18nKey="results.objective.over7.description">
-            Aujourd'hui, vous êtes{' '}
-            <strong>au-dessus de la moyenne nationale </strong>
+            Aujourd’hui, <strong>vous êtes au-dessus des 7 tonnes</strong>,
+            l’objectif intermédiaire que nous proposons pour 2030.
           </Trans>
         ),
         reductionDescription: (
@@ -99,8 +103,6 @@ const getObjectiveData = ({
       }
     }
 
-    const thirdObjectiveNumber = THIRD_OBJECTIVE.value / 1000
-
     return {
       reductionAmount: 0,
       titleClassName: 'text-green-900',
@@ -120,13 +122,10 @@ const getObjectiveData = ({
           <span className="block w-lg max-w-full">
             <Trans
               locale={locale}
-              i18nKey="results.objective.under4.description.body"
-              values={{ thirdObjectiveNumber }}>
-              Avec le travail de l'Etat et toute la société dans les décennies à
+              i18nKey="results.objective.under4.description.body">
+              Avec le travail de l’État et toute la société dans les années à
               venir, votre empreinte devrait naturellement diminuer pour se
-              rapprocher des {{ thirdObjectiveNumber } as unknown as ReactNode}
-              T. Ce qu'il vous reste à faire ? Persévérer dans votre être et…
-              convaincre les autres !
+              rapprocher des 2 tonnes.
             </Trans>
           </span>
         </>
@@ -142,10 +141,13 @@ const getObjectiveData = ({
   }
 }
 
-export default function ObjectiveWithRhythm({
+export default async function ObjectiveWithRhythm({
   locale,
   carbonFootprint,
+  className,
+  shouldDisplayBadge = true,
 }: Props) {
+  const { t } = await getServerTranslation({ locale })
   const {
     displayValue,
     unit,
@@ -157,24 +159,30 @@ export default function ObjectiveWithRhythm({
   } = getObjectiveData({
     carbonFootprint,
     locale,
+    t,
   })
 
   const { formattedValue: reductionDisplayValue, unit: reductionUnit } =
     reductionAmount
-      ? formatCarbonFootprint(reductionAmount, {
+      ? formatFootprint(reductionAmount, {
           locale,
+          t,
         })
       : {}
 
   return (
-    <div className="rounded-lg border border-slate-300 p-6">
-      <div className="mb-2">
-        <Badge className="border-none text-base" color="secondary">
-          <Trans locale={locale} i18nKey="common.vous">
-            Vous
-          </Trans>
-        </Badge>
-      </div>
+    <div
+      className={twMerge('rounded-lg border border-slate-300 p-6', className)}>
+      {shouldDisplayBadge && (
+        <div className="mb-2">
+          <Badge className="border-none text-base" color="secondary">
+            <Trans locale={locale} i18nKey="common.vous">
+              Vous
+            </Trans>
+          </Badge>
+        </div>
+      )}
+
       <div className="flex w-full flex-col gap-4 md:flex-row">
         <div className={twMerge('flex-1 rounded-lg px-6 py-4', bgClassName)}>
           <h3 className={twMerge('mb-2 text-2xl font-bold', titleClassName)}>
@@ -191,7 +199,7 @@ export default function ObjectiveWithRhythm({
           <>
             <DownArrow className="fill-default h-6 w-6 self-center md:-rotate-90" />
 
-            <div className="bg-primary-50 flex-1 rounded-lg px-6 py-4">
+            <div className="bg-primary-100 flex-1 rounded-lg px-6 py-4">
               <p className="mb-2">{reductionDescription}</p>
 
               <p className="text-2xl font-bold">

@@ -11,6 +11,7 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
+import Loader from '@/design-system/layout/Loader'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
@@ -23,21 +24,85 @@ import {
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { TFunction } from 'i18next'
 import type { MouseEvent } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
+
+interface FuncProps {
+  isPending?: boolean
+  finalNoNextQuestion?: boolean
+  isMissing?: boolean
+  t: TFunction<string, string>
+}
+
+const getSubmitButtonText = ({
+  isPending,
+  finalNoNextQuestion,
+  isMissing,
+  t,
+}: FuncProps) => {
+  return {
+    title: isPending
+      ? t(
+          'common.navigation.nextQuestion.loading.label',
+          'Terminer le test et accéder à la page de résultats, chargement en cours'
+        )
+      : finalNoNextQuestion
+        ? t(
+            'common.navigation.nextQuestion.finish.label',
+            'Terminer le test et accéder à la page de résultats'
+          )
+        : isMissing
+          ? t(
+              'common.navigation.nextQuestion.dontKnow.title',
+              'Je ne sais pas, passer et aller à la question suivante'
+            )
+          : t(
+              'common.navigation.nextQuestion.next.label',
+              'Aller à la question suivante'
+            ),
+    label: isPending ? (
+      <span data-testid="end-test-button">
+        <Trans i18nKey="simulator.navigation.nextButton.loading">
+          <Loader color="light" size="sm" className="mr-2" /> Terminer
+        </Trans>
+      </span>
+    ) : finalNoNextQuestion ? (
+      <span data-testid="end-test-button">
+        <Trans i18nKey="simulator.navigation.nextButton.finished">
+          Terminer
+        </Trans>
+      </span>
+    ) : isMissing ? (
+      <span data-testid="skip-question-button">
+        <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
+          Je ne sais pas
+        </Trans>{' '}
+        <span aria-hidden>→</span>
+      </span>
+    ) : (
+      <span data-testid="next-question-button">
+        <Trans i18nKey="simulator.navigation.nextButton.next">Suivant</Trans>{' '}
+        <span aria-hidden>→</span>
+      </span>
+    ),
+  }
+}
 
 export default function Navigation({
   question,
   onComplete = () => '',
   isEmbedded,
   remainingQuestions,
+  isPending,
 }: {
   question: DottedName
   onComplete?: () => void
   isEmbedded?: boolean
   remainingQuestions: DottedName[]
+  isPending?: boolean
 }) {
   const { t } = useClientTranslation()
 
@@ -97,14 +162,14 @@ export default function Navigation({
       remainingQuestions.length === 0)
 
   // Determines if the current question is the last one of the test
-  const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
+  const finalNoNextQuestion = isSingleQuestionEmbeddedFinal || noNextQuestion
 
   const isFirstOrOnlyQuestion =
     noPrevQuestion ||
-    (isEmbedded &&
-      (persistedRemainingQuestionsRef.current.indexOf(question) === 0 ||
-        persistedRemainingQuestionsRef.current.indexOf(question) ===
-          (persistedRemainingQuestionsRef.current.length || 0) - 1))
+    (!!isEmbedded &&
+      (persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
+        persistedRemainingQuestionsRef.current?.indexOf(question) ===
+          (persistedRemainingQuestionsRef.current?.length || 0) - 1))
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
@@ -294,6 +359,13 @@ export default function Navigation({
     gotToNextQuestion: handleGoToNextQuestion,
   })
 
+  const { title, label } = getSubmitButtonText({
+    isPending,
+    finalNoNextQuestion,
+    isMissing,
+    t,
+  })
+
   return (
     <div
       className={twMerge(
@@ -310,7 +382,7 @@ export default function Navigation({
         <Button
           size="md"
           onClick={handleGoToPrevQuestion}
-          disabled={isFirstOrOnlyQuestion}
+          disabled={isFirstOrOnlyQuestion || isPending}
           color="text"
           className={twMerge('px-3')}
           title={t(
@@ -325,52 +397,17 @@ export default function Navigation({
 
         <Button
           color={isMissing ? 'secondary' : 'primary'}
-          disabled={isNextDisabled}
+          disabled={isNextDisabled || isPending}
           className="p-3 text-sm"
           size="md"
-          title={
-            finalNoNextQuestion
-              ? t(
-                  'common.navigation.nextQuestion.finish.label',
-                  'Terminer le test et accéder à la page de résultats'
-                )
-              : isMissing
-                ? t(
-                    'common.navigation.nextQuestion.dontKnow.title',
-                    'Je ne sais pas, passer et aller à la question suivante'
-                  )
-                : t(
-                    'common.navigation.nextQuestion.next.label',
-                    'Aller à la question suivante'
-                  )
-          }
+          title={title}
           onClick={(e) => {
             handleGoToNextQuestion(e)
             if (finalNoNextQuestion) {
               onComplete()
             }
           }}>
-          {finalNoNextQuestion ? (
-            <span data-testid="end-test-button">
-              <Trans i18nKey="simulator.navigation.nextButton.finished">
-                Terminer
-              </Trans>
-            </span>
-          ) : isMissing ? (
-            <span data-testid="skip-question-button">
-              <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
-                Je ne sais pas
-              </Trans>{' '}
-              <span aria-hidden>→</span>
-            </span>
-          ) : (
-            <span data-testid="next-question-button">
-              <Trans i18nKey="simulator.navigation.nextButton.next">
-                Suivant
-              </Trans>{' '}
-              <span aria-hidden>→</span>
-            </span>
-          )}
+          {label}
         </Button>
       </div>
     </div>

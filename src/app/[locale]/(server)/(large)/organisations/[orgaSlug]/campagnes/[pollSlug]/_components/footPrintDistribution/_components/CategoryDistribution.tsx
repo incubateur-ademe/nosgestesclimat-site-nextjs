@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import isMobile from 'is-mobile'
@@ -43,8 +43,9 @@ export default function CategoryDistribution({
   }
 
   const formattedData = Object.entries(categoryValues).map(([key, value]) => {
-    const formattedValue = formatCarbonFootprint(value, {
+    const formattedValue = formatFootprint(value, {
       maximumFractionDigits: 1,
+      t,
     })
     return {
       name: `${categoryLabels[key as Categories]}`,

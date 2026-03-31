@@ -25,7 +25,7 @@ export default function HorizontalBarChartItem({
   const animationDelay = 0.3 + (index ?? 0) * 0.5
 
   return (
-    <div className="w-full rounded-lg border border-slate-400 bg-white p-4 pr-12">
+    <div className="w-full rounded-lg border border-slate-400 bg-white p-3 pr-12 md:p-4">
       <div
         className="mb-1.5 flex justify-between"
         style={{

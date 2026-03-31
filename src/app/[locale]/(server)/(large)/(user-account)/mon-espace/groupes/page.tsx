@@ -1,13 +1,16 @@
+import EmptyState from '@/components/results/groups/EmptyState'
 import Groups from '@/components/results/groups/Groups'
 import Organisation from '@/components/results/groups/Organisation'
-import { getUserGroups } from '@/helpers/server/model/groups'
+import { throwNextError } from '@/helpers/server/error'
+import { getGroups } from '@/helpers/server/model/groups'
 import { getUserOrganisation } from '@/helpers/server/model/organisations'
-import EmptyState from './_components/EmptyState'
+import { getAuthUser } from '@/helpers/server/model/user'
 
 export default async function GroupsDashboard() {
+  const user = await throwNextError(getAuthUser)
   const [organisation, groups] = await Promise.all([
     getUserOrganisation(),
-    getUserGroups(),
+    getGroups({ user }),
   ])
 
   if (!organisation && !groups.length) {

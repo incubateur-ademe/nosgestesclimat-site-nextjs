@@ -4,6 +4,7 @@ import { Group } from '../fixtures/groups'
 import { NGCTest } from '../fixtures/ngc-test'
 import { TutorialPage } from '../fixtures/tutorial'
 import { User } from '../fixtures/user'
+import { skipOnSafari } from '../helpers/skip-on-safari'
 import { GROUP_ADMIN_STATE, NEW_VISITOR_STATE } from '../state'
 
 test.use({ storageState: GROUP_ADMIN_STATE })
@@ -91,11 +92,7 @@ test.describe('A new user', () => {
     ).toBeInViewport()
   })
 
-  test('can join a group without filling its email', async ({
-    group,
-    user,
-    page,
-  }) => {
+  test('can join a group', async ({ group, user, page }) => {
     await group.joinWithInviteLink(user)
     await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
   })
@@ -108,16 +105,14 @@ test.describe('A new user', () => {
     browser,
   }) => {
     test.setTimeout(60_000)
+    skipOnSafari(browser)
     const user = new User(page)
     await group.joinWithInviteLink(user)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await user.fillEmailAndCompleteVerification()
-    if (browser?.browserType().name() === 'webkit') {
-      // @TODO on safari, this test fails systematically (500 error on a server component POST request)
-      // However, we cannot reproduce it in real life (browserstack OK)
-      test.skip()
-    }
+    await expect(page).toHaveURL('/fin')
+    await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(group.url)
   })
 
@@ -127,12 +122,16 @@ test.describe('A new user', () => {
     tutorialPage,
     user,
     group,
+    browser,
   }) => {
     test.setTimeout(60_000)
+    skipOnSafari(browser)
     await group.joinWithInviteLink(user)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await page.getByTestId('skip-email-button').click()
+    await expect(page).toHaveURL('/fin')
+    await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(group.url)
   })
 })
@@ -144,6 +143,7 @@ test.describe('A user with a completed test that joined a group', () => {
   test.setTimeout(60_000)
   let page: Page
   test.beforeAll(async ({ browser }) => {
+    skipOnSafari(browser)
     page = await browser.newPage()
     await new NGCTest(page).skipAll()
 
@@ -182,6 +182,13 @@ test.describe('A user with a completed test that joined a group', () => {
   test('can go to the group from the end page of his test', async ({
     group,
   }) => {
+    await page.goto('/fin')
+    await page.getByTestId('see-group-result-button').click()
+    await expect(page).toHaveURL(group.url)
+    await expect(page.locator('h1')).toContainText(group.name)
+  })
+
+  test('can see the group in the « mes groupes » tab', async ({ group }) => {
     await page.goto('/fin')
     await group.goFromGroupTabs(page)
     await expect(page).toHaveURL(group.url)

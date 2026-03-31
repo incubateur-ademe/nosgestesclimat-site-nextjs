@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
@@ -27,8 +27,9 @@ export default async function ResultsList({ locale, simulations }: Props) {
             (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
           )
           .map((simulation) => {
-            const { formattedValue, unit } = formatCarbonFootprint(
-              simulation.computedResults.carbone.bilan
+            const { formattedValue, unit } = formatFootprint(
+              simulation.computedResults.carbone.bilan,
+              { t }
             )
             return (
               <li key={simulation.id}>

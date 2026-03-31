@@ -15,9 +15,10 @@ export const checkIfDottedNameShouldNotBeIgnored = ({
   const isApplicable =
     safeEvaluate({ 'est applicable': dottedName })?.nodeValue === true
 
-  const isInMissingVariables =
+  const isRawInMissingVariables =
     Object.keys(rawMissingVariables).includes(dottedName)
   // even if the question is disabled, we want to display it if it's a missing variable
   // (this is the case for boolean question whose value is a condition for the parent).
-  return isInMissingVariables || isApplicable
+  // TODO: if a foldedStep is applicable but not in missing variables (not raw), it won't be ignored, even if it should be.
+  return isRawInMissingVariables || isApplicable
 }

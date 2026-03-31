@@ -8,11 +8,12 @@ import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import TextInput from '@/design-system/inputs/TextInput'
-import type { UserServer } from '@/helpers/server/model/user'
+import type { AuthUser } from '@/helpers/server/model/user'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
+import type { Simulation } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
@@ -24,21 +25,21 @@ interface Inputs {
   emoji: string
 }
 
-export default function NameForm({ user }: { user: UserServer | null }) {
+export default function NameForm({
+  user,
+  lastSimulation,
+}: {
+  user: AuthUser
+  lastSimulation: Simulation | undefined
+}) {
   const { t } = useClientTranslation()
-
-  const { user: userFromLocalStorage } = useUser()
 
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useReactHookForm<Inputs>({
-    defaultValues: {
-      administratorName: userFromLocalStorage?.name ?? '',
-    },
-  })
+  } = useReactHookForm<Inputs>()
 
   const {
     mutateAsync: createGroup,
@@ -50,7 +51,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
   const router = useRouter()
 
   const currentSimulation = useCurrentSimulation()
-  const hasCompletedTest = currentSimulation.progression === 1
+
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
   async function onSubmit({ name, emoji, administratorName }: Inputs) {
@@ -60,12 +61,12 @@ export default function NameForm({ user }: { user: UserServer | null }) {
           name: name ?? '',
           emoji: emoji ?? '',
           administrator: {
-            userId: user?.id ?? '',
+            userId: user.id,
             name: administratorName ?? '',
-            email: user?.email ?? '',
+            email: user.email,
           },
-          participants: hasCompletedTest
-            ? [{ simulation: currentSimulation }]
+          participants: lastSimulation
+            ? [{ simulation: lastSimulation }]
             : undefined,
         },
       })
@@ -77,7 +78,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
 
       trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
-      if (hasCompletedTest) {
+      if (lastSimulation) {
         router.push('/amis/resultats?groupId=' + group.id)
       } else {
         router.push(getLinkToSimulateurPage())
@@ -132,7 +133,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
         data-testid="button-validate-create-group"
         className="mt-4 self-start"
         disabled={isPending || isSuccess}>
-        {hasCompletedTest ? (
+        {lastSimulation ? (
           <Trans>Créer le groupe</Trans>
         ) : (
           <Trans>Créer et passer mon test</Trans>
