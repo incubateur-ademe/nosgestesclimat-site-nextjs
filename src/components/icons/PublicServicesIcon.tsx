@@ -11,7 +11,7 @@ export default function PublicServicesIcon({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}>
-      <g clip-path="url(#clip0_376_441)">
+      <g clipPath="url(#clip0_376_441)">
         <path
           fillRule="evenodd"
           clipRule="evenodd"

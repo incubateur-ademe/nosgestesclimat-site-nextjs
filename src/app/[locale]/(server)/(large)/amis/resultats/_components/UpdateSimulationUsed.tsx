@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
@@ -79,7 +79,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
     })
   }
 
-  const { formattedValue, unit } = formatCarbonFootprint(
+  const { formattedValue, unit } = formatFootprint(
     latestSimulation.computedResults.carbone.bilan,
     {
       t,

@@ -2,18 +2,17 @@
 
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransClient'
+import { END_PAGE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 
 export default function Email() {
   const { t } = useClientTranslation()
   const { polls } = useCurrentSimulation()
-  const pollSlug = polls?.[0]
-  const { linkToEndPage } = useEndPage()
+  const pollSlug = polls?.[0]?.slug
   const hasContest =
     pollSlug &&
     (process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS ?? '')
@@ -53,12 +52,12 @@ export default function Email() {
         additionnalButton={
           <ButtonLink
             color="secondary"
-            href={linkToEndPage}
+            href={END_PAGE_PATH}
             data-testid="skip-email-button">
             <Trans>Passer</Trans>
           </ButtonLink>
         }
-        redirectURL={linkToEndPage}
+        redirectURL={END_PAGE_PATH}
       />
     </>
   )

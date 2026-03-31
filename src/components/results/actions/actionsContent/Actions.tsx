@@ -10,6 +10,7 @@ import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
+import AllerPlusLoin from './actions/AllerPlusLoin'
 
 interface Props {
   actions: Action[]
@@ -260,6 +261,8 @@ export default function Actions({
           />
         </div>
       )}
+
+      <AllerPlusLoin />
     </>
   )
 }

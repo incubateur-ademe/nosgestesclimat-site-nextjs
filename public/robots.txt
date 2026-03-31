@@ -1,6 +1,6 @@
 User-Agent: *
 Allow: /
-Disallow: /fin/*
+Disallow: /simulation/*
 Disallow: /actions/*
 Disallow: /infos/*
 Disallow: /partage/*

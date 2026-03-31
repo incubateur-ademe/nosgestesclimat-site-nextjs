@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import OrganisationFilAriane from '@/components/layout/FilAriane'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -40,10 +41,12 @@ export default async function ParametresPage({
             </span>
           }
         />
-        <OrganisationForm
-          slug={organisation.slug}
-          defaultValues={defaultValues}
-        />
+        <QueryClientProviderWrapper>
+          <OrganisationForm
+            slug={organisation.slug}
+            defaultValues={defaultValues}
+          />
+        </QueryClientProviderWrapper>
       </div>
     </>
   )

@@ -29,6 +29,12 @@ interface Props {
   ariaLabelledBy?: string
 }
 
+export const modalClassName =
+  'relative mx-auto mt-auto w-[40rem] max-w-[90vw] rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out md:my-8 md:rounded-xl'
+
+export const overlayClassName =
+  'fixed overflow-auto top-0 left-0 right-0 bottom-0 bg-black/50 duration-500 z-10000 transition-opacity flex flex-col'
+
 export default function Modal({
   closeModal,
   children,
@@ -72,14 +78,14 @@ export default function Modal({
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
       className={twMerge(
-        'relative mx-auto mt-auto w-[40rem] max-w-[90vw] rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out md:my-8',
+        modalClassName,
         isVisible
           ? 'translate-y-0 opacity-100 md:rounded-xl'
           : 'translate-y-12 opacity-0',
         className
       )}
       overlayClassName={twMerge(
-        'fixed overflow-auto top-0 left-0 right-0 bottom-0 bg-black/50 duration-500 z-10000 transition-opacity flex flex-col',
+        overlayClassName,
         isVisible ? 'opacity-100' : 'opacity-0'
       )}
       {...props}>

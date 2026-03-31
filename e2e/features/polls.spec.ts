@@ -5,6 +5,7 @@ import { Organisation } from '../fixtures/organisations'
 import { Poll } from '../fixtures/polls'
 import { TutorialPage } from '../fixtures/tutorial'
 import { User } from '../fixtures/user'
+import { skipOnSafari } from '../helpers/skip-on-safari'
 import { NEW_VISITOR_STATE, ORGANISATION_ADMIN_STATE } from '../state'
 
 test.use({ storageState: ORGANISATION_ADMIN_STATE })
@@ -83,19 +84,15 @@ test.describe('A new user', () => {
     ngcTest,
     tutorialPage,
     poll,
-    browser,
   }) => {
     test.setTimeout(60_000)
     const user = new User(page)
     await page.goto(poll.inviteLink)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
+    await expect(page).toHaveURL('/simulateur/email')
     await user.fillEmailAndCompleteVerification()
-    if (browser?.browserType().name() === 'webkit') {
-      // @TODO on safari, this test fails systematically (500 error on a server component POST request)
-      // However, we cannot reproduce it in real life (browserstack OK)
-      test.skip()
-    }
+
     await expect(page).toHaveURL(/\/fin/)
   })
 
@@ -109,6 +106,7 @@ test.describe('A new user', () => {
     await page.goto(poll.inviteLink)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
+    await expect(page).toHaveURL('/simulateur/email')
     await page.getByTestId('skip-email-button').click()
     await expect(page).toHaveURL(/\/fin/)
   })
@@ -123,7 +121,7 @@ test.describe('A user with a completed test that joined a poll', () => {
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage()
-
+    skipOnSafari(browser)
     const adminContext = await browser.newContext({
       storageState: ORGANISATION_ADMIN_STATE,
     })
@@ -157,7 +155,7 @@ test.describe('A user with a completed test that joined a poll', () => {
 
   test('can access the poll dashboard from the end page', async ({ poll }) => {
     await page.goto('/fin')
-    await page.getByTestId('poll-see-results-button').click()
+    await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(poll.url)
   })
 

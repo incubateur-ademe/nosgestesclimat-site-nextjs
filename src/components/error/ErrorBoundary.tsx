@@ -1,3 +1,4 @@
+'use client'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
 import React from 'react'

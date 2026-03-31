@@ -1,5 +1,6 @@
 import BarChart from '@/design-system/utils/BarChart'
 import type { SubcategoryDisplayData } from '@/helpers/getCategoriesDisplayData'
+import type { Metric } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import type { TFunction } from 'i18next'
 
@@ -8,6 +9,7 @@ interface Props {
   bgBarClassName: string
   index?: number
   t: TFunction
+  metric: Metric
 }
 
 export default function SubcategoryItem({
@@ -15,6 +17,7 @@ export default function SubcategoryItem({
   bgBarClassName,
   index = 0,
   t,
+  metric,
 }: Props) {
   const animationDelay = 0.3 + index * 0.25
 
@@ -23,8 +26,12 @@ export default function SubcategoryItem({
       <div className="flex flex-col gap-2">
         <div className="flex items-baseline gap-2">
           <strong>{capitalizeString(subcategory.title)}</strong>
-          <span>
-            {subcategory.formattedValue} {subcategory.unit} -{' '}
+          <span className="whitespace-nowrap">
+            {subcategory.formattedValue}&nbsp;
+            <span className={metric === 'eau' ? 'capitalize' : ''}>
+              {subcategory.unit}
+            </span>
+            &nbsp;-&nbsp;
             {subcategory.displayPercentage}
           </span>
         </div>
