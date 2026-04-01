@@ -1,4 +1,6 @@
+import ActionDetail from '@/components/actions/ActionDetail'
 import Trans from '@/components/translation/trans/TransClient'
+import { END_PAGE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -7,7 +9,6 @@ import { getUser } from '@/helpers/server/dal/user'
 import { EngineProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import ActionDetail from './_components/ActionDetail'
 
 export async function generateMetadata({
   params,
@@ -24,7 +25,7 @@ export async function generateMetadata({
       'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.'
     ),
     alternates: {
-      canonical: `/actions/${dottedName.join('/')}`,
+      canonical: `${END_PAGE_ACTIONS_PATH}/${dottedName.join('/')}`,
     },
   })
 }
@@ -45,15 +46,15 @@ export default async function ActionDetailPage({
           <ButtonLink
             size="sm"
             color="text"
-            href="/fin/actions"
+            href={END_PAGE_ACTIONS_PATH}
             className="flex items-center">
             <span role="img" className="pr-2 text-[0.5rem]!" aria-hidden>
               ◀
             </span>{' '}
-            <Trans> Retour à la liste</Trans>
+            <Trans>Retour à la liste</Trans>
           </ButtonLink>
 
-          <ActionDetail pathParamsDottedName={dottedName} />
+          <ActionDetail pathParamsDottedName={dottedName as string[]} />
         </div>
       </EngineProvider>
     </UserProvider>
