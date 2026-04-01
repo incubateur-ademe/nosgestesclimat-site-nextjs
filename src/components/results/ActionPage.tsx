@@ -1,7 +1,6 @@
 import type { Locale } from '@/i18nConfig'
 import { FormProvider } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import NoResultsBlock from '../dashboard/NoResultsBlock'
 import TopBar from '../simulation/TopBar'
 import ActionAutoSave from './actions/ActionAutoSave'
@@ -10,7 +9,6 @@ import ActionsTutorial from './actions/ActionsTutorial'
 
 interface Props {
   simulations: Simulation[]
-  rules: Partial<NGCRules>
   locale: Locale
 }
 export function ActionPage({ simulations, locale }: Props) {
