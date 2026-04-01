@@ -1,10 +1,12 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { requestIdleCallback } from '@/utils/requestIdleCallback'
-import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
+import { useResetOnClickDontKnow } from './hooks/useResetOnClickDontKnow'
 
 interface Props {
+  question: DottedName
   value: NodeValue
   setValue: (value: string | undefined) => void
   'data-testid': string
@@ -13,6 +15,7 @@ interface Props {
 }
 
 export default function BooleanInput({
+  question,
   value,
   setValue,
   label,
@@ -21,6 +24,11 @@ export default function BooleanInput({
 }: Props) {
   const { t } = useClientTranslation()
   const [currentValue, setCurrentValue] = useState(value)
+
+  useResetOnClickDontKnow({
+    question,
+    updateValue: setCurrentValue,
+  })
 
   return (
     <fieldset className="flex flex-col gap-2">

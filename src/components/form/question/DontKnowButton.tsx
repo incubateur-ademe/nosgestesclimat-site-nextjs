@@ -1,11 +1,13 @@
 'use client'
 
+import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { captureClickFormNav } from '@/constants/tracking/posthogTrackers'
 import { questionClickPass } from '@/constants/tracking/question'
-import Button from '@/design-system/buttons/Button'
+import RadioInput from '@/design-system/inputs/RadioInput'
 import Separator from '@/design-system/layout/Separator'
-import { useRule } from '@/publicodes-state'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentSimulation, useEngine, useRule } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useStartTime } from '../hooks/useStartTime'
@@ -15,14 +17,21 @@ interface Props {
   type?: string
 }
 
-export default function DontKnowButton({ question, type }: Props) {
+export default function DontKnowButton({ question }: Props) {
   const startTime = useStartTime(question)
 
-  const { value } = useRule(question)
+  const { value, questionsOfMosaicFromParent, isFolded } = useRule(question)
+
+  const { getValue } = useEngine()
+
+  const { updateCurrentSimulation, situation } = useCurrentSimulation()
+
+  const { t } = useClientTranslation()
 
   const onClick = () => {
     const endTime = Date.now()
     const timeSpentOnQuestion = endTime - startTime
+
     trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
     trackPosthogEvent(
       captureClickFormNav({
@@ -32,26 +41,74 @@ export default function DontKnowButton({ question, type }: Props) {
         timeSpentOnQuestion,
       })
     )
+
+    if (questionsOfMosaicFromParent.length > 0) {
+      questionsOfMosaicFromParent.forEach((question) => {
+        const updatedSituation = { ...situation }
+        delete updatedSituation[question]
+        updateCurrentSimulation({
+          situation: updatedSituation,
+          foldedStepToAdd: {
+            foldedStep: question,
+            value: getValue(question),
+            isMosaicChild: true,
+          },
+        })
+      })
+    }
+
+    const updatedSituation = { ...situation }
+    delete updatedSituation[question]
+
+    updateCurrentSimulation({
+      situation: updatedSituation,
+      foldedStepToAdd: {
+        foldedStep: question,
+        value: value,
+        isMosaicParent: questionsOfMosaicFromParent.length > 0,
+      },
+    })
   }
+
+  const hasBeenClicked =
+    isFolded && !Object.keys(situation).some((key) => key === question)
+
   return (
     <div>
-      <Separator />
+      <Separator className="bg-primary-600 mt-2! mb-6 w-10" />
 
-      {type === 'number' && (
-        <>
-          <p id="dont-know-desc">
-            <Trans i18nKey="simulator.skipButton.topLabel">
-              Pas sûr(e) ? / aucun choix ne correspond ?
-            </Trans>
-          </p>
-          <Button
-            onClick={onClick}
-            className="bg-primary-50 text-default inline-block rounded-lg border-1 border-slate-600 text-left font-medium"
-            aria-describedby="dont-know-desc"
-            color="secondary">
-            <Trans>Je ne sais pas répondre</Trans>
-          </Button>
-        </>
+      <p id="dont-know-desc" className="mb-2">
+        <Trans i18nKey="simulator.skipButton.topLabel">
+          Pas sûr(e) ? / aucun choix ne correspond ?
+        </Trans>
+      </p>
+
+      <RadioInput
+        id="dont-know-radio"
+        aria-describedby="dont-know-desc dont-know-confirm"
+        isActive={hasBeenClicked}
+        className="w-64 px-6 py-4"
+        label={
+          <Trans i18nKey="simulator.skipButton.buttonLabel">
+            Je ne sais pas répondre
+          </Trans>
+        }
+        labelText={t(
+          'simulator.skipButton.buttonLabel',
+          'Je ne sais pas répondre'
+        )}
+        onClick={onClick}
+      />
+
+      {hasBeenClicked && (
+        <p
+          id="dont-know-confirm"
+          className="text-primary-600 animate-fade-in-slide-from-top mt-2 flex items-center gap-1 text-sm">
+          <CheckIcon className="fill-primary-600 w-5" />
+          <Trans i18nKey="simulator.skipButton.confirmLabel">
+            Nous allons appliquer une moyenne
+          </Trans>
+        </p>
       )}
     </div>
   )

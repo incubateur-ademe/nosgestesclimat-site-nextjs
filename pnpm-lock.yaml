@@ -14,6 +14,9 @@ importers:
       '@next/mdx':
         specifier: ^16.0.7
         version: 16.0.7(@mdx-js/loader@3.1.1(webpack@5.102.1(esbuild@0.27.1)))(@mdx-js/react@3.1.1(@types/react@19.2.2)(react@19.2.4))
+      '@posthog/react':
+        specifier: ^1.8.2
+        version: 1.8.2(@types/react@19.2.2)(posthog-js@1.343.2)(react@19.2.4)
       '@publicodes/react-ui':
         specifier: ^1.10.0
         version: 1.10.0(publicodes@1.9.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -2351,6 +2354,16 @@ packages:
 
   '@posthog/core@1.20.2':
     resolution: {integrity: sha512-aQhrUzOHYr0z/bkwDsJ5hXahdh6oyeWdx2/CHwR6vFG3eK07J69lbuGOj+HGOOxJP1eAdNnsk8J0fj1vqRA9+A==}
+
+  '@posthog/react@1.8.2':
+    resolution: {integrity: sha512-KzUuXIcAR8fAjU7IeDq+XfEcUTNvzgEGB381WRrFUUsu7jFTcKZZ6crx/ukHRCzTnoEuy5EJDkL7b7sJecPlCg==}
+    peerDependencies:
+      '@types/react': '>=16.8.0'
+      posthog-js: '>=1.257.2'
+      react: '>=16.8.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@posthog/types@1.343.2':
     resolution: {integrity: sha512-8+RAnTOf/85b2NU+b4cpUZsuftRZQOFgTNDNCb1LyntXNgf7yD7KYxprC1rCayCZ/YpkmYy3xXPytBVYTXwdqg==}
@@ -10074,6 +10087,13 @@ snapshots:
   '@posthog/core@1.20.2':
     dependencies:
       cross-spawn: 7.0.6
+
+  '@posthog/react@1.8.2(@types/react@19.2.2)(posthog-js@1.343.2)(react@19.2.4)':
+    dependencies:
+      posthog-js: 1.343.2
+      react: 19.2.4
+    optionalDependencies:
+      '@types/react': 19.2.2
 
   '@posthog/types@1.343.2': {}
 

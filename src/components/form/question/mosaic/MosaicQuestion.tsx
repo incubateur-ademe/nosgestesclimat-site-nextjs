@@ -4,6 +4,7 @@ import { questionChooseAnswer } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { useResetOnClickDontKnow } from '../hooks/useResetOnClickDontKnow'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
@@ -32,6 +33,11 @@ export default function MosaicQuestion({
   const { title, icons, description } = useRule(parent)
 
   const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
+
+  useResetOnClickDontKnow({
+    question,
+    updateValue: () => setValue(question, undefined),
+  })
 
   return (
     <>

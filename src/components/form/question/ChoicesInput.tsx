@@ -3,6 +3,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
 import { useEffect, useState } from 'react'
 import Choice from './choicesInput/Choice'
+import { useResetOnClickDontKnow } from './hooks/useResetOnClickDontKnow'
 
 interface Props {
   question: DottedName
@@ -60,6 +61,11 @@ export default function ChoicesInput(props: Props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choices, value])
+
+  useResetOnClickDontKnow({
+    question,
+    updateValue: setCurrentValue,
+  })
 
   return (
     <fieldset

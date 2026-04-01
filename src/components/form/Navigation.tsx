@@ -36,6 +36,7 @@ interface FuncProps {
   finalNoNextQuestion?: boolean
   isMissing?: boolean
   t: TFunction<string, string>
+  isTestVersion: boolean
 }
 
 const getSubmitButtonText = ({
@@ -43,6 +44,7 @@ const getSubmitButtonText = ({
   finalNoNextQuestion,
   isMissing,
   t,
+  isTestVersion,
 }: FuncProps) => {
   return {
     title: isPending
@@ -55,7 +57,7 @@ const getSubmitButtonText = ({
             'common.navigation.nextQuestion.finish.label',
             'Terminer le test et accéder à la page de résultats'
           )
-        : isMissing
+        : isMissing && !isTestVersion
           ? t(
               'common.navigation.nextQuestion.dontKnow.title',
               'Je ne sais pas, passer et aller à la question suivante'
@@ -76,7 +78,7 @@ const getSubmitButtonText = ({
           Terminer
         </Trans>
       </span>
-    ) : isMissing ? (
+    ) : isMissing && !isTestVersion ? (
       <span data-testid="skip-question-button">
         <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
           Je ne sais pas
@@ -111,10 +113,12 @@ export default function Navigation({
 
   const persistedRemainingQuestionsRef = useRef(remainingQuestions)
 
+  //@TODO : remove when AB test is completed
+  const isTestVersion = true //useFeatureFlagVariantKey(DONT_KNOW_BUTTON_EXPERIMENT_KEY) === DEFAULT_TEST_VARIANT_KEY
+
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
-
     noPrevQuestion,
     noNextQuestion,
     setCurrentQuestion,
@@ -201,7 +205,7 @@ export default function Navigation({
       const endTime = Date.now()
       const timeSpentOnQuestion = endTime - startTime
 
-      if (isMissing) {
+      if (isMissing && !isTestVersion) {
         trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
         trackPosthogEvent(
           captureClickFormNav({
@@ -229,7 +233,7 @@ export default function Navigation({
         )
       }
 
-      if (isMissing) {
+      if (isMissing && !isTestVersion) {
         if (questionsOfMosaicFromParent?.length > 0) {
           questionsOfMosaicFromParent.forEach((question) => {
             updateCurrentSimulation({
@@ -290,6 +294,7 @@ export default function Navigation({
       onComplete,
       setCurrentQuestion,
       gotoNextQuestion,
+      isTestVersion,
     ]
   )
 
@@ -352,6 +357,7 @@ export default function Navigation({
     finalNoNextQuestion,
     isMissing,
     t,
+    isTestVersion,
   })
 
   return (
@@ -384,7 +390,7 @@ export default function Navigation({
         </Button>
 
         <Button
-          color={isMissing ? 'secondary' : 'primary'}
+          color={isMissing && !isTestVersion ? 'secondary' : 'primary'}
           disabled={isNextDisabled || isPending}
           className="p-3 text-sm"
           size="md"
