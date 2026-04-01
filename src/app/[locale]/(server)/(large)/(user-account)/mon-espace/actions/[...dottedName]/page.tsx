@@ -4,6 +4,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
+import { throwNextError } from '@/helpers/server/error'
 import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
@@ -37,7 +38,7 @@ export default async function ActionDetailPage({
 
   const rules = await getRules()
 
-  const user = await getAuthUser()
+  const user = await throwNextError(getAuthUser)
 
   return (
     <UserProvider serverUserId={user.id}>

@@ -27,12 +27,7 @@ export default async function MonEspaceActionsPage({
       </h1>
 
       <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
-      <ActionPage
-        simulations={simulations}
-        user={user}
-        rules={rules}
-        locale={locale}
-      />
+      <ActionPage simulations={simulations} rules={rules} locale={locale} />
     </div>
   )
 }
