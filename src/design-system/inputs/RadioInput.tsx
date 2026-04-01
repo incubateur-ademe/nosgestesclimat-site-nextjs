@@ -49,7 +49,7 @@ export default function RadioInput({
     <label
       title={`${labelText} - ${isActive ? t('Option sélectionnée') : t('Sélectionner cette option')}`}
       className={twMerge(
-        'has-[:focus-visible]:ring-primary-700 relative flex cursor-pointer items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2',
+        'active:bg-primary-100 bg-primary-50 has-[:focus-visible]:ring-primary-700 relative flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-2 text-left transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2',
         isWithinGrid ? 'w-full' : '',
         buttonClassNames[status],
         className

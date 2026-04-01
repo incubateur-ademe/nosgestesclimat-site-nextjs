@@ -108,7 +108,6 @@ export default function Question({
           <>
             {type === 'number' && (
               <NumberInput
-                question={question}
                 unit={unit}
                 value={situationValue as Evaluation<number>}
                 setValue={(value) => {
@@ -130,7 +129,6 @@ export default function Question({
 
             {type === 'boolean' && (
               <BooleanInput
-                question={question}
                 value={situationValue as Evaluation<boolean>}
                 setValue={(value: string | undefined) => {
                   {

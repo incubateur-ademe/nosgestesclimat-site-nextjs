@@ -126,6 +126,7 @@ export default function Navigation({
 
   const {
     isMissing,
+    isFolded,
     plancher,
     plafond,
     situationValue,
@@ -399,7 +400,7 @@ export default function Navigation({
 
         <Button
           color={isMissing && !isTestVersion ? 'secondary' : 'primary'}
-          disabled={isNextDisabled || isPending}
+          disabled={isNextDisabled || isPending || !isFolded}
           className="p-3 text-sm"
           size="md"
           title={title}

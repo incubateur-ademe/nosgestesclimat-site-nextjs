@@ -10,11 +10,42 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine, useRule } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { useEffect, type Dispatch, type SetStateAction } from 'react'
 import { useStartTime } from '../hooks/useStartTime'
 
 interface Props {
   question: DottedName
   type?: string
+}
+
+interface FuncProps {
+  question: DottedName
+  updateValue: (
+    value: undefined
+  ) => void | Dispatch<SetStateAction<string | number | null | undefined>>
+}
+
+function useResetOnClickDontKnow({ question, updateValue }: FuncProps) {
+  const { isFolded, questionsOfMosaicFromParent } = useRule(question)
+
+  const { situation } = useCurrentSimulation()
+
+  // Reset currentValue if question is withdrawn from the situation
+  useEffect(() => {
+    const isQuestionRemoved = !Object.keys(situation).some(
+      (key) => key === question
+    )
+
+    const mosaicChildrenRemoved =
+      questionsOfMosaicFromParent.length === 0 ||
+      questionsOfMosaicFromParent.every(
+        (child) => !Object.keys(situation).some((key) => key === child)
+      )
+
+    if (isFolded && isQuestionRemoved && mosaicChildrenRemoved) {
+      updateValue(undefined)
+    }
+  }, [situation, isFolded, question, updateValue, questionsOfMosaicFromParent])
 }
 
 export default function DontKnowButton({ question }: Props) {
@@ -42,12 +73,20 @@ export default function DontKnowButton({ question }: Props) {
       })
     )
 
+    let updatedSituation = { ...situation }
+
     if (questionsOfMosaicFromParent.length > 0) {
+      updatedSituation = questionsOfMosaicFromParent.reduce(
+        (acc, q) => {
+          const newSituation = { ...acc }
+          delete newSituation[q]
+          return newSituation
+        },
+        { ...situation }
+      )
+
       questionsOfMosaicFromParent.forEach((question) => {
-        const updatedSituation = { ...situation }
-        delete updatedSituation[question]
         updateCurrentSimulation({
-          situation: updatedSituation,
           foldedStepToAdd: {
             foldedStep: question,
             value: getValue(question),
@@ -57,7 +96,6 @@ export default function DontKnowButton({ question }: Props) {
       })
     }
 
-    const updatedSituation = { ...situation }
     delete updatedSituation[question]
 
     updateCurrentSimulation({
@@ -70,12 +108,20 @@ export default function DontKnowButton({ question }: Props) {
     })
   }
 
-  const hasBeenClicked =
-    isFolded && !Object.keys(situation).some((key) => key === question)
+  const isSelected =
+    isFolded &&
+    // The question isn't in the situation
+    !Object.keys(situation).some((key) => key === question) &&
+    (questionsOfMosaicFromParent.length > 0
+      ? // None of mosaic children selected
+        !questionsOfMosaicFromParent.some((questionOfMosaic) =>
+          Object.keys(situation).includes(questionOfMosaic)
+        )
+      : true)
 
   return (
     <div>
-      <Separator className="bg-primary-600 mt-2! mb-6 w-10" />
+      <Separator className="bg-primary-600 mt-2! mb-6 md:w-12" />
 
       <p id="dont-know-desc" className="mb-2">
         <Trans i18nKey="simulator.skipButton.topLabel">
@@ -86,7 +132,7 @@ export default function DontKnowButton({ question }: Props) {
       <RadioInput
         id="dont-know-radio"
         aria-describedby="dont-know-desc dont-know-confirm"
-        isActive={hasBeenClicked}
+        isActive={isSelected}
         className="w-64 px-6 py-4"
         label={
           <Trans i18nKey="simulator.skipButton.buttonLabel">
@@ -100,7 +146,7 @@ export default function DontKnowButton({ question }: Props) {
         onClick={onClick}
       />
 
-      {hasBeenClicked && (
+      {isSelected && (
         <p
           id="dont-know-confirm"
           className="text-primary-600 animate-fade-in-slide-from-top mt-2 flex items-center gap-1 text-sm">

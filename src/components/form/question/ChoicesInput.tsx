@@ -1,9 +1,9 @@
+import { useCurrentSimulation } from '@/publicodes-state'
 import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
 import { useEffect, useState } from 'react'
 import Choice from './choicesInput/Choice'
-import { useResetOnClickDontKnow } from './hooks/useResetOnClickDontKnow'
 
 interface Props {
   question: DottedName
@@ -18,6 +18,7 @@ interface Props {
 const SHOULD_USE_GRID_THRESHOLD = 6
 
 export default function ChoicesInput(props: Props) {
+  const { situation } = useCurrentSimulation()
   const {
     question,
     value,
@@ -62,10 +63,12 @@ export default function ChoicesInput(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choices, value])
 
-  useResetOnClickDontKnow({
-    question,
-    updateValue: setCurrentValue,
-  })
+  // Reset the aucun option when clicking on the don't know button
+  useEffect(() => {
+    if (!Object.keys(situation).some((key) => key === question)) {
+      setCurrentValue(undefined)
+    }
+  }, [situation, question])
 
   return (
     <fieldset

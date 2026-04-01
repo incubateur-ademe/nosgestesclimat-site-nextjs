@@ -10,14 +10,24 @@ interface Props {
 }
 
 export function useResetOnClickDontKnow({ question, updateValue }: Props) {
-  const { isFolded } = useRule(question)
+  const { isFolded, questionsOfMosaicFromParent } = useRule(question)
 
   const { situation } = useCurrentSimulation()
 
   // Reset currentValue if question is withdrawn from the situation
   useEffect(() => {
-    if (isFolded && !Object.keys(situation).some((key) => key === question)) {
+    const isQuestionRemoved = !Object.keys(situation).some(
+      (key) => key === question
+    )
+
+    const mosaicChildrenRemoved =
+      questionsOfMosaicFromParent.length === 0 ||
+      questionsOfMosaicFromParent.every(
+        (child) => !Object.keys(situation).some((key) => key === child)
+      )
+
+    if (isFolded && isQuestionRemoved && mosaicChildrenRemoved) {
       updateValue(undefined)
     }
-  }, [situation, isFolded, question, updateValue])
+  }, [situation, isFolded, question, updateValue, questionsOfMosaicFromParent])
 }

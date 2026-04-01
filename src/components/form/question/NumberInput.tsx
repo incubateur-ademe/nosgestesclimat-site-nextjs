@@ -2,15 +2,12 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { useDebounce } from '@/utils/debounce'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
 import { useEffect, useState, type ComponentProps } from 'react'
 import type { NumberFormatValues, NumericFormat } from 'react-number-format'
-import { useResetOnClickDontKnow } from './hooks/useResetOnClickDontKnow'
 import RawNumberInput from './numberInput/RawNumberInput'
 
 interface Props {
-  question: DottedName
   unit?: string
   value?: Evaluation<number>
   placeholder?: string
@@ -20,7 +17,6 @@ interface Props {
 }
 
 export default function NumberInput({
-  question,
   unit,
   value,
   placeholder,
@@ -50,15 +46,6 @@ export default function NumberInput({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
-
-  useResetOnClickDontKnow({
-    question,
-    updateValue: () =>
-      setCurrentValues({
-        value: undefined,
-        floatValue: undefined,
-      }),
-  })
 
   return (
     <div className="flex items-center justify-start gap-1">

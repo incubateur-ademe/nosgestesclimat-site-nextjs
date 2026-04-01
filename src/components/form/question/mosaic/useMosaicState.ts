@@ -146,6 +146,16 @@ export function useMosaicState({
     })
   }
 
+  // Reset the aucun option when clicking on the don't know button
+  useEffect(() => {
+    if (
+      aucunOptionSelected &&
+      Object.values(state).every((value) => value === undefined)
+    ) {
+      setAucunOptionSelected(false)
+    }
+  }, [state, aucunOptionSelected])
+
   return {
     values: state,
     setValue: handleSetValue,
