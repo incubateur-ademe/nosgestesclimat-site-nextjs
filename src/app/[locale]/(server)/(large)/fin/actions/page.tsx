@@ -15,12 +15,5 @@ export default async function ResultatsActionsPage({
   )
   const rules = await getRules({ locale })
 
-  return (
-    <ActionPage
-      simulations={simulations}
-      user={user}
-      rules={rules}
-      locale={locale}
-    />
-  )
+  return <ActionPage simulations={simulations} rules={rules} locale={locale} />
 }
