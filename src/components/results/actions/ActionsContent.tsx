@@ -1,5 +1,6 @@
 'use client'
 
+import CategoryTabs from '@/components/filtering/CategoryTabs'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import getActions from '@/helpers/actions/getActions'
 import {
@@ -7,13 +8,14 @@ import {
   useEngine,
   useTempEngine,
 } from '@/publicodes-state'
+import { capitalizeString } from '@/utils/capitalizeString'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import Actions from './actionsContent/Actions'
 import OptionBar from './actionsContent/OptionBar'
 
 export default function ActionsContent() {
-  const { safeEvaluate } = useEngine()
+  const { getCategory, safeEvaluate } = useEngine()
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [radical, setRadical] = useState(true)
@@ -28,6 +30,8 @@ export default function ActionsContent() {
 
   const { rules, getSpecialRuleObject } = useTempEngine()
 
+  const { categories } = useEngine()
+
   const actions = getActions({
     rules,
     radical,
@@ -35,6 +39,10 @@ export default function ActionsContent() {
     getSpecialRuleObject,
     actionChoices,
   })
+
+  const actionsFilteredCategorically = actions.filter((action) =>
+    category ? getCategory(action.dottedName) === category : true
+  )
 
   const isSimulationWellStarted = progression > 0.5
 
@@ -80,14 +88,28 @@ export default function ActionsContent() {
         isSimulationWellStarted ? '' : 'pointer-events-none opacity-90'
       } relative text-center`}
       aria-hidden={isSimulationWellStarted ? false : true}>
-      <OptionBar setRadical={setRadical} radical={radical} actions={actions} />
-
-      <Actions
-        actions={actions}
-        rules={rules ?? {}}
+      <OptionBar
+        setRadical={setRadical}
         radical={radical}
-        key={`update-key-${category}-${Object.keys(actionChoices).length}`}
+        actions={actionsFilteredCategorically}
       />
+
+      <CategoryTabs
+        categories={categories.map((category) => ({
+          title: capitalizeString(category) ?? '',
+          dottedName: category,
+          count: actions.filter(
+            (action) =>
+              action.dottedName.startsWith(category) && action.nodeValue !== 0
+          ).length,
+        }))}>
+        <Actions
+          actions={actionsFilteredCategorically}
+          rules={rules ?? {}}
+          radical={radical}
+          key={`update-key-${category}-${Object.keys(actionChoices).length}`}
+        />
+      </CategoryTabs>
     </div>
   )
 }
