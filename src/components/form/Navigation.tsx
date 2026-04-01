@@ -113,6 +113,7 @@ export default function Navigation({
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
+
     noPrevQuestion,
     noNextQuestion,
     setCurrentQuestion,
@@ -131,10 +132,10 @@ export default function Navigation({
   const { getValue } = useEngine()
 
   // Hack in order to reset the notification when the question changes
-  const hasActiveNotifications = activeNotifications.length > 0
+  const hasActiveNotifications = activeNotifications?.length > 0
   const { setValue: setNotificationValue } = useRule(
     hasActiveNotifications
-      ? activeNotifications[activeNotifications.length - 1]
+      ? activeNotifications?.[activeNotifications.length - 1]
       : question
   )
   const resetNotification = useCallback(() => {
@@ -154,14 +155,12 @@ export default function Navigation({
     isNextDisabled = isBelowFloor || isOverCeiling
   }
 
-  // @TODO : fix this, sometimes without this hack, not all remaining questions
-  // are displayed to the user
   const isSingleQuestionEmbeddedFinal =
-    isEmbedded &&
-    ((remainingQuestions.length === 1 && remainingQuestions[0] === question) ||
-      remainingQuestions.length === 0)
+    (isEmbedded &&
+      remainingQuestions?.length === 1 &&
+      remainingQuestions[0] === question) ||
+    remainingQuestions?.length === 0
 
-  // Determines if the current question is the last one of the test
   const finalNoNextQuestion = isSingleQuestionEmbeddedFinal || noNextQuestion
 
   const isFirstOrOnlyQuestion =
@@ -176,7 +175,9 @@ export default function Navigation({
   const [startTime, setStartTime] = useState(() => Date.now())
 
   useEffect(() => {
-    setStartTime(Date.now())
+    if (question) {
+      setStartTime(Date.now())
+    }
   }, [question])
 
   const handleMoveFocus = () => {
@@ -195,45 +196,10 @@ export default function Navigation({
         document.getElementById(`${DEFAULT_FOCUS_ELEMENT_ID}-0`)
 
       if (focusedElement) {
-        focusedElement.focus()
+        focusedElement?.focus()
       }
     })
   }
-
-  const handleAnswerQuestion = useCallback(() => {
-    if (questionsOfMosaicFromParent.length > 0) {
-      questionsOfMosaicFromParent.forEach((question) => {
-        updateCurrentSimulation({
-          foldedStepToAdd: {
-            foldedStep: question,
-            value: getValue(question),
-            isMosaicChild: true,
-          },
-        })
-      })
-    }
-
-    updateCurrentSimulation({
-      foldedStepToAdd: {
-        foldedStep: question,
-        value: value,
-        isMosaicParent: questionsOfMosaicFromParent.length > 0,
-      },
-    })
-  }, [
-    getValue,
-    question,
-    questionsOfMosaicFromParent,
-    updateCurrentSimulation,
-    value,
-  ])
-
-  useEffect(() => {
-    if (finalNoNextQuestion) {
-      handleAnswerQuestion()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [finalNoNextQuestion])
 
   const handleGoToNextQuestion = useCallback(
     (e: KeyboardEvent | MouseEvent) => {
@@ -271,20 +237,45 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        handleAnswerQuestion()
+        if (questionsOfMosaicFromParent?.length > 0) {
+          questionsOfMosaicFromParent.forEach((question) => {
+            updateCurrentSimulation({
+              foldedStepToAdd: {
+                foldedStep: question,
+                value: getValue(question),
+                isMosaicChild: true,
+              },
+            })
+          })
+        }
+
+        updateCurrentSimulation({
+          foldedStepToAdd: {
+            foldedStep: question,
+            value: value,
+            isMosaicParent: questionsOfMosaicFromParent?.length > 0,
+          },
+        })
       }
 
       handleMoveFocus()
 
       // Hack in order to reset the notifications when the question changes
       resetNotification()
-
-      if (isEmbedded && persistedRemainingQuestionsRef.current.length > 0) {
+      if (finalNoNextQuestion) {
+        onComplete()
+        return
+      }
+      if (
+        isEmbedded &&
+        persistedRemainingQuestionsRef.current &&
+        persistedRemainingQuestionsRef.current.length > 0
+      ) {
         setCurrentQuestion(
-          persistedRemainingQuestionsRef.current.find(
+          persistedRemainingQuestionsRef.current?.find(
             (dottedName, index) =>
               index ===
-              (persistedRemainingQuestionsRef.current.indexOf(question) || 0) +
+              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) +
                 1
           ) ?? null
         )
@@ -296,10 +287,14 @@ export default function Navigation({
       startTime,
       isMissing,
       resetNotification,
+      finalNoNextQuestion,
       isEmbedded,
       question,
       value,
-      handleAnswerQuestion,
+      questionsOfMosaicFromParent,
+      updateCurrentSimulation,
+      getValue,
+      onComplete,
       setCurrentQuestion,
       gotoNextQuestion,
     ]
@@ -327,10 +322,10 @@ export default function Navigation({
 
       if (isEmbedded) {
         setCurrentQuestion(
-          persistedRemainingQuestionsRef.current.find(
+          persistedRemainingQuestionsRef.current?.find(
             (dottedName, index) =>
               index ===
-              (persistedRemainingQuestionsRef.current.indexOf(question) || 0) -
+              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) -
                 1
           ) ?? null
         )
@@ -401,12 +396,7 @@ export default function Navigation({
           className="p-3 text-sm"
           size="md"
           title={title}
-          onClick={(e) => {
-            handleGoToNextQuestion(e)
-            if (finalNoNextQuestion) {
-              onComplete()
-            }
-          }}>
+          onClick={handleGoToNextQuestion}>
           {label}
         </Button>
       </div>

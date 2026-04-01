@@ -58,7 +58,7 @@ export class NGCTest {
 
   async isLastQuestion() {
     return this.page
-      .getByTestId('divers . tabac . consommation par semaine')
+      .getByTestId('services sociétaux . question rhétorique-ok-label')
       .isVisible()
   }
 
