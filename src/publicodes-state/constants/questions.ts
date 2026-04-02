@@ -40,17 +40,19 @@ export const PRIORITY_QUESTIONS = new Set<DottedName>([
 export const NON_PRIORITY_QUESTIONS = new Set<DottedName>([
   'logement . électricité . réseau . consommation',
   'transport . voiture . thermique . consommation aux 100',
+  'logement . chauffage . saisie précision consommation',
+  'logement . chauffage . précision consommation . ressenti',
+  'logement . chauffage . précision consommation . DPE',
 ])
 
-export const MUST_ASK_QUESTIONS = new Set<DottedName>([
-  // With Publicodes >1.8.0, 'services sociétaux . question rhétorique' is not in the missing variable as it's a question "une possibilité" with only on possible answer... So logically,the question is already answered.
-  'services sociétaux . question rhétorique',
-])
+// This constant allow to display questions even if it's not missing variable. We keep the logic for now even if it's empty.
+export const MUST_ASK_QUESTIONS = new Set<DottedName>([])
 
 export const MUST_SHOW_DESCRIPTION = new Set<DottedName>([
   'transport . voiture . utilisateur',
   'logement . âge',
   'logement . surface',
+  'logement . chauffage . collectif',
   'divers . animaux domestiques . empreinte',
   'alimentation . local . consommation',
   'transport . avion . vols annuels',

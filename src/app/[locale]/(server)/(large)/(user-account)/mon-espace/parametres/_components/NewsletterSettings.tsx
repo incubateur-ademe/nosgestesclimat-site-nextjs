@@ -5,19 +5,17 @@ import {
   postNewsletterFormAction,
 } from '@/actions/newsletters/postNewsletterFormAction'
 import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
-import {
-  captureClickUpdateUserNewsletters,
-  clickUpdateUserNewsletters,
-} from '@/constants/tracking/user-account'
+import { captureClickUpdateUserNewsletters } from '@/constants/tracking/posthogTrackers'
+import { clickUpdateUserNewsletters } from '@/constants/tracking/user-account'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 
+import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import type { ListIds, Newsletters } from '@/helpers/server/model/newsletter'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Form from 'next/form'
 import { useActionState } from 'react'
-import { Trans } from 'react-i18next'
 
 interface Props {
   subscriptions: {

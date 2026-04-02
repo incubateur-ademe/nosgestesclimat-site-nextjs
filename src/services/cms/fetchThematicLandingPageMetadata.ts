@@ -24,6 +24,7 @@ export async function fetchThematicLandingPageMetadata({
     }>(`/api/landing-thematiques?${thematicLPSearchParams}`)
 
     if (thematicLPResponse.data?.length !== 1) {
+      // eslint-disable-next-line no-console
       console.error(
         `Error: fetch thematic LP metadata error for slug: ${landingPageSlug}`
       )

@@ -6,6 +6,7 @@ class SafeSessionStorage {
       }
       return defaultValue
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.warn('SessionStorage is not accessible:', error)
       return defaultValue
     }

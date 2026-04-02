@@ -2,10 +2,8 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { orderedCategories } from '@/constants/model/orderedCategories'
-import {
-  captureClickCategorySelectorMobile,
-  clickCategorySelectorMobile,
-} from '@/constants/tracking/user-account'
+import { captureClickCategorySelectorMobile } from '@/constants/tracking/posthogTrackers'
+import { clickCategorySelectorMobile } from '@/constants/tracking/user-account'
 import Alert from '@/design-system/alerts/alert/Alert'
 import SelectInput from '@/design-system/inputs/SelectInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -54,7 +52,9 @@ export default function CategorySelectorMobile({
         onChange={(e) => {
           setActiveTab(e.target.value as TabId)
           trackEvent(clickCategorySelectorMobile(e.target.value))
-          trackPosthogEvent(captureClickCategorySelectorMobile(e.target.value))
+          trackPosthogEvent(
+            captureClickCategorySelectorMobile({ category: e.target.value })
+          )
         }}
         disabled={disabled}
         containerClassName="w-full">
@@ -67,7 +67,7 @@ export default function CategorySelectorMobile({
 
       <Alert
         type="default"
-        className="mt-4 text-sm"
+        className="mt-4 text-sm sm:hidden"
         description={
           <strong>
             <Trans i18nKey="mon-espace.evolutionGraph.selectView.description">

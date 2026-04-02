@@ -3,10 +3,8 @@
 import { postNewsletterFormAction } from '@/actions/newsletters/postNewsletterFormAction'
 import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickUpdateUserNewsletters,
-  clickUpdateUserNewsletters,
-} from '@/constants/tracking/user-account'
+import { captureClickUpdateUserNewsletters } from '@/constants/tracking/posthogTrackers'
+import { clickUpdateUserNewsletters } from '@/constants/tracking/user-account'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'

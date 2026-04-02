@@ -1,17 +1,6 @@
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
-import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
-import type { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
-import type { ComputedResults, Situation } from '@/publicodes-state/types'
-import type {
-  DottedName,
-  ExtendedSituation,
-  FunFacts,
-} from '@incubateur-ademe/nosgestesclimat'
-
-interface CustomAdditionalQuestions {
-  question: string
-  isEnabled: boolean
-}
+import type { ComputedResults } from '@/publicodes-state/types'
+import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 interface User {
   id: string
@@ -61,8 +50,6 @@ interface BaseOrganisationPoll {
   name: string
   slug: string
   expectedNumberOfParticipants?: number
-  defaultAdditionalQuestions?: PollDefaultAdditionalQuestion[]
-  customAdditionalQuestions?: CustomAdditionalQuestions[]
   createdAt: string
   updatedAt: string
   organisation: Omit<Organisation, 'polls'> | PublicOrganisation
@@ -94,35 +81,6 @@ export type PublicOrganisationPoll = BaseOrganisationPoll & {
   organisation: PublicOrganisation
 }
 
-export type AdditionalQuestionsAnswer =
-  | {
-      type: SimulationAdditionalQuestionAnswerType.default
-      key: PollDefaultAdditionalQuestion
-      answer: string
-    }
-  | {
-      type: SimulationAdditionalQuestionAnswerType.custom
-      key: string
-      answer: string
-    }
-
-export interface Simulation {
-  id: string
-  date: Date | string
-  situation: Situation
-  extendedSituation: ExtendedSituation
-  foldedSteps: DottedName[]
-  actionChoices: Record<string, boolean>
-  computedResults: ComputedResults
-  progression: number
-  additionalQuestionsAnswers: AdditionalQuestionsAnswer[]
-  /**
-   * user is defined only for the current user and undefined for others
-   */
-  user?: User
-  polls?: { id: string; slug: string }[]
-}
-
 export type PublicPollSimulation = Pick<
   Simulation,
   'id' | 'date' | 'user' | 'computedResults' | 'additionalQuestionsAnswers'
@@ -130,14 +88,12 @@ export type PublicPollSimulation = Pick<
 
 export interface OrgaSettingsInputsType {
   name: string
-  email: string
   position?: string
   administratorFirstName?: string
   administratorLastName?: string
   administratorPosition?: string
   numberOfCollaborators?: number
   administratorTelephone?: string
-  hasOptedInForCommunications?: boolean
   organisationType: OrganisationTypeEnum
 }
 

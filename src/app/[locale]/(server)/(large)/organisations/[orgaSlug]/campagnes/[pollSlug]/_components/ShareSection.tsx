@@ -92,6 +92,7 @@ export default function ShareSection({ poll, className, title }: Props) {
             })}
             color="primary"
             className="mx-auto mt-4 h-11 w-40"
+            data-testid="poll-invite-copy-button"
           />
         </Card>
       </div>

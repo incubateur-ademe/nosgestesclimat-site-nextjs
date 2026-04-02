@@ -11,6 +11,7 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
+import Loader from '@/design-system/layout/Loader'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
@@ -23,21 +24,85 @@ import {
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { TFunction } from 'i18next'
 import type { MouseEvent } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
+
+interface FuncProps {
+  isPending?: boolean
+  finalNoNextQuestion?: boolean
+  isMissing?: boolean
+  t: TFunction<string, string>
+}
+
+const getSubmitButtonText = ({
+  isPending,
+  finalNoNextQuestion,
+  isMissing,
+  t,
+}: FuncProps) => {
+  return {
+    title: isPending
+      ? t(
+          'common.navigation.nextQuestion.loading.label',
+          'Terminer le test et accéder à la page de résultats, chargement en cours'
+        )
+      : finalNoNextQuestion
+        ? t(
+            'common.navigation.nextQuestion.finish.label',
+            'Terminer le test et accéder à la page de résultats'
+          )
+        : isMissing
+          ? t(
+              'common.navigation.nextQuestion.dontKnow.title',
+              'Je ne sais pas, passer et aller à la question suivante'
+            )
+          : t(
+              'common.navigation.nextQuestion.next.label',
+              'Aller à la question suivante'
+            ),
+    label: isPending ? (
+      <span data-testid="end-test-button">
+        <Trans i18nKey="simulator.navigation.nextButton.loading">
+          <Loader color="light" size="sm" className="mr-2" /> Terminer
+        </Trans>
+      </span>
+    ) : finalNoNextQuestion ? (
+      <span data-testid="end-test-button">
+        <Trans i18nKey="simulator.navigation.nextButton.finished">
+          Terminer
+        </Trans>
+      </span>
+    ) : isMissing ? (
+      <span data-testid="skip-question-button">
+        <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
+          Je ne sais pas
+        </Trans>{' '}
+        <span aria-hidden>→</span>
+      </span>
+    ) : (
+      <span data-testid="next-question-button">
+        <Trans i18nKey="simulator.navigation.nextButton.next">Suivant</Trans>{' '}
+        <span aria-hidden>→</span>
+      </span>
+    ),
+  }
+}
 
 export default function Navigation({
   question,
   onComplete = () => '',
   isEmbedded,
   remainingQuestions,
+  isPending,
 }: {
   question: DottedName
   onComplete?: () => void
   isEmbedded?: boolean
   remainingQuestions: DottedName[]
+  isPending?: boolean
 }) {
   const { t } = useClientTranslation()
 
@@ -48,7 +113,6 @@ export default function Navigation({
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
-
     noPrevQuestion,
     noNextQuestion,
     setCurrentQuestion,
@@ -67,10 +131,10 @@ export default function Navigation({
   const { getValue } = useEngine()
 
   // Hack in order to reset the notification when the question changes
-  const hasActiveNotifications = activeNotifications?.length > 0
+  const hasActiveNotifications = activeNotifications.length > 0
   const { setValue: setNotificationValue } = useRule(
     hasActiveNotifications
-      ? activeNotifications?.[activeNotifications.length - 1]
+      ? activeNotifications[activeNotifications.length - 1]
       : question
   )
   const resetNotification = useCallback(() => {
@@ -90,17 +154,19 @@ export default function Navigation({
     isNextDisabled = isBelowFloor || isOverCeiling
   }
 
+  // @TODO : fix this, sometimes without this hack, not all remaining questions
+  // are displayed to the user
   const isSingleQuestionEmbeddedFinal =
-    (isEmbedded &&
-      remainingQuestions?.length === 1 &&
-      remainingQuestions[0] === question) ||
-    remainingQuestions?.length === 0
+    isEmbedded &&
+    ((remainingQuestions.length === 1 && remainingQuestions[0] === question) ||
+      remainingQuestions.length === 0)
 
-  const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
+  // Determines if the current question is the last one of the test
+  const finalNoNextQuestion = isSingleQuestionEmbeddedFinal || noNextQuestion
 
   const isFirstOrOnlyQuestion =
     noPrevQuestion ||
-    (isEmbedded &&
+    (!!isEmbedded &&
       (persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
         persistedRemainingQuestionsRef.current?.indexOf(question) ===
           (persistedRemainingQuestionsRef.current?.length || 0) - 1))
@@ -110,9 +176,7 @@ export default function Navigation({
   const [startTime, setStartTime] = useState(() => Date.now())
 
   useEffect(() => {
-    if (question) {
-      setStartTime(Date.now())
-    }
+    setStartTime(Date.now())
   }, [question])
 
   const handleMoveFocus = () => {
@@ -131,10 +195,45 @@ export default function Navigation({
         document.getElementById(`${DEFAULT_FOCUS_ELEMENT_ID}-0`)
 
       if (focusedElement) {
-        focusedElement?.focus()
+        focusedElement.focus()
       }
     })
   }
+
+  const handleAnswerQuestion = useCallback(() => {
+    if (questionsOfMosaicFromParent.length > 0) {
+      questionsOfMosaicFromParent.forEach((question) => {
+        updateCurrentSimulation({
+          foldedStepToAdd: {
+            foldedStep: question,
+            value: getValue(question),
+            isMosaicChild: true,
+          },
+        })
+      })
+    }
+
+    updateCurrentSimulation({
+      foldedStepToAdd: {
+        foldedStep: question,
+        value: value,
+        isMosaicParent: questionsOfMosaicFromParent.length > 0,
+      },
+    })
+  }, [
+    getValue,
+    question,
+    questionsOfMosaicFromParent,
+    updateCurrentSimulation,
+    value,
+  ])
+
+  useEffect(() => {
+    if (finalNoNextQuestion) {
+      handleAnswerQuestion()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finalNoNextQuestion])
 
   const handleGoToNextQuestion = useCallback(
     (e: KeyboardEvent | MouseEvent) => {
@@ -172,45 +271,20 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        if (questionsOfMosaicFromParent?.length > 0) {
-          questionsOfMosaicFromParent.forEach((question) => {
-            updateCurrentSimulation({
-              foldedStepToAdd: {
-                foldedStep: question,
-                value: getValue(question),
-                isMosaicChild: true,
-              },
-            })
-          })
-        }
-
-        updateCurrentSimulation({
-          foldedStepToAdd: {
-            foldedStep: question,
-            value: value,
-            isMosaicParent: questionsOfMosaicFromParent?.length > 0,
-          },
-        })
+        handleAnswerQuestion()
       }
 
       handleMoveFocus()
 
       // Hack in order to reset the notifications when the question changes
       resetNotification()
-      if (finalNoNextQuestion) {
-        onComplete()
-        return
-      }
-      if (
-        isEmbedded &&
-        persistedRemainingQuestionsRef.current &&
-        persistedRemainingQuestionsRef.current.length > 0
-      ) {
+
+      if (isEmbedded && persistedRemainingQuestionsRef.current.length > 0) {
         setCurrentQuestion(
-          persistedRemainingQuestionsRef.current?.find(
+          persistedRemainingQuestionsRef.current.find(
             (dottedName, index) =>
               index ===
-              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) +
+              (persistedRemainingQuestionsRef.current.indexOf(question) || 0) +
                 1
           ) ?? null
         )
@@ -222,14 +296,10 @@ export default function Navigation({
       startTime,
       isMissing,
       resetNotification,
-      finalNoNextQuestion,
       isEmbedded,
       question,
       value,
-      questionsOfMosaicFromParent,
-      updateCurrentSimulation,
-      getValue,
-      onComplete,
+      handleAnswerQuestion,
       setCurrentQuestion,
       gotoNextQuestion,
     ]
@@ -257,10 +327,10 @@ export default function Navigation({
 
       if (isEmbedded) {
         setCurrentQuestion(
-          persistedRemainingQuestionsRef.current?.find(
+          persistedRemainingQuestionsRef.current.find(
             (dottedName, index) =>
               index ===
-              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) -
+              (persistedRemainingQuestionsRef.current.indexOf(question) || 0) -
                 1
           ) ?? null
         )
@@ -289,6 +359,13 @@ export default function Navigation({
     gotToNextQuestion: handleGoToNextQuestion,
   })
 
+  const { title, label } = getSubmitButtonText({
+    isPending,
+    finalNoNextQuestion,
+    isMissing,
+    t,
+  })
+
   return (
     <div
       className={twMerge(
@@ -305,7 +382,7 @@ export default function Navigation({
         <Button
           size="md"
           onClick={handleGoToPrevQuestion}
-          disabled={isFirstOrOnlyQuestion}
+          disabled={isFirstOrOnlyQuestion || isPending}
           color="text"
           className={twMerge('px-3')}
           title={t(
@@ -320,47 +397,17 @@ export default function Navigation({
 
         <Button
           color={isMissing ? 'secondary' : 'primary'}
-          disabled={isNextDisabled}
+          disabled={isNextDisabled || isPending}
           className="p-3 text-sm"
           size="md"
-          title={
-            finalNoNextQuestion
-              ? t(
-                  'common.navigation.nextQuestion.finish.label',
-                  'Terminer le test et accéder à la page de résultats'
-                )
-              : isMissing
-                ? t(
-                    'common.navigation.nextQuestion.dontKnow.title',
-                    'Je ne sais pas, passer et aller à la question suivante'
-                  )
-                : t(
-                    'common.navigation.nextQuestion.next.label',
-                    'Aller à la question suivante'
-                  )
-          }
-          onClick={handleGoToNextQuestion}>
-          {finalNoNextQuestion ? (
-            <span data-testid="end-test-button">
-              <Trans i18nKey="simulator.navigation.nextButton.finished">
-                Terminer
-              </Trans>
-            </span>
-          ) : isMissing ? (
-            <span data-testid="skip-question-button">
-              <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
-                Je ne sais pas
-              </Trans>{' '}
-              <span aria-hidden>→</span>
-            </span>
-          ) : (
-            <span data-testid="next-question-button">
-              <Trans i18nKey="simulator.navigation.nextButton.next">
-                Suivant
-              </Trans>{' '}
-              <span aria-hidden>→</span>
-            </span>
-          )}
+          title={title}
+          onClick={(e) => {
+            handleGoToNextQuestion(e)
+            if (finalNoNextQuestion) {
+              onComplete()
+            }
+          }}>
+          {label}
         </Button>
       </div>
     </div>

@@ -1,19 +1,16 @@
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  cookieClickAcceptAll,
-  cookieClickAcceptAllPosthog,
-  cookieClickCustomize,
-  cookieClickCustomizePosthog,
-  cookieClickRejectAll,
-  cookieClickRejectAllPosthog,
+  cookieBannerClick,
+  cookieBannerDisplayed,
 } from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
+import { useEffect } from 'react'
 import ReactModal from 'react-modal'
 
 // Type assertion to resolve React types version mismatch
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
 const Modal = ReactModal as any
 
 // Set the app element once when the module is loaded
@@ -31,6 +28,10 @@ export default function CookieConsentBanner({
   acceptAll: () => void
 }) {
   const { t } = useClientTranslation()
+
+  useEffect(() => {
+    trackEvent(cookieBannerDisplayed)
+  }, [])
 
   return (
     <Modal
@@ -95,8 +96,7 @@ export default function CookieConsentBanner({
               size="sm"
               color="secondary"
               onClick={() => {
-                trackEvent(cookieClickCustomize)
-                trackPosthogEvent(cookieClickCustomizePosthog)
+                trackEvent(cookieBannerClick('Personnaliser'))
                 onOpenForm()
               }}
               data-testid="cookie-banner-customize-button">
@@ -108,8 +108,7 @@ export default function CookieConsentBanner({
               size="sm"
               color="secondary"
               onClick={() => {
-                trackEvent(cookieClickRejectAll)
-                trackPosthogEvent(cookieClickRejectAllPosthog)
+                trackEvent(cookieBannerClick('Tout refuser'))
                 rejectAll()
               }}
               data-testid="cookie-banner-refuse-button">
@@ -121,8 +120,7 @@ export default function CookieConsentBanner({
               size="sm"
               color="primary"
               onClick={() => {
-                trackEvent(cookieClickAcceptAll)
-                trackPosthogEvent(cookieClickAcceptAllPosthog)
+                trackEvent(cookieBannerClick('Tout accepter'))
                 acceptAll()
               }}
               data-testid="cookie-banner-accept-button">

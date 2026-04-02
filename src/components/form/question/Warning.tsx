@@ -54,7 +54,7 @@ export default function Warning({
       ) : plafond ? (
         <p className="p-0">
           <Trans>La valeur maximum pour ce champ est de</Trans>{' '}
-          {plafond.toLocaleString(locale)} {unit}.
+          {plafond.toLocaleString(locale)}&nbsp;<Trans>{unit}</Trans>.
         </p>
       ) : warning ? (
         <Markdown>{warning}</Markdown>

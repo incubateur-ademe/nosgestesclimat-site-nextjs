@@ -1,7 +1,5 @@
-import Footer from '@/components/layout/Footer'
 import EngineProviders from '@/components/providers/EngineProviders'
-import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import { getUser } from '@/helpers/server/dal/user'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 import { ClientLayout } from '../../../components/layout/ClientLayout'
@@ -13,17 +11,14 @@ export default async function SimulateurLayout({
   params,
 }: LayoutProps) {
   const { locale } = await params
-  const supportedRegions = getSupportedRegions()
+  const { id: serverUserId } = await getUser()
 
   return (
     <ClientLayout
       skipLinksDisplayed={new Set(['main', 'footer'])}
-      locale={locale}>
-      <EngineProviders supportedRegions={supportedRegions}>
-        <SimulationSyncProvider>{children}</SimulationSyncProvider>
-
-        <Footer locale={locale} />
-      </EngineProviders>
+      locale={locale}
+      serverUserId={serverUserId}>
+      <EngineProviders>{children}</EngineProviders>
     </ClientLayout>
   )
 }

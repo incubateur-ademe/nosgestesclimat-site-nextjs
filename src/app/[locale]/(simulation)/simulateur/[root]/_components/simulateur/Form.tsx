@@ -1,18 +1,17 @@
 'use client'
 
+import { useEndTest } from '@/app/[locale]/(simulation)/simulateur/[root]/_hooks/useEndPage'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 
-import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
-import { useCurrentSimulation, useFormState } from '@/publicodes-state'
-import { useCallback, useEffect } from 'react'
+import { useFormState } from '@/publicodes-state'
+import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlockDesktop'
@@ -21,8 +20,6 @@ import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
   const isDebug = useDebug()
-
-  const { progression } = useCurrentSimulation()
 
   const {
     remainingQuestions,
@@ -34,28 +31,9 @@ export default function Form() {
 
   const { questionInQueryParams } = useQuestionInQueryParams(currentQuestion)
 
-  const { goToEndPage } = useEndPage()
+  const { endTest, isPending } = useEndTest()
 
   const { isIframe } = useIframe()
-
-  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
-    usePreventNavigation()
-
-  const handleOnComplete = useCallback(() => {
-    if (shouldPreventNavigation) {
-      handleUpdateShouldPreventNavigation(false)
-    }
-    if (progression === 1) {
-      goToEndPage({
-        allowedToGoToGroupDashboard: true,
-      })
-    }
-  }, [
-    shouldPreventNavigation,
-    progression,
-    handleUpdateShouldPreventNavigation,
-    goToEndPage,
-  ])
 
   useEffect(() => {
     if (!relevantAnsweredQuestions || currentQuestion) {
@@ -104,7 +82,8 @@ export default function Form() {
                 key="iframe-navigation"
                 question={currentQuestion}
                 remainingQuestions={remainingQuestions}
-                onComplete={handleOnComplete}
+                onComplete={endTest}
+                isPending={isPending}
               />
             )}
           </div>
@@ -131,7 +110,8 @@ export default function Form() {
           key="default-navigation"
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
-          onComplete={handleOnComplete}
+          onComplete={endTest}
+          isPending={isPending}
         />
       )}
     </>

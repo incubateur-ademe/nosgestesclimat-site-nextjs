@@ -1,13 +1,15 @@
+import ActionDetail from '@/components/actions/ActionDetail'
 import Trans from '@/components/translation/trans/TransClient'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
+import { throwNextError } from '@/helpers/server/error'
+import { getAuthUser } from '@/helpers/server/model/user'
 import { EngineProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import ActionDetail from './_components/ActionDetail'
 
 export async function generateMetadata({
   params,
@@ -24,20 +26,22 @@ export async function generateMetadata({
       'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.'
     ),
     alternates: {
-      canonical: `/actions/${dottedName.join('/')}`,
+      canonical: `${MON_ESPACE_ACTIONS_PATH}/${dottedName.join('/')}`,
     },
   })
 }
 
 export default async function ActionDetailPage({
   params,
-}: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
-  const paramsAwaited = await params
+}: PageProps<'/[locale]/mon-espace/actions/[...dottedName]'>) {
+  const { dottedName } = await params
 
   const rules = await getRules()
 
+  const user = await throwNextError(getAuthUser)
+
   return (
-    <UserProvider>
+    <UserProvider serverUserId={user.id}>
       <EngineProvider rules={rules}>
         <div className="mx-auto my-12 max-w-[600px]">
           <ButtonLink
@@ -48,10 +52,10 @@ export default async function ActionDetailPage({
             <span role="img" className="pr-2 text-[0.5rem]!" aria-hidden>
               ◀
             </span>{' '}
-            <Trans> Retour à la liste</Trans>
+            <Trans>Retour à la liste</Trans>
           </ButtonLink>
 
-          <ActionDetail params={paramsAwaited} />
+          <ActionDetail pathParamsDottedName={dottedName} />
         </div>
       </EngineProvider>
     </UserProvider>

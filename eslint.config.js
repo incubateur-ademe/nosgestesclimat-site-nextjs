@@ -3,9 +3,9 @@ import vitest from '@vitest/eslint-plugin'
 import nextVanilla from 'eslint-config-next'
 import prettier from 'eslint-config-prettier/flat'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
+import playwright from 'eslint-plugin-playwright'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import tseslint from 'typescript-eslint'
-import playwright from 'eslint-plugin-playwright'
 
 const eslintConfig = defineConfig(
   {
@@ -15,6 +15,7 @@ const eslintConfig = defineConfig(
     rules: {
       ...nextVanilla[0].rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
+      'no-console': 'error',
       // @TODO: Remove this eslint-disable-next-line once we have a proper solution for these rules
       'react-hooks/set-state-in-effect': 'warn',
       'react-hooks/refs': 'warn',
@@ -61,6 +62,7 @@ const eslintConfig = defineConfig(
       '@typescript-eslint/restrict-template-expressions': 'warn',
       '@typescript-eslint/unbound-method': 'warn',
       '@typescript-eslint/no-unsafe-enum-comparison': 'warn',
+      '@typescript-eslint/no-unnecessary-condition': 'warn',
     },
   },
   prettier,

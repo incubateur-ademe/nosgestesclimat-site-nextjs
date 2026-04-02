@@ -1,6 +1,7 @@
 import FAQ from '@/components/landing-pages/FAQ'
 import Partners from '@/components/landing-pages/Partners'
 import Markdown from '@/design-system/utils/Markdown'
+import { getUser } from '@/helpers/server/dal/user'
 import type { Locale } from '@/i18nConfig'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
 import { notFound } from 'next/navigation'
@@ -14,6 +15,8 @@ export default async function PartnerCampaignPage({
 }) {
   const { locale, pollSlug } = await params
 
+  const { id: serverUserId } = await getUser()
+
   const partnerCampaign = await fetchPartnerCampaign({
     locale,
     pollSlug,
@@ -24,7 +27,7 @@ export default async function PartnerCampaignPage({
   }
 
   return (
-    <ClientLayout locale={locale}>
+    <ClientLayout locale={locale} serverUserId={serverUserId}>
       <PartnerCampaignContent
         pollSlug={pollSlug}
         partnerCampaign={partnerCampaign}

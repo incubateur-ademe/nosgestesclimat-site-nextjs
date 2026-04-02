@@ -1,10 +1,14 @@
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  NGCRules,
+  SupportedRegions,
+} from '@incubateur-ademe/nosgestesclimat'
 // import rulesToTestOpti from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr-opti.json'
 // import rulesToTest from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr.json'
 import rulesOpti from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
-import { getSupportedRegions } from './getSupportedRegions'
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import { importPreviewFile } from './importPreviewFile'
+
 import { importRulesFromModel } from './importRulesFromModel'
 
 interface Props {
@@ -32,11 +36,12 @@ export async function getRules({
   PRNumber,
   ABtesting = defaultProps.ABtesting,
 }: Props = defaultProps): Promise<Partial<NGCRules>> {
-  const supportedRegions = getSupportedRegions()
-
   // We provide the FR version of the model if the region is not supported
-  const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'
+  const regionCodeToProvide = (supportedRegions as SupportedRegions)[regionCode]
+    ? regionCode
+    : 'FR'
 
+  // eslint-disable-next-line no-console
   console.log(
     `Getting rules with parameters: isOptim=${isOptim}, regionCode=${regionCodeToProvide}, locale=${locale}, PRNumber=${PRNumber}, ABtesting=${ABtesting}`
   )

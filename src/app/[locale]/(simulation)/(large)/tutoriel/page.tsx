@@ -18,17 +18,14 @@ export default function Tutoriel() {
           data-testid="tutoriel-title"
           className="text-lg md:text-2xl"
           title={
-            <>
-              <span className="text-secondary-700 inline">
-                <Trans>10 minutes</Trans>
-              </span>{' '}
-              <Trans>chrono pour calculer votre empreinte carbone et eau</Trans>
-            </>
+            <Trans i18nKey="tutoriel.title">
+              <span className="text-secondary-700 inline">10 minutes</span>{' '}
+              chrono pour calculer votre empreinte carbone et eau
+            </Trans>
           }
         />
 
         <AvantDeCommencer />
-
         <div className={twMerge('mb-12 flex w-full gap-4 sm:px-4 md:px-0')}>
           <ButtonBack />
 

@@ -6,6 +6,7 @@ class SafeLocalStorage {
       }
       return defaultValue
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.warn('LocalStorage is not accessible:', error)
       return defaultValue
     }

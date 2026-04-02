@@ -10,6 +10,7 @@ export const safeEvaluateHelper = (
   try {
     evaluation = engineUsed.evaluate(expr)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(error)
     captureException(error)
   }

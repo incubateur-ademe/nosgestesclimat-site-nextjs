@@ -39,6 +39,7 @@ export async function fetchHomepageContent({
     }>(`/api/home-page?${homepageSearchParams}`)
 
     if (!homepageResponse?.data) {
+      // eslint-disable-next-line no-console
       console.error('Error: homepageResponse?.data is undefined')
       return undefined
     }

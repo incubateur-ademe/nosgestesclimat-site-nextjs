@@ -1,9 +1,7 @@
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickLatestResultsViewDetail,
-  clickLatestResultsViewDetail,
-} from '@/constants/tracking/user-account'
-import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
+import { captureClickLatestResultsViewDetail } from '@/constants/tracking/posthogTrackers'
+import { clickLatestResultsViewDetail } from '@/constants/tracking/user-account'
+import { END_PAGE_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
   colorClassNames,
@@ -12,13 +10,7 @@ import {
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-export default function SeeDetailLink({
-  simulationId,
-  className,
-}: {
-  className?: string
-  simulationId: string
-}) {
+export default function SeeDetailLink({ className }: { className?: string }) {
   return (
     <Link
       className={twMerge(
@@ -28,10 +20,7 @@ export default function SeeDetailLink({
         'mt-24 flex gap-2 md:mt-0',
         className
       )}
-      href={MON_ESPACE_RESULTS_DETAIL_PATH.replace(
-        ':simulationId',
-        simulationId
-      )}
+      href={END_PAGE_PATH}
       data-track-event={clickLatestResultsViewDetail}
       data-track-posthog={captureClickLatestResultsViewDetail}>
       <span aria-hidden className="text-2xl leading-none">

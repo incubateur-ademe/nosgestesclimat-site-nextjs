@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-vitest',
     '@storybook/addon-docs',
-    // MSW addon excluded for GitHub Pages
+    'msw-storybook-addon',
   ],
   framework: {
     name: '@storybook/nextjs',

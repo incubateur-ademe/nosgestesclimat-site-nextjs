@@ -7,11 +7,19 @@ import type {
 } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+export type ButtonColor =
+  | 'primary'
+  | 'secondary'
+  | 'text'
+  | 'link'
+  | 'success'
+  | 'borderless'
+
 export type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>
   className?: string
   size?: ButtonSize
-  color?: 'primary' | 'secondary' | 'text' | 'link' | 'success' | 'borderless'
+  color?: ButtonColor
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   id?: string
@@ -29,7 +37,7 @@ export const colorClassNames = {
     'bg-green-700 text-white border-2 border-green-700 shadow-xs hover:text-white hover:bg-green-800',
   text: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
   link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline px-1!',
-  borderless: 'bg-primary-100 hover:bg-primary-200 text-primary-800',
+  borderless: 'bg-primary-50 hover:bg-primary-100 text-primary-800',
 }
 
 export const sizeClassNames = {

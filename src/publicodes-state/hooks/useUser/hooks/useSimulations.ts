@@ -40,7 +40,6 @@ export default function useSimulations({
       persona,
       computedResults,
       progression,
-      defaultAdditionalQuestionsAnswers,
       polls,
       groups,
     }: Partial<Simulation> = {}) => {
@@ -56,7 +55,6 @@ export default function useSimulations({
         persona,
         computedResults,
         progression,
-        defaultAdditionalQuestionsAnswers,
         polls,
         groups,
         migrationInstructions,
@@ -90,8 +88,6 @@ export default function useSimulations({
       foldedSteps,
       foldedStepToAdd,
       actionChoices,
-      defaultAdditionalQuestionsAnswers,
-      customAdditionalQuestionsAnswers,
       computedResults,
       progression,
       pollToAdd,
@@ -208,16 +204,6 @@ export default function useSimulations({
             simulationToUpdate.actionChoices = actionChoices
           }
 
-          if (defaultAdditionalQuestionsAnswers !== undefined) {
-            simulationToUpdate.defaultAdditionalQuestionsAnswers =
-              defaultAdditionalQuestionsAnswers
-          }
-
-          if (customAdditionalQuestionsAnswers !== undefined) {
-            simulationToUpdate.customAdditionalQuestionsAnswers =
-              customAdditionalQuestionsAnswers
-          }
-
           if (computedResults !== undefined) {
             simulationToUpdate.computedResults = computedResults
           }
@@ -235,20 +221,20 @@ export default function useSimulations({
 
           if (pollToDelete && simulationToUpdate.polls) {
             simulationToUpdate.polls = simulationToUpdate.polls.filter(
-              (poll) => poll !== pollToDelete
+              (poll) => poll.slug !== pollToDelete
             )
           }
 
           if (groupToAdd) {
             simulationToUpdate.groups = [
               ...(simulationToUpdate.groups ?? []),
-              groupToAdd,
+              { id: groupToAdd },
             ]
           }
 
           if (groupToDelete && simulationToUpdate.groups) {
             simulationToUpdate.groups = simulationToUpdate.groups.filter(
-              (group) => group !== groupToDelete
+              (group) => group.id !== groupToDelete
             )
           }
 

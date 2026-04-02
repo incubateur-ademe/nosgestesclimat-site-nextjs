@@ -22,7 +22,7 @@ export default function MainArticle({
     <Link href={href} className="mb-20 no-underline">
       <h2 className="text-default relative mb-8 inline-block pb-4 text-2xl font-medium md:text-3xl">
         <Trans locale={locale}>À la une !</Trans>{' '}
-        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-[15%] h-[3px] w-[70%] transition-all md:left-0 md:w-full" />
+        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-[15%] h-[3px] w-[70%] transition-all motion-reduce:animate-none md:left-0 md:w-full" />
       </h2>
       <div className="bg-heroLightBackground flex flex-col gap-6 rounded-xl md:flex-row">
         <ImageWithCategory

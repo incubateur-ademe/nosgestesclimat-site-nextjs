@@ -10,7 +10,6 @@ import { pollDashboardClickParameters } from '@/constants/tracking/pages/pollDas
 import { captureClickPollSettings } from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
@@ -104,7 +103,7 @@ export default function CampagnePage() {
                 href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
                 onClick={() => {
                   trackEvent(pollDashboardClickParameters)
-                  trackPosthogEvent(captureClickPollSettings())
+                  trackPosthogEvent(captureClickPollSettings)
                 }}
                 color="secondary"
                 size="sm"
@@ -130,7 +129,7 @@ export default function CampagnePage() {
               }
             />
           )}
-          <EngineProviders supportedRegions={getSupportedRegions()}>
+          <EngineProviders>
             <PollStatistics
               simulationsCount={simulations?.finished ?? 0}
               computedResults={computedResults}

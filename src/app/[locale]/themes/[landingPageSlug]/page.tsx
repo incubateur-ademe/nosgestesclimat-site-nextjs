@@ -17,7 +17,9 @@ import {
   trackingActionClickPageBottom,
 } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { getUser } from '@/helpers/server/dal/user'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -25,6 +27,7 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { fetchThematicLandingPage } from '@/services/cms/fetchThematicLandingPage'
 import { fetchThematicLandingPageMetadata } from '@/services/cms/fetchThematicLandingPageMetadata'
 import type { DefaultPageProps } from '@/types'
@@ -49,14 +52,16 @@ export async function generateMetadata({
   return getMetadataObject({
     locale,
     title:
-      thematicLandingPageMetadata?.metadata?.title ||
-      thematicLandingPageMetadata?.title ||
-      'Landing page thématique - Nos Gestes Climat',
-    description:
-      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
+      thematicLandingPageMetadata?.metadata?.title ??
+      thematicLandingPageMetadata?.title ??
+      t('Landing page thématique - Nos Gestes Climat'),
+    description: t(
+      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.'
+    ),
     alternates: {
       canonical: `/themes/${landingPageSlug}`,
     },
+    locales: [i18nConfig.defaultLocale],
   })
 }
 
@@ -66,6 +71,7 @@ export default async function ThematicLandingPage({
   params: Promise<{ landingPageSlug: string; locale: Locale }>
 }>) {
   const { landingPageSlug, locale } = await params
+  const { id: serverUserId } = await getUser()
   const { thematicLandingPage } =
     (await fetchThematicLandingPage({
       landingPageSlug,
@@ -91,7 +97,7 @@ export default async function ThematicLandingPage({
   } = thematicLandingPage
 
   return (
-    <ClientLayout locale={locale}>
+    <ClientLayout locale={locale} serverUserId={serverUserId}>
       <JSONLD
         jsonLd={[
           {

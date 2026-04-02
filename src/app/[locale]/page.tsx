@@ -8,6 +8,7 @@ import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import { getUser } from '@/helpers/server/dal/user'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -42,15 +43,16 @@ export const generateMetadata = getCommonMetadata({
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale: string) => ({
-    locale: locale as Locale,
+    locale,
   }))
 }
 
 export default async function Homepage({ params }: PageProps<'/[locale]'>) {
   const locale = (await params).locale as Locale
+  const { id: serverUserId } = await getUser()
 
   return (
-    <ClientLayout locale={locale}>
+    <ClientLayout locale={locale} serverUserId={serverUserId}>
       <JSONLD
         jsonLd={[
           {

@@ -2,12 +2,11 @@
 
 import { verifyIfIntegratorBypassRights } from '@/helpers/iframe/verifyIntegratorBypassRights'
 import { getIsFrenchRegion } from '@/helpers/regions/getIsFrenchRegion'
-import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import * as Sentry from '@sentry/nextjs'
 import { createContext, useEffect, useState } from 'react'
 
-export const CONTAINER_ID = 'nosgestesclimat-container'
+export const BODY_ID = 'ngc-body'
 
 const getIsAllowedToBypassConsentDataShare = () => {
   if (typeof window === 'undefined') return false
@@ -17,6 +16,7 @@ const getIsAllowedToBypassConsentDataShare = () => {
   const windowParentLocation = window.parent.location
 
   if (!windowLocation) {
+    // eslint-disable-next-line no-console
     console.error('Iframe Nos Gestes Climat: window.location is undefined')
     Sentry.captureMessage(
       `Iframe Nos Gestes Climat: window.location is undefined`
@@ -24,6 +24,7 @@ const getIsAllowedToBypassConsentDataShare = () => {
   }
 
   if (!windowParentLocation) {
+    // eslint-disable-next-line no-console
     console.error(
       'Iframe Nos Gestes Climat: window.parent.location is undefined'
     )
@@ -59,8 +60,6 @@ export const IframeOptionsProvider = ({
   const searchParams = new URLSearchParams(
     typeof window !== 'undefined' ? window.location.search : ''
   )
-
-  const { user } = useUser()
 
   // Detect iframe mode using window check
   const isIframe = getIsIframe()
@@ -108,18 +107,16 @@ export const IframeOptionsProvider = ({
     }
   }, [isIframeOnlySimulation])
 
-  const regionCode = user?.region?.code
-
   const isFrenchRegion = getIsFrenchRegion({
-    isIframe: isIframe ?? false,
-    iframeRegion: regionCode,
+    isIframe,
+    iframeRegion: iframeRegion ?? 'FR',
   })
 
   return (
     <IframeOptionsContext.Provider
       value={{
         isIframeShareData: isIframe && isIframeShareData,
-        iframeRegion: regionCode,
+        iframeRegion,
         isIframe,
         isIframeOnlySimulation,
         isIntegratorAllowedToBypassConsentDataShare:
@@ -127,7 +124,7 @@ export const IframeOptionsProvider = ({
         iframeLang,
         isFrenchRegion,
       }}>
-      <div id={CONTAINER_ID}>{children}</div>
+      {children}
     </IframeOptionsContext.Provider>
   )
 }

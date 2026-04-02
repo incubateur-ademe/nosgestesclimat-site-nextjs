@@ -41,7 +41,7 @@ export default function PollStatistics({
             color="borderless"
             onClick={() => {
               trackEvent(organisationsDashboardExportData)
-              trackPosthogEvent(captureExportPollData())
+              trackPosthogEvent(captureExportPollData)
             }}
             className="h-14"
           />

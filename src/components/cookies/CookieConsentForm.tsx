@@ -1,20 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  cookieClickAcceptAll,
-  cookieClickAcceptAllPosthog,
-  cookieClickRejectAll,
-  cookieClickRejectAllPosthog,
-  cookieClickSave,
-  cookieClickSavePosthog,
-} from '@/constants/tracking/cookie'
+import { cookieBannerClick } from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { CookieConsentKey } from '@/types/cookies'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
@@ -64,8 +57,7 @@ export default function CookieConsentForm({
         </div>
         <form
           onSubmit={(e) => {
-            trackEvent(cookieClickSave)
-            trackPosthogEvent(cookieClickSavePosthog)
+            trackEvent(cookieBannerClick('Confirmer mes choix'))
             void handleSubmit(confirmChoices)(e)
           }}
           data-testid="cookie-form">
@@ -93,8 +85,7 @@ export default function CookieConsentForm({
                     type="button"
                     color="secondary"
                     onClick={() => {
-                      trackEvent(cookieClickRejectAll)
-                      trackPosthogEvent(cookieClickRejectAllPosthog)
+                      trackEvent(cookieBannerClick('Tout refuser'))
                       rejectAll()
                     }}
                     size="sm"
@@ -109,8 +100,7 @@ export default function CookieConsentForm({
                     type="button"
                     color="primary"
                     onClick={() => {
-                      trackEvent(cookieClickAcceptAll)
-                      trackPosthogEvent(cookieClickAcceptAllPosthog)
+                      trackEvent(cookieBannerClick('Tout accepter'))
                       acceptAll()
                     }}
                     size="sm"
@@ -167,6 +157,46 @@ export default function CookieConsentForm({
                   être désactivés.
                 </Trans>
               </p>
+
+              <details className="bg-primary-50 rounded-xl p-4">
+                <summary className="cursor-pointer">
+                  <Trans i18nKey="cookies.management.required.detail.title">
+                    Voir le détail des cookies
+                  </Trans>
+                </summary>
+
+                <ul className="mt-2 flex flex-col gap-2 pl-4">
+                  <li>
+                    <pre className="block font-bold">NEXT_LOCALE</pre>
+                    <Trans i18nKey="cookies.management.required.detail.description1">
+                      Choix de langue
+                    </Trans>
+                  </li>
+
+                  <li>
+                    <pre className="block font-bold">ngcjwt2</pre>
+                    <Trans i18nKey="cookies.management.required.detail.description2">
+                      Authentification sur l'espace personnel
+                    </Trans>
+                  </li>
+
+                  <li>
+                    <pre className="block font-bold">nosgestesclimat::v3</pre>
+                    <Trans i18nKey="cookies.management.required.detail.description3">
+                      Sauvegarde des données de simulation en local
+                    </Trans>
+                  </li>
+
+                  <li>
+                    <pre className="block font-bold">
+                      cookie-management-state
+                    </pre>
+                    <Trans i18nKey="cookies.management.required.detail.description4">
+                      Sauvegarde des préférences de cookie (cette bannière)
+                    </Trans>
+                  </li>
+                </ul>
+              </details>
             </fieldset>
 
             <CookieFieldset

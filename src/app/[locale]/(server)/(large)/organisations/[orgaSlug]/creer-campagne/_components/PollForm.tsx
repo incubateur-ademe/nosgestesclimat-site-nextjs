@@ -1,17 +1,15 @@
 'use client'
 
-import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
-import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
+import { revalidationOrganisationPath } from './actions/revalidationOrganisationPath'
 
 interface Props {
   organisation: Organisation
@@ -23,11 +21,6 @@ interface Inputs {
 }
 
 export default function PollForm({ organisation }: Props) {
-  const [pollInfo, setPollInfo] = useState<PollToUpdate>({
-    defaultAdditionalQuestions: [],
-    customAdditionalQuestions: [],
-  })
-
   const router = useRouter()
 
   const { t } = useClientTranslation()
@@ -48,16 +41,14 @@ export default function PollForm({ organisation }: Props) {
     try {
       const pollCreated = await createPoll({
         name,
-        defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
-        customAdditionalQuestions: pollInfo.customAdditionalQuestions,
         expectedNumberOfParticipants: expectedNumberOfParticipants || undefined,
       })
 
-      if (pollCreated) {
-        router.push(
-          `/organisations/${organisation.slug}/campagnes/${pollCreated.slug}`
-        )
-      }
+      revalidationOrganisationPath(organisation.slug)
+
+      router.push(
+        `/organisations/${organisation.slug}/campagnes/${pollCreated.slug}`
+      )
     } catch (error) {
       captureException(error)
     }
@@ -104,20 +95,6 @@ export default function PollForm({ organisation }: Props) {
         </div>
       </form>
 
-      <QuestionsComplementaires
-        organisation={organisation}
-        poll={pollInfo}
-        description={
-          <Trans>
-            Vous retrouverez les réponses à ces questions dans l'export des
-            réponses à la campagne.
-          </Trans>
-        }
-        onChange={(updates: PollToUpdate) =>
-          setPollInfo((prevPollInfo) => ({ ...prevPollInfo, ...updates }))
-        }
-      />
-
       {isError && (
         <p className="mt-2 text-red-800">
           <Trans>
@@ -132,7 +109,7 @@ export default function PollForm({ organisation }: Props) {
         disabled={isPending}
         data-testid="poll-create-button"
         form="poll-form"
-        className="self-start">
+        className="mt-4 self-start">
         <Trans>Lancer ma campagne</Trans>
       </Button>
     </>

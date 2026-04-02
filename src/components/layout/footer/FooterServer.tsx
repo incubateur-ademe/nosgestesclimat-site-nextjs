@@ -1,24 +1,11 @@
 import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
+import ThematicPagesSection from '@/components/layout/ThematicPagesSection'
 import Link from '@/components/Link'
 import Logo from '@/components/misc/Logo'
 import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
 import Trans from '@/components/translation/trans/TransServer'
 import {
-  captureFooterClickAmbassadeurs,
-  captureFooterClickBlog,
-  captureFooterClickContact,
-  captureFooterClickDiffusion,
-  captureFooterClickDocumentation,
-  captureFooterClickFAQ,
-  captureFooterClickImpactco2,
-  captureFooterClickInternational,
-  captureFooterClickLogo,
-  captureFooterClickNouveautes,
-  captureFooterClickOrganisations,
-  captureFooterClickPlanSite,
-  captureFooterClickQuiSommesNous,
-  captureFooterClickStats,
   footerClickAmbassadeursServer,
   footerClickBlogServer,
   footerClickContactServer,
@@ -34,11 +21,28 @@ import {
   footerClickQuiSommesNousServer,
   footerClickStatsServer,
 } from '@/constants/tracking/layout'
+import {
+  captureFooterClickAmbassadeurs,
+  captureFooterClickBlog,
+  captureFooterClickContact,
+  captureFooterClickDiffusion,
+  captureFooterClickDocumentation,
+  captureFooterClickFAQ,
+  captureFooterClickImpactco2,
+  captureFooterClickInternational,
+  captureFooterClickLogo,
+  captureFooterClickNouveautes,
+  captureFooterClickOrganisations,
+  captureFooterClickPlanSite,
+  captureFooterClickQuiSommesNous,
+  captureFooterClickStats,
+} from '@/constants/tracking/posthogTrackers'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
+import { cacheLife } from 'next/cache'
 import { twMerge } from 'tailwind-merge'
-import ThematicPagesSection from '../ThematicPagesSection'
+import HideInIframe from '../HideInIframe'
 import CookieButton from './CookieButton'
 import WantToActBlock from './WantToActBlock'
 
@@ -55,6 +59,9 @@ export default async function FooterServer({
   className = '',
   params,
 }: Props) {
+  'use cache'
+  cacheLife('days')
+
   const { t } = await getServerTranslation({ locale })
 
   return (
@@ -238,12 +245,14 @@ export default async function FooterServer({
               </ul>
             </div>
             <div className="flex flex-col gap-y-2">
-              <ThematicPagesSection />
+              <ThematicPagesSection locale={locale} />
             </div>
           </div>
           {locale === 'fr' ? (
             <div className="hidden md:block">
-              <WantToActBlock locale={locale} />
+              <HideInIframe hideIfNotFrenchRegion>
+                <WantToActBlock locale={locale} />
+              </HideInIframe>
             </div>
           ) : null}
         </div>

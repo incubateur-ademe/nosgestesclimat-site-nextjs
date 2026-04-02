@@ -38,7 +38,7 @@ export default async function AllBlogCategories({
           </ul>
         </div>
 
-        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
+        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all motion-reduce:animate-none" />
       </div>
     </div>
   )

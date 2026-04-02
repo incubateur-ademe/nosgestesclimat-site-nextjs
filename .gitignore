@@ -69,6 +69,8 @@ coverage
 
 *.log
 
-/public/mockServiceWorker.js
 storybook-static
 package-lock.json
+
+# IDE
+.history/

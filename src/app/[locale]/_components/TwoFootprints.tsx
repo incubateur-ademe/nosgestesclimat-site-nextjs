@@ -56,7 +56,7 @@ export default function TwoFootprints({ locale }: { locale: string }) {
         <h2 className="mb-0 text-center text-2xl md:text-3xl">
           <Trans locale={locale}>Un calculateur, deux empreintes</Trans>
         </h2>
-        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-[15%] h-[3px] w-[70%] transition-all md:left-0 md:w-full" />
+        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-[15%] h-[3px] w-[70%] transition-all motion-reduce:animate-none md:left-0 md:w-full" />
       </div>
 
       {/* Displayed on desktop only */}
