@@ -1,3 +1,4 @@
+'use client'
 import { trackingLocale } from '@/constants/tracking/misc'
 import type { Locale } from '@/i18nConfig'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'

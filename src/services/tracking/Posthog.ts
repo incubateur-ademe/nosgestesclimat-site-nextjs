@@ -74,6 +74,9 @@ export class PostHog {
       defaults: '2026-01-30',
       debug: SHOW_DEBUG_TRACE,
       person_profiles: 'identified_only',
+      /** Unfortunatly, NextJS router.replace does not trigger `history.pushState` systematically, so we need to capture pageview with React */
+      capture_pageview: false,
+      capture_pageleave: true,
       autocapture: {
         capture_copied_text: false,
         css_selector_allowlist: ['[data-track]'],
