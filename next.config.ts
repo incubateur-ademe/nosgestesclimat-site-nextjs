@@ -1,7 +1,8 @@
 import type { NextConfig } from 'next'
+import { version as release } from './package.json'
 
 import createMDX from '@next/mdx'
-import { withSentryConfig } from '@sentry/nextjs'
+import { SentryBuildOptions, withSentryConfig } from '@sentry/nextjs'
 
 import redirects from './config/redirects.js'
 
@@ -75,24 +76,30 @@ const nextConfig: NextConfig = {
 
 const sentryConfig = {
   // Suppresses source map uploading logs during build
-  silent: true,
+  silent: process.env.NODE_ENV === 'development',
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
+  release,
 
   authToken: process.env.SENTRY_AUTH_TOKEN,
-
+  environment:
+    process.env.NEXT_PUBLIC_SITE_URL === 'https://nosgestesclimat.fr'
+      ? 'production'
+      : process.env.NEXT_PUBLIC_SITE_URL === 'https://preprod.nosgestesclimat.fr'
+        ? 'preprod'
+        : 'development',
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: process.env.NODE_ENV !== 'development',
+
 
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
 
   telemetry: process.env.NODE_ENV !== 'development',
 
-  autoDiscoverRelease: true,
   include: '.',
   ignore: ['node_modules', '.next', 'cypress'],
-}
+} as SentryBuildOptions
 
 export default process.env.NODE_ENV !== 'development'
   ? withSentryConfig(withMDX(nextConfig), sentryConfig)
