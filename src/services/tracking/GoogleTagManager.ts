@@ -7,6 +7,8 @@ export class GoogleTagManager {
     this.update(savedCookieState.googleTag)
   }
   update(cookieState: GoogleTagCookieState) {
+    if (typeof window === 'undefined') return
+
     switch (cookieState) {
       case 'accepted':
         window.gtag?.('consent', 'update', {

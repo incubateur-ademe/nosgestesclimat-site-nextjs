@@ -1,4 +1,5 @@
 import Trackers from '@/components/tracking/Trackers'
+import MatomoServerTracker__deprecated from '@/hooks/tracking/MatomoServerTracker'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
@@ -10,7 +11,6 @@ import {
   BODY_ID,
   IframeOptionsProvider,
 } from './_components/mainLayoutProviders/IframeOptionsContext'
-import ServerTracking from './_components/scripts/ServerTracking'
 import './globals.css'
 
 export const marianne = localFont({
@@ -75,61 +75,14 @@ export default async function RootLayout({
 
         <meta name="theme-color" content="#4949ba" />
 
+        <MatomoServerTracker__deprecated />
         <Suspense>
           <Trackers locale={locale} />
         </Suspense>
 
-        {
-          // Matomo Prod
-          process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
-            <Script id="matomo">
-              {`
-                  var _paq = window._paq = window._paq || [];
-                  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-                  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-                  _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
-                  _paq.push(['setCookieSameSite', 'None']);
-                  _paq.push(['enableLinkTracking']);
-                  (function() {
-                    var u="https://stats.beta.gouv.fr/";
-                    _paq.push(['setTrackerUrl', u+'matomo.php']);
-                    _paq.push(['setSiteId', '20']);
-                    _paq.push(['addTracker', 'https://stats.data.gouv.fr/matomo.php', '153'])
-                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-                  })();
-                `}
-            </Script>
-          )
-        }
-
-        {
-          // Matomo Pre-prod
-          process.env.NEXT_PUBLIC_MATOMO_ID === '2' && (
-            <Script id="matomo">
-              {`
-                var _paq = window._paq = window._paq || [];
-                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-                _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-                _paq.push(["setCookieDomain", "${process.env.NEXT_PUBLIC_MATOMO_DOMAIN}"]);
-                _paq.push(['setCookieSameSite', 'None']);
-                _paq.push(['enableLinkTracking']);
-                (function() {
-                  var u="https://stats.beta.gouv.fr/";
-                  _paq.push(['setTrackerUrl', u+'matomo.php']);
-                  _paq.push(['setSiteId', '79']);
-                  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                  g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-                })();
-              `}
-            </Script>
-          )
-        }
         <Script
           src="https://tally.so/widgets/embed.js"
           strategy="lazyOnload"></Script>
-
-        <ServerTracking />
       </head>
       <IframeOptionsProvider>
         <body

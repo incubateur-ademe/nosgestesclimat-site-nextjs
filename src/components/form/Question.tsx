@@ -17,7 +17,7 @@ import Button from '@/design-system/buttons/Button'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
 import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
 import { useRef, useState } from 'react'
@@ -128,7 +128,7 @@ export default function Question({
                 setValue={(value: string | undefined) => {
                   {
                     setValue(value, { questionDottedName: question })
-                    trackEvent(
+                    trackMatomoEvent__deprecated(
                       questionChooseAnswer({ question, answer: value })
                     )
                   }
@@ -149,7 +149,7 @@ export default function Question({
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })
-                    trackEvent(
+                    trackMatomoEvent__deprecated(
                       questionChooseAnswer({ question, answer: value })
                     )
                   }

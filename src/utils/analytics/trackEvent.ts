@@ -1,13 +1,6 @@
 /* eslint-disable no-console */
 import posthog from 'posthog-js'
 
-const shouldNotTrack = false
-//process.env.NODE_ENV === 'development'
-
-const shouldLogTracking = false
-// process.env.NODE_ENV === 'development' ||
-// process.env.NEXT_PUBLIC_MATOMO_ID !== '1'
-
 declare global {
   interface Window {
     _paq: unknown[]
@@ -15,13 +8,11 @@ declare global {
   }
 }
 
-export const trackEvent = (args: (string | null)[]) => {
-  if (shouldLogTracking) {
-    console.log(args)
-    console.debug(args.join(' => '))
-  }
-
-  if (shouldNotTrack || !window?._paq) {
+/**
+ * @deprecated Use trackPosthogEvent instead, or better, data-track directly in HTML/JSX
+ */
+export const trackMatomoEvent__deprecated = (args: (string | null)[]) => {
+  if (process.env.NODE_ENV === 'development' || !window?._paq) {
     return
   }
 
@@ -40,14 +31,5 @@ export const trackPosthogEvent = (args: {
   eventName: string
   properties?: Record<string, string | number | boolean | null | undefined>
 }) => {
-  if (shouldLogTracking) {
-    console.log(args)
-    console.debug('posthog', `"${args.eventName}" =>`, args.properties)
-  }
-
-  if (shouldNotTrack || !window?._paq) {
-    return
-  }
-
   posthog.capture(args.eventName, { ...args.properties })
 }

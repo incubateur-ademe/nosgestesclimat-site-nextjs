@@ -4,6 +4,10 @@ import { getIframeInformation } from './iframeInformation'
 
 export type PostHogCookieState = 'accepted' | 'refused' | 'do_not_track'
 
+const SHOW_DEBUG_TRACE =
+  process.env.NODE_ENV === 'development' ||
+  process.env.NEXT_PUBLIC_SITE_URL !== 'https://nosgesteclimat.fr'
+
 export class PostHog {
   private INTERSECTION_OBSERVER_THRESHOLD = 0.1
 
@@ -61,17 +65,14 @@ export class PostHog {
   }
 
   private initPosthog() {
-    if (
-      !process.env.NEXT_PUBLIC_POSTHOG_KEY ||
-      !process.env.NEXT_PUBLIC_POSTHOG_HOST
-    ) {
+    if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) {
       return
     }
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
       cookieless_mode: 'on_reject',
       defaults: '2026-01-30',
-      debug: true,
+      debug: SHOW_DEBUG_TRACE,
       person_profiles: 'identified_only',
       autocapture: {
         capture_copied_text: false,
@@ -88,14 +89,6 @@ export class PostHog {
     if (savedCookieState.posthog === 'do_not_track') {
       this.switchDNTOn()
     }
-
-    const iframeInformation = getIframeInformation()
-    if (iframeInformation.iframe) {
-      posthog.register_for_session({
-        iframe: true,
-        $referrer: iframeInformation.referrer,
-        $referring_domain: iframeInformation.referringDomain,
-      })
-    }
+    posthog.register_for_session(getIframeInformation())
   }
 }

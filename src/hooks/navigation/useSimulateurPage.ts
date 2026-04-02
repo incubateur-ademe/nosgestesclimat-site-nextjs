@@ -26,7 +26,7 @@ export function useSimulateurPage() {
 
   const tutorielSeen = tutorials.testIntro
 
-  const { progression, id } = useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const getLinkToSimulateurPage = useCallback(
     ({
@@ -48,7 +48,7 @@ export function useSimulateurPage() {
       // else we return the tutoriel page link
       return getLinkToTutoriel({ locale, searchParams })
     },
-    [progression, tutorielSeen, locale, searchParams, id]
+    [progression, tutorielSeen, locale, searchParams]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {
