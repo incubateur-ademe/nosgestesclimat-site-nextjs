@@ -7,10 +7,9 @@ import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { Suspense } from 'react'
-import {
-  BODY_ID,
-  IframeOptionsProvider,
-} from './_components/mainLayoutProviders/IframeOptionsContext'
+
+import DefaultProvider from '@/publicodes-state/providers/DefaultProvider'
+import { BODY_ID } from './_components/mainLayoutProviders/IframeOptionsContext'
 import './globals.css'
 
 export const marianne = localFont({
@@ -84,13 +83,13 @@ export default async function RootLayout({
           src="https://tally.so/widgets/embed.js"
           strategy="lazyOnload"></Script>
       </head>
-      <IframeOptionsProvider>
+      <DefaultProvider>
         <body
           id={BODY_ID}
           className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
           {children}
         </body>
-      </IframeOptionsProvider>
+      </DefaultProvider>
     </html>
   )
 }

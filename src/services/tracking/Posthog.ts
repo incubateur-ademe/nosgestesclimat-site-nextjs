@@ -78,6 +78,7 @@ export class PostHog {
         capture_copied_text: false,
         css_selector_allowlist: ['[data-track]'],
       },
+
       custom_campaign_params: [
         'mtm_campaign',
         'mtm_kwd',
