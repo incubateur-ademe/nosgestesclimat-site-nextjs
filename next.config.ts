@@ -82,12 +82,7 @@ const sentryConfig = {
   release,
 
   authToken: process.env.SENTRY_AUTH_TOKEN,
-  environment:
-    process.env.NEXT_PUBLIC_SITE_URL === 'https://nosgestesclimat.fr'
-      ? 'production'
-      : process.env.NEXT_PUBLIC_SITE_URL === 'https://preprod.nosgestesclimat.fr'
-        ? 'preprod'
-        : 'development',
+
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: process.env.NODE_ENV !== 'development',
 
