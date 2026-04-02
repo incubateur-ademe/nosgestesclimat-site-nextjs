@@ -7,7 +7,7 @@ import { fetchServer } from '../fetchServer'
 import { setDefaultExtendedSituation } from './utils/setDefaultExtendedSituation'
 
 export interface SimulationFilter {
-  onlyCompleted?: boolean
+  completedOnly?: boolean
   pageSize?: number
 }
 
@@ -17,11 +17,10 @@ export async function getSimulations(
   }: {
     user: AppUser
   },
-  { onlyCompleted = false, pageSize = 50 }: SimulationFilter = {}
+  { completedOnly = false, pageSize = 50 }: SimulationFilter = {}
 ): Promise<Simulation[]> {
   const serverSimulations = await fetchServer<Simulation[]>(
-    `${SIMULATION_URL}/${user.id}?onlyCompleted=${onlyCompleted}&pageSize=${pageSize}`,
-    { next: { revalidate: 0 } }
+    `${SIMULATION_URL}/${user.id}?completedOnly=${completedOnly}&pageSize=${pageSize}`
   )
 
   // Map from server format to client format

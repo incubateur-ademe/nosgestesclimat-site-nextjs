@@ -6,7 +6,6 @@ import type { PropsWithChildren } from 'react'
 
 const DUMMY_SIMULATION_RESULT: SimulationResult = {
   group: null,
-  situation: {},
   computedResults: {
     carbone: {
       bilan: 9000,

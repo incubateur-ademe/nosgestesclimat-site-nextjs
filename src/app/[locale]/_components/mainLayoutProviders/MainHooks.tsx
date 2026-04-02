@@ -6,11 +6,13 @@
 'use client'
 
 import { useAutoSaveSimulation } from '@/hooks/simulation/useAutoSaveSimulation'
+import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useFixedRegion } from '@/hooks/useFixedRegion'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
 import { useRedirectIfInAppBrowser } from '@/hooks/useRedirectIfInAppBrowser'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
+import { getIsIframe } from '@/utils/getIsIframe'
 
 export default function MainHooks() {
   useTrackRegion()
@@ -18,7 +20,7 @@ export default function MainHooks() {
   useUserInfosParams()
   useInitSimulationParam()
   useRedirectIfInAppBrowser()
+  useTrackIframe(getIsIframe())
   useAutoSaveSimulation()
-
   return null
 }

@@ -2,20 +2,15 @@ import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Emoji from '@/design-system/utils/Emoji'
 
-import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Title from '@/design-system/layout/Title'
 import type { Locale } from '@/i18nConfig'
-import type { Situation } from '@/publicodes-state/types'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
+import DomesticWaterBlock from './DomesticWaterBlock'
 
 interface Props {
-  situation: Situation
   locale: Locale
 }
-const DomesticWaterBlock = dynamic(() => import('./DomesticWaterBlock'))
 
-export default function WhatIsWaterFootprint({ situation, locale }: Props) {
+export default function WhatIsWaterFootprint({ locale }: Props) {
   return (
     <div className="mb-12 flex flex-col gap-8 md:flex-row">
       <section className="bg-primary-100 flex-1 rounded-2xl p-8">
@@ -123,11 +118,7 @@ export default function WhatIsWaterFootprint({ situation, locale }: Props) {
           </Trans>
         </p>
 
-        <Suspense>
-          <QueryClientProviderWrapper>
-            <DomesticWaterBlock situation={situation} />
-          </QueryClientProviderWrapper>
-        </Suspense>
+        <DomesticWaterBlock locale={locale} />
 
         <p>
           <Trans

@@ -7,6 +7,7 @@ interface Props {
   remainingQuestions: DottedName[]
   relevantQuestions: DottedName[]
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
+  currentStoredProgression: number
 }
 
 /**
@@ -19,6 +20,7 @@ export default function useProgression({
   remainingQuestions,
   relevantQuestions,
   updateCurrentSimulation,
+  currentStoredProgression,
 }: Props) {
   const progression = useMemo(
     () =>
@@ -45,8 +47,11 @@ export default function useProgression({
 
   // Updates the progression stored in the user object / hook
   useEffect(() => {
+    // Never retrograde a simulation which is already completed
+    if (currentStoredProgression === 1 && progression < 1) return
+
     updateCurrentSimulation({ progression })
-  }, [progression, updateCurrentSimulation])
+  }, [progression, updateCurrentSimulation, currentStoredProgression])
 
   return {
     remainingQuestionsByCategories,

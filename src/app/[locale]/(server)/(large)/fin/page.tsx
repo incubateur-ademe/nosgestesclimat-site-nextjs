@@ -8,7 +8,7 @@ import {
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getUser } from '@/helpers/server/dal/user'
-import { throwNextError } from '@/helpers/server/error'
+import { NotFoundError, throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import { getSimulations } from '@/helpers/server/model/simulations'
 import {
@@ -17,6 +17,7 @@ import {
 } from '@/helpers/server/model/utils/getTendency'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
+import { captureException } from '@sentry/nextjs'
 import { redirect } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default async function SimulationPage({
+export default async function FinPage({
   params,
   searchParams,
 }: PageProps<'/[locale]/fin'>) {
@@ -51,14 +52,22 @@ export default async function SimulationPage({
   }
 
   const user = await getUser()
-  const simulations = await getSimulations(
-    { user },
-    { onlyCompleted: true, pageSize: 2 }
-  )
+  let simulations
+  try {
+    simulations = await getSimulations(
+      { user },
+      { completedOnly: true, pageSize: user.isAuth ? 2 : 1 }
+    )
+  } catch (e) {
+    captureException(e)
+    redirect('/')
+  }
+
   const [simulation, previousSimulation] = simulations
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!simulation) {
+    captureException(new NotFoundError())
     redirect('/')
   }
   const simulationResult = await throwNextError(async () => {

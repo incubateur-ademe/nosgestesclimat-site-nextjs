@@ -27,9 +27,11 @@ export default async function FootprintsLinks({
       options={[
         {
           label: (
-            <Trans locale={locale} i18nKey="common.carbonFootprint">
-              Empreinte carbone
-            </Trans>
+            <span className="whitespace-nowrap">
+              <Trans locale={locale} i18nKey="common.carbonFootprint">
+                Empreinte carbone
+              </Trans>
+            </span>
           ),
           href: basePathname,
           'data-testid': 'carbon-footprint-link',
@@ -38,12 +40,13 @@ export default async function FootprintsLinks({
         {
           'data-testid': 'water-footprint-link',
           label: (
-            <>
+            <span className="whitespace-nowrap">
               <Trans locale={locale} i18nKey="common.waterFootprint">
                 Empreinte eau
-              </Trans>{' '}
+              </Trans>
+              &nbsp;
               <Emoji className="text-base">💧</Emoji>
-            </>
+            </span>
           ),
           href: `${basePathname}/eau`,
           isSelected: currentPage === 'eau',

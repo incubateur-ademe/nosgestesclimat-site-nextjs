@@ -1,4 +1,4 @@
-import type { NextRequest } from 'next/server'
+import type { NextRequest, ProxyConfig } from 'next/server'
 import { userMiddleware } from './helpers/server/dal/middleware'
 import i18nMiddleware from './middlewares/i18nMiddleware'
 
@@ -6,7 +6,7 @@ export async function proxy(request: NextRequest) {
   return await userMiddleware(request, i18nMiddleware)
 }
 
-export const config = {
+export const config: ProxyConfig = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:

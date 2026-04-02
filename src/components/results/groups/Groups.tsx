@@ -23,7 +23,7 @@ export default function Groups({ groups }: Props) {
         tag="h2"
         title={
           <Trans i18nKey="mon-espace.groups.title">
-            Mes groupes "Amis" et "Famille"
+            Mes tests collectifs "Amis" et "Famille"
           </Trans>
         }
       />

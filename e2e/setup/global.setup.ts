@@ -13,6 +13,8 @@ setup('new visitor', async ({ page, cookieBanner }) => {
   // We go to the blog to not create a userId from the start
   await page.goto('/blog')
   await cookieBanner.dismiss()
+  // Delete anon session cookie
+  await page.context().clearCookies()
   await saveContext(page, NEW_VISITOR_STATE)
 })
 

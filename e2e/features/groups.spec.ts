@@ -92,11 +92,7 @@ test.describe('A new user', () => {
     ).toBeInViewport()
   })
 
-  test('can join a group without filling its email', async ({
-    group,
-    user,
-    page,
-  }) => {
+  test('can join a group', async ({ group, user, page }) => {
     await group.joinWithInviteLink(user)
     await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
   })

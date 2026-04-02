@@ -1358,8 +1358,8 @@ entries:
   signIn.verificationForm.notReceived.text.lock: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, rising from 23 to 40 m² per person, i.e.
-  mon-espace.groups.title: My "Friends" and "Family" groups
-  mon-espace.groups.title.lock: Mes groupes "Amis" et "Famille"
+  mon-espace.groups.title: My "Friends" and "Family" group tests
+  mon-espace.groups.title.lock: Mes tests collectifs "Amis" et "Famille"
   mon-espace.instructions.list.item1.part2: your footprint results
   mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
   mon-espace.welcome.description.part1: Here you can <1>track your results</1>, take <4>action</4> and <7>get other people on board</7>.
@@ -1426,8 +1426,8 @@ entries:
   mon-espace.evolutionGraph.chartLabel.lock: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
   mon-espace.tabs.myActions: My actions
   mon-espace.tabs.myActions.lock: Mes actions
-  mon-espace.tabs.myGroups: My groups
-  mon-espace.tabs.myGroups.lock: Mes groupes
+  mon-espace.tabs.myGroups: Group tests
+  mon-espace.tabs.myGroups.lock: Tests collectifs
   mon-espace.resultsList.result.viewDetail: See details
   mon-espace.resultsList.result.viewDetail.lock: Voir le détail
   mon-espace.resultsList.title: All my results
@@ -1758,17 +1758,17 @@ entries:
   Cliquez sur voir le détail pour découvrir également votre empreinte eau: Click on see details to find out more about your water footprint
   fin.getResultsOnUserProfile.inputLabel: Your e-mail address
   fin.getResultsOnUserProfile.inputLabel.lock: Votre adresse e-mail
-  results.saveResults.listItem1: Retrieve <1>your history</1>
+  results.saveResults.listItem1: Access <1>your full history</1>
   results.saveResults.listItem1.lock: Retrouvez <1>votre historique</1>
-  results.saveResults.title.authenticated: Access your personal space
+  results.saveResults.title.authenticated: Access your personal dashboard
   results.saveResults.title.authenticated.lock: Accédez à votre espace personnel
-  results.saveResults.buttonLabel.authenticated: See the evolution of my result
+  results.saveResults.buttonLabel.authenticated: See my progress
   results.saveResults.buttonLabel.authenticated.lock: Voir l’évolution de mon résultat
-  results.saveResults.listItem2: Follow <1>your progress</1>
+  results.saveResults.listItem2: Track <1>your progress</1> over time
   results.saveResults.listItem2.lock: Suivez <1>votre évolution</1>
-  results.saveResults.listItem3: Discover <1>your personalised actions</1>
+  results.saveResults.listItem3: Discover <1>tailored actions</1> to reduce your carbon footprint
   results.saveResults.listItem3.lock: Découvrez <1>vos actions personnalisées</1>
-  results.saveResults.title.unauthenticated: Receive them by e-mail and access your personal space
+  results.saveResults.title.unauthenticated: 'Get your results by email and unlock your personal dashboard to:'
   results.saveResults.title.unauthenticated.lock: Recevez-les par e-mail et accédez à votre espace personnel
   results.saveResults.imageAlt: Example of a progression curve for my footprint, and a breakdown of the footprint across the categories of transport, housing, food, miscellaneous and services.
   results.saveResults.imageAlt.lock: Exemple de courbe de progression de mon empreinte, et de répartition de l'empreinte sur les catégories transport, logement, alimentation, divers et services.
@@ -1797,7 +1797,7 @@ entries:
   common.vous: You
   common.vous.lock: Vous
   Vous aujourd'hui: You today
-  results.objective.reduction.over7.description: Your indicative pace for achieving <2>{{firstObjectiveNumber}}T en {{year}}</2>
+  results.objective.reduction.over7.description: Your indicative pace for achieving <2>{{firstObjectiveNumber}}T in {{year}}</2>
   results.objective.reduction.over7.description.lock: Votre rythme indicatif pour parvenir à <2>{{firstObjectiveNumber}}T en {{year}}</2>
   Objectif 2050: Target 2050
   common.co2eAn: CO₂e / year
@@ -1816,11 +1816,11 @@ entries:
   results.objective.title.lock: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
   results.objective.under4.description.title: You're already under {{secondObjectiveNumber}} tonnes - well done!
   results.objective.under4.description.title.lock: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
-  results.objective.collectiveEffort.stateDescription: It can accelerate the <1>decarbonisation of</1> society by <3>passing laws</3> and <6>providing targeted financial aid.</6> Through its investments, it can gradually reduce the footprint of societal services.
-  results.objective.collectiveEffort.stateDescription.lock: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et <6>des aides financières ciblées.</6> Grâce à ses investissements, il réduit progressivement l'empreinte des services sociétaux.
+  results.objective.collectiveEffort.stateDescription: It can accelerate the <1>decarbonisation of</1> society by <3>passing laws</3> and providing <6>targeted financial aid</6>, as well as through its investments.
+  results.objective.collectiveEffort.stateDescription.lock: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées</6>, ainsi qu'au travers de ses investissements.
   results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of <5>{{secondObjectiveNumber}}T en {{year}}</5>
   results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
-  results.objective.reduction.over4.description: Your indicative pace for achieving <2>{{secondObjectiveNumber}}T en {{year}}</2>
+  results.objective.reduction.over4.description: Your indicative pace for achieving <2>{{secondObjectiveNumber}}T in {{year}}</2>
   results.objective.reduction.over4.description.lock: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
   results.objective.description: France's objective to achieve carbon neutrality by 2050 and help limit global warming to +2°C.
   results.objective.description.lock: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à + 2 °C.
@@ -1872,8 +1872,8 @@ entries:
   simulation.eau.whatIsWaterFootprint.list.fruitsAndVegetables.lock: les <1>fruits, légumes</1> et <4>céréales</4> que vous mangez
   simulation.eau.documentation.link: Understanding calculations
   simulation.eau.documentation.link.lock: Comprendre le calcul
-  simulation.carbone.title: You emit approximately
-  simulation.carbone.title.lock: Vous émettez environ
+  simulation.carbone.title: Your annual carbon footprint is
+  simulation.carbone.title.lock: 'Vos émissions annuelles :'
   simulation.eau.whatIsWaterFootprint.list.digitalDevices: extracting materials from your <2>digital devices</2>
   simulation.eau.whatIsWaterFootprint.list.digitalDevices.lock: l'extraction des matériaux de vos <2>appareils numériques</2>
   endPage.waterActions.article1Title: 4 steps to take for a water-efficient wardrobe
@@ -1882,8 +1882,8 @@ entries:
   simulation.eau.whatIsWaterFootprint.showerWater.mainText.lock: <0>Vous utilisez</0><1><0>{{formattedValue}} {{unit}}</0> <2>d'eau domestique par jour</2></1>
   simulation.eau.whatIsWaterFootprint.list.electricity: the production of your <1>electricity</1>
   simulation.eau.whatIsWaterFootprint.list.electricity.lock: la production de votre <1>électricité</1>
-  simulation.eau.whatIsWaterFootprint.showerWater.average: '*The French average is {{average}} litres per day'
-  simulation.eau.whatIsWaterFootprint.showerWater.average.lock: '*La moyenne française est de {{average}} litres par jour'
+  simulation.eau.whatIsWaterFootprint.showerWater.average: The French average consumption is <2>{{average}} litres per day</2>
+  simulation.eau.whatIsWaterFootprint.showerWater.average.lock: La moyenne française est de <2>{{average}} litres par jour</2>
   eau.resultats.isItALot.title: Is it a lot?
   eau.resultats.isItALot.title.lock: Est-ce que c'est beaucoup ?
   endPage.waterActions.title: What can we do?
@@ -1931,23 +1931,23 @@ entries:
   results.footprintsLinks.ariaLabel.lock: Sélecteur de type d'empreinte
   results.actions.title: Your action plan
   results.actions.title.lock: Votre plan d'action
-  results.actions.subtitle: Find out how you can make it happen
+  results.actions.subtitle: Discover practical steps to get there
   results.actions.subtitle.lock: Découvrez des gestes concrets pour y arriver
   carbonResults.saveBlock.title: Find your results easily
   carbonResults.saveBlock.title.lock: Retrouvez facilement vos résultats
-  results.actions.linkLabel: Building my action plan
-  results.actions.linkLabel.lock: Construire mon plan d’action
+  results.actions.linkLabel: Discover my actions
+  results.actions.linkLabel.lock: Découvrir mes actions
   common.transport: Transport
   common.transport.lock: Transport
-  carbonResults.objective.description: <0>You're not on your own. Every situation is different, and</0> we want to help you make the most of it.
-  carbonResults.objective.description.lock: <0>Vous n'êtes pas seul. Chaque contexte est différent,</0> on contribue à hauteur de ses possibilités, on veut vous y aider.
-  results.where.title: Where do your results come from?
+  carbonResults.objective.description: <0>You have a role to play.</0> We are here to help you.
+  carbonResults.objective.description.lock: <0>Vous avez votre rôle à jouer.</0> Nous sommes là pour vous aider.
+  results.where.title: Where does your result come from?
   results.where.title.lock: D’où vient votre résultat ?
   common.housing: Housing
   common.housing.lock: Logement
-  common.alimentation: Power supply
+  common.alimentation: Food
   common.alimentation.lock: Alimentation
-  results.actions.text: We've put together a range of <1>personalised actions</1> to help you go further
+  results.actions.text: We’ve prepared a range of <1>personalized actions</1> to help you go further
   results.actions.text.lock: Nous avons préparé des <1>actions personnalisées</1> pour vous aider à aller plus loin
   carbonResults.tendency.decrease: <0>Down since</0><1>your last result</1>
   carbonResults.tendency.decrease.lock: <0>En baisse depuis</0><1>votre dernier résultat</1>
@@ -1955,21 +1955,21 @@ entries:
   carbonResults.tendency.increase.lock: <0>En hausse depuis</0><1>votre dernier résultat</1>
   mon-espace.resultsDetail.breadcrumb.waterFootprint: Water footprint
   mon-espace.resultsDetail.breadcrumb.waterFootprint.lock: Empreinte eau
-  results.saveResults.title: 'Find your results easily '
+  results.saveResults.title: Access your results anytime
   results.saveResults.title.lock: 'Retrouvez facilement vos résultats '
-  results.year: an
+  results.year: year
   results.year.lock: an
   results.groupThankYou.cta: See the results
   results.groupThankYou.cta.lock: Voir les résultats
   results.groupThankYou.title: Thank you for completing the test!
   results.groupThankYou.title.lock: Merci d'avoir complété le test !
-  pages.result.unauthorized: <0>These results are protected</0><1>To access them, you need to log in with the same email address you used to save them.</1><2>Connect me</2>
-  pages.result.unauthorized.lock: <0>Ces résultats sont protégés</0><1>Pour y accéder, vous devez vous connectez avec le même email que celui utilisé lors de leur sauvegarde.</1><2>Me connecter</2>
+  pages.result.unauthorized: <0>These results are protected</0><1>To access them, you need to log in with the same e-mail address you used to save them.</1><2>Connect me</2>
+  pages.result.unauthorized.lock: <0>Ces résultats sont protégés</0><1>Pour y accéder, vous devez vous connecter avec le même e-mail que celui utilisé lors de leur sauvegarde.</1><2>Me connecter</2>
   pages.result.notfound: <0>Impossible to find these results</0><1>This means that they do not exist, or that they are not linked to your e-mail.</1><2>In the latter case, you can try logging in again with a different username and password.</2><3>Back to my space</3>
   pages.result.notfound.lock: <0>Impossible de retrouver ces résultats</0><1>Cela signifie qu'ils n'existent pas, ou qu'ils ne sont pas reliés à votre e-mail.</1><2>Dans ce dernier cas, vous pouvez essayer de vous re-connecter avec d'autres identifiants.</2><3>Retour à mon espace</3>
   simulator.navigation.nextButton.loading: <0></0> Finish
   simulator.navigation.nextButton.loading.lock: <0></0> Terminer
-  results.saveResults.buttonLabel.authenticated.withPreviousResults: See the evolution of my result
+  results.saveResults.buttonLabel.authenticated.withPreviousResults: See my progress
   results.saveResults.buttonLabel.authenticated.withPreviousResults.lock: Voir l’évolution de mon résultat
   results.saveResults.buttonLabel.authenticated.noPreviousResults: Access my space
   results.saveResults.buttonLabel.authenticated.noPreviousResults.lock: Accéder à mon espace
@@ -1986,7 +1986,26 @@ entries:
   results.objective.collectiveEffort.companies.lock: Les entreprises
   results.objective.collectiveEffort.collectivities: Local authorities
   results.objective.collectiveEffort.collectivities.lock: Les collectivités
-  results.objective.collectiveEffort.companiesDescription: At the instigation of the State and the general public, businesses are working to <2>gradually reduce the footprint of goods and services.</2> In the end, this helps to reduce the footprint of each and every one of our purchases and uses.
-  results.objective.collectiveEffort.companiesDescription.lock: Sous l'impulsion de l'État et des citoyens, les entreprises travaillent à la <2>réduction progressive de l'empreinte des bien et services.</2> Cela contribue à réduire, à la fin, l'empreinte de chacun de nos achats et usages.
-  results.objective.collectiveEffort.collectivitiesDescription: Through their land-use planning choices, they contribute to <2>the adoption of new, more sustainable practices</2> (mobility, housing, food, etc.) at local level.
-  results.objective.collectiveEffort.collectivitiesDescription.lock: Par leurs choix d'aménagements du territoire, elles participent à <2>l'adoption de nouvelles pratiques plus durables</2> (mobilités, logement, alimentation...) à l'échelle locale.
+  results.objective.collectiveEffort.companiesDescription: At the instigation of the state and the general public, businesses are working to <2>gradually reduce the footprint of their goods and services</2>.
+  results.objective.collectiveEffort.companiesDescription.lock: Sous l'impulsion de l'État et des citoyens, les entreprises travaillent à la <2>réduction progressive de l'empreinte des biens et services</2>.
+  results.objective.collectiveEffort.collectivitiesDescription: Through their land-use planning choices, they are contributing to <2>the adoption of new, more sustainable practices</2> locally.
+  results.objective.collectiveEffort.collectivitiesDescription.lock: Par leurs choix d’aménagements du territoire, elles participent à <2>l'adoption de nouvelles pratiques plus durables</2> à l’échelle locale.
+  Chargement...: Loading...
+  banner.link.ariaLabel: '{{label}}opens in a new window'
+  banner.link.ariaLabel.lock: "{{label}}, s'ouvre dans une nouvelle fenêtre"
+  cookies.management.required.detail.description2: Authentication on the personal space
+  cookies.management.required.detail.description2.lock: Authentification sur l'espace personnel
+  cookies.management.required.detail.description1: Choice of language
+  cookies.management.required.detail.description1.lock: Choix de langue
+  cookies.management.required.detail.description3: Local backup of simulation data
+  cookies.management.required.detail.description3.lock: Sauvegarde des données de simulation en local
+  results.tabs.myGroups: Create a group test
+  results.tabs.myGroups.lock: Créer un test collectif
+  cookies.management.required.detail.title: See details of cookies
+  cookies.management.required.detail.title.lock: Voir le détail des cookies
+  results.tabs.groups: Group test
+  results.tabs.groups.lock: Test collectif
+  cookies.management.required.detail.description4: Saving cookie preferences (this banner)
+  cookies.management.required.detail.description4.lock: Sauvegarde des préférences de cookie (cette bannière)
+  organisations.askDemo.iframe.title: Form - book an appointment for a demo of our functions for organisations
+  organisations.askDemo.iframe.title.lock: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations

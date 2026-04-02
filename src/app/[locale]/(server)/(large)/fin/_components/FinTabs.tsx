@@ -119,10 +119,12 @@ export default function FinTabs() {
                   )}
                 />
                 <span className="hidden md:block">
-                  <Trans i18nKey="mon-espace.tabs.myGroups">Mes groupes</Trans>
+                  <Trans i18nKey="results.tabs.myGroups">
+                    Créer un test collectif
+                  </Trans>
                 </span>
                 <span className="block text-center text-sm md:hidden">
-                  <Trans i18nKey="mon-espace.tabs.groups">Groupes</Trans>
+                  <Trans i18nKey="results.tabs.groups">Test collectif</Trans>
                 </span>
               </span>
             ),

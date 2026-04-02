@@ -24,7 +24,7 @@ function FormProvider({ root = 'bilan', children }: PropsWithChildren<Props>) {
     everyMosaicChildrenWithParent,
   } = useEngine()
 
-  const { situation, foldedSteps, updateCurrentSimulation } =
+  const { situation, foldedSteps, updateCurrentSimulation, progression } =
     useCurrentSimulation()
 
   const {
@@ -56,6 +56,7 @@ function FormProvider({ root = 'bilan', children }: PropsWithChildren<Props>) {
     remainingQuestions,
     relevantQuestions,
     updateCurrentSimulation,
+    currentStoredProgression: progression,
   })
 
   return (

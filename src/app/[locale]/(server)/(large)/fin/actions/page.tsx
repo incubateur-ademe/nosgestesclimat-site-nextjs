@@ -1,5 +1,4 @@
 import { ActionPage } from '@/components/results/ActionPage'
-import { getRules } from '@/helpers/modelFetching/getRules'
 import { getUser } from '@/helpers/server/dal/user'
 import { getSimulations } from '@/helpers/server/model/simulations'
 import type { DefaultPageProps } from '@/types'
@@ -11,16 +10,8 @@ export default async function ResultatsActionsPage({
   const user = await getUser()
   const simulations = await getSimulations(
     { user },
-    { onlyCompleted: true, pageSize: 1 }
+    { completedOnly: true, pageSize: 1 }
   )
-  const rules = await getRules({ locale })
 
-  return (
-    <ActionPage
-      simulations={simulations}
-      user={user}
-      rules={rules}
-      locale={locale}
-    />
-  )
+  return <ActionPage simulations={simulations} locale={locale} />
 }
