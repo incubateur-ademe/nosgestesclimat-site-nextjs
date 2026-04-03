@@ -4,7 +4,6 @@ import { Group } from '../fixtures/groups'
 import { NGCTest } from '../fixtures/ngc-test'
 import { TutorialPage } from '../fixtures/tutorial'
 import { User } from '../fixtures/user'
-import { skipOnSafari } from '../helpers/skip-on-safari'
 import { GROUP_ADMIN_STATE, NEW_VISITOR_STATE } from '../state'
 
 test.use({ storageState: GROUP_ADMIN_STATE })
@@ -102,10 +101,8 @@ test.describe('A new user', () => {
     ngcTest,
     tutorialPage,
     group,
-    browser,
   }) => {
     test.setTimeout(60_000)
-    skipOnSafari(browser)
     const user = new User(page)
     await group.joinWithInviteLink(user)
     await tutorialPage.skip()
@@ -122,10 +119,8 @@ test.describe('A new user', () => {
     tutorialPage,
     user,
     group,
-    browser,
   }) => {
     test.setTimeout(60_000)
-    skipOnSafari(browser)
     await group.joinWithInviteLink(user)
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
@@ -143,7 +138,6 @@ test.describe('A user with a completed test that joined a group', () => {
   test.setTimeout(60_000)
   let page: Page
   test.beforeAll(async ({ browser }) => {
-    skipOnSafari(browser)
     page = await browser.newPage()
     await new NGCTest(page).skipAll()
 
