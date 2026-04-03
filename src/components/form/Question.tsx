@@ -23,6 +23,7 @@ import type { Evaluation } from 'publicodes'
 import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
+import DontKnowButton from './question/DontKnowButton'
 import Warning from './question/Warning'
 
 interface Props {
@@ -73,6 +74,10 @@ export default function Question({
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
   const locale = useLocale()
+
+  //@TODO : remove when AB test is completed
+  const isTestVersion = true //useFeatureFlagVariantKey(DONT_KNOW_BUTTON_EXPERIMENT_KEY) === DEFAULT_TEST_VARIANT_KEY
+
   return (
     <>
       <div className={twMerge('mb-6 flex flex-col items-start', className)}>
@@ -185,6 +190,8 @@ export default function Question({
           unit={unit}
         />
       )}
+
+      {isTestVersion && <DontKnowButton question={question} type={type} />}
 
       {assistance ? (
         <Assistance question={question} assistance={assistance} />
