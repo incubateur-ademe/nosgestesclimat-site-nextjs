@@ -11,7 +11,10 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import {
+  trackMatomoEvent__deprecated,
+  trackPosthogEvent,
+} from '@/utils/analytics/trackEvent'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
@@ -63,7 +66,9 @@ export default function CategoryFilter({
 
   const handleClick = () => {
     onTabActivate()
-    trackEvent(trackingCategoryFilter(dottedName, window.location.pathname))
+    trackMatomoEvent__deprecated(
+      trackingCategoryFilter(dottedName, window.location.pathname)
+    )
 
     trackPosthogEvent(captureTrackingCategoryFilter({ category: dottedName }))
 

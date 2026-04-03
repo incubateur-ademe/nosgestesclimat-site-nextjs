@@ -66,11 +66,6 @@ export const finTabTrackEvent = (tab: FinTab) => [
   tab.charAt(0).toUpperCase() + tab.slice(1),
 ]
 
-export const captureClickFinTab = ({ tab }: { tab: FinTab }) => ({
-  eventName: 'click tab fin',
-  properties: { tab },
-})
-
 export const endClickFootprint = (metric: string) => [
   'trackEvent',
   'Fin',
