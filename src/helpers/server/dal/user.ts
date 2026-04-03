@@ -6,7 +6,7 @@ import { cache } from 'react'
 import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'
 import { getAnonSession } from './anonSession'
-import { SERVER_AUTH_COOKIE_NAME } from './authCookie'
+import { DEFAULT_COOKIE_OPTION, SERVER_AUTH_COOKIE_NAME } from './authCookie'
 import { ANON_USER_ID_HEADER } from './constants'
 
 export interface AnonUser {
@@ -55,7 +55,10 @@ export const getUser = cache(async function (): Promise<AppUser> {
 })
 
 export const logout = async () => {
-  ;(await cookies()).delete(SERVER_AUTH_COOKIE_NAME)
+  ;(await cookies()).delete({
+    name: SERVER_AUTH_COOKIE_NAME,
+    ...DEFAULT_COOKIE_OPTION,
+  })
 
   // The anonymous user ID cookie (ngc_anon_user) is NOT regenerated here.
   // The client-side resetLocalState() generates a new UUID in localStorage,
