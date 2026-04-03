@@ -13,6 +13,7 @@ Sentry.init({
   environment: APP_ENV,
   sampleRate: APP_ENV === 'production' ? 0.1 : 1,
   enabled: process.env.NODE_ENV !== 'development',
+  dist: APP_ENV,
 })
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart

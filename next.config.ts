@@ -1,5 +1,5 @@
 import type { NextConfig } from 'next'
-import { version as release } from './package.json'
+import { version } from './package.json'
 
 import createMDX from '@next/mdx'
 import { SentryBuildOptions, withSentryConfig } from '@sentry/nextjs'
@@ -8,6 +8,7 @@ import redirects from './config/redirects.js'
 
 import { remoteImagesPatterns } from './config/remoteImagesPatterns'
 import { PROXY_SERVER } from './config/urls'
+import { APP_ENV } from './config/app-env'
 
 const withMDX = createMDX({
   extension: /\.mdx$/,
@@ -79,7 +80,13 @@ const sentryConfig = {
   silent: process.env.NODE_ENV === 'development',
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
-  release,
+  release: {
+    name: version,
+    dist: APP_ENV,
+    setCommits: {
+      auto: true,
+    },
+  },
 
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
@@ -89,11 +96,7 @@ const sentryConfig = {
 
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
-
   telemetry: process.env.NODE_ENV !== 'development',
-
-  include: '.',
-  ignore: ['node_modules', '.next', 'cypress'],
 } as SentryBuildOptions
 
 export default process.env.NODE_ENV !== 'development'

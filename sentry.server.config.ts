@@ -10,4 +10,5 @@ Sentry.init({
   environment: APP_ENV,
   sampleRate: APP_ENV === 'production' ? 0.1 : 1,
   tracesSampleRate: 0.005,
+  dist: APP_ENV,
 })
