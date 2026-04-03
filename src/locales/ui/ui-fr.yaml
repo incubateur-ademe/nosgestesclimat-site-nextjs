@@ -1478,3 +1478,8 @@ entries:
   organisations.askDemo.iframe.title: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
   results.tabs.groups: Test collectif
   results.tabs.myGroups: Créer un test collectif
+  mySpace.resultList.item.delete.mainButton.label: Supprimer
+  mySpace.resultList.item.delete.modal.confirm: Confirmer la suppression
+  mySpace.resultList.item.delete.modal.title: Êtes-vous sûr(e) de vouloir supprimer ce résultat ?
+  mySpace.resultList.item.delete.modal.error: Une erreur s'est produite au moment de supprimer votre résultat. Veuillez réessayer.
+  groups.results.rankingMember.simulationDeleted: Utilisateur anonyme (données supprimées par le participant)
