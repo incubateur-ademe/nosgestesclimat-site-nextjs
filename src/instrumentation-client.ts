@@ -11,7 +11,6 @@ declare global {
 Sentry.init({
   dsn: 'https://75dcf9dfe74c4439977a517be2805122@sentry.incubateur.net/118',
   environment: APP_ENV,
-  debug: APP_ENV !== 'production',
   sampleRate: APP_ENV === 'production' ? 0.1 : 1,
   enabled: process.env.NODE_ENV !== 'development',
 })

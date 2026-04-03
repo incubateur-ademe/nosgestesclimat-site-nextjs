@@ -7,7 +7,7 @@ import { InternalServerError } from '../error'
 import { type AuthUser, getAuthUser } from '../model/user'
 import { getAnonSession } from './anonSession'
 import { AUTHENTICATED_COOKIE_NAME, DEFAULT_COOKIE_OPTION } from './authCookie'
-import { ANON_USER_ID_HEADER } from './middleware'
+import { ANON_USER_ID_HEADER } from './constants'
 
 export interface AnonUser {
   id: string
