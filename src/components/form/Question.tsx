@@ -1,6 +1,5 @@
 'use client'
 
-import Assistance from '@/components/form/question/Assistance'
 import BooleanInput from '@/components/form/question/BooleanInput'
 import ChoicesInput from '@/components/form/question/ChoicesInput'
 import Label from '@/components/form/question/Label'
@@ -23,6 +22,7 @@ import type { Evaluation } from 'publicodes'
 import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
+import NumberInputWithAssistance from './question/NumberInputWithAssistance'
 import Warning from './question/Warning'
 
 interface Props {
@@ -101,26 +101,48 @@ export default function Question({
         ) : null}
         {isOpen && (
           <>
-            {type === 'number' && (
-              <NumberInput
-                unit={unit}
-                value={situationValue as Evaluation<number>}
-                setValue={(value) => {
-                  setValue(value, { questionDottedName: question })
-                }}
-                placeholder={
-                  isMissing && typeof value === 'number'
-                    ? value.toLocaleString(locale, {
-                        maximumFractionDigits: value < 10 ? 1 : 0,
-                      })
-                    : ''
-                }
-                data-testid={question}
-                id={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
-                aria-labelledby="question-label"
-              />
-            )}
+            {type === 'number' &&
+              (assistance ? (
+                <NumberInputWithAssistance
+                  question={question}
+                  unit={unit!}
+                  value={situationValue as Evaluation<number>}
+                  setValue={(value) => {
+                    setValue(value, { questionDottedName: question })
+                  }}
+                  placeholder={
+                    isMissing && typeof value === 'number'
+                      ? value.toLocaleString(locale, {
+                          maximumFractionDigits: value < 10 ? 1 : 0,
+                        })
+                      : ''
+                  }
+                  data-testid={question}
+                  id={DEFAULT_FOCUS_ELEMENT_ID}
+                  aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
+                  aria-labelledby="question-label"
+                  assistance={assistance}
+                />
+              ) : (
+                <NumberInput
+                  unit={unit}
+                  value={situationValue as Evaluation<number>}
+                  setValue={(value) => {
+                    setValue(value, { questionDottedName: question })
+                  }}
+                  placeholder={
+                    isMissing && typeof value === 'number'
+                      ? value.toLocaleString(locale, {
+                          maximumFractionDigits: value < 10 ? 1 : 0,
+                        })
+                      : ''
+                  }
+                  data-testid={question}
+                  id={DEFAULT_FOCUS_ELEMENT_ID}
+                  aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
+                  aria-labelledby="question-label"
+                />
+              ))}
 
             {type === 'boolean' && (
               <BooleanInput
@@ -175,6 +197,7 @@ export default function Question({
           </>
         )}
       </div>
+
       {typeof situationValue === 'number' && (
         <Warning
           type={type}
@@ -185,10 +208,6 @@ export default function Question({
           unit={unit}
         />
       )}
-
-      {assistance ? (
-        <Assistance question={question} assistance={assistance} />
-      ) : null}
 
       {activeNotifications.length > 0 && (
         <Notification

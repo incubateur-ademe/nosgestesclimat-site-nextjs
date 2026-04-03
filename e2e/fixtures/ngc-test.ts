@@ -37,10 +37,17 @@ export class NGCTest {
         continue
       }
       if (typeof value === 'number') {
+        // Check if there's a switch to select main unit (for questions with assistance)
+        const mainUnitSwitch = this.page.getByTestId('switch-main-unit')
+        if (await mainUnitSwitch.isVisible()) {
+          await mainUnitSwitch.click()
+        }
         // @TODO : when copying a number with a "." instead of ",", it removes it
         await this.page
           .getByTestId(dottedName)
           .fill(String(value).replace('.', ','))
+        // Wait for debounce to complete (300ms in useNumberInputState)
+        await this.page.waitForTimeout(400)
         isAnswered = true
         continue
       }
