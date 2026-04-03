@@ -1,4 +1,5 @@
 'use server'
+import * as Sentry from '@sentry/nextjs'
 
 import { cookies, headers } from 'next/headers'
 import { cache } from 'react'
@@ -17,16 +18,22 @@ export type AppUser = AuthUser | AnonUser
 
 export const getUser = cache(async function (): Promise<AppUser> {
   try {
-    return await getAuthUser()
+    const authUser = await getAuthUser()
+    Sentry.setUser({
+      authUser,
+    })
+    return authUser
   } catch {
     // Fallback to anonymous user.
     // 1. Try the session cookie first (set on previous visits).
     const session = await getAnonSession()
     if (session.userId) {
-      return {
+      const user = {
         id: session.userId,
         isAuth: false,
-      }
+      } as const
+      Sentry.setUser(user)
+      return user
     }
 
     // 2. For brand-new users the Set-Cookie header has not been flushed yet
@@ -35,10 +42,12 @@ export const getUser = cache(async function (): Promise<AppUser> {
     //    as a trusted request header instead.
     const userId = (await headers()).get(ANON_USER_ID_HEADER)
     if (userId) {
-      return {
+      const user = {
         id: userId,
         isAuth: false,
-      }
+      } as const
+      Sentry.setUser(user)
+      return user
     }
 
     throw new InternalServerError()
