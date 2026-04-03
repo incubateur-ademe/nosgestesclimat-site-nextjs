@@ -69,6 +69,7 @@ export default function LanguageSwitchButtonClient({
         onClick={() => handleLanguageClick('fr')}
         size={size}
         aria-label="Passer en français"
+        lang="fr"
         title={
           currentLocale === 'fr'
             ? 'FR - Langue active'
@@ -85,6 +86,7 @@ export default function LanguageSwitchButtonClient({
         onClick={() => handleLanguageClick('en')}
         size={size}
         aria-label="Switch to english"
+        lang="en"
         title={
           currentLocale === 'en'
             ? 'EN - Active language'
