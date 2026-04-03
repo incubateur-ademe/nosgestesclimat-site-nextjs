@@ -6,7 +6,6 @@ const secure = domain !== 'localhost'
 export const DEFAULT_COOKIE_OPTION = {
   httpOnly: true,
   secure,
-  partitioned: secure,
   sameSite: 'lax' as const,
   domain,
 }
