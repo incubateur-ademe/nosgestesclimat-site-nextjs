@@ -25,7 +25,7 @@ const rewrites = PROXY_SERVER? {
 } : {}
 
 
-const nextConfig: NextConfig = {
+const nextConfig = withMDX({
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {
@@ -73,32 +73,32 @@ const nextConfig: NextConfig = {
 
     return config
   },
-}
+} satisfies NextConfig)
 
-const sentryConfig = {
-  // Suppresses source map uploading logs during build
-  silent: process.env.NODE_ENV === 'development',
+const releaseName = `${process.env.SOURCE_VERSION ?? version}-${process.env.APP ?? APP_ENV}`
+const sentryConfig: SentryBuildOptions = {
+  // Suppresses source map uploading logs during dev build
+  silent: APP_ENV !== 'production',
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
   release: {
-    name: version,
-    dist: APP_ENV,
+    name: releaseName,
     setCommits: {
-      auto: true,
+      auto: true
+    },
+    deploy: {
+      env: APP_ENV,
     },
   },
-
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: process.env.NODE_ENV !== 'development',
-
-
+  widenClientFileUpload: APP_ENV !== 'development',
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
-  telemetry: process.env.NODE_ENV !== 'development',
-} as SentryBuildOptions
+  telemetry: false,
+}
 
-export default process.env.NODE_ENV !== 'development'
-  ? withSentryConfig(withMDX(nextConfig), sentryConfig)
-  : withMDX(nextConfig)
+export default process.env.NODE_ENV === 'production'
+  ? withSentryConfig(nextConfig, sentryConfig)
+  : nextConfig
