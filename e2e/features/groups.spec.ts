@@ -102,9 +102,7 @@ test.describe('A new user', () => {
     ngcTest,
     tutorialPage,
     group,
-    browser,
   }) => {
-    skipOnSafari(browser)
     test.setTimeout(60_000)
     const user = new User(page)
     await group.joinWithInviteLink(user)
@@ -122,9 +120,7 @@ test.describe('A new user', () => {
     tutorialPage,
     user,
     group,
-    browser,
   }) => {
-    skipOnSafari(browser)
     test.setTimeout(60_000)
     await group.joinWithInviteLink(user)
     await tutorialPage.skip()

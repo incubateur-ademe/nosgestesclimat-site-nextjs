@@ -5,7 +5,6 @@ import { Organisation } from '../fixtures/organisations'
 import { Poll } from '../fixtures/polls'
 import { TutorialPage } from '../fixtures/tutorial'
 import { User } from '../fixtures/user'
-import { skipOnSafari } from '../helpers/skip-on-safari'
 import { NEW_VISITOR_STATE, ORGANISATION_ADMIN_STATE } from '../state'
 
 test.use({ storageState: ORGANISATION_ADMIN_STATE })
@@ -121,7 +120,6 @@ test.describe('A user with a completed test that joined a poll', () => {
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage()
-    skipOnSafari(browser)
     const adminContext = await browser.newContext({
       storageState: ORGANISATION_ADMIN_STATE,
     })

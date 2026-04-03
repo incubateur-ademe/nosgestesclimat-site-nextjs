@@ -1,3 +1,5 @@
+import type { SessionOptions } from 'iron-session'
+
 export const SERVER_AUTH_COOKIE_NAME =
   process.env.SERVER_AUTH_COOKIE_NAME ?? 'ngc_server_auth_jwt'
 
@@ -8,6 +10,6 @@ export const DEFAULT_COOKIE_OPTION = {
   httpOnly: true,
   secure,
   partitioned: secure,
-  sameSite: 'none' as const, // NGC can be embeded in iframe
+  sameSite: secure ? 'none' : 'strict', // NGC can be embeded in iframe
   domain,
-}
+} satisfies SessionOptions['cookieOptions']

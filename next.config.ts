@@ -94,8 +94,6 @@ const sentryConfig: SentryBuildOptions = {
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: APP_ENV !== 'development',
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
   telemetry: false,
 }
 
