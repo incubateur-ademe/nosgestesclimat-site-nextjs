@@ -6,10 +6,10 @@ export const SERVER_AUTH_COOKIE_NAME =
 const domain = new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
 const secure = domain !== 'localhost'
 
-export const DEFAULT_COOKIE_OPTION = {
+export const DEFAULT_COOKIE_OPTION: SessionOptions['cookieOptions'] = {
   httpOnly: true,
   secure,
   partitioned: secure,
   sameSite: secure ? 'none' : 'strict', // NGC can be embeded in iframe
   domain,
-} satisfies SessionOptions['cookieOptions']
+}
