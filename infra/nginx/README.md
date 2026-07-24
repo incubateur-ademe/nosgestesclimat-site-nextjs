@@ -7,21 +7,73 @@ Proxy cache Nginx devant l'application Scalingo.
     Navigateur
       │
       ▼
-    Instance Scaleway DEV1-S (Nginx)
-      ├── cache (proxy_cache, 500 Mo RAM / 10 Go disque)
-      ├── rate limiting (30 req/s/IP)
+    Instance Scaleway (Nginx)
+      ├── cache
+      ├── rate limiting
       └── SSL (Let's Encrypt, renouvellement automatique)
       │
       ▼
     nosgestesclimat-site.osc-secnum-fr1.scalingo.io (Scalingo)
 
-## Fichiers
+## Déploiement pull-based
 
-| Fichier                  | Rôle                                                                 |
-| ------------------------ | -------------------------------------------------------------------- |
-| `cloud-init.tpl.yaml`    | Template cloud-init avec placeholders `__DOMAIN__` et `__UPSTREAM__` |
-| `generate-cloud-init.sh` | Génère `cloud-init.preprod.yaml` et `cloud-init.prod.yaml`           |
-| `cloud-init.*.yaml`      | Fichiers générés, prêts à coller dans la console Scaleway            |
+La conf Nginx est tirée depuis GitHub par chaque instance, toutes les 5 minutes.
+La branche source est configurée via `TEMPLATE_REF` dans `deploy.env`.
+
+    GitHub (TEMPLATE_REF, ex. main)
+      │
+      ├── preprod : tire depuis la branche configurée (canary)
+      │
+      └── prod : tire uniquement si le combined status du commit
+                 est "success" (CI + E2E verts)
+
+Aucun secret en CI, aucune clé SSH dans GitHub Actions, aucune branche
+spécifique. Le gate est le statut CI du commit, vérifié par le script
+de pull lui-même.
+
+### Fichiers
+
+| Fichier                     | Rôle                                                            |
+| --------------------------- | --------------------------------------------------------------- |
+| `nginx.conf.tpl`            | Template Nginx (source de vérité unique, placeholders envsubst) |
+| `pull-config.sh`            | Script de pull (tourne sur l'instance via systemd timer)        |
+| `nginx-config-pull.service` | Unit systemd (oneshot)                                          |
+| `nginx-config-pull.timer`   | Timer systemd (5 min)                                           |
+| `cloud-init.tpl.yaml`       | Template cloud-init (setup machine + first boot)                |
+| `generate-cloud-init.sh`    | Génère `cloud-init.preprod.yaml` et `cloud-init.prod.yaml`      |
+
+### `deploy.env`
+
+Sur chaque instance, `/etc/nginx/deploy.env` contient :
+
+    DOMAIN=preprod.nosgestesclimat.fr
+    UPSTREAM=nosgestesclimat-site-preprod.osc-fr1.scalingo.io
+    ENVIRONMENT=preprod          # preprod ou prod
+    REPO=incubateur-ademe/nosgestesclimat-app
+    TEMPLATE_REF=main            # main ou chore/nginx-proxy-for-cache ou autre
+
+Créé par cloud-init au first boot. Ne change pas ensuite.
+`TEMPLATE_REF` détermine quelle branche/branch le script de pull surveille.
+
+### Modifier la conf Nginx
+
+1. Éditer `nginx.conf.tpl` dans le repo
+2. Ouvrir une PR
+3. Merger sur `main`
+4. Preprod tire dans les 5 min
+5. Le workflow `common:deploy.yaml` déploie l'app + fait tourner les E2E sur preprod
+6. Quand le combined status du commit passe à `success` → prod tire dans les 5 min
+
+Si les E2E échouent : prod ne tire pas. Revert sur `main` → preprod se auto-heal →
+le statut repasse vert → prod tire la version revertée.
+
+### Modifier le pull script ou les units systemd
+
+Ces fichiers sont téléchargés au first boot (via cloud-init `runcmd`) et ne sont
+**pas** auto-updatés ensuite. Pour déployer une correction :
+
+- Soit recréer l'instance (cloud-init télécharge les nouvelles versions)
+- Soit SSH manuel : `curl -fsSL https://raw.githubusercontent.com/incubateur-ademe/nosgestesclimat-app/refs/heads/main/infra/nginx/pull-config.sh -o /usr/local/bin/nginx-config-pull.sh`
 
 ## Créer une instance
 
@@ -37,7 +89,8 @@ Puis dans la console Scaleway :
 6. **Advanced settings → cloud-init** : coller le contenu de `cloud-init.preprod.yaml` (ou `prod`)
 7. Créer l'instance
 
-L'instance démarre. Nginx est configuré mais **arrêté** (le certificat SSL n'existe pas encore).
+L'instance démarre, télécharge la conf Nginx depuis GitHub, mais Nginx reste
+**arrêté** (le certificat SSL n'existe pas encore).
 
 ## Obtenir le certificat SSL
 
@@ -45,7 +98,7 @@ Récupérer l'IP publique dans la console Scaleway, puis :
 
     ssh root@<ip>
 
-    # Challenge DNS : zéro downtime, le DNS ne bouge pas
+    # Certificat initial via challenge DNS (zéro downtime, avant bascule DNS)
     certbot certonly --manual --preferred-challenges dns \
       -d preprod.nosgestesclimat.fr
 
@@ -54,14 +107,29 @@ Récupérer l'IP publique dans la console Scaleway, puis :
     # → Vérifier la propagation : dig TXT _acme-challenge.preprod.nosgestesclimat.fr
     # → Appuyer sur Entrée
 
-    # Certbot configure Nginx et démarre tout
+    # Démarrer Nginx
+    systemctl start nginx
+
+    # Tester, puis basculer le DNS.  Une fois le DNS propagé :
+
+    # Basculer vers l'authenticator nginx (challenge HTTP, renouvellement auto)
     certbot --nginx -d preprod.nosgestesclimat.fr
 
 Pour la prod, ajouter `www` :
 
     certbot certonly --manual --preferred-challenges dns \
       -d nosgestesclimat.fr -d www.nosgestesclimat.fr
+    systemctl start nginx
+    # Après bascule DNS :
     certbot --nginx -d nosgestesclimat.fr -d www.nosgestesclimat.fr
+
+**Important** : `certbot --nginx` peut ajouter quelques lignes dans la conf Nginx
+(bloc challenge HTTP, redirects). Le pull script (5 min) ramènera la conf au
+template. Le certificat reste valide — les fichiers dans
+`/etc/letsencrypt/live/` ne sont pas affectés.
+
+Le renouvellement automatique via `certbot.timer` utilise l'authenticator nginx
+et fonctionne sans intervention.
 
 ## Tester avant bascule DNS
 
@@ -73,55 +141,16 @@ Pour la prod, ajouter `www` :
 
 ## Basculer le DNS
 
-Baisser le TTL à 60 secondes, attendre l'expiration de l'ancien TTL, puis :
-
-    preprod.nosgestesclimat.fr  A  <ip-instance>
-    nosgestesclimat.fr          A  <ip-instance>
-    www.nosgestesclimat.fr      CNAME  nosgestesclimat.fr
-
-Une fois le trafic stabilisé, remonter le TTL à 3600.
-
-## Mettre à jour la config Nginx
-
-Modifier `cloud-init.tpl.yaml`, puis appliquer sur l'instance existante :
-
-    # Générer la config mise à jour
-    DOMAIN="nosgestesclimat.fr"
-    UPSTREAM="nosgestesclimat-site.osc-secnum-fr1.scalingo.io"
-    sed "s/__DOMAIN__/$DOMAIN/g; s/__UPSTREAM__/$UPSTREAM/g" \
-      cloud-init.tpl.yaml \
-      | awk '/write_files/,/^$/' \
-      | sed -n '/content: |/,/^  [a-z]/p' \
-      | tail -n +2 | sed 's/^      //' \
-      > /tmp/nginx.conf
-
-    scp /tmp/nginx.conf root@<ip>:/etc/nginx/sites-available/nosgestesclimat
-    ssh root@<ip> "nginx -t && systemctl reload nginx"
-
-Ou, plus simplement, éditer directement sur l'instance :
-
-    ssh root@<ip>
-    nano /etc/nginx/sites-available/nosgestesclimat
-    nginx -t && systemctl reload nginx
-
-Puis reporter les modifications dans `cloud-init.tpl.yaml` pour la prochaine recréation.
-
 ## Vérifier le cache
 
     # Hit ratio sur l'instance
     tail -100 /var/log/nginx/access.log | grep -c HIT
 
+    # Statut du timer de pull
+    systemctl status nginx-config-pull.timer
+
+    # Dernier pull
+    journalctl -u nginx-config-pull.service --no-pager -n 20
+
     # Statut du renouvellement SSL
     certbot renew --dry-run
-
-    # Timer de renouvellement
-    systemctl status certbot.timer
-
-## Recréer une instance
-
-1. Détruire l'ancienne instance
-2. Créer une nouvelle avec le même cloud-init
-3. Reprendre à « Obtenir le certificat SSL »
-4. Basculer le DNS vers la nouvelle IP si elle a changé
-
-Le cache Nginx repart de zéro mais se repeuple en quelques minutes de trafic.
