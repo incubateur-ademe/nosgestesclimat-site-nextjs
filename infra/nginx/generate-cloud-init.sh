@@ -10,8 +10,7 @@ case $ENV in
     DOMAIN="preprod.nosgestesclimat.fr"
     UPSTREAM="nosgestesclimat-site-preprod.osc-fr1.scalingo.io"
     ENVIRONMENT="preprod"
-    # @TODO change to main once the branch is merged.
-    TEMPLATE_REF="chore/nginx-proxy-for-cache"
+    TEMPLATE_REF="main"
     ;;
   prod)
     DOMAIN="nosgestesclimat.fr"
