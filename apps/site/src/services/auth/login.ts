@@ -1,9 +1,9 @@
 'use server'
 
 import {
-  InvalidCodeError,
-  RateLimitedError,
-  UnknownCodeError,
+  invalidCodeError,
+  rateLimitedError,
+  unknownCodeError,
   type CodeError,
 } from '@/components/authentication/errors'
 import { AUTHENTICATION_URL } from '@/constants/urls/main'
@@ -49,10 +49,10 @@ export const login = async ({
 
     return success({ ...data, userId: data.id })
   } catch (error) {
-    if (error instanceof UnauthorizedError) return failure(new InvalidCodeError())
-    if (error instanceof ForbiddenError) return failure(new InvalidCodeError())
+    if (error instanceof UnauthorizedError) return failure(invalidCodeError())
+    if (error instanceof ForbiddenError) return failure(invalidCodeError())
     if (error instanceof TooManyRequestsError)
-      return failure(new RateLimitedError())
-    return failure(new UnknownCodeError())
+      return failure(rateLimitedError())
+    return failure(unknownCodeError())
   }
 }
