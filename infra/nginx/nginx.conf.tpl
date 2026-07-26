@@ -62,6 +62,14 @@ server {
         proxy_cache_lock on;
     }
 
+    location /_static/cms/ {
+        proxy_pass https://nosgestesclimat-prod.s3.fr-par.scw.cloud;
+        proxy_cache_valid 200 365d;
+        proxy_cache_lock on;
+        proxy_hide_header Cache-Control;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+    }
+
     location ~ ^/(_next/image|images|misc|fonts)/ {
         proxy_pass https://scalingo;
         proxy_cache_valid 200 30d;
