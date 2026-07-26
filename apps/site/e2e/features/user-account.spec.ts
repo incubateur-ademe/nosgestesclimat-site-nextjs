@@ -2,9 +2,39 @@ import { START_SIMULATION_PATH } from '@/constants/urls/paths'
 import { faker } from '@faker-js/faker'
 import { expect, test } from '../fixtures'
 import { UserMailbox } from '../helpers/user-mailbox'
-import { GROUP_ADMIN_STATE, USER_ACCOUNT_STATE } from '../state'
+import { GROUP_ADMIN_STATE, NEW_VISITOR_STATE, USER_ACCOUNT_STATE } from '../state'
 
 test.use({ storageState: USER_ACCOUNT_STATE })
+
+test.describe('Login - invalid verification code', () => {
+  test.use({ storageState: NEW_VISITOR_STATE })
+  test.setTimeout(60_000)
+
+  test('should display error when entering a wrong code', async ({ page }) => {
+    const email = faker.internet.email({
+      provider: `${process.env.MAILISK_NAMESPACE!}.mailisk.net`,
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+    })
+
+    await page.goto('/connexion')
+
+    const emailInput = page.getByTestId('verification-code-email-input')
+    await expect(emailInput).toBeVisible()
+    await emailInput.fill(email)
+    await emailInput.press('Enter')
+
+    const codeInput = page.getByTestId('verification-code-input')
+    await expect(codeInput).toBeInViewport({ timeout: 10_000 })
+
+    await codeInput.fill('000000')
+    await page.getByTestId('verification-code-submit-button').click()
+
+    await expect(page.getByText('Le code est invalide')).toBeVisible({
+      timeout: 10_000,
+    })
+  })
+})
 
 test.describe('Logout', () => {
   test('should log out and redirect to homepage', async ({ page }) => {
