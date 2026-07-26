@@ -18,7 +18,9 @@ test.describe('Login - invalid verification code', () => {
 
     const emailInput = page.getByTestId('verification-code-email-input')
     await expect(emailInput).toBeVisible()
+    await emailInput.scrollIntoViewIfNeeded()
     await emailInput.fill(user.email)
+    await page.waitForTimeout(500)
     await emailInput.press('Enter')
 
     const codeInput = page.getByTestId('verification-code-input')
