@@ -1,11 +1,9 @@
-export class ErrorWithCode<Code extends string = string> {
+export class ErrorWithCode<Code extends string = string> extends Error {
   public code: Code
-  public readonly name: string
-  public readonly message: string
 
   constructor(code: Code, message: string = code) {
+    super(message)
     this.code = code
-    this.message = message
     this.name = this.constructor.name
   }
 }

@@ -27,5 +27,13 @@ export function matchError<E extends ErrorWithCode<C>, C extends string, R>(
   error: E,
   cases: Record<E['code'], (error: E) => R>
 ): R {
-  return cases[error.code](error)
+  const handler = cases[error.code]
+  if (!handler) {
+    throw new Error(
+      `No handler for error code "${String(error.code)}". ` +
+        `If this ErrorWithCode crossed a server action boundary, ` +
+        `make sure to call toSerializable() on the Result before returning.`
+    )
+  }
+  return handler(error)
 }
