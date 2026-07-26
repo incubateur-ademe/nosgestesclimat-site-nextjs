@@ -68,7 +68,7 @@ server {
         proxy_cache_lock on;
     }
 
-    location ~ ^/(fr|en)(/simulateur/tutoriel|/?)$ {
+    location ~ ^/(en/)?(simulateur/tutoriel)?$ {
         proxy_pass https://scalingo;
 
         proxy_cache_key "$scheme$request_method$host$request_uri$ngc_is_auth";
