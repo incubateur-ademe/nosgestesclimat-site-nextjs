@@ -133,9 +133,25 @@ server {
         proxy_cache_lock on;
     }
 
-    # Pages publiques simulateur + tutoriel (anonymes uniquement).
-    # Cache court 30 min, revalidation en background.
-    location ~ ^/(en/)?(simulateur/tutoriel)?$ {
+    # ── Pages publiques catégorie 2 ──────────────────────────────
+    # Contenu identique pour tous les utilisateurs anonymes.
+    # Cache-bypass automatique pour les utilisateurs authentifiés
+    # (détection via le cookie ngc_session). TTL 1h.
+    #
+    # Exact-match : accueil, simulateur/tutoriel, empreinte-carbone,
+    # empreinte-eau, cgu, mentions-legales,
+    # mentions-legales-base-empreinte, politique-de-confidentialite,
+    # accessibilite, contact, diffuser, nos-relais, plan-du-site,
+    # budget, international, gestion-infolettres,
+    # newsletter-confirmation, partenaire, questions-frequentes,
+    # stats
+    #
+    # Sub-path : blog, documentation, nouveautes, guide, themes,
+    # campagne-partenaire, evenement
+    #
+    # Note : /fr et /fr/* sont des 307 vers la locale par défaut,
+    # donc exclus volontairement de la regex.
+    location ~ ^/(en/)?($|simulateur/tutoriel|empreinte-carbone|empreinte-eau|cgu|mentions-legales|mentions-legales-base-empreinte|politique-de-confidentialite|accessibilite|contact|diffuser|nos-relais|plan-du-site|budget|international|gestion-infolettres|newsletter-confirmation|partenaire|questions-frequentes|stats|blog($|/.*)|documentation($|/.*)|nouveautes($|/.*)|guide($|/.*)|themes($|/.*)|campagne-partenaire($|/.*)|evenement($|/.*))$ {
         proxy_pass https://scalingo;
 
         # L'auth dans la clé : utilisateurs anonymes et authentifiés ont des caches distincts.
@@ -147,7 +163,7 @@ server {
         # L'app Next.js peut marquer Cache-Control sur ses réponses :
         # on l'ignore et on applique notre politique à la place.
         proxy_ignore_headers Cache-Control;
-        proxy_cache_valid 200 30m;
+        proxy_cache_valid 200 1h;
         # Ne pas lire le cache si l'utilisateur est authentifié ou en websocket :
         # bypass direct vers Scalingo.
         proxy_cache_bypass $ngc_is_auth$http_upgrade;
