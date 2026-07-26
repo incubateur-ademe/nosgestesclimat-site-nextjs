@@ -74,7 +74,7 @@ server {
         proxy_cache_lock on;
     }
 
-    location ~ ^/(en/)?(simulateur/tutoriel)?$ {
+    location ~ ^/(en/)?(simulateur/tutoriel|empreinte-carbone|empreinte-eau)?$ {
         proxy_pass https://scalingo;
 
         proxy_cache_key "$scheme$request_method$host$request_uri$ngc_is_auth";
