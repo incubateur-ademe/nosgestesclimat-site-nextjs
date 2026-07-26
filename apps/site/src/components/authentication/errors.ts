@@ -23,7 +23,7 @@ export type CodeError = InvalidCodeError | RateLimitedError | UnknownCodeError
 
 export type EmailError = RateLimitedError | UnknownCodeError
 
-export function matchError<E extends ErrorWithCode, R>(
+export function matchError<E extends ErrorWithCode<C>, C extends string, R>(
   error: E,
   cases: Record<E['code'], (error: E) => R>
 ): R {
