@@ -9,7 +9,7 @@ import { VERIFICATION_CODE_URL } from '@/constants/urls/main'
 import { TooManyRequestsError } from '@/helpers/server/error'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import type { AuthenticationMode } from '@/types/authentication'
-import { err, ok, type Result } from '@nosgestesclimat/core/lib/result'
+import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
 
 export const createVerificationCode = async ({
   email,
@@ -30,10 +30,10 @@ export const createVerificationCode = async ({
       `${VERIFICATION_CODE_URL}${qs ? `?${qs}` : ''}`,
       { method: 'POST', body: { email } }
     )
-    return ok(data)
+    return success(data)
   } catch (error) {
     if (error instanceof TooManyRequestsError)
-      return err(new RateLimitedError())
-    return err(new UnknownCodeError())
+      return failure(new RateLimitedError())
+    return failure(new UnknownCodeError())
   }
 }

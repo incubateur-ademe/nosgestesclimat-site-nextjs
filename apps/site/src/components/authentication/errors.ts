@@ -1,24 +1,21 @@
-export class InvalidCodeError extends Error {
-  readonly _tag = 'invalid'
-  constructor(message?: string) {
-    super(message ?? 'Code invalide')
-    this.name = 'InvalidCodeError'
+import { DomainError } from '@nosgestesclimat/core/lib/errors'
+import type { ErrorWithCode } from '@nosgestesclimat/core/lib/errors'
+
+export class InvalidCodeError extends DomainError<'invalid'> {
+  constructor() {
+    super('invalid', 'Code invalide')
   }
 }
 
-export class RateLimitedError extends Error {
-  readonly _tag = 'rate_limited'
-  constructor(message?: string) {
-    super(message ?? 'Trop de requêtes')
-    this.name = 'RateLimitedError'
+export class RateLimitedError extends DomainError<'rate_limited'> {
+  constructor() {
+    super('rate_limited', 'Trop de requêtes')
   }
 }
 
-export class UnknownCodeError extends Error {
-  readonly _tag = 'unknown'
-  constructor(message?: string) {
-    super(message ?? 'Erreur inconnue')
-    this.name = 'UnknownCodeError'
+export class UnknownCodeError extends DomainError<'unknown'> {
+  constructor() {
+    super('unknown', 'Erreur inconnue')
   }
 }
 
@@ -26,11 +23,11 @@ export type CodeError = InvalidCodeError | RateLimitedError | UnknownCodeError
 
 export type EmailError = RateLimitedError | UnknownCodeError
 
-export function matchError<E extends { _tag: string }, R>(
+export function matchError<E extends ErrorWithCode, R>(
   error: E,
-  cases: { [K in E['_tag']]: (error: Extract<E, { _tag: K }>) => R }
+  cases: { [K in E['code']]: (error: Extract<E, { code: K }>) => R }
 ): R {
-  return (cases as unknown as Record<string, (error: E) => R>)[error._tag](
-    error
-  )
+  return (cases as unknown as Record<string, (error: E) => R>)[
+    error.code
+  ](error)
 }

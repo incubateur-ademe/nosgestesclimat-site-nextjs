@@ -35,7 +35,7 @@ function useVerifyEffect(
     void verify(verificationEmail, verificationCode).then((result) => {
       if (cancelled) return
       if (result.success) {
-        dispatch({ type: 'CODE_VALID', userId: result.output.userId })
+        dispatch({ type: 'CODE_VALID', userId: result.data.userId })
       } else {
         dispatch({ type: 'CODE_INVALID', reason: result.error })
       }

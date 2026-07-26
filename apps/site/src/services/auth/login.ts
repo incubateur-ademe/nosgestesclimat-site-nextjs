@@ -14,7 +14,7 @@ import {
 } from '@/helpers/server/error'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
-import { err, ok, type Result } from '@nosgestesclimat/core/lib/result'
+import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
 import { revalidatePath } from 'next/cache'
 import { v4 } from 'uuid'
 import { createAppSession } from './create-app-session'
@@ -47,12 +47,12 @@ export const login = async ({
 
     revalidatePath('/', 'layout')
 
-    return ok({ ...data, userId: data.id })
+    return success({ ...data, userId: data.id })
   } catch (error) {
-    if (error instanceof UnauthorizedError) return err(new InvalidCodeError())
-    if (error instanceof ForbiddenError) return err(new InvalidCodeError())
+    if (error instanceof UnauthorizedError) return failure(new InvalidCodeError())
+    if (error instanceof ForbiddenError) return failure(new InvalidCodeError())
     if (error instanceof TooManyRequestsError)
-      return err(new RateLimitedError())
-    return err(new UnknownCodeError())
+      return failure(new RateLimitedError())
+    return failure(new UnknownCodeError())
   }
 }
