@@ -8,4 +8,6 @@ export class ErrorWithCode<Code extends string = string> extends Error {
   }
 }
 
-export class DomainError<Code extends string = string> extends ErrorWithCode<Code> {}
+export abstract class DomainError<
+  Code extends string = string,
+> extends ErrorWithCode<Code> {}
