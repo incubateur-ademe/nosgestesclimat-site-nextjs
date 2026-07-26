@@ -1,5 +1,4 @@
 import { DomainError } from '@nosgestesclimat/core/lib/errors'
-import type { ErrorWithCode } from '@nosgestesclimat/core/lib/errors'
 
 export class InvalidCodeError extends DomainError<'invalid'> {
   constructor() {
@@ -23,11 +22,35 @@ export type CodeError = InvalidCodeError | RateLimitedError | UnknownCodeError
 
 export type EmailError = RateLimitedError | UnknownCodeError
 
-export function matchError<E extends ErrorWithCode, R>(
-  error: E,
-  cases: { [K in E['code']]: (error: Extract<E, { code: K }>) => R }
+export function matchCodeError<R>(
+  error: CodeError,
+  cases: {
+    invalid: (error: InvalidCodeError) => R
+    rate_limited: (error: RateLimitedError) => R
+    unknown: (error: UnknownCodeError) => R
+  }
 ): R {
-  return (cases as unknown as Record<string, (error: E) => R>)[
-    error.code
-  ](error)
+  switch (error.code) {
+    case 'invalid':
+      return cases.invalid(error)
+    case 'rate_limited':
+      return cases.rate_limited(error)
+    case 'unknown':
+      return cases.unknown(error)
+  }
+}
+
+export function matchEmailError<R>(
+  error: EmailError,
+  cases: {
+    rate_limited: (error: RateLimitedError) => R
+    unknown: (error: UnknownCodeError) => R
+  }
+): R {
+  switch (error.code) {
+    case 'rate_limited':
+      return cases.rate_limited(error)
+    case 'unknown':
+      return cases.unknown(error)
+  }
 }

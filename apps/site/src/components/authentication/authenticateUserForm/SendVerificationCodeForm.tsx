@@ -7,7 +7,7 @@ import { captureClickSubmitEmail } from '@/constants/tracking/pages/signin'
 import type { ButtonColor } from '@/design-system/buttons/Button'
 import Form from '@/design-system/form/Form'
 import EmailInput from '@/design-system/inputs/EmailInput'
-import { matchError } from '@/components/authentication/errors'
+import { matchEmailError } from '@/components/authentication/errors'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
@@ -105,7 +105,7 @@ export default function SendVerificationCodeForm({
       />
 
       {state.phase === 'idle' && state.emailError && (
-        matchError(state.emailError, {
+        matchEmailError(state.emailError, {
           rate_limited: () => (
             <p className="mt-4 text-sm text-red-800 dark:text-white" role="alert">
               <Trans i18nKey="signIn.emailForm.error.rateLimited">

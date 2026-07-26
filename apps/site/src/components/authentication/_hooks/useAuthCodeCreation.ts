@@ -8,7 +8,7 @@ import { createVerificationCode } from '@/services/auth/create-verification-code
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useMutation } from '@tanstack/react-query'
-import { matchError } from '../errors'
+import { matchEmailError } from '../errors'
 
 import type { AuthEvent } from '../types'
 
@@ -69,7 +69,7 @@ export function useAuthCodeCreation({ dispatch }: UseAuthCodeCreationOptions) {
         dispatch({
           type: 'CODE_RESEND_ERROR',
           reason: result.error,
-          cooldownUntil: matchError(result.error, {
+          cooldownUntil: matchEmailError(result.error, {
             rate_limited: () => cooldownDeadline(),
             unknown: () => undefined,
           }),
