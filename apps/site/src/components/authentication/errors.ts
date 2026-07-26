@@ -23,30 +23,6 @@ export type CodeError = InvalidCodeError | RateLimitedError | UnknownCodeError
 
 export type EmailError = RateLimitedError | UnknownCodeError
 
-export function invalidCodeError(message?: string) {
-  return {
-    name: 'InvalidCodeError',
-    code: 'invalid' as const,
-    message: message ?? 'Code invalide',
-  }
-}
-
-export function rateLimitedError(message?: string) {
-  return {
-    name: 'RateLimitedError',
-    code: 'rate_limited' as const,
-    message: message ?? 'Trop de requêtes',
-  }
-}
-
-export function unknownCodeError(message?: string) {
-  return {
-    name: 'UnknownCodeError',
-    code: 'unknown' as const,
-    message: message ?? 'Erreur inconnue',
-  }
-}
-
 export function matchError<E extends ErrorWithCode<C>, C extends string, R>(
   error: E,
   cases: Record<E['code'], (error: E) => R>

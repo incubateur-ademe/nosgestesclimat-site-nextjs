@@ -1,8 +1,8 @@
 'use server'
 
 import {
-  rateLimitedError,
-  unknownCodeError,
+  RateLimitedError,
+  UnknownCodeError,
   type EmailError,
 } from '@/components/authentication/errors'
 import { VERIFICATION_CODE_URL } from '@/constants/urls/main'
@@ -33,7 +33,7 @@ export const createVerificationCode = async ({
     return success(data)
   } catch (error) {
     if (error instanceof TooManyRequestsError)
-      return failure(rateLimitedError())
-    return failure(unknownCodeError())
+      return failure(new RateLimitedError())
+    return failure(new UnknownCodeError())
   }
 }
