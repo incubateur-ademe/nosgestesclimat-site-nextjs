@@ -108,12 +108,15 @@ export const findVisibleActions = async (
 
 export const findVisibleActionSlugs = async (
   locale: ISOSupportedLanguage
-): Promise<{ slug: string; themeSlug: string }[]> => {
+): Promise<{ slug: string; themeSlug: string; updatedAt: Date }[]> => {
   const dbActions = await prisma.action.findMany({
     where: getVisibleFilter(),
     select: {
       themeId: true,
-      translations: { where: { locale }, select: { slug: true } },
+      translations: {
+        where: { locale },
+        select: { slug: true, updatedAt: true },
+      },
     },
   })
 
@@ -124,6 +127,7 @@ export const findVisibleActionSlugs = async (
       return {
         slug: dbAction.translations[0].slug,
         themeSlug: locale === 'en' ? theme.slugEn : theme.slug,
+        updatedAt: dbAction.translations[0].updatedAt,
       }
     })
 }
