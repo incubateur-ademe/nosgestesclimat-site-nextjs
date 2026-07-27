@@ -69,6 +69,7 @@ test.describe('Simulation deletion', () => {
   }) => {
     await page.goto(START_SIMULATION_PATH)
     await ngcTest.skipAllQuestions()
+    await page.waitForURL('/fin')
 
     await page.goto('/mon-espace')
     await expect(page.getByTestId('results-list-title')).toBeVisible()
