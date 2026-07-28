@@ -273,6 +273,29 @@ describe('Given a NGC user', () => {
           .expect(StatusCodes.TOO_MANY_REQUESTS)
       })
     })
+    describe('And the email delivery fails', () => {
+      test('Then it still persists the verification code', async () => {
+        const email = faker.internet.email().toLocaleLowerCase()
+
+        mswServer.use(brevoSendEmail({ networkError: true }))
+
+        await agent
+          .post(url)
+          .send({ email })
+          .expect(StatusCodes.INTERNAL_SERVER_ERROR)
+
+        // Brevo may well have delivered the message before failing us: rolling
+        // the code back here is what hands users a code that can never work.
+        const createdVerificationCode = await prisma.verificationCode.findFirst(
+          {
+            where: { email },
+          }
+        )
+
+        expect(createdVerificationCode).toMatchObject({ email, code })
+      })
+    })
+
     describe('And database failure', () => {
       const databaseError = new Error('Something went wrong')
 
