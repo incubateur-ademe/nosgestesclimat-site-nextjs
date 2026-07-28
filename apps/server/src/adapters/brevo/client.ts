@@ -36,7 +36,10 @@ const brevo = axios.create({
   headers: {
     'api-key': config.thirdParty.brevo.apiKey,
   },
-  timeout: 1000,
+  timeout: 5_000,
+  'axios-retry': {
+    retries: 2,
+  },
 })
 
 axiosRetry(brevo, {

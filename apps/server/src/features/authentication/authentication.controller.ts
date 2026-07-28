@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 import { config } from '../../config.ts'
 import { EntityNotFoundException } from '../../core/errors/EntityNotFoundException.ts'
 import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
+import { bestEffort } from '../../core/event-bus/best-effort.ts'
 import { EventBus } from '../../core/event-bus/event-bus.ts'
 import logger from '../../logger.ts'
 import { rateLimitSameRequestMiddleware } from '../../middlewares/rateLimitSameRequestMiddleware.ts'
@@ -22,8 +23,13 @@ import { updateBrevoContact } from './handlers/update-brevo-contact.ts'
 
 const router = express.Router()
 
-EventBus.on(LoginEvent, updateBrevoContact)
-EventBus.on(LoginEvent, sendBrevoWelcomeEmail)
+// Brevo is not part of the login contract: authentication is settled once the
+// transaction commits, so a slow or failing Brevo must not turn it into a 500.
+EventBus.on(LoginEvent, bestEffort('updateBrevoContact', updateBrevoContact))
+EventBus.on(
+  LoginEvent,
+  bestEffort('sendBrevoWelcomeEmail', sendBrevoWelcomeEmail)
+)
 EventBus.on(LoginEvent, reconcileSimulationsAfterLogin)
 EventBus.on(AccountCreatedEvent, syncUserDataAfterAccountCreated)
 

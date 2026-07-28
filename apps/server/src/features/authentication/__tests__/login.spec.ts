@@ -152,6 +152,53 @@ describe('Given a NGC user', () => {
         await EventBus.flush()
       })
 
+      describe('And brevo is unavailable', () => {
+        test(`Then it still returns a ${StatusCodes.OK} response`, async () => {
+          const verificationCode = await createVerificationCode({ agent })
+
+          mswServer.use(
+            brevoUpdateContact({ networkError: true }),
+            brevoSendEmail({ networkError: true })
+          )
+
+          await agent
+            .post(url)
+            .send({
+              userId: faker.string.uuid(),
+              email: verificationCode.email,
+              code: verificationCode.code,
+            })
+            .expect(StatusCodes.OK)
+
+          await EventBus.flush()
+        })
+
+        test('Then it still creates the verified user', async () => {
+          const { email, code } = await createVerificationCode({
+            agent,
+            mode: VerificationCodeMode.signUp,
+          })
+
+          mswServer.use(
+            brevoUpdateContact({ networkError: true }),
+            brevoSendEmail({ networkError: true })
+          )
+
+          await agent
+            .post(url)
+            .send({ userId: faker.string.uuid(), email, code })
+            .expect(StatusCodes.OK)
+
+          const createdUser = await prisma.verifiedUser.findUnique({
+            where: { email },
+          })
+
+          expect(createdUser).not.toBeNull()
+
+          await EventBus.flush()
+        })
+      })
+
       describe('And is expired', () => {
         test(`Then it returns a ${StatusCodes.UNAUTHORIZED} error`, async () => {
           const verificationCode = await createVerificationCode({
