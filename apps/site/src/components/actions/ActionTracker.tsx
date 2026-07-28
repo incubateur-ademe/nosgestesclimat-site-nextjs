@@ -1,6 +1,6 @@
 'use client'
 
-import { captureAction } from '@/constants/tracking/posthogTrackers'
+import { captureAction } from '@/utils/analytics/trackUniqueSessionActionEvent'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { useEffect } from 'react'
 
