@@ -10,6 +10,7 @@ import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 
+import { UnknownCodeError } from '../errors'
 import type {
   AuthEvent,
   AuthPhase,
@@ -32,14 +33,19 @@ function useVerifyEffect(
 
     let cancelled = false
 
-    void verify(verificationEmail, verificationCode).then((result) => {
-      if (cancelled) return
-      if (result.success) {
-        dispatch({ type: 'CODE_VALID', userId: result.data.userId })
-      } else {
-        dispatch({ type: 'CODE_INVALID', reason: result.error })
-      }
-    })
+    void verify(verificationEmail, verificationCode)
+      .then((result) => {
+        if (cancelled) return
+        if (result.success) {
+          dispatch({ type: 'CODE_VALID', userId: result.data.userId })
+        } else {
+          dispatch({ type: 'CODE_INVALID', reason: result.error })
+        }
+      })
+      .catch((error) => {
+        captureException(error)
+        dispatch({ type: 'CODE_INVALID', reason: new UnknownCodeError() })
+      })
 
     return () => {
       cancelled = true
@@ -65,9 +71,6 @@ function useCompletionEffect(
 
   useEffect(() => {
     if (!authenticatedUserId || !authenticatedEmail) return
-
-    let cancelled = false
-
     void (async () => {
       try {
         safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
@@ -81,25 +84,19 @@ function useCompletionEffect(
           cookieState,
         })
 
-        if (!cancelled) {
-          await options.onComplete?.({
-            email: authenticatedEmail,
-            userId: authenticatedUserId,
-          })
+        await options.onComplete?.({
+          email: authenticatedEmail,
+          userId: authenticatedUserId,
+        })
 
-          if (options.redirectPathname) {
-            router.push(options.redirectPathname)
-            router.refresh()
-          }
+        if (options.redirectPathname) {
+          router.push(options.redirectPathname)
+          router.refresh()
         }
       } catch (error) {
         captureException(error)
       }
     })()
-
-    return () => {
-      cancelled = true
-    }
   }, [
     authenticatedUserId,
     authenticatedEmail,
@@ -108,6 +105,7 @@ function useCompletionEffect(
     options.onComplete,
     options.redirectPathname,
     router,
+    options,
   ])
 }
 

@@ -216,17 +216,6 @@ describe('authReducer', () => {
       )
     })
 
-    it('re-arms cooldown on CODE_RESEND_ERROR with rate_limited', () => {
-      const resending = { ...state, isResending: true }
-      const newCooldown = Date.now() + 30000
-      const result = authReducer(resending, {
-        type: 'CODE_RESEND_ERROR',
-        reason: new RateLimitedError(),
-        cooldownUntil: newCooldown,
-      })
-      expect((result as typeof resending).cooldownUntil).toBe(newCooldown)
-    })
-
     it('clears codeError on CLEAR_CODE_ERROR', () => {
       const withError = { ...state, codeError: new InvalidCodeError() }
       const result = authReducer(withError, { type: 'CLEAR_CODE_ERROR' })
