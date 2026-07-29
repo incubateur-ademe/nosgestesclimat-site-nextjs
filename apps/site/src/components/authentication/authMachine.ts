@@ -69,10 +69,6 @@ export function authReducer(state: AuthPhase, event: AuthEvent): AuthPhase {
             ...state,
             isResending: false,
             resendError: event.reason,
-            cooldownUntil:
-              event.reason === 'rate_limited' && event.cooldownUntil != null
-                ? event.cooldownUntil
-                : state.cooldownUntil,
           }
         case 'GO_BACK':
           return { phase: 'idle', emailError: null }

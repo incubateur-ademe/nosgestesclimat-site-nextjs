@@ -9,6 +9,7 @@ import { type ChangeEvent, type FormEvent, useCallback, useId, useState } from '
 import { twMerge } from 'tailwind-merge'
 import { useAuth } from '@/components/authentication/AuthProvider'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { match } from 'ts-pattern'
 
 export default function VerificationCodeForm() {
   const { state, submitCode, clearCodeError } = useAuth()
@@ -62,7 +63,7 @@ export default function VerificationCodeForm() {
         aria-invalid={state.phase === 'code_sent' && !!state.codeError ? 'true' : 'false'}
         placeholder="000000"
         className={twMerge(
-          'w-full max-w-120 bg-white! p-4 text-2xl tracking-widest',
+          'w-full max-w-120 bg-white! dark:text-default! p-4 text-2xl tracking-widest',
           defaultInputStyleClassNames,
           state.phase === 'code_sent' && state.codeError
             ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
@@ -76,11 +77,12 @@ export default function VerificationCodeForm() {
 
       {state.phase === 'code_sent' && state.codeError && (
         <p id="verification-error" className="mt-2 text-sm text-red-800 dark:text-white">
-          {state.codeError === 'invalid'
-            ? t('signIn.code.invalid', 'Le code est invalide')
-            : state.codeError === 'rate_limited'
-            ? t('signIn.code.rateLimited', 'Veuillez patienter un instant avant de réessayer.')
-            : t('common.errors.errorHappened', 'Une erreur est survenue. Veuillez réessayer.')}
+          {match(state.codeError.code)
+            .with('invalid', () => t('signIn.code.invalid', 'Le code est invalide'))
+            .with('rate_limited', () => t('signIn.code.rateLimited', 'Veuillez patienter un instant avant de réessayer.'))
+            .with('unknown', () => t('common.errors.errorHappening', 'Une erreur est survenue. Veuillez réessayer.'))
+            .exhaustive()
+          }
         </p>
       )}
 
