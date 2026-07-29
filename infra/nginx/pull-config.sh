@@ -112,6 +112,8 @@ fi
 
 systemctl reload nginx
 
+sleep 1
+
 # ─── Health check ───────────────────────────────────────────────
 if ! curl -fsS --max-time 10 \
     --resolve "${DOMAIN}:443:127.0.0.1" \
