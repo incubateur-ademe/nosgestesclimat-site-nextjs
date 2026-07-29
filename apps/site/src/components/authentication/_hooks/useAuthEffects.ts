@@ -83,7 +83,6 @@ function useCompletionEffect(
           userId: authenticatedUserId,
           cookieState,
         })
-
         await options.onComplete?.({
           email: authenticatedEmail,
           userId: authenticatedUserId,
@@ -97,6 +96,7 @@ function useCompletionEffect(
         captureException(error)
       }
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     authenticatedUserId,
     authenticatedEmail,
@@ -105,7 +105,6 @@ function useCompletionEffect(
     options.onComplete,
     options.redirectPathname,
     router,
-    options,
   ])
 }
 

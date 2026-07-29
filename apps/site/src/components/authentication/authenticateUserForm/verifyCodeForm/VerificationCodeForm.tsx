@@ -63,7 +63,7 @@ export default function VerificationCodeForm() {
         aria-invalid={state.phase === 'code_sent' && !!state.codeError ? 'true' : 'false'}
         placeholder="000000"
         className={twMerge(
-          'w-full max-w-120 bg-white! p-4 text-2xl tracking-widest',
+          'w-full max-w-120 bg-white! dark:text-default! p-4 text-2xl tracking-widest',
           defaultInputStyleClassNames,
           state.phase === 'code_sent' && state.codeError
             ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
