@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
+import { captureException } from '@sentry/node'
 import dayjs from 'dayjs'
 import { StatusCodes } from 'http-status-codes'
 import jwt from 'jsonwebtoken'
@@ -15,12 +16,17 @@ import app from '../../../app.ts'
 import { mswServer } from '../../../core/__tests__/fixtures/server.fixture.ts'
 import { EventBus } from '../../../core/event-bus/event-bus.ts'
 import { Locales } from '../../../core/i18n/constant.ts'
-import logger from '../../../logger.ts'
+import logger, { maskEmail } from '../../../logger.ts'
 import { LOGIN_ROUTE } from './fixtures/login.fixture.ts'
 import { createVerificationCode } from './fixtures/verification-codes.fixture.ts'
 
 vi.mock('../../../adapters/prisma/transaction', async () => ({
   ...(await vi.importActual('../../../adapters/prisma/transaction')),
+}))
+
+vi.mock('@sentry/node', async () => ({
+  ...(await vi.importActual('@sentry/node')),
+  captureException: vi.fn(),
 }))
 
 describe('Given a NGC user', () => {
@@ -91,6 +97,73 @@ describe('Given a NGC user', () => {
             code: faker.number.int({ min: 100000, max: 999999 }).toString(),
           })
           .expect(StatusCodes.UNAUTHORIZED)
+      })
+
+      test('Then it logs a rejection telling no code was requested', async () => {
+        const userId = faker.string.uuid()
+        const email = faker.internet.email().toLocaleLowerCase()
+
+        await agent.post(url).send({
+          userId,
+          email,
+          code: faker.number.int({ min: 100000, max: 999999 }).toString(),
+        })
+
+        expect(logger.warn).toHaveBeenCalledWith(
+          'Login rejected: invalid verification code',
+          expect.objectContaining({
+            userId,
+            email: maskEmail(email),
+            rejection: 'not_requested',
+          })
+        )
+      })
+
+      test('Then it captures the rejection', async () => {
+        const userId = faker.string.uuid()
+        const email = faker.internet.email().toLocaleLowerCase()
+
+        await agent.post(url).send({
+          userId,
+          email,
+          code: faker.number.int({ min: 100000, max: 999999 }).toString(),
+        })
+
+        expect(captureException).toHaveBeenCalledWith(
+          expect.objectContaining({
+            rejection: 'not_requested',
+          }),
+          expect.objectContaining({
+            level: 'warning',
+          })
+        )
+      })
+    })
+
+    describe('And verification code does not match the one sent', () => {
+      test('Then it logs a mismatch rejection', async () => {
+        const verificationCode = await createVerificationCode({
+          agent,
+          code: '123456',
+        })
+
+        await agent
+          .post(url)
+          .send({
+            userId: faker.string.uuid(),
+            email: verificationCode.email,
+            code: '654321',
+          })
+          .expect(StatusCodes.UNAUTHORIZED)
+
+        expect(logger.warn).toHaveBeenCalledWith(
+          'Login rejected: invalid verification code',
+          expect.objectContaining({
+            email: maskEmail(verificationCode.email),
+            rejection: 'mismatch',
+            latestExpirationDate: expect.any(Date),
+          })
+        )
       })
     })
 
@@ -214,6 +287,29 @@ describe('Given a NGC user', () => {
               userId: faker.string.uuid(),
             })
             .expect(StatusCodes.UNAUTHORIZED)
+        })
+
+        test('Then it logs an expired rejection', async () => {
+          const expirationDate = dayjs().subtract(1, 'second').toDate()
+          const verificationCode = await createVerificationCode({
+            agent,
+            expirationDate,
+          })
+
+          await agent.post(url).send({
+            email: verificationCode.email,
+            code: verificationCode.code,
+            userId: faker.string.uuid(),
+          })
+
+          expect(logger.warn).toHaveBeenCalledWith(
+            'Login rejected: invalid verification code',
+            expect.objectContaining({
+              email: maskEmail(verificationCode.email),
+              rejection: 'expired',
+              expirationDate,
+            })
+          )
         })
       })
 
@@ -484,6 +580,28 @@ describe('Given a NGC user', () => {
             })
             .expect(StatusCodes.FORBIDDEN)
         })
+
+        test('Then it logs the rejection', async () => {
+          const signInCode = await createVerificationCode({
+            agent,
+            verificationCode: { email: emailB },
+            mode: VerificationCodeMode.signIn,
+          })
+
+          await agent.post(url).send({
+            userId: userIdA,
+            email: signInCode.email,
+            code: signInCode.code,
+          })
+
+          expect(logger.warn).toHaveBeenCalledWith(
+            'Login rejected: userId attached to another account',
+            expect.objectContaining({
+              userId: userIdA,
+              email: maskEmail(emailB),
+            })
+          )
+        })
       })
     })
 
@@ -512,13 +630,42 @@ describe('Given a NGC user', () => {
       })
 
       test('Then it logs the exception', async () => {
+        const userId = faker.string.uuid()
+        const email = faker.internet.email().toLocaleLowerCase()
+
         await agent.post(url).send({
-          userId: faker.string.uuid(),
-          email: faker.internet.email(),
+          userId,
+          email,
           code: faker.number.int({ min: 100000, max: 999999 }).toString(),
         })
 
-        expect(logger.error).toHaveBeenCalledWith('Login failed', databaseError)
+        expect(logger.error).toHaveBeenCalledWith(
+          'Login failed',
+          expect.objectContaining({
+            userId,
+            email: maskEmail(email),
+            message: databaseError.message,
+            stack: databaseError.stack,
+          })
+        )
+      })
+
+      test('Then it captures the exception', async () => {
+        const userId = faker.string.uuid()
+        const email = faker.internet.email().toLocaleLowerCase()
+
+        await agent.post(url).send({
+          userId,
+          email,
+          code: faker.number.int({ min: 100000, max: 999999 }).toString(),
+        })
+
+        expect(captureException).toHaveBeenCalledWith(
+          databaseError,
+          expect.objectContaining({
+            extra: expect.objectContaining({ userId, email: maskEmail(email) }),
+          })
+        )
       })
     })
   })

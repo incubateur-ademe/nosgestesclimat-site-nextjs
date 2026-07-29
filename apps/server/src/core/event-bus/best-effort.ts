@@ -1,4 +1,5 @@
-import logger from '../../logger.ts'
+import { captureException } from '@sentry/node'
+import logger, { errorMeta } from '../../logger.ts'
 import type { EventBusEvent } from './event.ts'
 import type { Handler } from './handler.ts'
 
@@ -20,6 +21,17 @@ export const bestEffort =
     try {
       return await handler(event)
     } catch (error) {
-      logger.error(`Best effort handler failed for "${name}"`, error)
+      // Swallowed on purpose (see above), so this log and this Sentry event are
+      // the only trace left of a side effect that silently did not happen.
+      logger.error(`Best effort handler failed for "${name}"`, {
+        handler: name,
+        event: event.constructor.name,
+        ...errorMeta(error),
+      })
+
+      captureException(error, {
+        level: 'warning',
+        tags: { handler: name, event: event.constructor.name },
+      })
     }
   }
