@@ -62,6 +62,8 @@ const diagnoseVerificationCodeRejection = async (
   { session }: { session?: Session } = {}
 ): Promise<InvalidVerificationCodeException> => {
   try {
+    const diagnosisStartedAt = new Date()
+
     const [submittedCode, latestCode] = await transaction(
       (session) =>
         Promise.all([
@@ -71,22 +73,27 @@ const diagnoseVerificationCodeRejection = async (
       session || prisma
     )
 
+    // Given code exists for this email but expired
     if (submittedCode) {
       return new InvalidVerificationCodeException('expired', {
         verificationCodeId: submittedCode.id,
         createdAt: submittedCode.createdAt,
         expirationDate: submittedCode.expirationDate,
+        latestExpired: submittedCode.expirationDate < diagnosisStartedAt,
       })
     }
 
+    // Given code doesn't exist, compare with latest code for debugging purpose
     if (latestCode) {
       return new InvalidVerificationCodeException('mismatch', {
         latestVerificationCodeId: latestCode.id,
         latestCreatedAt: latestCode.createdAt,
         latestExpirationDate: latestCode.expirationDate,
+        latestExpired: latestCode.expirationDate < diagnosisStartedAt,
       })
     }
 
+    // No existing authentication code found at all for this email
     return new InvalidVerificationCodeException('not_requested')
   } catch (e) {
     return new InvalidVerificationCodeException('unknown', {

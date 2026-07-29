@@ -170,7 +170,7 @@ const sendEmail = ({
       'axios-retry': {
         // Lower than the library default of 3 for the same reason: a retried send
         // is a duplicate email whenever the previous attempt actually got through.
-        retries: 2,
+        retries: 1,
       },
     }
   )
