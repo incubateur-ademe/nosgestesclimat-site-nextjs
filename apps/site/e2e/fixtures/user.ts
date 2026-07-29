@@ -54,9 +54,7 @@ export class User {
   }
 
   async fillEmailAndCompleteVerification() {
-    const emailInput = this.page
-      .getByTestId('verification-code-email-input')
-      .locator('visible=true')
+    const emailInput = this.page.getByTestId('verification-code-email-input')
     await emailInput.scrollIntoViewIfNeeded()
     await emailInput.fill(this.email)
     await this.page.waitForTimeout(500)

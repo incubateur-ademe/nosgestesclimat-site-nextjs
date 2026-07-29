@@ -100,9 +100,9 @@ test.describe('A new user', () => {
   }) => {
     await page.goto(group.url)
     await expect(
-      page.getByText(
-        `${group.admin.firstName} vous a invité à rejoindre le groupe`
-      )
+      page.getByRole('heading', {
+        name: `${group.admin.firstName} vous a invité à rejoindre le groupe`,
+      })
     ).toBeInViewport()
   })
 

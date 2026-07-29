@@ -10,7 +10,7 @@ test('can access the organisation dashboard from the user account', async ({
 }) => {
   await userSpace.goto()
   await page.getByTestId('my-groups-tab').click()
-  await page.getByText(organisation.name).click()
+  await page.getByRole('link', { name: organisation.name }).click()
   await expect(page).toHaveURL(organisation.url)
 })
 
@@ -37,7 +37,9 @@ test.describe('The dashboard', () => {
     page,
     organisation,
   }) => {
-    await expect(page.getByText(organisation.name)).toBeVisible()
+    await expect(
+      page.getByRole('link', { name: organisation.name })
+    ).toBeVisible()
   })
 
   test('lists the created poll', async ({ page, poll }) => {

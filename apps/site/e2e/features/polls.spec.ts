@@ -17,7 +17,7 @@ test.describe('A poll admin', () => {
     poll,
   }) => {
     await page.goto(organisation.url)
-    await expect(page.getByText(poll.name)).toBeVisible()
+    await expect(page.getByRole('heading', { name: poll.name })).toBeVisible()
     await page.getByTestId('poll-card-see-details-button').first().click()
     await expect(page).toHaveURL(poll.url)
   })
@@ -165,6 +165,8 @@ test.describe('A user with a completed test that joined a poll', () => {
     await page.goto(poll.inviteLink)
     await expect(page).toHaveURL(/\/simulateur\/campagne\//)
     await expect(page.getByTestId('skip-tutorial-button')).toBeHidden()
-    await expect(page.locator(`a[href="${poll.url}"]`)).toBeVisible()
+    await expect(
+      page.locator(`a[href="${poll.url}"]`).filter({ visible: true })
+    ).toBeVisible()
   })
 })
