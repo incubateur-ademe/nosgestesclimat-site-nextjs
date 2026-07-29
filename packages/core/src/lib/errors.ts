@@ -6,6 +6,12 @@ export class ErrorWithCode<Code extends string = string> extends Error {
     this.code = code
     this.name = this.constructor.name
   }
+
+  toJSON() {
+    return {
+      ...this,
+    }
+  }
 }
 
 export abstract class DomainError<

@@ -50,7 +50,6 @@ export type AuthEvent =
   | {
       type: 'CODE_RESEND_ERROR'
       reason: EmailError
-      cooldownUntil?: number
     }
   | { type: 'GO_BACK' }
   | { type: 'RESET' }
