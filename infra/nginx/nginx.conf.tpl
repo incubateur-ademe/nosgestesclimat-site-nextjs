@@ -47,7 +47,7 @@ server {
     add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
     add_header X-Cache-Status $upstream_cache_status;
 
-    proxy_set_header Host $host;
+    proxy_set_header Host ${UPSTREAM};
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
