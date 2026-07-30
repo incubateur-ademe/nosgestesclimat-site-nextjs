@@ -19,6 +19,7 @@ const ENGINE_OPTIONS = {
 } as const
 
 export interface EngineRegistryLogger {
+  error: (message: string, meta?: Record<string, unknown>) => void
   info: (message: string, meta?: Record<string, unknown>) => void
   debug: (message: string, meta?: Record<string, unknown>) => void
 }
@@ -45,18 +46,19 @@ const HOT_KEYS = new Map<string, HotKey>(
 )
 
 /**
- * Max number of non-hot engines kept in the LRU cache at once. Defaults to
- * 0 (no cache, hot set only) so a container only sized for the hot set never
- * OOMs on a burst of rare region/version requests. Production should
- * raise this via env once its container is sized for it.
+ * Max number of non-hot engines kept in the LRU cache at once.
+ * Defaults to 1 (hot set + currently used lazy engine)
+ * so a small sized container never OOMs on a burst of rare region/version requests.
+ * Production should raise this via env once its container is sized for it.
  *
- * Measured (see apps/site/scripts/memory-usage/), RSS deltas, not a flat
- * per-engine cost: worker deps loaded but no engine ~110MB; +FR ~95MB
- * (first engine also pays a one-time publicodes/V8 warmup cost); +ED
- * ~20-60MB; a small region (e.g. UK) ~15-25MB. A single FR:current hot
- * engine alone already sits close to 256MB total RSS.
+ * Measured RSS deltas, not a flat per-engine cost:
+ * worker deps loaded but no engine ~110MB;
+ * +FR ~95MB (first engine also pays a one-time publicodes/V8 warmup cost);
+ * +ED ~20-60MB;
+ * A single FR:current hot engine alone already sits close to 256MB total RSS.
  */
-const MAX_CACHE_SIZE = Number(process.env.ENGINE_CACHE_MAX_SIZE) || 0
+const MAX_CACHE_SIZE =
+  Math.max(Number(process.env.ENGINE_CACHE_MAX_SIZE), 1) || 1
 
 const hotEngines = new Map<string, Engine>()
 // Map preserves insertion order; re-inserting a key on access moves it to
@@ -101,21 +103,14 @@ async function loadRules(
   return module.default
 }
 
-const buildEngine =
-  ({ logger }: EngineRegistryDeps) =>
-  async (
-    region: ModelRegion,
-    versionKind: ModelVersionKind
-  ): Promise<Engine> => {
-    const rules = await loadRules(region, versionKind)
-    const engine = new Engine(rules, ENGINE_OPTIONS)
-    logger.debug('[engine-registry] engine built', {
-      region,
-      versionKind,
-      rssMB: currentRssMB(),
-    })
-    return engine
-  }
+const buildEngine = async (
+  region: ModelRegion,
+  versionKind: ModelVersionKind
+): Promise<Engine> => {
+  const rules = await loadRules(region, versionKind)
+  const engine = new Engine(rules, ENGINE_OPTIONS)
+  return engine
+}
 
 /**
  * Builds and pins the hot-set engines so the first jobs for the busiest
@@ -124,14 +119,21 @@ const buildEngine =
 export const warmUpHotEngines =
   (deps: EngineRegistryDeps) => async (): Promise<void> => {
     const { logger } = deps
-    const build = buildEngine(deps)
+    logger.debug('[engine-registry] warming all hot engines', {
+      rssMB: currentRssMB(),
+    })
     for (const [key, { region, versionKind }] of HOT_KEYS) {
       logger.info('[engine-registry] warming hot engine', {
         key,
         region,
         versionKind,
       })
-      hotEngines.set(key, await build(region, versionKind))
+      hotEngines.set(key, await buildEngine(region, versionKind))
+      logger.debug('[engine-registry] hot engine warmed', {
+        region,
+        versionKind,
+        rssMB: currentRssMB(),
+      })
     }
     logger.info('[engine-registry] hot engines warmed', {
       count: hotEngines.size,
@@ -172,19 +174,29 @@ export const getEngineForModel =
       return cachedEngine
     }
 
-    logger.debug('[engine-registry] cache miss, building engine', { key })
-    const engine = await buildEngine(deps)(model.region, versionKind)
-
+    // Clean up before building a new engine to avoid double memory footprint
     if (lruCache.size >= MAX_CACHE_SIZE) {
       const leastRecentlyUsedKey = lruCache.keys().next().value
       if (leastRecentlyUsedKey) {
         lruCache.delete(leastRecentlyUsedKey)
         logger.debug('[engine-registry] lru cache evicted', {
           evictedKey: leastRecentlyUsedKey,
+          rssMB: currentRssMB(),
         })
       }
     }
+
+    logger.debug('[engine-registry] cache miss, building engine', { key })
+    const engine = await buildEngine(model.region, versionKind)
+    logger.debug('[engine-registry] engine built', {
+      key,
+      rssMB: currentRssMB(),
+    })
+
+    // if MAX_CACHE_SIZE is 0 it still means lruSize of 1
+    // since the current lazy loaded model needs to be cached in order for it to be accessed later
     lruCache.set(key, engine)
+
     logger.debug('[engine-registry] lru cache size', { lruSize: lruCache.size })
 
     return engine

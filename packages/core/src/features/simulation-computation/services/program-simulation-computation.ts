@@ -6,6 +6,7 @@ import {
 } from '../exceptions/simulation-computation.exception.ts'
 import { isModelSupported } from '../model-support/is-model-supported.ts'
 import { createSimulationComputation } from '../repositories/simulation-computations.repository.ts'
+
 export const programSimulationComputation = async (
   simulationId: string
 ): Promise<void> => {
