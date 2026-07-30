@@ -18,6 +18,15 @@ const ENGINE_OPTIONS = {
   },
 } as const
 
+export interface EngineRegistryLogger {
+  info: (message: string, meta?: Record<string, unknown>) => void
+  debug: (message: string, meta?: Record<string, unknown>) => void
+}
+
+interface EngineRegistryDeps {
+  logger: EngineRegistryLogger
+}
+
 /**
  * Combinations kept warm at all times, built eagerly by warmUpHotEngines()
  * and never evicted. Comma-separated `<region>:<versionKind>` keys.
@@ -92,62 +101,99 @@ async function loadRules(
   return module.default
 }
 
-async function buildEngine(
-  region: ModelRegion,
-  versionKind: ModelVersionKind
-): Promise<Engine> {
-  const rules = await loadRules(region, versionKind)
-  return new Engine(rules, ENGINE_OPTIONS)
-}
+const buildEngine =
+  ({ logger }: EngineRegistryDeps) =>
+  async (
+    region: ModelRegion,
+    versionKind: ModelVersionKind
+  ): Promise<Engine> => {
+    const rules = await loadRules(region, versionKind)
+    const engine = new Engine(rules, ENGINE_OPTIONS)
+    logger.debug('[engine-registry] engine built', {
+      region,
+      versionKind,
+      rssMB: currentRssMB(),
+    })
+    return engine
+  }
 
 /**
  * Builds and pins the hot-set engines so the first jobs for the busiest
  * combinations never pay the cold-build cost. Call once at worker startup.
  */
-export async function warmUpHotEngines(): Promise<void> {
-  for (const [key, { region, versionKind }] of HOT_KEYS) {
-    hotEngines.set(key, await buildEngine(region, versionKind))
+export const warmUpHotEngines =
+  (deps: EngineRegistryDeps) => async (): Promise<void> => {
+    const { logger } = deps
+    const build = buildEngine(deps)
+    for (const [key, { region, versionKind }] of HOT_KEYS) {
+      logger.info('[engine-registry] warming hot engine', {
+        key,
+        region,
+        versionKind,
+      })
+      hotEngines.set(key, await build(region, versionKind))
+    }
+    logger.info('[engine-registry] hot engines warmed', {
+      count: hotEngines.size,
+      rssMB: currentRssMB(),
+    })
   }
-}
 
 /**
  * Returns the engine for a simulation's model, pulling from the hot set,
  * then the LRU cache, then lazily building (and caching) a new one.
  */
-export async function getEngineForModel(model: Model): Promise<Engine> {
-  const versionKind = resolveVersionKind(model)
-  if (versionKind === null) {
-    throw new UnsupportedModelException({ model })
-  }
-
-  const key = engineKey(model.region, versionKind)
-
-  const hotEngine = hotEngines.get(key)
-  if (hotEngine) {
-    return hotEngine
-  }
-
-  const cachedEngine = lruCache.get(key)
-  if (cachedEngine) {
-    // Refresh recency by moving the entry to the end.
-    lruCache.delete(key)
-    lruCache.set(key, cachedEngine)
-    return cachedEngine
-  }
-
-  const engine = await buildEngine(model.region, versionKind)
-
-  if (lruCache.size >= MAX_CACHE_SIZE) {
-    const leastRecentlyUsedKey = lruCache.keys().next().value
-    if (leastRecentlyUsedKey) {
-      lruCache.delete(leastRecentlyUsedKey)
+export const getEngineForModel =
+  (deps: EngineRegistryDeps) =>
+  async (model: Model): Promise<Engine> => {
+    const { logger } = deps
+    const versionKind = resolveVersionKind(model)
+    if (versionKind === null) {
+      throw new UnsupportedModelException({ model })
     }
-  }
-  lruCache.set(key, engine)
 
-  return engine
-}
+    const key = engineKey(model.region, versionKind)
+
+    const hotEngine = hotEngines.get(key)
+    if (hotEngine) {
+      logger.debug('[engine-registry] hot engine hit', { key })
+      return hotEngine
+    }
+
+    const cachedEngine = lruCache.get(key)
+    if (cachedEngine) {
+      logger.debug('[engine-registry] lru cache hit', {
+        key,
+        lruSize: lruCache.size,
+      })
+      // Refresh recency by moving the entry to the end.
+      lruCache.delete(key)
+      lruCache.set(key, cachedEngine)
+      return cachedEngine
+    }
+
+    logger.debug('[engine-registry] cache miss, building engine', { key })
+    const engine = await buildEngine(deps)(model.region, versionKind)
+
+    if (lruCache.size >= MAX_CACHE_SIZE) {
+      const leastRecentlyUsedKey = lruCache.keys().next().value
+      if (leastRecentlyUsedKey) {
+        lruCache.delete(leastRecentlyUsedKey)
+        logger.debug('[engine-registry] lru cache evicted', {
+          evictedKey: leastRecentlyUsedKey,
+        })
+      }
+    }
+    lruCache.set(key, engine)
+    logger.debug('[engine-registry] lru cache size', { lruSize: lruCache.size })
+
+    return engine
+  }
 
 function engineKey(region: ModelRegion, versionKind: ModelVersionKind): string {
   return `${region}:${versionKind}`
+}
+
+function currentRssMB(): number {
+  return Math.round((process.memoryUsage().rss / (1024 * 1024)) * 100) / 100
 }

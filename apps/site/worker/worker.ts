@@ -1,12 +1,21 @@
 /* eslint-disable no-console */
 
+import type { EngineRegistryLogger } from '@nosgestesclimat/core/features/simulation-computation/services/engine-registry.service'
 import {
-  getEngineForModel,
-  warmUpHotEngines,
+  getEngineForModel as createGetEngineForModel,
+  warmUpHotEngines as createWarmUpHotEngines,
 } from '@nosgestesclimat/core/features/simulation-computation/services/engine-registry.service'
 import { processNextPendingComputation } from '@nosgestesclimat/core/features/simulation-computation/services/process-next-pending-computation.service'
 
 const POLL_INTERVAL_MS = 2000
+
+const logger: EngineRegistryLogger = {
+  info: (message, meta) => console.log(`[worker] ${message}`, meta ?? ''),
+  debug: (message, meta) => console.log(`[worker] ${message}`, meta ?? ''),
+}
+
+const warmUpHotEngines = createWarmUpHotEngines({ logger })
+const getEngineForModel = createGetEngineForModel({ logger })
 
 let running = true
 process.on('SIGTERM', () => {
