@@ -9,9 +9,9 @@ import { EntityNotFoundException } from './EntityNotFoundException.ts'
  * code delivery.
  */
 export type VerificationCodeRejection =
-  /** No code at all exists for that email */
-  | 'not_requested'
-  /** Codes exist for that email but none matches the submitted one */
+  /** The email never had any code issued to it, ever - not just none currently valid */
+  | 'never_requested'
+  /** A code exists for that email, current or past, but none matches the submitted one */
   | 'mismatch'
   /** The submitted code exists but its expiration date has passed */
   | 'expired'

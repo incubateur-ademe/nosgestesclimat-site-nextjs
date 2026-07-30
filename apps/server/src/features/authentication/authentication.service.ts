@@ -24,6 +24,7 @@ import { AccountCreatedEvent } from './events/AccountCreated.event.ts'
 import { LoginEvent } from './events/Login.event.ts'
 import {
   findLatestVerificationCodeForEmail,
+  findValidVerificationCodesForEmail,
   findVerificationCode,
   findVerificationCodeIgnoringExpiration,
   invalidateVerificationCode,
@@ -64,14 +65,16 @@ const diagnoseVerificationCodeRejection = async (
   try {
     const diagnosisStartedAt = new Date()
 
-    const [submittedCode, latestCode] = await transaction(
+    const [submittedCode, latestCode, validCodes] = await transaction(
       (session) =>
         Promise.all([
           findVerificationCodeIgnoringExpiration({ email, code }, { session }),
           findLatestVerificationCodeForEmail({ email }, { session }),
+          findValidVerificationCodesForEmail({ email }, { session }),
         ]),
       session || prisma
     )
+    const validVerificationCodeIds = validCodes.map(({ id }) => id)
 
     // Given code exists for this email but expired
     if (submittedCode) {
@@ -80,21 +83,26 @@ const diagnoseVerificationCodeRejection = async (
         createdAt: submittedCode.createdAt,
         expirationDate: submittedCode.expirationDate,
         latestExpired: submittedCode.expirationDate < diagnosisStartedAt,
+        validVerificationCodeIds,
       })
     }
 
-    // Given code doesn't exist, compare with latest code for debugging purpose
+    // Given code doesn't exist, compare with latest code for debugging purpose.
+    // The latest code may itself be expired: it only tells us a code was
+    // requested at some point, not that the user had a valid one to use -
+    // validVerificationCodeIds carries that second, more actionable signal.
     if (latestCode) {
       return new InvalidVerificationCodeException('mismatch', {
         latestVerificationCodeId: latestCode.id,
         latestCreatedAt: latestCode.createdAt,
         latestExpirationDate: latestCode.expirationDate,
         latestExpired: latestCode.expirationDate < diagnosisStartedAt,
+        validVerificationCodeIds,
       })
     }
 
-    // No existing authentication code found at all for this email
-    return new InvalidVerificationCodeException('not_requested')
+    // No code was ever issued for this email, not even one that already expired
+    return new InvalidVerificationCodeException('never_requested')
   } catch (e) {
     return new InvalidVerificationCodeException('unknown', {
       diagnosisError: e instanceof Error ? e.message : String(e),

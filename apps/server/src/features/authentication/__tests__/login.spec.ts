@@ -114,7 +114,7 @@ describe('Given a NGC user', () => {
           expect.objectContaining({
             userId,
             email: maskEmail(email),
-            rejection: 'not_requested',
+            rejection: 'never_requested',
           })
         )
       })
@@ -131,7 +131,7 @@ describe('Given a NGC user', () => {
 
         expect(captureException).toHaveBeenCalledWith(
           expect.objectContaining({
-            rejection: 'not_requested',
+            rejection: 'never_requested',
           }),
           expect.objectContaining({
             level: 'warning',
