@@ -1,21 +1,22 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import type { ModelRegion } from '../../../simulations/types/model.ts'
-import {
-  SimulationNotFinishedException,
-  UnsupportedModelException,
-} from '../../exceptions/simulation-computation.exception.ts'
+import { SimulationNotFinishedException } from '../../exceptions/simulation-computation.exception.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
 import { PREVIOUS_MODEL_VERSION } from '../../model-support/model-versions.ts'
 import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
-import { programSimulationComputation } from '../program-simulation-computation.ts'
+import { createProgramSimulationComputation } from '../program-simulation-computation.ts'
 
 vi.mock('@incubateur-ademe/nosgestesclimat/package.json', () => ({
   default: { version: '1.0.0' },
 }))
 
-const { log: mockLog } = vi.hoisted(() => ({ log: vi.fn() }))
-vi.mock('../../../logger/index.ts', () => ({ log: mockLog }))
+const logger = { error: vi.fn(), info: vi.fn(), debug: vi.fn() }
+const captureException = vi.fn()
+const programSimulationComputation = createProgramSimulationComputation({
+  logger,
+  captureException,
+})
 
 describe('programSimulationComputation', () => {
   afterEach(async () => {
@@ -54,8 +55,9 @@ describe('programSimulationComputation', () => {
     ])('%s', async (_, setup) => {
       const { id } = await setup().create()
       await programSimulationComputation(id)
-      expect(mockLog).toHaveBeenCalledWith(
-        expect.any(UnsupportedModelException)
+      expect(logger.error).toHaveBeenCalledWith(
+        '[program-simulation-computation] Unsupported model',
+        expect.objectContaining({ model: expect.anything() })
       )
       const computation = await findSimulationComputation(id)
       expect(computation).toBeNull()

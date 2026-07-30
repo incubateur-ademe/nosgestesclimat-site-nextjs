@@ -2,6 +2,7 @@ import type { RawPublicodes } from 'publicodes'
 import Engine from 'publicodes'
 import { match } from 'ts-pattern'
 import * as v from 'valibot'
+import type { Logger } from '../../logger/index.ts'
 import type { Model, ModelRegion } from '../../simulations/types/model.ts'
 import { UnsupportedModelException } from '../exceptions/simulation-computation.exception.ts'
 import type { HotKey } from '../model-support/hot-key.schema.ts'
@@ -18,14 +19,8 @@ const ENGINE_OPTIONS = {
   },
 } as const
 
-export interface EngineRegistryLogger {
-  error: (message: string, meta?: Record<string, unknown>) => void
-  info: (message: string, meta?: Record<string, unknown>) => void
-  debug: (message: string, meta?: Record<string, unknown>) => void
-}
-
 interface EngineRegistryDeps {
-  logger: EngineRegistryLogger
+  logger: Logger
 }
 
 /**
@@ -116,8 +111,8 @@ const buildEngine = async (
  * Builds and pins the hot-set engines so the first jobs for the busiest
  * combinations never pay the cold-build cost. Call once at worker startup.
  */
-export const warmUpHotEngines =
-  (deps: EngineRegistryDeps) => async (): Promise<void> => {
+export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
+  return async function warmUpHotEngines(): Promise<void> {
     const { logger } = deps
     logger.debug('[engine-registry] warming all hot engines', {
       rssMB: currentRssMB(),
@@ -140,14 +135,14 @@ export const warmUpHotEngines =
       rssMB: currentRssMB(),
     })
   }
+}
 
 /**
  * Returns the engine for a simulation's model, pulling from the hot set,
  * then the LRU cache, then lazily building (and caching) a new one.
  */
-export const getEngineForModel =
-  (deps: EngineRegistryDeps) =>
-  async (model: Model): Promise<Engine> => {
+export function createGetEngineForModel(deps: EngineRegistryDeps) {
+  return async function getEngineForModel(model: Model): Promise<Engine> {
     const { logger } = deps
     const versionKind = resolveVersionKind(model)
     if (versionKind === null) {
@@ -201,6 +196,7 @@ export const getEngineForModel =
 
     return engine
   }
+}
 
 function engineKey(region: ModelRegion, versionKind: ModelVersionKind): string {
   return `${region}:${versionKind}`

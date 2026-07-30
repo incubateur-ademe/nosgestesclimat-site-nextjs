@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Model, ModelRegion } from '../../../simulations/types/model.ts'
 import { CURRENT_MODEL_VERSION } from '../../model-support/model-versions.ts'
 
-const noopLogger = { info: () => {}, debug: () => {} }
+const noopLogger = { error: () => {}, info: () => {}, debug: () => {} }
 
 describe('engine-registry.service', () => {
   const ORIGINAL_ENV = { ...process.env }
@@ -17,11 +17,11 @@ describe('engine-registry.service', () => {
 
   it('warms up the configured hot keys and reuses the same engine instance', async () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
-    const { warmUpHotEngines, getEngineForModel } =
+    const { createWarmUpHotEngines, createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    await warmUpHotEngines({ logger: noopLogger })()
+    await createWarmUpHotEngines({ logger: noopLogger })()
 
-    const getEngine = getEngineForModel({ logger: noopLogger })
+    const getEngine = createGetEngineForModel({ logger: noopLogger })
     const engineA = await getEngine(model('FR'))
     const engineB = await getEngine(model('FR'))
     expect(engineA).toBe(engineB)
@@ -29,8 +29,9 @@ describe('engine-registry.service', () => {
 
   it('ignores locale and reuses the same engine for fr and en models', async () => {
     process.env.ENGINE_HOT_KEYS = ''
-    const { getEngineForModel } = await import('../engine-registry.service.ts')
-    const getEngine = getEngineForModel({ logger: noopLogger })
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const getEngine = createGetEngineForModel({ logger: noopLogger })
 
     const frEngine = await getEngine(model('FR'))
     const enEngine = await getEngine({
@@ -43,8 +44,9 @@ describe('engine-registry.service', () => {
   it('evicts the least recently used non-hot engine once the cache is full', async () => {
     process.env.ENGINE_HOT_KEYS = ''
     process.env.ENGINE_CACHE_MAX_SIZE = '2'
-    const { getEngineForModel } = await import('../engine-registry.service.ts')
-    const getEngine = getEngineForModel({ logger: noopLogger })
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const getEngine = createGetEngineForModel({ logger: noopLogger })
 
     const fr = await getEngine(model('FR'))
     await getEngine(model('UK'))
@@ -57,8 +59,9 @@ describe('engine-registry.service', () => {
   })
 
   it('throws for a model version that is neither current nor previous', async () => {
-    const { getEngineForModel } = await import('../engine-registry.service.ts')
-    const getEngine = getEngineForModel({ logger: noopLogger })
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const getEngine = createGetEngineForModel({ logger: noopLogger })
 
     await expect(
       getEngine({
@@ -71,10 +74,11 @@ describe('engine-registry.service', () => {
 
   it('logs hot engine warm-up via the injected logger', async () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
-    const { warmUpHotEngines } = await import('../engine-registry.service.ts')
-    const logger = { info: vi.fn(), debug: vi.fn() }
+    const { createWarmUpHotEngines } =
+      await import('../engine-registry.service.ts')
+    const logger = { error: vi.fn(), info: vi.fn(), debug: vi.fn() }
 
-    await warmUpHotEngines({ logger })()
+    await createWarmUpHotEngines({ logger })()
 
     expect(logger.info).toHaveBeenCalledWith(
       '[engine-registry] warming hot engine',
@@ -89,12 +93,12 @@ describe('engine-registry.service', () => {
   it('logs a hot engine hit, a cache miss/build, and the resulting lru size via the injected logger', async () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
     process.env.ENGINE_CACHE_MAX_SIZE = '5'
-    const { warmUpHotEngines, getEngineForModel } =
+    const { createWarmUpHotEngines, createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const logger = { info: vi.fn(), debug: vi.fn() }
+    const logger = { error: vi.fn(), info: vi.fn(), debug: vi.fn() }
 
-    await warmUpHotEngines({ logger })()
-    const getEngine = getEngineForModel({ logger })
+    await createWarmUpHotEngines({ logger })()
+    const getEngine = createGetEngineForModel({ logger })
 
     await getEngine(model('FR'))
     expect(logger.debug).toHaveBeenCalledWith(
@@ -109,7 +113,7 @@ describe('engine-registry.service', () => {
     )
     expect(logger.debug).toHaveBeenCalledWith(
       '[engine-registry] engine built',
-      expect.objectContaining({ region: 'UK', versionKind: 'current' })
+      expect.objectContaining({ key: 'UK:current' })
     )
     expect(logger.debug).toHaveBeenCalledWith(
       '[engine-registry] lru cache size',

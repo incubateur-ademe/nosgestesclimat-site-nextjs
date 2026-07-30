@@ -4,15 +4,13 @@ import { SimulationComputationFailedException } from '../../exceptions/simulatio
 import { createTestEngine } from '../../factories/engine.factory.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
 import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
-import { processNextPendingComputation } from '../process-next-pending-computation.service.ts'
+import { createProcessNextPendingComputation } from '../process-next-pending-computation.service.ts'
 
-const { assessActions: mockAssessActions } = vi.hoisted(() => ({
-  assessActions: vi.fn(),
-}))
+const mockAssessActions = vi.fn()
 
-vi.mock('../../../actions/services/assess-actions.service.ts', () => ({
+const processNextPendingComputation = createProcessNextPendingComputation({
   assessActions: mockAssessActions,
-}))
+})
 
 describe('processNextPendingComputation', () => {
   const engine = createTestEngine({})
