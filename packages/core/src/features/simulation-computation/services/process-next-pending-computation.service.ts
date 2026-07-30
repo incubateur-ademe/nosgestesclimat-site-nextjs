@@ -11,17 +11,19 @@ import {
 /**
  * Entry point called by the worker in a loop.
  *
- * Claims the next pending SimulationComputation job, processes it with the
- * provided engine, and marks it as completed or failed.
+ * Claims the next pending SimulationComputation job, resolves the engine
+ * matching the job's model, processes the job with it,
+ * and marks it as completed or failed.
  *
  * Returns `true` if a job was processed, `false` if the queue was empty.
  */
 export const processNextPendingComputation = async (
-  engine: Engine
+  getEngine: (model: Simulation['model']) => Promise<Engine> | Engine
 ): Promise<boolean> => {
   const job = await claimNextPendingSimulationComputation()
   if (!job) return false
   try {
+    const engine = await getEngine(job.simulation.model)
     await computeDerivedSimulationData(engine, job.simulation)
     await markSimulationComputationCompleted(job.simulation.id)
     return true

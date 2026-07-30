@@ -1,10 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
+import type { ModelRegion } from '../../../simulations/types/model.ts'
 import {
   SimulationNotFinishedException,
   UnsupportedModelException,
 } from '../../exceptions/simulation-computation.exception.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
+import { PREVIOUS_MODEL_VERSION } from '../../model-support/model-versions.ts'
 import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
 import { programSimulationComputation } from '../program-simulation-computation.ts'
 
@@ -45,12 +47,9 @@ describe('programSimulationComputation', () => {
           simulationFactory.completed().withModelVersion({ PRNumber: '42' }),
       ],
       [
-        'when model is unsupported region',
-        () => simulationFactory.completed().withModelRegion('UK'),
-      ],
-      [
-        'when model is unsupported language',
-        () => simulationFactory.completed().withModelLocale('en'),
+        'when model region does not exist in the model package',
+        () =>
+          simulationFactory.completed().withModelRegion('ZZ' as ModelRegion),
       ],
     ])('%s', async (_, setup) => {
       const { id } = await setup().create()
@@ -63,16 +62,36 @@ describe('programSimulationComputation', () => {
     })
   })
 
-  it('creates a pending computation when simulation is finished and model matches current version', async () => {
-    const { id } = await simulationFactory
-      .completed()
-      .withModelRegion('FR')
-      .create()
+  it.each([
+    [
+      'FR region, current version',
+      () => simulationFactory.completed().withModelRegion('FR'),
+    ],
+    [
+      'a non-FR region, current version',
+      () => simulationFactory.completed().withModelRegion('UK'),
+    ],
+    [
+      'en locale, current version',
+      () => simulationFactory.completed().withModelLocale('en'),
+    ],
+    [
+      'previous version',
+      () =>
+        simulationFactory
+          .completed()
+          .withModelVersion({ publishedTag: PREVIOUS_MODEL_VERSION }),
+    ],
+  ])(
+    'creates a pending computation when simulation is finished and model is supported: %s',
+    async (_, setup) => {
+      const { id } = await setup().create()
 
-    await programSimulationComputation(id)
+      await programSimulationComputation(id)
 
-    const computation = await findSimulationComputation(id)
-    expect(computation).not.toBeNull()
-    expect(computation!.status).toBe('pending')
-  })
+      const computation = await findSimulationComputation(id)
+      expect(computation).not.toBeNull()
+      expect(computation!.status).toBe('pending')
+    }
+  )
 })

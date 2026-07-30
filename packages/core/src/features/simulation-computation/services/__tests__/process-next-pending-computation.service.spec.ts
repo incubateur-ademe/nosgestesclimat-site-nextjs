@@ -16,6 +16,7 @@ vi.mock('../../../actions/services/assess-actions.service.ts', () => ({
 
 describe('processNextPendingComputation', () => {
   const engine = createTestEngine({})
+  const getEngine = () => engine
 
   beforeEach(() => {
     mockAssessActions.mockResolvedValue(undefined)
@@ -27,14 +28,14 @@ describe('processNextPendingComputation', () => {
   })
 
   it('returns false when no job is pending', async () => {
-    const result = await processNextPendingComputation(engine)
+    const result = await processNextPendingComputation(getEngine)
     expect(result).toBe(false)
   })
 
   it('processes a pending job end-to-end', async () => {
     const simulation = await simulationFactory.withPendingComputation().create()
 
-    const result = await processNextPendingComputation(engine)
+    const result = await processNextPendingComputation(getEngine)
 
     expect(result).toBe(true)
 
@@ -49,7 +50,7 @@ describe('processNextPendingComputation', () => {
       .withStaleProcessingComputation()
       .create()
 
-    const result = await processNextPendingComputation(engine)
+    const result = await processNextPendingComputation(getEngine)
 
     expect(result).toBe(true)
 
@@ -66,7 +67,7 @@ describe('processNextPendingComputation', () => {
 
     mockAssessActions.mockRejectedValue(new Error('Engine evaluation failed'))
 
-    await expect(processNextPendingComputation(engine)).rejects.toThrow(
+    await expect(processNextPendingComputation(getEngine)).rejects.toThrow(
       SimulationComputationFailedException
     )
 

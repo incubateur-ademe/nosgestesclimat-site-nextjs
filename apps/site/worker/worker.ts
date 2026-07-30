@@ -1,29 +1,12 @@
 /* eslint-disable no-console */
 
-import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json' with { type: 'json' }
-
+import {
+  getEngineForModel,
+  warmUpHotEngines,
+} from '@nosgestesclimat/core/features/simulation-computation/services/engine-registry.service'
 import { processNextPendingComputation } from '@nosgestesclimat/core/features/simulation-computation/services/process-next-pending-computation.service'
-import Engine from 'publicodes'
 
 const POLL_INTERVAL_MS = 2000
-
-const engine = new Engine(rules, {
-  strict: {
-    situation: false,
-    noOrphanRule: false,
-  },
-  logger: {
-    log: () => {
-      // nothing
-    },
-    warn: () => {
-      // nothing
-    },
-    error: console.error,
-  },
-})
-
-console.log('[worker] Engine ready')
 
 let running = true
 process.on('SIGTERM', () => {
@@ -36,9 +19,13 @@ process.on('SIGINT', () => {
 })
 
 async function main() {
+  console.log('[worker] Warming engine(s)')
+  await warmUpHotEngines()
+  console.log('[worker] Engine(s) ready')
+
   while (running) {
     try {
-      const processed = await processNextPendingComputation(engine)
+      const processed = await processNextPendingComputation(getEngineForModel)
       if (processed) {
         console.log('[worker] Job processed')
         // Drain the queue without delay
