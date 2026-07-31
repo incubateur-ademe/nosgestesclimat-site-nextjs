@@ -1679,6 +1679,14 @@ entries:
   Test collectif personnalisé: Personalised collective test
   collectiveTest.mode.title: Choose the test mode
   collectiveTest.mode.title.lock: Choisissez le mode du test
+  collectiveTest.mode.standard.title: Standard mode
+  collectiveTest.mode.standard.title.lock: Mode standard
+  collectiveTest.mode.standard.description: The classic test, for all citizens
+  collectiveTest.mode.standard.description.lock: Le test classique, pour tous les citoyennes et citoyens
+  collectiveTest.mode.scolaire.title: School mode
+  collectiveTest.mode.scolaire.title.lock: Mode scolaire
+  collectiveTest.mode.scolaire.description: The test adapted to young people (middle school, high school)
+  collectiveTest.mode.scolaire.description.lock: Le test adapté aux jeunes (collège, lycée)
   Choisissez le mode du test: Choose the test mode
   Créer mon premier test collectif: Creating my first collective test
   Créer mon lien de test: Create my test link

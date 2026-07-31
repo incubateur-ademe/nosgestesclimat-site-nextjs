@@ -1233,6 +1233,10 @@ entries:
   collectiveTest.form.name.placeholder: 'ex : Défi climat équipe RH, Classe 5ème A…'
   collectiveTest.form.name.required: Veuillez renseigner un nom
   collectiveTest.mode.title: Choisissez le mode du test
+  collectiveTest.mode.standard.title: Mode standard
+  collectiveTest.mode.standard.description: Le test classique, pour tous les citoyennes et citoyens
+  collectiveTest.mode.scolaire.title: Mode scolaire
+  collectiveTest.mode.scolaire.description: Le test adapté aux jeunes (collège, lycée)
   collectiveTest.text1: Créez un lien personnalisé <2>à partager dans votre organisation</2>.
   collectiveTest.text2: Les participants passent le test <1>anonymement</1> et vous accédez à une <3>synthèse des résultats</3>.
   collectiveTest.title: Choisissez un nom pour votre test collectif
