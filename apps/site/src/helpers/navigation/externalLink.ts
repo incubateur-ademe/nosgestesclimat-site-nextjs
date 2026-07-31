@@ -1,23 +1,21 @@
 import type { TFunction } from 'i18next'
-import type { ReactNode } from 'react'
+import { isValidElement, type ReactNode } from 'react'
 
-interface Props {
+interface GetExternalLinkPropsParams {
   href: string
+  siteUrl: string
   target?: string
+  rel?: string
   explicitAriaLabel?: string
   children?: ReactNode
-  isIframe?: boolean
   t: TFunction
 }
 
-export function isExternalLink(href: string): boolean {
-  if (typeof window === 'undefined') {
-    return false
-  }
-
+export function isExternalLink(href: string, siteUrl: string): boolean {
   try {
-    const url = new URL(href, window.location.origin)
-    return url.origin !== window.location.origin
+    const url = new URL(href)
+    const site = new URL(siteUrl)
+    return url.origin !== site.origin
   } catch {
     return false
   }
@@ -30,38 +28,42 @@ function nodeToText(node: ReactNode): string {
   if (Array.isArray(node)) {
     return node.map(nodeToText).join('')
   }
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return nodeToText(node.props.children)
+  }
   return ''
 }
 
 export function getExternalLinkProps({
   href,
+  siteUrl,
   target,
+  rel,
   explicitAriaLabel,
   children,
-  isIframe,
   t,
-}: Props): { target?: string; rel?: string; ariaLabel?: string } {
-  // Only force external links to open in a new tab when embedded in an iframe,
-  // because the target site may block navigation via CSP (frame-ancestors).
-  if (!isIframe) {
-    return {}
-  }
+}: GetExternalLinkPropsParams): {
+  target?: string
+  rel?: string
+  ariaLabel?: string
+} {
+  const isExternal = isExternalLink(href, siteUrl)
 
-  const isExternal = isExternalLink(href)
+  // Force external links to open in a new tab so they never navigate the app
+  // away: required when the app is embedded in an iframe, where the target
+  // site may refuse to be framed (CSP frame-ancestors) and show a blank page.
+  const resolvedTarget = target ?? (isExternal ? '_blank' : undefined)
 
-  if (!isExternal || target) {
-    return {}
-  }
+  const resolvedRel =
+    resolvedTarget === '_blank' ? (rel ?? 'noopener noreferrer') : rel
 
-  const rel = 'noopener noreferrer'
-
-  let ariaLabel: string | undefined
-  if (!explicitAriaLabel) {
+  let ariaLabel = explicitAriaLabel
+  if (!ariaLabel && resolvedTarget === '_blank') {
     const text = nodeToText(children)
     if (text) {
-      ariaLabel = `${text}${t('common.openInNewWindow', ', ouvrir dans une nouvelle fenêtre')}`
+      ariaLabel = `${text} ${t('components.markdown.linkTargetBlankAriaLabel', '(ouvrir dans une nouvelle fenêtre)')}`
     }
   }
 
-  return { target: '_blank', rel, ariaLabel }
+  return { target: resolvedTarget, rel: resolvedRel, ariaLabel }
 }
