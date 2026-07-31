@@ -1,12 +1,9 @@
-import AuthenticateUserForm from '@/components/AuthenticateUserForm'
+import AuthenticateUserForm from '@/components/authentication/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import SigninSignupTabs from '@/components/signIn/SignInSignUpTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNIN_MODE } from '@/constants/authentication/modes'
-import {
-  captureOrganisationsLoginComplete,
-  organisationsLoginComplete,
-} from '@/constants/tracking/pages/organisationsConnexion'
+import { captureOrganisationsLoginComplete } from '@/constants/tracking/pages/organisationsConnexion'
 import {
   COLLECTIVE_TEST_FINALISER_PATH,
   COLLECTIVE_TEST_MODE_PATH,
@@ -84,10 +81,7 @@ export default async function CollectiveTestConnexionPage({
         <SigninSignupTabs className="-order-1 mb-8 lg:mb-14" mode={SIGNIN_MODE} />
         <AuthenticateUserForm
           onComplete={redirectAfterLoginInFlow}
-          trackers={{
-            matomo: organisationsLoginComplete,
-            posthog: captureOrganisationsLoginComplete,
-          }}
+          tracker={captureOrganisationsLoginComplete}
         />
       </div>
     </div>

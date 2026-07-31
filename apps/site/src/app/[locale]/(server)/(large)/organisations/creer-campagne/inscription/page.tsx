@@ -1,12 +1,9 @@
-import AuthenticateUserForm from '@/components/AuthenticateUserForm'
+import AuthenticateUserForm from '@/components/authentication/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import SigninSignupTabs from '@/components/signIn/SignInSignUpTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
-import {
-  captureOrganisationsLoginComplete,
-  organisationsLoginComplete,
-} from '@/constants/tracking/pages/organisationsConnexion'
+import { captureOrganisationsLoginComplete } from '@/constants/tracking/pages/organisationsConnexion'
 import {
   COLLECTIVE_TEST_FINALISER_PATH,
   COLLECTIVE_TEST_MODE_PATH,
@@ -87,10 +84,7 @@ export default async function CollectiveTestInscriptionPage({
         />
         <AuthenticateUserForm
           onComplete={redirectAfterSignupInFlow}
-          trackers={{
-            matomo: organisationsLoginComplete,
-            posthog: captureOrganisationsLoginComplete,
-          }}
+          tracker={captureOrganisationsLoginComplete}
           buttonLabel={t('organisations.inscription.cta', 'Créer mon compte')}
         />
       </div>

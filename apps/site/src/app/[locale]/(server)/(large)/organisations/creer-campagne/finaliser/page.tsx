@@ -1,4 +1,7 @@
-import { COLLECTIVE_TEST_INFORMATIONS_PATH } from '@/constants/urls/paths'
+import {
+  COLLECTIVE_TEST_INFORMATIONS_PATH,
+  COLLECTIVE_TEST_ORGANISATION_PATH,
+} from '@/constants/urls/paths'
 import { getUserOrganisation } from '@/helpers/server/model/organisations'
 import { requireAuthUser } from '@/services/auth/require-auth-user'
 import { redirect } from 'next/navigation'
@@ -9,7 +12,7 @@ export default async function CollectiveTestFinaliserPage() {
 
   const organisation = await getUserOrganisation()
   if (!organisation) {
-    redirect('/organisations/creer-campagne/organisation')
+    redirect(COLLECTIVE_TEST_ORGANISATION_PATH)
   }
 
   return (
