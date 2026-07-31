@@ -1102,6 +1102,10 @@ entries:
   signIn.verificationForm.email.verificationCode.strong.lock: code de vérification
   signIn.verificationForm.email.verificationCode.suffix: 'sent to '
   signIn.verificationForm.email.verificationCode.suffix.lock: 'envoyé à '
+  signIn.verificationForm.codeInput.label: Enter the 6 digits of the verification code
+  signIn.verificationForm.submitButton: Validate my code
+  signIn.verificationForm.pending: Verifying your code...
+  signIn.verificationForm.success: Your code is valid!
   signIn.verificationForm.notReceived.resendButton: Resend code
   signIn.verificationForm.notReceived.resendButton.lock: Renvoyer le code
   signIn.verificationForm.notReceived.reloadPage: Reload page
@@ -1488,6 +1492,12 @@ entries:
   results.objective.reduction.over4.description.lock: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
   results.objective.description: France's objective to achieve carbon neutrality by 2050 and help limit global warming to +2°C.
   results.objective.description.lock: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à + 2 °C.
+  signIn.emailForm.inputLabel: Your email address
+  signIn.emailForm.buttonLabel: Log in to my account
+  signIn.emailForm.error.required: Please enter your email address
+  signIn.emailForm.error.invalid: The email address is invalid
+  signIn.emailForm.error.rateLimited: A code has already been sent to this address. Please wait before requesting a new one.
+  signIn.code.rateLimited: Please wait a moment before trying again.
   results.objective.under4.description.body: With the work of the government and society as a whole over the coming years, your footprint should naturally fall to around 2 tonnes.
   results.objective.under4.description.body.lock: Avec le travail de l’État et toute la société dans les années à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2 tonnes.
   Part de la sous-catégorie {{percentage}}: Share of sub-category {{percentage}}
@@ -2140,8 +2150,8 @@ entries:
   iframe.safari.errorDescription.lock: Votre version de Safari ne permet pas à notre site de fonctionner correctement dans cette page intégrée. Pour utiliser le calculateur, mettez à jour votre navigateur Safari vers la dernière version ou ouvrez le calculateur dans une nouvelle fenêtre.
   common.letsGo: Let's go!
   common.letsGo.lock: C'est parti !
-  common.seeResults: View my results
-  common.seeResults.lock: Voir mes résultats
+  common.seeResults: View the results
+  common.seeResults.lock: Voir les résultats
   common.confirm: Confirm
   common.confirm.lock: Confirmer
   common.cancel: Cancel
@@ -2191,14 +2201,25 @@ entries:
   poll.shareSection.sendByEmail.lock: Envoyer par e-mail
   poll.results.communicationKit.text1: We are providing you with <2>a</2> <4>ready-to-use</4> <2>ADEME communications pack</2> for all the key events of the year, to encourage as many people as possible to <7>join the challenge</7> and come and <10>calculate their carbon footprint</10>.
   poll.results.communicationKit.text1.lock: Nous mettons à votre disposition <2>un kit de communication ADEME</2> <4>prêt à l’emploi</4> pour tous les temps forts de l’année, pour encourager le plus de personnes possibles à <7>rejoindre le challenge</7> et venir <10>calculer leur empreinte</10>.
-  common.autoRedirect: Automatic redirection in {{seconds}} seconds
-  common.autoRedirect.lock: Redirection automatique dans {{seconds}} secondes
-  common.redirecting: Redirecting...
-  common.redirecting.lock: Redirection en cours
-  emailConfirmation.subtitle: Your entry has been successfully recorded
-  emailConfirmation.subtitle.lock: Votre participation a bien été prise en compte
-  emailConfirmation.text: You will be redirected to your fingerprint results.
-  emailConfirmation.text.lock: Vous allez être redirigé vers vos résultats d'empreinte.
-  poll.results.communicationKit.text1.lock.lock: Nous mettons à votre disposition <2>un kit de communication ADEME</2> <4>prêt à l'emploi</4> pour tous les temps forts de l'année, pour encourager le plus de personnes possibles à <7>rejoindre le challenge</7> et venir <10>calculer leur empreinte</10>.
+  actions.publicListPage.description: Below you’ll find all the actions – whether individual or collective – that make a difference to the climate. To tailor these actions to your situation, simply <2>take the quiz</2>!
+  actions.publicListPage.description.lock: Retrouvez ci-dessous toutes les actions, individuelles ou collectives, qui comptent pour le climat. Pour personnaliser ces actions à votre situation, il suffit de <2>faire le test</2> !
+  actions.publicListPage.metaDescription: 'Discover practical steps you can take to reduce your carbon footprint: transport, food, energy efficiency, sustainable consumption, housing… Solutions for a sustainable future!'
+  actions.publicListPage.metaDescription.lock: 'Découvrez des actions concrètes pour réduire votre empreinte carbone : transports, alimentation, efficacité énergétique, consommation durable, logement… Des solutions pour un avenir durable !'
+  actions.publicListPage.title: I’m taking action on climate change
+  actions.publicListPage.title.lock: J’agis pour le climat
+  actions.publicListPage.metaTitle: What I’m doing to reduce my carbon footprint - Nos Gestes Climat
+  actions.publicListPage.metaTitle.lock: Mes actions pour réduire mon empreinte carbone - Nos Gestes Climat
+  actions.publicListPage.cta.title: Do you know what your carbon footprint is?
+  actions.publicListPage.cta.title.lock: Connaissez-vous votre empreinte carbone ?
+  actions.publicListPage.cta.description: Take the 10-minute simulator and discover the personalised actions that will have the greatest impact on your carbon footprint.
+  actions.publicListPage.cta.description.lock: Passez le simulateur en 10 minutes et découvrez les actions personnalisées qui auront le plus d'impact sur votre empreinte.
+  footer.resources.actions: Shares
+  footer.resources.actions.lock: Actions
   emailConfirmation.title: Competition -
   emailConfirmation.title.lock: Jeu concours -
+  emailConfirmation.subtitle: Your entry has been successfully recorded
+  emailConfirmation.subtitle.lock: Votre participation a bien été prise en compte
+  emailConfirmation.text: Your carbon footprint results are ready. Click the button below to view them.
+  emailConfirmation.text.lock: Vos résultats d'empreinte sont prêts. Cliquez sur le bouton ci-dessous pour les consulter.
+  emailConfirmation.seeResults: View my results
+  emailConfirmation.seeResults.lock: Voir mes résultats

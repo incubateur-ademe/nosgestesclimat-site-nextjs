@@ -1,5 +1,5 @@
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
-import AuthenticateUserForm from '@/components/AuthenticateUserForm'
+import AuthenticateUserForm from '@/components/authentication/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransServer'
 import { EMAIL_SIMULATOR_PATH, END_PAGE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
