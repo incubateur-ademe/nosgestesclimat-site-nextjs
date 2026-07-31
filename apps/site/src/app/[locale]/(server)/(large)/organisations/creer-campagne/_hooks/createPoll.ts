@@ -130,11 +130,11 @@ export function useCreatePollStep2() {
           organisationIdOrSlug: orgSlug,
           poll: payload,
         })
-        clearDraft()
       } catch (err) {
         if (!(err instanceof Error) || !err.message.includes('NEXT_REDIRECT')) {
           setIsError(true)
         } else {
+          clearDraft()
           throw err
         }
       }
@@ -177,11 +177,11 @@ export function useFinalizeCollectiveTest(orgSlug: string) {
           organisationIdOrSlug: orgSlug,
           poll: payload,
         })
-        clearDraft()
       } catch (err) {
         if (!(err instanceof Error) || !err.message.includes('NEXT_REDIRECT')) {
           setIsError(true)
         } else {
+          clearDraft()
           throw err
         }
       }

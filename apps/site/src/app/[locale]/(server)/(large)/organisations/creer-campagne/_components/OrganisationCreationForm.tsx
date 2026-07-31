@@ -80,12 +80,12 @@ export default function OrganisationCreationForm() {
         organisationIdOrSlug: organisationUpdated.slug,
         poll: pollPayload,
       })
-      clearDraft()
     } catch (error: unknown) {
       if (
         error instanceof Error &&
         error.message.includes('NEXT_REDIRECT')
       ) {
+        clearDraft()
         throw error
       }
       captureException(error)
