@@ -55,7 +55,7 @@ export function createAssessActions(deps: AssessActionsDeps) {
             message: 'No rule found with this id',
             action: { id, ruleId },
           })
-          logger.error(
+          logger.warn(
             `[assess-actions] ${exception.message}`,
             exception.payload
           )

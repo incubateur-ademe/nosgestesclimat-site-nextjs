@@ -11,7 +11,7 @@ vi.mock('@incubateur-ademe/nosgestesclimat/package.json', () => ({
   default: { version: '1.0.0' },
 }))
 
-const logger = { error: vi.fn(), info: vi.fn(), debug: vi.fn() }
+const logger = { error: vi.fn(), warn: vi.fn(), info: vi.fn(), debug: vi.fn() }
 const captureException = vi.fn()
 const programSimulationComputation = createProgramSimulationComputation({
   logger,

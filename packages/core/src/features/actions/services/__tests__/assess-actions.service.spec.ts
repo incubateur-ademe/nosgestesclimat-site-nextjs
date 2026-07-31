@@ -7,7 +7,12 @@ import { ActionAssessmentPublicodesException } from '../../exceptions/action-ass
 import { actionFactory } from '../../factories/action.factory.ts'
 import { createAssessActions } from '../assess-actions.service.ts'
 
-const noopLogger = { error: () => {}, info: () => {}, debug: () => {} }
+const noopLogger = {
+  error: () => {},
+  warn: () => {},
+  info: () => {},
+  debug: () => {},
+}
 const assessActions = createAssessActions({
   logger: noopLogger,
   captureException: () => {},

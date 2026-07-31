@@ -13,11 +13,9 @@ import pino from 'pino'
  */
 const pinoLogger = pino({
   level: process.env.LOG_LEVEL ?? 'info',
-  base: { service: 'site' },
   timestamp: pino.stdTimeFunctions.isoTime,
   messageKey: 'message',
   formatters: {
-    level: (label) => ({ level: label }),
     log: serializeErrors,
   },
   transport:
@@ -54,6 +52,7 @@ function serializeErrors(
 
 const logger: Logger = {
   error: (message, meta) => pinoLogger.error(meta ?? {}, message),
+  warn: (message, meta) => pinoLogger.warn(meta ?? {}, message),
   info: (message, meta) => pinoLogger.info(meta ?? {}, message),
   debug: (message, meta) => pinoLogger.debug(meta ?? {}, message),
 }

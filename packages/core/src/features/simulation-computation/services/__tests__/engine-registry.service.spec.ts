@@ -2,7 +2,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Model, ModelRegion } from '../../../simulations/types/model.ts'
 import { CURRENT_MODEL_VERSION } from '../../model-support/model-versions.ts'
 
-const noopLogger = { error: () => {}, info: () => {}, debug: () => {} }
+const noopLogger = {
+  error: () => {},
+  warn: () => {},
+  info: () => {},
+  debug: () => {},
+}
 
 // Every test resets the module registry to get fresh hot/lru maps, so each one
 // parses the real model JSON into a new Engine - the eviction test does it four
@@ -83,7 +88,12 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
     const { createWarmUpHotEngines } =
       await import('../engine-registry.service.ts')
-    const logger = { error: vi.fn(), info: vi.fn(), debug: vi.fn() }
+    const logger = {
+      error: vi.fn(),
+      warn: vi.fn(),
+      info: vi.fn(),
+      debug: vi.fn(),
+    }
 
     await createWarmUpHotEngines({ logger })()
 
@@ -102,7 +112,12 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_CACHE_MAX_SIZE = '5'
     const { createWarmUpHotEngines, createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const logger = { error: vi.fn(), info: vi.fn(), debug: vi.fn() }
+    const logger = {
+      error: vi.fn(),
+      warn: vi.fn(),
+      info: vi.fn(),
+      debug: vi.fn(),
+    }
 
     await createWarmUpHotEngines({ logger })()
     const getEngine = createGetEngineForModel({ logger })
