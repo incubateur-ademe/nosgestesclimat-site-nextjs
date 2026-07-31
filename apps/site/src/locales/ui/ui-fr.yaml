@@ -851,6 +851,12 @@ entries:
   actions.listPage.title: Vos actions personnalisées pour diminuer votre empreinte
   actions.listPage.description: Ces actions sont personnalisées selon vos réponses au test. Choisissez celles qui vous semblent atteignables et lancez-vous !
   actions.listPage.metaTitle: Mes actions - Nos Gestes Climat
+  actions.publicListPage.title: J’agis pour le climat
+  actions.publicListPage.description: Retrouvez ci-dessous toutes les actions, individuelles ou collectives, qui comptent pour le climat. Pour personnaliser ces actions à votre situation, il suffit de <2>faire le test</2> !
+  actions.publicListPage.metaTitle: Mes actions pour réduire mon empreinte carbone - Nos Gestes Climat
+  actions.publicListPage.metaDescription: 'Découvrez des actions concrètes pour réduire votre empreinte carbone : transports, alimentation, efficacité énergétique, consommation durable, logement… Des solutions pour un avenir durable !'
+  actions.publicListPage.cta.title: Connaissez-vous votre empreinte carbone ?
+  actions.publicListPage.cta.description: Passez le simulateur en 10 minutes et découvrez les actions personnalisées qui auront le plus d'impact sur votre empreinte.
   actions.detailPage.404.title: Action non trouvée
   actions.detailPage.404.description: L'action que vous cherchez n'existe pas ou a été supprimée.
   actions.detailPage.sections.understand: Je comprends l'enjeu
@@ -915,6 +921,10 @@ entries:
   signIn.verificationForm.email.verificationCode.prefix: Entrez le
   signIn.verificationForm.email.verificationCode.strong: code de vérification
   signIn.verificationForm.email.verificationCode.suffix: 'envoyé à '
+  signIn.verificationForm.codeInput.label: Entrez les 6 chiffres du code de vérification
+  signIn.verificationForm.submitButton: Valider mon code
+  signIn.verificationForm.pending: Nous vérifions votre code...
+  signIn.verificationForm.success: Votre code est valide !
   signIn.verificationForm.notReceived.backButton: Retour à la connexion
   signIn.verificationForm.notReceived.error: Oups, une erreur s'est produite au moment de l'envoi de votre code...
   signIn.verificationForm.notReceived.reloadPage: Recharger la page
@@ -1092,6 +1102,7 @@ entries:
   footer.wantToAct.button: Je choisis mes infolettres
   footer.wantToAct.description: Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.
   footer.wantToAct.title: Envie d'agir, pas à pas ?
+  footer.resources.actions: Actions
   ui.emailInput.error.invalid: 'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
   ui.emailInput.error.required: Veuillez entrer une adresse e-mail
   ui.emailInput.label: Votre adresse e-mail
@@ -1469,7 +1480,7 @@ entries:
   common.hours: heures
   common.minutes: Minutes
   common.seconds: seconds
-  event.testimonies.4.author.job: Test collectif réalisé par l'organisation Pass Culture
+  event.testimonies.4.author.job: Test collectif réalisé par l’organisation Pass Culture
   Toutes: Toutes
   simulator.dontKnow.button.reassuranceYouth: Pas d'inquiétude, on prend des données moyennes pour garder les résultats fiables.
   reuseSimulationForPoll.attachedToPoll: 'Rattachée au test collectif :'
@@ -1484,3 +1495,11 @@ entries:
   poll.results.communicationKit.text2: Des e-mails type, post Linkedin, visuels…
   poll.results.communicationKit.title: Besoin d'inspiration pour diffuser votre test collectif ?
   poll.shareSection.sendByEmail: Envoyer par e-mail
+  signIn.emailForm.inputLabel: Votre adresse e-mail
+  signIn.emailForm.buttonLabel: Accéder à mon espace
+  signIn.emailForm.error.required: Merci de renseigner votre adresse e-mail
+  signIn.emailForm.error.invalid: L'adresse e-mail est invalide
+  signIn.emailForm.error.rateLimited: Un code vient d'être envoyé à cette adresse. Veuillez patienter avant d'en demander un nouveau.
+  signIn.code.rateLimited: Veuillez patienter un instant avant de réessayer.
+  common.errors.errorHappened: Une erreur est survenue. Veuillez réessayer.
+  signIn.code.invalid: Le code est invalide

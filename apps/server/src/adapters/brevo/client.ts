@@ -36,7 +36,10 @@ const brevo = axios.create({
   headers: {
     'api-key': config.thirdParty.brevo.apiKey,
   },
-  timeout: 1000,
+  timeout: 5_000,
+  'axios-retry': {
+    retries: 2,
+  },
 })
 
 axiosRetry(brevo, {
@@ -147,16 +150,30 @@ const sendEmail = ({
   templateId: TemplateId
   params: { [key: string]: unknown }
 }) => {
-  return brevo.post('/v3/smtp/email', {
-    to: [
-      {
-        name: email,
-        email,
+  return brevo.post(
+    '/v3/smtp/email',
+    {
+      to: [
+        {
+          name: email,
+          email,
+        },
+      ],
+      templateId,
+      params,
+    },
+    {
+      // A client-side timeout only aborts our socket: Brevo has already received
+      // the request and will still deliver the email. Setting a timeout below Brevo's
+      // response time, turns single sends into timeouts and with retries, into duplicate emails.
+      timeout: 10_000,
+      'axios-retry': {
+        // Lower than the library default of 3 for the same reason: a retried send
+        // is a duplicate email whenever the previous attempt actually got through.
+        retries: 1,
       },
-    ],
-    templateId,
-    params,
-  })
+    }
+  )
 }
 
 const lastSimulationResult = ({
