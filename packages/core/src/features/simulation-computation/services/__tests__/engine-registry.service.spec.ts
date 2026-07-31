@@ -4,6 +4,13 @@ import { CURRENT_MODEL_VERSION } from '../../model-support/model-versions.ts'
 
 const noopLogger = { error: () => {}, info: () => {}, debug: () => {} }
 
+// Every test resets the module registry to get fresh hot/lru maps, so each one
+// parses the real model JSON into a new Engine - the eviction test does it four
+// times. That costs ~1s in isolation, but these are CPU-bound parses competing
+// with the rest of the suite, and under that contention the 5s default is not
+// enough. Raised here rather than globally so other specs still fail fast.
+vi.setConfig({ testTimeout: 20_000 })
+
 describe('engine-registry.service', () => {
   const ORIGINAL_ENV = { ...process.env }
 

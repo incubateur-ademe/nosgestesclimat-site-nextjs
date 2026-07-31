@@ -4,6 +4,10 @@ import {
   createWarmUpHotEngines,
 } from '@nosgestesclimat/core/features/simulation-computation/services/engine-registry.service'
 import { createProcessNextPendingComputation } from '@nosgestesclimat/core/features/simulation-computation/services/process-next-pending-computation.service'
+import {
+  currentMemoryMB,
+  heapSizeLimitMB,
+} from '@nosgestesclimat/core/lib/memory'
 import logger from '../src/logger.ts'
 
 const POLL_INTERVAL_MS = 2000
@@ -30,6 +34,15 @@ process.on('SIGINT', () => {
 })
 
 async function main() {
+  // No --max-old-space-size is set for this worker, so V8 picks the heap
+  // ceiling itself: from the cgroup limit when Node detects one, from host RAM
+  // when it does not. If this logs well above the container limit, the kernel
+  // OOM-kills us before V8 ever feels enough pressure to run a major GC.
+  logger.info('[worker] Starting', {
+    heapSizeLimitMB: heapSizeLimitMB(),
+    ...currentMemoryMB(),
+  })
+
   logger.info('[worker] Warming engine(s)')
   await warmUpHotEngines()
   logger.info('[worker] Engine(s) ready')
@@ -38,7 +51,9 @@ async function main() {
     try {
       const processed = await processNextPendingComputation(getEngineForModel)
       if (processed) {
-        logger.info('[worker] Job processed')
+        // Sampled after the engine cache reset, so heapUsed here is the
+        // between-jobs floor rather than the peak reached during the job.
+        logger.info('[worker] Job processed', currentMemoryMB())
         // Drain the queue without delay
         continue
       }

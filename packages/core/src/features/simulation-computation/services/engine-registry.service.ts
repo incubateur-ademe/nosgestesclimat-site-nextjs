@@ -2,6 +2,7 @@ import type { RawPublicodes } from 'publicodes'
 import Engine from 'publicodes'
 import { match } from 'ts-pattern'
 import * as v from 'valibot'
+import { currentMemoryMB } from '../../../lib/memory.ts'
 import type { Logger } from '../../logger/index.ts'
 import type { Model, ModelRegion } from '../../simulations/types/model.ts'
 import { UnsupportedModelException } from '../exceptions/simulation-computation.exception.ts'
@@ -115,7 +116,7 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
   return async function warmUpHotEngines(): Promise<void> {
     const { logger } = deps
     logger.debug('[engine-registry] warming all hot engines', {
-      rssMB: currentRssMB(),
+      ...currentMemoryMB(),
     })
     for (const [key, { region, versionKind }] of HOT_KEYS) {
       logger.info('[engine-registry] warming hot engine', {
@@ -127,12 +128,12 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
       logger.debug('[engine-registry] hot engine warmed', {
         region,
         versionKind,
-        rssMB: currentRssMB(),
+        ...currentMemoryMB(),
       })
     }
     logger.info('[engine-registry] hot engines warmed', {
       count: hotEngines.size,
-      rssMB: currentRssMB(),
+      ...currentMemoryMB(),
     })
   }
 }
@@ -176,7 +177,7 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
         lruCache.delete(leastRecentlyUsedKey)
         logger.debug('[engine-registry] lru cache evicted', {
           evictedKey: leastRecentlyUsedKey,
-          rssMB: currentRssMB(),
+          ...currentMemoryMB(),
         })
       }
     }
@@ -185,7 +186,7 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
     const engine = await buildEngine(model.region, versionKind)
     logger.debug('[engine-registry] engine built', {
       key,
-      rssMB: currentRssMB(),
+      ...currentMemoryMB(),
     })
 
     // if MAX_CACHE_SIZE is 0 it still means lruSize of 1
@@ -200,8 +201,4 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
 
 function engineKey(region: ModelRegion, versionKind: ModelVersionKind): string {
   return `${region}:${versionKind}`
-}
-
-function currentRssMB(): number {
-  return Math.round((process.memoryUsage().rss / (1024 * 1024)) * 100) / 100
 }

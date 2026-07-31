@@ -29,10 +29,11 @@ export function createProcessNextPendingComputation(
   ): Promise<boolean> {
     const job = await claimNextPendingSimulationComputation()
     if (!job) return false
+    let engine: Engine | undefined
     try {
       // Computes all data derived from a simulation in a single engine pass.
       // `setSituation` is called once — all subsequent evaluate() calls benefit from the publicodes internal cache.
-      const engine = await getEngine(job.simulation.model)
+      engine = await getEngine(job.simulation.model)
       engine.setSituation(job.simulation.situation)
       await assessActions(engine, job.simulation.id)
       await markSimulationComputationCompleted(job.simulation.id)
@@ -50,6 +51,14 @@ export function createProcessNextPendingComputation(
         simulationId: job.simulation.id,
         cause: error,
       })
+    } finally {
+      // The registry keeps engines alive across jobs, so the evaluation cache
+      // built above would be retained until this engine's next job — forever,
+      // for a hot engine left idle. Nothing is lost by dropping it now: the
+      // next job's `setSituation` resets that same cache before evaluating.
+      // Parsed rules are held on the context, not the cache, so they survive.
+      // Only safe while the worker processes jobs sequentially.
+      engine?.resetCache()
     }
   }
 }
