@@ -15,6 +15,7 @@ import TextInput from '@/design-system/inputs/TextInput'
 import Separator from '@/design-system/layout/Separator'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
 import { createPoll } from '@/services/organisations/create-poll'
 import { captureException } from '@sentry/nextjs'
 import { useForm as useReactHookForm, useWatch } from 'react-hook-form'
@@ -34,6 +35,7 @@ interface Inputs {
 
 export default function OrganisationCreationForm() {
   const { t } = useClientTranslation()
+  const locale = useLocale()
 
   const { register, handleSubmit, formState, control } = useReactHookForm<Inputs>(
     {
@@ -79,6 +81,7 @@ export default function OrganisationCreationForm() {
       await createPoll({
         organisationIdOrSlug: organisationUpdated.slug,
         poll: pollPayload,
+        locale,
       })
     } catch (error: unknown) {
       if (

@@ -6,6 +6,7 @@ import {
   COLLECTIVE_TEST_MODE_PATH,
   COLLECTIVE_TEST_ORGANISATION_PATH,
 } from '@/constants/urls/paths'
+import { useLocale } from '@/hooks/useLocale'
 import { createPoll } from '@/services/organisations/create-poll'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState, useTransition } from 'react'
@@ -77,6 +78,7 @@ export function useCreatePollStep1() {
 
 export function useCreatePollStep2() {
   const router = useRouter()
+  const locale = useLocale()
   const [isPending, startTransition] = useTransition()
   const [isError, setIsError] = useState(false)
   const [draft] = useState(() => readDraft())
@@ -129,6 +131,7 @@ export function useCreatePollStep2() {
         await createPoll({
           organisationIdOrSlug: orgSlug,
           poll: payload,
+          locale,
         })
       } catch (err) {
         if (!(err instanceof Error) || !err.message.includes('NEXT_REDIRECT')) {
@@ -152,6 +155,7 @@ export function useCreatePollStep2() {
 
 export function useFinalizeCollectiveTest(orgSlug: string) {
   const router = useRouter()
+  const locale = useLocale()
   const [isError, setIsError] = useState(false)
   const [isPending, startTransition] = useTransition()
 
@@ -176,6 +180,7 @@ export function useFinalizeCollectiveTest(orgSlug: string) {
         await createPoll({
           organisationIdOrSlug: orgSlug,
           poll: payload,
+          locale,
         })
       } catch (err) {
         if (!(err instanceof Error) || !err.message.includes('NEXT_REDIRECT')) {
@@ -186,7 +191,7 @@ export function useFinalizeCollectiveTest(orgSlug: string) {
         }
       }
     })
-  }, [orgSlug, router])
+  }, [orgSlug, router, locale])
 
   return { finalize, isPending, isError }
 }
