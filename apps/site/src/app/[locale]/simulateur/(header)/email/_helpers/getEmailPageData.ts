@@ -1,6 +1,6 @@
 import { getSimulationMode } from '@/helpers/server/model/simulations'
-import { getPublicPoll } from '@/helpers/server/model/organisations'
 import type { Simulation } from '@/helpers/server/model/simulations'
+import { getPublicPoll } from '@/services/organisations/get-public-poll'
 
 interface EmailPageData {
   isSchoolMode: boolean
@@ -24,8 +24,12 @@ export async function getEmailPageData(
   let organisationName: string | undefined
 
   if (hasContest && pollSlug) {
-    const poll = await getPublicPoll(pollSlug)
-    organisationName = poll?.organisation.name
+    try {
+      const poll = await getPublicPoll(pollSlug)
+      organisationName = poll.organisation.name
+    } catch {
+      // The poll may not be public; organisationName stays undefined.
+    }
   }
 
   return {

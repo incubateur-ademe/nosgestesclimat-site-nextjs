@@ -3,7 +3,7 @@
 import AnimatedCheckIcon from '@/components/icons/status/AnimatedCheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { END_PAGE_PATH } from '@/constants/urls/paths'
-import AutoRedirectButtonLink from '@/design-system/buttons/AutoRedirectButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { motion } from 'framer-motion'
 
 interface Props {
@@ -56,19 +56,16 @@ export default function EmailConfirmation({ organisationName }: Props) {
 
         <p className="mb-6">
           <Trans i18nKey="emailConfirmation.text">
-            Vous allez être redirigé vers vos résultats d'empreinte.
+            Vos résultats d'empreinte sont prêts. Cliquez sur le bouton
+            ci-dessous pour les consulter.
           </Trans>
         </p>
 
-        <AutoRedirectButtonLink
-          duration={10}
-          startDelay={3}
-          href={END_PAGE_PATH}>
-          <Trans i18nKey="common.seeResults">Voir mes résultats</Trans>
-          <span aria-hidden="true" className="ml-1">
-            →
-          </span>
-        </AutoRedirectButtonLink>
+        <ButtonLink href={END_PAGE_PATH} data-testid="see-results-button">
+          <Trans i18nKey="emailConfirmation.seeResults">
+            Voir mes résultats
+          </Trans>
+        </ButtonLink>
       </div>
     </div>
   )
