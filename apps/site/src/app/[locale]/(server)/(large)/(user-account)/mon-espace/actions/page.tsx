@@ -1,4 +1,5 @@
 import ActionsPage from '@/components/actions/pages/ActionsPage'
+import NoResultsBlock from '@/components/dashboard/NoResultsBlock'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -37,27 +38,34 @@ export default async function MonEspaceActionsPage({
 
       <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
 
-      <div>
-        <ActionsPage
-          title={
-            <Trans locale={locale} i18nKey="actions.listPage.title">
-              Vos actions personnalisées pour diminuer votre empreinte
-            </Trans>
-          }
-          description={
-            <Trans locale={locale} i18nKey="actions.listPage.description">
-              Ces actions sont personnalisées selon vos réponses au test.
-              Choisissez celles qui vous semblent atteignables et lancez-vous !
-            </Trans>
-          }
-          topActions={personalizedActionsCatalogue.topActions}
-          actions={personalizedActionsCatalogue.actions}
-          assessmentStatus={personalizedActionsCatalogue.assessmentStatus}
-          themes={themes}
-          locale={locale}
-          from="mon-espace"
-        />
-      </div>
+      {/* No computation for the latest simulation: no simulation at all, or one
+          the model no longer supports. Nothing can be personalized. */}
+      {personalizedActionsCatalogue.assessmentStatus === null ? (
+        <NoResultsBlock locale={locale} />
+      ) : (
+        <div>
+          <ActionsPage
+            title={
+              <Trans locale={locale} i18nKey="actions.listPage.title">
+                Vos actions personnalisées pour diminuer votre empreinte
+              </Trans>
+            }
+            description={
+              <Trans locale={locale} i18nKey="actions.listPage.description">
+                Ces actions sont personnalisées selon vos réponses au test.
+                Choisissez celles qui vous semblent atteignables et lancez-vous
+                !
+              </Trans>
+            }
+            topActions={personalizedActionsCatalogue.topActions}
+            actions={personalizedActionsCatalogue.actions}
+            assessmentStatus={personalizedActionsCatalogue.assessmentStatus}
+            themes={themes}
+            locale={locale}
+            from="mon-espace"
+          />
+        </div>
+      )}
     </div>
   )
 }

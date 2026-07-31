@@ -1,4 +1,5 @@
 import ActionsPage from '@/components/actions/pages/ActionsPage'
+import NoResultsBlock from '@/components/dashboard/NoResultsBlock'
 import Trans from '@/components/translation/trans/TransServer'
 import { ACTIONS_PATH } from '@/constants/urls/paths'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -30,6 +31,12 @@ export default async function ResultatsActionsPage({
     getPersonalizedActionsCatalogue(user.id, locale),
     getThemes(locale),
   ])
+
+  // No computation for the latest simulation: no simulation at all, or one the
+  // model no longer supports. Nothing can be personalized, so invite a retest.
+  if (actionsCatalogue.assessmentStatus === null) {
+    return <NoResultsBlock locale={locale} />
+  }
 
   return (
     <ActionsPage
