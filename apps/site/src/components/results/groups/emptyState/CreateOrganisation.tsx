@@ -38,7 +38,7 @@ export default function CreateOrganisation() {
           trackPosthogEvent(captureClickDashboardGroupPageCreateOrganisation)
         }}>
         <Trans i18nKey="mon-espace.groups.organisation.create.button">
-          Créer mon organisation
+          Créer un test collectif
         </Trans>
       </ButtonLink>
     </div>

@@ -1023,9 +1023,9 @@ entries:
   signIn.verificationForm.email.verificationCode.strong.lock: code de vérification
   signIn.verificationForm.email.verificationCode.suffix: 'sent to '
   signIn.verificationForm.email.verificationCode.suffix.lock: 'envoyé à '
-  signIn.verificationForm.codeInput.label: Enter the 6 digits of the verification code
-  signIn.verificationForm.submitButton: Validate my code
-  signIn.verificationForm.pending: Verifying your code...
+  signIn.verificationForm.codeInput.label: Please enter the 6-digit verification code
+  signIn.verificationForm.submitButton: Verify my code
+  signIn.verificationForm.pending: We’re checking your code...
   signIn.verificationForm.success: Your code is valid!
   signIn.verificationForm.notReceived.resendButton: Resend code
   signIn.verificationForm.notReceived.resendButton.lock: Renvoyer le code
@@ -1255,8 +1255,8 @@ entries:
   Mobilisez votre entourage: Involve those around you
   Invitez vos proches à passer le test: Invite your friends and family to take the test
   Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.: Create a group with friends and family and <2>embark on a collective challenge</2> to reduce your footprint. Track your progress and see who manages to reduce their carbon emissions or water consumption the most.
-  mon-espace.groups.organisation.create.button: Create my organisation
-  mon-espace.groups.organisation.create.button.lock: Créer mon organisation
+  mon-espace.groups.organisation.create.button: Create a group test
+  mon-espace.groups.organisation.create.button.lock: Créer un test collectif
   mon-espace.groups.organisation.create.title: Mobilising my organisation
   mon-espace.groups.organisation.create.title.lock: Mobiliser mon organisation
   header.monEspace.openMenuButton.open.title: My space ({{email}}), open the menu
@@ -1417,7 +1417,7 @@ entries:
   signIn.emailForm.buttonLabel: Log in to my account
   signIn.emailForm.error.required: Please enter your email address
   signIn.emailForm.error.invalid: The email address is invalid
-  signIn.emailForm.error.rateLimited: A code has already been sent to this address. Please wait before requesting a new one.
+  signIn.emailForm.error.rateLimited: A code has just been sent to this address. Please wait before requesting a new one.
   signIn.code.rateLimited: Please wait a moment before trying again.
   results.objective.under4.description.body: With the work of the government and society as a whole over the coming years, your footprint should naturally fall to around 2 tonnes.
   results.objective.under4.description.body.lock: Avec le travail de l’État et toute la société dans les années à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2 tonnes.
@@ -2141,3 +2141,27 @@ entries:
   Création de votre test collectif en cours…: Creating your collective test...
   Créer mon test collectif: Create my collective test
   Pour finir, donnez un nom à votre organisation: To finish, give a name to your organisation
+  signIn.verificationForm.submitButton.lock: Valider mon code
+  signIn.verificationForm.codeInput.label.lock: Entrez les 6 chiffres du code de vérification
+  signIn.verificationForm.success.lock: Votre code est valide !
+  banner.close: Close the banner
+  banner.close.lock: Fermer la bannière
+  signIn.emailForm.inputLabel.lock: Votre adresse e-mail
+  signIn.emailForm.error.required.lock: Merci de renseigner votre adresse e-mail
+  signIn.code.rateLimited.lock: Veuillez patienter un instant avant de réessayer.
+  signIn.emailForm.buttonLabel.lock: Accéder à mon espace
+  signIn.emailForm.error.invalid.lock: L'adresse e-mail est invalide
+  common.errors.errorHappening: An error has occurred. Please try again.
+  common.errors.errorHappening.lock: Une erreur est survenue. Veuillez réessayer.
+  signIn.emailForm.error.rateLimited.lock: Un code vient d'être envoyé à cette adresse. Veuillez patienter avant d'en demander un nouveau.
+  common.errors.errorHappened: An error has occurred. Please try again.
+  common.errors.errorHappened.lock: Une erreur est survenue. Veuillez réessayer.
+  signIn.code.invalid: The code is invalid
+  signIn.code.invalid.lock: Le code est invalide
+  Gestion des infolettres - Nos Gestes Climat: Newsletter Management – Nos Gestes Climat
+  Mentions légales Base Empreinte - Nos Gestes Climat: 'Legal Notice: Base Empreinte – Nos Gestes Climat'
+  Gérez vos abonnements aux infolettres Nos Gestes Climat. Sélectionnez les newsletters qui vous intéressent pour recevoir des conseils personnalisés sur la réduction de votre empreinte carbone.: Manage your subscriptions to the ‘Nos Gestes Climat’ newsletters. Select the newsletters that interest you to receive personalised advice on reducing your carbon footprint.
+  userParams.updateInfo: Update my contact details
+  userParams.updateInfo.lock: Mettre à jour mes coordonnées
+  Mentions légales de la Base Empreinte.: Legal notices for the Empreinte database.
+  signIn.verificationForm.pending.lock: Nous vérifions votre code...

@@ -26,7 +26,7 @@ export default function HeroSection() {
               href={COLLECTIVE_TEST_INFORMATIONS_PATH}
               data-testid="start-link"
               trackingEvent={organisationsAccueilClickCommencer}>
-              <Trans>Commencer</Trans>
+              <Trans>Créer un test collectif</Trans>
             </ButtonLink>
           </li>
 

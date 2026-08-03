@@ -992,7 +992,7 @@ entries:
   Mobilisez votre entourage: Mobilisez votre entourage
   header.monEspace.openMenuButton.close.title: Mon espace ({{email}}), fermer le menu
   header.monEspace.openMenuButton.open.title: Mon espace ({{email}}), ouvrir le menu
-  mon-espace.groups.organisation.create.button: Créer mon organisation
+  mon-espace.groups.organisation.create.button: Créer un test collectif
   mon-espace.groups.organisation.create.title: Mobiliser mon organisation
   Créer: Créer
   Merci de renseigner votre adresse e-mail: Merci de renseigner votre adresse e-mail
@@ -1453,3 +1453,10 @@ entries:
   Création de votre test collectif en cours…: Création de votre test collectif en cours…
   Créer mon test collectif: Créer mon test collectif
   Pour finir, donnez un nom à votre organisation: Pour finir, donnez un nom à votre organisation
+  banner.close: Fermer la bannière
+  common.errors.errorHappening: Une erreur est survenue. Veuillez réessayer.
+  Gérez vos abonnements aux infolettres Nos Gestes Climat. Sélectionnez les newsletters qui vous intéressent pour recevoir des conseils personnalisés sur la réduction de votre empreinte carbone.: Gérez vos abonnements aux infolettres Nos Gestes Climat. Sélectionnez les newsletters qui vous intéressent pour recevoir des conseils personnalisés sur la réduction de votre empreinte carbone.
+  Gestion des infolettres - Nos Gestes Climat: Gestion des infolettres - Nos Gestes Climat
+  Mentions légales Base Empreinte - Nos Gestes Climat: Mentions légales Base Empreinte - Nos Gestes Climat
+  Mentions légales de la Base Empreinte.: Mentions légales de la Base Empreinte.
+  userParams.updateInfo: Mettre à jour mes coordonnées
