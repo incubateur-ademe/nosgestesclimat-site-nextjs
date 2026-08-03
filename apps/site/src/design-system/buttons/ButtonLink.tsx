@@ -1,6 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
+import { cn } from '@/lib/utils'
 import type { ButtonSize } from '@/types/values'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import {
@@ -9,15 +10,9 @@ import {
   type MouseEvent,
   type PropsWithChildren,
 } from 'react'
-import { twMerge } from 'tailwind-merge'
 import Loader from '../layout/Loader'
+import { buttonVariants, loaderColorMap } from './buttonStyles'
 import type { ButtonColor } from './Button'
-import {
-  baseClassNames,
-  colorClassNames,
-  loaderColorMap,
-  sizeClassNames,
-} from './Button'
 import { useButtonState } from './useButtonState'
 
 interface Props {
@@ -93,8 +88,8 @@ export default function ButtonLink({
       }}
       title={title}
       aria-disabled={isDisabled}
-      className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+      className={cn(
+        buttonVariants({ color, size }),
         isDisabled && 'cursor-not-allowed opacity-50!',
         className
       )}

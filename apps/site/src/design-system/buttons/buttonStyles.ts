@@ -1,3 +1,4 @@
+import { cva, type VariantProps } from 'class-variance-authority'
 import type { ButtonSize } from '@/types/values'
 
 export type ButtonColor =
@@ -43,3 +44,16 @@ export const loaderColorMap: Record<ButtonColor, 'light' | 'dark'> = {
 
 export const baseClassNames =
   'inline-flex items-center opacity-100! justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors aria-disabled:opacity-50 leading-none!'
+
+export const buttonVariants = cva(baseClassNames, {
+  variants: {
+    color: colorClassNames,
+    size: sizeClassNames,
+  },
+  defaultVariants: {
+    color: 'primary',
+    size: 'md',
+  },
+})
+
+export type ButtonVariants = VariantProps<typeof buttonVariants>

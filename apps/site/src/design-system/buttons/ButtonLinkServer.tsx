@@ -1,8 +1,8 @@
+import { cn } from '@/lib/utils'
 import type { ButtonSize } from '@/types/values'
 import Link from 'next/link'
 import type { HtmlHTMLAttributes, PropsWithChildren } from 'react'
-import { twMerge } from 'tailwind-merge'
-import { baseClassNames, colorClassNames, sizeClassNames } from './buttonStyles'
+import { buttonVariants } from './buttonStyles'
 
 interface Props {
   href: string
@@ -27,10 +27,7 @@ export default function ButtonLinkServer({
     <Link
       href={href}
       title={title}
-      className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
-        className
-      )}
+      className={cn(buttonVariants({ color, size }), className)}
       target={target}
       prefetch={false}
       {...props}>

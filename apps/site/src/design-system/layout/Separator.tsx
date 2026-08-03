@@ -1,4 +1,5 @@
-import { twMerge } from 'tailwind-merge'
+import { Separator as SeparatorPrimitive } from '@/components/ui/separator'
+import { cn } from '@/lib/utils'
 
 type SeparatorVariant = 'short' | 'full'
 
@@ -12,14 +13,15 @@ export default function Separator({
   ...props
 }: SeparatorProps) {
   return (
-    <div
-      className={twMerge(classNamesByVariant[variant], className)}
+    <SeparatorPrimitive
+      className={cn(classNamesByVariant[variant], className)}
       {...props}
     />
   )
 }
 
 const classNamesByVariant: Record<SeparatorVariant, string> = {
-  short: 'bg-secondary-700 my-8 h-[3px] w-12 rounded-full md:w-20',
-  full: 'h-px bg-slate-200',
+  short:
+    'data-horizontal:h-[3px] data-horizontal:w-12 md:data-horizontal:w-20 bg-secondary-700 my-8 rounded-full',
+  full: 'data-horizontal:h-px bg-slate-200',
 }

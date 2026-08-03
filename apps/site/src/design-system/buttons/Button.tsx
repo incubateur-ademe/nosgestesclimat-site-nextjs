@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import type { ButtonSize } from '@/types/values'
 import {
   type HtmlHTMLAttributes,
@@ -7,10 +8,10 @@ import {
   type PropsWithChildren,
   type RefObject,
 } from 'react'
-import { twMerge } from 'tailwind-merge'
 import Loader from '../layout/Loader'
 import {
   baseClassNames,
+  buttonVariants,
   colorClassNames,
   loaderColorMap,
   sizeClassNames,
@@ -33,7 +34,7 @@ export type ButtonProps = {
   showLoadingOnClickWhilePending?: boolean
 } & PropsWithChildren
 
-export { baseClassNames, colorClassNames, loaderColorMap, sizeClassNames }
+export { baseClassNames, buttonVariants, colorClassNames, loaderColorMap, sizeClassNames }
 export type { ButtonColor }
 
 export default function Button({
@@ -79,10 +80,8 @@ export default function Button({
       title={title}
       form={form}
       id={id}
-      className={twMerge(
-        baseClassNames,
-        sizeClassNames[size],
-        colorClassNames[color],
+      className={cn(
+        buttonVariants({ color, size }),
         isDisabled && 'cursor-not-allowed opacity-50!',
         className
       )}

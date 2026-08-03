@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import type { ButtonSize } from '@/types/values'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import type {
@@ -8,8 +9,7 @@ import type {
   MouseEvent,
   PropsWithChildren,
 } from 'react'
-import { twMerge } from 'tailwind-merge'
-import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
+import { buttonVariants } from './buttonStyles'
 
 interface Props {
   href: string
@@ -57,10 +57,7 @@ export default function ButtonAnchor({
         }
       }}
       title={title}
-      className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
-        className
-      )}
+      className={cn(buttonVariants({ color, size }), className)}
       target={target}
       {...props}>
       {children}
