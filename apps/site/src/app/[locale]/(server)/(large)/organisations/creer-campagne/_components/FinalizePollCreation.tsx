@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import Loader from '@/design-system/layout/Loader'
 import { useEffect, useRef } from 'react'
 import { useFinalizeCollectiveTest } from '../_hooks/createPoll'
 
@@ -25,8 +26,8 @@ export default function FinalizePollCreation({ orgSlug }: Props) {
     return (
       <p role="alert" aria-live="polite" className="mt-4 text-red-800">
         <Trans>
-          Une erreur s'est produite lors de la création de votre test
-          collectif. Veuillez réessayer.
+          Une erreur s'est produite lors de la création de votre test collectif.
+          Veuillez réessayer.
         </Trans>
       </p>
     )
@@ -34,7 +35,8 @@ export default function FinalizePollCreation({ orgSlug }: Props) {
 
   return (
     <p className="text-secondary-700">
-      <Trans>Création de votre test collectif en cours…</Trans>
+      <Loader color="dark" className="mr-2 inline-block" />
+      <Trans>Création de votre test collectif en cours</Trans>
       {isPending && '…'}
     </p>
   )
