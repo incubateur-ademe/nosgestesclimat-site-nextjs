@@ -7,16 +7,7 @@ import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import { useEffect } from 'react'
-import ReactModal from 'react-modal'
-
-// Type assertion to resolve React types version mismatch
-// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
-const Modal = ReactModal as any
-
-// Set the app element once when the module is loaded
-if (typeof document !== 'undefined') {
-  ReactModal.setAppElement(document.body)
-}
+import { Dialog as DialogPrimitive } from 'radix-ui'
 
 export default function CookieConsentBanner({
   onOpenForm,
@@ -34,40 +25,19 @@ export default function CookieConsentBanner({
   }, [])
 
   return (
-    <Modal
-      isOpen={true}
-      aria={{
-        label: t('cookieConsent.board.title', 'Panneau de gestion des cookies'),
-      }}
-      className="!fixed !top-1/2 !left-1/2 !z-[10001] !mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
-      overlayClassName="!bg-black/0 !backdrop-blur-none !fixed !bottom-0 !left-0 !right-0 !top-auto !z-[10000]"
-      // Accessibility improvements for cookie consent banner
-      shouldFocusAfterRender={false}
-      shouldReturnFocusAfterClose={false}
-      shouldCloseOnOverlayClick={false}
-      shouldCloseOnEsc={false}
-      preventScroll={false}
-      ariaHideApp={false}
-      style={{
-        content: {
-          margin: '0 auto',
-          bottom: '2rem',
-          left: '0',
-          right: '0',
-          top: 'auto',
-          padding: 0,
-          border: 'none',
-          maxWidth: '48rem',
-          width: 'calc(100vw - 1rem)',
-          boxShadow: '0 8px 32px 0 rgba(0,0,0,0.10)',
-          inset: 'auto',
-        },
-        overlay: {
-          background: 'transparent',
-          zIndex: 10000,
-          pointerEvents: 'auto',
-        },
-      }}>
+    <DialogPrimitive.Root open>
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Overlay className="!fixed !top-auto !right-0 !bottom-0 !left-0 !z-[10000] !bg-transparent !backdrop-blur-none" />
+        <DialogPrimitive.Content
+          aria-label={t(
+            'cookieConsent.board.title',
+            'Panneau de gestion des cookies'
+          )}
+          className="fixed top-1/2 left-1/2 z-[10001] w-[calc(100vw-1rem)] max-w-[48rem] -translate-x-1/2 -translate-y-1/2 rounded-2xl border-none p-0 shadow-2xl outline-none md:top-auto md:right-auto md:bottom-8 md:left-8 md:mx-0 md:translate-x-0 md:translate-y-0 md:rounded-4xl"
+          onOpenAutoFocus={(e) => e.preventDefault()}
+          onEscapeKeyDown={(e) => e.preventDefault()}
+          onPointerDownOutside={(e) => e.preventDefault()}
+          onInteractOutside={(e) => e.preventDefault()}>
       <div
         className="flex w-full flex-col rounded-2xl bg-white px-6 py-6 shadow-2xl sm:px-8 sm:py-8 md:rounded-4xl"
         aria-labelledby="cookie-banner-title"
@@ -129,6 +99,8 @@ export default function CookieConsentBanner({
           </li>
         </ul>
       </div>
-    </Modal>
+      </DialogPrimitive.Content>
+      </DialogPrimitive.Portal>
+    </DialogPrimitive.Root>
   )
 }

@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import type {
   ChangeEvent,
   ForwardedRef,
@@ -5,7 +6,6 @@ import type {
   ReactNode,
 } from 'react'
 import { forwardRef, useId } from 'react'
-import { twMerge } from 'tailwind-merge'
 import InputGroup from './InputGroup'
 import { defaultInputStyleClassNames } from './TextInput'
 
@@ -60,12 +60,11 @@ export default forwardRef(function SelectInput(
         onChange={onChange ?? (() => null)}
         required={required}
         aria-disabled={disabled}
-        className={twMerge(
+        className={cn(
           'w-full max-w-[30rem] cursor-pointer appearance-none p-4 pr-12 text-base',
           defaultInputStyleClassNames,
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
           disabled ? 'cursor-not-allowed opacity-50' : '',
-          'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
           className
         )}
         style={{

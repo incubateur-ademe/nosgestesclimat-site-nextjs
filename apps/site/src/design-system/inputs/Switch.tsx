@@ -1,7 +1,8 @@
 'use client'
 
 import Link from '@/components/Link'
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
+import { ToggleGroup as ToggleGroupPrimitive } from 'radix-ui'
 
 interface Option {
   label: React.ReactNode | string
@@ -44,7 +45,7 @@ const getFullClassName = ({
   index: number
   options: Option[]
 }) =>
-  twMerge(
+  cn(
     commonClassName,
     'rounded-l-sm flex items-center',
     index === 0 && 'border-l -mr-[1px]',
@@ -60,26 +61,28 @@ export default function Switch({
 }: Props) {
   if (isButtonOptions(options)) {
     return (
-      <div
-        role="group"
+      <ToggleGroupPrimitive.Root
+        type="single"
         aria-label={ariaLabel}
-        className={twMerge('flex', className)}>
-        {options.map(({ label, isSelected, ...props }, index) => (
-          <button
+        className={cn('flex', className)}>
+        {options.map(({ label, isSelected, onClick, ...props }, index) => (
+          <ToggleGroupPrimitive.Item
             key={`switch-${index}`}
             type="button"
+            value={`switch-${index}`}
             className={getFullClassName({ isSelected, index, options })}
             aria-pressed={isSelected ?? false}
+            onClick={onClick}
             {...props}>
             {label}
-          </button>
+          </ToggleGroupPrimitive.Item>
         ))}
-      </div>
+      </ToggleGroupPrimitive.Root>
     )
   }
 
   return (
-    <nav aria-label={ariaLabel} className={twMerge('flex', className)}>
+    <nav aria-label={ariaLabel} className={cn('flex', className)}>
       {options.map(({ label, isSelected, ...props }, index) => (
         <Link
           key={`switch-${index}`}

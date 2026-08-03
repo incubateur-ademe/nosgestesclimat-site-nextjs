@@ -1,5 +1,6 @@
 'use client'
 
+import { Skeleton } from '@/components/ui/skeleton'
 import type { ImpactCO2Language } from '@nosgestesclimat/core/features/actions/types/action-media'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -100,14 +101,14 @@ export default function ImpactCO2Iframe({
       {/* Skeleton loader */}
       {isLoading && (
         <div className="absolute inset-0 z-10 flex h-full flex-col gap-4 rounded-xl bg-white p-6 opacity-80">
-          <div className="bg-primary-200 h-4 w-3/4 animate-pulse rounded-md" />
-          <div className="bg-primary-200 h-4 w-1/2 animate-pulse rounded-md" />
-          <div className="mt-2 flex flex-1 animate-pulse flex-col items-start gap-2">
-            <div className="bg-primary-200 h-20 w-3/4 animate-pulse rounded-md" />
-            <div className="bg-primary-200 h-20 w-1/2 animate-pulse rounded-md" />
-            <div className="bg-primary-200 h-20 w-2/3 animate-pulse rounded-md" />
-            <div className="bg-primary-200 h-20 w-4/5 animate-pulse rounded-md" />
-            <div className="bg-primary-200 h-20 w-1/3 animate-pulse rounded-md" />
+          <Skeleton className="bg-primary-200 h-4 w-3/4 rounded-md" />
+          <Skeleton className="bg-primary-200 h-4 w-1/2 rounded-md" />
+          <div className="mt-2 flex flex-1 flex-col items-start gap-2">
+            <Skeleton className="bg-primary-200 h-20 w-3/4 rounded-md" />
+            <Skeleton className="bg-primary-200 h-20 w-1/2 rounded-md" />
+            <Skeleton className="bg-primary-200 h-20 w-2/3 rounded-md" />
+            <Skeleton className="bg-primary-200 h-20 w-4/5 rounded-md" />
+            <Skeleton className="bg-primary-200 h-20 w-1/3 rounded-md" />
           </div>
         </div>
       )}

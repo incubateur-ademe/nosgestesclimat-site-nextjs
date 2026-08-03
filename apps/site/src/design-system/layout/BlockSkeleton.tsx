@@ -1,14 +1,11 @@
-import { twMerge } from 'tailwind-merge'
+import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/lib/utils'
 
 export default function BlockSkeleton({ className }: { className?: string }) {
   return (
-    <div
-      className={twMerge(
-        'mt-4 mb-8 h-[100px] animate-pulse motion-reduce:animate-none',
-        className
-      )}
-      data-testid="block-skeleton">
-      <div className="bg-primary-100 h-full w-full rounded-md"></div>
-    </div>
+    <Skeleton
+      data-testid="block-skeleton"
+      className={cn('mt-4 mb-8 h-[100px] bg-primary-100', className)}
+    />
   )
 }

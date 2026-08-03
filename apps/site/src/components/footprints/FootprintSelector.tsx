@@ -2,9 +2,14 @@
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import type { Options, SingleValueProps, StylesConfig } from 'react-select'
-import Select, { components } from 'react-select'
 import Trans from '../translation/trans/TransClient'
 
 interface OptionType {
@@ -22,98 +27,51 @@ export default function FootprintSelector({
 }) {
   const { t } = useClientTranslation()
 
-  const options: Options<OptionType> = [
+  const options: OptionType[] = [
     { value: carboneMetric, label: t('Carbone'), icon: '🌡️' },
     { value: eauMetric, label: t('Eau'), icon: '💧' },
   ]
 
-  const customStyles: StylesConfig<OptionType, false> = {
-    control: (provided) => ({
-      ...provided,
-      borderRadius: '0.5rem',
-      borderWidth: '2px',
-      borderColor: '#4949ba',
-      // backgroundColor: '#e3ebfc',
-      minWidth: '7rem',
-      paddingTop: '0',
-      paddingBottom: '0',
-      color: '#373978',
-      cursor: 'pointer',
-      fontSize: '0.875rem',
-      '&:hover': { borderColor: '#3d3f96', backgroundColor: '#e3ebfc' },
-      transition: 'all 0.2s ease-in-out',
-    }),
-    indicatorSeparator: () => ({ display: 'none' }),
-    indicatorsContainer: (provided) => ({
-      ...provided,
-      margin: '-0.2rem',
-    }),
-    dropdownIndicator: (provided) => ({
-      ...provided,
-      color: '#3d3f96',
-      '&:hover': { color: '#3d3f96' },
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: '#3d3f96',
-      fontWeight: 'bold',
-    }),
-    valueContainer: (provided) => ({
-      ...provided,
-      padding: '0',
-      paddingLeft: '0.5rem',
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem',
-      cursor: 'pointer',
-      fontSize: '0.875rem',
-      backgroundColor: state.isSelected ? '#737de1' : provided.backgroundColor,
-      color: state.isSelected ? 'white' : provided.color,
-    }),
-    menu: (provided) => ({ ...provided, borderRadius: '0.5rem' }),
-  }
-
-  const customComponents = {
-    SingleValue: ({
-      children,
-      ...props
-    }: SingleValueProps<OptionType, false>) => (
-      <components.SingleValue {...props}>
-        <div className="flex flex-col">
-          <div
-            id="footprint-select-label"
-            className="text-default -mb-1 cursor-pointer text-[0.6rem] font-normal select-none">
-            <Trans>Empreinte</Trans>
-          </div>
-
-          <div className="flex items-center">{children}</div>
-        </div>
-      </components.SingleValue>
-    ),
-  }
+  const selectedOption = options.find(
+    (option) => option.value === footprintSelected
+  )
 
   return (
     <div className="relative rounded-lg">
       <div className="relative block h-full">
         <Select
-          aria-labelledby="footprint-select-label"
-          inputId="footprint-select-input"
-          options={options}
-          isClearable={false}
-          isSearchable={false}
-          value={options.find((option) => option.value === footprintSelected)}
-          onChange={(selected) => onChange((selected?.value as Metrics) || '')}
-          styles={customStyles}
-          components={customComponents}
-          formatOptionLabel={({ label, icon }) => (
-            <div className="flex items-center">
-              {label} <Emoji>{icon}</Emoji>
-            </div>
-          )}
-        />
+          value={footprintSelected}
+          onValueChange={(value) => onChange((value || '') as Metrics)}>
+          <SelectTrigger
+            aria-label={t('footprintSelector.ariaLabel', 'Choisir une empreinte')}
+            className="min-w-28 cursor-pointer rounded-lg border-2 border-primary-700 bg-transparent py-1 pl-2 pr-2 text-sm text-primary-800 shadow-none transition-colors hover:border-primary-800 hover:bg-primary-100 focus-visible:border-primary-700 focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 focus-visible:outline-hidden">
+            <SelectValue>
+              {selectedOption && (
+                <span className="flex flex-col">
+                  <span
+                    id="footprint-select-label"
+                    className="-mb-1 text-[0.6rem] font-normal text-primary-700 select-none">
+                    <Trans>Empreinte</Trans>
+                  </span>
+                  <span className="flex items-center font-bold">
+                    {selectedOption.label}{' '}
+                    <Emoji>{selectedOption.icon}</Emoji>
+                  </span>
+                </span>
+              )}
+            </SelectValue>
+          </SelectTrigger>
+
+          <SelectContent>
+            {options.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                <span className="flex items-center">
+                  {option.label} <Emoji>{option.icon}</Emoji>
+                </span>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   )

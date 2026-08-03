@@ -1,6 +1,7 @@
+import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 import type { ReactNode } from 'react'
 import React, { useId } from 'react'
-import { twMerge } from 'tailwind-merge'
 
 interface InputGroupProps {
   name: string
@@ -45,20 +46,20 @@ export default function InputGroup({
 
   return (
     <div
-      className={twMerge(
+      className={cn(
         'flex w-full flex-col items-start',
         containerClassName
       )}>
       {label ? (
-        <label
+        <Label
           htmlFor={fieldId}
-          className={twMerge(
-            'mb-2 flex w-full max-w-[30rem] justify-between text-left',
+          className={cn(
+            'mb-2 flex w-full max-w-[30rem] items-start justify-between text-left leading-normal font-bold',
             labelClassName
           )}>
           <span
-            className={twMerge(
-              `w-full text-base font-bold text-slate-900`,
+            className={cn(
+              `w-full text-base text-slate-900`,
               error ? 'text-red-800 dark:text-red-50' : ''
             )}>
             {label}
@@ -66,13 +67,13 @@ export default function InputGroup({
           {mention && (
             <span className="text-base font-bold text-pink-600">{mention}</span>
           )}
-        </label>
+        </Label>
       ) : null}
 
       {srOnlyHelperText ? (
         <span
           id={srOnlyHelperTextId}
-          className={twMerge('sr-only -mt-1 mb-2 text-base text-slate-900')}>
+          className={cn('sr-only -mt-1 mb-2 text-base text-slate-900')}>
           {srOnlyHelperText}
         </span>
       ) : null}
@@ -80,7 +81,7 @@ export default function InputGroup({
       {helperText ? (
         <span
           id={helperTextId}
-          className={twMerge(
+          className={cn(
             '-mt-1 mb-2 text-base text-slate-900',
             error && 'text-red-800 dark:text-red-50'
           )}>

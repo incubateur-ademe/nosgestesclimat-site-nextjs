@@ -1,3 +1,5 @@
+import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 import { useDebounce } from '@/utils/debounce'
 import type {
   ChangeEventHandler,
@@ -6,10 +8,9 @@ import type {
   ReactNode,
 } from 'react'
 import { forwardRef, useId } from 'react'
-import { twMerge } from 'tailwind-merge'
 import InputGroup from './InputGroup'
 
-export const defaultInputStyleClassNames = `rounded-md border border-solid border-slate-500 bg-white transition-colors placeholder:text-slate-500`
+export const defaultInputStyleClassNames = `h-auto rounded-md border border-solid border-slate-500 bg-white transition-colors placeholder:text-slate-500 focus-visible:border-primary-700 focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-3 focus-visible:outline-hidden`
 
 interface Props {
   name: string
@@ -74,7 +75,7 @@ export default forwardRef(function TextInput(
       required={required}
       disabled={disabled}
       mention={mention}>
-      <input
+      <Input
         id={inputId}
         ref={ref}
         readOnly={readOnly}
@@ -88,7 +89,7 @@ export default forwardRef(function TextInput(
         data-testid={`${props['data-testid']}`}
         {...props}
         type={type}
-        className={twMerge(
+        className={cn(
           'w-full max-w-120 p-4 text-base',
           defaultInputStyleClassNames,
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
