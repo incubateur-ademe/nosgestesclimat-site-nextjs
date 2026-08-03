@@ -19,7 +19,7 @@ export default function FinalizePollCreation({ orgSlug }: Props) {
     }
 
     hasStarted.current = true
-    finalize()
+    // finalize()
   }, [finalize])
 
   if (isError) {
@@ -34,10 +34,12 @@ export default function FinalizePollCreation({ orgSlug }: Props) {
   }
 
   return (
-    <p className="text-secondary-700">
-      <Loader color="dark" className="mr-2 inline-block" />
-      <Trans>Création de votre test collectif en cours</Trans>
-      {isPending && '…'}
-    </p>
+    <div className="bg-primary-100 flex flex-col items-center justify-center rounded-2xl p-8">
+      <Loader color="dark" className="mb-4 inline-block" />
+      <p className="font-bold">
+        <Trans>Création de votre test collectif en cours</Trans>
+        {isPending && '…'}
+      </p>
+    </div>
   )
 }

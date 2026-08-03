@@ -10,13 +10,12 @@ import {
   COLLECTIVE_TEST_ORGANISATION_PATH,
 } from '@/constants/urls/paths'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
-import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
+import { getLocaleFromPageParams } from '@/helpers/getLocaleFromPageParams'
 import {
   getCollectiveTestStepNumber,
   getCollectiveTestTotalSteps,
 } from '@/helpers/organisations/collectiveTestFlow'
-import { getLocaleFromPageParams } from '@/helpers/getLocaleFromPageParams'
 import { getUserOrganisation } from '@/helpers/server/model/organisations'
 import { redirect } from 'next/navigation'
 import { getCollectiveTestFlowStatus } from '../_actions/getCollectiveTestFlowStatus'
@@ -75,10 +74,11 @@ export default async function CollectiveTestConnexionPage({
         </Trans>
       </p>
 
-      <Separator />
-
       <div className="max-w-full md:w-160">
-        <SigninSignupTabs className="-order-1 mb-8 lg:mb-14" mode={SIGNIN_MODE} />
+        <SigninSignupTabs
+          className="-order-1 mb-8 lg:mb-14"
+          mode={SIGNIN_MODE}
+        />
         <AuthenticateUserForm
           onComplete={redirectAfterLoginInFlow}
           tracker={captureOrganisationsLoginComplete}
