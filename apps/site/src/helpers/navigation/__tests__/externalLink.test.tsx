@@ -96,6 +96,23 @@ describe('getExternalLinkProps', () => {
     expect(props.ariaLabel).toBe('Ouvrir les conseils ADEME')
   })
 
+  it('derives the aria-label from the children JSX', () => {
+    const props = getExternalLinkProps({
+      href: 'https://agirpourlatransition.ademe.fr',
+      siteUrl: SITE_URL,
+      children: (
+        <span>
+          Découvrez <strong>les conseils</strong>
+        </span>
+      ),
+      t,
+    })
+
+    expect(props.ariaLabel).toBe(
+      'Découvrez les conseils (ouvrir dans une nouvelle fenêtre)'
+    )
+  })
+
   it('does not add an aria-label when the link has no text', () => {
     const props = getExternalLinkProps({
       href: 'https://agirpourlatransition.ademe.fr',
