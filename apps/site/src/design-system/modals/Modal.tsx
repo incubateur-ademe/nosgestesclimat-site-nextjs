@@ -4,8 +4,8 @@ import CloseIcon from '@/components/icons/Close'
 import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
+import { cn } from '@/lib/utils'
 import { Dialog as DialogPrimitive } from 'radix-ui'
-import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
 
 interface Props {
@@ -55,7 +55,7 @@ export default function Modal({
         <DialogPrimitive.Content
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
-          className={twMerge(modalClassName, className)}
+          className={cn(modalClassName, className)}
           onEscapeKeyDown={(e) => {
             if (isLoading) e.preventDefault()
           }}

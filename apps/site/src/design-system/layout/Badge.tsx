@@ -4,7 +4,7 @@ import {
 } from '@/helpers/getCategoryColorClass'
 import { Badge as BadgePrimitive } from '@/components/ui/badge'
 import type { PropsWithChildren } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
 
 export type BadgeColor =
   | 'primary'
@@ -43,7 +43,7 @@ export default function Badge({
       variant={category ? undefined : color}
       size={size}
       borderless={!border}
-      className={twMerge(
+      className={cn(
         category
           ? `${getBorderColor(category)} ${getTextDarkColor(category)}`
           : '',
