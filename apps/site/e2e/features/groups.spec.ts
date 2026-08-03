@@ -250,11 +250,6 @@ test.describe('A user with a completed test that joined a group', () => {
   })
 
   test('can leave a group', async ({ group }) => {
-    // Navigate away then back to force a fresh mount of /amis/resultats.
-    // Without this, the previous <Activity> keeps its React state across
-    // tests and the leave-button click does not open the confirmation modal.
-    await page.goto('/fin')
-    await page.goto(group.url)
     await expect(page.getByTestId('button-leave-group')).toBeVisible()
     await group.leave(page)
     await page.goto('/fin')
