@@ -18,83 +18,64 @@ export default function FunFact({ question }: Props) {
 
   if (question === 'logement . surface') {
     return (
-      <div
-        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
-        <h3 className="mb-2">
-          <Emoji>💡</Emoji>{' '}
-          <Trans i18nKey="simulator.funFact.housing.title">
-            Le saviez-vous ?
-          </Trans>
-        </h3>
-        <p className="mb-0">
-          <strong>
-            <Trans i18nKey="simulator.funFact.housing.text1">
+      <Trans i18nKey="simulator.funFact.housing">
+        <div
+          className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
+          <h3 className="mb-2">
+            <Emoji>💡</Emoji> Le saviez-vous ?
+          </h3>
+          <p className="mb-0">
+            <strong>
               La taille des logements français a très fortement augmenté
-            </Trans>
-          </strong>{' '}
-          <Trans i18nKey="simulator.funFact.housing.text2">
+            </strong>{' '}
             sur ces 50 dernières années, passant de 23 à 40 m² par habitant,
-            soit
-          </Trans>{' '}
-          <strong>
-            <Trans i18nKey="simulator.funFact.housing.text3">
-              90 m² en moyenne pour un foyer de 2,2 personnes.
-            </Trans>
-          </strong>
-        </p>
-      </div>
+            soit{' '}
+            <strong>90 m² en moyenne pour un foyer de 2,2 personnes.</strong>
+          </p>
+        </div>
+      </Trans>
     )
   }
 
   if (question === 'divers . textile . volume') {
     return (
-      <div
-        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
-        <h3 className="mb-2">
-          <Emoji>💡</Emoji>{' '}
-          <Trans i18nKey="simulator.funFact.clothing.title">
-            Le saviez-vous ?
-          </Trans>
-        </h3>
-        <p className="mb-0">
-          <Trans i18nKey="simulator.funFact.clothing.text1">
-            En moyenne, les Français achètent chaque année,
-          </Trans>{' '}
-          <strong>
-            <Trans i18nKey="simulator.funFact.clothing.text2">
+      <Trans i18nKey="simulator.funFact.clothing">
+        <div
+          className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
+          <h3 className="mb-2">
+            <Emoji>💡</Emoji> Le saviez-vous ?
+          </h3>
+          <p className="mb-0">
+            En moyenne, les Français achètent chaque année,{' '}
+            <strong>
               {/* Chiffres issus de https://agirpourlatransition.ademe.fr/acteurs-education/enseigner/mode-dessus-dessous */}
               9,5 kg de vêtements... mais n'en trient que 3,4 kg !
-            </Trans>{' '}
-          </strong>
-        </p>
-      </div>
+            </strong>
+          </p>
+        </div>
+      </Trans>
     )
   }
 
   if (question === 'divers . numérique . internet . durée journalière') {
     return (
-      <div
-        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
-        <h3 className="mb-2">
-          <Emoji>💡</Emoji>{' '}
-          <Trans i18nKey="simulator.funFact.ia.title">Un mot sur l'IA</Trans>
-        </h3>
-        <p className="mb-0">
-          <Trans i18nKey="simulator.funFact.ia.text1">
-            Le recours à l'intelligence artificielle entraîne une
-          </Trans>{' '}
-          <strong>
-            <Trans i18nKey="simulator.funFact.ia.text2">
+      <Trans i18nKey="simulator.funFact.ia">
+        <div
+          className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
+          <h3 className="mb-2">
+            <Emoji>💡</Emoji> Un mot sur l'IA
+          </h3>
+          <p className="mb-0">
+            Le recours à l'intelligence artificielle entraîne une{' '}
+            <strong>
               hausse de la consommation d'électricité, d'eau et d'espace pour
               les data centers
-            </Trans>
-          </strong>
-          <Trans i18nKey="simulator.funFact.ia.text3">
+            </strong>
             . Des études sont en cours pour disposer de données fiables sur les
             impacts et mieux vous informer.
-          </Trans>
-        </p>
-      </div>
+          </p>
+        </div>
+      </Trans>
     )
   }
 
