@@ -1,10 +1,13 @@
 import { metrics } from '@/constants/model/metric'
 import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import type { Simulation } from '@/helpers/server/model/simulations'
+import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import type {
   ComputedResults,
   ComputedResultsFootprint,
 } from '@/publicodes-state/types'
+import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
+import { captureException } from '@sentry/nextjs'
 import { v4 as uuidv4 } from 'uuid'
 
 /**
@@ -14,6 +17,9 @@ import { v4 as uuidv4 } from 'uuid'
  * nothing client-side may construct one. `model` can only be resolved
  * server-side anyway (the region lives in an httpOnly cookie) — see
  * `resolveNewSimulationModelString()`.
+ *
+ * Any caller-supplied situation is migrated before being persisted, so legacy
+ * rule names and the single-metric `computedResults` shape never reach the API.
  */
 export function buildNewSimulationPayload({
   id = uuidv4(),
@@ -42,7 +48,7 @@ export function buildNewSimulationPayload({
   groups,
   model,
 }: Partial<Omit<Simulation, 'model'>> & { model: string }): Simulation {
-  return {
+  const simulation: Simulation = {
     id,
     date,
     situation,
@@ -55,5 +61,14 @@ export function buildNewSimulationPayload({
     polls,
     groups,
     model,
+  }
+
+  try {
+    return migrateSimulation(simulation, migrationInstructions)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn('Error trying to migrate Simulation:', error)
+    captureException(error)
+    return simulation
   }
 }
