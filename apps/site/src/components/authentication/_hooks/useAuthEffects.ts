@@ -5,12 +5,13 @@ import { useEffect, type Dispatch } from 'react'
 import { useCookieManagement } from '@/components/cookies/useCookieManagement'
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import { reconcileUserOnAuth } from '@/helpers/user/reconcileOnAuth'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 
-import { unknownCodeError } from '../errors'
+import { unknownCodeError, type Translate } from '../errors'
 import type {
   AuthEvent,
   AuthPhase,
@@ -22,7 +23,8 @@ import type {
 function useVerifyEffect(
   state: AuthPhase,
   dispatch: Dispatch<AuthEvent>,
-  verify: VerifyStrategy
+  verify: VerifyStrategy,
+  t: Translate
 ) {
   const verificationEmail =
     state.phase === 'verifying_code' ? state.pending.email : null
@@ -44,13 +46,13 @@ function useVerifyEffect(
       })
       .catch((error) => {
         captureException(error)
-        dispatch({ type: 'CODE_INVALID', reason: unknownCodeError() })
+        dispatch({ type: 'CODE_INVALID', reason: unknownCodeError(t) })
       })
 
     return () => {
       cancelled = true
     }
-  }, [verificationEmail, verificationCode, verify, dispatch])
+  }, [verificationEmail, verificationCode, verify, dispatch, t])
 }
 
 function useCompletionEffect(
@@ -125,6 +127,7 @@ export function useAuthEffects({
   redirectPathname,
   tracker,
 }: UseAuthEffectsOptions) {
-  useVerifyEffect(state, dispatch, verify)
+  const { t } = useClientTranslation()
+  useVerifyEffect(state, dispatch, verify, t)
   useCompletionEffect(state, { onComplete, redirectPathname, tracker })
 }

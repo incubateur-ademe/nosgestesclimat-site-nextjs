@@ -1419,6 +1419,10 @@ entries:
   signIn.emailForm.error.invalid: The email address is invalid
   signIn.emailForm.error.rateLimited: A code has already been sent to this address. Please wait before requesting a new one.
   signIn.code.rateLimited: Please wait a moment before trying again.
+  signIn.code.invalid: The code is invalid
+  signIn.code.expired: This code has expired. Request a new code and use it within the hour.
+  signIn.code.accountConflict: This session is already associated with another account. Please log out and try again with a new session.
+  common.errors.errorHappened: An error has occurred. Please try again.
   results.objective.under4.description.body: With the work of the government and society as a whole over the coming years, your footprint should naturally fall to around 2 tonnes.
   results.objective.under4.description.body.lock: Avec le travail de l’État et toute la société dans les années à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2 tonnes.
   Part de la sous-catégorie {{percentage}}: Share of sub-category {{percentage}}

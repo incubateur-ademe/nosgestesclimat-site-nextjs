@@ -4,8 +4,11 @@ import {
   rateLimitedError,
   unknownCodeError,
   type EmailError,
+  type Translate,
 } from '@/components/authentication/errors'
 import { VERIFICATION_CODE_URL } from '@/constants/urls/main'
+import { LOCALE_FR_KEY } from '@/i18nConfig'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { TooManyRequestsError } from '@/helpers/server/error'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import type { AuthenticationMode } from '@/types/authentication'
@@ -32,8 +35,12 @@ export const createVerificationCode = async ({
     )
     return success(data)
   } catch (error) {
+    const { t } = await getServerTranslation({
+      locale: locale ?? LOCALE_FR_KEY,
+    })
+    const translate = t as Translate
     if (error instanceof TooManyRequestsError)
-      return failure(rateLimitedError())
-    return failure(unknownCodeError())
+      return failure(rateLimitedError(translate))
+    return failure(unknownCodeError(translate))
   }
 }

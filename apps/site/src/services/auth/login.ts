@@ -7,8 +7,11 @@ import {
   rateLimitedError,
   unknownCodeError,
   type CodeError,
+  type Translate,
 } from '@/components/authentication/errors'
 import { AUTHENTICATION_URL } from '@/constants/urls/main'
+import { LOCALE_FR_KEY } from '@/i18nConfig'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
   ForbiddenError,
   TooManyRequestsError,
@@ -61,13 +64,18 @@ export const login = async ({
 
     return success({ ...data, userId: data.id })
   } catch (error) {
+    const { t } = await getServerTranslation({
+      locale: locale ?? LOCALE_FR_KEY,
+    })
+    const translate = t as Translate
     if (error instanceof UnauthorizedError) {
-      if (error.rejection === 'expired') return failure(expiredCodeError())
-      return failure(invalidCodeError())
+      if (error.rejection === 'expired') return failure(expiredCodeError(translate))
+      return failure(invalidCodeError(translate))
     }
-    if (error instanceof ForbiddenError) return failure(accountConflictError())
+    if (error instanceof ForbiddenError)
+      return failure(accountConflictError(translate))
     if (error instanceof TooManyRequestsError)
-      return failure(rateLimitedError())
-    return failure(unknownCodeError())
+      return failure(rateLimitedError(translate))
+    return failure(unknownCodeError(translate))
   }
 }

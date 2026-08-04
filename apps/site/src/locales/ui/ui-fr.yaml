@@ -1446,3 +1446,5 @@ entries:
   signIn.code.rateLimited: Veuillez patienter un instant avant de réessayer.
   common.errors.errorHappened: Une erreur est survenue. Veuillez réessayer.
   signIn.code.invalid: Le code est invalide
+  signIn.code.expired: Ce code a expiré. Demandez un nouveau code et utilisez-le dans l’heure qui suit.
+  signIn.code.accountConflict: Cette session est déjà associée à un autre compte. Déconnectez-vous puis réessayez avec une nouvelle session.

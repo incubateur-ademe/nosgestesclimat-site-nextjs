@@ -1,9 +1,15 @@
 import type { AuthContextValue } from '@/components/authentication/AuthProvider'
 import { useAuth } from '@/components/authentication/AuthProvider'
-import { unknownCodeError } from '@/components/authentication/errors'
+import {
+  unknownCodeError,
+  type Translate,
+} from '@/components/authentication/errors'
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NotReceived from '../NotReceived'
+
+const t = ((key: string, defaultValue?: string) =>
+  defaultValue ?? '') as Translate
 
 vi.mock('@/components/authentication/AuthProvider', async () => {
   const actual = await vi.importActual(
@@ -66,7 +72,7 @@ describe('NotReceived', () => {
         cooldownUntil: 0,
         isResending: false,
         codeError: null,
-        resendError: unknownCodeError(),
+        resendError: unknownCodeError(t),
       },
     } as AuthContextValue)
 

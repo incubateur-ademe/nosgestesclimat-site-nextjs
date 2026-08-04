@@ -6,6 +6,7 @@ import {
   invalidCodeError,
   rateLimitedError,
   unknownCodeError,
+  type Translate,
 } from '../errors'
 
 // Regression test: auth server actions return `Result` objects to client
@@ -14,6 +15,9 @@ import {
 // "Only plain objects can be passed to Client Components from Server
 // Components. Error objects are not supported."). The error payloads must
 // therefore stay plain, JSON-serializable objects.
+const t = ((key: string, defaultValue?: string) =>
+  defaultValue ?? '') as Translate
+
 describe('auth error payloads', () => {
   it.each([
     ['expiredCodeError', expiredCodeError],
@@ -24,7 +28,7 @@ describe('auth error payloads', () => {
   ] as const)(
     '%s returns a plain object, not an Error instance',
     (_name, factory) => {
-      const error = factory()
+      const error = factory(t)
 
       expect(error).not.toBeInstanceOf(Error)
       expect(Object.getPrototypeOf(error)).toBe(Object.prototype)
@@ -35,7 +39,7 @@ describe('auth error payloads', () => {
   )
 
   it('keeps the code after the whole failure Result is serialized', () => {
-    const result = failure(invalidCodeError())
+    const result = failure(invalidCodeError(t))
 
     expect(JSON.parse(JSON.stringify(result))).toEqual({
       success: false,

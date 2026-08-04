@@ -1,3 +1,5 @@
+import type { TFunction } from 'i18next'
+
 /**
  * Errors returned by auth server actions.
  *
@@ -17,9 +19,11 @@ export type EmailError =
   | { code: 'rate_limited'; message: string }
   | { code: 'unknown'; message: string }
 
-export const expiredCodeError = (): CodeError => ({
+export type Translate = TFunction
+
+export const expiredCodeError = (t: Translate): CodeError => ({
   code: 'expired',
-  message: 'Le code a expiré',
+  message: t('signIn.code.expired', 'Le code a expiré'),
 })
 
 /**
@@ -27,22 +31,25 @@ export const expiredCodeError = (): CodeError => ({
  * id) is already attached to another verified account. The user must start a
  * fresh session (log out / clear cookies) before logging in with this email.
  */
-export const accountConflictError = (): CodeError => ({
+export const accountConflictError = (t: Translate): CodeError => ({
   code: 'account_conflict',
-  message: 'Session déjà associée à un autre compte',
+  message: t(
+    'signIn.code.accountConflict',
+    'Session déjà associée à un autre compte'
+  ),
 })
 
-export const invalidCodeError = (): CodeError => ({
+export const invalidCodeError = (t: Translate): CodeError => ({
   code: 'invalid',
-  message: 'Code invalide',
+  message: t('signIn.code.invalid', 'Code invalide'),
 })
 
-export const rateLimitedError = (): EmailError => ({
+export const rateLimitedError = (t: Translate): EmailError => ({
   code: 'rate_limited',
-  message: 'Trop de requêtes',
+  message: t('signIn.code.rateLimited', 'Trop de requêtes'),
 })
 
-export const unknownCodeError = (): EmailError => ({
+export const unknownCodeError = (t: Translate): EmailError => ({
   code: 'unknown',
-  message: 'Erreur inconnue',
+  message: t('common.errors.errorHappened', 'Erreur inconnue'),
 })

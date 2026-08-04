@@ -119,7 +119,7 @@ export default function VerificationCodeForm() {
             )
             .with('unknown', () =>
               t(
-                'common.errors.errorHappening',
+                'common.errors.errorHappened',
                 'Une erreur est survenue. Veuillez réessayer.'
               )
             )
