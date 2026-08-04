@@ -39,7 +39,9 @@ export const ClientLayout = ({
           </Suspense>
           <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
 
-          <Banner locale={locale as Locale} />
+          <Suspense fallback={null}>
+            <Banner locale={locale as Locale} />
+          </Suspense>
           {children}
           <GoogleTagScript />
           <GoogleTagIframe />
