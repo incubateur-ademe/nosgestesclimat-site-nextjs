@@ -1,6 +1,7 @@
 import { failure } from '@nosgestesclimat/core/lib/result'
 import { describe, expect, it } from 'vitest'
 import {
+  accountConflictError,
   expiredCodeError,
   invalidCodeError,
   rateLimitedError,
@@ -17,6 +18,7 @@ describe('auth error payloads', () => {
   it.each([
     ['expiredCodeError', expiredCodeError],
     ['invalidCodeError', invalidCodeError],
+    ['accountConflictError', accountConflictError],
     ['rateLimitedError', rateLimitedError],
     ['unknownCodeError', unknownCodeError],
   ] as const)(

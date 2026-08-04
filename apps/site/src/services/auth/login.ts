@@ -1,6 +1,7 @@
 'use server'
 
 import {
+  accountConflictError,
   expiredCodeError,
   invalidCodeError,
   rateLimitedError,
@@ -54,7 +55,7 @@ export const login = async ({
       if (error.rejection === 'expired') return failure(expiredCodeError())
       return failure(invalidCodeError())
     }
-    if (error instanceof ForbiddenError) return failure(invalidCodeError())
+    if (error instanceof ForbiddenError) return failure(accountConflictError())
     if (error instanceof TooManyRequestsError)
       return failure(rateLimitedError())
     return failure(unknownCodeError())

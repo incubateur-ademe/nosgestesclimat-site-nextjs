@@ -102,6 +102,12 @@ export default function VerificationCodeForm() {
                 'Ce code a expiré. Demandez un nouveau code et utilisez-le dans l\u2019heure qui suit.'
               )
             )
+            .with('account_conflict', () =>
+              t(
+                'signIn.code.accountConflict',
+                'Cette session est déjà associée à un autre compte. Déconnectez-vous puis réessayez avec une nouvelle session.'
+              )
+            )
             .with('invalid', () =>
               t('signIn.code.invalid', 'Le code est invalide')
             )
