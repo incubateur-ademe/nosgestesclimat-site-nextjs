@@ -29,7 +29,10 @@ test.describe('The dashboard', () => {
 
   test('welcomes the admin', async ({ page, organisation }) => {
     await expect(
-      page.getByText(`Bienvenue ${organisation.admin.fullName}`)
+      page.getByRole('heading', {
+        name: `Bienvenue ${organisation.admin.fullName}`,
+        level: 1,
+      })
     ).toBeVisible()
   })
 
@@ -38,12 +41,14 @@ test.describe('The dashboard', () => {
     organisation,
   }) => {
     await expect(
-      page.getByRole('link', { name: organisation.name })
+      page.getByRole('link', { name: organisation.name, exact: true })
     ).toBeVisible()
   })
 
   test('lists the created poll', async ({ page, poll }) => {
-    await expect(page.getByText(poll.name)).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: poll.name, level: 3, exact: true })
+    ).toBeVisible()
     await page.getByTestId('poll-card-see-details-button').first().click()
     await expect(page).toHaveURL(poll.url)
   })
