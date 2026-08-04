@@ -71,5 +71,32 @@ export default function FunFact({ question }: Props) {
     )
   }
 
+  if (question === 'divers . numérique . internet . durée journalière') {
+    return (
+      <div
+        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
+        <h3 className="mb-2">
+          <Emoji>💡</Emoji>{' '}
+          <Trans i18nKey="simulator.funFact.ia.title">Un mot sur l'IA</Trans>
+        </h3>
+        <p className="mb-0">
+          <Trans i18nKey="simulator.funFact.ia.text1">
+            Le recours à l'intelligence artificielle entraîne une
+          </Trans>{' '}
+          <strong>
+            <Trans i18nKey="simulator.funFact.ia.text2">
+              hausse de la consommation d'électricité, d'eau et d'espace pour
+              les data centers
+            </Trans>
+          </strong>
+          <Trans i18nKey="simulator.funFact.ia.text3">
+            . Des études sont en cours pour disposer de données fiables sur les
+            impacts et mieux vous informer.
+          </Trans>
+        </p>
+      </div>
+    )
+  }
+
   return null
 }
