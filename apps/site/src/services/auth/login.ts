@@ -1,6 +1,7 @@
 'use server'
 
 import {
+  AccountConflictError,
   InvalidCodeError,
   RateLimitedError,
   UnknownCodeError,
@@ -61,7 +62,8 @@ export const login = async ({
   } catch (error) {
     if (error instanceof UnauthorizedError)
       return failure(new InvalidCodeError())
-    if (error instanceof ForbiddenError) return failure(new InvalidCodeError())
+    if (error instanceof ForbiddenError)
+      return failure(new AccountConflictError())
     if (error instanceof TooManyRequestsError)
       return failure(new RateLimitedError())
     return failure(new UnknownCodeError())

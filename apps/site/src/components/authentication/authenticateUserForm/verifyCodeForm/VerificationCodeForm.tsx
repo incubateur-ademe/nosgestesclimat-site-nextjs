@@ -79,6 +79,12 @@ export default function VerificationCodeForm() {
         <p id="verification-error" className="mt-2 text-sm text-red-800 dark:text-white">
           {match(state.codeError.code)
             .with('invalid', () => t('signIn.code.invalid', 'Le code est invalide'))
+            .with('account_conflict', () =>
+              t(
+                'signIn.code.accountConflict',
+                'Cette session est déjà associée à un autre compte. Déconnectez-vous puis réessayez avec une nouvelle session.'
+              )
+            )
             .with('rate_limited', () => t('signIn.code.rateLimited', 'Veuillez patienter un instant avant de réessayer.'))
             .with('unknown', () => t('common.errors.errorHappening', 'Une erreur est survenue. Veuillez réessayer.'))
             .exhaustive()
