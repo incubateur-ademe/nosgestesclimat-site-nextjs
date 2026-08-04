@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { authReducer } from '../authMachine'
-import { InvalidCodeError, RateLimitedError, UnknownCodeError } from '../errors'
+import { invalidCodeError, rateLimitedError, unknownCodeError } from '../errors'
 import type { AuthEvent, AuthPhase } from '../types'
 
 const pending = {
@@ -83,12 +83,12 @@ describe('authReducer', () => {
     it('ignores all non-SUBMIT_EMAIL events and stays idle', () => {
       const ignoredEvents: AuthEvent[] = [
         { type: 'EMAIL_SENT', pending, cooldownUntil: cooldown },
-        { type: 'EMAIL_ERROR', reason: new UnknownCodeError() },
+        { type: 'EMAIL_ERROR', reason: unknownCodeError() },
         { type: 'CODE_VALID', userId: 'u1' },
-        { type: 'CODE_INVALID', reason: new InvalidCodeError() },
+        { type: 'CODE_INVALID', reason: invalidCodeError() },
         { type: 'RESEND_CODE' },
         { type: 'CODE_RESENT', pending, cooldownUntil: cooldown },
-        { type: 'CODE_RESEND_ERROR', reason: new UnknownCodeError() },
+        { type: 'CODE_RESEND_ERROR', reason: unknownCodeError() },
         { type: 'GO_BACK' },
         { type: 'CLEAR_CODE_ERROR' },
       ]
@@ -124,11 +124,11 @@ describe('authReducer', () => {
     it('returns to idle on EMAIL_ERROR', () => {
       const result = authReducer(state, {
         type: 'EMAIL_ERROR',
-        reason: new RateLimitedError(),
+        reason: rateLimitedError(),
       })
       expect(result).toEqual({
         phase: 'idle',
-        emailError: new RateLimitedError(),
+        emailError: rateLimitedError(),
       })
     })
 
@@ -172,15 +172,13 @@ describe('authReducer', () => {
     it('sets isResending on RESEND_CODE and clears resendError', () => {
       const withError = {
         ...state,
-        resendError: new UnknownCodeError(),
-        codeError: new InvalidCodeError(),
+        resendError: unknownCodeError(),
+        codeError: invalidCodeError(),
       }
       const result = authReducer(withError, { type: 'RESEND_CODE' })
       expect((result as typeof withError).isResending).toBe(true)
       expect((result as typeof withError).resendError).toBeNull()
-      expect((result as typeof withError).codeError).toEqual(
-        new InvalidCodeError()
-      )
+      expect((result as typeof withError).codeError).toEqual(invalidCodeError())
     })
 
     it('returns to code_sent with new pending on CODE_RESENT', () => {
@@ -208,16 +206,16 @@ describe('authReducer', () => {
       const resending = { ...state, isResending: true }
       const result = authReducer(resending, {
         type: 'CODE_RESEND_ERROR',
-        reason: new RateLimitedError(),
+        reason: rateLimitedError(),
       })
       expect((result as typeof resending).isResending).toBe(false)
       expect((result as typeof resending).resendError).toEqual(
-        new RateLimitedError()
+        rateLimitedError()
       )
     })
 
     it('clears codeError on CLEAR_CODE_ERROR', () => {
-      const withError = { ...state, codeError: new InvalidCodeError() }
+      const withError = { ...state, codeError: invalidCodeError() }
       const result = authReducer(withError, { type: 'CLEAR_CODE_ERROR' })
       expect((result as typeof withError).codeError).toBeNull()
     })
@@ -271,7 +269,7 @@ describe('authReducer', () => {
     it('returns to code_sent with codeError on CODE_INVALID', () => {
       const result = authReducer(state, {
         type: 'CODE_INVALID',
-        reason: new InvalidCodeError(),
+        reason: invalidCodeError(),
       })
       expect(result).toEqual({
         phase: 'code_sent',
@@ -279,7 +277,7 @@ describe('authReducer', () => {
         pending,
         cooldownUntil: cooldown,
         isResending: false,
-        codeError: new InvalidCodeError(),
+        codeError: invalidCodeError(),
         resendError: null,
       })
     })

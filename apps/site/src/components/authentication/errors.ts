@@ -1,23 +1,31 @@
-import { DomainError } from '@nosgestesclimat/core/lib/errors'
+/**
+ * Errors returned by auth server actions.
+ *
+ * These must stay plain serializable objects: server actions (`'use server'`)
+ * return them to client components through React Flight, which cannot
+ * serialize `Error` instances (custom properties like `code` are dropped and
+ * a "Error objects are not supported" warning is emitted).
+ */
+export type CodeError =
+  | { code: 'invalid'; message: string }
+  | { code: 'rate_limited'; message: string }
+  | { code: 'unknown'; message: string }
 
-export class InvalidCodeError extends DomainError<'invalid'> {
-  constructor() {
-    super('invalid', 'Code invalide')
-  }
-}
+export type EmailError =
+  | { code: 'rate_limited'; message: string }
+  | { code: 'unknown'; message: string }
 
-export class RateLimitedError extends DomainError<'rate_limited'> {
-  constructor() {
-    super('rate_limited', 'Trop de requêtes')
-  }
-}
+export const invalidCodeError = (): CodeError => ({
+  code: 'invalid',
+  message: 'Code invalide',
+})
 
-export class UnknownCodeError extends DomainError<'unknown'> {
-  constructor() {
-    super('unknown', 'Erreur inconnue')
-  }
-}
+export const rateLimitedError = (): EmailError => ({
+  code: 'rate_limited',
+  message: 'Trop de requêtes',
+})
 
-export type CodeError = InvalidCodeError | RateLimitedError | UnknownCodeError
-
-export type EmailError = RateLimitedError | UnknownCodeError
+export const unknownCodeError = (): EmailError => ({
+  code: 'unknown',
+  message: 'Erreur inconnue',
+})

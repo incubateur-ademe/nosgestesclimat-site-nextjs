@@ -10,7 +10,7 @@ import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 
-import { UnknownCodeError } from '../errors'
+import { unknownCodeError } from '../errors'
 import type {
   AuthEvent,
   AuthPhase,
@@ -44,7 +44,7 @@ function useVerifyEffect(
       })
       .catch((error) => {
         captureException(error)
-        dispatch({ type: 'CODE_INVALID', reason: new UnknownCodeError() })
+        dispatch({ type: 'CODE_INVALID', reason: unknownCodeError() })
       })
 
     return () => {
