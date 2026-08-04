@@ -1,5 +1,5 @@
 import PartnerRedirectionAlert from '@/app/[locale]/(server)/(large)/fin/_components/PartnerRedirectionAlert'
-import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { buildNewSimulationPayload } from '@/services/simulations/build-new-simulation-payload'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
@@ -52,8 +52,9 @@ describe('PartnerContext', () => {
     })
   })
 
-  const defaultSimulation = generateSimulation({
+  const defaultSimulation = buildNewSimulationPayload({
     progression: 1,
+    model: 'FR-fr-1.2.3',
   })
 
   const redirectUrl = '/partner-site'
@@ -79,6 +80,38 @@ describe('PartnerContext', () => {
             partner: true,
             queryClient: true,
           },
+        })
+      })
+
+      // Then
+      expect(screen.queryByTestId('error-500')).not.toBeInTheDocument()
+    })
+  })
+
+  describe('given a user with no simulation at all', () => {
+    it('should not crash: PartnerProvider is mounted on every page', () => {
+      // Given — this is the ClientLayout case: a UserProvider is mounted but the
+      // visitor has never taken the test, so there is no simulation to read.
+      mockUseVerifyPartner.mockReturnValue(false)
+      mockUseExportSituation.mockReturnValue({
+        exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
+        exportSituation: vi.fn(),
+        isPending: false,
+        isSuccess: false,
+        isError: false,
+        error: null,
+        data: null,
+      })
+
+      // When
+      act(() => {
+        renderWithWrapper(<PartnerRedirectionAlert />, {
+          providers: {
+            partner: true,
+            queryClient: true,
+            user: true,
+          },
+          simulations: [],
         })
       })
 
@@ -142,8 +175,9 @@ describe('PartnerContext', () => {
   describe('given a user with an incompleted test', () => {
     it('should save the partner params to the session storage and redirect to the test', async () => {
       // Given
-      const incompleteSimulation = generateSimulation({
+      const incompleteSimulation = buildNewSimulationPayload({
         progression: 0,
+        model: 'FR-fr-1.2.3',
       })
       // Mock window.location.search with partner parameters
       Object.defineProperty(window, 'location', {

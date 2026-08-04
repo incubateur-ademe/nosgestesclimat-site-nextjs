@@ -18,7 +18,8 @@ type RootLayoutProps = PropsWithChildren & {
   locale: string
   userSession: UserSession
   skipLinksDisplayed?: SkipLinksDisplayed
-  serverSimulations?: Simulation[]
+  /** The user's persisted simulation, when the route has one. */
+  simulation?: Simulation
 }
 
 export const ClientLayout = ({
@@ -26,13 +27,11 @@ export const ClientLayout = ({
   skipLinksDisplayed,
   locale,
   userSession,
-  serverSimulations,
+  simulation,
 }: RootLayoutProps) => (
   <ErrorBoundary>
     <QueryClientProviderWrapper>
-      <UserProvider
-        userSession={userSession}
-        serverSimulations={serverSimulations}>
+      <UserProvider userSession={userSession} simulation={simulation}>
         <PartnerProvider>
           <Suspense>
             <MainHooks />
