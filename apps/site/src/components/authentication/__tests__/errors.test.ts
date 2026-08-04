@@ -1,6 +1,11 @@
 import { failure } from '@nosgestesclimat/core/lib/result'
 import { describe, expect, it } from 'vitest'
-import { invalidCodeError, rateLimitedError, unknownCodeError } from '../errors'
+import {
+  expiredCodeError,
+  invalidCodeError,
+  rateLimitedError,
+  unknownCodeError,
+} from '../errors'
 
 // Regression test: auth server actions return `Result` objects to client
 // components through React Flight. React Flight cannot serialize `Error`
@@ -10,6 +15,7 @@ import { invalidCodeError, rateLimitedError, unknownCodeError } from '../errors'
 // therefore stay plain, JSON-serializable objects.
 describe('auth error payloads', () => {
   it.each([
+    ['expiredCodeError', expiredCodeError],
     ['invalidCodeError', invalidCodeError],
     ['rateLimitedError', rateLimitedError],
     ['unknownCodeError', unknownCodeError],

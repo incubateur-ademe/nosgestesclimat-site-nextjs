@@ -15,8 +15,12 @@ export class NoSessionFoundError extends APIError {
 }
 
 export class UnauthorizedError extends APIError {
-  constructor() {
-    super('Unauthorized')
+  /**
+   * Why a verification-code login was rejected, when the server tells us.
+   * @see InvalidVerificationCodeException on the server
+   */
+  constructor(public rejection?: 'expired' | 'mismatch' | 'never_requested') {
+    super(rejection ? `Unauthorized (${rejection})` : 'Unauthorized')
     this.name = 'UnauthorizedError'
   }
 }

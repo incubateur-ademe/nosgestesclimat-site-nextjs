@@ -1,6 +1,7 @@
 'use server'
 
 import {
+  expiredCodeError,
   invalidCodeError,
   rateLimitedError,
   unknownCodeError,
@@ -49,7 +50,10 @@ export const login = async ({
 
     return success({ ...data, userId: data.id })
   } catch (error) {
-    if (error instanceof UnauthorizedError) return failure(invalidCodeError())
+    if (error instanceof UnauthorizedError) {
+      if (error.rejection === 'expired') return failure(expiredCodeError())
+      return failure(invalidCodeError())
+    }
     if (error instanceof ForbiddenError) return failure(invalidCodeError())
     if (error instanceof TooManyRequestsError)
       return failure(rateLimitedError())

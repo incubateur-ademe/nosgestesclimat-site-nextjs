@@ -93,7 +93,11 @@ router
             extra: rejected,
           })
 
-          return res.status(StatusCodes.UNAUTHORIZED).end()
+          // Expose *why* the code was rejected so the client can tell an
+          // expired code ("ask for a new one") apart from a wrong one.
+          return res
+            .status(StatusCodes.UNAUTHORIZED)
+            .json({ rejection: err.rejection })
         }
 
         if (err instanceof EntityNotFoundException) {

@@ -35,8 +35,21 @@ export async function handleApiResponse<T>(response: Response): Promise<T> {
     switch (response.status) {
       case 404:
         throw new NotFoundError()
-      case 401:
-        throw new UnauthorizedError()
+      case 401: {
+        const rejection =
+          parsedBody &&
+          typeof parsedBody === 'object' &&
+          'rejection' in parsedBody
+            ? parsedBody.rejection
+            : undefined
+        throw new UnauthorizedError(
+          rejection === 'expired' ||
+            rejection === 'mismatch' ||
+            rejection === 'never_requested'
+            ? rejection
+            : undefined
+        )
+      }
       case 403:
         throw new ForbiddenError()
       case 429:

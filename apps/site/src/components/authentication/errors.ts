@@ -7,6 +7,7 @@
  * a "Error objects are not supported" warning is emitted).
  */
 export type CodeError =
+  | { code: 'expired'; message: string }
   | { code: 'invalid'; message: string }
   | { code: 'rate_limited'; message: string }
   | { code: 'unknown'; message: string }
@@ -14,6 +15,11 @@ export type CodeError =
 export type EmailError =
   | { code: 'rate_limited'; message: string }
   | { code: 'unknown'; message: string }
+
+export const expiredCodeError = (): CodeError => ({
+  code: 'expired',
+  message: 'Le code a expiré',
+})
 
 export const invalidCodeError = (): CodeError => ({
   code: 'invalid',

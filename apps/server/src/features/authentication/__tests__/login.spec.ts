@@ -88,7 +88,7 @@ describe('Given a NGC user', () => {
     })
 
     describe('And verification code does not exist', () => {
-      test(`Then it returns a ${StatusCodes.UNAUTHORIZED} error`, async () => {
+      test(`Then it returns a ${StatusCodes.UNAUTHORIZED} error telling no code was requested`, async () => {
         await agent
           .post(url)
           .send({
@@ -97,6 +97,7 @@ describe('Given a NGC user', () => {
             code: faker.number.int({ min: 100000, max: 999999 }).toString(),
           })
           .expect(StatusCodes.UNAUTHORIZED)
+          .expect({ rejection: 'never_requested' })
       })
 
       test('Then it logs a rejection telling no code was requested', async () => {
@@ -273,7 +274,7 @@ describe('Given a NGC user', () => {
       })
 
       describe('And is expired', () => {
-        test(`Then it returns a ${StatusCodes.UNAUTHORIZED} error`, async () => {
+        test(`Then it returns a ${StatusCodes.UNAUTHORIZED} error telling the code expired`, async () => {
           const verificationCode = await createVerificationCode({
             agent,
             expirationDate: dayjs().subtract(1, 'second').toDate(),
@@ -287,6 +288,7 @@ describe('Given a NGC user', () => {
               userId: faker.string.uuid(),
             })
             .expect(StatusCodes.UNAUTHORIZED)
+            .expect({ rejection: 'expired' })
         })
 
         test('Then it logs an expired rejection', async () => {
