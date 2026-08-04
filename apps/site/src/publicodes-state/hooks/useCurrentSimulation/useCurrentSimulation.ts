@@ -2,13 +2,8 @@
 
 import type { Simulation } from '@/helpers/server/model/simulations'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { Situation, UpdateCurrentSimulationProps } from '../../types'
+import type { Situation } from '../../types'
 import useUser from '../useUser/useUser'
-
-export type CurrentSimulation = Simulation & {
-  update: (props: UpdateCurrentSimulationProps) => void
-  updateCurrentSimulation: (props: UpdateCurrentSimulationProps) => void
-}
 
 /**
  * Stable fallbacks for callers that read a field of a possibly-absent
@@ -24,16 +19,8 @@ export const EMPTY_ACTION_CHOICES: Simulation['actionChoices'] = {}
  * yet. Use this anywhere a visitor may legitimately have no simulation — which
  * is everywhere except the simulator flow.
  */
-export function useOptionalSimulation(): CurrentSimulation | undefined {
-  const { simulation, updateCurrentSimulation } = useUser()
-
-  if (!simulation) return undefined
-
-  return {
-    ...simulation,
-    update: updateCurrentSimulation,
-    updateCurrentSimulation,
-  }
+export function useOptionalSimulation(): Simulation | undefined {
+  return useUser().simulation
 }
 
 /**
@@ -42,7 +29,7 @@ export function useOptionalSimulation(): CurrentSimulation | undefined {
  * Only legal inside the simulator flow, where the usere is redirected when there is no
  * persisted simulation. Anywhere else, use `useOptionalSimulation()`.
  */
-export default function useCurrentSimulation(): CurrentSimulation {
+export default function useCurrentSimulation(): Simulation {
   const simulation = useOptionalSimulation()
 
   if (!simulation) {
