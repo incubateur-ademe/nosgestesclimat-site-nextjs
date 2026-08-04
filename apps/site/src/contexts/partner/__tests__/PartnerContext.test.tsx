@@ -4,7 +4,7 @@ import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import '@testing-library/jest-dom'
-import { act, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock the hooks
@@ -74,17 +74,18 @@ describe('PartnerContext', () => {
       })
 
       // When
-      act(() => {
-        renderWithWrapper(<PartnerRedirectionAlert />, {
-          providers: {
-            partner: true,
-            queryClient: true,
-          },
-        })
+      const { container } = renderWithWrapper(<PartnerRedirectionAlert />, {
+        providers: {
+          partner: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
       })
 
-      // Then
-      expect(screen.queryByTestId('error-500')).not.toBeInTheDocument()
+      // Then — no partner param means no alert at all. An empty container also
+      // proves the boundary below did not swap in its error fallback.
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+      expect(container).toBeEmptyDOMElement()
     })
   })
 
@@ -104,19 +105,20 @@ describe('PartnerContext', () => {
       })
 
       // When
-      act(() => {
-        renderWithWrapper(<PartnerRedirectionAlert />, {
-          providers: {
-            partner: true,
-            queryClient: true,
-            user: true,
-          },
-          simulations: [],
-        })
+      const { container } = renderWithWrapper(<PartnerRedirectionAlert />, {
+        providers: {
+          partner: true,
+          queryClient: true,
+          user: true,
+          errorBoundary: true,
+        },
+        simulations: [],
       })
 
-      // Then
-      expect(screen.queryByTestId('error-500')).not.toBeInTheDocument()
+      // Then — reading an absent simulation must not throw: an empty container
+      // proves the boundary did not swap in its error fallback.
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+      expect(container).toBeEmptyDOMElement()
     })
   })
 
@@ -148,16 +150,14 @@ describe('PartnerContext', () => {
       })
 
       // When
-      act(() => {
-        renderWithWrapper(<PartnerRedirectionAlert />, {
-          providers: {
-            partner: true,
-            queryClient: true,
-            user: true,
-          },
-          currentSimulation: defaultSimulation,
-          simulations: [defaultSimulation],
-        })
+      renderWithWrapper(<PartnerRedirectionAlert />, {
+        providers: {
+          partner: true,
+          queryClient: true,
+          user: true,
+        },
+        currentSimulation: defaultSimulation,
+        simulations: [defaultSimulation],
       })
 
       // Then - wait for the async export to complete and the button to appear
@@ -199,16 +199,14 @@ describe('PartnerContext', () => {
       })
 
       // When
-      act(() => {
-        renderWithWrapper(<PartnerRedirectionAlert />, {
-          providers: {
-            partner: true,
-            queryClient: true,
-            user: true,
-          },
-          currentSimulation: incompleteSimulation,
-          simulations: [incompleteSimulation],
-        })
+      renderWithWrapper(<PartnerRedirectionAlert />, {
+        providers: {
+          partner: true,
+          queryClient: true,
+          user: true,
+        },
+        currentSimulation: incompleteSimulation,
+        simulations: [incompleteSimulation],
       })
 
       // Then
