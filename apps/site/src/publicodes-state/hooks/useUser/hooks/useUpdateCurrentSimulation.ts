@@ -28,9 +28,6 @@ export default function useUpdateCurrentSimulation({ setSimulation }: Props) {
       actionChoices,
       computedResults,
       progression,
-      pollToAdd,
-      pollToDelete,
-      groupToAdd,
       groupToDelete,
     }: UpdateCurrentSimulationProps) => {
       setSimulation((prevSimulation) => {
@@ -147,26 +144,6 @@ export default function useUpdateCurrentSimulation({ setSimulation }: Props) {
 
         if (progression !== undefined) {
           simulationToUpdate.progression = progression
-        }
-
-        if (pollToAdd) {
-          simulationToUpdate.polls = [
-            ...(simulationToUpdate.polls ?? []),
-            pollToAdd,
-          ]
-        }
-
-        if (pollToDelete && simulationToUpdate.polls) {
-          simulationToUpdate.polls = simulationToUpdate.polls.filter(
-            (poll) => poll.slug !== pollToDelete
-          )
-        }
-
-        if (groupToAdd) {
-          simulationToUpdate.groups = [
-            ...(simulationToUpdate.groups ?? []),
-            { id: groupToAdd },
-          ]
         }
 
         if (groupToDelete && simulationToUpdate.groups) {
