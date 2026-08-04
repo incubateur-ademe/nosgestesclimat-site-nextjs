@@ -1,6 +1,6 @@
 'use client'
 
-import { captureAction } from '@/utils/analytics/trackUniqueSessionActionEvent'
+import { captureUniqueSessionActionEvent } from '@/utils/analytics/trackUniqueEvent'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { useEffect } from 'react'
 
@@ -12,7 +12,7 @@ export default function ActionTracker({
   eventName: 'consulted' | 'displayed'
 }) {
   useEffect(() => {
-    captureAction({
+    captureUniqueSessionActionEvent({
       eventName: `action ${eventName}`,
       actionTrackingId: action.trackingId,
       actionThemeTrackingId: action.theme.trackingId,
