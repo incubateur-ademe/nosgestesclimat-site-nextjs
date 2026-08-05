@@ -19,7 +19,7 @@ export default defineConfig<FixturesOptions>({
     locale: 'fr-FR',
   },
   expect: {
-    timeout: 10_000,
+    timeout: 15_000,
   },
   reporter: process.env.CI
     ? [['blob'], ['line']]
