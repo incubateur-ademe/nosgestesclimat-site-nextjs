@@ -21,21 +21,39 @@ const { prisma } = await import('@nosgestesclimat/core/prisma/client')
  *
  * For each group of accounts sharing an id, one account keeps the id (the one
  * matching the `User` row, which owns profiles/sessions, falling back to the
- * oldest account) and the others get a fresh uuid. Their `User` rows are
- * created and their simulations re-pointed to the new id, so FK references
- * (`Simulation.userId`, `RefreshToken.userId`) stay consistent.
+ * oldest account) and the others get a fresh uuid.
+ *
+ * What is migrated per reassigned account:
+ * - A `User` row is created for the new id (FK target for the re-pointing).
+ * - `Simulation` rows are re-pointed by (userId, userEmail) to the new id.
+ * - `VerifiedUser.id` is updated.
+ *
+ * What is NOT migrated (deliberately):
+ * - `RefreshToken` rows are indistinguishable by email (they only store a
+ *   userId and a token hash), so ALL tokens of the duplicated id are revoked
+ *   before reassigning. Every account of the group (owner included) must log
+ *   in again; without this, a reassigned account's refresh token would keep
+ *   issuing sessions bound to the owner's id for up to its 6-month TTL.
+ * - `GroupParticipant` / `GroupAdministrator` rows reference the shared id
+ *   with no way to attribute them to one account: they stay with the owner
+ *   id. Reassigned accounts lose their group memberships, and the owner
+ *   inherits the group data (including any group administration rights).
  *
  * Run it AFTER the auth fix is deployed (see commit "Enforce the one session
  * userId = one account invariant"), otherwise the previous client/server can
  * immediately recreate duplicates. It is idempotent: a second run is a no-op.
+ *
+ * Rehearse before applying: take a backup of VerifiedUser, User, RefreshToken,
+ * Simulation, GroupParticipant and GroupAdministrator, run the dry run
+ * (default) against a staging copy of the database, then apply with --no-dry.
  *
  * Usage (from apps/server):
  *   NODE_ENV=development node --experimental-strip-types ./scripts/NGC-3402-20260804.ts          # dry run (default)
  *   NODE_ENV=development node --experimental-strip-types ./scripts/NGC-3402-20260804.ts --no-dry  # apply
  */
 const findDuplicatedIdGroups = () =>
-  prisma.$queryRaw<{ id: string; count: string }[]>`
-    SELECT id, COUNT(*)::text AS count
+  prisma.$queryRaw<{ id: string }[]>`
+    SELECT id
     FROM ngc."VerifiedUser"
     GROUP BY id
     HAVING COUNT(*) > 1
@@ -56,76 +74,126 @@ const main = async () => {
       groups: groups.length,
     })
 
+    if (groups.length === 0) {
+      logger.info('Nothing to do')
+      process.exit(0)
+    }
+
+    const ids = groups.map(({ id }) => id)
+
+    // Batch-load the affected accounts and their `User` rows in two queries
+    // instead of one per group: `VerifiedUser.id` is not indexed (email is the
+    // primary key), so per-group lookups would scan the whole table.
+    const affectedVerifiedUsers = await prisma.verifiedUser.findMany({
+      where: { id: { in: ids } },
+      orderBy: { createdAt: 'asc' },
+      select: { id: true, email: true, name: true, createdAt: true },
+    })
+
+    const users = await prisma.user.findMany({
+      where: { id: { in: ids } },
+      select: { id: true, email: true },
+    })
+    const userEmailById = new Map(users.map(({ id, email }) => [id, email]))
+
+    // Group the affected accounts by their shared id, keeping the
+    // chronological order (createdAt asc) within each group.
+    const verifiedUsersById = new Map<string, typeof affectedVerifiedUsers>()
+    for (const verifiedUser of affectedVerifiedUsers) {
+      const bucket = verifiedUsersById.get(verifiedUser.id)
+      if (bucket) {
+        bucket.push(verifiedUser)
+      } else {
+        verifiedUsersById.set(verifiedUser.id, [verifiedUser])
+      }
+    }
+
     let reassigned = 0
+    let revokedTokens = 0
 
     for (const { id } of groups) {
-      const verifiedUsers = await prisma.verifiedUser.findMany({
-        where: { id },
-        orderBy: { createdAt: 'asc' },
-        select: {
-          email: true,
-          name: true,
-          createdAt: true,
-          updatedAt: true,
-        },
-      })
-
-      const user = await prisma.user.findUnique({
-        where: { id },
-        select: { email: true },
-      })
+      const verifiedUsers = verifiedUsersById.get(id) ?? []
+      const userEmail = userEmailById.get(id)
 
       // One account keeps the session id: the one matching the `User` row
-      // (profiles and refresh-token sessions reference it), falling back to
-      // the oldest account.
+      // (profiles and sessions reference it), falling back to the oldest
+      // account.
       const ownerEmail =
-        verifiedUsers.find(({ email }) => email === user?.email)?.email ??
+        verifiedUsers.find(({ email }) => email === userEmail)?.email ??
         verifiedUsers[0]?.email
 
-      for (const verifiedUser of verifiedUsers) {
-        if (verifiedUser.email === ownerEmail) {
+      const owner = verifiedUsers.find(({ email }) => email === ownerEmail)
+      const reassignments = verifiedUsers
+        .filter(({ email }) => email !== ownerEmail)
+        .map((verifiedUser) => ({ verifiedUser, newId: randomUUID() }))
+
+      const logOwner = () => {
+        if (owner) {
           logger.info('Keeps its session id', {
-            email: maskEmail(verifiedUser.email),
+            email: maskEmail(owner.email),
             id,
           })
-          continue
         }
+      }
 
-        const newId = randomUUID()
-        reassigned++
-
-        if (!dry) {
-          await prisma.$transaction(async (tx) => {
-            // `Simulation.userId` and `RefreshToken.userId` reference
-            // `User.id`; create the target row before re-pointing.
-            await tx.user.create({
-              data: {
-                id: newId,
-                email: verifiedUser.email,
-                name: verifiedUser.name,
-                createdAt: verifiedUser.createdAt,
-                updatedAt: verifiedUser.updatedAt,
-              },
-            })
-
-            await tx.simulation.updateMany({
-              where: { userId: id, userEmail: verifiedUser.email },
-              data: { userId: newId },
-            })
-
-            await tx.verifiedUser.update({
-              where: { email: verifiedUser.email },
-              data: { id: newId },
-            })
+      if (dry) {
+        revokedTokens += await prisma.refreshToken.count({
+          where: { userId: id },
+        })
+        logOwner()
+        for (const { verifiedUser, newId } of reassignments) {
+          reassigned++
+          logger.info('Would reassign a new id', {
+            email: maskEmail(verifiedUser.email),
+            from: id,
+            to: newId,
           })
         }
-
-        logger.info(dry ? 'Would reassign a new id' : 'Reassigned a new id', {
-          email: maskEmail(verifiedUser.email),
-          from: id,
-          to: newId,
-        })
+        continue
       }
+
+      // One transaction per group: revoke every refresh token of the shared
+      // id (they only store userId + token hash, so the owner's tokens are
+      // indistinguishable from the others'), then move the non-owner
+      // accounts. Atomic: a failure leaves the group untouched.
+      await prisma.$transaction(async (tx) => {
+        const { count } = await tx.refreshToken.deleteMany({
+          where: { userId: id },
+        })
+        revokedTokens += count
+
+        logOwner()
+
+        for (const { verifiedUser, newId } of reassignments) {
+          // `Simulation.userId` references `User.id`; create the target row
+          // before re-pointing.
+          await tx.user.create({
+            data: {
+              id: newId,
+              email: verifiedUser.email,
+              name: verifiedUser.name,
+              createdAt: verifiedUser.createdAt,
+            },
+          })
+
+          await tx.simulation.updateMany({
+            where: { userId: id, userEmail: verifiedUser.email },
+            data: { userId: newId },
+          })
+
+          await tx.verifiedUser.update({
+            where: { email: verifiedUser.email },
+            data: { id: newId },
+          })
+
+          reassigned++
+          logger.info('Reassigned a new id', {
+            email: maskEmail(verifiedUser.email),
+            from: id,
+            to: newId,
+          })
+        }
+      })
     }
 
     const remaining = await prisma.$queryRaw<{ count: string }[]>`
@@ -140,6 +208,7 @@ const main = async () => {
     logger.info('Finished', {
       dry,
       reassigned,
+      revokedTokens,
       remainingDuplicatedIds: remaining[0]?.count ?? '0',
     })
     process.exit(0)
