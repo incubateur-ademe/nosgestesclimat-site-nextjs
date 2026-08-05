@@ -15,16 +15,9 @@ export function useRemoveParticipant() {
     }: {
       participantId: string
       groupId: string
-      /**
-       * Whether the removed participant is the current user. Only then should
-       * the group be dropped from their own simulation.
-       */
-      isCurrentUser: boolean
     }) => removeParticipant({ groupId, participantId }),
     onSuccess: (_, variables) => {
-      if (variables.isCurrentUser) {
-        updateCurrentSimulation({ groupToDelete: variables.groupId })
-      }
+      updateCurrentSimulation({ groupToDelete: variables.groupId })
       queryClient.invalidateQueries({ queryKey: ['groups'] })
     },
   })

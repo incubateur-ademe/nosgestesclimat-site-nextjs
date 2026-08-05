@@ -18,8 +18,7 @@ type RootLayoutProps = PropsWithChildren & {
   locale: string
   userSession: UserSession
   skipLinksDisplayed?: SkipLinksDisplayed
-  /** The user's persisted simulation, when the route has one. */
-  simulation?: Simulation
+  serverSimulations?: Simulation[]
 }
 
 export const ClientLayout = ({
@@ -27,23 +26,13 @@ export const ClientLayout = ({
   skipLinksDisplayed,
   locale,
   userSession,
-  simulation,
+  serverSimulations,
 }: RootLayoutProps) => (
   <ErrorBoundary>
     <QueryClientProviderWrapper>
-      {/*
-        Keyed by simulation id on purpose. Everything below seeds React state
-        from the persisted simulation once, at mount (the provider's simulation,
-        the engine situation, the current question…). On a client-side
-        navigation React keeps those instances alive, so starting a new
-        simulation would otherwise keep replaying the previous one's answers.
-        The key remounts the tree exactly when the server hands over a different simulation,
-        and never during a running one (the id does not change while the user answers).
-      */}
       <UserProvider
-        key={simulation?.id}
         userSession={userSession}
-        simulation={simulation}>
+        serverSimulations={serverSimulations}>
         <PartnerProvider>
           <Suspense>
             <MainHooks />

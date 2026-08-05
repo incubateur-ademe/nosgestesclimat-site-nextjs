@@ -3,7 +3,9 @@
 import { useState, type PropsWithChildren } from 'react'
 
 import type { Simulation } from '@/helpers/server/model/simulations'
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import type { UserSession } from '@/services/auth/get-user-session'
+import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import UserContext from './context'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
 import usePersistentUser from './hooks/usePersistentUser'
@@ -13,23 +15,25 @@ interface Props {
    * The localstorage key in use
    */
   storageKey?: string
-  /**
-   * The user's current simulation, as persisted server-side. Absent when the
-   * user has not taken the test yet — the client never fabricates one.
-   */
-  simulation?: Simulation
+  serverSimulations?: Simulation[]
   userSession: UserSession
 }
 export default function UserProvider({
   children,
-  simulation: serverSimulation,
+  serverSimulations,
   userSession,
 }: PropsWithChildren<Props>) {
   const { user, setUser } = usePersistentUser(userSession)
 
   const { tutorials, setTutorials } = usePersistentTutorials()
 
-  const [simulation, setSimulation] = useState(serverSimulation)
+  const initSimulation = serverSimulations?.at(0)
+    ? serverSimulations
+    : [generateSimulation()]
+  const [simulations, setSimulations] = useState(initSimulation)
+  const [currentSimulationId, setCurrentSimulationId] = useState(
+    initSimulation.at(0)!.id
+  )
 
   return (
     <UserContext.Provider
@@ -38,8 +42,11 @@ export default function UserProvider({
         setUser,
         tutorials,
         setTutorials,
-        simulation,
-        setSimulation,
+        simulations,
+        setSimulations,
+        currentSimulationId,
+        setCurrentSimulationId,
+        migrationInstructions,
       }}>
       {children}
     </UserContext.Provider>

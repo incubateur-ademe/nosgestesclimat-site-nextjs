@@ -2,10 +2,7 @@
 
 import { useState, type PropsWithChildren } from 'react'
 
-import {
-  EMPTY_SITUATION,
-  useOptionalSimulation,
-} from '@/publicodes-state/hooks/useCurrentSimulation/useCurrentSimulation'
+import useCurrentSimulation from '@/publicodes-state/hooks/useCurrentSimulation/useCurrentSimulation'
 import type { Situation } from '@/publicodes-state/types'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { EngineContext } from './context'
@@ -26,10 +23,8 @@ export default function EngineProvider({
   children,
   initialSituation,
 }: PropsWithChildren<Props>) {
-  // Mounted on routes where the user may have no simulation yet (documentation,
-  // plan du site, actions with no completed test…): fall back to an empty situation.
-  const initialSituationFromUser = useOptionalSimulation()?.situation
-  const [situation] = useState(initialSituation ?? initialSituationFromUser ?? EMPTY_SITUATION)
+  const { situation: initialSituationFromUser } = useCurrentSimulation()
+  const [situation] = useState(initialSituation ?? initialSituationFromUser)
 
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(
     rules,

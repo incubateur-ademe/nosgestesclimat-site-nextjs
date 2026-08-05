@@ -83,7 +83,7 @@ export default async function FAQPage({
             </Trans>
           </p>
 
-          <DoTheTest locale={locale} />
+          <DoTheTest />
         </div>
 
         <Image

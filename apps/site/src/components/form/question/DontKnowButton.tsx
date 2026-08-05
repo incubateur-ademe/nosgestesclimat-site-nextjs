@@ -6,12 +6,7 @@ import { questionClickPass } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { getSimulationMode } from '@/helpers/server/model/simulations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import {
-  useEngine,
-  useOptionalSimulation,
-  useRule,
-  useUser,
-} from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useRule } from '@/publicodes-state'
 import { useGotoNextQuestion } from '@/publicodes-state/hooks/useGotoNextQuestion/useGotoNextQuestion'
 import {
   trackMatomoEvent__deprecated,
@@ -27,10 +22,10 @@ interface Props {
 export default function DontKnowButton({ question }: Props) {
   const { t } = useClientTranslation()
   const { goToNextQuestion } = useGotoNextQuestion()
-  const { updateCurrentSimulation } = useUser()
-  const maybeSimulation = useOptionalSimulation()
+  const { updateCurrentSimulation, ...currentSimulation } =
+    useCurrentSimulation()
 
-  const simulationMode = getSimulationMode(maybeSimulation)
+  const simulationMode = getSimulationMode(currentSimulation)
   const isSchoolMode = simulationMode === 'scolaire'
 
   const { questionsOfMosaicFromParent, isMissing } = useRule(question)

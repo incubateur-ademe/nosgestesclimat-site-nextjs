@@ -88,7 +88,6 @@ vi.mock('uuid', () => ({
 // Mock Sentry
 vi.mock('@sentry/nextjs', () => ({
   captureException: vi.fn(),
-  setExtra: vi.fn(),
 }))
 
 // Mock next/font/local to avoid file-system reads in jsdom

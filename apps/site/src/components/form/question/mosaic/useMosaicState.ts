@@ -1,8 +1,4 @@
-import {
-  EMPTY_SITUATION,
-  useOptionalSimulation,
-  useRule,
-} from '@/publicodes-state'
+import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import type { Situation } from '@/publicodes-state/types'
 import { useDebounce } from '@/utils/debounce'
 import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
@@ -39,7 +35,7 @@ export function useMosaicState({
 
   const aucunOption = rule.aucunOption
 
-  const situation = useOptionalSimulation()?.situation ?? EMPTY_SITUATION
+  const { situation } = useCurrentSimulation()
 
   const setValuesLater = useDebounce(rule.setValue, 800)
   const setValuesNow = useDebounce(rule.setValue, 0)

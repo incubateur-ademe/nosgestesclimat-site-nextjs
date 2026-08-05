@@ -11,12 +11,7 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
-import {
-  useCurrentSimulation,
-  useFormState,
-  useRule,
-  useUser,
-} from '@/publicodes-state'
+import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
@@ -41,8 +36,7 @@ export default function Question({
     category,
   } = useRule(question)
 
-  const { foldedSteps } = useCurrentSimulation()
-  const { updateCurrentSimulation } = useUser()
+  const { updateCurrentSimulation, foldedSteps } = useCurrentSimulation()
 
   const {
     currentQuestion,

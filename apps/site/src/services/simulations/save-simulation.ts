@@ -7,10 +7,9 @@ import type { Simulation } from '@/helpers/server/model/simulations'
 import { withUserSession } from '@/services/auth/with-user-session'
 import { updateGroupParticipant } from '@/services/groups/update-group-participant'
 import { setExtra } from '@sentry/nextjs'
-import { ensureSimulationModel } from './ensure-simulation-model'
 
 export const saveSimulation = async ({
-  simulation: incomingSimulation,
+  simulation,
   name,
   locale,
 }: {
@@ -18,14 +17,11 @@ export const saveSimulation = async ({
   name?: string
   locale?: string
 }): Promise<Simulation> => {
-  if (incomingSimulation.computedResults.carbone.bilan === 0) {
-    setExtra('situation', JSON.stringify(incomingSimulation.situation))
-    setExtra('simulationId', incomingSimulation.id)
+  if (simulation.computedResults.carbone.bilan === 0) {
+    setExtra('situation', JSON.stringify(simulation.situation))
+    setExtra('simulationId', simulation.id)
     throw new InternalError('Simulation with zero bilan cannot be saved.')
   }
-
-  // Guard every branch below at once
-  const simulation = await ensureSimulationModel(incomingSimulation)
 
   const { groups = [], polls = [] } = simulation
 

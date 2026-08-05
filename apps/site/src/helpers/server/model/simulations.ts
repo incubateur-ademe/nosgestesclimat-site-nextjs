@@ -23,15 +23,9 @@ export interface Simulation {
   user?: { id: string; name?: string }
   polls?: { id: string; slug: string; name?: string }[]
   groups?: { id: string }[]
-  /** Server-owned: absent on simulations that have not been persisted yet. */
-  updated_at?: string
+  updated_at: string
 }
 
-/**
- * Tolerates an absent simulation in case the user has not taken the test yet.
- */
-export function getSimulationMode(
-  simulation: Pick<Simulation, 'model'> | undefined
-): SimulationMode {
-  return simulation?.model.startsWith('ED') ? 'scolaire' : 'standard'
+export function getSimulationMode(simulation: Simulation): SimulationMode {
+  return simulation.model.startsWith('ED') ? 'scolaire' : 'standard'
 }

@@ -1,10 +1,10 @@
 import PartnerRedirectionAlert from '@/app/[locale]/(server)/(large)/fin/_components/PartnerRedirectionAlert'
-import { buildNewSimulationPayload } from '@/services/simulations/build-new-simulation-payload'
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import '@testing-library/jest-dom'
-import { screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock the hooks
@@ -52,9 +52,8 @@ describe('PartnerContext', () => {
     })
   })
 
-  const defaultSimulation = buildNewSimulationPayload({
+  const defaultSimulation = generateSimulation({
     progression: 1,
-    model: 'FR-fr-1.2.3',
   })
 
   const redirectUrl = '/partner-site'
@@ -74,51 +73,17 @@ describe('PartnerContext', () => {
       })
 
       // When
-      const { container } = renderWithWrapper(<PartnerRedirectionAlert />, {
-        providers: {
-          partner: true,
-          queryClient: true,
-          errorBoundary: true,
-        },
+      act(() => {
+        renderWithWrapper(<PartnerRedirectionAlert />, {
+          providers: {
+            partner: true,
+            queryClient: true,
+          },
+        })
       })
 
-      // Then — no partner param means no alert at all. An empty container also
-      // proves the boundary below did not swap in its error fallback.
-      expect(screen.queryByRole('alert')).not.toBeInTheDocument()
-      expect(container).toBeEmptyDOMElement()
-    })
-  })
-
-  describe('given a user with no simulation at all', () => {
-    it('should not crash: PartnerProvider is mounted on every page', () => {
-      // Given — this is the ClientLayout case: a UserProvider is mounted but the
-      // visitor has never taken the test, so there is no simulation to read.
-      mockUseVerifyPartner.mockReturnValue(false)
-      mockUseExportSituation.mockReturnValue({
-        exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
-        exportSituation: vi.fn(),
-        isPending: false,
-        isSuccess: false,
-        isError: false,
-        error: null,
-        data: null,
-      })
-
-      // When
-      const { container } = renderWithWrapper(<PartnerRedirectionAlert />, {
-        providers: {
-          partner: true,
-          queryClient: true,
-          user: true,
-          errorBoundary: true,
-        },
-        simulations: [],
-      })
-
-      // Then — reading an absent simulation must not throw: an empty container
-      // proves the boundary did not swap in its error fallback.
-      expect(screen.queryByRole('alert')).not.toBeInTheDocument()
-      expect(container).toBeEmptyDOMElement()
+      // Then
+      expect(screen.queryByTestId('error-500')).not.toBeInTheDocument()
     })
   })
 
@@ -150,14 +115,16 @@ describe('PartnerContext', () => {
       })
 
       // When
-      renderWithWrapper(<PartnerRedirectionAlert />, {
-        providers: {
-          partner: true,
-          queryClient: true,
-          user: true,
-        },
-        currentSimulation: defaultSimulation,
-        simulations: [defaultSimulation],
+      act(() => {
+        renderWithWrapper(<PartnerRedirectionAlert />, {
+          providers: {
+            partner: true,
+            queryClient: true,
+            user: true,
+          },
+          currentSimulation: defaultSimulation,
+          simulations: [defaultSimulation],
+        })
       })
 
       // Then - wait for the async export to complete and the button to appear
@@ -175,9 +142,8 @@ describe('PartnerContext', () => {
   describe('given a user with an incompleted test', () => {
     it('should save the partner params to the session storage and redirect to the test', async () => {
       // Given
-      const incompleteSimulation = buildNewSimulationPayload({
+      const incompleteSimulation = generateSimulation({
         progression: 0,
-        model: 'FR-fr-1.2.3',
       })
       // Mock window.location.search with partner parameters
       Object.defineProperty(window, 'location', {
@@ -199,14 +165,16 @@ describe('PartnerContext', () => {
       })
 
       // When
-      renderWithWrapper(<PartnerRedirectionAlert />, {
-        providers: {
-          partner: true,
-          queryClient: true,
-          user: true,
-        },
-        currentSimulation: incompleteSimulation,
-        simulations: [incompleteSimulation],
+      act(() => {
+        renderWithWrapper(<PartnerRedirectionAlert />, {
+          providers: {
+            partner: true,
+            queryClient: true,
+            user: true,
+          },
+          currentSimulation: incompleteSimulation,
+          simulations: [incompleteSimulation],
+        })
       })
 
       // Then

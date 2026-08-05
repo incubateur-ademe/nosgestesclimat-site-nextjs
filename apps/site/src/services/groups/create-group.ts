@@ -5,7 +5,6 @@ import { UnauthorizedError } from '@/helpers/server/error'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { getUserSession } from '@/services/auth/get-user-session'
-import { ensureSimulationModel } from '@/services/simulations/ensure-simulation-model'
 import type { Group } from '@/types/groups'
 
 export const createGroup = async ({
@@ -32,14 +31,7 @@ export const createGroup = async ({
       administrator: {
         name: administratorName,
       },
-      participants: participants
-        ? await Promise.all(
-            participants.map(async ({ simulation, ...rest }) => ({
-              ...rest,
-              simulation: await ensureSimulationModel(simulation),
-            }))
-          )
-        : undefined,
+      participants,
     },
   })
 }

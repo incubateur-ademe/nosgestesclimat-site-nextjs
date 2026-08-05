@@ -1,27 +1,16 @@
 import { metrics } from '@/constants/model/metric'
-import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import type {
   ComputedResults,
   ComputedResultsFootprint,
 } from '@/publicodes-state/types'
-import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
+import type { Migration } from '@publicodes/tools/migration'
 import { captureException } from '@sentry/nextjs'
 import { v4 as uuidv4 } from 'uuid'
+import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
 
-/**
- * Builds the body of a simulation about to be persisted.
- *
- * Server-only on purpose: a simulation exists once the API has stored it, so
- * nothing client-side may construct one. `model` can only be resolved
- * server-side anyway (the region lives in an httpOnly cookie) — see
- * `resolveNewSimulationModelString()`.
- *
- * Any caller-supplied situation is migrated before being persisted, so legacy
- * rule names and the single-metric `computedResults` shape never reach the API.
- */
-export function buildNewSimulationPayload({
+export function generateSimulation({
   id = uuidv4(),
   date = new Date().toISOString(),
   situation = {},
@@ -46,9 +35,12 @@ export function buildNewSimulationPayload({
   progression = 0,
   polls,
   groups,
+  migrationInstructions,
   model,
-}: Partial<Omit<Simulation, 'model'>> & { model: string }): Simulation {
-  const simulation: Simulation = {
+}: Partial<Simulation> & {
+  migrationInstructions?: Migration
+} = {}): Simulation {
+  let simulation = {
     id,
     date,
     situation,
@@ -61,14 +53,15 @@ export function buildNewSimulationPayload({
     polls,
     groups,
     model,
-  }
+  } as Simulation
 
   try {
-    return migrateSimulation(simulation, migrationInstructions)
+    simulation = migrateSimulation(simulation, migrationInstructions)
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn('Error trying to migrate Simulation:', error)
     captureException(error)
-    return simulation
   }
+
+  return simulation
 }

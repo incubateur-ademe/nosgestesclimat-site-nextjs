@@ -8,7 +8,7 @@ import { usePartner } from '@/contexts/partner/PartnerContext'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import type { Simulation } from '@/helpers/server/model/simulations'
+import { useCurrentSimulation } from '@/publicodes-state'
 import RedirectLink from './RedirectLink'
 
 const PARTNER_NAMES = {
@@ -16,14 +16,10 @@ const PARTNER_NAMES = {
   [PARTNER_2TONNES]: '2tonnes',
 }
 
-export default function AdaptiveMessage({
-  partner,
-  simulation,
-}: {
-  partner: string
-  simulation?: Simulation
-}) {
-  const isTestCompleted = simulation?.progression === 1
+export default function AdaptiveMessage({ partner }: { partner: string }) {
+  const { progression } = useCurrentSimulation()
+
+  const isTestCompleted = progression === 1
 
   const { redirectUrl, alertToDisplay } = usePartner()
 

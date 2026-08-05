@@ -91,7 +91,7 @@ export default async function Email({
           </>
         }
       />
-      <UserProvider userSession={user} simulation={currentSimulation}>
+      <UserProvider userSession={user}>
         <QueryClientProviderWrapper>
           <AuthenticateUserForm
             inputLabel={

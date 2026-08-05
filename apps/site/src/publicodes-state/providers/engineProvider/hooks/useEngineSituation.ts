@@ -1,4 +1,4 @@
-import { EMPTY_SITUATION, useOptionalSimulation } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
 import type {
   Engine,
@@ -22,7 +22,7 @@ export function useAddToEngineSituation({
   safeEvaluate,
   rawMissingVariables,
 }: Props) {
-  const situation = useOptionalSimulation()?.situation ?? EMPTY_SITUATION
+  const { situation } = useCurrentSimulation()
   const addToEngineSituation = useCallback(
     (situationToAdd: Situation): Situation => {
       if (!engine) {

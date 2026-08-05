@@ -3,8 +3,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { UpdateCurrentSimulationProps } from '../../../types'
 
 interface Props {
-  /** Absent until a simulation has been persisted — both actions are no-ops then. */
-  currentSimulation: Simulation | undefined
+  currentSimulation: Simulation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }
 export default function useActions({
@@ -12,8 +11,6 @@ export default function useActions({
   updateCurrentSimulation,
 }: Props) {
   const toggleActionChoice = (actionChoiceDottedName: DottedName) => {
-    if (!currentSimulation) return
-
     const isActionSelected = Object.keys(
       currentSimulation.actionChoices || {}
     ).some(
@@ -36,8 +33,6 @@ export default function useActions({
   }
 
   const rejectAction = (actionChoiceDottedName: DottedName) => {
-    if (!currentSimulation) return
-
     updateCurrentSimulation({
       actionChoices: {
         ...currentSimulation?.actionChoices,

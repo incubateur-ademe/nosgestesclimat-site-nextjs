@@ -4,7 +4,6 @@ import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { verifyPartner } from '@/services/partners/verifyPartner'
-import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
 import { notFound } from 'next/navigation'
 import AdaptiveMessage from './_components/AdaptiveMessage'
 
@@ -37,8 +36,6 @@ export default async function PartenairePage({
     notFound()
   }
 
-  const simulation = await getCurrentSimulation()
-
   return (
     <>
       <HeaderServer locale={locale} />
@@ -46,7 +43,7 @@ export default async function PartenairePage({
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">
-            <AdaptiveMessage partner={partner} simulation={simulation} />
+            <AdaptiveMessage partner={partner} />
           </div>
         </div>
       </Main>

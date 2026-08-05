@@ -20,7 +20,7 @@ export default async function Layout({
   })
 
   return (
-    <UserProvider simulation={lastCompletedSimulation} userSession={user}>
+    <UserProvider serverSimulations={simulations} userSession={user}>
       <QueryClientProviderWrapper>
         <EngineProvider rules={rules}>{children}</EngineProvider>
       </QueryClientProviderWrapper>

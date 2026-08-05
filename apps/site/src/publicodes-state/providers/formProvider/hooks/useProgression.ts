@@ -7,8 +7,7 @@ interface Props {
   remainingQuestions: DottedName[]
   relevantQuestions: DottedName[]
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
-  /** Absent when there is no persisted simulation yet. */
-  currentStoredProgression: number | undefined
+  currentStoredProgression: number
 }
 
 /**

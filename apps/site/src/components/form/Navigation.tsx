@@ -21,7 +21,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import {
-  useUser,
+  useCurrentSimulation,
   useEngine,
   useFormState,
   useRule,
@@ -141,7 +141,7 @@ export default function Navigation({
     }
   }, [hasActiveNotifications, setNotificationValue])
 
-  const { updateCurrentSimulation } = useUser()
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   // Check if the numeric value is out of bounds (floor/ceiling)
   const isNextDisabled =
