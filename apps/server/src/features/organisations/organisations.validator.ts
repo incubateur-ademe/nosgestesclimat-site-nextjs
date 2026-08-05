@@ -164,6 +164,21 @@ export const OrganisationPollCreateValidator = {
   query: LocaleQuery,
 }
 
+const CollectiveTestCreateDto = v.strictObject({
+  organisation: v.optional(OrganisationCreateDto),
+  poll: OrganisationPollCreateDto,
+})
+
+export type CollectiveTestCreateDto = v.InferOutput<
+  typeof CollectiveTestCreateDto
+>
+
+export const CollectiveTestCreateValidator = {
+  body: CollectiveTestCreateDto,
+  params: v.optional(v.strictObject({})),
+  query: LocaleQuery,
+}
+
 const OrganisationPollUpdateDto = v.partial(OrganisationPollCreateDto)
 
 export type OrganisationPollUpdateDto = v.InferOutput<

@@ -10,12 +10,14 @@ import {
   defaultVerifiedUserSelection,
 } from '../../adapters/prisma/selection.ts'
 import type { Session } from '../../adapters/prisma/transaction.ts'
+import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
 import type { PaginationQuery } from '../../core/pagination.ts'
 import type { PartialUser, PartialVerifiedUser } from '../../core/types/user.ts'
 import type { SimulationParams } from '../simulations/simulations.validator.ts'
 import { ComputedResultSchema } from '../simulations/simulations.validator.ts'
 import { createOrUpdateVerifiedUser } from '../users/users.repository.ts'
 import type {
+  CollectiveTestCreateDto,
   OrganisationCreateDto,
   OrganisationParams,
   OrganisationPollCreateDto,
@@ -474,6 +476,63 @@ export const createOrganisationPoll = async (
     poll: sanitizePollComputedResults(poll),
     simulationsInfos,
     organisation,
+  }
+}
+
+export const createCollectiveTest = async (
+  { organisation: organisationDto, poll: pollDto }: CollectiveTestCreateDto,
+  user: PartialVerifiedUser,
+  { session }: { session: Session }
+) => {
+  const existingOrganisation = await session.organisation.findFirst({
+    where: {
+      administrators: {
+        some: {
+          userEmail: user.email,
+        },
+      },
+    },
+    select: defaultOrganisationSelection,
+  })
+
+  if (existingOrganisation) {
+    const createdPoll = await createOrganisationPoll(
+      { organisationIdOrSlug: existingOrganisation.id },
+      pollDto,
+      user,
+      { session }
+    )
+
+    return {
+      ...createdPoll,
+      organisationWasCreated: false as const,
+      administrator: undefined,
+    }
+  }
+
+  if (!organisationDto) {
+    throw new ForbiddenException(
+      'No organisation provided and user has no organisation yet'
+    )
+  }
+
+  const createdOrganisation = await createOrganisationAndAdministrator(
+    organisationDto,
+    user,
+    { session }
+  )
+
+  const createdPoll = await createOrganisationPoll(
+    { organisationIdOrSlug: createdOrganisation.organisation.id },
+    pollDto,
+    user,
+    { session }
+  )
+
+  return {
+    ...createdPoll,
+    organisationWasCreated: true as const,
+    administrator: createdOrganisation.administrator,
   }
 }
 

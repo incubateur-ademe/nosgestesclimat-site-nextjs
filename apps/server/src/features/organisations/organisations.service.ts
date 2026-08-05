@@ -44,6 +44,7 @@ import { PollCreatedEvent } from './events/PollCreated.event.ts'
 import { PollDeletedEvent } from './events/PollDeletedEvent.ts'
 import { PollUpdatedEvent } from './events/PollUpdated.event.ts'
 import {
+  createCollectiveTest,
   createOrganisationAndAdministrator,
   createOrganisationPoll,
   deleteOrganisationPoll,
@@ -61,6 +62,7 @@ import {
 } from './organisations.repository.ts'
 import {
   OrganisationPollCustomAdditionalQuestions,
+  type CollectiveTestCreateDto,
   type OrganisationCreateDto,
   type OrganisationParams,
   type OrganisationPollCreateDto,
@@ -341,6 +343,49 @@ export const createPoll = async ({
       throw new EntityNotFoundException('Organisation not found')
     }
     throw e
+  }
+}
+
+export const submitCollectiveTest = async ({
+  collectiveTestDto,
+  locale,
+  user,
+}: {
+  collectiveTestDto: CollectiveTestCreateDto
+  locale: Locales
+  user: PartialVerifiedUser
+}) => {
+  const {
+    organisation,
+    administrator,
+    organisationWasCreated,
+    poll,
+    simulationsInfos,
+  } = await transaction((session) =>
+    createCollectiveTest(collectiveTestDto, user, { session })
+  )
+
+  const events = []
+
+  if (organisationWasCreated) {
+    events.push(
+      new OrganisationCreatedEvent({
+        administrator,
+        organisation,
+        locale,
+      })
+    )
+  }
+
+  events.push(new PollCreatedEvent({ organisation, locale, poll }))
+
+  events.forEach((event) => EventBus.emit(event))
+
+  await EventBus.once(...events)
+
+  return {
+    organisation: organisationToDto(organisation, user.email),
+    poll: pollToDto({ poll, organisation, simulationsInfos, user }),
   }
 }
 

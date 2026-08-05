@@ -19,11 +19,14 @@ import { EventBus } from '../../../../core/event-bus/event-bus.ts'
 import { getSimulationPayload } from '../../../simulations/__tests__/fixtures/simulations.fixtures.ts'
 import type { SimulationCreateInputDto } from '../../../simulations/simulations.validator.ts'
 import type {
+  CollectiveTestCreateDto,
   OrganisationCreateDto,
   OrganisationPollCreateDto,
 } from '../../organisations.validator.ts'
 
 export const CREATE_ORGANISATION_ROUTE = '/organisations/v1'
+
+export const CREATE_COLLECTIVE_TEST_ROUTE = '/organisations/v1/collective-tests'
 
 export const UPDATE_ORGANISATION_ROUTE =
   '/organisations/v1/:organisationIdOrSlug'
@@ -161,6 +164,58 @@ export const createOrganisationPoll = async ({
         organisationId
       )
     )
+    .set(authHeaders({ userId, email }))
+    .send(payload)
+    .expect(StatusCodes.CREATED)
+
+  await EventBus.flush()
+
+  resetMswServer()
+
+  return response.body
+}
+
+export const createCollectiveTest = async ({
+  agent,
+  userId = faker.string.uuid(),
+  email = faker.internet.email(),
+  organisation: organisationData,
+  poll: pollData,
+}: {
+  agent: TestAgent
+  userId?: string
+  email?: string
+  organisation?: Partial<OrganisationCreateDto>
+  poll?: Partial<OrganisationPollCreateDto>
+}) => {
+  const payload: CollectiveTestCreateDto = {
+    ...(organisationData
+      ? {
+          organisation: {
+            name: organisationData.name || faker.company.name(),
+            type: organisationData.type || randomOrganisationType(),
+            administrators: organisationData.administrators,
+            numberOfCollaborators: organisationData.numberOfCollaborators,
+          },
+        }
+      : {}),
+    poll: {
+      name: pollData?.name || faker.company.buzzNoun(),
+      mode: 'standard',
+      customAdditionalQuestions: pollData?.customAdditionalQuestions,
+      defaultAdditionalQuestions: pollData?.defaultAdditionalQuestions,
+      expectedNumberOfParticipants: pollData?.expectedNumberOfParticipants,
+    },
+  }
+
+  mswServer.use(brevoSendEmail(), brevoUpdateContact(), connectUpdateContact())
+
+  if (!organisationData?.administrators?.[0]?.optedInForCommunications) {
+    mswServer.use(brevoRemoveFromList(27, { invalid: true }))
+  }
+
+  const response = await agent
+    .post(CREATE_COLLECTIVE_TEST_ROUTE)
     .set(authHeaders({ userId, email }))
     .send(payload)
     .expect(StatusCodes.CREATED)

@@ -33,11 +33,13 @@ import {
   fetchPublicPoll,
   getDownloadPollSimulationResultJob,
   startDownloadPollSimulationResultJob,
+  submitCollectiveTest,
   updateOrganisation,
   updatePoll,
 } from './organisations.service.ts'
 import type { OrganisationsFetchQuery } from './organisations.validator.ts'
 import {
+  CollectiveTestCreateValidator,
   OrganisationCreateValidator,
   OrganisationFetchValidator,
   OrganisationPollCreateValidator,
@@ -83,6 +85,39 @@ router
         }
 
         logger.error('Organisation creation failed', err)
+
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).end()
+      }
+    }
+  )
+
+/**
+ * Creates an organisation (if the user does not have one yet) and a poll
+ * atomically, then sends the organisation and poll created emails.
+ */
+router
+  .route('/v1/collective-tests')
+  .post(
+    authentificationMiddleware(),
+    validateRequest(CollectiveTestCreateValidator),
+    async (req, res) => {
+      if (!isVerifiedUser(req.user)) {
+        return res.status(StatusCodes.UNAUTHORIZED).end()
+      }
+      try {
+        const collectiveTest = await submitCollectiveTest({
+          collectiveTestDto: req.body,
+          locale: req.query.locale,
+          user: req.user,
+        })
+
+        return res.status(StatusCodes.CREATED).json(collectiveTest)
+      } catch (err) {
+        if (err instanceof ForbiddenException) {
+          return res.status(StatusCodes.FORBIDDEN).send(err.message).end()
+        }
+
+        logger.error('Collective test creation failed', err)
 
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).end()
       }
