@@ -4,22 +4,40 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import Badge from '@/design-system/layout/Badge'
 import Image from 'next/image'
+import { useState, type FormEvent } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { useCreatePollStep2 } from '../_hooks/createPoll'
+import type { PollMode } from '@/helpers/organisations/collectiveTestMachine'
+import { POLL_MODES } from '../_constants/pollModes'
+import { useCollectiveTestFlow } from './CollectiveTestProvider'
 
 export default function PollModeForm() {
-  const { handleSubmit, isPending, isError, modes, isLastStep } =
-    useCreatePollStep2()
+  const { state, send } = useCollectiveTestFlow()
+  const [selectedMode, setSelectedMode] = useState<PollMode>(
+    state.pollDraft.mode ?? 'standard'
+  )
+
+  const isLastStep = state.isAuth && state.currentOrga.status === 'found'
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    send({ type: 'POLL_MODE_SET', mode: selectedMode })
+
+    // Users who already have an organisation skip the creation form: the
+    // finaliser step is reached right after the mode selection.
+    if (isLastStep) {
+      send({ type: 'SUBMISSION_STARTED' })
+    }
+  }
 
   return (
-    <form className="mt-2" action={handleSubmit} id="poll-form">
+    <form className="mt-2" onSubmit={handleSubmit} id="poll-form">
       <fieldset>
         <legend className="sr-only">
           <Trans>Choisissez le mode du test</Trans>
         </legend>
 
         <div className="flex flex-row items-stretch gap-1 md:gap-8">
-          {modes.map((mode, index) => (
+          {POLL_MODES.map((mode, index) => (
             <label
               key={mode.value}
               className={twMerge(
@@ -47,7 +65,8 @@ export default function PollModeForm() {
                 name="mode"
                 value={mode.value}
                 className="sr-only"
-                defaultChecked={mode.value === 'standard'}
+                checked={selectedMode === mode.value}
+                onChange={() => setSelectedMode(mode.value)}
               />
 
               <h3 className="mt-3 mb-2 text-base font-bold text-gray-900 md:mt-0 md:text-lg">
@@ -80,18 +99,8 @@ export default function PollModeForm() {
         </div>
       </fieldset>
 
-      {isError && (
-        <p role="alert" aria-live="polite" className="mt-4 text-red-800">
-          <Trans>
-            Une erreur s'est produite lors de la création de votre test
-            collectif. Veuillez réessayer.
-          </Trans>
-        </p>
-      )}
-
       <Button
         type="submit"
-        loading={isPending}
         data-testid="poll-form-type-button"
         form="poll-form"
         className="mt-8 w-full sm:w-auto md:self-start">

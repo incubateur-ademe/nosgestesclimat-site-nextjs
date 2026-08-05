@@ -27,15 +27,11 @@ export const ORGANISATION_SIGN_UP_PATH = '/organisations/inscription'
 
 export const ACTIONS_PATH = '/actions'
 export const COLLECTIVE_TEST_BASE_PATH = '/organisations/creer-campagne'
-export const COLLECTIVE_TEST_INFORMATIONS_PATH =
-  `${COLLECTIVE_TEST_BASE_PATH}/informations` as string
-export const COLLECTIVE_TEST_MODE_PATH =
-  `${COLLECTIVE_TEST_BASE_PATH}/mode` as string
-export const COLLECTIVE_TEST_CONNEXION_PATH =
-  `${COLLECTIVE_TEST_BASE_PATH}/connexion` as string
-export const COLLECTIVE_TEST_ORGANISATION_PATH =
-  `${COLLECTIVE_TEST_BASE_PATH}/organisation` as string
-export const COLLECTIVE_TEST_FINALISER_PATH =
-  `${COLLECTIVE_TEST_BASE_PATH}/finaliser` as string
+export const COLLECTIVE_TEST_INFORMATIONS_PATH = `${COLLECTIVE_TEST_BASE_PATH}/informations`
+export const COLLECTIVE_TEST_MODE_PATH = `${COLLECTIVE_TEST_BASE_PATH}/mode`
+export const COLLECTIVE_TEST_CONNEXION_PATH = `${COLLECTIVE_TEST_BASE_PATH}/connexion`
+export const COLLECTIVE_TEST_INSCRIPTION_PATH = `${COLLECTIVE_TEST_BASE_PATH}/inscription`
+export const COLLECTIVE_TEST_ORGANISATION_PATH = `${COLLECTIVE_TEST_BASE_PATH}/organisation`
+export const COLLECTIVE_TEST_FINALISER_PATH = `${COLLECTIVE_TEST_BASE_PATH}/finaliser`
 export const ACTION_DETAIL_PATH = (themeSlug: string, actionSlug: string) =>
   `/actions/${themeSlug}/${actionSlug}`

@@ -1,6 +1,9 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { createInitialCollectiveTestState } from '@/helpers/organisations/collectiveTestMachine'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
+import { getCollectiveTestFlowStatus } from './_actions/getCollectiveTestFlowStatus'
+import { CollectiveTestProvider } from './_components/CollectiveTestProvider'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -18,8 +21,21 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default function Layout({
+export default async function Layout({
   children,
 }: LayoutProps<'/[locale]/organisations/creer-campagne'>) {
-  return children
+  const { isAuth, hasOrg, orgSlug, orgName } =
+    await getCollectiveTestFlowStatus()
+
+  return (
+    <CollectiveTestProvider
+      initialState={createInitialCollectiveTestState({
+        isAuth,
+        hasOrg,
+        orgSlug,
+        orgName,
+      })}>
+      {children}
+    </CollectiveTestProvider>
+  )
 }

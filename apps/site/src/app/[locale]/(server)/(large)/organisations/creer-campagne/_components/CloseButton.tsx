@@ -4,15 +4,16 @@ import CloseIcon from '@/components/icons/Close'
 import { ORGANISATION_HOME_PAGE } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { clearDraft } from '../_services/pollDraftClient'
+import { useCollectiveTestFlow } from './CollectiveTestProvider'
 
 export default function CloseButton() {
   const { t } = useClientTranslation()
+  const { send } = useCollectiveTestFlow()
 
   return (
     <ButtonLink
       href={ORGANISATION_HOME_PAGE}
-      onClick={() => clearDraft()}
+      onClick={() => send({ type: 'RESET' })}
       color="secondary"
       aria-label={t(
         'organisations.createPoll.type.closeButton.aria',

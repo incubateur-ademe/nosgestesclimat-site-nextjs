@@ -12,5 +12,6 @@ export async function getCollectiveTestFlowStatus() {
     isAuth,
     hasOrg: !!organisation,
     orgSlug: organisation?.slug,
+    orgName: organisation?.name,
   }
 }

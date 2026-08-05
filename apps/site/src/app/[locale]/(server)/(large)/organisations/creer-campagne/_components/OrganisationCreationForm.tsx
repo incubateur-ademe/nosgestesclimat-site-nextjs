@@ -3,7 +3,6 @@
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
-import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import {
   ORGANISATION_TYPES,
   OrganisationTypeEnum,
@@ -13,111 +12,117 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import SelectInput from '@/design-system/inputs/SelectInput'
 import TextInput from '@/design-system/inputs/TextInput'
 import Separator from '@/design-system/layout/Separator'
-import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { createPoll } from '@/services/organisations/create-poll'
-import { captureException } from '@sentry/nextjs'
-import { useForm as useReactHookForm, useWatch } from 'react-hook-form'
-import {
-  buildCreatePollPayload,
-  clearDraft,
-  readDraft,
-} from '../_services/pollDraftClient'
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react'
+import { useCollectiveTestFlow } from './CollectiveTestProvider'
 
 interface Inputs {
   name: string
-  organisationType: OrganisationTypeEnum
+  organisationType: OrganisationTypeEnum | ''
   administratorFirstName: string
   administratorLastName: string
   administratorPosition: string
 }
 
+type InputErrors = Partial<Record<keyof Inputs, string>>
+
 export default function OrganisationCreationForm() {
   const { t } = useClientTranslation()
-  const locale = useLocale()
+  const { state, send } = useCollectiveTestFlow()
 
-  const { register, handleSubmit, formState, control } = useReactHookForm<Inputs>(
-    {
-      defaultValues: {},
+  const [formData, setFormData] = useState<Inputs>({
+    name: state.orgaDraft?.name ?? '',
+    organisationType: state.orgaDraft?.organisationType ?? '',
+    administratorFirstName: state.orgaDraft?.administratorFirstName ?? '',
+    administratorLastName: state.orgaDraft?.administratorLastName ?? '',
+    administratorPosition: state.orgaDraft?.administratorPosition ?? '',
+  })
+  const [errors, setErrors] = useState<InputErrors>({})
+
+  // Restore the persisted draft once it is hydrated by the provider
+  useEffect(() => {
+    if (!state.orgaDraft) return
+
+    setFormData((previous) => ({ ...previous, ...state.orgaDraft }))
+  }, [state.orgaDraft])
+
+  const isPending = state.submission.status === 'pending'
+  const hasSubmissionError = state.submission.status === 'error'
+
+  function updateField<K extends keyof Inputs>(key: K, value: Inputs[K]) {
+    setFormData((previous) => ({ ...previous, [key]: value }))
+    setErrors((previous) => ({ ...previous, [key]: undefined }))
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const nextErrors: InputErrors = {}
+
+    if (!formData.name.trim()) {
+      nextErrors.name = t('Ce champ est requis')
     }
-  )
 
-  const organisationType = useWatch({ control, name: 'organisationType' })
-
-  const {
-    mutateAsync: createOrganisation,
-    isPending,
-    isError: isErrorUpdateOrga,
-  } = useCreateOrganisation()
-
-  async function onSubmit({
-    name,
-    administratorFirstName,
-    administratorLastName,
-    administratorPosition,
-    organisationType,
-  }: Inputs) {
-    try {
-      const draft = readDraft()
-      const pollPayload = draft ? buildCreatePollPayload(draft) : null
-
-      if (!pollPayload) {
-        return
-      }
-
-      const organisationUpdated = await createOrganisation({
-        name,
-        type: organisationType,
-        administrators: [
-          {
-            name: `${administratorFirstName}${ADMINISTRATOR_SEPARATOR}${administratorLastName}`,
-            position: administratorPosition,
-            optedInForCommunications: false,
-          },
-        ],
-      })
-
-      await createPoll({
-        organisationIdOrSlug: organisationUpdated.slug,
-        poll: pollPayload,
-        locale,
-      })
-    } catch (error: unknown) {
-      if (
-        error instanceof Error &&
-        error.message.includes('NEXT_REDIRECT')
-      ) {
-        clearDraft()
-        throw error
-      }
-      captureException(error)
+    if (!formData.organisationType) {
+      nextErrors.organisationType = t('Ce champ est requis')
     }
+
+    if (!formData.administratorFirstName.trim()) {
+      nextErrors.administratorFirstName = t('Ce champ est requis')
+    }
+
+    if (!formData.administratorLastName.trim()) {
+      nextErrors.administratorLastName = t('Ce champ est requis')
+    }
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors)
+      return
+    }
+
+    send({
+      type: 'ORGA_DRAFT_UPDATED',
+      draft: {
+        name: formData.name.trim(),
+        organisationType: formData.organisationType as OrganisationTypeEnum,
+        administratorFirstName: formData.administratorFirstName.trim(),
+        administratorLastName: formData.administratorLastName.trim(),
+        administratorPosition: formData.administratorPosition.trim(),
+      },
+    })
+    send({ type: 'SUBMISSION_STARTED' })
   }
 
   return (
-    <form onSubmit={(e) => void handleSubmit(onSubmit)(e)} className="mb-12">
+    <form onSubmit={handleSubmit} className="mb-12">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInput
           className="col-span-1"
+          name="name"
           label={<Trans>Votre organisation</Trans>}
           autoComplete="organization"
           data-testid="organisation-name-input"
-          error={formState.errors.name?.message}
-          {...register('name', {
-            required: t('Ce champ est requis'),
-          })}
+          error={errors.name}
+          value={formData.name}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            updateField('name', event.target.value)
+          }
         />
 
         <div>
           <SelectInput
+            name="organisationType"
             containerClassName="pt-[3px]"
             label={<Trans>Type d'organisation</Trans>}
             data-testid="organisation-type-select"
-            error={formState.errors.organisationType?.message}
-            {...register('organisationType', {
-              required: t('Ce champ est requis'),
-            })}>
+            error={errors.organisationType}
+            value={formData.organisationType}
+            onChange={(event) =>
+              updateField(
+                'organisationType',
+                event.target.value as Inputs['organisationType']
+              )
+            }>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
               <option className="cursor-pointer" key={key} value={key}>
                 {value}
@@ -125,7 +130,8 @@ export default function OrganisationCreationForm() {
             ))}
           </SelectInput>
 
-          {organisationType === OrganisationTypeEnum.groupOfFriends && (
+          {formData.organisationType ===
+            OrganisationTypeEnum.groupOfFriends && (
             <div className="mt-4 rounded-xl bg-gray-100 p-4 text-sm">
               <p className="mb-2">
                 <Trans>
@@ -155,28 +161,33 @@ export default function OrganisationCreationForm() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInput
           className="col-span-1"
+          name="administratorFirstName"
           label={<Trans>Votre prénom</Trans>}
           autoComplete="given-name"
           data-testid="organisation-administrator-first-name-input"
-          error={formState.errors.administratorFirstName?.message}
-          {...register('administratorFirstName', {
-            required: t('Ce champ est requis'),
-          })}
+          error={errors.administratorFirstName}
+          value={formData.administratorFirstName}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            updateField('administratorFirstName', event.target.value)
+          }
         />
 
         <TextInput
           className="col-span-1"
+          name="administratorLastName"
           label={<Trans>Votre nom</Trans>}
           autoComplete="family-name"
           data-testid="organisation-administrator-last-name-input"
-          error={formState.errors.administratorLastName?.message}
-          {...register('administratorLastName', {
-            required: t('Ce champ est requis'),
-          })}
+          error={errors.administratorLastName}
+          value={formData.administratorLastName}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            updateField('administratorLastName', event.target.value)
+          }
         />
 
         <TextInput
           className="col-span-1"
+          name="administratorPosition"
           autoComplete="organization-title"
           data-testid="organisation-administrator-position-input"
           label={
@@ -187,11 +198,14 @@ export default function OrganisationCreationForm() {
               </span>
             </p>
           }
-          {...register('administratorPosition')}
+          value={formData.administratorPosition}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            updateField('administratorPosition', event.target.value)
+          }
         />
       </div>
 
-      {isErrorUpdateOrga && <DefaultSubmitErrorMessage className="mt-4" />}
+      {hasSubmissionError && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <div className="mt-8">
         <Button

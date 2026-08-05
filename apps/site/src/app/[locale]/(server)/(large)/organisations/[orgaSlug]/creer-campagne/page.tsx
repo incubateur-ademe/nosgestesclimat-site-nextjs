@@ -1,6 +1,5 @@
-import { COLLECTIVE_TEST_INFORMATIONS_PATH } from '@/constants/urls/paths'
-import { redirect } from 'next/navigation'
+import { redirectToCollectiveTestInformations } from './redirect'
 
 export default function CreerCampagneRedirectPage() {
-  redirect(COLLECTIVE_TEST_INFORMATIONS_PATH)
+  redirectToCollectiveTestInformations()
 }

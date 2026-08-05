@@ -1,35 +1,33 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
-import { useEffect, useRef } from 'react'
-import { useFinalizeCollectiveTest } from '../_hooks/createPoll'
+import { useCollectiveTestFlow } from './CollectiveTestProvider'
 
-interface Props {
-  orgSlug: string
-}
+export default function FinalizePollCreation() {
+  const { state, send, currentStep } = useCollectiveTestFlow()
 
-export default function FinalizePollCreation({ orgSlug }: Props) {
-  const { finalize, isPending, isError } = useFinalizeCollectiveTest(orgSlug)
-  const hasStarted = useRef(false)
+  if (currentStep !== 'finaliser') {
+    return null
+  }
 
-  useEffect(() => {
-    if (hasStarted.current) {
-      return
-    }
-
-    hasStarted.current = true
-    // finalize()
-  }, [finalize])
-
-  if (isError) {
+  if (state.submission.status === 'error') {
     return (
-      <p role="alert" aria-live="polite" className="mt-4 text-red-800">
-        <Trans>
-          Une erreur s'est produite lors de la création de votre test collectif.
-          Veuillez réessayer.
-        </Trans>
-      </p>
+      <div className="flex flex-col items-center justify-center rounded-2xl p-8">
+        <p role="alert" aria-live="polite" className="mb-4 text-red-800">
+          <Trans>
+            Une erreur s'est produite lors de la création de votre test
+            collectif. Veuillez réessayer.
+          </Trans>
+        </p>
+
+        <Button
+          onClick={() => send({ type: 'SUBMISSION_STARTED' })}
+          data-testid="poll-retry-submission-button">
+          <Trans>Réessayer</Trans>
+        </Button>
+      </div>
     )
   }
 
@@ -38,7 +36,7 @@ export default function FinalizePollCreation({ orgSlug }: Props) {
       <Loader color="dark" className="mb-4 inline-block" />
       <p className="font-bold">
         <Trans>Création de votre test collectif en cours</Trans>
-        {isPending && '…'}
+        {state.submission.status === 'pending' && '…'}
       </p>
     </div>
   )
