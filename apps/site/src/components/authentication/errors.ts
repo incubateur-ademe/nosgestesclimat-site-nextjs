@@ -22,10 +22,14 @@ export class UnknownCodeError extends DomainError<'unknown'> {
  * The server rejected the login because the current session (anonymous user
  * id) is already attached to another verified account. The user must start a
  * fresh session (log out / clear cookies) before logging in with this email.
+ *
+ * The message stays deliberately generic: a specific one would let an attacker
+ * distinguish this rejection from the others and use it as an account-existence
+ * oracle.
  */
 export class AccountConflictError extends DomainError<'account_conflict'> {
   constructor() {
-    super('account_conflict', 'Session déjà associée à un autre compte')
+    super('account_conflict', 'Une erreur est survenue')
   }
 }
 

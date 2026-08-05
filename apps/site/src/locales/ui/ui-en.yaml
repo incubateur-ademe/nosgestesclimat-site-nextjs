@@ -972,6 +972,7 @@ entries:
   login.colourBlock.highlight3.title.strong: your collective challenges
   login.colourBlock.highlight3.title.strong.lock: vos défis collectifs
   login.list.signin.label: Create an account
+  signIn.code.accountConflict: Something went wrong. Please <2>contact us</2> if it persists.
   login.list.signin.label.lock: Créer un compte
   signup.colourBlock.highlight2.title.middle: and
   signup.colourBlock.highlight2.title.middle.lock: et

@@ -3,6 +3,7 @@
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
+import InlineLink from '@/design-system/inputs/InlineLink'
 import { defaultInputStyleClassNames } from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
 import { type ChangeEvent, type FormEvent, useCallback, useId, useState } from 'react'
@@ -79,12 +80,12 @@ export default function VerificationCodeForm() {
         <p id="verification-error" className="mt-2 text-sm text-red-800 dark:text-white">
           {match(state.codeError.code)
             .with('invalid', () => t('signIn.code.invalid', 'Le code est invalide'))
-            .with('account_conflict', () =>
-              t(
-                'signIn.code.accountConflict',
-                'Cette session est déjà associée à un autre compte. Déconnectez-vous puis réessayez avec une nouvelle session.'
-              )
-            )
+            .with('account_conflict', () => (
+              <Trans i18nKey="signIn.code.accountConflict">
+                Une erreur s'est produite. Veuillez{' '}
+                <InlineLink href="/contact">nous contacter</InlineLink> si elle persiste.
+              </Trans>
+            ))
             .with('rate_limited', () => t('signIn.code.rateLimited', 'Veuillez patienter un instant avant de réessayer.'))
             .with('unknown', () => t('common.errors.errorHappening', 'Une erreur est survenue. Veuillez réessayer.'))
             .exhaustive()

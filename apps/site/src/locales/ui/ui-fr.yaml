@@ -846,6 +846,7 @@ entries:
   login.colourBlock.login.highlight3.strong2: retrouvez vos tests collectifs
   login.list.login.label: Se connecter
   login.list.signin.label: Créer un compte
+  signIn.code.accountConflict: Une erreur s'est produite. Veuillez <2>nous contacter</2> si elle persiste.
   login.login.title: Accédez à votre espace Nos Gestes Climat
   signup.button.label: M'inscrire
   signup.colourBlock.highlight1.title.prefix: Retrouvez
