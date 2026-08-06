@@ -204,10 +204,23 @@ export const fetchSimulations = async ({
   )
 
   return {
-    simulations: simulations.map((s) => simulationToDto(s, user)),
+    simulations: simulations
+      .map((s) => simulationToDto(s, user))
+      .filter(hasValidComputedResults),
     count,
   }
 }
+
+/**
+ * Legacy simulations stored before the introduction of the current
+ * `computedResults` shape (carbone/eau) must never be returned: their data is
+ * not exploitable by the frontend. They are kept in the database but exposed
+ * as if they did not exist.
+ */
+const hasValidComputedResults = (simulation: {
+  computedResults?: JsonValue
+}): boolean =>
+  v.safeParse(ComputedResultSchema, simulation.computedResults).success
 
 export const fetchSimulation = async ({
   params,
@@ -222,7 +235,11 @@ export const fetchSimulation = async ({
       prisma
     )
 
-    if (!simulation.user || simulation.user.id !== user.id) {
+    if (
+      !simulation.user ||
+      simulation.user.id !== user.id ||
+      !hasValidComputedResults(simulation)
+    ) {
       throw new EntityNotFoundException('Simulation not found')
     }
 
