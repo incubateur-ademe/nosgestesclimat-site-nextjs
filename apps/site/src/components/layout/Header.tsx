@@ -10,7 +10,7 @@ interface Props {
   locale: string
 }
 
-export default function HeaderServer({ isSticky = true, locale }: Props) {
+export default function Header({ isSticky = true, locale }: Props) {
   return (
     <header
       id="header-server-container"
