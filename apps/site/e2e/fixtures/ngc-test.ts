@@ -62,16 +62,32 @@ export class NGCTest {
     return this.page.getByTestId('end-test-button')
   }
 
+  // Returns true when at least one enabled and actually visible copy of the
+  // button is in the DOM. Checked atomically in a single evaluate: the
+  // visible-testid patch appends { visible: true } to getByTestId, and
+  // isEnabled() on such a locator waits forever when the visible copy
+  // disappears mid-check (React <Activity> keeps a hidden copy mounted while
+  // the app navigates between questions), which previously stalled the whole
+  // skip loop until the hook timeout.
+  private async hasClickableButton(testId: string) {
+    return await this.page.evaluate((id) => {
+      const elements = Array.from(
+        document.querySelectorAll<HTMLElement>(`[data-testid="${id}"]`)
+      )
+      return elements.some(
+        (el) =>
+          !el.hasAttribute('disabled') &&
+          el.getClientRects().length > 0 &&
+          getComputedStyle(el).visibility !== 'hidden'
+      )
+    }, testId)
+  }
+
   private async canEndTest() {
-    const end = this.endButton()
-    // count() first (non-waiting, respects the { visible: true } filter that
-    // patches getByTestId) so we never call isEnabled() while only hidden
-    // copies of the button remain in the DOM (React <Activity> keeps previous
-    // routes mounted), which would wait for the filter forever. isEnabled()
-    // is then safe: a visible copy exists. It matters: the end button stays
-    // disabled until the current question is folded, and ending too early
-    // makes the following click wait for an enabled state that never comes.
-    return (await end.count()) > 0 && (await end.isEnabled())
+    // The end button stays disabled until the current question is folded;
+    // ending too early makes the following click wait for an enabled state
+    // that never comes.
+    return await this.hasClickableButton('end-test-button')
   }
 
   async isBooleanQuestion() {
@@ -103,20 +119,10 @@ export class NGCTest {
   // absent while the app is navigating, in which case callers should wait
   // briefly instead of hot-looping.
   private async clickSkipIfPossible() {
-    const skip = this.skipButton()
-    // count() first (non-waiting) so isEnabled() is never called while only
-    // hidden copies of the button are mounted (React <Activity> cache) — on a
-    // { visible: true } filtered locator, isEnabled() would wait forever in
-    // that case. Once a visible copy is known to exist, isEnabled() resolves
-    // immediately and tells us whether the question can actually be skipped
-    // (the skip button is disabled once the question is answered).
-    if ((await skip.count()) === 0) {
+    if (!(await this.hasClickableButton('skip-question-button'))) {
       return false
     }
-    if (!(await skip.isEnabled())) {
-      return false
-    }
-    await skip.click({ timeout: 2000 }).catch(() => undefined)
+    await this.skipButton().click({ timeout: 2000 }).catch(() => undefined)
     return true
   }
 
@@ -133,7 +139,7 @@ export class NGCTest {
     // it triggers: the implicit navigation wait can time out when the RSC
     // request stalls. Wait for it explicitly below with a generous timeout
     // instead, so every caller is covered regardless of its own assertion.
-    await this.endButton().click({ noWaitAfter: true })
+    await this.endButton().click({ noWaitAfter: true, timeout: 5000 })
     // End of test: the app either shows the result page or asks for the email
     // first. Wait for either before returning.
     await this.page.waitForURL(/\/(fin|simulateur\/email)/, { timeout: 30_000 })
@@ -157,7 +163,7 @@ export class NGCTest {
         continue
       }
     }
-    await this.endButton().click({ noWaitAfter: true })
+    await this.endButton().click({ noWaitAfter: true, timeout: 5000 })
     await this.page.waitForURL(/\/(fin|simulateur\/email)/, { timeout: 30_000 })
   }
 }
