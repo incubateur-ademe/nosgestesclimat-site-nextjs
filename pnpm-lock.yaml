@@ -81,8 +81,8 @@ importers:
         specifier: ^3.1023.0
         version: 3.1028.0
       '@incubateur-ademe/nosgestesclimat':
-        specifier: 4.14.2
-        version: 4.14.2(publicodes@1.10.1)
+        specifier: 4.14.3
+        version: 4.14.3(publicodes@1.10.1)
       '@nosgestesclimat/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -250,8 +250,8 @@ importers:
   apps/site:
     dependencies:
       '@incubateur-ademe/nosgestesclimat':
-        specifier: 4.14.2
-        version: 4.14.2(publicodes@1.10.1)
+        specifier: 4.14.3
+        version: 4.14.3(publicodes@1.10.1)
       '@next/mdx':
         specifier: ^16.2.2
         version: 16.2.2(@mdx-js/loader@3.1.1(webpack@5.105.4(esbuild@0.27.7)))(@mdx-js/react@3.1.1(@types/react@19.2.2)(react@19.2.4))
@@ -527,8 +527,8 @@ importers:
   packages/core:
     dependencies:
       '@incubateur-ademe/nosgestesclimat':
-        specifier: 4.14.2
-        version: 4.14.2(publicodes@1.10.1)
+        specifier: 4.14.3
+        version: 4.14.3(publicodes@1.10.1)
       '@incubateur-ademe/nosgestesclimat-previous':
         specifier: npm:@incubateur-ademe/nosgestesclimat@4.14.1
         version: '@incubateur-ademe/nosgestesclimat@4.14.1(publicodes@1.10.1)'
@@ -2080,8 +2080,8 @@ packages:
     peerDependencies:
       publicodes: ^1.8.5
 
-  '@incubateur-ademe/nosgestesclimat@4.14.2':
-    resolution: {integrity: sha512-D86j8Ld2WEaXY8YRFoX+MA1iN4wCBTOXtsH+VndxCJr0ZDW5tjWvbDDRPOaApcsJoNIehhoPtDIckMxDoJOm3A==}
+  '@incubateur-ademe/nosgestesclimat@4.14.3':
+    resolution: {integrity: sha512-4Sn1Z2uxBzRVv5AD+JkQgiomfhGKsNfKWAqaEYFoC3HXEJXJZqWhQGwlckm3sV5adNldHFINK76peA5DKh9/vw==}
     engines: {node: '>=24'}
     peerDependencies:
       publicodes: ^1.8.5
@@ -9346,6 +9346,7 @@ packages:
   tsconfck@3.1.6:
     resolution: {integrity: sha512-ks6Vjr/jEw0P1gmOVwutM3B7fWxoWBL2KRDb1JfqGVawBmO5UsvmWOQFGHBPl5yxYz4eERr19E6L7NMv+Fej4w==}
     engines: {node: ^18 || >=20}
+    deprecated: unmaintained
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
@@ -11785,7 +11786,7 @@ snapshots:
     dependencies:
       publicodes: 1.10.1
 
-  '@incubateur-ademe/nosgestesclimat@4.14.2(publicodes@1.10.1)':
+  '@incubateur-ademe/nosgestesclimat@4.14.3(publicodes@1.10.1)':
     dependencies:
       publicodes: 1.10.1
 
