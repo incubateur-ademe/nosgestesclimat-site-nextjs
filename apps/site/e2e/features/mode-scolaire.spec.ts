@@ -23,7 +23,10 @@ test.describe('When a user completes the test via the scolaire poll invite link'
   let page: Page
 
   test.beforeAll(async ({ browser }) => {
-    test.setTimeout(60_000)
+    // Creating the organisation/poll and completing the whole youth test can
+    // take well over a minute on a loaded preprod (the first attempt of this
+    // hook timed out at 60s while the retry, on a warmer app, needed only ~20s).
+    test.setTimeout(120_000)
 
     page = await createPage(browser)
 
