@@ -71,6 +71,10 @@ export class Group {
   async joinWithInviteLink(user: User) {
     await user.page.goto(this.inviteLink)
     await user.page.getByTestId('member-name').fill(user.firstName)
+    // TextInput debounces its onChange (100ms) before syncing the value to
+    // react-hook-form; clicking sooner submits an empty name and fails the
+    // required-field validation on the invitation page.
+    await user.page.waitForTimeout(150)
     await user.page.getByTestId('button-join-group').click()
   }
 
