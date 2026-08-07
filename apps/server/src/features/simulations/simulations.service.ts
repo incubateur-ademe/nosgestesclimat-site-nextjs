@@ -5,6 +5,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import modelRules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json' with { type: 'json' }
 import modelFunFacts from '@incubateur-ademe/nosgestesclimat/public/funFactsRules.json' with { type: 'json' }
+import { hasValidComputedResults } from '@nosgestesclimat/core/features/simulations/validators/computed-results.schema'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { isPrismaErrorNotFound } from '@nosgestesclimat/core/prisma/utils'
 import dayjs from 'dayjs'
@@ -210,17 +211,6 @@ export const fetchSimulations = async ({
     count,
   }
 }
-
-/**
- * Legacy simulations stored before the introduction of the current
- * `computedResults` shape (carbone/eau) must never be returned: their data is
- * not exploitable by the frontend. They are kept in the database but exposed
- * as if they did not exist.
- */
-const hasValidComputedResults = (simulation: {
-  computedResults?: JsonValue
-}): boolean =>
-  v.safeParse(ComputedResultSchema, simulation.computedResults).success
 
 export const fetchSimulation = async ({
   params,
