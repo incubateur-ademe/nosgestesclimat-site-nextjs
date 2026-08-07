@@ -190,6 +190,11 @@ test.describe('A user with a completed test that joined a group', () => {
   let page: Page
 
   test.beforeAll(async ({ browser }) => {
+    // Completing the whole test and joining a group takes well over the 30s
+    // default hook timeout on a loaded preprod; the describe-level
+    // test.setTimeout() does not raise the hook budget.
+    test.setTimeout(120_000)
+
     page = await createPage(browser)
     await new NGCTest(page).skipAll()
     await expect(page).toHaveURL('/fin')
