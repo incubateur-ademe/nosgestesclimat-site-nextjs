@@ -113,9 +113,9 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ steps.app-token.outputs.token }}
-          branch: update-model/v${{ env.NEW_VERSION }}
-          title: 'chore(deps): update @incubateur-ademe/nosgestesclimat to v${{ env.NEW_VERSION }}'
-          commit-message: 'chore(deps): update @incubateur-ademe/nosgestesclimat to v${{ env.NEW_VERSION }}'
+          branch: chore/upgrade-model-v${{ env.NEW_VERSION }}
+          title: '⬆ chore(deps): upgrade model to v${{ env.NEW_VERSION }}'
+          commit-message: 'chore(deps): upgrade @incubateur-ademe/nosgestesclimat to v${{ env.NEW_VERSION }}'
           body: ${{ steps.pr-body.outputs.pr_body }}
           labels: dependencies
           delete-branch: true
