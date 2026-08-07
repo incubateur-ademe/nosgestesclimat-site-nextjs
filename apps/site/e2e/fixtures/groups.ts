@@ -70,12 +70,22 @@ export class Group {
 
   async joinWithInviteLink(user: User) {
     await user.page.goto(this.inviteLink)
-    await user.page.getByTestId('member-name').fill(user.firstName)
-    // TextInput debounces its onChange (100ms) before syncing the value to
-    // react-hook-form; clicking sooner submits an empty name and fails the
-    // required-field validation on the invitation page.
-    await user.page.waitForTimeout(150)
-    await user.page.getByTestId('button-join-group').click()
+    for (let attempt = 0; attempt < 2; attempt++) {
+      await user.page.getByTestId('member-name').fill(user.firstName)
+      await user.page.getByTestId('button-join-group').click()
+      // Joining redirects from the invitation page to the result page. The
+      // member-name onChange is debounced (100ms): on a loaded preprod the
+      // click can land before the debounce flushes, submitting an empty name
+      // and failing the required-field validation. Retry when the join did
+      // not navigate.
+      const joined = await user.page
+        .waitForURL(/\/amis\/resultats/, { timeout: 10_000 })
+        .then(() => true)
+        .catch(() => false)
+      if (joined) {
+        return
+      }
+    }
   }
 
   async leave(page: Page) {

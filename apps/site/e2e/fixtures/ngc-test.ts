@@ -15,9 +15,13 @@ export class NGCTest {
   }
 
   private async answerQuestion(situation: Situation) {
-    const inputs = this.page.locator('input')
+    // count() (non-waiting) instead of all(): the question page may not have
+    // rendered its inputs yet on a loaded preprod, and all() would block
+    // until the test timeout while the app is still navigating.
+    const inputCount = await this.page.locator('input').count()
     let isAnswered = false
-    for (const input of await inputs.all()) {
+    for (let i = 0; i < inputCount; i++) {
+      const input = this.page.locator('input').nth(i)
       const testId = await input.getAttribute('data-testid')
       if (!testId) {
         continue
