@@ -63,11 +63,15 @@ export class NGCTest {
   }
 
   private async canEndTest() {
-    // count() respects the { visible: true } filter that patches getByTestId.
-    // Avoid isEnabled() here: on a filtered locator it waits for the filter
-    // condition and can block forever while only hidden copies of the button
-    // remain in the DOM (React <Activity> keeps previous routes mounted).
-    return (await this.endButton().count()) > 0
+    const end = this.endButton()
+    // count() first (non-waiting, respects the { visible: true } filter that
+    // patches getByTestId) so we never call isEnabled() while only hidden
+    // copies of the button remain in the DOM (React <Activity> keeps previous
+    // routes mounted), which would wait for the filter forever. isEnabled()
+    // is then safe: a visible copy exists. It matters: the end button stays
+    // disabled until the current question is folded, and ending too early
+    // makes the following click wait for an enabled state that never comes.
+    return (await end.count()) > 0 && (await end.isEnabled())
   }
 
   async isBooleanQuestion() {
@@ -100,12 +104,16 @@ export class NGCTest {
   // briefly instead of hot-looping.
   private async clickSkipIfPossible() {
     const skip = this.skipButton()
-    // count() (and not isVisible/isEnabled) because of the { visible: true }
-    // filter patched onto getByTestId: while navigating, only hidden copies
-    // of the skip button stay mounted (React <Activity> cache) and isEnabled()
-    // would wait for the filter indefinitely. click() keeps its own bounded
-    // actionability wait.
+    // count() first (non-waiting) so isEnabled() is never called while only
+    // hidden copies of the button are mounted (React <Activity> cache) — on a
+    // { visible: true } filtered locator, isEnabled() would wait forever in
+    // that case. Once a visible copy is known to exist, isEnabled() resolves
+    // immediately and tells us whether the question can actually be skipped
+    // (the skip button is disabled once the question is answered).
     if ((await skip.count()) === 0) {
+      return false
+    }
+    if (!(await skip.isEnabled())) {
       return false
     }
     await skip.click({ timeout: 2000 }).catch(() => undefined)
