@@ -116,9 +116,13 @@ export class NGCTest {
       await new Promise((resolve) => setTimeout(resolve, 250))
     }
     // The end button is clickable. Do not wait for the client-side navigation
-    // it triggers: callers follow up with waitForURL(/\/fin/), and the
-    // implicit navigation wait can time out when the RSC request stalls.
+    // it triggers: the implicit navigation wait can time out when the RSC
+    // request stalls. Wait for it explicitly below with a generous timeout
+    // instead, so every caller is covered regardless of its own assertion.
     await this.endButton().click({ noWaitAfter: true })
+    // End of test: the app either shows the result page or asks for the email
+    // first. Wait for either before returning.
+    await this.page.waitForURL(/\/(fin|simulateur\/email)/, { timeout: 30_000 })
   }
 
   async answerTest(situation: Situation) {
@@ -140,6 +144,7 @@ export class NGCTest {
       }
     }
     await this.endButton().click({ noWaitAfter: true })
+    await this.page.waitForURL(/\/(fin|simulateur\/email)/, { timeout: 30_000 })
   }
 }
 
