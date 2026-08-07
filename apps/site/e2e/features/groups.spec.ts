@@ -125,7 +125,7 @@ test.describe('A new user', () => {
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await user.fillEmailAndCompleteVerification()
-    await expect(page).toHaveURL('/fin')
+    await expect(page).toHaveURL('/fin', { timeout: 15_000 })
     await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(group.url)
   })

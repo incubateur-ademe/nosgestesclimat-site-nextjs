@@ -93,25 +93,42 @@ export class NGCTest {
     await this.skipAllQuestions()
   }
 
+  // Clicks the skip button when it is available. Returns true when a click
+  // was dispatched. The button is disabled once a question is answered and
+  // absent while the app is navigating, in which case callers should wait
+  // briefly instead of hot-looping.
+  private async clickSkipIfPossible() {
+    const skip = this.skipButton()
+    if ((await skip.isVisible()) && (await skip.isEnabled())) {
+      await skip.click({ timeout: 2000 }).catch(() => undefined)
+      return true
+    }
+    return false
+  }
+
   async skipAllQuestions() {
     while (!(await this.canEndTest())) {
-      try {
-        await this.skipButton().click({ timeout: 2000 })
-      } catch {
+      if (await this.clickSkipIfPossible()) {
         continue
       }
+      // Navigation in flight or the last question is being folded. Give the
+      // UI time to catch up instead of spinning on clicks.
+      await new Promise((resolve) => setTimeout(resolve, 250))
     }
-    // Use Promise-based timeout instead of page.waitForTimeout
-    // to support both Page and Locator contexts (e.g. iframe tests)
-    await new Promise((resolve) => setTimeout(resolve, 100))
-    await this.endButton().click()
+    // The end button is clickable. Do not wait for the client-side navigation
+    // it triggers: callers follow up with waitForURL(/\/fin/), and the
+    // implicit navigation wait can time out when the RSC request stalls.
+    await this.endButton().click({ noWaitAfter: true })
   }
 
   async answerTest(situation: Situation) {
     while (!(await this.canEndTest())) {
       const isAnswered = await this.answerQuestion(situation)
       if (!isAnswered) {
-        await this.skipButton().click()
+        if (await this.clickSkipIfPossible()) {
+          continue
+        }
+        await new Promise((resolve) => setTimeout(resolve, 250))
         continue
       }
       try {
@@ -122,7 +139,7 @@ export class NGCTest {
         continue
       }
     }
-    await this.endButton().click()
+    await this.endButton().click({ noWaitAfter: true })
   }
 }
 

@@ -57,10 +57,12 @@ export class User {
     const emailInput = this.page.getByTestId('verification-code-email-input')
     await emailInput.scrollIntoViewIfNeeded()
     await emailInput.fill(this.email)
-    await this.page.waitForTimeout(500)
     await emailInput.press('Enter')
+    // The code input only appears once the server has accepted the email and
+    // sent the verification code. On a loaded environment (shared preprod)
+    // this round-trip can take well over the default 10s.
     const codeInput = this.page.getByTestId('verification-code-input')
-    await expect(codeInput).toBeInViewport()
+    await expect(codeInput).toBeInViewport({ timeout: 30_000 })
     const code = await this.mailbox.getVerificationCode()
     await codeInput.fill(code)
     await codeInput.press('Enter')
