@@ -78,12 +78,18 @@ export class NGCTest {
       const elements = Array.from(
         document.querySelectorAll<HTMLElement>(`[data-testid="${id}"]`)
       )
-      return elements.some(
-        (el) =>
-          !el.hasAttribute('disabled') &&
-          el.getClientRects().length > 0 &&
-          getComputedStyle(el).visibility !== 'hidden'
-      )
+      return elements.some((el) => {
+        if (el.getClientRects().length === 0) return false
+        if (getComputedStyle(el).visibility === 'hidden') return false
+        // The testid sometimes sits on a span inside the clickable button
+        // (the simulateur end button); the disabled state then lives on the
+        // closest button/a ancestor, as either a native disabled attribute
+        // or an aria-disabled one (the design-system Button uses the latter).
+        const clickable = el.closest('button, a')
+        if (clickable?.hasAttribute('disabled')) return false
+        if (clickable?.getAttribute('aria-disabled') === 'true') return false
+        return true
+      })
     }, testId)
   }
 
