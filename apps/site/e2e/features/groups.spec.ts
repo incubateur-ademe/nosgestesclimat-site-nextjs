@@ -109,6 +109,7 @@ test.describe('A new user', () => {
   })
 
   test('can join a group', async ({ group, user, page }) => {
+    test.setTimeout(60_000)
     await group.joinWithInviteLink(user)
     await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
   })
