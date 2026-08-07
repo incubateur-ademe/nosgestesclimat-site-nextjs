@@ -57,6 +57,10 @@ export class User {
     const emailInput = this.page.getByTestId('verification-code-email-input')
     await emailInput.scrollIntoViewIfNeeded()
     await emailInput.fill(this.email)
+    // `fill()` dispatches a single `input` event; react-hook-form needs a tick
+    // to register the value before the form can be submitted. Pressing Enter
+    // right away submits an empty email and the code input never appears.
+    await this.page.waitForTimeout(500)
     await emailInput.press('Enter')
     // The code input only appears once the server has accepted the email and
     // sent the verification code. On a loaded environment (shared preprod)
