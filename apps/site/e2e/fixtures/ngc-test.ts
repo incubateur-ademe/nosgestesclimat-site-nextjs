@@ -63,10 +63,11 @@ export class NGCTest {
   }
 
   private async canEndTest() {
-    return (
-      (await this.endButton().isVisible()) &&
-      (await this.endButton().isEnabled())
-    )
+    // count() respects the { visible: true } filter that patches getByTestId.
+    // Avoid isEnabled() here: on a filtered locator it waits for the filter
+    // condition and can block forever while only hidden copies of the button
+    // remain in the DOM (React <Activity> keeps previous routes mounted).
+    return (await this.endButton().count()) > 0
   }
 
   async isBooleanQuestion() {
@@ -99,11 +100,16 @@ export class NGCTest {
   // briefly instead of hot-looping.
   private async clickSkipIfPossible() {
     const skip = this.skipButton()
-    if ((await skip.isVisible()) && (await skip.isEnabled())) {
-      await skip.click({ timeout: 2000 }).catch(() => undefined)
-      return true
+    // count() (and not isVisible/isEnabled) because of the { visible: true }
+    // filter patched onto getByTestId: while navigating, only hidden copies
+    // of the skip button stay mounted (React <Activity> cache) and isEnabled()
+    // would wait for the filter indefinitely. click() keeps its own bounded
+    // actionability wait.
+    if ((await skip.count()) === 0) {
+      return false
     }
-    return false
+    await skip.click({ timeout: 2000 }).catch(() => undefined)
+    return true
   }
 
   async skipAllQuestions() {

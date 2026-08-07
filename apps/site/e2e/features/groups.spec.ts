@@ -215,7 +215,9 @@ test.describe('A user with a completed test that joined a group', () => {
   })
 
   test('see the group result page after joining', async ({ group }) => {
-    await expect(page).toHaveURL(group.url)
+    // Joining redirects from the invitation page to the result page; the
+    // redirect can take longer than 10s on a loaded preprod.
+    await expect(page).toHaveURL(group.url, { timeout: 30_000 })
     await expect(page.getByTestId('group-name')).toContainText(group.name)
   })
 
