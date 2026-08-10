@@ -1,12 +1,12 @@
 'use client'
 
-import HowToAct from '@/components/actions/howToAct/HowToAct'
 import FootprintSelector from '@/components/footprints/FootprintSelector'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import Separator from '@/design-system/layout/Separator'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
+import type { Locale } from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import type { Group, Results } from '@/types/groups'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
@@ -22,9 +22,12 @@ import Ranking from './groupResults/Ranking'
 export default function GroupResults({
   group,
   categoriesAccordion,
+  actionsSection,
 }: {
+  locale: Locale
   group: Group
   categoriesAccordion?: ReactNode
+  actionsSection?: ReactNode
 }) {
   const { user } = useUser()
 
@@ -82,11 +85,7 @@ export default function GroupResults({
 
             {categoriesAccordion}
 
-            <Separator className="my-6" />
-
-            <HowToAct />
-
-            <Separator className="my-6" />
+            {actionsSection}
           </>
         )
       }
