@@ -1283,7 +1283,6 @@ entries:
   actions.mTaTerre.button: Explorer M ta Terre
   actions.mTaTerre.text: "Climat, biodiversité, énergie, alimentation…<1></1><2>M ta Terre</2>, c'est le site fait pour toi : des <5>articles</5>, <7>vidéos</7>, <10>podcasts</10> et des <12>gestes concrets</12> pour passer à l'action au quotidien."
   actions.mTaTerre.title: Tu veux comprendre ET agir pour la planète ?
-  common.authentication.verifyEmail: Vérifier mon adresse e-mail
   common.authentication.verifyEmail: Vérifier mon adresse électronique
   common.optional: facultatif
   common.skip: Passer
