@@ -15,12 +15,12 @@ export default function WaterFootprintCard({
   learnMoreHref,
 }: Props) {
   return (
-    <div className="relative min-h-64 overflow-hidden rounded-2xl bg-[#3F40B5] p-6 md:p-10">
+    <div className="bg-primary-700 relative min-h-64 overflow-hidden rounded-2xl p-6 md:p-10">
       <WaterWavesBackground />
 
       <div className="relative z-10 grid grid-cols-1 gap-4 md:grid-cols-12 md:items-end md:gap-8">
         <div className="flex items-center gap-3 md:col-span-12">
-          <WaterDropIcon className="h-7 w-7 fill-white" />
+          <WaterDropIcon className="h-12 w-12 fill-white" />
 
           <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-4xl font-bold text-white md:text-5xl">
@@ -57,8 +57,7 @@ export default function WaterFootprintCard({
             href={learnMoreHref}
             target="_blank"
             rel="noopener noreferrer"
-            color="borderless"
-            className="bg-white text-[#3F40B5] hover:bg-white/90 hover:text-[#3F40B5]">
+            color="borderless">
             <Trans i18nKey="pollResults.waterFootprint.learnMore">
               En savoir plus
             </Trans>

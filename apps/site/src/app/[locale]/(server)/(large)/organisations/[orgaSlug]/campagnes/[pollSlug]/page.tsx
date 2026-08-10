@@ -145,7 +145,6 @@ export default function CampagnePage() {
             organisationName={pollOrganisation?.name}
           />
 
-          {/* bilan eau est exprimé en litres/an : moyenne annuelle → litres/jour */}
           <WaterFootprintSection
             meanWaterFootprintLitresPerDay={
               (computedResults?.eau?.bilan ?? 0) /
