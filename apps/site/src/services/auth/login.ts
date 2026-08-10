@@ -12,6 +12,7 @@ import {
   TooManyRequestsError,
   UnauthorizedError,
 } from '@/helpers/server/error'
+import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
@@ -46,6 +47,7 @@ export const login = async ({
     await createAppSession(data.id, email)
 
     revalidatePath('/', 'layout')
+    revalidatePath(MON_ESPACE_PATH)
 
     return success({ ...data, userId: data.id })
   } catch (error) {
