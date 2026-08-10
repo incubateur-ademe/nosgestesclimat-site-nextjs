@@ -5,6 +5,7 @@ import TextInput from './TextInput'
 interface Props extends HTMLAttributes<HTMLInputElement> {
   error?: string
   value?: string
+  debounceTimeout?: number
 }
 
 export default forwardRef(function PrenomInput(

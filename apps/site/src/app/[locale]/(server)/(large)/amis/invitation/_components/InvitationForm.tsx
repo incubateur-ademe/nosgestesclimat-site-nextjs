@@ -59,6 +59,7 @@ export default function InvitationForm({
       <PrenomInput
         data-testid="member-name"
         error={errors.guestName?.message}
+        debounceTimeout={0}
         {...register('guestName', {
           required: t('Ce champ est requis.'),
         })}

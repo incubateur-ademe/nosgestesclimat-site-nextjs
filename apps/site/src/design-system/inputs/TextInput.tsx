@@ -63,6 +63,10 @@ export default forwardRef(function TextInput(
     onChange ?? (() => null),
     debounceTimeout
   )
+  // When debounceTimeout is 0, we want the value to be registered
+  // synchronously (e.g. form fields submitted right after typing).
+  const handleChange =
+    debounceTimeout > 0 ? debouncedOnChange : onChange ?? (() => null)
   return (
     <InputGroup
       name={name}
@@ -80,7 +84,7 @@ export default forwardRef(function TextInput(
         readOnly={readOnly}
         name={name}
         placeholder={placeholder}
-        onChange={debouncedOnChange}
+        onChange={handleChange}
         defaultValue={value}
         required={required}
         aria-disabled={disabled}

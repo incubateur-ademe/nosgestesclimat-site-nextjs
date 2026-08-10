@@ -86,6 +86,7 @@ export default function NameForm({
       <PrenomInput
         data-testid="group-input-owner-name"
         error={errors.administratorName?.message}
+        debounceTimeout={0}
         {...register('administratorName', {
           required: t('Veuillez entrer votre nom.'),
         })}
