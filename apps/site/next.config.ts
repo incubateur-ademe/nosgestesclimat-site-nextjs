@@ -23,7 +23,22 @@ const nextConfig = withMDX({
   },
   // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
-    return redirects
+    const enRedirects = redirects
+      .filter(
+        (r) =>
+          !r.source.startsWith('/en/') &&
+          !r.source.startsWith('/fr/') &&
+          !r.source.includes('%')
+      )
+      .map((r) => ({
+        ...r,
+        source: `/en${r.source}`,
+        destination: r.destination.startsWith('http')
+          ? r.destination
+          : `/en${r.destination}`,
+      }))
+
+    return [...redirects, ...enRedirects]
   },
   productionBrowserSourceMaps: true,
   turbopack: {
@@ -43,12 +58,12 @@ const nextConfig = withMDX({
       },
     },
   },
+  cacheComponents: true,
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
     authInterrupts: true,
     mdxRs: true,
-    useCache: true,
   },
 
   webpack(config) {
