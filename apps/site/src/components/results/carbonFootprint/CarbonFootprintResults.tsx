@@ -76,7 +76,7 @@ export default function CarbonFootprintResults({
         </Trans>
       </p>
 
-      <ActionsBlock locale={locale} />
+      <ActionsBlock locale={locale} className="mb-20" />
     </>
   )
 }
