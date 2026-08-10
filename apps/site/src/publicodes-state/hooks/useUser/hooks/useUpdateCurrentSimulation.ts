@@ -25,7 +25,6 @@ export default function useUpdateCurrentSimulation({ setSimulation }: Props) {
       situation,
       foldedSteps,
       foldedStepToAdd,
-      actionChoices,
       computedResults,
       progression,
       groupToDelete,
@@ -132,10 +131,6 @@ export default function useUpdateCurrentSimulation({ setSimulation }: Props) {
                   : 'non défini',
             }
           }
-        }
-
-        if (actionChoices !== undefined) {
-          simulationToUpdate.actionChoices = actionChoices
         }
 
         if (computedResults !== undefined) {
