@@ -1,3 +1,4 @@
+import { EMAIL_PAGE_PATH } from '@/constants/urls/paths'
 import type { Page } from '@playwright/test'
 import { expect, test } from '../fixtures'
 import { createPage } from '../fixtures/feature-flags'
@@ -150,8 +151,15 @@ test.describe('A user with a completed test that joined a poll', () => {
     const ngcTest = new NGCTest(page)
     await ngcTest.skipAllQuestions()
 
-    // Skip the email step
-    await page.getByTestId('skip-email-button').click()
+    // The flow can land directly on /fin when the poll is not yet attached to
+    // the simulation when endTestAction runs (a race on preprod); the email
+    // step is only displayed when it is. Skip it only when shown, otherwise
+    // the click would wait forever for a button that never appears. When the
+    // race does hit, the tests below fail fast on the poll-confirmation
+    // assertions instead of hanging in this hook.
+    if (page.url().includes(EMAIL_PAGE_PATH)) {
+      await page.getByTestId('skip-email-button').click()
+    }
   })
 
   test.afterAll(async () => {

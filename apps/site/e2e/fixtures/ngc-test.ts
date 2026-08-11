@@ -15,13 +15,17 @@ export class NGCTest {
   }
 
   private async answerQuestion(situation: Situation) {
-    // count() (non-waiting) instead of all(): the question page may not have
-    // rendered its inputs yet on a loaded preprod, and all() would block
-    // until the test timeout while the app is still navigating.
-    const inputCount = await this.page.locator('input').count()
+    // Visible-only inputs: <Activity> keeps the previous question mounted but
+    // hidden (display: none) while the app navigates, so a bare
+    // locator('input') would count stale inputs from the previous page.
+    // count() is non-waiting on purpose: the page may not have rendered its
+    // inputs yet on a loaded preprod, and all() would block until the test
+    // timeout while the app is still navigating.
+    const inputs = this.page.locator('input:visible')
+    const inputCount = await inputs.count()
     let isAnswered = false
     for (let i = 0; i < inputCount; i++) {
-      const input = this.page.locator('input').nth(i)
+      const input = inputs.nth(i)
       const testId = await input.getAttribute('data-testid')
       if (!testId) {
         continue
@@ -132,7 +136,9 @@ export class NGCTest {
     if (!(await this.hasClickableButton('skip-question-button'))) {
       return false
     }
-    await this.skipButton().click({ timeout: 2000 }).catch(() => undefined)
+    await this.skipButton()
+      .click({ timeout: 2000 })
+      .catch(() => undefined)
     return true
   }
 
@@ -159,6 +165,11 @@ export class NGCTest {
     while (!(await this.canEndTest())) {
       const isAnswered = await this.answerQuestion(situation)
       if (!isAnswered) {
+        // Not a target question (or an input-less special question): skip it.
+        // The "Je ne sais pas" button and the question's inputs render in the
+        // same commit, so a clickable skip button means the question is fully
+        // rendered — a target question whose inputs are still rendering can
+        // never be skipped here.
         if (await this.clickSkipIfPossible()) {
           continue
         }

@@ -80,16 +80,18 @@ export class Group {
       // and failing the required-field validation. Retry when the join did
       // not navigate away from the invitation page.
       const joined = await user.page
-        .waitForURL(
-          (url) => !url.pathname.includes('/amis/invitation'),
-          { timeout: 10_000 }
-        )
+        .waitForURL((url) => !url.pathname.includes('/amis/invitation'), {
+          timeout: 10_000,
+        })
         .then(() => true)
         .catch(() => false)
       if (joined) {
         return
       }
     }
+    throw new Error(
+      `join group failed: still on the invitation page after 2 attempts (${user.page.url()})`
+    )
   }
 
   async leave(page: Page) {
