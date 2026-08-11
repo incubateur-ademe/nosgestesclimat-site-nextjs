@@ -8,6 +8,8 @@ import {
   USER_ACCOUNT_STATE,
 } from '../state'
 
+// E2E spec: user-account (login, logout, email change, simulation deletion).
+
 test.use({ storageState: USER_ACCOUNT_STATE })
 
 test.describe('Login - invalid verification code', () => {
