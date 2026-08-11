@@ -120,8 +120,10 @@ test.describe('Simulation deletion', () => {
     await deleteButtons.first().click()
     await page.getByTestId('confirm-delete-simulation-button').click()
 
+    // The deletion goes through a server action (fetch + revalidatePath); on a
+    // loaded preprod the list can take longer than the default 10s to refresh.
     await expect(deleteButtons).toHaveCount(initialCount - 1, {
-      timeout: 10_000,
+      timeout: 30_000,
     })
   })
 })
