@@ -33,7 +33,11 @@ export default function InvitationForm({
     register,
     handleSubmit,
     formState: { errors },
-  } = useReactHookForm<Inputs>()
+  } = useReactHookForm<Inputs>({
+    defaultValues: {
+      guestName: user?.name,
+    },
+  })
 
   const hasCompletedTest = currentSimulation?.progression === 1
 
@@ -54,7 +58,6 @@ export default function InvitationForm({
     <form onSubmit={handleSubmit(onSubmit) as () => void} autoComplete="off">
       <PrenomInput
         data-testid="member-name"
-        value={user?.name ?? ''}
         error={errors.guestName?.message}
         {...register('guestName', {
           required: t('Ce champ est requis.'),
