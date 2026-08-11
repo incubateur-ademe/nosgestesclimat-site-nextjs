@@ -1,6 +1,8 @@
 import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json' with { type: 'json' }
 import { expect, test } from '../fixtures'
 
+// E2E spec: retake-test flow coverage.
+
 test.setTimeout(250_000)
 
 const persona = Object.values(personas)[0]
