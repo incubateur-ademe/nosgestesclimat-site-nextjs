@@ -13,15 +13,7 @@ interface Props {
  * is dropped rather than replaced — the next render resolves it from the server.
  */
 export function resetLocalState({ setUser, setSimulation }: Props) {
-  const resettedUser = null
-
-  safeLocalStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify({
-      user: resettedUser,
-    })
-  )
-
-  setUser(resettedUser)
+  safeLocalStorage.setItem(STORAGE_KEY, JSON.stringify({}))
+  setUser(null)
   setSimulation(undefined)
 }
