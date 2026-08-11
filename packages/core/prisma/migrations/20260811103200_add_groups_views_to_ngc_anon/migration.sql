@@ -2,7 +2,6 @@
 CREATE OR REPLACE VIEW "ngc_anon"."Group" AS
 SELECT
     "id",
-    "emoji",
     "createdAt",
     "updatedAt"
 FROM "ngc"."Group";

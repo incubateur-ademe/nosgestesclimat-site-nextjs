@@ -110,7 +110,6 @@ view AnonSimulationPoll {
 
 view AnonGroup {
   id            String                  @unique
-  emoji         String
   createdAt     DateTime
   updatedAt     DateTime
   administrator AnonGroupAdministrator?
