@@ -1,10 +1,7 @@
 /**
- * Décor purement visuel : deux vagues stylisées, positionnées en haut à droite
- * de la carte "empreinte eau" de la page de résultats de campagne.
- *
- * Le composant parent doit être en `position: relative` et `overflow: hidden`.
- */
-export default function WaterWavesBackground() {
+ * UI reproduction of a wave
+ **/
+export default function WaterWaveBackground() {
   return (
     <div
       aria-hidden="true"

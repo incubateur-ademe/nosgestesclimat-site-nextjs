@@ -3,19 +3,15 @@ import { eauMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useLocale } from '@/hooks/useLocale'
 import { twMerge } from 'tailwind-merge'
-import WaterFootprintCard from './WaterFootprintCard'
+import WaterFootprintCard from './waterFootprintSection/WaterFootprintCard'
 
 const DEFAULT_LEARN_MORE_HREF =
   '/blog/environnement/lexique-eau-tout-comprendre'
 
 interface Props {
-  /** Moyenne de l'empreinte eau du groupe en litres/jour (déjà calculée). */
   meanWaterFootprintLitresPerDay: number
-  /** Nombre de participants terminés — sert au gating d'affichage. */
   simulationsCount: number
-  /** URL du lien "En savoir plus" (lexique eau). */
   learnMoreHref?: string
-  /** Classes utilitaires supplémentaires. */
   className?: string
 }
 

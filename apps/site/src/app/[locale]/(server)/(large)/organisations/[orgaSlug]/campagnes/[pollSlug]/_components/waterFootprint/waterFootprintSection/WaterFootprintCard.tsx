@@ -1,12 +1,10 @@
 import WaterDropIcon from '@/components/icons/WaterDropIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import WaterWavesBackground from './WaterWavesBackground'
+import WaterWaveBackground from './waterFootprintCard/WaterWaveBackground'
 
 interface Props {
-  /** Valeur de l'empreinte eau moyenne, déjà formatée (ex. "6 151"). */
   formattedValue: string
-  /** URL du lien "En savoir plus" (lexique eau). */
   learnMoreHref: string
 }
 
@@ -16,7 +14,7 @@ export default function WaterFootprintCard({
 }: Props) {
   return (
     <div className="bg-primary-700 relative min-h-64 overflow-hidden rounded-2xl p-6 md:p-10">
-      <WaterWavesBackground />
+      <WaterWaveBackground />
 
       <div className="relative z-10 grid grid-cols-1 gap-4 md:grid-cols-12 md:items-end md:gap-8">
         <div className="flex items-center gap-3 md:col-span-12">
