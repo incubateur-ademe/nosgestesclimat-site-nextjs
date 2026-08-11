@@ -4,6 +4,7 @@ import { createPage } from '../fixtures/feature-flags'
 import { NGCTest } from '../fixtures/ngc-test'
 import { Organisation } from '../fixtures/organisations'
 import { Poll } from '../fixtures/polls'
+import { User } from '../fixtures/user'
 import { NEW_VISITOR_STATE, ORGANISATION_ADMIN_STATE } from '../state'
 
 test.use({ storageState: NEW_VISITOR_STATE })
@@ -19,7 +20,7 @@ test('should show youth tutorial when joining via the scolaire poll invite link'
   await expect(page.getByTestId('skip-tutorial-button')).toBeHidden()
 })
 
-test('should invisibly replace a completed classic test when joining a scolaire poll', async ({
+test('starts a fresh test when joining a scolaire poll after completing a classic test', async ({
   scolairePoll,
   page,
   ngcTest,
@@ -35,12 +36,47 @@ test('should invisibly replace a completed classic test when joining a scolaire 
   )
 
   // Visiting the scolaire invite link must not send the user to the previous
-  // results: the completed classic test (different mode) is replaced invisibly
-  // and the youth tutorial starts a fresh test.
+  // results, nor offer to reuse the classic test (different mode): the youth
+  // tutorial simply starts a fresh test, while the classic simulation stays in
+  // the account.
   await page.goto(scolairePoll.inviteLink)
   await expect(page.getByTestId('youth-tutorial')).toBeVisible()
   await page.getByTestId('youth-tutorial-start-button').click()
   await expect(page).toHaveURL(/\/simulateur\/bilan/)
+})
+
+test('lists both the classic and the scolaire simulations in the account after creating one', async ({
+  scolairePoll,
+  page,
+  ngcTest,
+}) => {
+  test.setTimeout(120_000)
+  const user = new User(page)
+
+  // A classic test was completed on this computer/session
+  await ngcTest.skipAll()
+  await page.waitForURL(/\/fin/)
+
+  // Visiting the scolaire invite link must not send the user to the previous
+  // results: the completed classic test (different mode) is not reused, the
+  // youth tutorial starts a fresh test.
+  await page.goto(scolairePoll.inviteLink)
+  await expect(page.getByTestId('youth-tutorial')).toBeVisible()
+  await page.getByTestId('youth-tutorial-start-button').click()
+  await expect(page).toHaveURL(/\/simulateur\/bilan/)
+
+  // Complete the fresh scolaire test
+  await ngcTest.skipAllQuestions()
+  await expect(page).toHaveURL('/simulateur/email')
+
+  // Create an account
+  await user.fillEmailAndCompleteVerification()
+  await expect(page).toHaveURL(/\/fin/)
+
+  // Both the classic and the scolaire simulations are listed in the account
+  await page.goto('/mon-espace')
+  await expect(page.getByTestId('results-list-title')).toBeVisible()
+  await expect(page.getByTestId('delete-simulation-button')).toHaveCount(2)
 })
 
 test.describe('When a user completes the test via the scolaire poll invite link', () => {
@@ -123,5 +159,19 @@ test.describe('When a user completes the test via the scolaire poll invite link'
     await expect(page.getByTestId('commencer-title')).toBeVisible()
     await expect(page.getByText('Test réalisé le')).toBeVisible()
     await expect(page.getByText('Votre empreinte')).toBeVisible()
+  })
+
+  test('starts a fresh test when joining a standard poll after completing a scolaire test', async ({
+    poll,
+  }) => {
+    // The shared page has just completed a test via the scolaire poll invite
+    // link. Joining a standard poll (different mode) must not offer to reuse
+    // the scolaire test: the standard tutorial simply starts a fresh test,
+    // while the scolaire simulation stays in the account.
+    await page.goto(poll.inviteLink)
+    await expect(page.getByTestId('tutoriel-title')).toBeVisible()
+    await expect(page.getByTestId('commencer-title')).toBeHidden()
+    await page.getByTestId('skip-tutorial-button').click()
+    await expect(page).toHaveURL(/\/simulateur\/bilan/)
   })
 })

@@ -13,7 +13,6 @@ import { resolveNewSimulationModel } from '@/services/simulations/resolve-new-si
 import { redirect } from 'next/navigation'
 import { PollTracker } from '../../../../../../components/tracking/PollTracker'
 import PollTutorialButton from '../../_components/PollTutorialButton'
-import ReplaceSimulationForPoll from '../../_components/ReplaceSimulationForPoll'
 import ReuseSimulationForPoll from '../../_components/ReuseSimulationForPoll'
 import Tutorial from '../../_components/Tutorial'
 import YouthTutorial from '../../_components/YouthTutorial'
@@ -68,22 +67,16 @@ export default async function CampagnePage({
     redirect(SIMULATOR_PATH)
   }
 
-  // On a shared computer, the session may hold a previous user's completed
-  // simulation whose mode differs from this poll's. Such a simulation must be
-  // replaced (invisibly) instead of being reused or leaking as results.
-  const shouldReplaceSimulation =
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    !!lastCompletedSimulation &&
-    getSimulationMode(lastCompletedSimulation) !== poll.mode
-
   // A completed simulation is only offered for reuse when it has the same
   // mode as the poll (e.g. a previous scolaire test when joining another
-  // scolaire poll). Different-mode simulations are replaced instead, so the
-  // participant starts a fresh test without seeing the previous results.
+  // scolaire poll). A different-mode simulation is never reused: a fresh test
+  // is simply created, while the previous simulation stays in the account (an
+  // anonymous user only sees its last simulation, but both are listed once the
+  // user creates an account).
   const allowToReuseExistingSimulation =
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     !!lastCompletedSimulation &&
-    !shouldReplaceSimulation &&
+    getSimulationMode(lastCompletedSimulation) === poll.mode &&
     !poll.simulations.hasParticipated &&
     // eslint-disable-next-line react-hooks/purity
     Date.now() - new Date(lastCompletedSimulation.date as string).getTime() <
@@ -126,7 +119,6 @@ export default async function CampagnePage({
   )
   return (
     <>
-      {shouldReplaceSimulation && <ReplaceSimulationForPoll mode={poll.mode} />}
       <PollTracker poll={poll} />
 
       {poll.mode === 'scolaire' ? (
