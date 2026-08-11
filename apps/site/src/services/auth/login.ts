@@ -16,7 +16,6 @@ import { fetchServer } from '@/helpers/server/fetchServer'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
 import { revalidatePath } from 'next/cache'
-import { v4 } from 'uuid'
 import { createAppSession } from './create-app-session'
 import { getUserSession } from './get-user-session'
 
@@ -31,21 +30,19 @@ export const login = async ({
 }): Promise<Result<{ userId: string; id: string }, CodeError>> => {
   try {
     const session = await getUserSession()
-    // Reusing the current session's userId for a *different* account is what
-    // ends up attaching one id to several verified accounts (the server only
-    // rejects it on signin, after the damage is done on signup). Starting a
-    // fresh identity here keeps the 1 session id = 1 account invariant.
-    const isSwitchingAccount =
-      session?.isAuth === true && session.email !== email
     const params = locale ? `?locale=${locale}` : ''
     const data = await fetchServer<{ id: string }>(
       `${AUTHENTICATION_URL}/login${params}`,
       {
         method: 'POST',
+        // The current session's userId is forwarded to the server as the
+        // `x-user-id` header by `fetchServer`: the server is the one deciding
+        // which userId to attach to the account (reusing the session's when
+        // free, generating a fresh one when switching accounts), so the
+        // "one session id = one account" invariant is enforced there.
         body: {
           email,
           code,
-          userId: isSwitchingAccount ? v4() : (session?.id ?? v4()),
         },
       }
     )

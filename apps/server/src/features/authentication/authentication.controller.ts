@@ -1,6 +1,7 @@
 import { captureException } from '@sentry/node'
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
+import * as v from 'valibot'
 import { config } from '../../config.ts'
 import { EntityNotFoundException } from '../../core/errors/EntityNotFoundException.ts'
 import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
@@ -51,8 +52,26 @@ router
     validateRequest(LoginValidator),
     async (req, res) => {
       const startedAt = Date.now()
+
+      // The current session's userId is forwarded by the proxy as the
+      // `x-user-id` header. The server trusts it - not a client-provided
+      // body field - to enforce the "one session userId = one account"
+      // invariant.
+      const rawSessionUserId = req.headers['x-user-id']
+      let sessionUserId: string | undefined
+      if (typeof rawSessionUserId === 'string') {
+        const parsedSessionUserId = v.safeParse(
+          v.pipe(v.string(), v.uuid()),
+          rawSessionUserId
+        )
+        if (!parsedSessionUserId.success) {
+          return res.status(StatusCodes.BAD_REQUEST).end()
+        }
+        sessionUserId = parsedSessionUserId.output
+      }
+
       const context = {
-        userId: req.body.userId,
+        userId: sessionUserId,
         email: maskEmail(req.body.email),
         locale: req.query.locale,
       }
@@ -65,6 +84,7 @@ router
         const { token, user, mode } = await login({
           loginDto: req.body,
           locale: req.query.locale,
+          sessionUserId,
         })
 
         res.cookie(COOKIE_NAME, token, getCookieOptions(config.app.origin))

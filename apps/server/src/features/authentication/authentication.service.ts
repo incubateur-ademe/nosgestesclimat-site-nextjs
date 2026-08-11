@@ -1,5 +1,6 @@
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { isPrismaErrorNotFound } from '@nosgestesclimat/core/prisma/utils'
+import { randomUUID } from 'crypto'
 import type { CookieOptions } from 'express'
 import jwt from 'jsonwebtoken'
 import {
@@ -132,15 +133,26 @@ export const verifyCode = async (
 export const login = async ({
   loginDto,
   locale,
+  sessionUserId,
 }: {
   loginDto: LoginDto
   locale: Locales
+  /**
+   * The current session's userId, forwarded by the proxy as the `x-user-id`
+   * header. The server relies on it to enforce the
+   * "one session userId = one account" invariant instead of trusting a
+   * client-provided id.
+   */
+  sessionUserId?: string
 }) => {
-  const { user, mode, token } = await createAccountOrSignin(loginDto)
+  const { user, mode, token } = await createAccountOrSignin({
+    loginDto,
+    sessionUserId,
+  })
 
   const loginEvent = new LoginEvent({
     user,
-    previousUserId: loginDto.userId,
+    previousUserId: sessionUserId,
     mode,
     locale,
   })
@@ -162,7 +174,13 @@ export function createToken(user: Pick<VerifiedUser, 'id' | 'email'>) {
   )
 }
 
-export async function createAccountOrSignin(loginDto: LoginDto) {
+export async function createAccountOrSignin({
+  loginDto,
+  sessionUserId,
+}: {
+  loginDto: LoginDto
+  sessionUserId?: string
+}) {
   const verificationCode = await verifyCode(loginDto)
 
   const [user, mode] = await transaction(async (session) => {
@@ -175,35 +193,52 @@ export async function createAccountOrSignin(loginDto: LoginDto) {
       { session }
     )
 
-    // A session userId must map to at most one verified account. Reusing a
-    // userId already attached to a different verified account would silently
-    // create duplicate accounts sharing the same id on signup (the `id`
-    // column of VerifiedUser is not unique), and is already rejected on
-    // signin. Enforce the invariant on both paths.
-    if (existingUser?.id !== loginDto.userId) {
-      const conflictingUser = await session.verifiedUser.findFirst({
-        where: {
-          id: loginDto.userId,
-          NOT: { email: loginDto.email },
-        },
-        select: { email: true },
-      })
-
-      if (conflictingUser) {
-        throw new ForbiddenException(
-          'userId is already attached to another verified account'
-        )
-      }
-    }
-
     if (existingUser) {
+      // SignIn: the existing account's own id wins - never generate a fresh
+      // one. But refuse when the current session's userId is already attached
+      // to a different verified account: using it as `previousUserId` would
+      // reconcile that account's data into this one, and the id column of
+      // VerifiedUser is not unique, so a shared id would silently keep
+      // violating the invariant.
+      if (sessionUserId && existingUser.id !== sessionUserId) {
+        const conflictingUser = await session.verifiedUser.findFirst({
+          where: {
+            id: sessionUserId,
+            NOT: { email: loginDto.email },
+          },
+          select: { email: true },
+        })
+
+        if (conflictingUser) {
+          throw new ForbiddenException(
+            'userId is already attached to another verified account'
+          )
+        }
+      }
+
       return [existingUser, VerificationCodeMode.signIn] as const
     }
 
-    // SignUp if user doesn't exist
+    // SignUp if user doesn't exist. Reuse the session userId only when it is
+    // not already attached to another verified account (a free anonymous
+    // identity keeps the user's data attached). When it is taken - typically
+    // when signing up a new email while already authenticated as another
+    // account - start a fresh identity so that one id never maps to several
+    // accounts.
+    let newUserId: string = randomUUID()
+    if (sessionUserId) {
+      const takenUserId = await session.verifiedUser.findFirst({
+        where: { id: sessionUserId },
+        select: { email: true },
+      })
+      if (!takenUserId) {
+        newUserId = sessionUserId
+      }
+    }
+
     const { user: newUser } = await createOrUpdateVerifiedUser(
       {
-        id: { id: loginDto.userId, email: loginDto.email },
+        id: { id: newUserId, email: loginDto.email },
         user: loginDto,
         select: defaultVerifiedUserSelection,
       },

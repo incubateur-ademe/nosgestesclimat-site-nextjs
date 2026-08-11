@@ -35,8 +35,10 @@ export const login = async ({
 
   const response = await agent
     .post(LOGIN_ROUTE)
+    // The session's userId used to be sent in the body; it now travels as
+    // the `x-user-id` header, exactly like the site proxy forwards it.
+    .set('x-user-id', userId)
     .send({
-      userId,
       email,
       code,
     })
