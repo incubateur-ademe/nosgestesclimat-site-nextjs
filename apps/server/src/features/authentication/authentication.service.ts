@@ -174,6 +174,25 @@ export function createToken(user: Pick<VerifiedUser, 'id' | 'email'>) {
   )
 }
 
+/**
+ * Returns the verified account that already owns `userId`, unless it is the
+ * account identified by `email`.
+ *
+ * `VerifiedUser.id` is not unique in the schema - only `email` is the primary
+ * key - so nothing in the database stops two accounts from sharing a userId.
+ * The application enforces the "one session userId = one account" invariant
+ * here, at every account entry point, by refusing to let an id belong to two
+ * verified accounts.
+ */
+const findOtherVerifiedAccountWithUserId = (
+  { userId, email }: { userId: string; email: string },
+  { session }: { session: Session }
+) =>
+  session.verifiedUser.findFirst({
+    where: { id: userId, NOT: { email } },
+    select: { email: true },
+  })
+
 export async function createAccountOrSignin({
   loginDto,
   sessionUserId,
@@ -195,46 +214,42 @@ export async function createAccountOrSignin({
 
     if (existingUser) {
       // SignIn: the existing account's own id wins - never generate a fresh
-      // one. But refuse when the current session's userId is already attached
-      // to a different verified account: using it as `previousUserId` would
-      // reconcile that account's data into this one, and the id column of
-      // VerifiedUser is not unique, so a shared id would silently keep
-      // violating the invariant.
-      if (sessionUserId && existingUser.id !== sessionUserId) {
-        const conflictingUser = await session.verifiedUser.findFirst({
-          where: {
-            id: sessionUserId,
-            NOT: { email: loginDto.email },
-          },
-          select: { email: true },
-        })
-
-        if (conflictingUser) {
-          throw new ForbiddenException(
-            'userId is already attached to another verified account'
-          )
-        }
+      // one. Only refuse when the session's userId already belongs to another
+      // verified account: the login event reconciles the session's data
+      // (previousUserId) into this account, which would move that other
+      // account's data over and delete its user row.
+      if (
+        sessionUserId &&
+        sessionUserId !== existingUser.id &&
+        (await findOtherVerifiedAccountWithUserId(
+          { userId: sessionUserId, email: loginDto.email },
+          { session }
+        ))
+      ) {
+        throw new ForbiddenException(
+          'userId is already attached to another verified account'
+        )
       }
 
       return [existingUser, VerificationCodeMode.signIn] as const
     }
 
-    // SignUp if user doesn't exist. Reuse the session userId only when it is
-    // not already attached to another verified account (a free anonymous
-    // identity keeps the user's data attached). When it is taken - typically
-    // when signing up a new email while already authenticated as another
-    // account - start a fresh identity so that one id never maps to several
-    // accounts.
-    let newUserId: string = randomUUID()
-    if (sessionUserId) {
-      const takenUserId = await session.verifiedUser.findFirst({
-        where: { id: sessionUserId },
-        select: { email: true },
-      })
-      if (!takenUserId) {
-        newUserId = sessionUserId
-      }
-    }
+    // SignUp: reuse the session userId as the account id only when it is
+    // still a free anonymous identity - the anonymous user row is then
+    // updated in place, keeping the user's data attached. When it already
+    // belongs to another verified account (typically signing up a new email
+    // while authenticated as another account), start a fresh identity so one
+    // id never maps to several accounts.
+    const otherAccountWithUserId = sessionUserId
+      ? await findOtherVerifiedAccountWithUserId(
+          { userId: sessionUserId, email: loginDto.email },
+          { session }
+        )
+      : null
+
+    const newUserId = otherAccountWithUserId
+      ? randomUUID()
+      : (sessionUserId ?? randomUUID())
 
     const { user: newUser } = await createOrUpdateVerifiedUser(
       {
