@@ -104,6 +104,34 @@ export class NGCTest {
     return await this.hasClickableButton('end-test-button')
   }
 
+  // Resolves as soon as at least one of the given buttons is actually visible
+  // and enabled. Event-driven replacement for a fixed sleep: waitForFunction
+  // polls at the browser's frame rate, so the loop converges as fast as the
+  // app renders instead of paying a constant delay per question.
+  private async waitForClickableButton(testIds: string[], timeout = 30_000) {
+    await this.page.waitForFunction(
+      (ids: string[]) =>
+        ids.some((id) =>
+          Array.from(
+            document.querySelectorAll<HTMLElement>(`[data-testid="${id}"]`)
+          ).some((el) => {
+            if (el.getClientRects().length === 0) return false
+            if (getComputedStyle(el).visibility === 'hidden') return false
+            // Same disabled-state logic as hasClickableButton: the testid can
+            // sit on a span inside the button, so check the closest button/a
+            // ancestor (native or aria-disabled).
+            const clickable = el.closest('button, a')
+            if (clickable?.hasAttribute('disabled')) return false
+            if (clickable?.getAttribute('aria-disabled') === 'true')
+              return false
+            return true
+          })
+        ),
+      testIds,
+      { timeout }
+    )
+  }
+
   async isBooleanQuestion() {
     // if boolean question, test id contains "oui" or "non"
     const ouiCount = await this.page.getByTestId(/oui-label/).count()
@@ -147,9 +175,12 @@ export class NGCTest {
       if (await this.clickSkipIfPossible()) {
         continue
       }
-      // Navigation in flight or the last question is being folded. Give the
-      // UI time to catch up instead of spinning on clicks.
-      await new Promise((resolve) => setTimeout(resolve, 250))
+      // Navigation in flight or the last question is being folded: wait for a
+      // clickable skip or end button instead of sleeping a fixed amount.
+      await this.waitForClickableButton([
+        'skip-question-button',
+        'end-test-button',
+      ])
     }
     // The end button is clickable. Do not wait for the client-side navigation
     // it triggers: the implicit navigation wait can time out when the RSC
@@ -173,7 +204,14 @@ export class NGCTest {
         if (await this.clickSkipIfPossible()) {
           continue
         }
-        await new Promise((resolve) => setTimeout(resolve, 250))
+        // The question is still rendering (its inputs and the skip button
+        // appear in the same commit): wait for it to be ready instead of
+        // sleeping a fixed amount, then loop back — a target question whose
+        // inputs just appeared will be answered, the others skipped.
+        await this.waitForClickableButton([
+          'skip-question-button',
+          'end-test-button',
+        ])
         continue
       }
       try {
