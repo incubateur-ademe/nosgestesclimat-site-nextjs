@@ -156,7 +156,9 @@ test.describe('When a user completes the test via the scolaire poll invite link'
     // Joining a new scolaire poll must offer to reuse the previous scolaire
     // test (same mode), with its date and result.
     await page.goto(newScolairePoll.inviteLink)
-    await expect(page.getByTestId('commencer-title')).toBeVisible()
+    await expect(
+      page.getByTestId('reuse-simulation-banner-title')
+    ).toBeVisible()
     await expect(page.getByText('Test réalisé le')).toBeVisible()
     await expect(page.getByText('Votre empreinte')).toBeVisible()
   })
@@ -170,7 +172,7 @@ test.describe('When a user completes the test via the scolaire poll invite link'
     // while the scolaire simulation stays in the account.
     await page.goto(poll.inviteLink)
     await expect(page.getByTestId('tutoriel-title')).toBeVisible()
-    await expect(page.getByTestId('commencer-title')).toBeHidden()
+    await expect(page.getByTestId('reuse-simulation-banner-title')).toBeHidden()
     await page.getByTestId('skip-tutorial-button').click()
     await expect(page).toHaveURL(/\/simulateur\/bilan/)
   })
