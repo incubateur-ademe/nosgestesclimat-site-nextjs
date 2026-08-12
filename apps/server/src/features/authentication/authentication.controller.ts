@@ -53,10 +53,19 @@ router
     async (req, res) => {
       const startedAt = Date.now()
 
-      // The current session's userId is forwarded by the proxy as the
-      // `x-user-id` header. The server trusts it - not a client-provided
-      // body field - to enforce the "one session userId = one account"
-      // invariant.
+      // The login endpoint is only reachable through the site's server-side
+      // `fetchServer`, which always forwards the shared `x-internal-key`
+      // alongside the session identity. Requiring it makes the `x-user-id`
+      // header trustworthy - it is set from the signed session cookie by the
+      // site proxy, not by the browser - so the "one session userId = one
+      // account" invariant can rely on it instead of a client-settable field.
+      if (req.headers['x-internal-key'] !== config.security.internalApiKey) {
+        return res.status(StatusCodes.UNAUTHORIZED).end()
+      }
+
+      // The current session's userId travels as the `x-user-id` header. The
+      // server uses it - not a client-provided body field - to enforce the
+      // "one session userId = one account" invariant.
       const rawSessionUserId = req.headers['x-user-id']
       let sessionUserId: string | undefined
       if (typeof rawSessionUserId === 'string') {

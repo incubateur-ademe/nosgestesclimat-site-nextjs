@@ -138,10 +138,11 @@ export const login = async ({
   loginDto: LoginDto
   locale: Locales
   /**
-   * The current session's userId, forwarded by the proxy as the `x-user-id`
-   * header. The server relies on it to enforce the
-   * "one session userId = one account" invariant instead of trusting a
-   * client-provided id.
+   * The current session's userId, forwarded by the site's `fetchServer` as
+   * the `x-user-id` header. The login route only accepts requests carrying
+   * the shared `x-internal-key`, so this id comes from the signed session
+   * cookie - not from the browser. The server relies on it to enforce the
+   * "one session userId = one account" invariant.
    */
   sessionUserId?: string
 }) => {

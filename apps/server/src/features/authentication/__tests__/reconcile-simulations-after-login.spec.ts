@@ -65,7 +65,7 @@ describe('Given a NGC user with a previous anonymous session', () => {
 
       await agent
         .post(LOGIN_ROUTE)
-        .set('x-user-id', anonUserId)
+        .set(authHeaders({ userId: anonUserId }))
         .send({
           email: verificationCode.email,
           code: verificationCode.code,
@@ -108,7 +108,7 @@ describe('Given a NGC user with a previous anonymous session', () => {
 
       await agent
         .post(LOGIN_ROUTE)
-        .set('x-user-id', verifiedUserId)
+        .set(authHeaders({ userId: verifiedUserId }))
         .send({
           email: signUpCode.email,
           code: signUpCode.code,
@@ -136,7 +136,7 @@ describe('Given a NGC user with a previous anonymous session', () => {
 
         await agent
           .post(LOGIN_ROUTE)
-          .set('x-user-id', anonUserId)
+          .set(authHeaders({ userId: anonUserId }))
           .send({
             email: signInCode.email,
             code: signInCode.code,
@@ -189,7 +189,7 @@ describe('Given a NGC user with a previous anonymous session', () => {
 
         await agent
           .post(LOGIN_ROUTE)
-          .set('x-user-id', verifiedUserId)
+          .set(authHeaders({ userId: verifiedUserId }))
           .send({
             email: signUpCode.email,
             code: signUpCode.code,
@@ -227,7 +227,7 @@ describe('Given a NGC user with a previous anonymous session', () => {
 
           await agent
             .post(LOGIN_ROUTE)
-            .set('x-user-id', anonUserId)
+            .set(authHeaders({ userId: anonUserId }))
             .send({
               email: signInCode.email,
               code: signInCode.code,
