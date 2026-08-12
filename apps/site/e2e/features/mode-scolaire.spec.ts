@@ -1,5 +1,5 @@
-import type { Page } from '@playwright/test'
 import { EMAIL_PAGE_PATH } from '@/constants/urls/paths'
+import type { Page } from '@playwright/test'
 import { expect, test } from '../fixtures'
 import { createPage } from '../fixtures/feature-flags'
 import { NGCTest } from '../fixtures/ngc-test'
@@ -49,6 +49,7 @@ test.describe('When a user completes the test via the scolaire poll invite link'
     const ngcTest = new NGCTest(page)
     await ngcTest.skipAllQuestions()
 
+    // @TODO: temporary bandage, fix me soon
     // The scolaire flow can land directly on /fin when the poll is not yet
     // attached to the simulation when endTestAction runs (a race on preprod);
     // the email step is only displayed when it is. Skip it only when shown,

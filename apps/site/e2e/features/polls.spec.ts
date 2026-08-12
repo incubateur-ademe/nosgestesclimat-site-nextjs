@@ -151,6 +151,7 @@ test.describe('A user with a completed test that joined a poll', () => {
     const ngcTest = new NGCTest(page)
     await ngcTest.skipAllQuestions()
 
+    // @TODO: temporary bandage, fix me soon
     // The flow can land directly on /fin when the poll is not yet attached to
     // the simulation when endTestAction runs (a race on preprod); the email
     // step is only displayed when it is. Skip it only when shown, otherwise
