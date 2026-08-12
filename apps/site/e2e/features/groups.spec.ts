@@ -109,6 +109,7 @@ test.describe('A new user', () => {
   })
 
   test('can join a group', async ({ group, user, page }) => {
+    test.setTimeout(60_000)
     await group.joinWithInviteLink(user)
     await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
   })
@@ -125,7 +126,7 @@ test.describe('A new user', () => {
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await user.fillEmailAndCompleteVerification()
-    await expect(page).toHaveURL('/fin')
+    await expect(page).toHaveURL('/fin', { timeout: 15_000 })
     await page.getByTestId('see-group-result-button').click()
     await expect(page).toHaveURL(group.url)
   })
@@ -189,6 +190,11 @@ test.describe('A user with a completed test that joined a group', () => {
   let page: Page
 
   test.beforeAll(async ({ browser }) => {
+    // Completing the whole test and joining a group takes well over the 30s
+    // default hook timeout on a loaded preprod; the describe-level
+    // test.setTimeout() does not raise the hook budget.
+    test.setTimeout(120_000)
+
     page = await createPage(browser)
     await new NGCTest(page).skipAll()
     await expect(page).toHaveURL('/fin')
@@ -215,14 +221,21 @@ test.describe('A user with a completed test that joined a group', () => {
   })
 
   test('see the group result page after joining', async ({ group }) => {
-    await expect(page).toHaveURL(group.url)
-    await expect(page.getByTestId('group-name')).toContainText(group.name)
+    // Joining redirects from the invitation page to the result page; the
+    // redirect and the result page render can take longer than 10s on a
+    // loaded preprod.
+    await expect(page).toHaveURL(group.url, { timeout: 30_000 })
+    await expect(page.getByTestId('group-name')).toContainText(group.name, {
+      timeout: 30_000,
+    })
   })
 
   test('can access the group result page directly', async ({ group }) => {
     await page.goto(group.url)
-    await expect(page).toHaveURL(group.url)
-    await expect(page.getByTestId('group-name')).toContainText(group.name)
+    await expect(page).toHaveURL(group.url, { timeout: 30_000 })
+    await expect(page.getByTestId('group-name')).toContainText(group.name, {
+      timeout: 30_000,
+    })
   })
 
   test('can go to the group from the end page of his test', async ({
@@ -230,32 +243,40 @@ test.describe('A user with a completed test that joined a group', () => {
   }) => {
     await page.goto('/fin')
     await page.getByTestId('see-group-result-button').click()
-    await expect(page).toHaveURL(group.url)
-    await expect(page.getByTestId('group-name')).toContainText(group.name)
+    await expect(page).toHaveURL(group.url, { timeout: 30_000 })
+    await expect(page.getByTestId('group-name')).toContainText(group.name, {
+      timeout: 30_000,
+    })
   })
 
   test('can see the group in the « mes groupes » tab', async ({ group }) => {
     await page.goto('/fin')
     await group.goFromGroupTabs(page)
-    await expect(page).toHaveURL(group.url)
-    await expect(page.getByTestId('group-name')).toContainText(group.name)
+    await expect(page).toHaveURL(group.url, { timeout: 30_000 })
+    await expect(page.getByTestId('group-name')).toContainText(group.name, {
+      timeout: 30_000,
+    })
   })
 
   test('when he reuses the invite link, lands directly on the result page', async ({
     group,
   }) => {
     await page.goto(group.inviteLink)
-    await expect(page).toHaveURL(group.url)
-    await expect(page.getByTestId('group-name')).toContainText(group.name)
+    await expect(page).toHaveURL(group.url, { timeout: 30_000 })
+    await expect(page.getByTestId('group-name')).toContainText(group.name, {
+      timeout: 30_000,
+    })
   })
 
   test('can leave a group', async ({ group }) => {
-    await expect(page.getByTestId('button-leave-group')).toBeVisible()
+    await expect(page.getByTestId('button-leave-group')).toBeVisible({
+      timeout: 30_000,
+    })
     await group.leave(page)
     await page.goto('/fin')
     await page.getByTestId('my-groups-tab').click()
     await expect(
       page.getByText(group.name).filter({ visible: true })
-    ).toHaveCount(0)
+    ).toHaveCount(0, { timeout: 30_000 })
   })
 })

@@ -72,6 +72,12 @@ export class Group {
     await user.page.goto(this.inviteLink)
     await user.page.getByTestId('member-name').fill(user.firstName)
     await user.page.getByTestId('button-join-group').click()
+    await user.page.waitForURL(
+      (url) => !url.pathname.includes('/amis/invitation'),
+      {
+        timeout: 10_000,
+      }
+    )
   }
 
   async leave(page: Page) {
