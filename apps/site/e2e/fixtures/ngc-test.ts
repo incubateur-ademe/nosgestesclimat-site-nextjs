@@ -15,9 +15,10 @@ export class NGCTest {
   }
 
   private async answerQuestion(situation: Situation) {
-    // Visible-only inputs: <Activity> keeps the previous question mounted but
-    // hidden (display: none) while the app navigates, so a bare
-    // locator('input') would count stale inputs from the previous page.
+    // Visible-only inputs: the question is remounted on each navigation
+    // (key={currentQuestion}), but during a route transition the previous
+    // question can stay mounted briefly, so counting only rendered inputs
+    // avoids answering the same question twice.
     // count() is non-waiting on purpose: the page may not have rendered its
     // inputs yet on a loaded preprod, and all() would block until the test
     // timeout while the app is still navigating.
@@ -71,12 +72,12 @@ export class NGCTest {
   }
 
   // Returns true when at least one enabled and actually visible copy of the
-  // button is in the DOM. Checked atomically in a single evaluate: the
-  // visible-testid patch appends { visible: true } to getByTestId, and
-  // isEnabled() on such a locator waits forever when the visible copy
-  // disappears mid-check (React <Activity> keeps a hidden copy mounted while
-  // the app navigates between questions), which previously stalled the whole
-  // skip loop until the hook timeout.
+  // button is in the DOM. Checked atomically in a single evaluate: the testid
+  // can sit on a span inside the button (the simulateur end button), and the
+  // design-system Button disables via aria-disabled, which Playwright's
+  // isEnabled() ignores — so the disabled state must be read from the closest
+  // button/a ancestor. A single evaluate avoids blocking on locator methods
+  // that auto-wait while the element vanishes mid-check.
   private async hasClickableButton(testId: string) {
     return await this.page.evaluate((id) => {
       const elements = Array.from(
@@ -104,16 +105,55 @@ export class NGCTest {
     return await this.hasClickableButton('end-test-button')
   }
 
-  // Resolves as soon as at least one of the given buttons is actually visible
-  // and enabled. Event-driven replacement for a fixed sleep: waitForFunction
-  // polls at the browser's frame rate, so the loop converges as fast as the
-  // app renders instead of paying a constant delay per question.
-  private async waitForClickableButton(testIds: string[], timeout = 30_000) {
+  // Returns the text of the first visible question label, or null when no
+  // question is displayed (navigation in flight, intercalaire pages).
+  // <Label> is rendered by every question page — including the special
+  // questions (voiture, textile, plats), which all render <Question>.
+  private async getCurrentQuestionLabel(): Promise<string | null> {
+    return await this.page.evaluate(() => {
+      const label = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-testid="question-label"]')
+      ).find(
+        (el) =>
+          el.getClientRects().length > 0 &&
+          getComputedStyle(el).visibility !== 'hidden'
+      )
+      return label ? label.textContent.trim() : null
+    })
+  }
+
+  // Resolves once the app has moved past the question identified by
+  // previousLabel: a different question label is displayed, the end button
+  // became clickable, or — on an intercalaire page, which has no question
+  // label — a clickable skip button is available. Event-driven replacement
+  // for a fixed sleep: waitForFunction polls at the browser's frame rate, so
+  // the loop converges as fast as the app renders instead of paying a
+  // constant delay per question. Waiting on the question label rather than
+  // on a button predicate also makes a double-click impossible: the loop
+  // cannot interact with the previous question again while its label is
+  // still displayed.
+  private async waitForQuestionChange(
+    previousLabel: string | null,
+    timeout = 30_000
+  ) {
     await this.page.waitForFunction(
-      (ids: string[]) =>
-        ids.some((id) =>
+      ({ prev }: { prev: string | null }) => {
+        const visibleLabel = Array.from(
+          document.querySelectorAll<HTMLElement>(
+            '[data-testid="question-label"]'
+          )
+        ).find(
+          (el) =>
+            el.getClientRects().length > 0 &&
+            getComputedStyle(el).visibility !== 'hidden'
+        )
+        const currentLabel = visibleLabel
+          ? visibleLabel.textContent.trim()
+          : null
+
+        const isClickable = (testId: string) =>
           Array.from(
-            document.querySelectorAll<HTMLElement>(`[data-testid="${id}"]`)
+            document.querySelectorAll<HTMLElement>(`[data-testid="${testId}"]`)
           ).some((el) => {
             if (el.getClientRects().length === 0) return false
             if (getComputedStyle(el).visibility === 'hidden') return false
@@ -126,8 +166,19 @@ export class NGCTest {
               return false
             return true
           })
-        ),
-      testIds,
+
+        // A new question is displayed.
+        if (currentLabel !== null && currentLabel !== prev) return true
+        // The test is over: the end button is clickable.
+        if (isClickable('end-test-button')) return true
+        // Intercalaire page: no question label, the skip button is the only
+        // advancement signal.
+        if (currentLabel === null && isClickable('skip-question-button'))
+          return true
+
+        return false
+      },
+      { prev: previousLabel },
       { timeout }
     )
   }
@@ -171,16 +222,20 @@ export class NGCTest {
   }
 
   async skipAllQuestions() {
+    let label = await this.getCurrentQuestionLabel()
     while (!(await this.canEndTest())) {
       if (await this.clickSkipIfPossible()) {
+        // Navigation in flight: wait for the next question to render (or for
+        // the end of the test) before looking for the next skip button.
+        await this.waitForQuestionChange(label)
+        label = await this.getCurrentQuestionLabel()
         continue
       }
-      // Navigation in flight or the last question is being folded: wait for a
-      // clickable skip or end button instead of sleeping a fixed amount.
-      await this.waitForClickableButton([
-        'skip-question-button',
-        'end-test-button',
-      ])
+      // No clickable skip button: the question is still rendering or the app
+      // is navigating between pages. Wait for the UI to settle instead of
+      // spinning on clicks.
+      await this.waitForQuestionChange(label)
+      label = await this.getCurrentQuestionLabel()
     }
     // The end button is clickable. Do not wait for the client-side navigation
     // it triggers: the implicit navigation wait can time out when the RSC
@@ -194,6 +249,7 @@ export class NGCTest {
 
   async answerTest(situation: Situation) {
     while (!(await this.canEndTest())) {
+      const label = await this.getCurrentQuestionLabel()
       const isAnswered = await this.answerQuestion(situation)
       if (!isAnswered) {
         // Not a target question (or an input-less special question): skip it.
@@ -202,25 +258,30 @@ export class NGCTest {
         // rendered — a target question whose inputs are still rendering can
         // never be skipped here.
         if (await this.clickSkipIfPossible()) {
+          // Wait for the next question to render before interacting with it.
+          await this.waitForQuestionChange(label)
           continue
         }
         // The question is still rendering (its inputs and the skip button
-        // appear in the same commit): wait for it to be ready instead of
-        // sleeping a fixed amount, then loop back — a target question whose
-        // inputs just appeared will be answered, the others skipped.
-        await this.waitForClickableButton([
-          'skip-question-button',
-          'end-test-button',
-        ])
+        // appear in the same commit): wait for it to be ready, then loop back
+        // — a target question whose inputs just appeared will be answered,
+        // the others skipped.
+        await this.waitForQuestionChange(label)
         continue
       }
-      try {
-        await this.page
-          .getByTestId('next-question-button')
-          .click({ timeout: 2000 })
-      } catch {
+      // Target question answered: go to the next one. The click can race with
+      // the fold that enables the button (and the last question shows the
+      // end-test button instead), so retry on timeout rather than failing.
+      const nextClicked = await this.page
+        .getByTestId('next-question-button')
+        .click({ timeout: 2000 })
+        .then(() => true)
+        .catch(() => false)
+      if (!nextClicked) {
         continue
       }
+      // Wait for the next question to render before reading its inputs.
+      await this.waitForQuestionChange(label)
     }
     await this.endButton().click({ noWaitAfter: true, timeout: 5000 })
     await this.page.waitForURL(/\/(fin|simulateur\/email)/, { timeout: 30_000 })
