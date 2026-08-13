@@ -149,22 +149,6 @@ export const captureTrackingCategoryFilter = ({ category }: PosthogProps) => ({
   },
 })
 
-export const captureActionsClickYes = ({ action }: PosthogProps) => ({
-  eventName: 'Actions click Yes',
-  properties: {
-    action,
-  },
-})
-
-export const captureActionsClickUnderstandCalculation = ({
-  action,
-}: PosthogProps) => ({
-  eventName: 'Actions click understand calculation',
-  properties: {
-    action,
-  },
-})
-
 // Fin
 
 export const captureEndClickCategory = ({ category, action }: PosthogProps) => {

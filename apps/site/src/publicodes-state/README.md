@@ -24,8 +24,6 @@ This interval library contains context/providers and hooks to manage the publico
 
 - [useRule](./useRule/useRule.ts)
 
-- [useActions](./useUser/useActions.ts)
-
 - [useCurrentSimulation](./useCurrentSimulation/useCurrentSimulation.ts)
 
 - [useDisposableEngine](./useDisposableEngine/useDisposableEngine.ts)

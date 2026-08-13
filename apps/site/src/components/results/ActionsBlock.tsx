@@ -20,12 +20,17 @@ const ACTIONS_HREF = `${END_PAGE_PATH}/actions` as const
 
 interface Props {
   locale: Locale
+  className?: string
 }
 
-export default async function ActionsBlock({ locale }: Props) {
+export default async function ActionsBlock({ locale, className }: Props) {
   const { t } = await getServerTranslation({ locale })
   return (
-    <Card className="group/card focus-within:ring-primary-700 relative mb-20 shadow-md transition-all duration-200 ease-out focus-within:ring-2 focus-within:ring-offset-3 focus-within:outline-hidden hover:scale-[1.02] hover:shadow-xl">
+    <Card
+      className={twMerge(
+        'group/card focus-within:ring-primary-700 relative shadow-md transition-all duration-200 ease-out focus-within:ring-2 focus-within:ring-offset-3 focus-within:outline-hidden hover:scale-[1.02] hover:shadow-xl',
+        className
+      )}>
       <div className="flex flex-col items-stretch gap-10 md:flex-row md:gap-4">
         <div className="w-full max-w-full sm:w-md">
           <Title

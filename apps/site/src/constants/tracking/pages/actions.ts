@@ -10,11 +10,3 @@ export const actionsClickYes = (action: DottedName) => [
   'Click Yes',
   `Click Yes ${action}`,
 ]
-
-// Click on "Comprendre le calcul" link in action detail
-export const actionsClickUnderstandCalculation = (action: DottedName) => [
-  'trackEvent',
-  'Actions',
-  'Click Understand Calculation',
-  `Click Understand Calculation ${action}`,
-]

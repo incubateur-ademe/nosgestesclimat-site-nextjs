@@ -12,7 +12,6 @@ import useUser from '../useUser/useUser'
  */
 export const EMPTY_SITUATION: Situation = {}
 export const EMPTY_FOLDED_STEPS: DottedName[] = []
-export const EMPTY_ACTION_CHOICES: Simulation['actionChoices'] = {}
 
 /**
  * The current simulation, or `undefined` when the user has not taken the test

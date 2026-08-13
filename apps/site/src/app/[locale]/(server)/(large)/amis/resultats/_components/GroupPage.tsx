@@ -1,3 +1,4 @@
+import ActionsBlock from '@/components/results/ActionsBlock'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import { carboneMetric } from '@/constants/model/metric'
 import { getCachedRules } from '@/helpers/modelFetching/getCachedRules'
@@ -52,6 +53,7 @@ export default async function GroupPage({
       )}
 
       <GroupResults
+        locale={locale}
         group={group}
         categoriesAccordion={
           <CategoriesAccordion
@@ -61,6 +63,7 @@ export default async function GroupPage({
             metric={carboneMetric}
           />
         }
+        actionsSection={<ActionsBlock locale={locale} className="my-6" />}
       />
     </>
   )
