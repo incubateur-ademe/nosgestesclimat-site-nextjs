@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
+import { sortParticipantsByFootprint } from '@/helpers/groups/sortParticipantsByFootprint'
 import type { Group } from '@/types/groups'
 import type { ReactNode } from 'react'
 
@@ -30,19 +31,10 @@ export default function LaconicRanking({ group }: Props) {
     )
   }
 
-  const particpantsOrdered = group.participants.sort((a, b) => {
-    const computedResultsA = a.simulation.computedResults
-    const computedResultsB = b.simulation.computedResults
-
-    if (!computedResultsA || !computedResultsB) {
-      return 0
-    }
-
-    return computedResultsA?.[carboneMetric]?.bilan <
-      computedResultsB?.[carboneMetric]?.bilan
-      ? -1
-      : 1
-  })
+  const particpantsOrdered = sortParticipantsByFootprint(
+    group.participants,
+    carboneMetric
+  )
 
   // Display a list of participants with their rank and an emoji medal for the first three
   // then a number for the rest
