@@ -57,8 +57,6 @@ export class User {
     const emailInput = this.page.getByTestId('verification-code-email-input')
     await emailInput.scrollIntoViewIfNeeded()
     await emailInput.fill(this.email)
-    // The email input registers its value synchronously (debounceTimeout={0}),
-    // so submitting right after fill() is safe.
     await emailInput.press('Enter')
     // The code input only appears once the server has accepted the email and
     // sent the verification code. On a loaded environment (shared preprod)
