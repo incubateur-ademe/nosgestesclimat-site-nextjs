@@ -15,7 +15,7 @@ import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group } from '@/types/groups'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { isGroupOwner } from '../../_helpers/isGroupOwner'
 import { updateGroupAction } from '../_actions/update-group.action'
 
@@ -26,36 +26,37 @@ export default function EditableGroupTitle({
   group: Group
   user: AppUser
 }) {
-  const formattedGroupId = group.id.replaceAll('/', '')
-
   const [isEditingTitle, setIsEditingTitle] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
   const { t } = useClientTranslation()
 
   const isOwner = isGroupOwner(group, user)
 
-  const handleSubmit = async (groupNameUpdated: string) => {
-    setIsSubmitting(true)
-    try {
-      await updateGroupAction({
-        groupId: formattedGroupId,
-        name: groupNameUpdated,
-      })
-
-      setIsEditingTitle(false)
-    } catch (e) {
-      captureException(e)
-    } finally {
-      setIsSubmitting(false)
-    }
+  const handleSubmit = (groupNameUpdated: string) => {
+    startTransition(async () => {
+      try {
+        await updateGroupAction({
+          groupId: group.id,
+          name: groupNameUpdated,
+        })
+      } catch (e) {
+        captureException(e)
+      }
+    })
   }
   const vousWord = t('Vous')
 
   return (
     <>
       <div className="mb-4">
-        {isEditingTitle ? (
+        {/*
+          `onClose` fires as soon as the transition is started, so keep the
+          input mounted while it is pending: the read-only title would
+          otherwise repaint with the stale name until the revalidated tree
+          lands.
+        */}
+        {isEditingTitle || isPending ? (
           <InlineTextInput
             defaultValue={group?.name}
             label={t('Modifier le nom du groupe')}
@@ -65,7 +66,7 @@ export default function EditableGroupTitle({
               trackMatomoEvent__deprecated(amisDashboardValidateEditName)
             }}
             onSubmit={handleSubmit}
-            isLoading={isSubmitting}
+            isLoading={isPending}
             data-testid="group-edit-input-name"
           />
         ) : (

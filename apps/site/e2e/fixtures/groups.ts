@@ -63,8 +63,7 @@ export class Group {
     await this.page.getByTestId('group-name-edit-button').click()
     await this.page.getByTestId('group-edit-input-name').fill(newName)
     await this.page.getByTestId('button-inline-input').click()
-    // eslint-disable-next-line playwright/no-networkidle
-    await this.page.waitForLoadState('networkidle')
+    await expect(this.page.getByTestId('group-name')).toContainText(newName)
     this.data.name = newName
   }
 
