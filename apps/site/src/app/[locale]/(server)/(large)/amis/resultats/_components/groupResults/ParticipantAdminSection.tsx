@@ -6,7 +6,7 @@ import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
-import { useUser } from '@/publicodes-state'
+import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
@@ -14,17 +14,17 @@ import { useEffect, useRef, useState, useTransition } from 'react'
 
 interface Props {
   group: Group
+  user: AppUser
 }
 
-export default function ParticipantAdminSection({ group }: Props) {
+export default function ParticipantAdminSection({ group, user }: Props) {
   const [isConfirming, setIsConfirming] = useState(false)
 
   const { mutateAsync: removePartipant, isSuccess } = useRemoveParticipant()
 
   const [isPending, startTransition] = useTransition()
 
-  const { user } = useUser()
-  const userId = user!.id
+  const userId = user.id
 
   const router = useRouter()
 

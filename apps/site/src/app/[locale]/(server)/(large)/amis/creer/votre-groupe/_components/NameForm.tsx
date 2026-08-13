@@ -12,7 +12,6 @@ import TextInput from '@/design-system/inputs/TextInput'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 import { updateGroupParticipant } from '@/services/groups/update-group-participant'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
@@ -48,8 +47,6 @@ export default function NameForm({
 
   const router = useRouter()
 
-  const { updateName } = useUser()
-
   async function onSubmit({ name, emoji, administratorName }: Inputs) {
     try {
       const group = await createGroup({
@@ -66,8 +63,6 @@ export default function NameForm({
       if (lastSimulation) {
         router.push(`/amis/resultats?groupId=${group.id}`)
       } else {
-        updateName(administratorName)
-
         await updateGroupParticipant({
           groupId: group.id,
           name: administratorName,

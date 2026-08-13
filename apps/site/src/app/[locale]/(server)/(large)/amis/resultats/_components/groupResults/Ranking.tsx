@@ -6,7 +6,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
-import { useUser } from '@/publicodes-state'
+import type { AppUser } from '@/services/auth/get-user-session'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -15,14 +15,13 @@ import RankingMember from './ranking/RankingMember'
 export default function Ranking({
   group,
   metric,
+  user,
 }: {
   group: Group
   metric: Metrics
+  user: AppUser
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
-
-  const { user } = useUser()
-  const userId = user!.id
 
   const { topThreeMembers, restOfMembers, membersWithUncompletedSimulations } =
     getTopThreeAndRestMembers(group.participants, metric) || {}
@@ -60,8 +59,9 @@ export default function Ranking({
               index={index}
               participant={participant}
               isTopThree
-              isCurrentMember={participant.userId === userId}
+              isCurrentMember={participant.userId === user.id}
               group={group}
+              user={user}
               numberOfParticipants={group.participants.length}
               textColor={
                 metric === eauMetric || hasOneParticipant
@@ -85,8 +85,9 @@ export default function Ranking({
                 return (
                   <RankingMember
                     key={participant.id}
-                    isCurrentMember={participant.userId === userId}
+                    isCurrentMember={participant.userId === user.id}
                     group={group}
+                    user={user}
                     // Add 3 to the index to account for the top three members
                     index={index + 3}
                     metric={metric}

@@ -42,7 +42,7 @@ export default async function GroupPage({
 
   return (
     <>
-      <EditableGroupTitle group={group} />
+      <EditableGroupTitle group={group} user={user} />
 
       {newSimulation && (
         <UpdateSimulationUsed
@@ -55,6 +55,7 @@ export default async function GroupPage({
       <GroupResults
         locale={locale}
         group={group}
+        user={user}
         categoriesAccordion={
           <CategoriesAccordion
             locale={locale}

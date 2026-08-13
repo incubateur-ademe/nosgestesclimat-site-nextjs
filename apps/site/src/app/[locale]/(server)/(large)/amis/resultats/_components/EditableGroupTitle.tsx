@@ -12,7 +12,7 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useUpdateGroup } from '@/hooks/groups/useUpdateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
+import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group } from '@/types/groups'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
@@ -20,7 +20,13 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { isGroupOwner } from '../../_helpers/isGroupOwner'
 
-export default function EditableGroupTitle({ group }: { group: Group }) {
+export default function EditableGroupTitle({
+  group,
+  user,
+}: {
+  group: Group
+  user: AppUser
+}) {
   const formattedGroupId = group.id?.replaceAll('/', '')
 
   const [isEditingTitle, setIsEditingTitle] = useState(false)
@@ -32,7 +38,6 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
   const router = useRouter()
 
-  const { user } = useUser()
   const isOwner = isGroupOwner(group, user)
 
   const handleSubmit = async (groupNameUpdated: string) => {

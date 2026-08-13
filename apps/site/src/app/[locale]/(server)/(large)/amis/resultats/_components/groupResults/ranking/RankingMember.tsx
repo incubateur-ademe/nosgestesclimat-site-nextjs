@@ -9,6 +9,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group, Participant } from '@/types/groups'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/nextjs'
@@ -16,7 +17,6 @@ import isMobile from 'is-mobile'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { useUser } from '../../../../../../../../../publicodes-state'
 import { isGroupOwner } from '../../../../_helpers/isGroupOwner'
 
 const getRank = (index: number) => {
@@ -41,6 +41,7 @@ export default function RankingMember({
   numberOfParticipants,
   textColor,
   metric,
+  user,
 }: {
   isTopThree?: boolean
   index: number
@@ -50,8 +51,8 @@ export default function RankingMember({
   textColor?: string
   participant: Participant
   metric: Metrics
+  user: AppUser
 }) {
-  const { user } = useUser()
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
 
   const { t } = useClientTranslation()
