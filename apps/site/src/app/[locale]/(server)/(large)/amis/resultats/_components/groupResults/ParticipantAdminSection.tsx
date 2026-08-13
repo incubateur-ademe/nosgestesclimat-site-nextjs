@@ -5,12 +5,13 @@ import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
+import { useUser } from '@/publicodes-state'
 import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState, useTransition } from 'react'
+import { removeParticipantAction } from '../../_actions/remove-participant.action'
 
 interface Props {
   group: Group
@@ -19,8 +20,9 @@ interface Props {
 
 export default function ParticipantAdminSection({ group, user }: Props) {
   const [isConfirming, setIsConfirming] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
-  const { mutateAsync: removePartipant, isSuccess } = useRemoveParticipant()
+  const { updateCurrentSimulation } = useUser()
 
   const [isPending, startTransition] = useTransition()
 
@@ -38,11 +40,13 @@ export default function ParticipantAdminSection({ group, user }: Props) {
       if (!participant) return
 
       try {
-        await removePartipant({
+        await removeParticipantAction({
           participantId: participant.id,
           groupId: group.id,
-          isCurrentUser: true,
         })
+
+        updateCurrentSimulation({ groupToDelete: group.id })
+        setIsSuccess(true)
 
         timeoutRef.current = setTimeout(() => {
           router.push(MON_ESPACE_GROUPS_PATH)

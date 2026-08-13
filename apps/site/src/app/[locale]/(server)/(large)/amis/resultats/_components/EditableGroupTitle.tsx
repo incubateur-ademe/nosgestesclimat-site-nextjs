@@ -10,15 +10,14 @@ import Button from '@/design-system/buttons/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
-import { useUpdateGroup } from '@/hooks/groups/useUpdateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group } from '@/types/groups'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { isGroupOwner } from '../../_helpers/isGroupOwner'
+import { updateGroupAction } from '../_actions/update-group.action'
 
 export default function EditableGroupTitle({
   group,
@@ -27,33 +26,28 @@ export default function EditableGroupTitle({
   group: Group
   user: AppUser
 }) {
-  const formattedGroupId = group.id?.replaceAll('/', '')
+  const formattedGroupId = group.id.replaceAll('/', '')
 
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const { t } = useClientTranslation()
 
-  const { mutateAsync: updateGroup } = useUpdateGroup()
-
-  const router = useRouter()
-
   const isOwner = isGroupOwner(group, user)
 
   const handleSubmit = async (groupNameUpdated: string) => {
     setIsSubmitting(true)
     try {
-      await updateGroup({
+      await updateGroupAction({
         groupId: formattedGroupId,
         name: groupNameUpdated,
       })
 
-      setIsSubmitting(false)
       setIsEditingTitle(false)
-
-      router.refresh()
     } catch (e) {
       captureException(e)
+    } finally {
+      setIsSubmitting(false)
     }
   }
   const vousWord = t('Vous')

@@ -4,19 +4,16 @@ import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMess
 import Trans from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
-import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import TextInput from '@/design-system/inputs/TextInput'
 import type { Simulation } from '@/helpers/server/model/simulations'
-import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { updateGroupParticipant } from '@/services/groups/update-group-participant'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
-import { captureException } from '@sentry/nextjs'
-import { useRouter } from 'next/navigation'
+import { useState, useTransition } from 'react'
 import { useForm as useReactHookForm, type Control } from 'react-hook-form'
+import { createGroupAction } from '../_actions/create-group.action'
 
 interface Inputs {
   name: string
@@ -38,46 +35,31 @@ export default function NameForm({
     formState: { errors },
   } = useReactHookForm<Inputs>()
 
-  const {
-    mutateAsync: createGroup,
-    isPending,
-    isSuccess,
-    isError,
-  } = useCreateGroup()
+  const [isPending, startTransition] = useTransition()
+  const [isError, setIsError] = useState(false)
 
-  const router = useRouter()
+  function onSubmit({ name, emoji, administratorName }: Inputs) {
+    setIsError(false)
+    trackMatomoEvent__deprecated(amisCreationEtapeVotreGroupeSuivant)
 
-  async function onSubmit({ name, emoji, administratorName }: Inputs) {
-    try {
-      const group = await createGroup({
+    startTransition(async () => {
+      const result = await createGroupAction({
         name: name ?? '',
         emoji: emoji ?? '',
         administratorName: administratorName ?? '',
-        participants: lastSimulation
-          ? [{ simulation: lastSimulation }]
-          : undefined,
+        lastSimulation,
       })
 
-      trackMatomoEvent__deprecated(amisCreationEtapeVotreGroupeSuivant)
-
-      if (lastSimulation) {
-        router.push(`/amis/resultats?groupId=${group.id}`)
-      } else {
-        await updateGroupParticipant({
-          groupId: group.id,
-          name: administratorName,
-        })
-
-        router.refresh()
-        router.push(TUTORIAL_PATH)
+      if (!result.success) {
+        setIsError(true)
       }
-    } catch (e) {
-      captureException(e)
-    }
+    })
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form
+      onSubmit={handleSubmit(onSubmit) as () => void}
+      className="flex flex-col gap-4">
       <PrenomInput
         data-testid="group-input-owner-name"
         error={errors.administratorName?.message}
@@ -120,7 +102,7 @@ export default function NameForm({
         type="submit"
         data-testid="button-validate-create-group"
         className="mt-4 self-start"
-        disabled={isPending || isSuccess}>
+        disabled={isPending}>
         {lastSimulation ? (
           <Trans>Créer le groupe</Trans>
         ) : (
