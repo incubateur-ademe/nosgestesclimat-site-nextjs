@@ -6,7 +6,6 @@ import type { Simulation } from '@/helpers/server/model/simulations'
 import type { UserSession } from '@/services/auth/get-user-session'
 import UserContext from './context'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
-import usePersistentUser from './hooks/usePersistentUser'
 
 interface Props {
   /**
@@ -25,7 +24,7 @@ export default function UserProvider({
   simulation: serverSimulation,
   userSession,
 }: PropsWithChildren<Props>) {
-  const { user, setUser } = usePersistentUser(userSession)
+  const [user, setUser] = useState(userSession)
 
   const { tutorials, setTutorials } = usePersistentTutorials()
 
