@@ -5,15 +5,9 @@ import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { createGroup } from '@/services/groups/create-group'
 import { updateGroupParticipant } from '@/services/groups/update-group-participant'
-import { DomainError } from '@nosgestesclimat/core/lib/errors'
 import { failure, type Result } from '@nosgestesclimat/core/lib/result'
 import { redirect } from 'next/navigation'
-
-export class CreateGroupError extends DomainError<'create_group_failed'> {
-  constructor() {
-    super('create_group_failed', 'La création du groupe a échoué')
-  }
-}
+import { CreateGroupError } from './errors'
 
 /**
  * Creates the group then navigates. The redirect is issued server-side (via
