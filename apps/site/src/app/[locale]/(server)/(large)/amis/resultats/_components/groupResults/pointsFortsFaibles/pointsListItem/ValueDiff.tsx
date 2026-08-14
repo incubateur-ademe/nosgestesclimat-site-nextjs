@@ -1,4 +1,4 @@
-'ue client'
+'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { formatValue } from 'publicodes'
