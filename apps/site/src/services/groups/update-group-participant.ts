@@ -1,6 +1,7 @@
 'use server'
 
 import { GROUP_URL } from '@/constants/urls/main'
+import { GROUP_RESULTS_ROUTE_PATTERN } from '@/constants/urls/paths'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { buildNewSimulationPayload } from '@/services/simulations/build-new-simulation-payload'
@@ -46,6 +47,6 @@ export const updateGroupParticipant = async ({
       },
       session,
     })
-    revalidatePath('/amis/resultats')
+    revalidatePath(GROUP_RESULTS_ROUTE_PATTERN, 'page')
     return result
   })

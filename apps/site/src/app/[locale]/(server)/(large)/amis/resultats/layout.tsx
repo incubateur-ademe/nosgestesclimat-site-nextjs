@@ -1,8 +1,6 @@
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import { getCachedRules } from '@/helpers/modelFetching/getCachedRules'
-import type { Locale } from '@/i18nConfig'
-import { EngineProvider } from '@/publicodes-state'
+import type { PropsWithChildren } from 'react'
 
 export const generateMetadata = getCommonMetadata({
   title: t('Mon groupe - Nos Gestes Climat'),
@@ -14,11 +12,6 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function Layout({
-  children,
-  params,
-}: LayoutProps<'/[locale]/amis/resultats'>) {
-  const locale = (await params).locale as Locale
-  const rules = await getCachedRules({ locale })
-  return <EngineProvider rules={rules}>{children}</EngineProvider>
+export default function Layout({ children }: PropsWithChildren) {
+  return children
 }

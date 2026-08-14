@@ -40,8 +40,7 @@ test.describe('A group admin', () => {
 
     test.afterEach(async ({ page }) => {
       await newGroup.delete()
-      await page.waitForTimeout(2200)
-      await expect(page).toHaveURL('/mon-espace/groupes')
+      await expect(page).toHaveURL('/mon-espace/groupes', { timeout: 30_000 })
       await expect(
         page.getByText(newGroup.name).filter({ visible: true })
       ).toHaveCount(0)
@@ -148,9 +147,7 @@ test.describe('A new user', () => {
     await expect(page).toHaveURL(group.url)
   })
 
-  // TODO: Fails because updateGroupParticipant does not persist the participant name
-  // on the server side for non-admin users. The ranking displays empty names.
-  test.skip('sees its first name in the group ranking after joining', async ({
+  test('sees its first name in the group ranking after joining', async ({
     page,
     ngcTest,
     tutorialPage,

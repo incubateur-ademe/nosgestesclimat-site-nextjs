@@ -5,6 +5,10 @@ import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
 import { UTM_MEDIUM_KEY, UTM_SOURCE_KEY } from '@/constants/urls/utm'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
+import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
+import { getLinkToGroupInvitation } from '@/helpers/navigation/groupPages'
+import { useIsClient } from '@/hooks/useIsClient'
+import { useLocale } from '@/hooks/useLocale'
 import type { Group } from '@/types/groups'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import { useEffect, useRef, useState } from 'react'
@@ -37,7 +41,15 @@ const SubmitButton = ({
 export default function InviteBlock({ group }: { group: Group }) {
   const [isCopied, setIsCopied] = useState(false)
 
+  const isClient = useIsClient()
+  const locale = useLocale()
+
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
+
+  // Only known after mount: resolving it during the first render would make the
+  // server and client markup disagree, flipping the button label on hydration.
+  const shouldUseShareAPI =
+    isClient && 'share' in navigator && window.innerWidth <= 768
 
   useEffect(() => {
     return () => {
@@ -47,33 +59,30 @@ export default function InviteBlock({ group }: { group: Group }) {
     }
   }, [])
 
-  const shouldUseShareAPI =
-    typeof navigator !== 'undefined' &&
-    navigator.share !== undefined &&
-    window.innerWidth <= 768
+  // Built on demand (in an event handler) so it never runs on the server.
+  const getSharedURL = () =>
+    `${window.location.origin}${getLocalizedPath(
+      locale,
+      getLinkToGroupInvitation({ group })
+    )}&${UTM_MEDIUM_KEY}=sharelink&${UTM_SOURCE_KEY}=NGC`
 
-  const sharedURL =
-    typeof window !== 'undefined'
-      ? `${window.location.origin}/amis/invitation?groupId=${group.id}&${UTM_MEDIUM_KEY}=sharelink&${UTM_SOURCE_KEY}=NGC`
-      : ''
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(getSharedURL())
+    setIsCopied(true)
+    timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
+  }
 
   const handleShare = async () => {
     if (shouldUseShareAPI) {
       await navigator
         .share({
-          url: sharedURL,
+          url: getSharedURL(),
           title: 'Rejoindre mon groupe',
         })
         .catch(handleCopy)
     } else {
-      handleCopy()
+      await handleCopy()
     }
-  }
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(sharedURL)
-    setIsCopied(true)
-    timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
   }
 
   const hasMoreThanOneMember = group?.participants?.length > 1

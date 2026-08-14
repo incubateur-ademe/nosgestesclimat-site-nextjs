@@ -75,9 +75,6 @@ export default function SendVerificationCodeForm({
       loading={isLoading}>
       <EmailInput
         data-testid="verification-code-email-input"
-        // TextInput debounces its onChange by 100ms by default; the email must
-        // be registered synchronously so an immediate submit is not empty.
-        debounceTimeout={0}
         containerClassName={isVerticalLayout ? 'w-full' : 'max-w-full w-96'}
         label={
           inputLabel ?? (

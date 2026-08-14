@@ -5,6 +5,7 @@ import TextInput from '@/design-system/inputs/TextInput'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useDebounce } from '@/utils/debounce'
 import type {
   DottedName,
   NGCRule,
@@ -95,13 +96,17 @@ export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
 
   const { t } = useClientTranslation()
 
+  // Each keystroke rebuilds the Fuse index and searches the whole model,
+  // which is far too expensive to run on every input event.
+  const debouncedSetInput = useDebounce((value: string) => setInput(value), 300)
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value
-    setInput(input)
+    debouncedSetInput(e.target.value)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
+      debouncedSetInput.cancel()
       setInput('')
       setIsExpanded(false)
       searchInputRef.current?.blur()

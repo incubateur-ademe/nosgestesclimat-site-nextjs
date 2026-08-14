@@ -13,7 +13,7 @@ interface Props {
   defaultValue?: string
   label: string
   onClose: () => void
-  onSubmit: (value: string) => Promise<void>
+  onSubmit: (value: string) => void | Promise<void>
   isLoading?: boolean
 }
 

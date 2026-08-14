@@ -5,7 +5,6 @@ import Button from '@/design-system/buttons/Button'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
 import { useTransition } from 'react'
 
@@ -27,7 +26,6 @@ export default function InvitationForm({
   const [isPending, startTransition] = useTransition()
 
   const { t } = useClientTranslation()
-  const { user, updateName } = useUser()
 
   const {
     register,
@@ -35,7 +33,7 @@ export default function InvitationForm({
     formState: { errors },
   } = useReactHookForm<Inputs>({
     defaultValues: {
-      guestName: user?.name,
+      guestName: currentSimulation?.user?.name,
     },
   })
 
@@ -43,8 +41,6 @@ export default function InvitationForm({
 
   function onSubmit({ guestName }: Inputs) {
     startTransition(async () => {
-      updateName(guestName)
-
       // Navigation is handled server-side by the action (redirect()).
       await joinGroup({
         groupId: group.id,
