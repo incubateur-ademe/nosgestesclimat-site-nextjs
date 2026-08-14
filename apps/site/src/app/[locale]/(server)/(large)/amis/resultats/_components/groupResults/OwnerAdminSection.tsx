@@ -47,7 +47,7 @@ export default function OwnerAdminSection({ group }: Props) {
           <form
             action={action}
             onSubmit={() =>
-              trackMatomoEvent__deprecated(amisDashboardOpenDeleteGroup)
+              trackMatomoEvent__deprecated(amisDashboardValidateDeleteGroup)
             }>
             <input type="hidden" name="groupId" value={group?.id} />
 
@@ -81,7 +81,7 @@ export default function OwnerAdminSection({ group }: Props) {
           type="button"
           color="link"
           onClick={() => {
-            trackMatomoEvent__deprecated(amisDashboardValidateDeleteGroup)
+            trackMatomoEvent__deprecated(amisDashboardOpenDeleteGroup)
             setIsConfirming(true)
           }}
           data-testid="button-delete-group">
