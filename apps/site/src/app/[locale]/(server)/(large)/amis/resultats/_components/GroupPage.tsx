@@ -44,13 +44,11 @@ export default async function GroupPage({
     <>
       <EditableGroupTitle group={group} user={user} />
 
-      {newSimulation && (
-        <UpdateSimulationUsed
-          group={group}
-          user={user}
-          latestSimulation={newSimulation}
-        />
-      )}
+      <UpdateSimulationUsed
+        group={group}
+        user={user}
+        latestSimulation={newSimulation}
+      />
 
       <GroupResults
         locale={locale}
