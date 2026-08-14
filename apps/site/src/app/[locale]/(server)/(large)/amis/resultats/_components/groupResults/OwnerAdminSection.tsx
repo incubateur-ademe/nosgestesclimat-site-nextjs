@@ -53,6 +53,7 @@ export default function OwnerAdminSection({ group }: Props) {
 
             <div className="flex gap-4">
               <Button
+                type="button"
                 disabled={pending}
                 color="secondary"
                 onClick={() => {
@@ -77,6 +78,7 @@ export default function OwnerAdminSection({ group }: Props) {
 
       {!isConfirming && (
         <Button
+          type="button"
           color="link"
           onClick={() => {
             trackMatomoEvent__deprecated(amisDashboardValidateDeleteGroup)
