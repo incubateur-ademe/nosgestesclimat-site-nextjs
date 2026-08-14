@@ -4,17 +4,21 @@ import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { sortParticipantsByFootprint } from '@/helpers/groups/sortParticipantsByFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Group } from '@/types/groups'
 import type { ReactNode } from 'react'
+import { getParticipantName } from '../../_helpers/getParticipantName'
 
 interface Props {
   group: Group
 }
 
 export default function LaconicRanking({ group }: Props) {
+  const { t } = useClientTranslation()
+
   // If only one participant
   if (group.participants.length === 1) {
-    const name = group.participants[0].name
+    const name = getParticipantName({ t, participant: group.participants[0] })
     return (
       <section className="bg-primary-50 mt-6 rounded-xl p-4">
         <p className="mb-0">
@@ -73,7 +77,7 @@ export default function LaconicRanking({ group }: Props) {
                 {rank}
                 {!isFirstThree && '. '}
               </span>{' '}
-              {participant.name}
+              {getParticipantName({ t, participant })}
             </li>
           )
         })}

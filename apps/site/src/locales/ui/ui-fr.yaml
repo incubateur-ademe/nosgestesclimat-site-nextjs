@@ -1204,7 +1204,7 @@ entries:
   Votre e-mail, rejoindre un test collectif - Nos Gestes Climat: Votre e-mail, rejoindre un test collectif - Nos Gestes Climat
   vous souhaitez lancer un test collectif Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: vous souhaitez lancer un test collectif Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
   Calculez votre empreinte sur le climat<1> en 10 minutes </1>top chrono.: Calculez votre empreinte sur le climat<1> en 10 minutes </1>top chrono.
-  groups.results.rankingMember.simulationDeleted: Utilisateur anonyme (données supprimées par le participant)
+  groups.results.rankingMember.anonymous: Utilisateur anonyme
   mon-espace.resultsList.hasMigratedSimulations: Nous avons retrouvé des simulations sur ce navigateur et les avons ajoutées à votre espace. Vous pouvez les supprimer à tout moment.
   mySpace.resultList.item.delete.mainButton.label: Supprimer
   mySpace.resultList.item.delete.modal.confirm: Confirmer la suppression

@@ -15,6 +15,7 @@ import { captureException } from '@sentry/nextjs'
 import isMobile from 'is-mobile'
 import { useState, useTransition } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { getParticipantName } from '../../../../_helpers/getParticipantName'
 import { isGroupOwner } from '../../../../_helpers/isGroupOwner'
 import { removeParticipantAction } from '../../../_actions/remove-participant.action'
 
@@ -59,6 +60,8 @@ export default function RankingMember({
   const shouldUseAbbreviation = isMobile()
 
   const isOwner = isGroupOwner(group, user)
+
+  const participantName = getParticipantName({ t, participant })
 
   const [isPending, startTransition] = useTransition()
 
@@ -120,7 +123,7 @@ export default function RankingMember({
           </span>
 
           <span className={textColor} data-testid="participant-name">
-            {participant.name}
+            {participantName}
           </span>
 
           {isCurrentMember && (
@@ -154,7 +157,7 @@ export default function RankingMember({
                 textColor
               )}
               aria-label={t('{{name}}, supprimer cette participation', {
-                name: participant.name,
+                name: participantName,
               })}>
               <TrashIcon
                 className={twMerge(
