@@ -67,9 +67,7 @@ export default function LaconicRanking({ group }: Props) {
               rank = index + 1
           }
           return (
-            <li
-              key={`participant-${index}`}
-              className="flex items-center gap-4">
+            <li key={participant.id} className="flex items-center gap-4">
               <span
                 className={
                   !isFirstThree ? 'mr-0.5 ml-1 text-sm font-bold' : ''
