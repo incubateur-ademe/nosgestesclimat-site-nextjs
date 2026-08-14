@@ -40,8 +40,7 @@ test.describe('A group admin', () => {
 
     test.afterEach(async ({ page }) => {
       await newGroup.delete()
-      await page.waitForTimeout(2200)
-      await expect(page).toHaveURL('/mon-espace/groupes')
+      await expect(page).toHaveURL('/mon-espace/groupes', { timeout: 30_000 })
       await expect(
         page.getByText(newGroup.name).filter({ visible: true })
       ).toHaveCount(0)
