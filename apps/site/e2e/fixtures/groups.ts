@@ -83,9 +83,12 @@ export class Group {
     await page.getByTestId('button-leave-group').click()
     await expect(page.getByTestId('button-confirm-leave-group')).toBeVisible()
     await page.getByTestId('button-confirm-leave-group').click()
-    // The action redirects server-side; wait for it to land rather than let the
-    // caller's next navigation race with it.
-    await page.waitForURL('**/mon-espace/groupes', { timeout: 30_000 })
+    // The action redirects server-side — to « mon espace » for a verified user,
+    // to the end-of-test group list otherwise. Wait for it to land rather than
+    // let the caller's next navigation race with it.
+    await page.waitForURL((url) => !url.pathname.includes('/amis/resultats'), {
+      timeout: 30_000,
+    })
   }
 
   async copyInviteLink() {

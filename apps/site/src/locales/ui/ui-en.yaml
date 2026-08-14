@@ -5,7 +5,6 @@ entries:
   Choisir une autre région: Choose another region
   Choisissez une région parmi celles disponibles !: Choose a region among those available!
   Commencer: Start
-  Comprendre le calcul: Understanding the calculation
   Copier le lien: Copy the link
   Distance: Distance
   Documentation: Documentation
@@ -19,13 +18,10 @@ entries:
   Non: No
   Nouveautés: News
   Oui: Yes
-  Personnalisez cette estimation: Customize this estimate
   Précédent: Previous
   'Quelques suggestions ': 'A few suggestions '
   Questions fréquentes: Frequently asked questions
   Suivez le guide !: Follow the guide!
-  Sur le même sujet: On the same subject
-  Voir toutes les actions: See all actions
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
   et: and
@@ -57,8 +53,6 @@ entries:
   Ce modèle a été conçu par: This model was designed by
   Oups, nous n'avons pas d'article correspondant: Oops, we don't have a matching article
   Blog: Blog
-  publicodes.planDuSite.actionsPlus: The actions
-  publicodes.planDuSite.actionsPlus.lock: Les actions
   publicodes.planDuSite.title: Sitemap
   publicodes.planDuSite.title.lock: Plan du site
   Contact: Contact
@@ -78,7 +72,6 @@ entries:
   Ok, sauvegarder la modification: OK, save changes
   Veuillez renseigner un nom.: Please enter a name.
   Modifier le nom du groupe: Change group name
-  Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Find out how you can take action for the climate today, or take the test to get personalized recommendations.
   Créer et passer mon test: Create and take my test
   Rejoindre et passer mon test: Join and take my test
   Créer un groupe: Create a group
@@ -113,7 +106,6 @@ entries:
   Passagers: Passengers
   Télécharger l'image: Download image
   Vous avez terminé le test !: You've completed the test!
-  Comment agir ?: What can you do?
   Ajouter: Add
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': "Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"
   Retour à la liste des nouveautes: Back to the list of updates
@@ -137,14 +129,12 @@ entries:
   Le calculateur d’empreinte climat international: The international climate footprint calculator
   Quitter: Leave
   Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: This operation is definitive and you will no longer be able to access the group's results.
-  Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Find out how you can take action for the climate today.
   de: of
   Ma région de simulation: My simulation region
   D'autres questions ?: Any other questions?
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: You can delete the group by clicking on the button below. It will be permanently deleted for all its other members, as you are the administrator.
   Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: You can leave the group by clicking on the button below. However, the group will not be deleted as you are not the administrator.
   Cette opération est définitive et supprimera le groupe pour tous ses membres.: This operation is definitive and will delete the group for all its members.
-  Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: You have left this group. You will be redirected to the group mode home page
   'Vos trajets :': 'Your routes:'
   Période: Period
   Créé par {{name}}: Created by {{name}}
@@ -236,12 +226,10 @@ entries:
   Contactez l'équipe de Nos Gestes Climat.: Contact the Nos Gestes Climat team.
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Access tailor-made services to raise awareness among your partners within your organisation.
   Informations relatives à l'accessibilité de Nos Gestes Climat.: Information on the accessibility of Nos Gestes Climat.
-  Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Find out what you can do to reduce your carbon footprint.
   Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Distribute our climate footprint simulator - Nos Gestes Climat
   Politique de confidentialité - Nos Gestes Climat: Privacy policy - Nos Gestes Climat
   Mentions légales du site Nos Gestes Climat.: Legal information about Nos Gestes Climat.
   Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Our documentation details the calculations we used to calculate your personal carbon footprint.
-  Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions following your climate footprint simulation - Nos Gestes Climat
   Plan du site - Nos Gestes Climat: Site map - Nos Gestes Climat
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculate your climate footprint in just 10 minutes. Discover the actions that really matter for the climate.
   Ce test vous est proposé par: This test is brought to you by
@@ -655,7 +643,6 @@ entries:
   Réaliser des travaux d'isolation de son logement (pour les propriétaires): Insulating your home (for homeowners)
   Empreinte eau et <2>empreinte carbone</2> sont complémentaires, et les comprendre permet d'agir en faveur d'une gestion <6>plus durable des ressources naturelles</6> de la planète.: Water footprint and <2>carbon footprint</2> are complementary, and understanding them enables us to act in favour of <6>more sustainable</6> management of the planet's <6>natural resources</6>.
   Le calculateur carbone permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique et de saisir <2>les actions qui auraient le plus d'impact</2> pour le réduire.: The carbon calculator enables us to understand which of our uses contribute most to climate change and to identify <2>the actions that would have the greatest impact</2> in reducing it.
-  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Your answers do not allow you to select this action; it will be removed from the list of suggested actions.
   <0>L'empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.: <0>The carbon footprint</0> measures the total quantity of greenhouse gases (GHGs) emitted by our activities over one year.
   "Attention : l'empreinte eau ne tient pas compte de la consommation d'eau domestique (douche, toilettes, cuisine, arrosage) !": 'Please note: the water footprint does not take into account domestic water consumption (showers, toilets, cooking, watering)!'
   <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>The water footprint</0> is the total amount of freshwater used to produce, distribute and end-of-life treat the products, goods and services we consume every day.
@@ -1583,7 +1570,6 @@ entries:
   results.tabs.myGroups.lock: Créer un test collectif
   organisations.askDemo.iframe.title: Form - book an appointment for a demo of our functions for organisations
   organisations.askDemo.iframe.title.lock: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
-  Retour à la liste: Back to the list
   ctaButtons.collective.label: Create a group test
   ctaButtons.collective.label.lock: Créer un test collectif
   ctaButtons.retake.label: Take the test again
@@ -2149,3 +2135,4 @@ entries:
   simulator.funFact.clothing.lock: <0><0><0>💡</0> Le saviez-vous ?</0><1>En moyenne, les Français achètent chaque année, <2>9,5 kg de vêtements... mais n'en trient que 3,4 kg !</2></1></0>
   simulator.funFact.ia: <0><0><0>💡</0> A word on AI</0><1>The use of artificial intelligence leads <2>to increased consumption of electricity, water and space in data centres</2>. Studies are currently being carried out to gather reliable data on the impacts and keep you better informed.</1></0>
   simulator.funFact.ia.lock: <0><0><0>💡</0> Un mot sur l'IA</0><1>Le recours à l'intelligence artificielle entraîne une <2>hausse de la consommation d'électricité, d'eau et d'espace pour les data centers</2>. Des études sont en cours pour disposer de données fiables sur les impacts et mieux vous informer.</1></0>
+  Quitter le groupe: Leave group

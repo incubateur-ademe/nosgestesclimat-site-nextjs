@@ -4,7 +4,6 @@ entries:
   Choisir une autre région: Choisir une autre région
   Choisissez une région parmi celles disponibles !: Choisissez une région parmi celles disponibles !
   Commencer: Commencer
-  Comprendre le calcul: Comprendre le calcul
   Copier le lien: Copier le lien
   Documentation: Documentation
   Envie de contribuer à une version pour votre région ?: Envie de contribuer à une version pour votre région ?
@@ -15,17 +14,14 @@ entries:
   Non: Non
   Nouveautés: Nouveautés
   Oui: Oui
-  Personnalisez cette estimation: Personnalisez cette estimation
   Précédent: Précédent
   'Quelques suggestions ': 'Quelques suggestions '
   Questions fréquentes: Questions fréquentes
   Suivez le guide !: Suivez le guide !
-  Sur le même sujet: Sur le même sujet
   components.localisation.LocalisationMessage.betaMsg: Elle est actuellement en version <1>bêta</1>.
   et: et
   participant: participant
   publicodes.planDuSite.title: Plan du site
-  publicodes.planDuSite.actionsPlus: Les actions
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
   tonne: tonne
   tonnes: tonnes
@@ -55,7 +51,6 @@ entries:
   Par rapport à la moyenne du groupe.: Par rapport à la moyenne du groupe.
   Vos points faibles: Vos points faibles
   Vos points forts: Vos points forts
-  Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.
   Modifier le nom du groupe: Modifier le nom du groupe
   Ok, sauvegarder la modification: Ok, sauvegarder la modification
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
@@ -83,13 +78,11 @@ entries:
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
   du test: du test
   Vous utilisez la version: Vous utilisez la version
-  Voir toutes les actions: Voir toutes les actions
   Distance: Distance
   Fréquence: Fréquence
   Label: Label
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
-  Comment agir ?: Comment agir ?
   Ajouter: Ajouter
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
   Retour à la liste des nouveautes: Retour à la liste des nouveautes
@@ -113,12 +106,10 @@ entries:
   Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.
   Cette opération est définitive et supprimera le groupe pour tous ses membres.: Cette opération est définitive et supprimera le groupe pour tous ses membres.
   Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.
-  Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
   D'autres questions ?: D'autres questions ?
   de: de
   Ma région de simulation: Ma région de simulation
   Quitter: Quitter
-  Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe
   Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.
   Période: Période
@@ -183,7 +174,6 @@ entries:
   Notes: Notes
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.
   Accessibilité - Nos Gestes Climat: Accessibilité - Nos Gestes Climat
-  Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
   Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
   Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.
@@ -194,7 +184,6 @@ entries:
   Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
   Contactez l'équipe de Nos Gestes Climat.: Contactez l'équipe de Nos Gestes Climat.
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.
-  Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
   Découvrez les nouveautés du site Nos Gestes Climat.: Découvrez les nouveautés du site Nos Gestes Climat.
   Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Diffusez Nos Gestes Climat dans votre organisation.
@@ -634,7 +623,6 @@ entries:
   Qu'est-ce que l'empreinte carbone ?: Qu'est-ce que l'empreinte carbone ?
   Qu'est-ce que l'empreinte eau ?: Qu'est-ce que l'empreinte eau ?
   Réaliser des travaux d'isolation de son logement (pour les propriétaires): Réaliser des travaux d'isolation de son logement (pour les propriétaires)
-  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.
   footer.thematicLandingPages.title: Pages thématiques
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
@@ -1162,7 +1150,6 @@ entries:
   organisations.askDemo.iframe.title: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
   results.tabs.groups: Test collectif
   results.tabs.myGroups: Créer un test collectif
-  Retour à la liste: Retour à la liste
   ctaButtons.collective.label: Créer un test collectif
   ctaButtons.retake.label: Repasser le test
   Résultats immédiats, confidentiel et gratuit.: Résultats immédiats, confidentiel et gratuit.
@@ -1285,10 +1272,7 @@ entries:
   simulator.intercalaire.goToConsommation: Passer à la consommation
   simulator.intercalaire.goToLogement: Passer au logement
   simulator.intercalaire.goToTransport: Passer au transport
-  actions.mTaTerre.button: Explorer M ta Terre
-  actions.mTaTerre.text: "Climat, biodiversité, énergie, alimentation…<1></1><2>M ta Terre</2>, c'est le site fait pour toi : des <5>articles</5>, <7>vidéos</7>, <10>podcasts</10> et des <12>gestes concrets</12> pour passer à l'action au quotidien."
-  actions.mTaTerre.title: Tu veux comprendre ET agir pour la planète ?
-  common.authentication.verifyEmail: Vérifier mon adresse électronique
+  common.authentication.verifyEmail: Vérifier mon adresse e-mail
   common.optional: facultatif
   common.skip: Passer
   tutorial.email.contest.default: Votre e-mail sera utilisé pour le tirage au sort.
@@ -1449,3 +1433,4 @@ entries:
   userParams.updateInfo: Mettre à jour mes coordonnées
   simulator.funFact.clothing: <0><0><0>💡</0> Le saviez-vous ?</0><1>En moyenne, les Français achètent chaque année, <2>9,5 kg de vêtements... mais n'en trient que 3,4 kg !</2></1></0>
   simulator.funFact.ia: <0><0><0>💡</0> Un mot sur l'IA</0><1>Le recours à l'intelligence artificielle entraîne une <2>hausse de la consommation d'électricité, d'eau et d'espace pour les data centers</2>. Des études sont en cours pour disposer de données fiables sur les impacts et mieux vous informer.</1></0>
+  Quitter le groupe: Quitter le groupe

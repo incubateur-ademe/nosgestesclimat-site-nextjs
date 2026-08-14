@@ -1,17 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import { useUser } from '@/publicodes-state'
 import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group } from '@/types/groups'
-import { captureException } from '@sentry/nextjs'
-import { useRouter } from 'next/navigation'
-import { useEffect, useRef, useState, useTransition } from 'react'
-import { removeParticipantAction } from '../../_actions/remove-participant.action'
+import { useActionState, useState } from 'react'
+import { findOwnParticipant } from '../../../_helpers/findOwnParticipant'
+import { leaveGroupAction } from '../../_actions/leave-group.action'
 
 interface Props {
   group: Group
@@ -20,53 +17,18 @@ interface Props {
 
 export default function ParticipantAdminSection({ group, user }: Props) {
   const [isConfirming, setIsConfirming] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [, action, isPending] = useActionState(leaveGroupAction, undefined)
 
-  const { updateCurrentSimulation } = useUser()
+  const participant = findOwnParticipant(group, user.id)
 
-  const [isPending, startTransition] = useTransition()
-
-  const userId = user.id
-
-  const router = useRouter()
-
-  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
-
-  function handleDelete() {
-    // Use startTransition instead of isPending prop to handle timeout
-    startTransition(async () => {
-      const participant = group.participants.find((p) => p.userId === userId)
-
-      if (!participant) return
-
-      try {
-        await removeParticipantAction({
-          participantId: participant.id,
-          groupId: group.id,
-        })
-
-        updateCurrentSimulation({ groupToDelete: group.id })
-        setIsSuccess(true)
-
-        timeoutRef.current = setTimeout(() => {
-          router.push(MON_ESPACE_GROUPS_PATH)
-        }, 1750)
-      } catch (error) {
-        captureException(error)
-      }
-    })
+  if (!participant) {
+    return null
   }
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(timeoutRef.current)
-    }
-  }, [])
-
   return (
-    <section>
+    <section aria-live="polite">
       <h2>
-        <Trans>Quitter</Trans> <Emoji>{group?.emoji}</Emoji> {group?.name}
+        <Trans>Quitter</Trans> <Emoji>{group.emoji}</Emoji> {group.name}
       </h2>
 
       <p className="text-sm md:text-base">
@@ -77,7 +39,7 @@ export default function ParticipantAdminSection({ group, user }: Props) {
         </Trans>
       </p>
 
-      {isConfirming && !isSuccess && (
+      {isConfirming && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
             <Trans>
@@ -86,45 +48,41 @@ export default function ParticipantAdminSection({ group, user }: Props) {
             </Trans>
           </p>
 
-          <div className="flex gap-4">
-            <Button
-              disabled={isPending}
-              color="secondary"
-              onClick={() => setIsConfirming(false)}
-              size="sm">
-              Annuler
-            </Button>
+          <form action={action}>
+            <input type="hidden" name="groupId" value={group.id} />
+            <input type="hidden" name="participantId" value={participant.id} />
 
-            <Button
-              loading={isPending}
-              onClick={handleDelete}
-              size="sm"
-              color="primary"
-              data-testid="button-confirm-leave-group">
-              Quitter le groupe
-            </Button>
-          </div>
+            <div className="flex gap-4">
+              <Button
+                type="button"
+                disabled={isPending}
+                color="secondary"
+                onClick={() => setIsConfirming(false)}
+                size="sm">
+                <Trans>Annuler</Trans>
+              </Button>
+
+              <Button
+                loading={isPending}
+                type="submit"
+                size="sm"
+                color="primary"
+                data-testid="button-confirm-leave-group">
+                <Trans>Quitter le groupe</Trans>
+              </Button>
+            </div>
+          </form>
         </Card>
       )}
 
-      {!isConfirming && !isSuccess && (
+      {!isConfirming && (
         <Button
+          type="button"
           color="link"
           onClick={() => setIsConfirming(true)}
           data-testid="button-leave-group">
-          Quitter le groupe
+          <Trans>Quitter le groupe</Trans>
         </Button>
-      )}
-
-      {isSuccess && (
-        <Card className="border-none bg-gray-100">
-          <p className="text-sm md:text-base">
-            <Trans>
-              Vous avez quitté ce groupe. Vous allez être redirigé vers la page
-              d'accueil du mode groupe
-            </Trans>
-          </p>
-        </Card>
       )}
     </section>
   )
