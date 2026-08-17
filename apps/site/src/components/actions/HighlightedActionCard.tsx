@@ -15,35 +15,30 @@ import { shouldDisplayComputationInProgressText } from './utils/shouldDisplayCom
 
 const classesByTheme: Record<
   Theme['key'],
-  Record<'card' | 'bar' | 'panel' | 'value', string>
+  Record<'card' | 'panel' | 'value', string>
 > = {
   transport: {
-    card: 'border-transport-200',
-    bar: 'bg-transport-400',
+    card: 'border-transport-200 border-t-transport-400 md:border-l-transport-400',
     panel: 'bg-transport-50',
     value: 'text-transport-900',
   },
   food: {
-    card: 'border-alimentation-200',
-    bar: 'bg-alimentation-400',
+    card: 'border-alimentation-200 border-t-alimentation-400 md:border-l-alimentation-400',
     panel: 'bg-alimentation-50',
     value: 'text-alimentation-900',
   },
   housing: {
-    card: 'border-logement-200',
-    bar: 'bg-logement-400',
+    card: 'border-logement-200 border-t-logement-400 md:border-l-logement-400',
     panel: 'bg-logement-50',
     value: 'text-logement-900',
   },
   misc: {
-    card: 'border-divers-200',
-    bar: 'bg-divers-400',
+    card: 'border-divers-200 border-t-divers-400 md:border-l-divers-400',
     panel: 'bg-divers-50',
     value: 'text-divers-900',
   },
   societal_services: {
-    card: 'border-servicessocietaux-200',
-    bar: 'bg-servicessocietaux-400',
+    card: 'border-servicessocietaux-200 border-t-servicessocietaux-400 md:border-l-servicessocietaux-400',
     panel: 'bg-servicessocietaux-50',
     value: 'text-servicessocietaux-900',
   },
@@ -85,20 +80,13 @@ export default function HighlightedActionCard({
     <article
       {...props}
       className={twMerge(
-        'relative flex flex-col overflow-hidden rounded-[10px] border bg-white md:flex-row',
+        'relative flex flex-col overflow-hidden rounded-lg border border-t-8 bg-white md:flex-row md:border-t md:border-l-8',
         classes.card,
         className
       )}>
       <ActionTracker eventName="displayed" action={action} />
-      <span
-        aria-hidden="true"
-        className={twMerge(
-          'absolute top-0 left-0 h-2 w-full md:h-full md:w-2',
-          classes.bar
-        )}
-      />
 
-      <div className="flex flex-1 flex-col gap-4 px-4 pt-6 pb-4 md:py-4 md:pr-4 md:pl-6">
+      <div className="flex flex-1 flex-col gap-4 p-4">
         <div className="flex items-center gap-2">
           <RankBadge rank={rank} />
           <ThemeBadge theme={action.theme} className="text-sm" />
@@ -109,7 +97,7 @@ export default function HighlightedActionCard({
             {action.title}
           </h3>
           {description ? (
-            <p className="mb-0 line-clamp-2 text-base/normal text-slate-600">
+            <p className="mb-0 line-clamp-2 max-w-[80ch] text-base/normal text-slate-600">
               {description}
             </p>
           ) : null}
