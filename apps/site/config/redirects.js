@@ -289,9 +289,9 @@ const redirects = [
     destination: '/blog/environnement/neuf-limites-planetaires-empreintes',
     permanent: true,
   },
-  // For now, we redirect actions/plus homepage to blog homepage. We still have each actions/plus page available but ghosted.
+  // We redirect actions/plus homepage to blog homepage, as well as each old action/plus pages.
   {
-    source: '/actions/plus',
+    source: '/actions/plus/:path*',
     destination: '/blog',
     permanent: true,
   },
@@ -522,6 +522,26 @@ const redirects = [
   {
     source: '/personas',
     destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/actions/alimentation/choisir-la-volaille-comme-viande',
+    destination: '/actions/alimentation/reduire-viande',
+    permanent: true,
+  },
+  {
+    source: '/actions/alimentation/limiter-viande',
+    destination: '/actions/alimentation/reduire-viande-rouge',
+    permanent: true,
+  },
+  {
+    source: '/actions/transport/limiter-avion',
+    destination: '/actions/transport/limiter-avion-toutes-distances',
+    permanent: true,
+  },
+  {
+    source: '/actions/divers/acheter-malin',
+    destination: '/actions/consommation/acheter-malin',
     permanent: true,
   },
 ]
