@@ -7,6 +7,7 @@ import { twMerge } from 'tailwind-merge'
 import Trans from '../../translation/trans/TransServer'
 import BetaBanner from '../BetaBanner'
 import HighestImpactActionsSection from '../HighestImpactActionsSection'
+import HighestImpactActionsSectionDarkBackground from '../HighestImpactActionsSectionDarkBackground'
 import HighestImpactActionsSectionSwitch from '../HighestImpactActionsSectionSwitch'
 import HighestImpactActionsSectionWhiteBackground from '../HighestImpactActionsSectionWhiteBackground'
 import ThemeSection from '../ThemeSection'
@@ -45,6 +46,36 @@ export default function ActionsPage({
   ...props
 }: ActionsPageProps) {
   const actionsByTheme = Object.groupBy(actions, (action) => action.theme.key)
+
+  // Both test layouts share everything that sits between the highlighted
+  // actions and the per-theme sections.
+  const testVariantsTrailingContent = (
+    <>
+      {cta && (
+        <>
+          <Separator variant="full" className="my-10 hidden md:block" />
+          {cta}
+          <Separator variant="full" className="my-10 hidden md:block" />
+        </>
+      )}
+
+      <h2 className="mb-0 text-2xl/normal font-bold md:text-3xl/normal">
+        <Trans
+          locale={locale}
+          i18nKey="actions.components.themeSections.testWhiteBackground.title">
+          Voici d’autres actions qui vous aideront à réduire votre empreinte
+        </Trans>
+      </h2>
+      <p className="mb-4 text-lg/normal md:mb-8">
+        <Trans
+          locale={locale}
+          i18nKey="actions.components.themeSections.testWhiteBackground.description">
+          À impact variable : des gestes à fort impact aux petit pas.
+        </Trans>
+      </p>
+    </>
+  )
+
   return (
     <>
       <BetaBanner locale={locale} />
@@ -91,36 +122,20 @@ export default function ActionsPage({
                   from={from}
                   totalFootprint={totalFootprint}
                 />
-
-                {cta && (
-                  <>
-                    <Separator
-                      variant="full"
-                      className="my-10 hidden md:block"
-                    />
-                    {cta}
-                    <Separator
-                      variant="full"
-                      className="my-10 hidden md:block"
-                    />
-                  </>
-                )}
-
-                <h2 className="mb-0 text-2xl/normal font-bold md:text-3xl/normal">
-                  <Trans
-                    locale={locale}
-                    i18nKey="actions.components.themeSections.testWhiteBackground.title">
-                    Voici d’autres actions qui vous aideront à réduire votre
-                    empreinte
-                  </Trans>
-                </h2>
-                <p className="mb-4 text-lg/normal md:mb-8">
-                  <Trans
-                    locale={locale}
-                    i18nKey="actions.components.themeSections.testWhiteBackground.description">
-                    À impact variable : des gestes à fort impact aux petit pas.
-                  </Trans>
-                </p>
+                {testVariantsTrailingContent}
+              </>
+            }
+            testDarkBackground={
+              <>
+                <HighestImpactActionsSectionDarkBackground
+                  actions={topActions}
+                  className={cta ? 'mb-10' : 'mb-8 md:mb-12'}
+                  locale={locale}
+                  assessmentStatus={assessmentStatus}
+                  from={from}
+                  totalFootprint={totalFootprint}
+                />
+                {testVariantsTrailingContent}
               </>
             }
           />

@@ -7,6 +7,8 @@ interface HighestImpactActionsSectionSwitchProps {
   control: React.ReactNode
   /** Rendered for the `test-fond-blanc` variant */
   testWhiteBackground: React.ReactNode
+  /** Rendered for the `test-fond-bleu` variant */
+  testDarkBackground: React.ReactNode
 }
 
 /**
@@ -21,12 +23,15 @@ interface HighestImpactActionsSectionSwitchProps {
 export default function HighestImpactActionsSectionSwitch({
   control,
   testWhiteBackground,
+  testDarkBackground,
 }: HighestImpactActionsSectionSwitchProps) {
   const variant = useFeatureFlag('abc-test-layout-catalogue')
 
   switch (variant) {
     case 'test-fond-blanc':
       return testWhiteBackground
+    case 'test-fond-bleu':
+      return testDarkBackground
     case 'control':
     case undefined:
       return control

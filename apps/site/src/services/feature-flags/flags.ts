@@ -5,7 +5,7 @@ export type FlagDefinition =
 export const FLAGS = {
   'abc-test-layout-catalogue': {
     kind: 'variant',
-    variants: ['control', 'test-fond-blanc'],
+    variants: ['control', 'test-fond-blanc', 'test-fond-bleu'],
   },
 } as const satisfies Record<string, FlagDefinition>
 
