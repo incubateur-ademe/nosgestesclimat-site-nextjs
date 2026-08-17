@@ -6,6 +6,7 @@ import { LOCALE_EN_KEY, LOCALE_FR_KEY, type Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
+import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import ArrowNarrowRightIcon from '../icons/ArrowNarrowRightIcon'
 import Trans from '../translation/trans/TransServer'
@@ -94,7 +95,11 @@ export default function HighlightedActionCard({
 
         <div className="flex flex-col gap-2">
           <h3 className="mb-0 text-2xl/normal font-extrabold">
-            {action.title}
+            <Link
+              href={href}
+              className="text-inherit no-underline hover:underline">
+              {action.title}
+            </Link>
           </h3>
           {description ? (
             <p className="mb-0 line-clamp-2 max-w-[80ch] text-base/normal text-slate-600">
