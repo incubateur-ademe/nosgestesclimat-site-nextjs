@@ -7,6 +7,7 @@ import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getPersonalizedActionsCatalogue } from '@/services/actions/get-personalized-actions-catalogue'
 import { getThemes } from '@/services/actions/get-themes'
 import { getUserSession } from '@/services/auth/get-user-session'
+import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 
@@ -27,9 +28,10 @@ export default async function ResultatsActionsPage({
     redirect(ACTIONS_PATH)
   }
 
-  const [actionsCatalogue, themes] = await Promise.all([
+  const [actionsCatalogue, themes, currentSimulation] = await Promise.all([
     getPersonalizedActionsCatalogue(user.id, locale),
     getThemes(locale),
+    getCurrentSimulation(),
   ])
 
   // No computation for the latest simulation: no simulation at all, or one the
@@ -57,6 +59,7 @@ export default async function ResultatsActionsPage({
       themes={themes}
       locale={locale}
       from="fin"
+      totalFootprint={currentSimulation?.computedResults.carbone.bilan}
     />
   )
 }
