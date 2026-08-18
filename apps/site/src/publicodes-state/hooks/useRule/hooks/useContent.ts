@@ -17,7 +17,7 @@ interface Props {
 export default function useContent({ dottedName, rule }: Props) {
   const category = useMemo(() => {
     const namespace = getNamespace(dottedName) ?? ''
-    // This is only used by "ui . pédagogie" rules. For them, we need to extract the category from the dottedName (ui . pedagogie . [category])
+    // This is only used by "ui . organisations" rules. For them, we need to extract the category from the dottedName (ui . organisations . [category])
     if (namespace === 'ui') {
       return dottedName.split(' . ')[3] as DottedName
     }
@@ -99,17 +99,6 @@ export default function useContent({ dottedName, rule }: Props) {
     return suggestions
   }, [rule])
 
-  const excerpt = useMemo<string | undefined>(
-    () => rule?.rawNode['résumé'],
-    [rule]
-  )
-
-  // This is only used by "ui . pédagogie" rules
-  const actions = useMemo<DottedName[] | undefined>(
-    () => (rule?.rawNode as { actions?: DottedName[] })?.actions,
-    [rule]
-  )
-
   return {
     category,
     title,
@@ -121,10 +110,8 @@ export default function useContent({ dottedName, rule }: Props) {
     assistance,
     isInactive,
     suggestions,
-    excerpt,
     plancher,
     plafond,
     warning,
-    actions,
   }
 }

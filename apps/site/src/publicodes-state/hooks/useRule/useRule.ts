@@ -69,7 +69,7 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
     evaluation,
   })
 
-  const { notifications, activeNotifications } = useNotifications({
+  const { activeNotifications } = useNotifications({
     dottedName,
     everyNotifications,
     safeEvaluate,
@@ -95,18 +95,12 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
     warning,
     isInactive,
     suggestions,
-    excerpt,
-    actions,
   } = useContent({
     dottedName,
     rule,
   })
 
-  const {
-    questionsOfMosaicFromParent,
-    questionsOfMosaicFromSibling,
-    aucunOption,
-  } = useQuestionsOfMosaic({
+  const { questionsOfMosaicFromParent, aucunOption } = useQuestionsOfMosaic({
     mosaicNode: rule?.rawNode.mosaique,
     everyMosaicChildrenWithParent,
     dottedName,
@@ -206,10 +200,6 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
      */
     warning,
     /**
-     * Attribut use to briefly explain a rule
-     */
-    excerpt,
-    /**
      * True if the rule is not yet active ("rawNode.inactif" in Publicodes)
      */
     isInactive,
@@ -222,10 +212,6 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
      */
     choices,
     /**
-     * A list of notifications associated with the question
-     */
-    notifications,
-    /**
      * A list of active (that should be displayed) notifications associated with the rule
      */
     activeNotifications,
@@ -233,10 +219,6 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
      * A list of questions to display inside the mosaic (if the rule is a mosaic parent)
      */
     questionsOfMosaicFromParent,
-    /**
-     * A list of questions to display inside the mosaic (if the rule is a mosaic child)
-     */
-    questionsOfMosaicFromSibling,
     /**
      * The "aucun" option of the mosaic (if the rule is a mosaic). Undefined otherwise
      */
@@ -273,9 +255,5 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
      * Setter for the value of the rule, with the possibility to add a dottedName in the foldedSteps
      */
     setValue,
-    /**
-     * A list of actions linked to the rules (only used by "ui . pédagogie" rules)
-     */
-    actions,
   }
 }

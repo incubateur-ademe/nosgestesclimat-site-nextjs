@@ -29,7 +29,9 @@ export default function EngineProvider({
   // Mounted on routes where the user may have no simulation yet (documentation,
   // plan du site, actions with no completed test…): fall back to an empty situation.
   const initialSituationFromUser = useOptionalSimulation()?.situation
-  const [situation] = useState(initialSituation ?? initialSituationFromUser ?? EMPTY_SITUATION)
+  const [situation] = useState(
+    initialSituation ?? initialSituationFromUser ?? EMPTY_SITUATION
+  )
 
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(
     rules,
@@ -42,7 +44,6 @@ export default function EngineProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
-    everyUiCategories,
     everyMosaicChildrenWithParent,
     rawMissingVariables,
   } = useRules({ engine: pristineEngine, root })
@@ -73,7 +74,6 @@ export default function EngineProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
-        everyUiCategories,
         everyMosaicChildrenWithParent,
         rawMissingVariables,
         categories,

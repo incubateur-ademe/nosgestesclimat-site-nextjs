@@ -16,24 +16,16 @@ export default function useQuestionsOfMosaic({
   if (!mosaicNode) {
     return {
       questionsOfMosaicFromParent: [],
-      questionsOfMosaicFromSibling: [],
       aucunOption: undefined,
     }
   }
 
-  const questionsOfMosaicFromParent =
-    everyMosaicChildrenWithParent[dottedName] ?? []
+  const questionsOfMosaicFromParent = everyMosaicChildrenWithParent[dottedName]
 
-  const questionsOfMosaicFromSibling =
-    Object.values(everyMosaicChildrenWithParent).find((mosaicChildren) => {
-      return mosaicChildren.includes(dottedName)
-    }) ?? []
-
-  const aucunOption = mosaicNode?.['option aucun']
+  const aucunOption = mosaicNode['option aucun']
 
   return {
     questionsOfMosaicFromParent,
-    questionsOfMosaicFromSibling,
     aucunOption,
   }
 }
