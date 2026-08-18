@@ -27,6 +27,7 @@ export function middlewareFeatureFlags(request: NextRequest): MiddlewareResult {
     // this override from `document.cookie`, so it must stay readable by JS.
     httpOnly: false,
     sameSite: 'lax',
+    partitioned: false, // Partitioned does not work with SameSite=Lax
   })
   return { redirect: response, cookies: [] }
 }
