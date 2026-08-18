@@ -1059,11 +1059,11 @@ entries:
   results.objective.collectiveEffort.stateDescription: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées</6>, ainsi qu'au travers de ses investissements.
   results.objective.collectiveEffort.title: "Important : c'est aussi un effort collectif"
   results.objective.description: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à + 2 °C.
-  results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
+  results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}t en {{year}}</5>
   results.objective.over7.description: Aujourd’hui, <1>vous êtes au-dessus des 7 tonnes</1>, l’objectif intermédiaire que nous proposons pour 2030.
   results.objective.reduction.over4.description: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
   results.objective.reduction.over7.description: Votre rythme indicatif pour parvenir à <2>{{firstObjectiveNumber}}T en {{year}}</2>
-  results.objective.title: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
+  results.objective.title: 'Objectif national : <2>2t de CO₂e</2> par personne en 2050'
   results.objective.under4.description.body: Avec le travail de l’État et toute la société dans les années à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2 tonnes.
   results.objective.under4.description.title: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
   Vous aujourd'hui: Vous aujourd'hui
