@@ -34,21 +34,23 @@ export default function Suggestions({ question, setValue }: Props) {
   if (!suggestions?.length) return
 
   return (
-    <div className="mb-6 flex flex-wrap justify-start gap-x-2 gap-y-2.5 text-sm">
+    <div className="mb-6 flex flex-wrap justify-start gap-x-2 gap-y-2.5">
       {suggestions.map((suggestion) => (
         <button
           key={suggestion.label}
           data-testid={`suggestion-${suggestion.value}`}
           className={twMerge(
-            'text-xs font-medium transition-colors md:text-sm',
             baseClassNames,
-            sizeClassNames.sm,
             getBgCategoryColor(currentCategory, '200'),
             getBorderCategoryColor(currentCategory, '200'),
             getTextCategoryColor(currentCategory, '900'),
             getHoverBgCategoryColor(currentCategory, '300'),
             getHoverBorderCategoryColor(currentCategory, '300'),
-            getCategoryFocusRingClassName(currentCategory ?? '')
+            getCategoryFocusRingClassName(currentCategory ?? ''),
+            `${sizeClassNames.xs} ${sizeClassNames.sm
+              .split(' ')
+              .map((className) => `md:${className}`)
+              .join(' ')}`
           )}
           onClick={() => {
             trackMatomoEvent__deprecated(

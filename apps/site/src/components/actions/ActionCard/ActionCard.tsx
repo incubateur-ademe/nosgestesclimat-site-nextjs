@@ -11,6 +11,7 @@ import Trans from '../../translation/trans/TransServer'
 import { ThemeBadge } from '../ThemeBadge'
 
 import ActionTracker from '../ActionTracker'
+import { shouldDisplayComputationInProgressText } from '../utils/shouldDisplayComputationInProgressText'
 import styles from './ActionCard.module.css'
 
 const classesByTheme: Record<Theme['key'], string> = {
@@ -182,22 +183,6 @@ function ImpactTag({
       {text}
     </span>
   )
-}
-
-function shouldDisplayComputationInProgressText(
-  status: SimulationComputationStatus
-) {
-  switch (status) {
-    case 'completed':
-      return false
-    case 'pending':
-    case 'processing':
-    case 'failed':
-      return true
-    default:
-      status satisfies never
-      return true
-  }
 }
 
 function rankToEmoji(rank?: number) {
