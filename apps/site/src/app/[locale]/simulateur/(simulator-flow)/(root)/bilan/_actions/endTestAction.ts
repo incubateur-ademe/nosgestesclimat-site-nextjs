@@ -1,5 +1,9 @@
 'use server'
-import { EMAIL_PAGE_PATH, END_PAGE_PATH } from '@/constants/urls/paths'
+import {
+  EMAIL_PAGE_PATH,
+  END_PAGE_PATH,
+  GROUP_RESULTS_ROUTE_PATTERN,
+} from '@/constants/urls/paths'
 import { InternalError } from '@/helpers/server/error'
 import { getLocaleFromHeaders } from '@/helpers/server/getLocaleForNotFoundOrUnautorizedPage'
 import type { Simulation } from '@/helpers/server/model/simulations'
@@ -20,6 +24,12 @@ export async function endTestAction(simulation: Simulation, userName?: string) {
     name: userName,
     locale,
   })
+
+  // The simulator saves its progress without revalidating anything; the completed footprint is the
+  // one the group results page must pick up.
+  if (simulation.groups?.length) {
+    revalidatePath(GROUP_RESULTS_ROUTE_PATTERN, 'page')
+  }
   if (
     !user?.isAuth &&
     (simulation.polls?.length || simulation.groups?.length)
