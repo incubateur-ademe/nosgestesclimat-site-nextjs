@@ -21,14 +21,8 @@ export default function ActionTracker({
   eventName: 'consulted' | 'displayed'
 }) {
   useEffect(() => {
-    const start = Date.now()
-    // eslint-disable-next-line no-console
-    console.log('ActionTracker useEffect', start)
     void whenExperimentsResolved(ACTION_EXPERIMENTS)
       .finally(() => {
-        const duration = Date.now() - start
-        // eslint-disable-next-line no-console
-        console.log('ActionTracker whenExperimentsResolved', duration)
         captureUniqueSessionActionEvent({
           eventName: `action ${eventName}`,
           actionTrackingId: action.trackingId,
