@@ -42,8 +42,11 @@ export const findLastSimulationComputationByUserId = async (
   userId: string | undefined
 ) => {
   if (!userId) return undefined
+  // A computation is only created for finished simulations, so requiring at
+  // least one computation skips in-progress (unfinished) simulations and
+  // falls back to the latest finished one instead.
   const simulation = await prisma.simulation.findFirst({
-    where: { userId },
+    where: { userId, computations: { some: {} } },
     orderBy: { createdAt: 'desc' },
     include: { computations: true },
   })
