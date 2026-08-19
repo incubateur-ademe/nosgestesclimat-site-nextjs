@@ -8,8 +8,11 @@ import posthog from 'posthog-js'
  * Flags are fetched asynchronously. Without a ceiling, a blocked or failing
  * request would hold every gated event back for the whole session, so we give
  * up waiting and capture anyway — those events just fall outside the experiment.
+ *
+ * A quick test on a review app revealed that on a full page refresh it takes 2.8s on average,
+ * but usually flags are loaded before due to client-side navigation.
  */
-export const FLAGS_TIMEOUT_MS = 3_000
+export const FLAGS_TIMEOUT_MS = 4_000
 
 let flagsReady: Promise<void> | undefined
 
