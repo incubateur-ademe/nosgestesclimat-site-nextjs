@@ -539,11 +539,6 @@ const redirects = [
     destination: '/actions/transport/limiter-avion-toutes-distances',
     permanent: true,
   },
-  {
-    source: '/actions/divers/acheter-malin',
-    destination: '/actions/consommation/acheter-malin',
-    permanent: true,
-  },
 ]
 
 export default redirects
