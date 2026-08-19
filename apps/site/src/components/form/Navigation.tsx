@@ -15,17 +15,13 @@ import {
   questionClickPrevious,
   questionClickSuivant,
 } from '@/constants/tracking/question'
+import { WARNING_SHAKE_EVENT } from '@/constants/warning'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import {
-  useUser,
-  useEngine,
-  useFormState,
-  useRule,
-} from '@/publicodes-state'
+import { useEngine, useFormState, useRule, useUser } from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { useGotoNextQuestion } from '@/publicodes-state/hooks/useGotoNextQuestion/useGotoNextQuestion'
 import {
@@ -393,6 +389,13 @@ export default function Navigation({
           size="md"
           title={submitButtonTitle}
           onClick={handleGoToNextQuestion}
+          onClickDisabled={
+            isNextDisabled
+              ? () => {
+                  document.dispatchEvent(new Event(WARNING_SHAKE_EVENT))
+                }
+              : undefined
+          }
           className={twMerge(
             'p-3 text-sm',
             submitButtonKind === 'finish' &&
