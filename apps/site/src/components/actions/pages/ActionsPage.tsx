@@ -29,6 +29,7 @@ interface ActionsPageProps extends Omit<
    * Total carbon footprint in kg of the user's latest simulation.
    */
   totalFootprint?: number
+  textOverrides?: { highestImpactSectionDescription?: React.ReactNode }
 }
 
 export default function ActionsPage({
@@ -43,6 +44,7 @@ export default function ActionsPage({
   assessmentStatus,
   from,
   totalFootprint,
+  textOverrides,
   ...props
 }: ActionsPageProps) {
   const actionsByTheme = Object.groupBy(actions, (action) => action.theme.key)
@@ -98,6 +100,14 @@ export default function ActionsPage({
                   locale={locale}
                   assessmentStatus={assessmentStatus}
                   from={from}
+                  textOverrides={
+                    textOverrides?.highestImpactSectionDescription
+                      ? {
+                          description:
+                            textOverrides.highestImpactSectionDescription,
+                        }
+                      : undefined
+                  }
                 />
                 <Separator variant="full" className="my-10 hidden md:block" />
 
