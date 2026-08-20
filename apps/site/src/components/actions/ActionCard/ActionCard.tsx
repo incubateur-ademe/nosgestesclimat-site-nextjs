@@ -2,12 +2,12 @@ import ArrowNarrowRightIcon from '@/components/icons/ArrowNarrowRightIcon'
 import Link from '@/components/Link'
 import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
 import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
-import { stripMarkdown } from '@/helpers/markdown/stripMarkdown'
 import type { Locale } from '@/i18nConfig'
 import { LOCALE_EN_KEY, LOCALE_FR_KEY } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
+import removeMarkdown from 'remove-markdown'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../../translation/trans/TransServer'
 import { ThemeBadge } from '../ThemeBadge'
@@ -28,7 +28,7 @@ const classesByTheme: Record<Theme['key'], string> = {
     'border-servicessocietaux-200 border-t-servicessocietaux-400! hover:border-servicessocietaux-300 focus-within:border-servicessocietaux-300',
 }
 
-interface ActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
+export interface ActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
   action: MaybePersonalizedAction
   locale: Locale
   withThemeBadge?: boolean
@@ -62,7 +62,7 @@ export default function ActionCard({
 
   const description = withDescription
     ? // slice to avoid sending more data than we display in the excerpt
-      stripMarkdown(action.longDescription).slice(0, 100)
+      removeMarkdown(action.longDescription).slice(0, 100)
     : null
 
   return (
