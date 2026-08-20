@@ -50,15 +50,6 @@ export function useRules({ engine, root }: Props) {
     [parsedRulesEntries]
   )
 
-  const everyUiCategories = useMemo(
-    () =>
-      parsedRulesEntries
-        .filter((rule) => rule[0].includes('ui . pédagogie'))
-        .filter((rule) => !rule[1].rawNode['cachée'])
-        .map((question) => question[0]),
-    [parsedRulesEntries]
-  )
-
   const everyMosaic = useMemo<DottedName[]>(
     () =>
       parsedRulesEntries
@@ -124,7 +115,6 @@ export function useRules({ engine, root }: Props) {
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
-    everyUiCategories,
     everyMosaicChildrenWithParent,
     rawMissingVariables,
   }

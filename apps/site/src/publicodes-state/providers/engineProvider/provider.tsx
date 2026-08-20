@@ -50,7 +50,6 @@ export default function EngineProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
-    everyUiCategories,
     everyMosaicChildrenWithParent,
     rawMissingVariables,
   } = useRules({ engine: pristineEngine, root })
@@ -81,7 +80,6 @@ export default function EngineProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
-        everyUiCategories,
         everyMosaicChildrenWithParent,
         rawMissingVariables,
         categories,
