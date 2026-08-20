@@ -32,7 +32,7 @@ export default async function Release({
   params,
 }: DefaultPageProps<{ params: { slug: string } }>) {
   const { slug, locale } = await params
-  const nouveaute = getPost(`src/locales/nouveautes/${locale}/`, slug)
+  const nouveaute = getPost(locale, slug)
 
   return (
     <div>
