@@ -11,7 +11,7 @@ import HousingIcon from '../icons/HousingIcon'
 import MiscIcon from '../icons/MiscIcon'
 import PublicServicesIcon from '../icons/PublicServicesIcon'
 import Trans from '../translation/trans/TransServer'
-import ActionCard from './ActionCard/ActionCard'
+import ActionCardSwitchServer from './ActionCard/ActionCardSwitchServer'
 
 const classesByTheme: Record<
   Theme['key'],
@@ -101,7 +101,7 @@ export default function ThemeSection({
         className="-mx-2 md:mx-0"
         innerClassName="py-1 px-2 md:px-0">
         {actions.map((action) => (
-          <ActionCard
+          <ActionCardSwitchServer
             key={action.id}
             action={action}
             locale={locale}

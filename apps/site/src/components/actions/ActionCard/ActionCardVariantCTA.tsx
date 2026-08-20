@@ -1,40 +1,18 @@
 import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
 import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
-import { LOCALE_EN_KEY, LOCALE_FR_KEY, type Locale } from '@/i18nConfig'
-import type { Theme } from '@/types/themes'
-import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
-import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
+import { LOCALE_EN_KEY, LOCALE_FR_KEY } from '@/i18nConfig'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../../translation/trans/TransServer'
 import { ThemeBadge } from '../ThemeBadge'
 
 import ActionTracker from '../ActionTracker'
+import { classesByTheme, type ActionCardProps } from './ActionCard'
 import { ImpactTag } from './ImpactTag'
 import { rankToEmoji } from './rankToEmoji'
 import styles from './ActionCard.module.css'
 
-export const classesByTheme: Record<Theme['key'], string> = {
-  transport:
-    'border-transport-200 border-t-transport-400! hover:border-transport-300 focus-within:border-transport-300',
-  food: 'border-alimentation-200 border-t-alimentation-400! hover:border-alimentation-300 focus-within:border-alimentation-300',
-  housing:
-    'border-logement-200 border-t-logement-400! hover:border-logement-300 focus-within:border-logement-300',
-  misc: 'border-divers-200 border-t-divers-400! hover:border-divers-300 focus-within:border-divers-300',
-  societal_services:
-    'border-servicessocietaux-200 border-t-servicessocietaux-400! hover:border-servicessocietaux-300 focus-within:border-servicessocietaux-300',
-}
-
-export interface ActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
-  action: MaybePersonalizedAction
-  locale: Locale
-  withThemeBadge?: boolean
-  assessmentStatus?: SimulationComputationStatus | null
-  rank?: number
-  from?: 'fin' | 'mon-espace' | 'index'
-}
-
-export default function ActionCard({
+export default function ActionCardVariantCTA({
   action,
   className,
   locale,
@@ -97,12 +75,6 @@ export default function ActionCard({
           </Trans>
         </span>
       </Link>
-      {/* <div className="-mx-2 border-t border-slate-100 px-2 pt-2">
-        <Button color="secondary" size="sm" className="w-full">
-          <PlusIcon className="stroke-primary-700 mr-2 size-4 fill-none" />
-          Ajouter
-        </Button>
-      </div> */}
     </article>
   )
 }

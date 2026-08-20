@@ -11,7 +11,10 @@ import { useEffect } from 'react'
  * Running experiments that use action events as a metric. Their exposure has to
  * be emitted before we capture, so the events land inside the experiment.
  */
-const ACTION_EXPERIMENTS: FeatureFlagName[] = ['abc-test-layout-catalogue']
+const ACTION_EXPERIMENTS: FeatureFlagName[] = [
+  'abc-test-layout-catalogue',
+  'abc-test-action-card',
+]
 
 export default function ActionTracker({
   action,
