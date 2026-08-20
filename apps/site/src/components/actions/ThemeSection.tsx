@@ -50,12 +50,20 @@ export default function ThemeSection({
   locale,
   assessmentStatus,
   from,
+  title,
+  description,
+  className,
 }: {
-  theme: Theme
+  theme: Pick<Theme, 'key' | 'title'>
   actions: MaybePersonalizedAction[]
   locale: Locale
   assessmentStatus?: SimulationComputationStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
+  /** Defaults to the theme title */
+  title?: React.ReactNode
+  /** Defaults to the number of actions in the section */
+  description?: React.ReactNode
+  className?: string
 }) {
   const carouselLabelId = useId()
   const classes = classesByTheme[theme.key]
@@ -64,22 +72,25 @@ export default function ThemeSection({
     <section
       className={twMerge(
         '-mx-4 border-t-2 border-b-2 px-2 pt-5 pb-4 md:mx-0 md:rounded-2xl md:border-2 md:px-5 md:pt-8 md:pb-7',
-        classes.section
+        classes.section,
+        className
       )}>
       <div className="mb-4 flex items-start justify-between gap-2">
         <div className="flex items-start gap-1">
           <ThemeIcon themeKey={theme.key} />
           <div className={classes.header}>
             <h2 id={carouselLabelId} className="mb-0 text-lg/normal font-bold">
-              {theme.title}
+              {title ?? theme.title}
             </h2>
             <p className="text-sm/normal font-normal">
-              <Trans
-                locale={locale}
-                i18nKey="actions.components.themeSection.description"
-                values={{ count }}>
-                {'{{count}} actions recommandées'}
-              </Trans>
+              {description ?? (
+                <Trans
+                  locale={locale}
+                  i18nKey="actions.components.themeSection.description"
+                  values={{ count }}>
+                  {'{{count}} actions recommandées'}
+                </Trans>
+              )}
             </p>
           </div>
         </div>

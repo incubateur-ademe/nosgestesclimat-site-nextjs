@@ -1442,3 +1442,5 @@ entries:
   actions.components.actionCard.highlighted.impactUnit: CO<1>2</1>e / an
   actions.components.themeSections.testWhiteBackground.title: Voici d’autres actions qui vous aideront à réduire votre empreinte
   actions.components.themeSections.testWhiteBackground.description: 'À impact variable : des gestes à fort impact aux petit pas.'
+  actions.detailPage.sections.otherThemeActions.description: Sélectionnées selon vos réponses au simulateur
+  actions.detailPage.sections.otherThemeActions.title: D’autres actions personnalisées
