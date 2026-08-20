@@ -11,8 +11,9 @@ import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   question: DottedName
+  id?: string
 }
-export default function Warning({ question }: Props) {
+export default function Warning({ question, id }: Props) {
   const locale = useLocale()
 
   const { plancher, plafond, warning, unit } = useRule(question)
@@ -37,7 +38,7 @@ export default function Warning({ question }: Props) {
   return (
     <AnimatePresence>
       <motion.div
-        id={WARNING_MESSAGE_ID}
+        id={id ?? WARNING_MESSAGE_ID}
         initial={{ height: 0, marginBottom: 0 }}
         animate={{ height: 'auto', marginBottom: '1rem' }}
         exit={{

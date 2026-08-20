@@ -12,7 +12,9 @@ import {
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
 import { questionChooseAnswer } from '@/constants/tracking/question'
+import { WARNING_MESSAGE_ID } from '@/constants/warning'
 import Button from '@/design-system/buttons/Button'
+import { getWarningId } from '@/helpers/accessibility/getWarningId'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
 import { useIsDisabledByBounds } from '@/hooks/useIsDisabledByBounds'
 import { useLocale } from '@/hooks/useLocale'
@@ -182,6 +184,7 @@ export default function Question({
                 aria-labelledby="question-label"
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 label={label || ''}
+                overLimitQuestions={overLimitQuestions}
               />
             )}
           </>
@@ -189,7 +192,15 @@ export default function Question({
       </div>
 
       {overLimitQuestions.map((overLimitQuestion) => (
-        <Warning key={overLimitQuestion} question={overLimitQuestion} />
+        <Warning
+          key={overLimitQuestion}
+          question={overLimitQuestion}
+          id={
+            overLimitQuestion === question
+              ? WARNING_MESSAGE_ID
+              : getWarningId(overLimitQuestion)
+          }
+        />
       ))}
 
       {activeNotifications.length > 0 && (
