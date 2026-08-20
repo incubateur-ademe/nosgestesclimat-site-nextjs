@@ -145,7 +145,7 @@ async function getBlogUrls(): Promise<SitemapEntry[]> {
 async function getReleaseUrls(): Promise<SitemapEntry[]> {
   const entriesByLocale = await Promise.all(
     LOCALES.map(async (locale) => {
-      const posts = await getPosts(`src/locales/nouveautes/${locale}/`)
+      const posts = await getPosts(locale)
       return posts.map((post) => ({
         url: buildUrl(locale, `/nouveautes/${post.slug}`),
         lastModified: toDate(post.data.date),
