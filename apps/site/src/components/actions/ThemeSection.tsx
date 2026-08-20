@@ -1,6 +1,7 @@
 import Carousel from '@/design-system/carousel/Carousel'
 import type { Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
+import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
 import { useId } from 'react'
@@ -50,6 +51,7 @@ export default function ThemeSection({
   locale,
   assessmentStatus,
   from,
+  trackingSource,
   title,
   description,
   className,
@@ -59,6 +61,7 @@ export default function ThemeSection({
   locale: Locale
   assessmentStatus?: SimulationComputationStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
+  trackingSource?: ActionEventSource
   /** Defaults to the theme title */
   title?: React.ReactNode
   /** Defaults to the number of actions in the section */
@@ -109,6 +112,7 @@ export default function ThemeSection({
             assessmentStatus={assessmentStatus}
             className="h-full"
             from={from}
+            source={trackingSource}
           />
         ))}
       </Carousel>

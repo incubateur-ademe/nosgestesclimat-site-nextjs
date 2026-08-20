@@ -5,6 +5,7 @@ import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
 import type { Locale } from '@/i18nConfig'
 import { LOCALE_EN_KEY, LOCALE_FR_KEY } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
+import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
 import removeMarkdown from 'remove-markdown'
@@ -35,6 +36,7 @@ export interface ActionCardProps extends React.ComponentPropsWithoutRef<'article
   assessmentStatus?: SimulationComputationStatus | null
   rank?: number
   from?: 'fin' | 'mon-espace' | 'index'
+  source?: ActionEventSource
 }
 
 export default function ActionCard({
@@ -45,6 +47,7 @@ export default function ActionCard({
   assessmentStatus,
   rank,
   from,
+  source,
   withCta,
   withDescription,
   ...props
@@ -77,7 +80,9 @@ export default function ActionCard({
         classesByTheme[action.theme.key],
         className
       )}>
-      <ActionTracker eventName="displayed" action={action} />
+      {source !== 'cross-sell' ? (
+        <ActionTracker eventName="displayed" action={action} />
+      ) : null}
       <div
         className={twMerge(
           'flex grow flex-col gap-2 p-2',

@@ -243,6 +243,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
             actions={otherThemeActions}
             locale={locale}
             from={from}
+            trackingSource="cross-sell"
             className="md:col-span-full"
             title={
               <Trans
