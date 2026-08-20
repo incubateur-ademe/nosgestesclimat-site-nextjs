@@ -1443,3 +1443,5 @@ entries:
   actions.components.themeSections.testWhiteBackground.title: Voici d’autres actions qui vous aideront à réduire votre empreinte
   actions.components.themeSections.testWhiteBackground.description: 'À impact variable : des gestes à fort impact aux petit pas.'
   actions.components.highestImpactActionsSection.publicDescription: Le top 3 des actions qui permettent de limiter ou réduire ses émissions de CO<1>2</1>
+  actions.detailPage.sections.otherThemeActions.description: Sélectionnées selon vos réponses au simulateur
+  actions.detailPage.sections.otherThemeActions.title: D’autres actions personnalisées
