@@ -5,8 +5,12 @@ import type { Action } from '../types/action.ts'
 // Curated highlight actions for the "highest impact" section, in this order.
 // Locale lists must stay index-aligned: they describe the same actions.
 const HIGHLIGHTED_ACTION_SLUGS: Record<ISOSupportedLanguage, string[]> = {
-  fr: ['limiter-avion', 'petits-trajets-sans-voiture', 'limiter-viande'],
-  en: ['reduce-flying', 'short-trips-without-car', 'reduce-meat'],
+  fr: [
+    'limiter-avion-toutes-distances',
+    'petits-trajets-sans-voiture',
+    'reduire-viande',
+  ],
+  en: ['flying-less', 'short-trips-without-car', 'eating-less-meat'],
 }
 
 export const getPublicActionsCatalogue = async (
