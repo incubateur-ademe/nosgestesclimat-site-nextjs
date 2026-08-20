@@ -1,6 +1,5 @@
 import ActionCard, { type ActionCardProps } from './ActionCard'
 import ActionCardSwitch from './ActionCardSwitch'
-import ActionCardVariantCTA from './ActionCardVariantCTA'
 
 /**
  * Server wrapper around the client `ActionCardSwitch` for the
@@ -15,8 +14,8 @@ export default function ActionCardSwitchServer(props: ActionCardProps) {
   return (
     <ActionCardSwitch
       control={<ActionCard {...props} />}
-      cta={<ActionCardVariantCTA {...props} />}
-      teaserCta={<ActionCardVariantCTA {...props} withDescription />}
+      cta={<ActionCard {...props} withCta />}
+      teaserCta={<ActionCard {...props} withCta withDescription />}
     />
   )
 }
