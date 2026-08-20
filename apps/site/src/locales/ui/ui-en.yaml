@@ -2158,3 +2158,5 @@ entries:
   actions.detailPage.sections.otherThemeActions.description.lock: Sélectionnées selon vos réponses au simulateur
   actions.detailPage.sections.otherThemeActions.title: Other personalised actions
   actions.detailPage.sections.otherThemeActions.title.lock: D’autres actions personnalisées
+  actions.components.actionCard.ctaVariant.link: See the<1> "{{actionTitle}}"</1> campaign
+  actions.components.actionCard.ctaVariant.link.lock: Voir l'action<1> "{{actionTitle}}"</1>

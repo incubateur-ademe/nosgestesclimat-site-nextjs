@@ -810,6 +810,7 @@ entries:
   actions.components.actionCard.highlighted.potentialImpact: Impact potentiel
   actions.components.actionCard.highlighted.footprintShare: soit {{percentage}} % de votre empreinte totale
   actions.components.actionCard.link: Voir l'action "{{actionTitle}}"
+  actions.components.actionCard.ctaVariant.link: Voir l'action<1> "{{actionTitle}}"</1>
   actions.components.actionCard.impactTag: Jusqu'à {{formattedValue}} {{unit}} CO<5>2</5>e / an
   actions.components.actionCard.noImpactTag: Impact non quantifiable
   actions.components.actionCard.lowImpactTag: Moins de {{formattedValue}} {{unit}} CO<5>2</5>e / an

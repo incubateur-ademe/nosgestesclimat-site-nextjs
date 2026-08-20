@@ -1,16 +1,17 @@
+import Link from '@/components/Link'
 import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
 import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
 import { LOCALE_EN_KEY, LOCALE_FR_KEY } from '@/i18nConfig'
-import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../../translation/trans/TransServer'
 import { ThemeBadge } from '../ThemeBadge'
 
+import ArrowNarrowRightIcon from '../../icons/ArrowNarrowRightIcon'
 import ActionTracker from '../ActionTracker'
 import { classesByTheme, type ActionCardProps } from './ActionCard'
+import styles from './ActionCard.module.css'
 import { ImpactTag } from './ImpactTag'
 import { rankToEmoji } from './rankToEmoji'
-import styles from './ActionCard.module.css'
 
 export default function ActionCardVariantCTA({
   action,
@@ -36,29 +37,44 @@ export default function ActionCardVariantCTA({
     <article
       {...props}
       className={twMerge(
-        `relative flex min-h-38 flex-col gap-2 rounded-lg border border-t-8 bg-white p-2`,
+        `relative flex min-h-50 flex-col gap-6 rounded-lg border border-t-8 bg-white`,
         'translate-y-0 transition-[box-shadow_border-color_transform] duration-300 ease-out',
-        'hover:-translate-y-0.5 hover:shadow-sm',
-        'focus-within:-translate-y-0.5 focus-within:shadow-sm',
+        'hover:-translate-y-0.5 hover:shadow-md',
+        'focus-within:-translate-y-0.5 focus-within:shadow-md',
         classesByTheme[action.theme.key],
         className
       )}>
       <ActionTracker eventName="displayed" action={action} />
-      {rankEmoji || withThemeBadge ? (
-        <div className="flex items-center">
-          {rankEmoji ? <span className="">{rankEmoji}</span> : null}
-          {withThemeBadge ? <ThemeBadge theme={action.theme} /> : null}
-        </div>
-      ) : null}
-      <div className="grow">
-        <h3 className="mb-2 text-base/normal font-bold">{action.title}</h3>
-        {action.assessment ? (
-          <ImpactTag
-            impact={action.assessment.impact}
-            locale={locale}
-            assessmentStatus={assessmentStatus}
-          />
+      <div className="flex grow flex-col gap-2 px-4 pt-2">
+        {rankEmoji || withThemeBadge ? (
+          <div className="flex items-center">
+            {rankEmoji ? <span className="">{rankEmoji}</span> : null}
+            {withThemeBadge ? <ThemeBadge theme={action.theme} /> : null}
+          </div>
         ) : null}
+        <div className="grow">
+          <h3 className="mb-2 text-base/normal font-bold">{action.title}</h3>
+          {action.assessment ? (
+            <ImpactTag
+              impact={action.assessment.impact}
+              locale={locale}
+              assessmentStatus={assessmentStatus}
+            />
+          ) : null}
+        </div>
+      </div>
+      <div className="border-t border-slate-100 p-4">
+        <span
+          aria-hidden="true"
+          className="text-primary-700 flex items-center text-sm/normal font-bold">
+          <Trans
+            locale={locale}
+            i18nKey="actions.components.actionCard.ctaVariant.link"
+            values={{ actionTitle: action.title }}>
+            Voir l'action<span className="sr-only"> "{'{{actionTitle}}'}"</span>
+          </Trans>
+          <ArrowNarrowRightIcon className="ml-1 h-2.5" />
+        </span>
       </div>
       <Link
         href={href}
@@ -69,9 +85,9 @@ export default function ActionCardVariantCTA({
         <span className="sr-only">
           <Trans
             locale={locale}
-            i18nKey="actions.components.actionCard.link"
+            i18nKey="actions.components.actionCard.ctaVariant.link"
             values={{ actionTitle: action.title }}>
-            Voir l'action "{'{{actionTitle}}'}"
+            Voir l'action<span className="sr-only"> "{'{{actionTitle}}'}"</span>
           </Trans>
         </span>
       </Link>
