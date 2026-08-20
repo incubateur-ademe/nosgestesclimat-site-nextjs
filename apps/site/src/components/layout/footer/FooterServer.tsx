@@ -158,7 +158,7 @@ export default async function FooterServer({
                     href={ACTIONS_PATH}
                     className="text-default text-sm no-underline hover:underline">
                     <Trans locale={locale} i18nKey="footer.resources.actions">
-                      Actions
+                      J’agis
                     </Trans>
                   </InlineLink>
                 </li>

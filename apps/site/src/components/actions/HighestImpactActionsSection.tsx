@@ -13,6 +13,7 @@ interface HighestImpactActionsSectionProps extends React.ComponentPropsWithoutRe
   locale: Locale
   assessmentStatus?: SimulationComputationStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
+  textOverrides?: { description?: React.ReactNode }
 }
 
 export default function HighestImpactActionsSection({
@@ -21,6 +22,7 @@ export default function HighestImpactActionsSection({
   className,
   assessmentStatus,
   from,
+  textOverrides,
   ...props
 }: HighestImpactActionsSectionProps) {
   const carouselLabelId = useId()
@@ -50,11 +52,13 @@ export default function HighestImpactActionsSection({
             </Trans>
           </h2>
           <p className="text-sm/normal font-normal md:text-base">
-            <Trans
-              locale={locale}
-              i18nKey="actions.components.highestImpactActionsSection.description">
-              Les actions qui auraient le plus d'impact sur votre empreinte
-            </Trans>
+            {textOverrides?.description ?? (
+              <Trans
+                locale={locale}
+                i18nKey="actions.components.highestImpactActionsSection.description">
+                Les actions qui auraient le plus d'impact sur votre empreinte
+              </Trans>
+            )}
           </p>
         </div>
       </div>
