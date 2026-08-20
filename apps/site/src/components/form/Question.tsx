@@ -21,6 +21,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { AnimatePresence } from 'framer-motion'
 import type { Evaluation } from 'publicodes'
 import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -191,17 +192,20 @@ export default function Question({
         )}
       </div>
 
-      {overLimitQuestions.map((overLimitQuestion) => (
-        <Warning
-          key={overLimitQuestion}
-          question={overLimitQuestion}
-          id={
-            overLimitQuestion === question
-              ? WARNING_MESSAGE_ID
-              : getWarningId(overLimitQuestion)
-          }
-        />
-      ))}
+      {/* AnimatePresence stays mounted so exit animations play when a warning is removed */}
+      <AnimatePresence>
+        {overLimitQuestions.map((overLimitQuestion) => (
+          <Warning
+            key={overLimitQuestion}
+            question={overLimitQuestion}
+            id={
+              overLimitQuestion === question
+                ? WARNING_MESSAGE_ID
+                : getWarningId(overLimitQuestion)
+            }
+          />
+        ))}
+      </AnimatePresence>
 
       {activeNotifications.length > 0 && (
         <Notification
