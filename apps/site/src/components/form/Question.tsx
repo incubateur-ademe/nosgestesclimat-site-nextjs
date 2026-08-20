@@ -14,6 +14,7 @@ import {
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
+import { useIsDisabledByBounds } from '@/hooks/useIsDisabledByBounds'
 import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
@@ -52,11 +53,10 @@ export default function Question({
     assistance,
     questionsOfMosaicFromParent,
     activeNotifications,
-    plancher,
-    plafond,
-    warning,
     category,
   } = useRule(question)
+
+  const { overLimitQuestions } = useIsDisabledByBounds(question)
 
   const { questionsByCategories } = useFormState()
 
@@ -188,23 +188,15 @@ export default function Question({
         )}
       </div>
 
-      {typeof situationValue === 'number' && (
-        <Warning
-          type={type}
-          plancher={plancher}
-          plafond={plafond}
-          warning={warning}
-          value={situationValue}
-          unit={unit}
-        />
-      )}
+      {overLimitQuestions.map((overLimitQuestion) => (
+        <Warning key={overLimitQuestion} question={overLimitQuestion} />
+      ))}
 
       {activeNotifications.length > 0 && (
         <Notification
           notification={activeNotifications[activeNotifications.length - 1]}
         />
       )}
-
       <DontKnowButton question={question} />
     </>
   )
