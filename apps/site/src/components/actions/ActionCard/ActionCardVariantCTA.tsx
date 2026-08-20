@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge'
 import Trans from '../../translation/trans/TransServer'
 import { ThemeBadge } from '../ThemeBadge'
 
+import { stripMarkdown } from '../../../helpers/markdown/stripMarkdown'
 import ArrowNarrowRightIcon from '../../icons/ArrowNarrowRightIcon'
 import ActionTracker from '../ActionTracker'
 import { classesByTheme, type ActionCardProps } from './ActionCard'
@@ -21,8 +22,9 @@ export default function ActionCardVariantCTA({
   assessmentStatus,
   rank,
   from,
+  withDescription,
   ...props
-}: ActionCardProps) {
+}: ActionCardProps & { withDescription?: boolean }) {
   const rankEmoji = rankToEmoji(rank)
   const actionDetailPath = ACTION_DETAIL_PATH(action.theme.slug, action.slug)
   // On an /en page, an unprefixed (fr) path would be redirected to /en by the
@@ -33,6 +35,12 @@ export default function ActionCardVariantCTA({
       ? `/${LOCALE_FR_KEY}${actionDetailPath}`
       : getLocalizedPath(action.language, actionDetailPath)
   const href = from ? `${actionPath}?from=${from}` : actionPath
+
+  const description = withDescription
+    ? // slice to avoid sending more data than we display in the excerpt
+      stripMarkdown(action.longDescription).slice(0, 100)
+    : null
+
   return (
     <article
       {...props}
@@ -54,6 +62,11 @@ export default function ActionCardVariantCTA({
         ) : null}
         <div className="grow">
           <h3 className="mb-2 text-base/normal font-bold">{action.title}</h3>
+          {description ? (
+            <p className="line-clamp-2 text-sm/normal text-slate-600 md:line-clamp-3 md:text-base/normal">
+              {description}
+            </p>
+          ) : null}
           {action.assessment ? (
             <ImpactTag
               impact={action.assessment.impact}
