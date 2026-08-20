@@ -63,6 +63,7 @@ export const findVisibleActions = async (
   {
     orderBy,
     fallbackToDefaultLocale = false,
+    themeId,
   }: {
     orderBy?: { title?: 'asc' | 'desc' }
     /**
@@ -70,13 +71,15 @@ export const findVisibleActions = async (
      * french content instead of being hidden.
      */
     fallbackToDefaultLocale?: boolean
+    /** When set, only the actions belonging to that theme are returned. */
+    themeId?: string
   }
 ): Promise<Action[]> => {
   const locales = fallbackToDefaultLocale
     ? { in: [locale, defaultLocale] }
     : locale
   const dbActions = await prisma.action.findMany({
-    where: getVisibleFilter(),
+    where: { ...getVisibleFilter(), ...(themeId ? { themeId } : {}) },
     include: {
       translations: {
         where: { locale: locales },
@@ -259,11 +262,12 @@ export const findVisiblePersonalizedActionBySlug = async (
 export const findAllVisiblePersonalizedActions = async (
   userId: string | undefined,
   locale: ISOSupportedLanguage,
-  options: { fallbackToDefaultLocale?: boolean }
+  options: { fallbackToDefaultLocale?: boolean; themeId?: string }
 ): Promise<PersonalizedAction[]> => {
   const [actions, simulation] = await Promise.all([
     findVisibleActions(locale, {
       fallbackToDefaultLocale: options.fallbackToDefaultLocale,
+      themeId: options.themeId,
     }),
     findLastCompletedSimulationByUserId(userId),
   ])

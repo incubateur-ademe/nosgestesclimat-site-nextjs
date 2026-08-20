@@ -2154,3 +2154,7 @@ entries:
   actions.components.themeSections.testWhiteBackground.title.lock: Voici d’autres actions qui vous aideront à réduire votre empreinte
   actions.components.highestImpactActionsSection.publicDescription: The top 3 actions you can take to limit or reduce your CO<1>2</1> emissions
   actions.components.highestImpactActionsSection.publicDescription.lock: Le top 3 des actions qui permettent de limiter ou réduire ses émissions de CO<1>2</1>
+  actions.detailPage.sections.otherThemeActions.description: Selected according to your answers to the simulator
+  actions.detailPage.sections.otherThemeActions.description.lock: Sélectionnées selon vos réponses au simulateur
+  actions.detailPage.sections.otherThemeActions.title: Other personalised actions
+  actions.detailPage.sections.otherThemeActions.title.lock: D’autres actions personnalisées
