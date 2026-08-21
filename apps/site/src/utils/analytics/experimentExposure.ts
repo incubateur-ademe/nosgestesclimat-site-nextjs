@@ -17,20 +17,12 @@ export const FLAGS_TIMEOUT_MS = 4_000
 let flagsReady: Promise<void> | undefined
 
 function whenFeatureFlagsReady(): Promise<void> {
-  // eslint-disable-next-line no-console
-  console.log('whenFeatureFlagsReady')
   flagsReady ??= new Promise<void>((resolve) => {
-    // eslint-disable-next-line no-console
-    console.log('whenFeatureFlagsReady promise')
     // `featureFlags` is only guaranteed once `posthog.init()` has run, and we
     // defer that behind an IntersectionObserver for iframes — so it may still
     // be missing here, whatever the published types say.
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (posthog.featureFlags?.hasLoadedFlags) {
-      // eslint-disable-next-line no-console
-      console.log(
-        'whenFeatureFlagsReady posthog.featureFlags?.hasLoadedFlags (resolve)'
-      )
       resolve()
       return
     }
@@ -42,8 +34,6 @@ function whenFeatureFlagsReady(): Promise<void> {
     }
 
     const settle = () => {
-      // eslint-disable-next-line no-console
-      console.log('whenFeatureFlagsReady settle (resolve)')
       listener.settled = true
       clearTimeout(timeout)
       listener.unsubscribe?.()
