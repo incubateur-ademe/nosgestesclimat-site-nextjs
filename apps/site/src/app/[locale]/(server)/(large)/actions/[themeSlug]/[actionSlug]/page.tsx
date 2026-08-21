@@ -124,7 +124,6 @@ export default async function ActionPage({ params, searchParams }: Props) {
 
   // The theme section spans the whole grid width, so it starts a new row: the
   // sections around it can no longer be paired two by two.
-  // const isThemeSectionDisplayed = otherThemeActions.length > 0
   const isThemeSectionDisplayed = otherThemeActions.length > 0
   const halfWidthSectionClassName =
     isThemeSectionDisplayed && !(action.tips && action.financialIncentives)
@@ -243,6 +242,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
             actions={otherThemeActions}
             locale={locale}
             from={from}
+            trackingSource="cross-sell"
             className="md:col-span-full"
             title={
               <Trans
