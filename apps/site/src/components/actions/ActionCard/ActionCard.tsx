@@ -65,7 +65,8 @@ export default function ActionCard({
 
   const description = withDescription
     ? // slice to avoid sending more data than we display in the excerpt
-      removeMarkdown(action.longDescription).slice(0, 100)
+      (action.description ??
+      removeMarkdown(action.longDescription).slice(0, 100))
     : null
 
   return (

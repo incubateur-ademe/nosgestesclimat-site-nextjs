@@ -16,6 +16,7 @@ const mapTranslationInputToPrismaCreate = (
   locale,
   title: input.title,
   slug: input.slug,
+  description: input.description,
   longDescription: input.longDescription,
   media: input.media as Prisma.InputJsonValue | undefined,
   tips: input.tips,
@@ -50,6 +51,7 @@ const mapTranslationInputToPrismaUpsert = (
   update: {
     title: input.title,
     slug: input.slug,
+    description: input.description,
     longDescription: input.longDescription,
     media: input.media as Prisma.InputJsonValue | undefined,
     tips: input.tips,
