@@ -51,6 +51,26 @@ describe('syncNotionActions', () => {
     )
   })
 
+  it('syncs the optional short description', async () => {
+    const withShortDescription = buildNotionRow({
+      short_description_fr: 'A short teaser',
+    })
+    const withoutShortDescription = buildNotionRow()
+    const fetchAllPages = vi
+      .fn()
+      .mockResolvedValue([withShortDescription, withoutShortDescription])
+
+    await syncNotionActions({ fetchAllPages, actionDatabaseId })
+
+    const actions = await findAllActions('fr')
+    expect(
+      actions.find((a) => a.slug === withShortDescription.slug)?.description
+    ).toBe('A short teaser')
+    expect(
+      actions.find((a) => a.slug === withoutShortDescription.slug)?.description
+    ).toBeUndefined()
+  })
+
   it('updates existing actions matched by slug', async () => {
     const existing = await actionFactory.create({
       slug: 'my-slug',
@@ -60,6 +80,7 @@ describe('syncNotionActions', () => {
       tracking_id: 'updated_tracking_id',
       rule_id: faker.string.uuid(),
       front_title_fr: 'Updated Title',
+      short_description_fr: 'Updated short description',
       long_description_fr: 'Updated long description',
       media_fr:
         '<script data-name="impact-co2" src="https://impactco2.fr/iframe.js" data-type="transport" data-search="?theme=default&language=fr&km=10"></script>',
@@ -85,6 +106,7 @@ describe('syncNotionActions', () => {
         theme: validTheme,
         ruleId: row.rule_id,
         title: row.front_title_fr,
+        description: row.short_description_fr,
         longDescription: row.long_description_fr,
         media: {
           type: 'impact_co2',
@@ -113,6 +135,7 @@ describe('syncNotionActions', () => {
   it('supports removing previously set optional fields', async () => {
     const existing = await actionFactory.create({
       slug: 'my-slug',
+      description: 'existing short description',
       tips: 'existing tips',
       financialIncentives: 'existing incentives',
       furtherExplore: 'existing further explore',
@@ -133,6 +156,7 @@ describe('syncNotionActions', () => {
     })
     const row = buildNotionRow({
       slug: 'my-slug',
+      short_description_fr: '',
       tips_fr: '',
       financial_incentives_fr: '',
       further_explore_fr: '',
@@ -156,6 +180,7 @@ describe('syncNotionActions', () => {
         theme: validTheme,
         ruleId: row.rule_id,
         title: row.front_title_fr,
+        description: undefined,
         longDescription: row.long_description_fr,
         media: undefined,
         tips: undefined,
@@ -238,6 +263,8 @@ describe('syncNotionActions', () => {
           ...toUpdate,
           title: 'Updated title',
           trackingId: updatedRow.tracking_id,
+          // the row has no short description column at all, so the existing
+          // one is left untouched
           longDescription: updatedRow.long_description_fr,
           ruleId: updatedRow.rule_id,
           theme: validTheme,
@@ -249,6 +276,7 @@ describe('syncNotionActions', () => {
           slug: createdRow.slug,
           trackingId: createdRow.tracking_id,
           language: 'fr',
+          description: undefined,
           longDescription: createdRow.long_description_fr,
           theme: validTheme,
           ruleId: createdRow.rule_id,
@@ -314,6 +342,131 @@ describe('syncNotionActions', () => {
         title: 'English title',
         longDescription: 'English description',
         tips: 'English tips',
+      })
+    })
+
+    it('creates the optional English fields', async () => {
+      const row = buildNotionRow({
+        front_title_en: 'English title',
+        slug_en: 'english-slug',
+        long_description_en: 'English description',
+        short_description_en: 'English short description',
+        media_en:
+          '<script data-name="impact-co2" src="https://impactco2.fr/iframe.js" data-type="transport" data-search="?theme=default&language=en&km=10"></script>',
+        media_title_en: 'English media title',
+        tips_en: 'English tips',
+        financial_incentives_en: 'English financial incentives',
+        further_explore_en: 'English further explore',
+        seo_title_en: 'English seo title',
+        seo_description_en: 'English seo description',
+        seo_json_ld_en: '{"@context": "https://schema.org","@graph": []}',
+      })
+      const fetchAllPages = vi.fn().mockResolvedValue([row])
+
+      await syncNotionActions({ fetchAllPages, actionDatabaseId })
+
+      const [action] = await findAllActions('fr')
+      expect(await findEnglishTranslation(action.id)).toMatchObject({
+        title: 'English title',
+        slug: 'english-slug',
+        longDescription: 'English description',
+        description: 'English short description',
+        media: {
+          type: 'impact_co2',
+          title: 'English media title',
+          data: { type: 'transport', options: { km: '10' } },
+        },
+        tips: 'English tips',
+        financialIncentives: 'English financial incentives',
+        furtherExplore: 'English further explore',
+        seoMetadata: {
+          title: 'English seo title',
+          description: 'English seo description',
+          jsonLd: { '@context': 'https://schema.org', '@graph': [] },
+        },
+      })
+    })
+
+    it('creates an English translation with none of the optional fields', async () => {
+      const row = buildNotionRow({
+        front_title_en: 'English title',
+        slug_en: 'english-slug',
+        long_description_en: 'English description',
+      })
+      const fetchAllPages = vi.fn().mockResolvedValue([row])
+
+      await syncNotionActions({ fetchAllPages, actionDatabaseId })
+
+      const [action] = await findAllActions('fr')
+      expect(await findEnglishTranslation(action.id)).toMatchObject({
+        title: 'English title',
+        description: null,
+        media: null,
+        tips: null,
+        financialIncentives: null,
+        furtherExplore: null,
+        seoMetadata: { title: null, description: null, jsonLd: null },
+      })
+    })
+
+    it('updates the optional English fields, and clears the ones Notion emptied', async () => {
+      const row = buildNotionRow({
+        slug: 'my-slug',
+        front_title_en: 'English title',
+        slug_en: 'english-slug',
+        long_description_en: 'English description',
+        short_description_en: 'English short description',
+        media_en:
+          '<script data-name="impact-co2" src="https://impactco2.fr/iframe.js" data-type="transport" data-search="?theme=default&language=en&km=10"></script>',
+        media_title_en: 'English media title',
+        tips_en: 'English tips',
+        financial_incentives_en: 'English financial incentives',
+        further_explore_en: 'English further explore',
+        seo_title_en: 'English seo title',
+        seo_description_en: 'English seo description',
+        seo_json_ld_en: '{"@context": "https://schema.org","@graph": []}',
+      })
+      await syncNotionActions({
+        fetchAllPages: vi.fn().mockResolvedValue([row]),
+        actionDatabaseId,
+      })
+
+      const updatedRow = {
+        ...row,
+        short_description_en: 'Updated English short description',
+        media_en:
+          '<script data-name="impact-co2" src="https://impactco2.fr/iframe.js" data-type="chauffage" data-search="?theme=default&language=en"></script>',
+        media_title_en: 'Updated English media title',
+        tips_en: 'Updated English tips',
+        financial_incentives_en: '',
+        further_explore_en: '',
+        seo_title_en: 'Updated English seo title',
+        seo_description_en: '',
+        seo_json_ld_en: '',
+      }
+      await syncNotionActions({
+        fetchAllPages: vi.fn().mockResolvedValue([updatedRow]),
+        actionDatabaseId,
+      })
+
+      const [action] = await findAllActions('fr')
+      const translation = await findEnglishTranslation(action.id)
+      expect(translation).toMatchObject({
+        description: 'Updated English short description',
+        tips: 'Updated English tips',
+        financialIncentives: null,
+        furtherExplore: null,
+        seoMetadata: {
+          title: 'Updated English seo title',
+          description: null,
+          jsonLd: null,
+        },
+      })
+      // the media is fully replaced, the previous `km` option is gone
+      expect(translation?.media).toEqual({
+        type: 'impact_co2',
+        title: 'Updated English media title',
+        data: { type: 'chauffage' },
       })
     })
 
@@ -562,6 +715,13 @@ async function findAllActionsGroupedByStatus() {
     a.deletedAt ? 'deleted' : 'active'
   )
   return { active: grouped.active ?? [], deleted: grouped.deleted ?? [] }
+}
+
+function findEnglishTranslation(actionId: string) {
+  return prisma.actionTranslation.findUnique({
+    where: { actionId_locale: { actionId, locale: 'en' } },
+    include: { seoMetadata: true },
+  })
 }
 
 function findActionTranslation(actionId: string, locale: 'fr' | 'en') {
