@@ -1,5 +1,6 @@
 import { createAssessActions } from '@nosgestesclimat/core/features/actions/services/assess-actions.service'
 import type { LogVerbosity } from '@nosgestesclimat/core/features/logger/index'
+import { createGetModelRules } from '@nosgestesclimat/core/features/models/get-model-rules.service'
 import { createComputePollStats } from '@nosgestesclimat/core/features/polls/stats/legacy/compute-poll-stats'
 import { createProcessNextPendingPollStats } from '@nosgestesclimat/core/features/polls/stats/services/process-next-pending-poll-stats'
 import {
@@ -28,9 +29,20 @@ const logger = createLogger({
 const POLL_INTERVAL_MS = 2000
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
+<<<<<<< HEAD
 const warmUpHotEngines = createWarmUpHotEngines({ logger })
 const getEngineForModel = createGetEngineForModel({ logger })
 const assessActions = createAssessActions({ logger })
+=======
+const getModelRules = createGetModelRules({})
+const warmUpHotEngines = createWarmUpHotEngines({ logger, getModelRules })
+const getEngineForModel = createGetEngineForModel({ logger, getModelRules })
+const assessActions = createAssessActions({
+  logger,
+  // TODO: Setup Sentry in worker
+  captureException() {},
+})
+>>>>>>> cee313d36 (♻️  prefer dependency injection)
 const processNextPendingComputation = createProcessNextPendingComputation({
   assessActions,
 })
