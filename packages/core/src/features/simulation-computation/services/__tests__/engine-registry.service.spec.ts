@@ -9,47 +9,38 @@ const noopLogger = {
   debug: () => {},
 }
 
-// A rule set small enough to keep the remote-version tests instant - the point
-// of those is which URL is hit, not what publicodes makes of the rules.
+// A rule set small enough to keep the tests instant - the point of these is
+// the cache behaviour, not what publicodes makes of the rules.
 const STUB_RULES = { bilan: { formule: 0 } }
 
-const stubFetch = (
-  response: Partial<Response> & Pick<Response, 'ok'> = {
-    ok: true,
-    json: () => Promise.resolve(STUB_RULES),
-  }
-) => {
-  const fetchMock = vi.fn().mockResolvedValue(response)
-  vi.stubGlobal('fetch', fetchMock)
-  return fetchMock
-}
-
-// Every test resets the module registry to get fresh hot/lru maps, so each one
-// parses the real model JSON into a new Engine - the eviction test does it four
-// times. That costs ~1s in isolation, but these are CPU-bound parses competing
-// with the rest of the suite, and under that contention the 5s default is not
-// enough. Raised here rather than globally so other specs still fail fast.
-vi.setConfig({ testTimeout: 20_000 })
+const stubGetModelRules = vi.fn().mockResolvedValue(STUB_RULES)
 
 describe('engine-registry.service', () => {
   const ORIGINAL_ENV = { ...process.env }
 
   beforeEach(() => {
     vi.resetModules()
+    stubGetModelRules.mockReset()
+    stubGetModelRules.mockResolvedValue(STUB_RULES)
   })
 
   afterEach(() => {
     process.env = { ...ORIGINAL_ENV }
-    vi.unstubAllGlobals()
   })
 
   it('warms up the configured hot keys and reuses the same engine instance', async () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
     const { createWarmUpHotEngines, createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    await createWarmUpHotEngines({ logger: noopLogger })()
+    await createWarmUpHotEngines({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })()
 
-    const getEngine = createGetEngineForModel({ logger: noopLogger })
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
     const engineA = await getEngine(model('FR'))
     const engineB = await getEngine(model('FR'))
     expect(engineA).toBe(engineB)
@@ -59,7 +50,10 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_HOT_KEYS = ''
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const getEngine = createGetEngineForModel({ logger: noopLogger })
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
 
     const frEngine = await getEngine(model('FR'))
     const enEngine = await getEngine({
@@ -74,7 +68,10 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_CACHE_MAX_SIZE = '2'
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const getEngine = createGetEngineForModel({ logger: noopLogger })
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
 
     const fr = await getEngine(model('FR'))
     await getEngine(model('UK'))
@@ -86,12 +83,14 @@ describe('engine-registry.service', () => {
     expect(frRebuilt).not.toBe(fr)
   })
 
-  it('builds an engine for an older published version from the registry CDN', async () => {
+  it('builds an engine for an older published version via the injected getModelRules', async () => {
     process.env.ENGINE_HOT_KEYS = ''
-    const fetchMock = stubFetch()
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const getEngine = createGetEngineForModel({ logger: noopLogger })
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
 
     const engine = await getEngine({
       region: 'FR',
@@ -100,18 +99,21 @@ describe('engine-registry.service', () => {
     })
 
     expect(engine).toBeDefined()
-    expect(fetchMock).toHaveBeenCalledWith(
-      'https://cdn.jsdelivr.net/npm/@incubateur-ademe/nosgestesclimat@4.14.2/public/co2-model.FR-lang.fr.json',
-      expect.anything()
-    )
+    expect(stubGetModelRules).toHaveBeenCalledWith({
+      region: 'FR',
+      locale: 'fr',
+      version: { publishedTag: '4.14.2' },
+    })
   })
 
-  it('builds an engine for a PR version from the preview bucket', async () => {
+  it('builds an engine for a PR version via the injected getModelRules', async () => {
     process.env.ENGINE_HOT_KEYS = ''
-    const fetchMock = stubFetch()
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const getEngine = createGetEngineForModel({ logger: noopLogger })
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
 
     await getEngine({
       region: 'FR',
@@ -119,16 +121,16 @@ describe('engine-registry.service', () => {
       version: { PRNumber: '42' },
     })
 
-    expect(fetchMock).toHaveBeenCalledWith(
-      'https://nosgestesclimat-dev.s3.fr-par.scw.cloud/model/42/co2-model.FR-lang.fr.json',
-      expect.anything()
-    )
+    expect(stubGetModelRules).toHaveBeenCalledWith({
+      region: 'FR',
+      locale: 'fr',
+      version: { PRNumber: '42' },
+    })
   })
 
   it('caches a remotely retrieved version under its own key', async () => {
     process.env.ENGINE_HOT_KEYS = ''
     process.env.ENGINE_CACHE_MAX_SIZE = '2'
-    const fetchMock = stubFetch()
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
     const logger = {
@@ -137,7 +139,10 @@ describe('engine-registry.service', () => {
       info: vi.fn(),
       debug: vi.fn(),
     }
-    const getEngine = createGetEngineForModel({ logger })
+    const getEngine = createGetEngineForModel({
+      logger,
+      getModelRules: stubGetModelRules,
+    })
 
     const outdated = { publishedTag: '4.14.2' } as const
     const first = await getEngine({
@@ -152,19 +157,22 @@ describe('engine-registry.service', () => {
     })
 
     expect(second).toBe(first)
-    expect(fetchMock).toHaveBeenCalledOnce()
+    expect(stubGetModelRules).toHaveBeenCalledOnce()
     expect(logger.debug).toHaveBeenCalledWith(
       '[engine-registry] lru cache hit',
       expect.objectContaining({ key: 'FR-fr-4.14.2' })
     )
   })
 
-  it('rejects when the requested version does not exist remotely', async () => {
+  it('rejects when getModelRules rejects', async () => {
     process.env.ENGINE_HOT_KEYS = ''
-    stubFetch({ ok: false, status: 404 } as Response)
+    stubGetModelRules.mockRejectedValue(new Error('404'))
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const getEngine = createGetEngineForModel({ logger: noopLogger })
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
 
     await expect(
       getEngine({
@@ -186,7 +194,7 @@ describe('engine-registry.service', () => {
       debug: vi.fn(),
     }
 
-    await createWarmUpHotEngines({ logger })()
+    await createWarmUpHotEngines({ logger, getModelRules: stubGetModelRules })()
 
     expect(logger.info).toHaveBeenCalledWith(
       '[engine-registry] warming hot engine',
@@ -210,8 +218,11 @@ describe('engine-registry.service', () => {
       debug: vi.fn(),
     }
 
-    await createWarmUpHotEngines({ logger })()
-    const getEngine = createGetEngineForModel({ logger })
+    await createWarmUpHotEngines({ logger, getModelRules: stubGetModelRules })()
+    const getEngine = createGetEngineForModel({
+      logger,
+      getModelRules: stubGetModelRules,
+    })
 
     await getEngine(model('FR'))
     expect(logger.debug).toHaveBeenCalledWith(

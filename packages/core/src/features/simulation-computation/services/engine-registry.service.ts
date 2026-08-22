@@ -1,9 +1,8 @@
+import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 import * as v from 'valibot'
 import { currentMemoryMB } from '../../../lib/memory.ts'
 import type { Logger } from '../../logger/index.ts'
-import { createGetModelRules } from '../../models/get-model-rules.service.ts'
-import { importCurrentModel } from '../../models/import-current-model.ts'
 import { serializeModelString } from '../../models/model-versions.ts'
 import type { Model, ModelRegion, ModelVersion } from '../../models/model.ts'
 import type { HotKey } from '../model-support/hot-key.schema.ts'
@@ -18,8 +17,17 @@ const ENGINE_OPTIONS = {
   },
 } as const
 
+/**
+ * Loads the rules for a model, whatever version it points at. The registry
+ * owns this abstraction so it doesn't depend on how rules are resolved.
+ */
+interface GetModelRules {
+  (model: Partial<Model>): Promise<NGCRules>
+}
+
 interface EngineRegistryDeps {
   logger: Logger
+  getModelRules: GetModelRules
 }
 
 /**
@@ -60,23 +68,18 @@ const hotEngines = new Map<string, Engine>()
 // the end, so the first key is always the least recently used one.
 const lruCache = new Map<string, Engine>()
 
-const getModelRules = createGetModelRules({
-  findCurrentModel: importCurrentModel,
-})
-
 /**
  * Rule sets are only published in French, and locale does not affect
  * computed values (only rule labels do) so every engine is built from the
  * fr rules regardless of the simulation's own locale.
  */
-const buildEngine = async (
-  region: ModelRegion,
-  version: ModelVersion
-): Promise<Engine> => {
-  const rules = await getModelRules({ region, locale: 'fr', version })
-  const engine = new Engine(rules, ENGINE_OPTIONS)
-  return engine
-}
+const buildEngine =
+  (getModelRules: GetModelRules) =>
+  async (region: ModelRegion, version: ModelVersion): Promise<Engine> => {
+    const rules = await getModelRules({ region, locale: 'fr', version })
+    const engine = new Engine(rules, ENGINE_OPTIONS)
+    return engine
+  }
 
 /**
  * Builds and pins the hot-set engines so the first jobs for the busiest
@@ -84,7 +87,7 @@ const buildEngine = async (
  */
 export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
   return async function warmUpHotEngines(): Promise<void> {
-    const { logger } = deps
+    const { logger, getModelRules } = deps
     logger.debug('[engine-registry] warming all hot engines', {
       ...currentMemoryMB(),
     })
@@ -94,7 +97,7 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
         region,
         version,
       })
-      hotEngines.set(key, await buildEngine(region, version))
+      hotEngines.set(key, await buildEngine(getModelRules)(region, version))
       logger.debug('[engine-registry] hot engine warmed', {
         region,
         version,
@@ -114,7 +117,7 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
  */
 export function createGetEngineForModel(deps: EngineRegistryDeps) {
   return async function getEngineForModel(model: Model): Promise<Engine> {
-    const { logger } = deps
+    const { logger, getModelRules } = deps
     const key = engineKey(model.region, model.version)
 
     const hotEngine = hotEngines.get(key)
@@ -148,7 +151,7 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
     }
 
     logger.debug('[engine-registry] cache miss, building engine', { key })
-    const engine = await buildEngine(model.region, model.version)
+    const engine = await buildEngine(getModelRules)(model.region, model.version)
     logger.debug('[engine-registry] engine built', {
       key,
       ...currentMemoryMB(),
