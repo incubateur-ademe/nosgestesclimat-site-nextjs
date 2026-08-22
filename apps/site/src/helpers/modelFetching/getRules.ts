@@ -1,9 +1,9 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import rulesOpti from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 
-import { getModelFileName } from '@nosgestesclimat/core/features/models/get-model-file-name'
-import { createGetModelRules } from '@nosgestesclimat/core/features/models/get-model-rules.service'
-import { importCurrentModel } from '@nosgestesclimat/core/features/models/import-current-model'
+import { getModelFileName } from '@nosgestesclimat/core/features/models/helpers/get-model-file-name'
+import { importCurrentModel } from '@nosgestesclimat/core/features/models/helpers/import-current-model'
+import { createGetModelRules } from '@nosgestesclimat/core/features/models/services/get-model-rules.service'
 import { captureException } from '@sentry/nextjs'
 import { CURRENT_MODEL_VERSION, type Model } from '../server/model/models'
 

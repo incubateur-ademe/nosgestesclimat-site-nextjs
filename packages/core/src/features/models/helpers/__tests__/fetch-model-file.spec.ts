@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { ModelFileFetchFailedException } from '../exceptions/model-rules.exception.ts'
+import { ModelFileFetchFailedException } from '../../exceptions/model-rules.exception.ts'
 import { fetchModelFile } from '../fetch-model-file.ts'
 
 const REMOTE_RULES = { bilan: { formule: 0 } }
