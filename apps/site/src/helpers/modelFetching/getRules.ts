@@ -31,7 +31,11 @@ export async function getRules({
     publishedTag: CURRENT_MODEL_VERSION,
   },
 }: Partial<Props> = {}): Promise<NGCRules> {
-  return await getModelRules({ region, locale, version }, { isOptim })
+  const result = await getModelRules({ region, locale, version }, { isOptim })
+  if (!result.success) {
+    throw result.error
+  }
+  return result.data
 }
 
 const FR_FR_OPTI_FILENAME = getModelFileName({

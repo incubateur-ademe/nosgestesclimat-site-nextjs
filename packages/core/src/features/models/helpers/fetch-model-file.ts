@@ -1,4 +1,5 @@
-import { ModelFileFetchFailedException } from '../exceptions/model-rules.exception.ts'
+import { failure, success, type Result } from '../../../lib/result.ts'
+import { ModelFileFetchFailedError } from '../exceptions/errors.ts'
 
 const REQUEST_TIMEOUT_MS = 15_000
 const MAX_ATTEMPTS = 2
@@ -9,11 +10,11 @@ const MAX_ATTEMPTS = 2
  *
  * Model files are large but immutable, so a single retry covers a transient
  * network hiccup while a 4xx (the build was never uploaded, or was pruned)
- * fails immediately. Unlike the site helper this replaces, a failure throws
- * rather than resolving to `null`: callers build a publicodes Engine out of
- * this and an empty rule set is far more confusing than an error.
+ * fails immediately.
  */
-export async function fetchModelFile<T>(url: string): Promise<T> {
+export async function fetchModelFile<T>(
+  url: string
+): Promise<Result<T, ModelFileFetchFailedError>> {
   let lastCause: unknown
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
@@ -29,22 +30,26 @@ export async function fetchModelFile<T>(url: string): Promise<T> {
 
     if (response.ok) {
       try {
-        return (await response.json()) as T
+        return success((await response.json()) as T)
       } catch (cause) {
-        throw new ModelFileFetchFailedException({
-          message: 'Model file is not valid JSON',
-          url,
-          cause,
-        })
+        return failure(
+          new ModelFileFetchFailedError({
+            message: 'Model file is not valid JSON',
+            url,
+            cause,
+          })
+        )
       }
     }
 
     if (response.status < 500) {
-      throw new ModelFileFetchFailedException({
-        message: `Model file request failed with status ${response.status}`,
-        url,
-        status: response.status,
-      })
+      return failure(
+        new ModelFileFetchFailedError({
+          message: `Model file request failed with status ${response.status}`,
+          url,
+          status: response.status,
+        })
+      )
     }
 
     lastCause = new Error(
@@ -52,9 +57,11 @@ export async function fetchModelFile<T>(url: string): Promise<T> {
     )
   }
 
-  throw new ModelFileFetchFailedException({
-    message: `Model file request failed after ${MAX_ATTEMPTS} attempts`,
-    url,
-    cause: lastCause,
-  })
+  return failure(
+    new ModelFileFetchFailedError({
+      message: `Model file request failed after ${MAX_ATTEMPTS} attempts`,
+      url,
+      cause: lastCause,
+    })
+  )
 }
