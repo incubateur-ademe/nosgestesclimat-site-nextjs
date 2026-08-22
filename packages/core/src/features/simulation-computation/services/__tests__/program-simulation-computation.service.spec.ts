@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
-import type { ModelRegion } from '../../../models/model.ts'
 import { SimulationNotFinishedException } from '../../exceptions/simulation-computation.exception.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
 import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
@@ -11,10 +10,8 @@ vi.mock('@incubateur-ademe/nosgestesclimat/package.json', () => ({
 }))
 
 const logger = { error: vi.fn(), warn: vi.fn(), info: vi.fn(), debug: vi.fn() }
-const captureException = vi.fn()
 const programSimulationComputation = createProgramSimulationComputation({
   logger,
-  captureException,
 })
 
 describe('programSimulationComputation', () => {
@@ -30,22 +27,6 @@ describe('programSimulationComputation', () => {
     await expect(programSimulationComputation(id)).rejects.toThrow(
       SimulationNotFinishedException
     )
-  })
-
-  it('logs UnsupportedModel and does not create a computation when the model region does not exist in the model package', async () => {
-    const { id } = await simulationFactory
-      .completed()
-      .withModelRegion('ZZ' as ModelRegion)
-      .create()
-
-    await programSimulationComputation(id)
-
-    expect(logger.error).toHaveBeenCalledWith(
-      '[program-simulation-computation] Unsupported model',
-      expect.objectContaining({ model: expect.anything() })
-    )
-    const computation = await findSimulationComputation(id)
-    expect(computation).toBeNull()
   })
 
   it.each([
@@ -75,7 +56,7 @@ describe('programSimulationComputation', () => {
       () => simulationFactory.completed().withModelVersion({ PRNumber: '42' }),
     ],
   ])(
-    'creates a pending computation when simulation is finished and model is supported: %s',
+    'creates a pending computation when simulation is finished: %s',
     async (_, setup) => {
       const { id } = await setup().create()
 
