@@ -1,13 +1,35 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
-import { SimulationNotFinishedException } from '../../exceptions/simulation-computation.exception.ts'
+import { SimulationNotFound } from '../../../simulations/exceptions/simulations.exception.ts'
+import {
+  ComputationAlreadyExistsException,
+  SimulationNotFinishedException,
+} from '../../exceptions/simulation-computation.exception.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
-import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
+import type * as SimulationComputationRepository from '../../repositories/simulation-computations.repository.ts'
+import {
+  createSimulationComputation,
+  findSimulationComputation,
+} from '../../repositories/simulation-computations.repository.ts'
 import { createProgramSimulationComputation } from '../program-simulation-computation.ts'
 
 vi.mock('@incubateur-ademe/nosgestesclimat/package.json', () => ({
   default: { version: '1.0.0' },
 }))
+
+// Delegate to the real repository by default, but expose
+// `createSimulationComputation` as a mock so a single test can force a failure.
+vi.mock(
+  '../../repositories/simulation-computations.repository.ts',
+  async (importOriginal) => {
+    const actual =
+      (await importOriginal()) as typeof SimulationComputationRepository
+    return {
+      ...actual,
+      createSimulationComputation: vi.fn(actual.createSimulationComputation),
+    }
+  }
+)
 
 const logger = { error: vi.fn(), warn: vi.fn(), info: vi.fn(), debug: vi.fn() }
 const programSimulationComputation = createProgramSimulationComputation({
@@ -21,12 +43,21 @@ describe('programSimulationComputation', () => {
     vi.clearAllMocks()
   })
 
-  it('throws SimulationNotFinished when progression is not 1', async () => {
-    const { id } = await simulationFactory.params({ progression: 0.5 }).create()
+  it.each([0.5, 0])(
+    'throws SimulationNotFinished when progression is %s',
+    async (progression) => {
+      const { id } = await simulationFactory.params({ progression }).create()
 
-    await expect(programSimulationComputation(id)).rejects.toThrow(
-      SimulationNotFinishedException
-    )
+      await expect(programSimulationComputation(id)).rejects.toThrow(
+        SimulationNotFinishedException
+      )
+    }
+  )
+
+  it('throws SimulationNotFound when the simulation does not exist', async () => {
+    await expect(
+      programSimulationComputation(crypto.randomUUID())
+    ).rejects.toThrow(SimulationNotFound)
   })
 
   it.each([
@@ -67,4 +98,22 @@ describe('programSimulationComputation', () => {
       expect(computation!.status).toBe('pending')
     }
   )
+
+  it('rejects with ComputationAlreadyExistsException when called twice for the same finished simulation', async () => {
+    const { id } = await simulationFactory.completed().create()
+
+    await programSimulationComputation(id)
+    await expect(programSimulationComputation(id)).rejects.toThrow(
+      ComputationAlreadyExistsException
+    )
+  })
+
+  it('propagates a failure from createSimulationComputation', async () => {
+    const { id } = await simulationFactory.completed().create()
+    vi.mocked(createSimulationComputation).mockRejectedValueOnce(
+      new Error('db down')
+    )
+
+    await expect(programSimulationComputation(id)).rejects.toThrow('db down')
+  })
 })

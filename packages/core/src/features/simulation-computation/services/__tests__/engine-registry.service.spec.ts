@@ -83,6 +83,47 @@ describe('engine-registry.service', () => {
     expect(frRebuilt).not.toBe(fr)
   })
 
+  it('refreshes recency on an lru cache hit so the entry survives the next eviction', async () => {
+    process.env.ENGINE_HOT_KEYS = ''
+    process.env.ENGINE_CACHE_MAX_SIZE = '2'
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
+
+    const fr = await getEngine(model('FR'))
+    const uk = await getEngine(model('UK'))
+    // Re-access FR so it becomes the most recently used; UK is now the LRU.
+    await getEngine(model('FR'))
+    // Building a third combo evicts UK (the LRU), not FR.
+    await getEngine(model('BE'))
+
+    // FR survived the eviction (still the cached instance)...
+    const frAgain = await getEngine(model('FR'))
+    expect(frAgain).toBe(fr)
+    // ...while UK was evicted and rebuilt.
+    const ukRebuilt = await getEngine(model('UK'))
+    expect(ukRebuilt).not.toBe(uk)
+  })
+
+  it('still caches the just-built engine when ENGINE_CACHE_MAX_SIZE is 0', async () => {
+    process.env.ENGINE_HOT_KEYS = ''
+    process.env.ENGINE_CACHE_MAX_SIZE = '0'
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
+
+    const first = await getEngine(model('FR'))
+    const second = await getEngine(model('FR'))
+    expect(second).toBe(first)
+    expect(stubGetModelRules).toHaveBeenCalledOnce()
+  })
+
   it('builds an engine for an older published version via the injected getModelRules', async () => {
     process.env.ENGINE_HOT_KEYS = ''
     const { createGetEngineForModel } =
@@ -181,6 +222,47 @@ describe('engine-registry.service', () => {
         version: { publishedTag: '0.0.1' },
       })
     ).rejects.toThrow('404')
+  })
+
+  it('warms up every entry in ENGINE_HOT_KEYS', async () => {
+    process.env.ENGINE_HOT_KEYS = 'FR:current,UK:current'
+    const { createWarmUpHotEngines, createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    await createWarmUpHotEngines({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })()
+    expect(stubGetModelRules).toHaveBeenCalledTimes(2)
+
+    const getEngine = createGetEngineForModel({
+      logger: noopLogger,
+      getModelRules: stubGetModelRules,
+    })
+
+    const frEngine = await getEngine(model('FR'))
+    const ukEngine = await getEngine(model('UK'))
+    // Both are served from the hot set, so neither triggers a new build.
+    expect(stubGetModelRules).toHaveBeenCalledTimes(2)
+    expect(frEngine).not.toBe(ukEngine)
+  })
+
+  it('rejects when getModelRules rejects during warm-up', async () => {
+    process.env.ENGINE_HOT_KEYS = 'FR:current'
+    stubGetModelRules.mockRejectedValue(new Error('boom'))
+    const { createWarmUpHotEngines } =
+      await import('../engine-registry.service.ts')
+
+    await expect(
+      createWarmUpHotEngines({
+        logger: noopLogger,
+        getModelRules: stubGetModelRules,
+      })()
+    ).rejects.toThrow('boom')
+  })
+
+  it('rejects an invalid ENGINE_HOT_KEYS entry at module load', async () => {
+    process.env.ENGINE_HOT_KEYS = 'FR:current,ZZ:current'
+    await expect(import('../engine-registry.service.ts')).rejects.toThrow()
   })
 
   it('logs hot engine warm-up via the injected logger', async () => {
