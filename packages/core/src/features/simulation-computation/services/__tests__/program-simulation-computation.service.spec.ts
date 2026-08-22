@@ -1,9 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
-import type { ModelRegion } from '../../../simulations/types/model.ts'
+import type { ModelRegion } from '../../../models/model.ts'
 import { SimulationNotFinishedException } from '../../exceptions/simulation-computation.exception.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
-import { PREVIOUS_MODEL_VERSION } from '../../model-support/model-versions.ts'
 import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
 import { createProgramSimulationComputation } from '../program-simulation-computation.ts'
 
@@ -33,35 +32,20 @@ describe('programSimulationComputation', () => {
     )
   })
 
-  describe('logs UnsupportedModel and does not create a computation', () => {
-    it.each([
-      [
-        'when model version is outdated',
-        () =>
-          simulationFactory
-            .completed()
-            .withModelVersion({ publishedTag: '0.9.0' }),
-      ],
-      [
-        'when model version is a PR version',
-        () =>
-          simulationFactory.completed().withModelVersion({ PRNumber: '42' }),
-      ],
-      [
-        'when model region does not exist in the model package',
-        () =>
-          simulationFactory.completed().withModelRegion('ZZ' as ModelRegion),
-      ],
-    ])('%s', async (_, setup) => {
-      const { id } = await setup().create()
-      await programSimulationComputation(id)
-      expect(logger.error).toHaveBeenCalledWith(
-        '[program-simulation-computation] Unsupported model',
-        expect.objectContaining({ model: expect.anything() })
-      )
-      const computation = await findSimulationComputation(id)
-      expect(computation).toBeNull()
-    })
+  it('logs UnsupportedModel and does not create a computation when the model region does not exist in the model package', async () => {
+    const { id } = await simulationFactory
+      .completed()
+      .withModelRegion('ZZ' as ModelRegion)
+      .create()
+
+    await programSimulationComputation(id)
+
+    expect(logger.error).toHaveBeenCalledWith(
+      '[program-simulation-computation] Unsupported model',
+      expect.objectContaining({ model: expect.anything() })
+    )
+    const computation = await findSimulationComputation(id)
+    expect(computation).toBeNull()
   })
 
   it.each([
@@ -78,11 +62,17 @@ describe('programSimulationComputation', () => {
       () => simulationFactory.completed().withModelLocale('en'),
     ],
     [
-      'previous version',
+      // The engine registry retrieves any published version, so an outdated
+      // tag is no longer a reason to drop the job.
+      'an outdated published version',
       () =>
         simulationFactory
           .completed()
-          .withModelVersion({ publishedTag: PREVIOUS_MODEL_VERSION }),
+          .withModelVersion({ publishedTag: '0.9.0' }),
+    ],
+    [
+      'a PR version',
+      () => simulationFactory.completed().withModelVersion({ PRNumber: '42' }),
     ],
   ])(
     'creates a pending computation when simulation is finished and model is supported: %s',

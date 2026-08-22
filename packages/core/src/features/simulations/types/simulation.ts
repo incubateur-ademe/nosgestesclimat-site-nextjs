@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Situation } from 'publicodes'
-import type { Model } from './model.ts'
+import type { Model } from '../../models/model.ts'
 
 export interface Simulation {
   id: string

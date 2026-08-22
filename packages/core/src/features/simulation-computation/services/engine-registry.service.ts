@@ -1,15 +1,13 @@
-import type { RawPublicodes } from 'publicodes'
 import Engine from 'publicodes'
-import { match } from 'ts-pattern'
 import * as v from 'valibot'
 import { currentMemoryMB } from '../../../lib/memory.ts'
 import type { Logger } from '../../logger/index.ts'
-import type { Model, ModelRegion } from '../../simulations/types/model.ts'
-import { UnsupportedModelException } from '../exceptions/simulation-computation.exception.ts'
+import { createGetModelRules } from '../../models/get-model-rules.service.ts'
+import { importCurrentModel } from '../../models/import-current-model.ts'
+import { serializeModelString } from '../../models/model-versions.ts'
+import type { Model, ModelRegion, ModelVersion } from '../../models/model.ts'
 import type { HotKey } from '../model-support/hot-key.schema.ts'
 import { HotKeySchema } from '../model-support/hot-key.schema.ts'
-import type { ModelVersionKind } from '../model-support/model-versions.ts'
-import { resolveVersionKind } from '../model-support/resolve-version-kind.ts'
 
 const ENGINE_OPTIONS = {
   strict: { situation: false, noOrphanRule: false },
@@ -26,7 +24,8 @@ interface EngineRegistryDeps {
 
 /**
  * Combinations kept warm at all times, built eagerly by warmUpHotEngines()
- * and never evicted. Comma-separated `<region>:<versionKind>` keys.
+ * and never evicted. Comma-separated `<region>:<versionRef>` keys, where
+ * versionRef is `current`, a published tag or `pr-{number}`.
  * Defaults to the busiest combination only (~205MB total RSS with worker
  * deps included - see MAX_CACHE_SIZE below), which is what a 256MB review
  * app container can safely hold. Production overrides this via env var to
@@ -38,7 +37,7 @@ const HOT_KEYS = new Map<string, HotKey>(
     .map((key) => key.trim())
     .filter(Boolean)
     .map((key) => v.parse(HotKeySchema, key))
-    .map((hotKey) => [engineKey(hotKey.region, hotKey.versionKind), hotKey])
+    .map((hotKey) => [engineKey(hotKey.region, hotKey.version), hotKey])
 )
 
 /**
@@ -61,49 +60,20 @@ const hotEngines = new Map<string, Engine>()
 // the end, so the first key is always the least recently used one.
 const lruCache = new Map<string, Engine>()
 
+const getModelRules = createGetModelRules({
+  findCurrentModel: importCurrentModel,
+})
+
 /**
  * Rule sets are only published in French, and locale does not affect
  * computed values (only rule labels do) so every engine is built from the
  * fr rules regardless of the simulation's own locale.
- *
- * Prefer almost hardcoded dynamic imports in case we move to bundling
  */
-async function loadRules(
-  region: ModelRegion,
-  versionKind: ModelVersionKind
-): Promise<RawPublicodes<string>> {
-  const importModel = match(versionKind)
-    .with(
-      'current',
-      () => () =>
-        import(
-          `@incubateur-ademe/nosgestesclimat/public/co2-model.${region}-lang.fr.json`,
-          {
-            with: { type: 'json' },
-          }
-        )
-    )
-    .with(
-      'previous',
-      () => () =>
-        import(
-          `@incubateur-ademe/nosgestesclimat-previous/public/co2-model.${region}-lang.fr.json`,
-          {
-            with: { type: 'json' },
-          }
-        )
-    )
-    .exhaustive()
-
-  const module = await importModel()
-  return module.default
-}
-
 const buildEngine = async (
   region: ModelRegion,
-  versionKind: ModelVersionKind
+  version: ModelVersion
 ): Promise<Engine> => {
-  const rules = await loadRules(region, versionKind)
+  const rules = await getModelRules({ region, locale: 'fr', version })
   const engine = new Engine(rules, ENGINE_OPTIONS)
   return engine
 }
@@ -118,16 +88,16 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
     logger.debug('[engine-registry] warming all hot engines', {
       ...currentMemoryMB(),
     })
-    for (const [key, { region, versionKind }] of HOT_KEYS) {
+    for (const [key, { region, version }] of HOT_KEYS) {
       logger.info('[engine-registry] warming hot engine', {
         key,
         region,
-        versionKind,
+        version,
       })
-      hotEngines.set(key, await buildEngine(region, versionKind))
+      hotEngines.set(key, await buildEngine(region, version))
       logger.debug('[engine-registry] hot engine warmed', {
         region,
-        versionKind,
+        version,
         ...currentMemoryMB(),
       })
     }
@@ -145,12 +115,7 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
 export function createGetEngineForModel(deps: EngineRegistryDeps) {
   return async function getEngineForModel(model: Model): Promise<Engine> {
     const { logger } = deps
-    const versionKind = resolveVersionKind(model)
-    if (versionKind === null) {
-      throw new UnsupportedModelException({ model })
-    }
-
-    const key = engineKey(model.region, versionKind)
+    const key = engineKey(model.region, model.version)
 
     const hotEngine = hotEngines.get(key)
     if (hotEngine) {
@@ -183,7 +148,7 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
     }
 
     logger.debug('[engine-registry] cache miss, building engine', { key })
-    const engine = await buildEngine(model.region, versionKind)
+    const engine = await buildEngine(model.region, model.version)
     logger.debug('[engine-registry] engine built', {
       key,
       ...currentMemoryMB(),
@@ -199,6 +164,10 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
   }
 }
 
-function engineKey(region: ModelRegion, versionKind: ModelVersionKind): string {
-  return `${region}:${versionKind}`
+/**
+ * Engines are always built from the fr rules (locale only affects labels, not
+ * values), so the cache key ignores the simulation's locale.
+ */
+function engineKey(region: ModelRegion, version: ModelVersion): string {
+  return serializeModelString({ region, locale: 'fr', version })
 }

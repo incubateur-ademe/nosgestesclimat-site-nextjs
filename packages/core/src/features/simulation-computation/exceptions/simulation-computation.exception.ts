@@ -1,5 +1,5 @@
 import { Exception } from '../../../exception.js'
-import type { Model } from '../../simulations/types/model.ts'
+import type { Model } from '../../models/model.ts'
 
 export class SimulationComputationFailedException extends Exception<{
   simulationId: string
