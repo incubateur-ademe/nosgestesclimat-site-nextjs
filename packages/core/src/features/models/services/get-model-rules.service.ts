@@ -1,6 +1,8 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import { success, type Result } from '../../../lib/result.ts'
 import type { CaptureException } from '../../logger/index.ts'
-import { OutdatedModelVersionException } from '../exceptions/model-rules.exception.ts'
+import type { ModelFileFetchFailedError } from '../exceptions/errors.ts'
+import { OutdatedModelVersionError } from '../exceptions/errors.ts'
 import { fetchModelFile as defaultFetchModelFile } from '../helpers/fetch-model-file.ts'
 import { getModelFileName } from '../helpers/get-model-file-name.ts'
 import { importCurrentModel as defaultFindCurrentModel } from '../helpers/import-current-model.ts'
@@ -50,7 +52,7 @@ export function createGetModelRules(deps: GetModelRulesDeps) {
   return async function getModelRules(
     model: Partial<Model> = {},
     { isOptim = false }: { isOptim?: boolean } = {}
-  ): Promise<NGCRules> {
+  ): Promise<Result<NGCRules, ModelFileFetchFailedError>> {
     const {
       region = 'FR',
       locale = 'fr',
@@ -66,18 +68,18 @@ export function createGetModelRules(deps: GetModelRulesDeps) {
     }
 
     if (version.publishedTag === CURRENT_MODEL_VERSION) {
-      return await findCurrentModel(fileName)
+      return success(await findCurrentModel(fileName))
     }
 
     if (outdatedPublishedTagStrategy === 'fallback_to_current') {
       captureException?.(
-        new OutdatedModelVersionException({
+        new OutdatedModelVersionError({
           message: `Model version mismatch: ${version.publishedTag} !== ${CURRENT_MODEL_VERSION}`,
           publishedTag: version.publishedTag,
           currentModelVersion: CURRENT_MODEL_VERSION,
         })
       )
-      return await findCurrentModel(fileName)
+      return success(await findCurrentModel(fileName))
     }
 
     return await fetchModelFile<NGCRules>(

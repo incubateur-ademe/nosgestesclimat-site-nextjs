@@ -24,14 +24,15 @@ export async function getPersonas(
   }
 ): Promise<Personas> {
   if (PRNumber) {
-    try {
-      return await fetchModelFile<Personas>(
-        `${getPreviewModelBaseUrl(PRNumber)}/personas-${locale}.json`
-      )
-    } catch (e) {
+    const result = await fetchModelFile<Personas>(
+      `${getPreviewModelBaseUrl(PRNumber)}/personas-${locale}.json`
+    )
+    if (!result.success) {
       // Personas are a convenience feature: fall back to the installed ones
       // rather than breaking the page when a PR build is gone.
-      captureException(e)
+      captureException(result.error)
+    } else {
+      return result.data
     }
   }
 

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { ModelFileFetchFailedException } from '../../exceptions/model-rules.exception.ts'
+import { ModelFileFetchFailedError } from '../../exceptions/errors.ts'
 import { fetchModelFile } from '../fetch-model-file.ts'
 
 const REMOTE_RULES = { bilan: { formule: 0 } }
@@ -18,30 +18,37 @@ describe('fetchModelFile', () => {
     const fetchMock = vi.fn().mockResolvedValue(okResponse())
     vi.stubGlobal('fetch', fetchMock)
 
-    const rules = await fetchModelFile('https://example.com/model.json')
+    const result = await fetchModelFile('https://example.com/model.json')
 
     expect(fetchMock).toHaveBeenCalledOnce()
-    expect(rules).toEqual(REMOTE_RULES)
+    expect(result.success).toBe(true)
+    if (!result.success) throw new Error('expected success')
+    expect(result.data).toEqual(REMOTE_RULES)
   })
 
-  it('throws on a missing remote file instead of resolving to an empty rule set', async () => {
+  it('returns a failure on a missing remote file instead of an empty rule set', async () => {
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({ ok: false, status: 404 })
     )
 
-    await expect(
-      fetchModelFile('https://example.com/model.json')
-    ).rejects.toThrow(ModelFileFetchFailedException)
+    const result = await fetchModelFile('https://example.com/model.json')
+
+    expect(result.success).toBe(false)
+    if (result.success) throw new Error('expected failure')
+    expect(result.error).toBeInstanceOf(ModelFileFetchFailedError)
+    expect(result.error.status).toBe(404)
   })
 
   it('does not retry a 4xx', async () => {
     const fetchMock = vi.fn().mockResolvedValue({ ok: false, status: 404 })
     vi.stubGlobal('fetch', fetchMock)
 
-    await expect(
-      fetchModelFile('https://example.com/model.json')
-    ).rejects.toThrow(ModelFileFetchFailedException)
+    const result = await fetchModelFile('https://example.com/model.json')
+
+    expect(result.success).toBe(false)
+    if (result.success) throw new Error('expected failure')
+    expect(result.error).toBeInstanceOf(ModelFileFetchFailedError)
     expect(fetchMock).toHaveBeenCalledOnce()
   })
 
@@ -52,19 +59,23 @@ describe('fetchModelFile', () => {
       .mockResolvedValueOnce(okResponse())
     vi.stubGlobal('fetch', fetchMock)
 
-    const rules = await fetchModelFile('https://example.com/model.json')
+    const result = await fetchModelFile('https://example.com/model.json')
 
     expect(fetchMock).toHaveBeenCalledTimes(2)
-    expect(rules).toEqual(REMOTE_RULES)
+    expect(result.success).toBe(true)
+    if (!result.success) throw new Error('expected success')
+    expect(result.data).toEqual(REMOTE_RULES)
   })
 
   it('gives up after the retry', async () => {
     const fetchMock = vi.fn().mockResolvedValue({ ok: false, status: 502 })
     vi.stubGlobal('fetch', fetchMock)
 
-    await expect(
-      fetchModelFile('https://example.com/model.json')
-    ).rejects.toThrow(ModelFileFetchFailedException)
+    const result = await fetchModelFile('https://example.com/model.json')
+
+    expect(result.success).toBe(false)
+    if (result.success) throw new Error('expected failure')
+    expect(result.error).toBeInstanceOf(ModelFileFetchFailedError)
     expect(fetchMock).toHaveBeenCalledTimes(2)
   })
 })
