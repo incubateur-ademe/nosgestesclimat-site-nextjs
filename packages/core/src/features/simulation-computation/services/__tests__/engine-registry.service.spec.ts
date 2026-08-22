@@ -1,4 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { failure, success } from '../../../../lib/result.ts'
+import { ModelFileFetchFailedError } from '../../../models/exceptions/errors.ts'
 import { CURRENT_MODEL_VERSION } from '../../../models/helpers/model-versions.ts'
 import type { Model, ModelRegion } from '../../../models/types/model.ts'
 
@@ -13,7 +15,7 @@ const noopLogger = {
 // the cache behaviour, not what publicodes makes of the rules.
 const STUB_RULES = { bilan: { formule: 0 } }
 
-const stubGetModelRules = vi.fn().mockResolvedValue(STUB_RULES)
+const stubGetModelRules = vi.fn().mockResolvedValue(success(STUB_RULES))
 
 describe('engine-registry.service', () => {
   const ORIGINAL_ENV = { ...process.env }
@@ -21,7 +23,7 @@ describe('engine-registry.service', () => {
   beforeEach(() => {
     vi.resetModules()
     stubGetModelRules.mockReset()
-    stubGetModelRules.mockResolvedValue(STUB_RULES)
+    stubGetModelRules.mockResolvedValue(success(STUB_RULES))
   })
 
   afterEach(() => {
@@ -205,9 +207,17 @@ describe('engine-registry.service', () => {
     )
   })
 
-  it('rejects when getModelRules rejects', async () => {
+  it('rejects when getModelRules returns a failure', async () => {
     process.env.ENGINE_HOT_KEYS = ''
-    stubGetModelRules.mockRejectedValue(new Error('404'))
+    stubGetModelRules.mockResolvedValue(
+      failure(
+        new ModelFileFetchFailedError({
+          message: '404',
+          url: 'https://example.com/model.json',
+          status: 404,
+        })
+      )
+    )
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
@@ -246,9 +256,16 @@ describe('engine-registry.service', () => {
     expect(frEngine).not.toBe(ukEngine)
   })
 
-  it('rejects when getModelRules rejects during warm-up', async () => {
+  it('rejects when getModelRules returns a failure during warm-up', async () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
-    stubGetModelRules.mockRejectedValue(new Error('boom'))
+    stubGetModelRules.mockResolvedValue(
+      failure(
+        new ModelFileFetchFailedError({
+          message: 'boom',
+          url: 'https://example.com/model.json',
+        })
+      )
+    )
     const { createWarmUpHotEngines } =
       await import('../engine-registry.service.ts')
 

@@ -2,7 +2,9 @@ import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 import * as v from 'valibot'
 import { currentMemoryMB } from '../../../lib/memory.ts'
+import type { Result } from '../../../lib/result.ts'
 import type { Logger } from '../../logger/index.ts'
+import type { ModelFileFetchFailedError } from '../../models/exceptions/errors.ts'
 import { serializeModelString } from '../../models/helpers/model-versions.ts'
 import type {
   Model,
@@ -26,7 +28,7 @@ const ENGINE_OPTIONS = {
  * owns this abstraction so it doesn't depend on how rules are resolved.
  */
 interface GetModelRules {
-  (model: Partial<Model>): Promise<NGCRules>
+  (model: Partial<Model>): Promise<Result<NGCRules, ModelFileFetchFailedError>>
 }
 
 interface EngineRegistryDeps {
@@ -80,9 +82,11 @@ const lruCache = new Map<string, Engine>()
 const buildEngine =
   (getModelRules: GetModelRules) =>
   async (region: ModelRegion, version: ModelVersion): Promise<Engine> => {
-    const rules = await getModelRules({ region, locale: 'fr', version })
-    const engine = new Engine(rules, ENGINE_OPTIONS)
-    return engine
+    const result = await getModelRules({ region, locale: 'fr', version })
+    if (!result.success) {
+      throw result.error
+    }
+    return new Engine(result.data, ENGINE_OPTIONS)
   }
 
 /**
