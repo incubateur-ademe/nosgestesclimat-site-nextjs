@@ -3,7 +3,7 @@ import { prisma } from '../../../../prisma/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
-import { serializeModel } from '../../repository/model.mapper.ts'
+import { serializeModelString } from '../../../models/model-versions.ts'
 import { getUserSimulationJourney } from '../get-user-simulation-journey.service.ts'
 
 describe('getUserSimulationJourney', () => {
@@ -46,7 +46,7 @@ describe('getUserSimulationJourney', () => {
       currentSimulation: {
         id: latest.id,
         progression: 0.5,
-        model: serializeModel(latest.model),
+        model: serializeModelString(latest.model),
       },
     })
   })
@@ -78,12 +78,12 @@ describe('getUserSimulationJourney', () => {
       currentSimulation: {
         id: latestCompleted.id,
         progression: 1,
-        model: serializeModel(latestCompleted.model),
+        model: serializeModelString(latestCompleted.model),
       },
       completedSimulation: {
         id: latestCompleted.id,
         progression: 1,
-        model: serializeModel(latestCompleted.model),
+        model: serializeModelString(latestCompleted.model),
       },
     })
   })
@@ -115,12 +115,12 @@ describe('getUserSimulationJourney', () => {
       currentSimulation: {
         id: current.id,
         progression: 0.5,
-        model: serializeModel(current.model),
+        model: serializeModelString(current.model),
       },
       completedSimulation: {
         id: completed.id,
         progression: 1,
-        model: serializeModel(completed.model),
+        model: serializeModelString(completed.model),
       },
     })
   })
@@ -152,12 +152,12 @@ describe('getUserSimulationJourney', () => {
       currentSimulation: {
         id: completed.id,
         progression: 1,
-        model: serializeModel(completed.model),
+        model: serializeModelString(completed.model),
       },
       completedSimulation: {
         id: completed.id,
         progression: 1,
-        model: serializeModel(completed.model),
+        model: serializeModelString(completed.model),
       },
     })
   })
@@ -202,7 +202,7 @@ describe('getUserSimulationJourney', () => {
       currentSimulation: {
         id: current.id,
         progression: 0.5,
-        model: serializeModel(current.model),
+        model: serializeModelString(current.model),
       },
     })
   })
@@ -239,7 +239,7 @@ describe('getUserSimulationJourney', () => {
       currentSimulation: {
         id: current.id,
         progression: 0.5,
-        model: serializeModel(current.model),
+        model: serializeModelString(current.model),
       },
     })
   })

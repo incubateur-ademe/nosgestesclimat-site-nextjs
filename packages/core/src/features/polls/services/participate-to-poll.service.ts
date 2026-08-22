@@ -14,7 +14,7 @@ import { newSimulation } from '../../simulations/helpers/new-simulation.ts'
 import { isSimulationCompleted } from '../../simulations/helpers/simulation-guards.ts'
 import { findSimulationProgressById } from '../../simulations/repository/simulation-progress.repository.ts'
 import { createSimulation } from '../../simulations/repository/simulation.repository.ts'
-import type { Model } from '../../simulations/types/model.ts'
+import type { Model } from '../../models/model.ts'
 import {
   type ParticipateToPollError,
   PollNotFoundError,

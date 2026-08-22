@@ -22,7 +22,7 @@ import {
   ZeroFootprintError,
 } from '../../errors/simulations.error.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
-import { serializeModel } from '../../repository/model.mapper.ts'
+import { serializeModelString } from '../../../models/model-versions.ts'
 import { findSimulationById } from '../../repository/simulation.repository.ts'
 import type { ComputedResults } from '../../validators/computed-results.schema.ts'
 import { createCompleteSimulation } from '../complete-simulation.service.ts'
@@ -145,7 +145,7 @@ describe('completeSimulation', () => {
       userId: user.id,
     })
     if (!persisted) throw new Error('simulation should exist')
-    expect(serializeModel(persisted.model)).toBe('FR-fr-9.9.9')
+    expect(serializeModelString(persisted.model)).toBe('FR-fr-9.9.9')
   })
 
   it('warns about an unsupported model and completes the simulation without programming a computation', async () => {
@@ -303,8 +303,8 @@ describe('completeSimulation', () => {
       userId: user.id,
     })
     if (!persisted) throw new Error('simulation should exist')
-    expect(serializeModel(persisted.model)).toBe(
-      serializeModel(simulation.model)
+    expect(serializeModelString(persisted.model)).toBe(
+      serializeModelString(simulation.model)
     )
   })
 

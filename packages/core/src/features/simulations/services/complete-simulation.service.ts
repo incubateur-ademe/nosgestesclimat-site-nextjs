@@ -34,7 +34,7 @@ import {
   ZeroFootprintError,
 } from '../errors/simulations.error.ts'
 import { isSimulationCompleted } from '../helpers/simulation-guards.ts'
-import { parseModelString, serializeModel } from '../repository/model.mapper.ts'
+import { parseModelString, serializeModelString } from '../../models/model-versions.ts'
 import {
   findSimulationById,
   updateSimulation,
@@ -127,7 +127,7 @@ export function createCompleteSimulation({
             foldedSteps,
             progression,
             computedResults,
-            model: serializeModel(clientModel),
+            model: serializeModelString(clientModel),
           },
           tx
         )

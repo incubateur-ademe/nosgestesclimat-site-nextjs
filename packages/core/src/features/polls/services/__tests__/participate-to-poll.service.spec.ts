@@ -10,7 +10,7 @@ import { SimulationNotFoundError } from '../../../simulations/errors/simulations
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import { emptyComputedResults } from '../../../simulations/helpers/empty-computed-results.ts'
 import { findSimulationById } from '../../../simulations/repository/simulation.repository.ts'
-import type { Model } from '../../../simulations/types/model.ts'
+import type { Model } from '../../../models/model.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import { PollNotFoundError } from '../../errors/polls.error.ts'
 import { pollFactory } from '../../factories/poll.factory.ts'

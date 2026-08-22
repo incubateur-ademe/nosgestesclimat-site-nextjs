@@ -3,7 +3,7 @@ import type { Situation } from 'publicodes'
 import type { SimulationModel } from '../../../prisma/generated/models.ts'
 
 import { SimulationInvalidModelStringError } from '../../simulations/errors/simulations.error.ts'
-import { parseModelString } from '../../simulations/repository/model.mapper.ts'
+import { parseModelString } from '../../models/model-versions.ts'
 import type { Simulation } from '../../simulations/types/simulation.ts'
 
 export const mapSimulation = (db: SimulationModel): Simulation => {

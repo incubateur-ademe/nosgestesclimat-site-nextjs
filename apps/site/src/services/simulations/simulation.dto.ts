@@ -1,5 +1,5 @@
 import type { Simulation } from '@/helpers/server/model/simulations'
-import { serializeModel } from '@nosgestesclimat/core/features/simulations/repository/model.mapper'
+import { serializeModelString } from '@nosgestesclimat/core/features/models/helpers/model-versions'
 import type { Simulation as SimulationEntity } from '@nosgestesclimat/core/features/simulations/types/simulation'
 
 export function toSimulationDto(simulation: SimulationEntity): Simulation {
@@ -11,7 +11,7 @@ export function toSimulationDto(simulation: SimulationEntity): Simulation {
     computedResults:
       simulation.computedResults as Simulation['computedResults'],
     progression: simulation.progression,
-    model: serializeModel(simulation.model),
+    model: serializeModelString(simulation.model),
     updatedAt: simulation.updatedAt.toISOString(),
   }
 }

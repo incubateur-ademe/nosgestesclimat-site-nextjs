@@ -1,4 +1,4 @@
-import { parseModelString } from '../repository/model.mapper.ts'
+import { parseModelString } from '../../models/model-versions.ts'
 import {
   hasValidComputedResults,
   type ComputedResults,

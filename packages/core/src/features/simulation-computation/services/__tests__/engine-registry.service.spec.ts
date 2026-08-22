@@ -1,9 +1,28 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createTestLogger } from '../../../../test-utils/logger.ts'
-import type { Model, ModelRegion } from '../../../simulations/types/model.ts'
-import { CURRENT_MODEL_VERSION } from '../../model-support/model-versions.ts'
+import { CURRENT_MODEL_VERSION } from '../../../models/model-versions.ts'
+import type { Model, ModelRegion } from '../../../models/model.ts'
 
-const noopLogger = createTestLogger()
+const noopLogger = {
+  error: () => {},
+  warn: () => {},
+  info: () => {},
+  debug: () => {},
+}
+
+// A rule set small enough to keep the remote-version tests instant - the point
+// of those is which URL is hit, not what publicodes makes of the rules.
+const STUB_RULES = { bilan: { formule: 0 } }
+
+const stubFetch = (
+  response: Partial<Response> & Pick<Response, 'ok'> = {
+    ok: true,
+    json: () => Promise.resolve(STUB_RULES),
+  }
+) => {
+  const fetchMock = vi.fn().mockResolvedValue(response)
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
 
 // Every test resets the module registry to get fresh hot/lru maps, so each one
 // parses the real model JSON into a new Engine - the eviction test does it four
@@ -21,6 +40,7 @@ describe('engine-registry.service', () => {
 
   afterEach(() => {
     process.env = { ...ORIGINAL_ENV }
+    vi.unstubAllGlobals()
   })
 
   it('warms up the configured hot keys and reuses the same engine instance', async () => {
@@ -66,7 +86,82 @@ describe('engine-registry.service', () => {
     expect(frRebuilt).not.toBe(fr)
   })
 
-  it('throws for a model version that is neither current nor previous', async () => {
+  it('builds an engine for an older published version from the registry CDN', async () => {
+    process.env.ENGINE_HOT_KEYS = ''
+    const fetchMock = stubFetch()
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const getEngine = createGetEngineForModel({ logger: noopLogger })
+
+    const engine = await getEngine({
+      region: 'FR',
+      locale: 'fr',
+      version: { publishedTag: '4.14.2' },
+    })
+
+    expect(engine).toBeDefined()
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://cdn.jsdelivr.net/npm/@incubateur-ademe/nosgestesclimat@4.14.2/public/co2-model.FR-lang.fr.json',
+      expect.anything()
+    )
+  })
+
+  it('builds an engine for a PR version from the preview bucket', async () => {
+    process.env.ENGINE_HOT_KEYS = ''
+    const fetchMock = stubFetch()
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const getEngine = createGetEngineForModel({ logger: noopLogger })
+
+    await getEngine({
+      region: 'FR',
+      locale: 'fr',
+      version: { PRNumber: '42' },
+    })
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://nosgestesclimat-dev.s3.fr-par.scw.cloud/model/42/co2-model.FR-lang.fr.json',
+      expect.anything()
+    )
+  })
+
+  it('caches a remotely retrieved version under its own key', async () => {
+    process.env.ENGINE_HOT_KEYS = ''
+    process.env.ENGINE_CACHE_MAX_SIZE = '2'
+    const fetchMock = stubFetch()
+    const { createGetEngineForModel } =
+      await import('../engine-registry.service.ts')
+    const logger = {
+      error: vi.fn(),
+      warn: vi.fn(),
+      info: vi.fn(),
+      debug: vi.fn(),
+    }
+    const getEngine = createGetEngineForModel({ logger })
+
+    const outdated = { publishedTag: '4.14.2' } as const
+    const first = await getEngine({
+      region: 'FR',
+      locale: 'fr',
+      version: outdated,
+    })
+    const second = await getEngine({
+      region: 'FR',
+      locale: 'fr',
+      version: outdated,
+    })
+
+    expect(second).toBe(first)
+    expect(fetchMock).toHaveBeenCalledOnce()
+    expect(logger.debug).toHaveBeenCalledWith(
+      '[engine-registry] lru cache hit',
+      expect.objectContaining({ key: 'FR-fr-4.14.2' })
+    )
+  })
+
+  it('rejects when the requested version does not exist remotely', async () => {
+    process.env.ENGINE_HOT_KEYS = ''
+    stubFetch({ ok: false, status: 404 } as Response)
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({ logger: noopLogger })
@@ -77,23 +172,28 @@ describe('engine-registry.service', () => {
         locale: 'fr',
         version: { publishedTag: '0.0.1' },
       })
-    ).rejects.toThrow()
+    ).rejects.toThrow('404')
   })
 
   it('logs hot engine warm-up via the injected logger', async () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
     const { createWarmUpHotEngines } =
       await import('../engine-registry.service.ts')
-    const logger = createTestLogger()
+    const logger = {
+      error: vi.fn(),
+      warn: vi.fn(),
+      info: vi.fn(),
+      debug: vi.fn(),
+    }
 
     await createWarmUpHotEngines({ logger })()
 
-    expect(logger.debug).toHaveBeenCalledWith(
-      'warming hot engine',
-      expect.objectContaining({ key: 'FR:current' })
+    expect(logger.info).toHaveBeenCalledWith(
+      '[engine-registry] warming hot engine',
+      expect.objectContaining({ key: `FR-fr-${CURRENT_MODEL_VERSION}` })
     )
     expect(logger.info).toHaveBeenCalledWith(
-      'hot engines warmed',
+      '[engine-registry] hot engines warmed',
       expect.objectContaining({ count: 1 })
     )
   })
@@ -103,35 +203,43 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_CACHE_MAX_SIZE = '5'
     const { createWarmUpHotEngines, createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const logger = createTestLogger()
+    const logger = {
+      error: vi.fn(),
+      warn: vi.fn(),
+      info: vi.fn(),
+      debug: vi.fn(),
+    }
 
     await createWarmUpHotEngines({ logger })()
     const getEngine = createGetEngineForModel({ logger })
 
     await getEngine(model('FR'))
     expect(logger.debug).toHaveBeenCalledWith(
-      'hot engine hit',
-      expect.objectContaining({ key: 'FR:current' })
+      '[engine-registry] hot engine hit',
+      expect.objectContaining({ key: `FR-fr-${CURRENT_MODEL_VERSION}` })
     )
 
     await getEngine(model('UK'))
     expect(logger.debug).toHaveBeenCalledWith(
-      'cache miss, building engine',
-      expect.objectContaining({ key: 'UK:current' })
+      '[engine-registry] cache miss, building engine',
+      expect.objectContaining({ key: `UK-fr-${CURRENT_MODEL_VERSION}` })
     )
     expect(logger.debug).toHaveBeenCalledWith(
-      'engine built',
-      expect.objectContaining({ key: 'UK:current' })
+      '[engine-registry] engine built',
+      expect.objectContaining({ key: `UK-fr-${CURRENT_MODEL_VERSION}` })
     )
     expect(logger.debug).toHaveBeenCalledWith(
-      'lru cache size',
+      '[engine-registry] lru cache size',
       expect.objectContaining({ lruSize: 1 })
     )
 
     await getEngine(model('UK'))
     expect(logger.debug).toHaveBeenCalledWith(
-      'lru cache hit',
-      expect.objectContaining({ key: 'UK:current', lruSize: 1 })
+      '[engine-registry] lru cache hit',
+      expect.objectContaining({
+        key: `UK-fr-${CURRENT_MODEL_VERSION}`,
+        lruSize: 1,
+      })
     )
   })
 })

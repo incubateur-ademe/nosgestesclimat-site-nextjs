@@ -1,5 +1,5 @@
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
-import { serializeModel } from '@nosgestesclimat/core/features/simulations/repository/model.mapper'
+import { serializeModelString } from '@nosgestesclimat/core/features/models/helpers/model-versions'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -61,7 +61,7 @@ describe('getCurrentSimulation', () => {
       foldedSteps: entity.foldedSteps,
       computedResults: entity.computedResults,
       progression: entity.progression,
-      model: serializeModel(entity.model),
+      model: serializeModelString(entity.model),
       updatedAt: entity.updatedAt.toISOString(),
     })
   })

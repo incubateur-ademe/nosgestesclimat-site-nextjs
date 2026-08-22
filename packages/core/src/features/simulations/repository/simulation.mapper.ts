@@ -1,46 +1,28 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Situation } from 'publicodes'
-import type { Model } from '../types/model.ts'
+import type { SimulationModel } from '../../../prisma/generated/models.ts'
+import { InvalidModelString } from '../exceptions/simulations.exception.ts'
+
+import { parseModelString } from '../../models/model-versions.ts'
 import type { Simulation } from '../types/simulation.ts'
-import { isValidSimulation } from '../validators/simulation.validator.ts'
-import { parseModelString } from './model.mapper.ts'
 
-type SimulationRow = {
-  id: string
-  date: Date
-  model: string
-  progression: number
-  situation: unknown
-  foldedSteps: unknown
-  computedResults: unknown
-  createdAt: Date
-  updatedAt: Date
-  userId: string | null
-}
-
-/**
- * Maps a Prisma row to the `Simulation` entity. Returns `null` when the model
- * string cannot be parsed or the `computedResults` do not match the current
- * shape. Legacy simulations predating this shape are kept in the database but
- * exposed as if they did not exist.
- */
-export const mapSimulation = (row: SimulationRow): Simulation | null => {
-  if (!isValidSimulation(row)) {
-    return null
+export const mapSimulation = (db: SimulationModel): Simulation => {
+  const model = parseModelString(db.model)
+  if (!model) {
+    throw new InvalidModelString({
+      simulationId: db.id,
+      modelString: db.model,
+    })
   }
 
-  const model = parseModelString(row.model) as Model
-
   return {
-    id: row.id,
-    date: row.date,
+    id: db.id,
+    date: db.date,
+    progression: db.progression,
     model,
-    progression: row.progression,
-    situation: row.situation as Situation<DottedName>,
-    foldedSteps: row.foldedSteps as DottedName[],
-    computedResults: row.computedResults,
-    createdAt: row.createdAt,
-    updatedAt: row.updatedAt,
-    userId: row.userId,
+    situation: db.situation as Situation<DottedName>,
+    createdAt: db.createdAt,
+    updatedAt: db.updatedAt,
+    userId: db.userId,
   }
 }
