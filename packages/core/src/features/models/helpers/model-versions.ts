@@ -1,5 +1,10 @@
 import currentPkg from '@incubateur-ademe/nosgestesclimat/package.json' with { type: 'json' }
-import type { Model, ModelLocale, ModelRegion, ModelVersion } from './model.ts'
+import type {
+  Model,
+  ModelLocale,
+  ModelRegion,
+  ModelVersion,
+} from '../types/model.ts'
 
 /**
  * The version portion of a serialized model string, e.g. `4.14.5` or

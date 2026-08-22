@@ -1,4 +1,4 @@
-import { ModelFileFetchFailedException } from './exceptions/model-rules.exception.ts'
+import { ModelFileFetchFailedException } from '../exceptions/model-rules.exception.ts'
 
 const REQUEST_TIMEOUT_MS = 15_000
 const MAX_ATTEMPTS = 2

@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { ModelFileFetchFailedException } from '../exceptions/model-rules.exception.ts'
+import { ModelFileFetchFailedException } from '../../exceptions/model-rules.exception.ts'
+import { CURRENT_MODEL_VERSION } from '../../helpers/model-versions.ts'
 import { createGetModelRules } from '../get-model-rules.service.ts'
-import { CURRENT_MODEL_VERSION } from '../model-versions.ts'
 
 const REMOTE_RULES = { bilan: { formule: 0 } }
 

@@ -3,8 +3,8 @@ import * as v from 'valibot'
 import {
   CURRENT_MODEL_VERSION,
   parseModelVersionString,
-} from '../../models/model-versions.ts'
-import type { ModelRegion, ModelVersion } from '../../models/model.ts'
+} from '../../models/helpers/model-versions.ts'
+import type { ModelRegion, ModelVersion } from '../../models/types/model.ts'
 
 const RegionSchema = v.picklist(Object.keys(supportedRegions) as ModelRegion[])
 

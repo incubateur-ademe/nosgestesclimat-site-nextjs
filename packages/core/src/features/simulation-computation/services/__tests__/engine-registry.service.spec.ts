@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { CURRENT_MODEL_VERSION } from '../../../models/model-versions.ts'
-import type { Model, ModelRegion } from '../../../models/model.ts'
+import { CURRENT_MODEL_VERSION } from '../../../models/helpers/model-versions.ts'
+import type { Model, ModelRegion } from '../../../models/types/model.ts'
 
 const noopLogger = {
   error: () => {},

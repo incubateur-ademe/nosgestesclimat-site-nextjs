@@ -3,8 +3,12 @@ import Engine from 'publicodes'
 import * as v from 'valibot'
 import { currentMemoryMB } from '../../../lib/memory.ts'
 import type { Logger } from '../../logger/index.ts'
-import { serializeModelString } from '../../models/model-versions.ts'
-import type { Model, ModelRegion, ModelVersion } from '../../models/model.ts'
+import { serializeModelString } from '../../models/helpers/model-versions.ts'
+import type {
+  Model,
+  ModelRegion,
+  ModelVersion,
+} from '../../models/types/model.ts'
 import type { HotKey } from '../model-support/hot-key.schema.ts'
 import { HotKeySchema } from '../model-support/hot-key.schema.ts'
 
