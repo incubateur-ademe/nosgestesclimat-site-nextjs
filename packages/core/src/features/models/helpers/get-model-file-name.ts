@@ -1,4 +1,4 @@
-import type { ModelLocale, ModelRegion } from './model.ts'
+import type { ModelLocale, ModelRegion } from '../types/model.ts'
 
 /**
  * Optimized rule sets - where some rules are voluntarily removed to lighten

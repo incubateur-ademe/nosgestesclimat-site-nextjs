@@ -1,8 +1,8 @@
 import type { Personas } from '@incubateur-ademe/nosgestesclimat'
 import personasEN from '@incubateur-ademe/nosgestesclimat/public/personas-en.json'
 import personasFR from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
-import { fetchModelFile } from '@nosgestesclimat/core/features/models/fetch-model-file'
-import { getPreviewModelBaseUrl } from '@nosgestesclimat/core/features/models/model-rules-urls'
+import { fetchModelFile } from '@nosgestesclimat/core/features/models/helpers/fetch-model-file'
+import { getPreviewModelBaseUrl } from '@nosgestesclimat/core/features/models/helpers/model-rules-urls'
 import { captureException } from '@sentry/nextjs'
 
 const personasByLocale: Record<string, Personas> = {

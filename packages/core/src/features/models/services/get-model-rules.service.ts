@@ -1,12 +1,15 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import type { CaptureException } from '../logger/index.ts'
-import { OutdatedModelVersionException } from './exceptions/model-rules.exception.ts'
-import { fetchModelFile as defaultFetchModelFile } from './fetch-model-file.ts'
-import { getModelFileName } from './get-model-file-name.ts'
-import { importCurrentModel as defaultFindCurrentModel } from './import-current-model.ts'
-import { getPreviewModelUrl, getPublishedModelUrl } from './model-rules-urls.ts'
-import { CURRENT_MODEL_VERSION } from './model-versions.ts'
-import type { Model } from './model.ts'
+import type { CaptureException } from '../../logger/index.ts'
+import { OutdatedModelVersionException } from '../exceptions/model-rules.exception.ts'
+import { fetchModelFile as defaultFetchModelFile } from '../helpers/fetch-model-file.ts'
+import { getModelFileName } from '../helpers/get-model-file-name.ts'
+import { importCurrentModel as defaultFindCurrentModel } from '../helpers/import-current-model.ts'
+import {
+  getPreviewModelUrl,
+  getPublishedModelUrl,
+} from '../helpers/model-rules-urls.ts'
+import { CURRENT_MODEL_VERSION } from '../helpers/model-versions.ts'
+import type { Model } from '../types/model.ts'
 
 interface GetModelRulesDeps {
   /**

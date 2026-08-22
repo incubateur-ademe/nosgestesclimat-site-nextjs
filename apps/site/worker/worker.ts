@@ -1,5 +1,5 @@
 import { createAssessActions } from '@nosgestesclimat/core/features/actions/services/assess-actions.service'
-import { createGetModelRules } from '@nosgestesclimat/core/features/models/get-model-rules.service'
+import { createGetModelRules } from '@nosgestesclimat/core/features/models/services/get-model-rules.service'
 import {
   createGetEngineForModel,
   createWarmUpHotEngines,
