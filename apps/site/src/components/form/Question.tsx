@@ -12,9 +12,8 @@ import {
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
 import { questionChooseAnswer } from '@/constants/tracking/question'
-import { WARNING_MESSAGE_ID } from '@/constants/warning'
 import Button from '@/design-system/buttons/Button'
-import { getWarningId } from '@/helpers/accessibility/getWarningId'
+import { getWarningId } from '@/helpers/question/getWarningId'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
 import { useIsDisabledByBounds } from '@/hooks/useIsDisabledByBounds'
 import { useLocale } from '@/hooks/useLocale'
@@ -78,6 +77,8 @@ export default function Question({
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
   const locale = useLocale()
 
+  const warningId = getWarningId(question)
+
   const numberInputProps = {
     question,
     unit,
@@ -93,7 +94,7 @@ export default function Question({
         : '',
     'data-testid': question,
     id: DEFAULT_FOCUS_ELEMENT_ID,
-    'aria-describedby': `${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`,
+    'aria-describedby': `${QUESTION_DESCRIPTION_BUTTON_ID}-content ${warningId} notification-message`,
     'aria-labelledby': 'question-label',
   }
 
@@ -151,7 +152,7 @@ export default function Question({
                 data-testid={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
+                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  ${warningId} notification-message`}
                 aria-labelledby="question-label"
               />
             )}
@@ -172,7 +173,7 @@ export default function Question({
                 data-testid={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
+                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content ${warningId} notification-message`}
                 aria-labelledby="question-label"
               />
             )}
@@ -181,7 +182,7 @@ export default function Question({
               <Mosaic
                 question={question}
                 questionsOfMosaic={questionsOfMosaicFromParent}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  warning-message notification-message`}
+                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  ${warningId} notification-message`}
                 aria-labelledby="question-label"
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 label={label || ''}
@@ -198,11 +199,7 @@ export default function Question({
           <Warning
             key={overLimitQuestion}
             question={overLimitQuestion}
-            id={
-              overLimitQuestion === question
-                ? WARNING_MESSAGE_ID
-                : getWarningId(overLimitQuestion)
-            }
+            id={getWarningId(overLimitQuestion)}
           />
         ))}
       </AnimatePresence>

@@ -15,7 +15,6 @@ import {
   questionClickPrevious,
   questionClickSuivant,
 } from '@/constants/tracking/question'
-import { WARNING_SHAKE_EVENT } from '@/constants/warning'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -376,13 +375,6 @@ export default function Navigation({
           size="md"
           title={submitButtonTitle}
           onClick={handleGoToNextQuestion}
-          onClickDisabled={
-            isNextDisabled
-              ? () => {
-                  document.dispatchEvent(new Event(WARNING_SHAKE_EVENT))
-                }
-              : undefined
-          }
           className={twMerge(
             'p-3 text-sm',
             submitButtonKind === 'finish' &&

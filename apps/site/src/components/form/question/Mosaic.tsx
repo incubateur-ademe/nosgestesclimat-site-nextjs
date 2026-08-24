@@ -1,4 +1,4 @@
-import { getWarningId } from '@/helpers/accessibility/getWarningId'
+import { getWarningId } from '@/helpers/question/getWarningId'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicQuestion from './mosaic/MosaicQuestion'
