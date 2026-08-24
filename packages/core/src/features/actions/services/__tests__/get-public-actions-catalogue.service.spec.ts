@@ -39,8 +39,11 @@ describe('getPublicActionsCatalogue', () => {
   describe('topActions', () => {
     it('returns the curated highlighted actions in their fixed order, regardless of creation order', async () => {
       const [viande, avion, trajets] = await Promise.all([
-        actionFactory.published().params({ slug: 'limiter-viande' }).create(),
-        actionFactory.published().params({ slug: 'limiter-avion' }).create(),
+        actionFactory.published().params({ slug: 'reduire-viande' }).create(),
+        actionFactory
+          .published()
+          .params({ slug: 'limiter-avion-toutes-distances' })
+          .create(),
         actionFactory
           .published()
           .params({ slug: 'petits-trajets-sans-voiture' })
@@ -59,7 +62,7 @@ describe('getPublicActionsCatalogue', () => {
     it('skips curated slugs that have no matching visible action', async () => {
       const avion = await actionFactory
         .published()
-        .params({ slug: 'limiter-avion' })
+        .params({ slug: 'limiter-avion-toutes-distances' })
         .create()
 
       const result = await getPublicActionsCatalogue('fr')
@@ -147,11 +150,11 @@ describe('getPublicActionsCatalogue', () => {
     it('highlights curated actions by their English slug', async () => {
       const avion = await actionFactory
         .published()
-        .params({ slug: 'limiter-avion' })
+        .params({ slug: 'limiter-avion-toutes-distances' })
         .withTranslations({
           en: {
             title: 'Limit flying',
-            slug: 'reduce-flying',
+            slug: 'flying-less',
             longDescription: 'English description',
           },
         })
@@ -160,7 +163,7 @@ describe('getPublicActionsCatalogue', () => {
       // still highlighted via its French slug
       const viande = await actionFactory
         .published()
-        .params({ slug: 'limiter-viande' })
+        .params({ slug: 'reduire-viande' })
         .create()
 
       const result = await getPublicActionsCatalogue('en')

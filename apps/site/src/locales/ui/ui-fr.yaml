@@ -806,7 +806,8 @@ entries:
   actions.components.actionCard.highlighted.link: Voir l'action
   actions.components.actionCard.highlighted.potentialImpact: Impact potentiel
   actions.components.actionCard.highlighted.footprintShare: soit {{percentage}} % de votre empreinte totale
-  actions.components.actionCard.link: Voir l'action "{{actionTitle}}"
+  actions.components.actionCard.link: Voir l'action<1> "{{actionTitle}}"</1>
+  actions.components.actionCard.ctaVariant.link: Voir l'action<1> "{{actionTitle}}"</1>
   actions.components.actionCard.impactTag: Jusqu'à {{formattedValue}} {{unit}} CO<5>2</5>e / an
   actions.components.actionCard.noImpactTag: Impact non quantifiable
   actions.components.actionCard.lowImpactTag: Moins de {{formattedValue}} {{unit}} CO<5>2</5>e / an
@@ -1443,3 +1444,5 @@ entries:
   La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
   La valeur pour ce champ est comprise entre: La valeur pour ce champ est comprise entre
   actions.components.highestImpactActionsSection.publicDescription: Le top 3 des actions qui permettent de limiter ou réduire ses émissions de CO<1>2</1>
+  actions.detailPage.sections.otherThemeActions.description: Sélectionnées selon vos réponses au simulateur
+  actions.detailPage.sections.otherThemeActions.title: D’autres actions personnalisées

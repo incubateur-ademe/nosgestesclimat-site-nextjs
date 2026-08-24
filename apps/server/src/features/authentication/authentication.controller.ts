@@ -8,6 +8,7 @@ import { InvalidVerificationCodeException } from '../../core/errors/InvalidVerif
 import { bestEffort } from '../../core/event-bus/best-effort.ts'
 import { EventBus } from '../../core/event-bus/event-bus.ts'
 import logger, { errorMeta, maskEmail } from '../../logger.ts'
+import { authentificationMiddleware } from '../../middlewares/authentificationMiddleware.ts'
 import { rateLimitSameRequestMiddleware } from '../../middlewares/rateLimitSameRequestMiddleware.ts'
 import { validateRequest } from '../../middlewares/validateRequest.ts'
 import {
@@ -49,10 +50,14 @@ router
       },
     }),
     validateRequest(LoginValidator),
+    authentificationMiddleware({ requireUserId: false }),
     async (req, res) => {
       const startedAt = Date.now()
+
+      const sessionUserId = req.user?.id
+
       const context = {
-        userId: req.body.userId,
+        userId: sessionUserId,
         email: maskEmail(req.body.email),
         locale: req.query.locale,
       }
@@ -65,6 +70,7 @@ router
         const { token, user, mode } = await login({
           loginDto: req.body,
           locale: req.query.locale,
+          sessionUserId,
         })
 
         res.cookie(COOKIE_NAME, token, getCookieOptions(config.app.origin))

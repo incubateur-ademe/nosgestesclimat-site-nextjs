@@ -37,6 +37,7 @@ export const mapAction = (
   slug: translation.slug,
   trackingId: dbAction.trackingId,
   language: translation.locale as ISOSupportedLanguage,
+  description: translation.description ?? undefined,
   longDescription: translation.longDescription,
   theme: {
     id: theme.id,

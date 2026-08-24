@@ -84,6 +84,7 @@ export const actionFactory = ActionFactory.define(
         fr: {
           title: data.title,
           slug: data.slug,
+          description: data.description ?? null,
           longDescription: data.longDescription,
           media: data.media,
           tips: data.tips ?? null,
@@ -118,6 +119,7 @@ export const actionFactory = ActionFactory.define(
       slug,
       trackingId: `action_${slug}`,
       language: 'fr' as const,
+      description: faker.helpers.maybe(() => faker.lorem.sentence()),
       longDescription: md(faker.lorem.sentence()),
       theme: {
         id: theme.id,
