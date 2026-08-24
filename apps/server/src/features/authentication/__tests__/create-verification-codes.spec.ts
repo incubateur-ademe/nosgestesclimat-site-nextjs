@@ -200,6 +200,9 @@ describe('Given a NGC user', () => {
           id: faker.string.uuid(),
         }
 
+        await prisma.user.create({
+          data: user,
+        })
         await prisma.verifiedUser.create({
           data: user,
         })
