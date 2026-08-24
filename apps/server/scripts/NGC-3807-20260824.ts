@@ -92,11 +92,18 @@ const main = async () => {
       logger.info('Dry run: nothing written. Re-run with --apply to backfill.')
     } else {
       const toInsert: Orphan[] = [...uniqueGroups]
+      // Old ids of reassigned duplicate groups — their RefreshTokens are
+      // invalidated so the previous JWTs (which still carry the old id) can
+      // no longer be refreshed. Both the reassigned and the canonical user
+      // are forced to re-login; this is intentional to prevent account
+      // confusion between two users that previously shared an id.
+      const reassignedOldIds: string[] = []
 
       if (duplicateGroups.length) {
         await prisma.$transaction(async (tx) => {
           for (const group of duplicateGroups) {
             const keep = group[0]!
+            reassignedOldIds.push(keep.id)
             toInsert.push(keep)
             for (const dup of group.slice(1)) {
               const newId = randomUUID()
@@ -122,6 +129,16 @@ const main = async () => {
             })),
             skipDuplicates: true,
           })
+
+          if (reassignedOldIds.length) {
+            const { count: revoked } = await tx.refreshToken.deleteMany({
+              where: { userId: { in: reassignedOldIds } },
+            })
+            logger.info('Revoked RefreshTokens for reassigned duplicate ids', {
+              ids: reassignedOldIds,
+              revoked,
+            })
+          }
         })
       } else {
         await prisma.user.createMany({
