@@ -241,16 +241,14 @@ export async function createAccountOrSignin({
     // belongs to another verified account (typically signing up a new email
     // while authenticated as another account), start a fresh identity so one
     // id never maps to several accounts.
-    const otherAccountWithUserId = sessionUserId
+    const conflict = sessionUserId
       ? await findOtherVerifiedAccountWithUserId(
           { userId: sessionUserId, email: loginDto.email },
           { session }
         )
       : null
 
-    const newUserId = otherAccountWithUserId
-      ? randomUUID()
-      : (sessionUserId ?? randomUUID())
+    const newUserId = conflict || !sessionUserId ? randomUUID() : sessionUserId
 
     const { user: newUser } = await createOrUpdateVerifiedUser(
       {

@@ -35,11 +35,9 @@ export const login = async ({
       `${AUTHENTICATION_URL}/login${params}`,
       {
         method: 'POST',
-        // The current session's userId is forwarded to the server as the
-        // `x-user-id` header by `fetchServer`: the server is the one deciding
-        // which userId to attach to the account (reusing the session's when
-        // free, generating a fresh one when switching accounts), so the
-        // "one session id = one account" invariant is enforced there.
+        // userId is server-derived via x-user-id (fetchServer forwards it from
+        // the session cookie). Keeping it out of the body preserves the
+        // "one session id = one account" invariant.
         body: {
           email,
           code,
