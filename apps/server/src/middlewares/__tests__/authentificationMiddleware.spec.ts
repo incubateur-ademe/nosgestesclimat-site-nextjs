@@ -125,3 +125,54 @@ describe('authentication middleware passIfUnauthorized: true', () => {
     })
   })
 })
+
+describe('authentication middleware requireUserId: false', () => {
+  const app = express()
+  app.use(express.json())
+  app.use(authentificationMiddleware({ requireUserId: false }))
+  app.use((req, res) => res.status(StatusCodes.OK).json(req.user ?? {}))
+  const agent = supertest(app)
+
+  describe('With no internal key', () => {
+    test(`Should return a ${StatusCodes.UNAUTHORIZED} error`, async () => {
+      await agent.get('/').expect(StatusCodes.UNAUTHORIZED)
+    })
+  })
+
+  describe('With a valid internal key but no user id header', () => {
+    test(`Should pass through without a user`, async () => {
+      const response = await agent
+        .get('/')
+        .set('x-internal-key', config.security.internalApiKey)
+        .expect(StatusCodes.OK)
+
+      expect(response.body).toEqual({})
+    })
+  })
+
+  describe('With a valid internal key and the user id header', () => {
+    test(`Should set req.user`, async () => {
+      const userId = faker.string.uuid()
+      const email = faker.internet.email()
+
+      const response = await agent
+        .get('/')
+        .set('x-internal-key', config.security.internalApiKey)
+        .set('x-user-id', userId)
+        .set('x-user-email', email)
+        .expect(StatusCodes.OK)
+
+      expect(response.body).toEqual({ id: userId, email })
+    })
+  })
+
+  describe('With a valid internal key and an invalid user id header', () => {
+    test(`Should return a ${StatusCodes.BAD_REQUEST} error`, async () => {
+      await agent
+        .get('/')
+        .set('x-internal-key', config.security.internalApiKey)
+        .set('x-user-id', 'not-a-uuid')
+        .expect(StatusCodes.BAD_REQUEST)
+    })
+  })
+})

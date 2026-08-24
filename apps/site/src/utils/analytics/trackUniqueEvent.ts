@@ -17,6 +17,8 @@ export const markAsEventTracked = (...keys: string[]): void => {
   safeLocalStorage.setItem(key, 'true')
 }
 
+export type ActionEventSource = 'cross-sell'
+
 export const captureUniqueSessionActionEvent = ({
   actionTrackingId,
   actionThemeTrackingId,
