@@ -4,6 +4,7 @@ import { prisma } from '@nosgestesclimat/core/prisma/client'
 import supertest from 'supertest'
 import * as v from 'valibot'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
+import type { Poll } from '../../../adapters/prisma/generated.ts'
 import { simulationSelection } from '../../../adapters/prisma/selection.ts'
 import { redis } from '../../../adapters/redis/client.ts'
 import { KEYS } from '../../../adapters/redis/constant.ts'
@@ -44,11 +45,12 @@ describe('Given a poll participation', () => {
   describe('When worker handles the async event', () => {
     let poll: Awaited<ReturnType<typeof createOrganisationPoll>>
     let event: SimulationUpsertedAsyncEvent
+    let organisation: Awaited<ReturnType<typeof createOrganisation>>
 
     beforeEach(async () => {
       const userId = faker.string.uuid()
       const email = faker.internet.email()
-      const organisation = await createOrganisation({ agent, userId, email })
+      organisation = await createOrganisation({ agent, userId, email })
 
       poll = await createOrganisationPoll({
         organisationId: organisation.id,
@@ -227,6 +229,97 @@ describe('Given a poll participation', () => {
         })
 
         expect(poll.funFacts).toBeNull()
+      })
+    })
+
+    describe('And the SimulationPoll relation is not yet visible (race condition)', () => {
+      let raceEvent: SimulationUpsertedAsyncEvent
+
+      beforeEach(async () => {
+        const userId = faker.string.uuid()
+        const user = await prisma.user.create({
+          data: {
+            id: userId,
+            email: faker.internet.email().toLocaleLowerCase(),
+          },
+        })
+
+        const { computedResults, situation, extendedSituation } =
+          getRandomTestCase()
+
+        // Simulate the race: the simulation exists at progression 1 but the
+        // SimulationPoll relation is NOT created yet (the worker processed the
+        // event before the API transaction committed / replicated the link).
+        const simulation = await prisma.simulation.create({
+          data: {
+            id: faker.string.uuid(),
+            actionChoices: {},
+            computedResults,
+            date: new Date(),
+            progression: 1,
+            situation,
+            extendedSituation,
+            user: {
+              connect: {
+                id: user.id,
+              },
+            },
+          },
+          select: simulationSelection,
+        })
+
+        // In production, the event poll is the full poll entity returned by
+        // createPollUserSimulation (defaultPollSelection includes
+        // computeRealTimeStats). The API DTO used in the parent beforeEach
+        // strips it, so we re-add it here to reflect the production shape.
+        const fullEventPoll: Pick<
+          Poll,
+          'id' | 'slug' | 'computeRealTimeStats'
+        > = {
+          id: poll.id,
+          slug: poll.slug,
+          computeRealTimeStats: true,
+        }
+
+        raceEvent = new SimulationUpsertedAsyncEvent({
+          locale: Locales.fr,
+          sendEmail: false,
+          updated: false,
+          created: true,
+          organisation,
+          simulation,
+          poll: fullEventPoll,
+          user,
+        })
+      })
+
+      test('Then it should still compute the poll stats using the event poll (fallback)', async () => {
+        // Sanity check: no SimulationPoll relation exists yet.
+        const relationCount = await prisma.simulationPoll.count({
+          where: {
+            simulationId: raceEvent.attributes.simulation.id,
+          },
+        })
+        expect(relationCount).toBe(0)
+
+        EventBus.emit(raceEvent)
+
+        await EventBus.once(raceEvent)
+
+        const updatedPoll = await prisma.poll.findUniqueOrThrow({
+          where: {
+            id: poll.id,
+          },
+        })
+
+        // Without the fallback on the event poll, funFacts would stay null
+        // (the simulation would be silently dropped). With the fix, the poll
+        // stats are computed from the poll carried by the event.
+        expect(updatedPoll.funFacts).toEqual(
+          Object.fromEntries(
+            Object.entries(modelFunFacts).map(([k]) => [k, expect.any(Number)])
+          )
+        )
       })
     })
   })

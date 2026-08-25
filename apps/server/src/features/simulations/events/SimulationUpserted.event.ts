@@ -52,7 +52,7 @@ type SimulationAttributes = BaseSimulationUpsertedEventAttributes &
         group?: undefined
         administrator?: undefined
         organisation: Pick<Organisation, 'name' | 'slug'>
-        poll: Pick<Poll, 'slug'>
+        poll: Pick<Poll, 'id' | 'slug' | 'computeRealTimeStats'>
         newsletters?: undefined
       }
   )

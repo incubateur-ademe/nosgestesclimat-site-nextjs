@@ -3,11 +3,11 @@ import { updatePollStatsAfterSimulationChange } from '../../organisations/organi
 import type { SimulationUpsertedAsyncEvent } from '../events/SimulationUpserted.event.ts'
 
 export const computePollStats: Handler<SimulationUpsertedAsyncEvent> = ({
-  attributes: { simulation, created },
+  attributes: { simulation, created, poll },
 }) => {
   if (simulation.progression !== 1) {
     return
   }
 
-  return updatePollStatsAfterSimulationChange({ simulation, created })
+  return updatePollStatsAfterSimulationChange({ simulation, created, poll })
 }

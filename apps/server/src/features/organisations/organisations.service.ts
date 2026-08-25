@@ -11,7 +11,9 @@ import {
 } from '@nosgestesclimat/core/prisma/utils'
 import * as v from 'valibot'
 import { utils, write } from 'xlsx'
-import type { Organisation } from '../../adapters/prisma/generated.ts'
+import type { Organisation, Poll } from '../../adapters/prisma/generated.ts'
+import { redis } from '../../adapters/redis/client.ts'
+import { KEYS } from '../../adapters/redis/constant.ts'
 import type { Session } from '../../adapters/prisma/transaction.ts'
 import { transaction } from '../../adapters/prisma/transaction.ts'
 import { client } from '../../adapters/scaleway/client.ts'
@@ -490,9 +492,11 @@ export const updatePollStats = async (
 export const updatePollStatsAfterSimulationChange = async ({
   simulation,
   created,
+  poll: eventPoll,
 }: {
   simulation: SimulationAsyncEvent
   created: boolean
+  poll?: Pick<Poll, 'id' | 'slug' | 'computeRealTimeStats'>
 }) => {
   try {
     return await transaction(async (session) => {
@@ -501,11 +505,40 @@ export const updatePollStatsAfterSimulationChange = async ({
         { session }
       )
 
-      if (!simulationPoll || !simulationPoll.poll.computeRealTimeStats) {
+      // Race condition: the worker can process the event before the
+      // SimulationPoll relation created by the API transaction is visible
+      // (or before it is replicated). In that case the simulation would be
+      // silently dropped and never added to the poll stats. Fall back to the
+      // poll carried by the event as the source of truth.
+      const pollId = simulationPoll?.pollId ?? eventPoll?.id
+
+      const computeRealTimeStats =
+        simulationPoll?.poll.computeRealTimeStats ??
+        eventPoll?.computeRealTimeStats
+
+      if (!pollId || !computeRealTimeStats) {
+        // Neither the relation nor the event poll are available: this is an
+        // anomaly. Log it loudly so it is never silently dropped.
+        logger.error('Poll stats update skipped: missing poll info', {
+          simulationId: simulation.id,
+          created,
+          hasSimulationPoll: !!simulationPoll,
+          hasEventPoll: !!eventPoll,
+          pollId,
+          computeRealTimeStats,
+        })
         return
       }
 
-      const { pollId } = simulationPoll
+      if (!simulationPoll && eventPoll) {
+        // We fell back to the event poll because of the race condition.
+        // Log it so the frequency of this race can be monitored.
+        logger.warn('Poll stats update used event poll fallback (race)', {
+          simulationId: simulation.id,
+          pollId,
+          created,
+        })
+      }
 
       return updatePollStats(
         { pollId, ...(created ? { simulation } : {}) },
