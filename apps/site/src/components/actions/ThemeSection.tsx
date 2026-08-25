@@ -74,7 +74,7 @@ export default function ThemeSection({
   return (
     <section
       className={twMerge(
-        '-mx-4 border-t-2 border-b-2 px-2 pt-5 pb-4 md:mx-0 md:rounded-2xl md:border-2 md:px-5 md:pt-8 md:pb-7',
+        '-mx-4 min-w-0 border-t-2 border-b-2 px-2 pt-5 pb-4 md:mx-0 md:rounded-2xl md:border-2 md:px-5 md:pt-8 md:pb-7',
         classes.section,
         className
       )}>
