@@ -10,9 +10,9 @@ import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
  * the non-specialized cases to it.
  */
 export async function importCurrentModel(fileName: string): Promise<NGCRules> {
-  const module = await import(
+  const model = await import(
     `@incubateur-ademe/nosgestesclimat/public/${fileName}`,
     { with: { type: 'json' } }
   )
-  return module.default as NGCRules
+  return model.default as NGCRules
 }
