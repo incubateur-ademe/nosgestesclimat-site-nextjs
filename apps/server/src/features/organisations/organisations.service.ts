@@ -12,10 +12,10 @@ import {
 import * as v from 'valibot'
 import { utils, write } from 'xlsx'
 import type { Organisation, Poll } from '../../adapters/prisma/generated.ts'
-import { redis } from '../../adapters/redis/client.ts'
-import { KEYS } from '../../adapters/redis/constant.ts'
 import type { Session } from '../../adapters/prisma/transaction.ts'
 import { transaction } from '../../adapters/prisma/transaction.ts'
+import { redis } from '../../adapters/redis/client.ts'
+import { KEYS } from '../../adapters/redis/constant.ts'
 import { client } from '../../adapters/scaleway/client.ts'
 import { config } from '../../config.ts'
 import { deepMergeSubstract } from '../../core/deep-merge.ts'
@@ -446,6 +446,82 @@ export const fetchPoll = async ({
   }
 }
 
+/**
+ * Polls created before this date may have stale pollStats (the worker/API race
+ * condition and progression regressions were only recently understood). Their
+ * stats are lazily recomputed on consultation, once, until they converge.
+ */
+const POLL_STATS_RECOMPUTE_CUTOFF = new Date('2026-09-01T00:00:00Z')
+
+/**
+ * Lazily recompute a poll's stats if it was created before the cutoff and its
+ * stored aggregate diverges from the real sum of its finished simulations.
+ *
+ * This is deliberately self-limiting: once the stored `computedResults` matches
+ * the database, the divergence check returns false and the recompute stops
+ * happening on subsequent consultations.
+ */
+const recomputePollStatsIfNeeded = async ({
+  poll,
+  session,
+}: {
+  poll: Pick<Poll, 'id' | 'createdAt' | 'computedResults' | 'funFacts'>
+  session: Session
+}) => {
+  if (poll.createdAt >= POLL_STATS_RECOMPUTE_CUTOFF) {
+    return
+  }
+
+  // Lightweight SQL check: compare the stored bilan with the sum of the
+  // finished simulations' bilans. Only recompute (heavier) when they diverge.
+  const [{ stored: storedBilanVal, actual: actualBilan }] =
+    await session.$queryRaw<
+      Array<{ stored: number | null; actual: number | null }>
+    >`
+    SELECT
+      (SELECT (p."computedResults"->'carbone'->>'bilan')::float
+       FROM ngc."Poll" p WHERE p."id" = ${poll.id}) AS stored,
+      (SELECT COALESCE(SUM((s."computedResults"->'carbone'->>'bilan')::float), 0)
+       FROM ngc."SimulationPoll" sp
+       JOIN ngc."Simulation" s ON s."id" = sp."simulationId"
+       WHERE sp."pollId" = ${poll.id}
+         AND s."progression" = 1) AS actual
+  `
+
+  // Only recompute when the poll HAS stored stats AND they diverge from the
+  // database. A poll with no stored computedResults (null) is a virgin poll
+  // with nothing to correct — recomputing it would just churn updatedAt.
+  const diverges =
+    storedBilanVal != null &&
+    actualBilan != null &&
+    Math.abs(storedBilanVal - actualBilan) > 1
+
+  if (!diverges) {
+    return
+  }
+
+  logger.warn('Recomputing poll stats on consultation (lazy fix)', {
+    pollId: poll.id,
+    storedBilan: storedBilanVal,
+    actualBilan,
+  })
+
+  // Invalidate the incremental Redis cache so getPollStats recomputes from the
+  // database (source of truth), then persist the corrected stats.
+  await redis.del(`${KEYS.pollsStatsResults}:${poll.id}`)
+
+  const stats = await getPollStats({ id: poll.id }, { session })
+
+  await setPollStats(
+    poll.id,
+    {
+      computedResults: stats.computedResults,
+      funFacts: stats.funFacts,
+    },
+    { session }
+  )
+}
+
 export const fetchPublicPoll = async ({
   params,
   user,
@@ -454,6 +530,27 @@ export const fetchPublicPoll = async ({
   user?: PartialUser
 }) => {
   try {
+    // Lazy fix for polls created before the cutoff: recompute stale stats on
+    // consultation (before building the DTO) so administrators always see
+    // corrected results, even on the first request.
+    await transaction(async (session) => {
+      const poll = await session.poll.findFirst({
+        where: {
+          OR: [{ id: params.pollIdOrSlug }, { slug: params.pollIdOrSlug }],
+        },
+        select: {
+          id: true,
+          createdAt: true,
+          computedResults: true,
+          funFacts: true,
+        },
+      })
+
+      if (poll) {
+        await recomputePollStatsIfNeeded({ poll, session })
+      }
+    }, prisma)
+
     const { poll, organisation, simulationsInfos } = await transaction(
       (session) =>
         fetchOrganisationPublicPoll(

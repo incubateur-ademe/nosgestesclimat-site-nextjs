@@ -9,6 +9,7 @@ import app from '../../../app.ts'
 import { authHeaders } from '../../../core/__tests__/fixtures/authentication.fixture.ts'
 import { deepMergeSubstract, deepMergeSum } from '../../../core/deep-merge.ts'
 import logger from '../../../logger.ts'
+import { getRandomTestCase } from '../../simulations/__tests__/fixtures/simulations.fixtures.ts'
 import type { ComputedResultSchema } from '../../simulations/simulations.validator.ts'
 import {
   createOrganisation,
@@ -472,6 +473,87 @@ describe('Given a NGC user', () => {
             'Public poll fetch failed',
             databaseError
           )
+        })
+      })
+
+      describe('And the poll was created before the lazy-recompute cutoff with stale stats', () => {
+        let poll: Awaited<ReturnType<typeof createOrganisationPoll>>
+        let pollId: string
+        let pollSlug: string
+        let staleBilan: number
+        let expectedBilan: number
+
+        beforeEach(async () => {
+          const userId = faker.string.uuid()
+          const email = faker.internet.email()
+          const organisation = await createOrganisation({
+            agent,
+            userId,
+            email,
+          })
+
+          poll = await createOrganisationPoll({
+            agent,
+            userId,
+            email,
+            organisationId: organisation.id,
+          })
+          ;({ id: pollId, slug: pollSlug } = poll)
+
+          // Simulate a pre-cutoff poll: force its createdAt into the past.
+          await prisma.poll.update({
+            where: { id: pollId },
+            data: { createdAt: new Date('2026-01-01T00:00:00Z') },
+          })
+
+          // Simulate stale stats: a finished simulation exists but the stored
+          // aggregate does NOT match it (e.g. the worker/API race dropped it).
+          const { computedResults } = getRandomTestCase()
+          staleBilan = computedResults.carbone.bilan
+          expectedBilan = staleBilan
+
+          await createOrganisationPollSimulation({
+            agent,
+            pollId,
+            simulation: {
+              progression: 1,
+              computedResults,
+            },
+          })
+
+          // Store a WRONG aggregate on the poll (e.g. half the real value).
+          const wrongComputedResults = structuredClone(computedResults)
+          wrongComputedResults.carbone.bilan = staleBilan / 2
+          wrongComputedResults.carbone.categories.transport =
+            computedResults.carbone.categories.transport / 2
+
+          await prisma.poll.update({
+            where: { id: pollId },
+            data: { computedResults: wrongComputedResults as never },
+          })
+        })
+
+        test(`Then it returns a ${StatusCodes.OK} response with corrected stats`, async () => {
+          const response = await agent
+            .get(url.replace(':pollIdOrSlug', pollSlug))
+            .set(authHeaders({ userId, email }))
+            .expect(StatusCodes.OK)
+
+          // The lazy recompute must have corrected the stored aggregate so it
+          // matches the sum of the finished simulation(s).
+          expect(response.body.computedResults.carbone.bilan).toBeCloseTo(
+            expectedBilan,
+            0
+          )
+
+          // And the corrected value is persisted in the database.
+          const storedPoll = await prisma.poll.findUniqueOrThrow({
+            where: { id: pollId },
+          })
+          expect(
+            (storedPoll.computedResults as { carbone: { bilan: number } })
+              .carbone.bilan
+          ).toBeCloseTo(expectedBilan, 0)
         })
       })
     })
