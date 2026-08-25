@@ -248,14 +248,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
               <Trans
                 locale={locale}
                 i18nKey="actions.detailPage.sections.otherThemeActions.title">
-                D’autres actions personnalisées
-              </Trans>
-            }
-            description={
-              <Trans
-                locale={locale}
-                i18nKey="actions.detailPage.sections.otherThemeActions.description">
-                Sélectionnées selon vos réponses au simulateur
+                Découvrez d’autres actions pour réduire votre empreinte
               </Trans>
             }
           />
