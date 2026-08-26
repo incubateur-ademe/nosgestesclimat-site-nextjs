@@ -6,8 +6,8 @@ import Image from 'next/image'
 interface Props {
   locale: Locale
   imageSrc: string
-  startDate: string
-  endDate: string
+  startDate: Date
+  endDate: Date
 }
 
 export default async function EventDetail({
@@ -20,17 +20,15 @@ export default async function EventDetail({
 
   const dateLocale = locale === 'fr' ? 'fr-FR' : 'en-GB'
 
-  const start = new Date(startDate)
-  const end = new Date(endDate)
-  const sameYear = start.getFullYear() === end.getFullYear()
+  const sameYear = startDate.getFullYear() === endDate.getFullYear()
 
-  const startDateLabel = start.toLocaleDateString(dateLocale, {
+  const startDateLabel = startDate.toLocaleDateString(dateLocale, {
     timeZone: 'Europe/Paris',
     day: 'numeric',
     month: 'long',
     ...(sameYear ? {} : { year: 'numeric' }),
   })
-  const endDateLabel = end.toLocaleDateString(dateLocale, {
+  const endDateLabel = endDate.toLocaleDateString(dateLocale, {
     timeZone: 'Europe/Paris',
     day: 'numeric',
     month: 'long',

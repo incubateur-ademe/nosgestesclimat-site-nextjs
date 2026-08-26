@@ -70,7 +70,7 @@ export default async function EvenementPage({
     ctaCards,
   } = data
 
-  const hasStarted = new Date() >= new Date(startDate)
+  const hasStarted = new Date() >= startDate
 
   return (
     <>

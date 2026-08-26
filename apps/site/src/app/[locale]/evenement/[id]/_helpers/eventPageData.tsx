@@ -39,8 +39,8 @@ export interface CtaCard {
 
 export interface EventPageData {
   detailImageSrc: string
-  startDate: string
-  endDate: string
+  startDate: Date
+  endDate: Date
   dynamicCounter: {
     currentValue: number
     targetValue: number
@@ -101,8 +101,8 @@ export async function getEventPageData({
   return {
     detailImageSrc:
       'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/VIGNETTE_SEDD_f711b1d37b.svg',
-    startDate: eventInfo.startDate.toISOString(),
-    endDate: eventInfo.endDate.toISOString(),
+    startDate: eventInfo.startDate,
+    endDate: eventInfo.endDate,
     dynamicCounter: {
       currentValue,
       targetValue: TARGET_VALUE,

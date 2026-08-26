@@ -14,14 +14,14 @@ interface TimeLeft {
 }
 
 interface Props {
-  targetDate: string
+  targetDate: Date
   launchDateLabel: string
   primaryCtaHref: string
   secondaryCtaHref: string
 }
 
-function calculateTimeLeft(targetDate: string): TimeLeft | null {
-  const diff = new Date(targetDate).getTime() - Date.now()
+function calculateTimeLeft(targetDate: Date): TimeLeft | null {
+  const diff = targetDate.getTime() - Date.now()
 
   if (diff <= 0) return null
 
