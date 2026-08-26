@@ -10,7 +10,6 @@ import { Suspense } from 'react'
 import i18nConfig from '@/i18nConfig'
 import DefaultProvider from '@/publicodes-state/providers/DefaultProvider'
 import { BODY_ID } from './_components/mainLayoutProviders/IframeOptionsContext'
-import UserTimeZoneSetter from './_components/UserTimeZoneSetter'
 import './globals.css'
 import { marianne } from './marianne'
 
@@ -57,7 +56,6 @@ export default async function RootLayout({
         <body
           id={BODY_ID}
           className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
-          <UserTimeZoneSetter />
           {children}
         </body>
       </DefaultProvider>

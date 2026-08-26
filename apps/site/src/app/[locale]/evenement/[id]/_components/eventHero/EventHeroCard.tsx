@@ -1,6 +1,4 @@
-import { formatEventDate } from '@/helpers/date/formatEventDate'
 import type { Locale } from '@/i18nConfig'
-import { getUserTimeZone } from '@/services/date/getUserTimeZone'
 import AnimatedCounterBlock from './eventHeroCard/AnimatedCounterBlock'
 import EventCountdown from './eventHeroCard/EventCountdown'
 import EventDynamicCounter from './eventHeroCard/EventDynamicCounter'
@@ -15,7 +13,7 @@ interface Props {
   secondaryCtaHref: string
 }
 
-export default async function EventHeroCard({
+export default function EventHeroCard({
   locale,
   startDate,
   currentValue,
@@ -25,13 +23,16 @@ export default async function EventHeroCard({
   secondaryCtaHref,
 }: Props) {
   const hasEventStarted = new Date() >= new Date(startDate)
-  const timeZone = await getUserTimeZone()
 
-  const launchDateLabel = formatEventDate(startDate, locale, timeZone, {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  const launchDateLabel = new Date(startDate).toLocaleDateString(
+    locale === 'fr' ? 'fr-FR' : 'en-GB',
+    {
+      timeZone: 'Europe/Paris',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }
+  )
 
   const content = hasEventStarted ? (
     <AnimatedCounterBlock>
