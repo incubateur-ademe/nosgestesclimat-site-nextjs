@@ -86,7 +86,7 @@ export async function getEventPageData({
   locale: Locale
 }): Promise<EventPageData | null> {
   'use cache'
-  cacheLife({ stale: 600, revalidate: 600, expire: 600 })
+  cacheLife('minutes')
 
   const { t } = await getServerTranslation({ locale })
 
@@ -94,28 +94,9 @@ export async function getEventPageData({
 
   if (!eventInfo) return null
 
-  const currentValue = 76000 //meventInfo.totalSimulations
+  const currentValue = eventInfo.totalSimulations
 
-  const podiumItems =
-    eventInfo.organisations.length > 0
-      ? buildPodiumItems(eventInfo.organisations)
-      : [
-          {
-            rank: 1,
-            label: t('event.podium.yourOrg', 'Organisation 1'),
-            score: 0,
-            category: 'all' as const,
-          },
-          ...Array.from({ length: 14 }, (_, index) => ({
-            rank: index + 2,
-            label: t(
-              `event.podium.competitor${index + 2}`,
-              `Organisation ${index + 2}`
-            ),
-            score: 0,
-            category: 'all' as const,
-          })),
-        ]
+  const podiumItems = buildPodiumItems(eventInfo.organisations)
 
   return {
     detailImageSrc:

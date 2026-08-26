@@ -11,8 +11,8 @@ describe('ensureSeddEvent', () => {
   it('creates the default SEDD event on an empty database', async () => {
     const event = await ensureSeddEvent()
 
-    expect(event.slug).toBe('sedd')
-    expect(event.name).toBe('SEDD 2026')
+    expect(event.slug).toBe(SEDD_EVENT.slug)
+    expect(event.name).toBe(SEDD_EVENT.name)
     expect(event.startDate.toISOString()).toBe(
       SEDD_EVENT.startDate.toISOString()
     )

@@ -6,6 +6,7 @@ import {
   PODIUM_ORGANISATION_TYPES,
 } from '../constants/podium.ts'
 import type { EventOrganisation } from '../types/event-info.ts'
+import { mapEventComputationToOrganisation } from './event.mapper.ts'
 
 export const findEvent = async (eventIdOrSlug: string) =>
   prisma.event.findFirst({
@@ -44,13 +45,12 @@ export const findPodiumOrganisations = async (
     perType
       .flat()
       // The where clause requires the organisation relation, so it is never null.
-      .map((row) => ({
-        id: row.organisation!.id,
-        name: row.organisation!.name,
-        slug: row.organisation!.slug,
-        type: row.organisation!.type,
-        simulationsCount: row.simulationsCount,
-      }))
+      .map((row) =>
+        mapEventComputationToOrganisation({
+          simulationsCount: row.simulationsCount,
+          organisation: row.organisation!,
+        })
+      )
       .sort(
         (a, b) =>
           b.simulationsCount - a.simulationsCount || a.id.localeCompare(b.id)
