@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
+import { organisationFactory } from '../../../organisations/factories/organisation.factory.ts'
+import { pollFactory } from '../../../organisations/factories/poll.factory.ts'
 import { simulationFactory } from '../../../simulation-computation/factories/simulation.factory.ts'
 import { eventFactory } from '../../factories/event.factory.ts'
-import { organisationFactory } from '../../factories/organisation.factory.ts'
-import { pollFactory } from '../../factories/poll.factory.ts'
 import { refreshEventComputation } from '../../repositories/event.repository.ts'
 import type { EventInfo } from '../../types/event-info.ts'
 import { getEventInfo } from '../get-event-info.service.ts'
@@ -226,9 +226,7 @@ describe('getEventInfo', () => {
     const oldOrg = await organisationFactory.create({
       name: 'Old Org',
       slug: 'old-org',
-      createdAt: new Date(
-        event.startDate.getTime() - 30 * 24 * 60 * 60 * 1000
-      ),
+      createdAt: new Date(event.startDate.getTime() - 30 * 24 * 60 * 60 * 1000),
     })
 
     // Simulations run before the event window: must not be counted.
