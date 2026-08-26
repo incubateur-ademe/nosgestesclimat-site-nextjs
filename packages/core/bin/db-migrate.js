@@ -6,6 +6,9 @@ const require = createRequire(import.meta.url)
 const prismaEntry = require.resolve('prisma/build/index.js')
 const config = require.resolve('../prisma.config.js')
 
-execSync(`node ${prismaEntry} migrate deploy --config ${config}`, {
+const args = process.argv.slice(2)
+const subcommand = args.length > 0 ? args.join(' ') : 'deploy'
+
+execSync(`node ${prismaEntry} migrate ${subcommand} --config ${config}`, {
   stdio: 'inherit',
 })
