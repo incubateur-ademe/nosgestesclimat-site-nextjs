@@ -56,18 +56,35 @@ const evaluateConditions = (
 }
 
 const checkIfConditionIsTrue = ({
-  conditionDottedName,
+  rawCondition,
   situation,
+  rules,
 }: {
   situation: SituationSchema
-  conditionDottedName: unknown
+  rawCondition: unknown
   rules: Partial<NGCRules>
 }): boolean => {
-  if (!isDottedName(conditionDottedName)) {
+  // a condition can be a nested condition object (e.g. `une de ces conditions`
+  // or `toutes ces conditions`), in which case we recursively evaluate it
+  if (
+    typeof rawCondition === 'object' &&
+    rawCondition !== null &&
+    !Array.isArray(rawCondition)
+  ) {
+    return (
+      evaluateSituationFormula({
+        situation,
+        formule: rawCondition as Record<string, unknown>,
+        rules,
+      }) !== 0
+    )
+  }
+
+  if (!isDottedName(rawCondition)) {
     return false
   }
 
-  const [dottedName, operator, value] = conditionDottedName
+  const [dottedName, operator, value] = rawCondition
     .split(/(\s*(?:>=|<=|!=|[=<>])\s*)/)
     .map((s) => s.trim())
 
@@ -121,7 +138,7 @@ const evaluateSituationFormula = ({
     for (const variation of variations) {
       if (
         checkIfConditionIsTrue({
-          conditionDottedName: variation.si,
+          rawCondition: variation.si,
           situation,
           rules,
         })
@@ -171,9 +188,9 @@ const evaluateSituationFormula = ({
     'une de ces conditions' in formule &&
     Array.isArray(formule['une de ces conditions'])
   ) {
-    return formule['une de ces conditions'].some((conditionDottedName) =>
+    return formule['une de ces conditions'].some((rawCondition) =>
       checkIfConditionIsTrue({
-        conditionDottedName,
+        rawCondition,
         situation,
         rules,
       })
@@ -186,9 +203,9 @@ const evaluateSituationFormula = ({
     'toutes ces conditions' in formule &&
     Array.isArray(formule['toutes ces conditions'])
   ) {
-    return formule['toutes ces conditions'].every((conditionDottedName) =>
+    return formule['toutes ces conditions'].every((rawCondition) =>
       checkIfConditionIsTrue({
-        conditionDottedName,
+        rawCondition,
         situation,
         rules,
       })
