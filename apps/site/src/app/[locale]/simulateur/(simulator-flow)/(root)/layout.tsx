@@ -1,6 +1,6 @@
 import { ClientLayout } from '@/components/layout/ClientLayout'
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
-import { END_PAGE_PATH, START_SIMULATION_PATH } from '@/constants/urls/paths'
+import { END_PAGE_PATH, TUTORIAL_PATH } from '@/constants/urls/paths'
 import { getCachedRules } from '@/helpers/modelFetching/getCachedRules'
 import { getUserSession } from '@/services/auth/get-user-session'
 
@@ -21,13 +21,15 @@ export default async function SimulationLayout({
 
   const user = await getUserSession()
   if (!user) {
-    redirect(START_SIMULATION_PATH)
+    // No session yet: send the visitor to the tutorial (which leads to
+    // `/simulateur/commencer`, the single place a simulation is created).
+    redirect(TUTORIAL_PATH)
   }
 
   const currentSimulation = await getCurrentSimulation()
   if (!currentSimulation) {
     captureException(new NotFoundError(), { level: 'warning' })
-    redirect(START_SIMULATION_PATH)
+    redirect(TUTORIAL_PATH)
   }
   if (currentSimulation.progression === 1) {
     redirect(END_PAGE_PATH)

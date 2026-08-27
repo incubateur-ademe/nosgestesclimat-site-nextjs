@@ -2,7 +2,6 @@ import {
   END_PAGE_PATH,
   MON_ESPACE_PATH,
   SIMULATOR_PATH,
-  START_SIMULATION_PATH,
   TUTORIAL_PATH,
 } from '@/constants/urls/paths'
 import type { Simulation } from '@/helpers/server/model/simulations'
@@ -23,8 +22,9 @@ export function getMainCTA({
   if (!currentSimulation) {
     return {
       children: t('Commencer le test'),
-      href: START_SIMULATION_PATH,
-      prefetch: false,
+      // First-time visitors see the tutorial before their simulation is
+      // created (which only happens on `/simulateur/commencer`).
+      href: TUTORIAL_PATH,
     }
   }
 
