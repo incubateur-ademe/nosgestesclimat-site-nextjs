@@ -2,11 +2,19 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
+import { useSearchParams } from 'next/navigation'
 import { useActionState } from 'react'
 import { startSimulation } from '../_actions/start-simulation.action'
 
 export default function ButtonNext() {
-  const [, action, pending] = useActionState(startSimulation, undefined)
+  const searchParams = useSearchParams()
+
+  const [, action, pending] = useActionState(
+    // Forward the query params so the model (region, PR, mode) resolved by
+    // `startSimulation` matches the URL the visitor arrived with.
+    () => startSimulation(Object.fromEntries(searchParams)),
+    undefined
+  )
 
   return (
     <form action={action}>

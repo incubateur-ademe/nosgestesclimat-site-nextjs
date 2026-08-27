@@ -15,6 +15,11 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/simulateur/commencer',
+    destination: '/simulateur/tutoriel',
+    permanent: true,
+  },
+  {
     source: '/modele',
     destination: '/documentation',
     permanent: true,
