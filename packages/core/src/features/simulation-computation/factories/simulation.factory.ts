@@ -3,12 +3,12 @@ import pkg from '@incubateur-ademe/nosgestesclimat/package.json' with { type: 'j
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' with { type: 'json' }
 import { Factory } from 'fishery'
 import { prisma } from '../../../prisma/client.ts'
-import { serializeModel } from '../../simulations/repository/model.mapper.ts'
+import { serializeModelString } from '../../models/helpers/model-versions.ts'
 import type {
   Model,
   ModelLocale,
   ModelRegion,
-} from '../../simulations/types/model.ts'
+} from '../../models/types/model.ts'
 
 interface SimulationFixture {
   id: string
@@ -102,7 +102,7 @@ export const simulationFactory = SimulationFactory.define(
           id: data.id,
           date: new Date(),
           progression: data.progression,
-          model: serializeModel(data.model),
+          model: serializeModelString(data.model),
           computedResults: {},
           situation: {},
           actionChoices: {},

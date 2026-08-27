@@ -1,21 +1,39 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
-import type { ModelRegion } from '../../../simulations/types/model.ts'
-import { SimulationNotFinishedException } from '../../exceptions/simulation-computation.exception.ts'
+import { SimulationNotFound } from '../../../simulations/exceptions/simulations.exception.ts'
+import {
+  ComputationAlreadyExistsException,
+  SimulationNotFinishedException,
+} from '../../exceptions/simulation-computation.exception.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
-import { PREVIOUS_MODEL_VERSION } from '../../model-support/model-versions.ts'
-import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
+import type * as SimulationComputationRepository from '../../repositories/simulation-computations.repository.ts'
+import {
+  createSimulationComputation,
+  findSimulationComputation,
+} from '../../repositories/simulation-computations.repository.ts'
 import { createProgramSimulationComputation } from '../program-simulation-computation.ts'
 
 vi.mock('@incubateur-ademe/nosgestesclimat/package.json', () => ({
   default: { version: '1.0.0' },
 }))
 
+// Delegate to the real repository by default, but expose
+// `createSimulationComputation` as a mock so a single test can force a failure.
+vi.mock(
+  '../../repositories/simulation-computations.repository.ts',
+  async (importOriginal) => {
+    const actual =
+      (await importOriginal()) as typeof SimulationComputationRepository
+    return {
+      ...actual,
+      createSimulationComputation: vi.fn(actual.createSimulationComputation),
+    }
+  }
+)
+
 const logger = { error: vi.fn(), warn: vi.fn(), info: vi.fn(), debug: vi.fn() }
-const captureException = vi.fn()
 const programSimulationComputation = createProgramSimulationComputation({
   logger,
-  captureException,
 })
 
 describe('programSimulationComputation', () => {
@@ -25,43 +43,21 @@ describe('programSimulationComputation', () => {
     vi.clearAllMocks()
   })
 
-  it('throws SimulationNotFinished when progression is not 1', async () => {
-    const { id } = await simulationFactory.params({ progression: 0.5 }).create()
+  it.each([0.5, 0])(
+    'throws SimulationNotFinished when progression is %s',
+    async (progression) => {
+      const { id } = await simulationFactory.params({ progression }).create()
 
-    await expect(programSimulationComputation(id)).rejects.toThrow(
-      SimulationNotFinishedException
-    )
-  })
-
-  describe('logs UnsupportedModel and does not create a computation', () => {
-    it.each([
-      [
-        'when model version is outdated',
-        () =>
-          simulationFactory
-            .completed()
-            .withModelVersion({ publishedTag: '0.9.0' }),
-      ],
-      [
-        'when model version is a PR version',
-        () =>
-          simulationFactory.completed().withModelVersion({ PRNumber: '42' }),
-      ],
-      [
-        'when model region does not exist in the model package',
-        () =>
-          simulationFactory.completed().withModelRegion('ZZ' as ModelRegion),
-      ],
-    ])('%s', async (_, setup) => {
-      const { id } = await setup().create()
-      await programSimulationComputation(id)
-      expect(logger.error).toHaveBeenCalledWith(
-        '[program-simulation-computation] Unsupported model',
-        expect.objectContaining({ model: expect.anything() })
+      await expect(programSimulationComputation(id)).rejects.toThrow(
+        SimulationNotFinishedException
       )
-      const computation = await findSimulationComputation(id)
-      expect(computation).toBeNull()
-    })
+    }
+  )
+
+  it('throws SimulationNotFound when the simulation does not exist', async () => {
+    await expect(
+      programSimulationComputation(crypto.randomUUID())
+    ).rejects.toThrow(SimulationNotFound)
   })
 
   it.each([
@@ -78,14 +74,20 @@ describe('programSimulationComputation', () => {
       () => simulationFactory.completed().withModelLocale('en'),
     ],
     [
-      'previous version',
+      // The engine registry retrieves any published version, so an outdated
+      // tag is no longer a reason to drop the job.
+      'an outdated published version',
       () =>
         simulationFactory
           .completed()
-          .withModelVersion({ publishedTag: PREVIOUS_MODEL_VERSION }),
+          .withModelVersion({ publishedTag: '0.9.0' }),
+    ],
+    [
+      'a PR version',
+      () => simulationFactory.completed().withModelVersion({ PRNumber: '42' }),
     ],
   ])(
-    'creates a pending computation when simulation is finished and model is supported: %s',
+    'creates a pending computation when simulation is finished: %s',
     async (_, setup) => {
       const { id } = await setup().create()
 
@@ -96,4 +98,22 @@ describe('programSimulationComputation', () => {
       expect(computation!.status).toBe('pending')
     }
   )
+
+  it('rejects with ComputationAlreadyExistsException when called twice for the same finished simulation', async () => {
+    const { id } = await simulationFactory.completed().create()
+
+    await programSimulationComputation(id)
+    await expect(programSimulationComputation(id)).rejects.toThrow(
+      ComputationAlreadyExistsException
+    )
+  })
+
+  it('propagates a failure from createSimulationComputation', async () => {
+    const { id } = await simulationFactory.completed().create()
+    vi.mocked(createSimulationComputation).mockRejectedValueOnce(
+      new Error('db down')
+    )
+
+    await expect(programSimulationComputation(id)).rejects.toThrow('db down')
+  })
 })

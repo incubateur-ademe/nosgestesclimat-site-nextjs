@@ -1,5 +1,44 @@
 import { describe, expect, it } from 'vitest'
-import { parseModelString, serializeModel } from '../model.mapper.ts'
+import {
+  parseModelString,
+  parseModelVersionString,
+  serializeModelString,
+  serializeModelVersionString,
+} from '../model-versions.ts'
+
+describe('parseModelVersionString', () => {
+  it('reads a published tag', () => {
+    expect(parseModelVersionString('4.14.2')).toEqual({
+      publishedTag: '4.14.2',
+    })
+  })
+
+  it('reads a prerelease published tag', () => {
+    expect(parseModelVersionString('4.15.0-beta.1')).toEqual({
+      publishedTag: '4.15.0-beta.1',
+    })
+  })
+
+  it('reads a PR reference', () => {
+    expect(parseModelVersionString('pr-1234')).toEqual({ PRNumber: '1234' })
+  })
+
+  it('returns null for anything else', () => {
+    expect(parseModelVersionString('current')).toBeNull()
+    expect(parseModelVersionString('4.14')).toBeNull()
+    expect(parseModelVersionString('')).toBeNull()
+  })
+})
+
+describe('serializeModelVersionString', () => {
+  it('round-trips both forms', () => {
+    for (const ref of ['4.14.2', 'pr-1234']) {
+      expect(serializeModelVersionString(parseModelVersionString(ref)!)).toBe(
+        ref
+      )
+    }
+  })
+})
 
 describe('parseModelString', () => {
   it('parses a published tag version', () => {
@@ -46,10 +85,10 @@ describe('parseModelString', () => {
   })
 })
 
-describe('serializeModel', () => {
+describe('serializeModelString', () => {
   it('serializes a published tag model', () => {
     expect(
-      serializeModel({
+      serializeModelString({
         region: 'FR',
         locale: 'fr',
         version: { publishedTag: '1.2.3' },
@@ -59,7 +98,7 @@ describe('serializeModel', () => {
 
   it('serializes a PR number model', () => {
     expect(
-      serializeModel({
+      serializeModelString({
         region: 'FR',
         locale: 'fr',
         version: { PRNumber: '42' },
@@ -69,7 +108,7 @@ describe('serializeModel', () => {
 
   it('serializes with English locale', () => {
     expect(
-      serializeModel({
+      serializeModelString({
         region: 'EU',
         locale: 'en',
         version: { publishedTag: '2.0.0' },

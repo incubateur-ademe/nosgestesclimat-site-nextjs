@@ -1,4 +1,5 @@
 import { createAssessActions } from '@nosgestesclimat/core/features/actions/services/assess-actions.service'
+import { createGetModelRules } from '@nosgestesclimat/core/features/models/services/get-model-rules.service'
 import {
   createGetEngineForModel,
   createWarmUpHotEngines,
@@ -9,8 +10,9 @@ import logger from '../src/logger.ts'
 
 const POLL_INTERVAL_MS = 2000
 
-const warmUpHotEngines = createWarmUpHotEngines({ logger })
-const getEngineForModel = createGetEngineForModel({ logger })
+const getModelRules = createGetModelRules({})
+const warmUpHotEngines = createWarmUpHotEngines({ logger, getModelRules })
+const getEngineForModel = createGetEngineForModel({ logger, getModelRules })
 const assessActions = createAssessActions({
   logger,
   // TODO: Setup Sentry in worker

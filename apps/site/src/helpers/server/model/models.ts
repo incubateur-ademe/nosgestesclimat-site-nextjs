@@ -1,19 +1,19 @@
 import packageJson from '@incubateur-ademe/nosgestesclimat/package.json'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import {
-  supportedRegions,
-  type Region,
-} from '@nosgestesclimat/core/features/region/region.schema'
-import {
   parseModelString,
-  serializeModel,
-} from '@nosgestesclimat/core/features/simulations/repository/model.mapper'
+  serializeModelString as serializeModel,
+} from '@nosgestesclimat/core/features/models/helpers/model-versions'
 import {
   type Model,
   type ModelLocale,
   type ModelRegion,
   type ModelVersion,
-} from '@nosgestesclimat/core/features/simulations/types/model'
+} from '@nosgestesclimat/core/features/models/types/model'
+import {
+  supportedRegions,
+  type Region,
+} from '@nosgestesclimat/core/features/region/region.schema'
 import { migrateSituation } from '@publicodes/tools/migration'
 import type { Simulation, SimulationMode } from './simulations'
 
