@@ -25,12 +25,14 @@ write_files:
   - path: /etc/systemd/system/nginx.service.d/override.conf
     permissions: '0644'
     content: |
+      [Unit]
+      StartLimitIntervalSec=3600
+      StartLimitBurst=360
+
       [Service]
       Restart=on-failure
       RestartSec=10s
       TimeoutStartSec=60s
-      StartLimitIntervalSec=3600
-      StartLimitBurst=360
 
 runcmd:
   - mkdir -p /var/cache/nginx /var/lib/nginx-config

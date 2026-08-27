@@ -5,7 +5,7 @@ import EventDynamicCounter from './eventHeroCard/EventDynamicCounter'
 
 interface Props {
   locale: Locale
-  startDate: string
+  startDate: Date
   currentValue: number
   targetValue: number
   progressPercentage: number
@@ -22,7 +22,17 @@ export default function EventHeroCard({
   primaryCtaHref,
   secondaryCtaHref,
 }: Props) {
-  const hasEventStarted = new Date() >= new Date(startDate)
+  const hasEventStarted = new Date() >= startDate
+
+  const launchDateLabel = startDate.toLocaleDateString(
+    locale === 'fr' ? 'fr-FR' : 'en-GB',
+    {
+      timeZone: 'Europe/Paris',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }
+  )
 
   const content = hasEventStarted ? (
     <AnimatedCounterBlock>
@@ -38,6 +48,7 @@ export default function EventHeroCard({
   ) : (
     <EventCountdown
       targetDate={startDate}
+      launchDateLabel={launchDateLabel}
       primaryCtaHref={primaryCtaHref}
       secondaryCtaHref={secondaryCtaHref}
     />

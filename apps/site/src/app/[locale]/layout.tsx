@@ -7,12 +7,11 @@ import { dir } from 'i18next'
 import Script from 'next/script'
 import { Suspense } from 'react'
 
-import DefaultProvider from '@/publicodes-state/providers/DefaultProvider'
 import i18nConfig from '@/i18nConfig'
+import DefaultProvider from '@/publicodes-state/providers/DefaultProvider'
 import { BODY_ID } from './_components/mainLayoutProviders/IframeOptionsContext'
 import './globals.css'
 import { marianne } from './marianne'
-
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale: string) => ({

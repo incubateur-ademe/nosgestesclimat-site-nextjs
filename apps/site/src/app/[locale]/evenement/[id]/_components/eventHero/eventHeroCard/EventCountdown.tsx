@@ -14,13 +14,14 @@ interface TimeLeft {
 }
 
 interface Props {
-  targetDate: string
+  targetDate: Date
+  launchDateLabel: string
   primaryCtaHref: string
   secondaryCtaHref: string
 }
 
-function calculateTimeLeft(targetDate: string): TimeLeft | null {
-  const diff = new Date(targetDate).getTime() - Date.now()
+function calculateTimeLeft(targetDate: Date): TimeLeft | null {
+  const diff = targetDate.getTime() - Date.now()
 
   if (diff <= 0) return null
 
@@ -61,6 +62,7 @@ function AnimatedNumber({ value, label }: { value: number; label: string }) {
 
 export default function EventCountdown({
   targetDate,
+  launchDateLabel,
   primaryCtaHref,
   secondaryCtaHref,
 }: Props) {
@@ -135,7 +137,12 @@ export default function EventCountdown({
         <ButtonLink
           className="mb-2 w-full text-sm sm:mb-3 sm:text-base lg:text-xl"
           size="xl"
-          href={primaryCtaHref}>
+          href={primaryCtaHref}
+          target="_blank"
+          aria-label={t(
+            'event.dynamicCounter.primaryCta.ariaLabel',
+            'Je mobilise mon organisation, ouvrir dans une nouvelle fenêtre'
+          )}>
           <Trans i18nKey="event.dynamicCounter.primaryCta">
             Je mobilise mon organisation
           </Trans>
@@ -145,7 +152,12 @@ export default function EventCountdown({
           className="w-full text-sm sm:text-base lg:text-xl"
           href={secondaryCtaHref}
           size="xl"
-          color="secondary">
+          color="secondary"
+          target="_blank"
+          aria-label={t(
+            'event.dynamicCounter.secondaryCta.ariaLabel',
+            'Je participe individuellement, ouvrir dans une nouvelle fenêtre'
+          )}>
           <Trans i18nKey="event.dynamicCounter.secondaryCta">
             Je participe individuellement
           </Trans>
@@ -153,9 +165,9 @@ export default function EventCountdown({
       </div>
 
       <p className="text-center text-xs text-slate-600">
-        <Trans i18nKey="event.countdown.date">
-          Lancement le 1er septembre 2026
-        </Trans>
+        {t('event.countdown.date', 'Lancement le {{date}}', {
+          date: launchDateLabel,
+        })}
       </p>
     </div>
   )
