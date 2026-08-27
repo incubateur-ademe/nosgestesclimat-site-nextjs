@@ -2,7 +2,6 @@ import {
   END_PAGE_PATH,
   MON_ESPACE_PATH,
   SIMULATOR_PATH,
-  START_SIMULATION_PATH,
   TUTORIAL_PATH,
 } from '@/constants/urls/paths'
 import type { Simulation } from '@/helpers/server/model/simulations'
@@ -23,8 +22,11 @@ export function getMainCTA({
   if (!currentSimulation) {
     return {
       children: t('Commencer le test'),
-      href: START_SIMULATION_PATH,
       prefetch: false,
+      // First-time visitors land on the tutorial, which creates their
+      // session + simulation (via the "C'est parti !" form action) before
+      // sending them to the simulator.
+      href: TUTORIAL_PATH,
     }
   }
 

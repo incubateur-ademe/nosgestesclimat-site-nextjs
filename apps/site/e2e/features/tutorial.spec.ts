@@ -50,12 +50,15 @@ test.describe('when a user completes a test', () => {
     await page.waitForURL('/fin')
   })
 
-  test('it should redirect to the fin page when accessed directly', async ({
+  test('it should start a new test when accessed directly', async ({
     page,
     tutorialPage,
   }) => {
+    // The merged tutorial is the single restart point: accessing it directly
+    // with a completed simulation creates a fresh one and goes to the
+    // simulator.
     await tutorialPage.goto()
-    await expect(page).toHaveURL(new RegExp('/fin'))
+    await expect(page).toHaveURL(new RegExp('/simulateur/bilan'))
   })
 
   test('it should not be displayed when starting a new test', async ({

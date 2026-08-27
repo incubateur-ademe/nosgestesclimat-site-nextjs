@@ -2,7 +2,7 @@ import ActionsPage from '@/components/actions/pages/ActionsPage'
 import CTAButtons from '@/components/cta/CTAButtons'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
-import { START_SIMULATION_PATH } from '@/constants/urls/paths'
+import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { Locale } from '@/i18nConfig'
@@ -41,7 +41,7 @@ export default async function PublicActionsCatalogue({
             Retrouvez ci-dessous toutes les actions, individuelles ou
             collectives, qui comptent pour le climat. Pour personnaliser ces
             actions à votre situation, il suffit de{' '}
-            <Link href={START_SIMULATION_PATH}>faire le test</Link>&nbsp;!
+            <Link href={TUTORIAL_PATH}>faire le test</Link>&nbsp;!
           </Trans>
         }
         cta={<CallToAction locale={locale} />}

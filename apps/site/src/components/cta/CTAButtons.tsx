@@ -1,13 +1,10 @@
-import {
-  ORGANISATION_CREATE_PATH,
-  START_SIMULATION_PATH,
-} from '@/constants/urls/paths'
+import { ORGANISATION_CREATE_PATH, TUTORIAL_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMainCTA } from '@/helpers/server/getLinkToSimulateur'
-import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
-import { getCompletedSimulations } from '@/services/simulations/get-completed-simulations'
 import { getUserSession } from '@/services/auth/get-user-session'
+import { getCompletedSimulations } from '@/services/simulations/get-completed-simulations'
+import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
 import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RotatingArrowIcon from '../icons/RotatingArrowIcon'
@@ -108,7 +105,7 @@ async function ServerCTAButtons({
           <ButtonLink
             data-testid="restart-link"
             className="mt-1 w-full text-base"
-            href={START_SIMULATION_PATH}
+            href={TUTORIAL_PATH}
             color="link"
             size="sm">
             <Trans locale={locale} i18nKey="ctaButtons.retake.label">

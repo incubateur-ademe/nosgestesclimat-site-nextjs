@@ -1,4 +1,4 @@
-import { START_SIMULATION_PATH } from '@/constants/urls/paths'
+import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import { faker } from '@faker-js/faker'
 import { expect, test } from '../fixtures'
 import { UserMailbox } from '../helpers/user-mailbox'
@@ -107,7 +107,7 @@ test.describe('Simulation deletion', () => {
     page,
     ngcTest,
   }) => {
-    await page.goto(START_SIMULATION_PATH)
+    await page.goto(TUTORIAL_PATH)
     await ngcTest.skipAllQuestions()
 
     await page.goto('/mon-espace')
