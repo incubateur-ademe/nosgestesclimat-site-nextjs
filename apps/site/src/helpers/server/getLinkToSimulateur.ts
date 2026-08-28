@@ -23,9 +23,6 @@ export function getMainCTA({
     return {
       children: t('Commencer le test'),
       prefetch: false,
-      // First-time visitors land on the tutorial, which creates their
-      // session + simulation (via the "C'est parti !" form action) before
-      // sending them to the simulator.
       href: TUTORIAL_PATH,
     }
   }
