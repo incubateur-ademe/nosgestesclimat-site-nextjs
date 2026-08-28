@@ -7,7 +7,7 @@ import { getSimulationMode } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
 import { createPollSimulation } from '@/services/organisations/create-poll-simulation'
 import { getPublicPoll } from '@/services/organisations/get-public-poll'
-import { getCompletedSimulations } from '@/services/simulations/get-completed-simulations'
+import { getLastCompletedSimulation } from '@/services/simulations/get-last-completed-simulation'
 import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
 import { resolveNewSimulationModel } from '@/services/simulations/resolve-new-simulation-model'
 import { redirect } from 'next/navigation'
@@ -26,11 +26,11 @@ export default async function CampagnePage({
     locale: Locale
   }
 
-  const [poll, [lastCompletedSimulation], currentSimulation] =
+  const [poll, lastCompletedSimulation, currentSimulation] =
     await throwNextError(() =>
       Promise.all([
         getPublicPoll(pollIdOrSlug),
-        getCompletedSimulations({ pageSize: 1 }),
+        getLastCompletedSimulation(),
         getCurrentSimulation(),
       ])
     )
@@ -59,6 +59,7 @@ export default async function CampagnePage({
 
   async function reuseSimulation() {
     'use server'
+    if (!lastCompletedSimulation) return
     await createPollSimulation({
       poll,
       simulation: lastCompletedSimulation,
@@ -71,7 +72,6 @@ export default async function CampagnePage({
   // - the previous completed simulation has "mode" === "standard"
   // - the newer simulation also has "mode" === "standard"
   const allowToReuseExistingSimulation =
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     !!lastCompletedSimulation &&
     poll.mode === 'standard' &&
     getSimulationMode(lastCompletedSimulation) === 'standard' &&
