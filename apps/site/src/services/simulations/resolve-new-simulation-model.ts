@@ -14,7 +14,7 @@ import { getRegion } from '@/services/users/region'
 import type { SearchParams } from 'next/dist/server/request/search-params'
 
 interface ResolveNewSimulationModelOptions {
-  searchParams?: Promise<SearchParams>
+  searchParams?: SearchParams
   locale?: Locale
   mode?: SimulationMode
 }
@@ -37,7 +37,7 @@ export async function resolveNewSimulationModel({
     region: regionParam,
     PR: PRNumberParam,
     mode: modeParam,
-  } = (await searchParams) ?? {}
+  } = searchParams ?? {}
 
   let userRegion: Region | undefined
   let PRNumber: string | undefined
