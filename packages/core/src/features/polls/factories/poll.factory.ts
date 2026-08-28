@@ -15,7 +15,6 @@ export const pollFactory = PollFactory.define(({ onCreate }) => {
         organisationId: data.organisationId,
         customAdditionalQuestions: {},
         mode: data.mode,
-        computeRealTimeStats: data.computeRealTimeStats,
         createdAt: data.createdAt,
         updatedAt: data.updatedAt,
       },
@@ -33,7 +32,6 @@ export const pollFactory = PollFactory.define(({ onCreate }) => {
     expectedNumberOfParticipants: null,
     customAdditionalQuestions: {},
     mode: 'standard' as const,
-    computeRealTimeStats: true,
     createdAt: new Date(),
     updatedAt: new Date(),
   }
