@@ -38,9 +38,9 @@ export const createEmailWhitelist = async ({
       )
     }
 
-    const whitelist = await transaction((session) =>
-      createWhitelist(emailWhitelistDto, { session })
-    )
+    const whitelist = await createWhitelist(emailWhitelistDto, {
+      session: prisma,
+    })
 
     return whitelistToDto(whitelist)
   } catch (e) {
@@ -61,8 +61,11 @@ export const updateEmailWhitelist = async ({
   emailWhitelistDto: EmailWhitelistUpdateDto
 }) => {
   try {
-    const whitelist = await transaction((session) =>
-      updateWhitelist(params, emailWhitelistDto, userScopes, { session })
+    const whitelist = await updateWhitelist(
+      params,
+      emailWhitelistDto,
+      userScopes,
+      { session: prisma }
     )
 
     return whitelistToDto(whitelist)
@@ -82,9 +85,7 @@ export const deleteEmailWhitelist = async ({
   userScopes: Set<string>
 }) => {
   try {
-    await transaction((session) =>
-      deleteWhitelist(params, userScopes, { session })
-    )
+    await deleteWhitelist(params, userScopes, { session: prisma })
   } catch (e) {
     if (isPrismaErrorNotFound(e)) {
       throw new EntityNotFoundException('Email Whitelist not found')

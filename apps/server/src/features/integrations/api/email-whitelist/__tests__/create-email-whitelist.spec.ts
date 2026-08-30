@@ -6,7 +6,6 @@ import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { ApiScopeName } from '../../../../../adapters/prisma/generated.ts'
 import { defaultEmailWhitelistSelection } from '../../../../../adapters/prisma/selection.ts'
-import * as prismaTransactionAdapter from '../../../../../adapters/prisma/transaction.ts'
 import app from '../../../../../app.ts'
 import { config } from '../../../../../config.ts'
 import logger from '../../../../../logger.ts'
@@ -14,6 +13,7 @@ import {
   randomApiScopeName,
   recoverApiToken,
 } from '../../authentication/__tests__/fixtures/authentication.fixtures.ts'
+import * as emailWhitelistRepository from '../email-whitelist.repository.ts'
 import { CREATE_EMAIL_WHITELIST_ROUTE } from './fixtures/email-whitelist.fixture.ts'
 
 describe('Given a NGC integrations API user', () => {
@@ -277,13 +277,13 @@ describe('Given a NGC integrations API user', () => {
 
           beforeEach(() => {
             vi.spyOn(
-              prismaTransactionAdapter,
-              'transaction'
+              emailWhitelistRepository,
+              'createWhitelist'
             ).mockRejectedValueOnce(databaseError)
           })
 
           afterEach(() => {
-            vi.spyOn(prismaTransactionAdapter, 'transaction').mockRestore()
+            vi.spyOn(emailWhitelistRepository, 'createWhitelist').mockRestore()
           })
 
           test(`Then it returns a ${StatusCodes.INTERNAL_SERVER_ERROR} error`, async () => {
