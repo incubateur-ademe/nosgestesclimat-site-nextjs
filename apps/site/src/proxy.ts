@@ -1,18 +1,9 @@
-import {
-  REFRESH_COOKIE,
-  SESSION_COOKIE,
-} from '@/helpers/server/cookie/auth.cookie'
-import {
-  buildLegacyCookiePurges,
-  stringifyPurgeCookie,
-} from '@/helpers/server/cookie/legacy-purge'
-import { REGION_COOKIE } from '@/helpers/server/cookie/region.cookie'
 import { middlewareAuth } from '@/helpers/server/proxy/auth.middleware'
 import { middlewareFeatureFlags } from '@/helpers/server/proxy/feature-flags.middleware'
 import { middlewareMigrateLegacySessions } from '@/helpers/server/proxy/migrate-legacy-sessions.middleware'
+import { middlewarePurgeLegacyCookieDomains } from '@/helpers/server/proxy/purge-legacy-cookie-domains.middleware'
 import { middlewareRegion } from '@/helpers/server/proxy/region.middleware'
 import i18nConfig from '@/i18nConfig'
-import { FF_COOKIE_NAME } from '@/services/feature-flags/constants'
 import { i18nRouter } from 'next-i18n-router'
 import { type NextRequest, NextResponse } from 'next/server'
 
@@ -40,39 +31,29 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
 
   const region = await middlewareRegion(request)
 
+  const legacyDomainPurge = middlewarePurgeLegacyCookieDomains(
+    request,
+    auth.cookies
+  )
+
   // Phase 2 — Routing
   const response = i18nRouter(request, i18nConfig)
 
   // Phase 3 — Apply cookies
-  // Early redirects (ff.redirect, auth.redirect) return before this phase, so
-  // a purge may be delayed to the next request. That's acceptable: purging is
-  // idempotent and the migration window is long.
-  const legacyPurges = buildLegacyCookiePurges(
-    [SESSION_COOKIE, REFRESH_COOKIE, REGION_COOKIE, FF_COOKIE_NAME].filter(
-      (name) => request.cookies.has(name)
-    )
-  )
-
   for (const cookie of [
     ...migrate.cookies,
     ...auth.cookies,
     ...region.cookies,
+    ...legacyDomainPurge.cookies,
   ]) {
     response.cookies.set(cookie.name, cookie.value, cookie.options)
   }
 
-  // The legacy domain-scoped purges MUST go through `headers.append`, not
-  // `response.cookies.set`: the response cookie jar is a Map keyed by cookie
-  // name, and every `set()` triggers `replace()` which wipes all `set-cookie`
-  // headers and re-emits ONE per name (see next/dist/compiled/@edge-runtime/
-  // cookies). Two cookies with the same name but different attributes
-  // (`Domain` vs host-only) cannot coexist through that API — the purges would
-  // overwrite the host-only re-issues above (`auth.cookies`: ngc_session /
-  // ngc_refresh, and rotation case H) and, on preprod, one of the two domain
-  // purges per name. Raw header appends keep them all. Appending AFTER the
-  // loop is crucial: the `set()` calls above would wipe earlier appends.
-  for (const purge of legacyPurges) {
-    response.headers.append('set-cookie', stringifyPurgeCookie(purge))
+  // `NextResponse.cookies` is a Map keyed by name: two cookies with the same
+  // name (host-only vs Domain-scoped) can't coexist, so the purges must be
+  // appended as raw `Set-Cookie` headers, after the `set()` calls above.
+  for (const rawSetCookie of legacyDomainPurge.rawSetCookies) {
+    response.headers.append('set-cookie', rawSetCookie)
   }
 
   return response
