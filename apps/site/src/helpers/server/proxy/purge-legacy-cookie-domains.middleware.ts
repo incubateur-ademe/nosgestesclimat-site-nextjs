@@ -4,6 +4,7 @@ import {
   SESSION_COOKIE,
 } from '@/helpers/server/cookie/auth.cookie'
 import { getCookieOptions } from '@/helpers/server/cookie/helpers'
+import { getLegacyCookieDomains } from '@/helpers/server/cookie/legacy-domains'
 import type { CookieToSet } from '@/helpers/server/cookie/types'
 import { type NextRequest, NextResponse } from 'next/server'
 
@@ -45,7 +46,9 @@ export function middlewarePurgeLegacyCookieDomains(
   )
 
   const rawSetCookies = legacyNames.flatMap((name) =>
-    legacyDomains().map((domain) =>
+    getLegacyCookieDomains(
+      new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
+    ).map((domain) =>
       serializePurgeCookie(name, { ...getCookieOptions(), domain, maxAge: 0 })
     )
   )
@@ -59,13 +62,6 @@ export function middlewarePurgeLegacyCookieDomains(
     }))
 
   return { cookies, rawSetCookies }
-}
-
-function legacyDomains(): string[] {
-  const hostname = new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
-  return hostname === 'nosgestesclimat.fr'
-    ? [hostname]
-    : [hostname, 'nosgestesclimat.fr']
 }
 
 function serializePurgeCookie(
