@@ -3,7 +3,10 @@ import {
   deleteSessionCookies,
   REFRESH_COOKIE,
   SESSION_COOKIE,
+  SESSION_COOKIE_MAX_AGE,
 } from '@/helpers/server/cookie/auth.cookie'
+import { getCookieOptions } from '@/helpers/server/cookie/helpers'
+import { isLegacyCookieMigrationActive } from '@/helpers/server/cookie/legacy-purge'
 import { TokenConsumedException } from '@nosgestesclimat/core/features/auth/exceptions/token-consumed.exception'
 import { TokenExpiredException } from '@nosgestesclimat/core/features/auth/exceptions/token-expired.exception'
 import { isSessionExpired } from '@nosgestesclimat/core/features/auth/helpers/is-session-expired'
@@ -51,7 +54,34 @@ export async function middlewareAuth(
     // (C) Valid session. Forward user info downstream.
     // If a stale `_rt` param is present (leftover from a previous rotation),
     // strip it with a redirect to keep URLs clean.
-    return stripRt(request)
+    const stripped = stripRt(request)
+    if (stripped.redirect) return stripped
+
+    // During the legacy migration window, re-emit the received session (and
+    // refresh) cookies host-only: the browser keeps reading the old
+    // domain-scoped variants first (RFC 6265 §5.4), so a valid legacy session
+    // must be copied over or the purge would log the user out. Re-issuing on
+    // every request until the legacy cookies are gone.
+    if (isLegacyCookieMigrationActive()) {
+      const cookies: MiddlewareResult['cookies'] = [
+        {
+          name: SESSION_COOKIE,
+          value: sessionCookie.value,
+          options: { ...getCookieOptions(), maxAge: SESSION_COOKIE_MAX_AGE },
+        },
+      ]
+      const refreshCookie = request.cookies.get(REFRESH_COOKIE)
+      if (refreshCookie) {
+        cookies.push({
+          name: REFRESH_COOKIE,
+          value: refreshCookie.value,
+          options: { ...getCookieOptions(), maxAge: SESSION_COOKIE_MAX_AGE },
+        })
+      }
+      return { redirect: null, cookies }
+    }
+
+    return stripped
   }
 
   const refreshCookie = request.cookies.get(REFRESH_COOKIE)

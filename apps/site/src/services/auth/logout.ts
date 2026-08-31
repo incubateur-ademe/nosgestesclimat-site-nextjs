@@ -1,11 +1,15 @@
 'use server'
 
-import { deleteSessionCookies } from '@/helpers/server/cookie/auth.cookie'
+import {
+  deleteSessionCookies,
+  REFRESH_COOKIE,
+  SESSION_COOKIE,
+} from '@/helpers/server/cookie/auth.cookie'
+import { buildLegacyCookiePurges } from '@/helpers/server/cookie/legacy-purge'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { getCookieOptions } from '../../helpers/server/cookie/helpers'
 import { getUserSession } from './get-user-session'
 
 export async function logout(): Promise<void> {
@@ -18,16 +22,14 @@ export async function logout(): Promise<void> {
     cookieStore.delete({ name: cookie.name, ...cookie.options })
   }
 
-  // Legacy Express-issued auth cookie. Only cleared on an explicit logout —
-  // middlewareMigrateLegacySessions otherwise uses it to transparently
-  // re-issue a session, which is desirable for the token-rotation-failure
-  // paths in auth.middleware.ts but must NOT happen after the user logs out.
-  if (process.env.SERVER_AUTH_COOKIE_NAME) {
-    cookieStore.delete({
-      name: process.env.SERVER_AUTH_COOKIE_NAME,
-      ...getCookieOptions(),
-      maxAge: 0,
-    })
+  // Also purge the legacy domain-scoped variants (Domain=nosgestesclimat.fr):
+  // they are read first by the browser and would otherwise keep a stale prod
+  // session alive until they expire.
+  for (const purge of buildLegacyCookiePurges([
+    SESSION_COOKIE,
+    REFRESH_COOKIE,
+  ])) {
+    cookieStore.delete({ name: purge.name, ...purge.options })
   }
 
   revalidatePath('/', 'layout')

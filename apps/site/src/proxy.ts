@@ -1,8 +1,15 @@
+import {
+  REFRESH_COOKIE,
+  SESSION_COOKIE,
+} from '@/helpers/server/cookie/auth.cookie'
+import { buildLegacyCookiePurges } from '@/helpers/server/cookie/legacy-purge'
+import { REGION_COOKIE } from '@/helpers/server/cookie/region.cookie'
 import { middlewareAuth } from '@/helpers/server/proxy/auth.middleware'
 import { middlewareFeatureFlags } from '@/helpers/server/proxy/feature-flags.middleware'
 import { middlewareMigrateLegacySessions } from '@/helpers/server/proxy/migrate-legacy-sessions.middleware'
 import { middlewareRegion } from '@/helpers/server/proxy/region.middleware'
 import i18nConfig from '@/i18nConfig'
+import { FF_COOKIE_NAME } from '@/services/feature-flags/constants'
 import { i18nRouter } from 'next-i18n-router'
 import { type NextRequest, NextResponse } from 'next/server'
 
@@ -34,10 +41,20 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
   const response = i18nRouter(request, i18nConfig)
 
   // Phase 3 — Apply cookies
+  // Early redirects (ff.redirect, auth.redirect) return before this phase, so
+  // a purge may be delayed to the next request. That's acceptable: purging is
+  // idempotent and the migration window is long.
+  const legacyPurges = buildLegacyCookiePurges(
+    [SESSION_COOKIE, REFRESH_COOKIE, REGION_COOKIE, FF_COOKIE_NAME].filter(
+      (name) => request.cookies.has(name)
+    )
+  )
+
   for (const cookie of [
     ...migrate.cookies,
     ...auth.cookies,
     ...region.cookies,
+    ...legacyPurges,
   ]) {
     response.cookies.set(cookie.name, cookie.value, cookie.options)
   }
