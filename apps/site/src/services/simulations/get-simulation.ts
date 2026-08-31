@@ -4,7 +4,6 @@ import { SIMULATION_URL } from '@/constants/urls/main'
 import { UnauthorizedError } from '@/helpers/server/error'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import type { Simulation } from '@/helpers/server/model/simulations'
-import { setDefaultExtendedSituation } from '@/helpers/server/model/utils/setDefaultExtendedSituation'
 import { getUserSession } from '@/services/auth/get-user-session'
 
 export const getSimulation = async (
@@ -17,8 +16,7 @@ export const getSimulation = async (
     `${SIMULATION_URL}/${simulationId}`
   )
 
-  const updatedSimulation = setDefaultExtendedSituation(simulation)
-  delete updatedSimulation.user
+  delete simulation.user
 
-  return updatedSimulation
+  return simulation
 }

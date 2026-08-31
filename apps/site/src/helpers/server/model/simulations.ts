@@ -1,7 +1,4 @@
-import type {
-  DottedName,
-  ExtendedSituation,
-} from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type {
   ComputedResults,
   Situation,
@@ -13,7 +10,6 @@ export interface Simulation {
   id: string
   date: Date | string
   situation: Situation
-  extendedSituation: ExtendedSituation
   foldedSteps: DottedName[]
   actionChoices: Partial<Record<DottedName, boolean>>
   persona?: string

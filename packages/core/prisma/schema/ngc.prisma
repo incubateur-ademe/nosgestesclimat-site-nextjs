@@ -348,7 +348,6 @@ model Simulation {
   computedResults            Json
   actionChoices              Json
   situation                  Json
-  extendedSituation          Json?
   foldedSteps                Json[]
   states                     SimulationState[]
   additionalQuestionsAnswers SimulationAdditionalQuestionAnswer[]
