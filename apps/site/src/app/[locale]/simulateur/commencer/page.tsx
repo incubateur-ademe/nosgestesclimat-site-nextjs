@@ -1,5 +1,6 @@
 import { SIMULATOR_PATH, TUTORIAL_PATH } from '@/constants/urls/paths'
 
+import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { stringifyModel } from '@/helpers/server/model/models'
 import type { Locale } from '@/i18nConfig'
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -13,14 +14,24 @@ export default async function Commencer({
   params,
 }: PageProps<'/[locale]/simulateur/commencer'>) {
   const session = await getUserSession()
+  const locale = (await params).locale as Locale
+  const resolvedSearchParams = await searchParams
   if (!session) {
-    redirect(TUTORIAL_PATH)
+    const tutorielSearchParams = new URLSearchParams()
+    for (const [key, value] of Object.entries(resolvedSearchParams)) {
+      if (typeof value === 'string') {
+        tutorielSearchParams.set(key, value)
+      }
+    }
+    redirect(getLinkToTutoriel({ locale, searchParams: tutorielSearchParams }))
   }
 
   const currentSimulation = await getCurrentSimulation()
 
-  const locale = (await params).locale as Locale
-  const model = await resolveNewSimulationModel({ searchParams, locale })
+  const model = await resolveNewSimulationModel({
+    searchParams: resolvedSearchParams,
+    locale,
+  })
 
   if (
     !currentSimulation ||

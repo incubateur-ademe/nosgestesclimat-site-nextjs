@@ -48,7 +48,7 @@ export default async function CampagnePage({
       poll,
       locale,
       model: await resolveNewSimulationModel({
-        searchParams,
+        searchParams: await searchParams,
         locale,
         mode: poll.mode,
       }),
