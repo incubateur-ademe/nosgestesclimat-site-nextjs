@@ -1,11 +1,6 @@
 'use server'
 
-import {
-  deleteSessionCookies,
-  REFRESH_COOKIE,
-  SESSION_COOKIE,
-} from '@/helpers/server/cookie/auth.cookie'
-import { buildLegacyCookiePurges } from '@/helpers/server/cookie/legacy-purge'
+import { deleteSessionCookies } from '@/helpers/server/cookie/auth.cookie'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
@@ -22,15 +17,14 @@ export async function logout(): Promise<void> {
     cookieStore.delete({ name: cookie.name, ...cookie.options })
   }
 
-  // Also purge the legacy domain-scoped variants (Domain=nosgestesclimat.fr):
-  // they are read first by the browser and would otherwise keep a stale prod
-  // session alive until they expire.
-  for (const purge of buildLegacyCookiePurges([
-    SESSION_COOKIE,
-    REFRESH_COOKIE,
-  ])) {
-    cookieStore.delete({ name: purge.name, ...purge.options })
-  }
+  // The legacy domain-scoped variants (Domain=nosgestesclimat.fr) are purged
+  // by the proxy middleware (proxy.ts) on the next request: the browser still
+  // sends them at that point. They cannot be deleted here — `cookies()` from
+  // next/headers has the same Map-by-name limitation as NextResponse.cookies,
+  // so a domain-scoped delete would overwrite the host-only deletes above and
+  // break the logout. During the migration window a user with a legacy cookie
+  // carrying a still-valid access token (< 15 min) may briefly appear logged
+  // in until the token expires — negligible window, accepted.
 
   revalidatePath('/', 'layout')
   redirect('/')

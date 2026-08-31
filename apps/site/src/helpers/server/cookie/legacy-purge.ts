@@ -45,6 +45,49 @@ function legacyPurgeOptions(cookieName: string): CookieToSet['options'] {
   return options
 }
 
+/**
+ * Serialize a purge `CookieToSet` into a raw `Set-Cookie` header value.
+ *
+ * This bypasses `NextResponse.cookies.set()`: the response cookie jar is a
+ * Map keyed by cookie name, so two cookies with the same name but different
+ * attributes (host-only vs domain-scoped) cannot coexist through that API.
+ * Raw `headers.append` can.
+ */
+export function stringifyPurgeCookie({
+  name,
+  value,
+  options,
+}: CookieToSet): string {
+  const parts = [`${name}=${value}`]
+
+  parts.push(`Path=${options?.path ?? '/'}`)
+
+  if (options?.domain) {
+    parts.push(`Domain=${options.domain}`)
+  }
+
+  parts.push(`Max-Age=${options?.maxAge ?? 0}`)
+
+  if (options?.secure) {
+    parts.push('Secure')
+  }
+
+  if (options?.sameSite) {
+    const sameSite = String(options.sameSite)
+    parts.push(`SameSite=${sameSite[0].toUpperCase()}${sameSite.slice(1)}`)
+  }
+
+  if (options?.partitioned) {
+    parts.push('Partitioned')
+  }
+
+  if (options?.httpOnly) {
+    parts.push('HttpOnly')
+  }
+
+  return parts.join('; ')
+}
+
 export function buildLegacyCookiePurges(cookieNames: string[]): CookieToSet[] {
   if (!isLegacyCookieMigrationActive()) return []
 

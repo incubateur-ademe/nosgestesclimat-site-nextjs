@@ -2,7 +2,10 @@ import {
   REFRESH_COOKIE,
   SESSION_COOKIE,
 } from '@/helpers/server/cookie/auth.cookie'
-import { buildLegacyCookiePurges } from '@/helpers/server/cookie/legacy-purge'
+import {
+  buildLegacyCookiePurges,
+  stringifyPurgeCookie,
+} from '@/helpers/server/cookie/legacy-purge'
 import { REGION_COOKIE } from '@/helpers/server/cookie/region.cookie'
 import { middlewareAuth } from '@/helpers/server/proxy/auth.middleware'
 import { middlewareFeatureFlags } from '@/helpers/server/proxy/feature-flags.middleware'
@@ -54,9 +57,22 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
     ...migrate.cookies,
     ...auth.cookies,
     ...region.cookies,
-    ...legacyPurges,
   ]) {
     response.cookies.set(cookie.name, cookie.value, cookie.options)
+  }
+
+  // The legacy domain-scoped purges MUST go through `headers.append`, not
+  // `response.cookies.set`: the response cookie jar is a Map keyed by cookie
+  // name, and every `set()` triggers `replace()` which wipes all `set-cookie`
+  // headers and re-emits ONE per name (see next/dist/compiled/@edge-runtime/
+  // cookies). Two cookies with the same name but different attributes
+  // (`Domain` vs host-only) cannot coexist through that API — the purges would
+  // overwrite the host-only re-issues above (`auth.cookies`: ngc_session /
+  // ngc_refresh, and rotation case H) and, on preprod, one of the two domain
+  // purges per name. Raw header appends keep them all. Appending AFTER the
+  // loop is crucial: the `set()` calls above would wipe earlier appends.
+  for (const purge of legacyPurges) {
+    response.headers.append('set-cookie', stringifyPurgeCookie(purge))
   }
 
   return response

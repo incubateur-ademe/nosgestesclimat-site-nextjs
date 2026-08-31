@@ -1,9 +1,9 @@
 import {
+  AUTH_COOKIE_MAX_AGE,
   buildSessionCookies,
   deleteSessionCookies,
   REFRESH_COOKIE,
   SESSION_COOKIE,
-  SESSION_COOKIE_MAX_AGE,
 } from '@/helpers/server/cookie/auth.cookie'
 import { getCookieOptions } from '@/helpers/server/cookie/helpers'
 import { isLegacyCookieMigrationActive } from '@/helpers/server/cookie/legacy-purge'
@@ -67,7 +67,7 @@ export async function middlewareAuth(
         {
           name: SESSION_COOKIE,
           value: sessionCookie.value,
-          options: { ...getCookieOptions(), maxAge: SESSION_COOKIE_MAX_AGE },
+          options: { ...getCookieOptions(), maxAge: AUTH_COOKIE_MAX_AGE },
         },
       ]
       const refreshCookie = request.cookies.get(REFRESH_COOKIE)
@@ -75,7 +75,7 @@ export async function middlewareAuth(
         cookies.push({
           name: REFRESH_COOKIE,
           value: refreshCookie.value,
-          options: { ...getCookieOptions(), maxAge: SESSION_COOKIE_MAX_AGE },
+          options: { ...getCookieOptions(), maxAge: AUTH_COOKIE_MAX_AGE },
         })
       }
       return { redirect: null, cookies }

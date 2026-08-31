@@ -32,6 +32,101 @@ describe('legacy cookie purge', () => {
     })
   })
 
+  describe('stringifyPurgeCookie', () => {
+    it('serializes a session/refresh/region purge (secure, none, partitioned, httpOnly)', async () => {
+      const { stringifyPurgeCookie } = await import('../legacy-purge')
+
+      const header = stringifyPurgeCookie({
+        name: 'ngc_session',
+        value: '',
+        options: {
+          httpOnly: true,
+          secure: true,
+          sameSite: 'none',
+          partitioned: true,
+          path: '/',
+          domain: 'nosgestesclimat.fr',
+          maxAge: 0,
+        },
+      })
+
+      expect(header).toBe(
+        'ngc_session=; Path=/; Domain=nosgestesclimat.fr; Max-Age=0; ' +
+          'Secure; SameSite=None; Partitioned; HttpOnly'
+      )
+    })
+
+    it('serializes the ff overrides purge (readable, lax, non-partitioned)', async () => {
+      const { stringifyPurgeCookie } = await import('../legacy-purge')
+
+      const header = stringifyPurgeCookie({
+        name: 'ngc_ff_overrides',
+        value: '',
+        options: {
+          httpOnly: false,
+          secure: true,
+          sameSite: 'lax',
+          partitioned: false,
+          path: '/',
+          domain: 'nosgestesclimat.fr',
+          maxAge: 0,
+        },
+      })
+
+      expect(header).toBe(
+        'ngc_ff_overrides=; Path=/; Domain=nosgestesclimat.fr; Max-Age=0; ' +
+          'Secure; SameSite=Lax'
+      )
+    })
+
+    it('omits the Domain attribute without a domain (dev/localhost)', async () => {
+      const { stringifyPurgeCookie } = await import('../legacy-purge')
+
+      const header = stringifyPurgeCookie({
+        name: 'ngc_session',
+        value: '',
+        options: {
+          httpOnly: true,
+          secure: false,
+          sameSite: 'lax',
+          partitioned: false,
+          path: '/',
+          maxAge: 0,
+        },
+      })
+
+      expect(header).toBe(
+        'ngc_session=; Path=/; Max-Age=0; SameSite=Lax; HttpOnly'
+      )
+    })
+
+    it('omits Secure and SameSite when not set', async () => {
+      const { stringifyPurgeCookie } = await import('../legacy-purge')
+
+      const header = stringifyPurgeCookie({
+        name: 'ngc_session',
+        value: '',
+        options: { path: '/', maxAge: 0 },
+      })
+
+      expect(header).toBe('ngc_session=; Path=/; Max-Age=0')
+    })
+
+    it('defaults Path and Max-Age when absent', async () => {
+      const { stringifyPurgeCookie } = await import('../legacy-purge')
+
+      const header = stringifyPurgeCookie({
+        name: 'ngc_session',
+        value: '',
+        options: { domain: 'nosgestesclimat.fr' },
+      })
+
+      expect(header).toBe(
+        'ngc_session=; Path=/; Domain=nosgestesclimat.fr; Max-Age=0'
+      )
+    })
+  })
+
   describe('buildLegacyCookiePurges', () => {
     it('returns no purge once the migration window is over', async () => {
       vi.setSystemTime(new Date('2028-01-01T00:00:00Z'))
