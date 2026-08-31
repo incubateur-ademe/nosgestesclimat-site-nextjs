@@ -44,18 +44,33 @@ if [ -f "$LAST_SHA_FILE" ] && [ "$(cat "$LAST_SHA_FILE")" = "$SHA" ]; then
     exit 0
 fi
 
-# ─── Prod gate: check combined CI status ────────────────────────
+# ─── Prod gate: check GitHub Actions check-runs ────────────────
+# Le combined status "/status" n'agrège que les legacy commit statuses,
+# pas les check-runs GitHub Actions → toujours "pending" sur un merge de PR.
+# On lit donc les check-runs directement : vert si toutes sont "completed"
+# avec une conclusion success/skipped/neutral, aucune en cours ou en échec.
 if [ "$ENVIRONMENT" = "prod" ]; then
-    STATE=$(curl -fsSL --max-time 30 --retry 3 \
-        -H "Accept: application/vnd.github+json" \
-        -H "User-Agent: nginx-config-pull" \
-        "${GITHUB_API}/repos/${REPO}/commits/${SHA}/status" \
-        | jq -r '.state')
+    PAGE=1
+    while :; do
+        RESP=$(curl -fsSL --max-time 30 --retry 3 \
+            -H "Accept: application/vnd.github+json" \
+            -H "User-Agent: nginx-config-pull" \
+            "${GITHUB_API}/repos/${REPO}/commits/${SHA}/check-runs?per_page=100&page=${PAGE}")
 
-    if [ "$STATE" != "success" ]; then
-        echo "SKIP: commit ${SHA:0:7} has status '${STATE}' — waiting for CI"
-        exit 0
-    fi
+        [ -z "$RESP" ] && { echo "ERROR: could not fetch check-runs for ${SHA:0:7}"; exit 1; }
+
+        PENDING=$(echo "$RESP" | jq -r '[.check_runs[] | select(.status != "completed")] | length')
+        FAILED=$(echo "$RESP" | jq -r '[.check_runs[] | select(.status == "completed" and (.conclusion != "success" and .conclusion != "skipped" and .conclusion != "neutral"))] | length')
+
+        if [ "$PENDING" -gt 0 ] || [ "$FAILED" -gt 0 ]; then
+            echo "SKIP: commit ${SHA:0:7} CI not green (pending=$PENDING failed=$FAILED) — waiting for CI"
+            exit 0
+        fi
+
+        # Pagination : dernière page si moins de 100 check-runs retournées.
+        [ "$(echo "$RESP" | jq -r '.check_runs | length')" -lt 100 ] && break
+        PAGE=$((PAGE + 1))
+    done
 fi
 
 # ─── Download template ──────────────────────────────────────────
