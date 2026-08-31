@@ -61,7 +61,7 @@ describe('processNextPendingPollStats', () => {
     const organisation = await organisationFactory.create()
     const poll = await pollFactory.create({ organisationId: organisation.id })
 
-    for (let i = 0; i < 51; i++) {
+    for (let i = 0; i < 101; i++) {
       await simulationPollFactory.completed().withPollId(poll.id).create()
     }
 
