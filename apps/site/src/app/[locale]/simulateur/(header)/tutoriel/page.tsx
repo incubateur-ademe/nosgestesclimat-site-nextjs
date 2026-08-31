@@ -9,8 +9,10 @@ import ButtonNext from './_components/ButtonNext'
 
 export default async function TutorielPage({
   params,
+  searchParams,
 }: PageProps<'/[locale]/simulateur/tutoriel'>) {
   const { locale } = await params
+  const resolvedSearchParams = await searchParams
 
   const [currentSimulation, completedSimulations] = await Promise.all([
     getCurrentSimulation(),
@@ -29,7 +31,10 @@ export default async function TutorielPage({
         <CurrentSimulationTracker currentSimulation={currentSimulation} />
       )}
 
-      <Tutorial locale={locale} buttonNext={<ButtonNext />} />
+      <Tutorial
+        locale={locale}
+        buttonNext={<ButtonNext searchParams={resolvedSearchParams} />}
+      />
     </>
   )
 }
