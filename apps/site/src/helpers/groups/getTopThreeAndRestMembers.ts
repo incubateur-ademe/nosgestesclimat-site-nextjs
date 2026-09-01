@@ -1,16 +1,13 @@
 import type { Participant } from '@/types/groups'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
+import { getParticipantFootprint } from './getParticipantFootprint'
+import { sortParticipantsByFootprint } from './sortParticipantsByFootprint'
 
 export const getTopThreeAndRestMembers = (
   members: Participant[] = [],
   metric: Metrics
 ) => {
-  const sortedMembers = members.sort((memberA, memberB) => {
-    const totalA = memberA.simulation.computedResults[metric].bilan
-    const totalB = memberB.simulation.computedResults[metric].bilan
-
-    return totalA !== undefined && totalB !== undefined ? totalA - totalB : -1
-  })
+  const sortedMembers = sortParticipantsByFootprint(members, metric)
 
   return sortedMembers.reduce(
     (acc, member, index) => {
@@ -20,10 +17,7 @@ export const getTopThreeAndRestMembers = (
         return acc
       }
 
-      if (
-        index < 3 &&
-        member?.simulation?.computedResults?.[metric]?.bilan !== undefined
-      ) {
+      if (index < 3 && getParticipantFootprint(member, metric) !== undefined) {
         acc.topThreeMembers.push(member)
       } else {
         acc.restOfMembers.push(member)

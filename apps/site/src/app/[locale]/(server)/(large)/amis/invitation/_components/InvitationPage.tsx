@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Simulation } from '@/helpers/server/model/simulations'
@@ -21,7 +21,7 @@ export default async function InvitationPage({
     <div className="p-4 md:p-8">
       <Title
         title={
-          <Trans>
+          <Trans locale={locale}>
             {group.administrator.name} vous a invité à rejoindre le groupe{' '}
             <span className="text-violet-900">{group.name}</span>
           </Trans>

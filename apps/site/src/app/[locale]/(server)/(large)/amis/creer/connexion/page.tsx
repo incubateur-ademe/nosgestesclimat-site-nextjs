@@ -1,3 +1,4 @@
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import AuthenticateUserForm from '@/components/authentication/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import { linkToGroupCreation, SHOW_STEP_KEY } from '@/constants/group'
@@ -10,6 +11,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import { UserProvider } from '@/publicodes-state'
 import { getUserSession } from '@/services/auth/get-user-session'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
@@ -25,7 +27,9 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default async function GroupConnexionPage({ params }: DefaultPageProps) {
-  if ((await getUserSession())?.isAuth) {
+  const userSession = await getUserSession()
+
+  if (userSession?.isAuth) {
     redirect('/amis/creer/votre-groupe')
   }
 
@@ -45,11 +49,15 @@ export default async function GroupConnexionPage({ params }: DefaultPageProps) {
         subtitle={t('Invitez vos proches à passer le test')}
       />
 
-      <AuthenticateUserForm
-        redirectPathname={`/amis/creer/votre-groupe?${SHOW_STEP_KEY}=true`}
-        buttonLabel={t('auth.verifyemail', 'Vérifier mon adresse email')}
-        tracker={captureAmisCreationConnexionComplete}
-      />
+      <QueryClientProviderWrapper>
+        <UserProvider userSession={userSession}>
+          <AuthenticateUserForm
+            redirectPathname={`/amis/creer/votre-groupe?${SHOW_STEP_KEY}=true`}
+            buttonLabel={t('auth.verifyemail', 'Vérifier mon adresse email')}
+            tracker={captureAmisCreationConnexionComplete}
+          />
+        </UserProvider>
+      </QueryClientProviderWrapper>
     </div>
   )
 }

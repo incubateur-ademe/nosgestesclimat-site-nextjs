@@ -9,10 +9,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import { getCachedRules } from '@/helpers/modelFetching/getCachedRules'
-import { EngineProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
-import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
 export const generateMetadata = getCommonMetadata({
@@ -28,7 +25,6 @@ export const generateMetadata = getCommonMetadata({
 export default async function PlanDuSitePage({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation({ locale })
-  const rules = await getCachedRules({ locale })
   const links = {
     'Nos outils': {
       bilan: {
@@ -154,12 +150,6 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
           <Trans locale={locale}>Documentations</Trans>
         </h2>
         <LinkList entries={links.Documentations} />
-      </section>
-
-      <section>
-        <EngineProvider rules={rules}>
-          <Actions />
-        </EngineProvider>
       </section>
     </div>
   )

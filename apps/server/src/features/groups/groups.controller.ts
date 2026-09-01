@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 import { EntityNotFoundException } from '../../core/errors/EntityNotFoundException.ts'
 import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
 import { ImmutableSimulationException } from '../../core/errors/ImmutableSimulationException.ts'
+import { bestEffort } from '../../core/event-bus/best-effort.ts'
 import { EventBus } from '../../core/event-bus/event-bus.ts'
 import logger from '../../logger.ts'
 import { authentificationMiddleware } from '../../middlewares/authentificationMiddleware.ts'
@@ -35,7 +36,13 @@ import {
 
 const router = express.Router()
 
-EventBus.on(GroupCreatedEvent, addOrUpdateBrevoAdministratorContact)
+EventBus.on(
+  GroupCreatedEvent,
+  bestEffort(
+    'addOrUpdateBrevoAdministratorContact',
+    addOrUpdateBrevoAdministratorContact
+  )
+)
 
 /**
  * Creates a new group
@@ -65,8 +72,20 @@ router
     }
   )
 
-EventBus.on(GroupUpdatedEvent, addOrUpdateBrevoAdministratorContact)
-EventBus.on(GroupUpdatedEvent, addOrUpdateBrevoParticipantContact)
+EventBus.on(
+  GroupUpdatedEvent,
+  bestEffort(
+    'addOrUpdateBrevoAdministratorContact',
+    addOrUpdateBrevoAdministratorContact
+  )
+)
+EventBus.on(
+  GroupUpdatedEvent,
+  bestEffort(
+    'addOrUpdateBrevoParticipantContact',
+    addOrUpdateBrevoParticipantContact
+  )
+)
 
 /**
  * Updates a user group
@@ -208,8 +227,20 @@ router
     }
   )
 
-EventBus.on(GroupDeletedEvent, addOrUpdateBrevoAdministratorContact)
-EventBus.on(GroupDeletedEvent, addOrUpdateBrevoParticipantContact)
+EventBus.on(
+  GroupDeletedEvent,
+  bestEffort(
+    'addOrUpdateBrevoAdministratorContact',
+    addOrUpdateBrevoAdministratorContact
+  )
+)
+EventBus.on(
+  GroupDeletedEvent,
+  bestEffort(
+    'addOrUpdateBrevoParticipantContact',
+    addOrUpdateBrevoParticipantContact
+  )
+)
 
 /**
  * Deletes group for a user and an id

@@ -1,3 +1,4 @@
+import ActionsBlock from '@/components/results/ActionsBlock'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import { carboneMetric } from '@/constants/model/metric'
 import { getCachedRules } from '@/helpers/modelFetching/getCachedRules'
@@ -41,18 +42,18 @@ export default async function GroupPage({
 
   return (
     <>
-      <EditableGroupTitle group={group} />
+      <EditableGroupTitle group={group} user={user} />
 
-      {newSimulation && (
-        <UpdateSimulationUsed
-          group={group}
-          user={user}
-          latestSimulation={newSimulation}
-        />
-      )}
+      <UpdateSimulationUsed
+        group={group}
+        user={user}
+        latestSimulation={newSimulation}
+      />
 
       <GroupResults
+        locale={locale}
         group={group}
+        user={user}
         categoriesAccordion={
           <CategoriesAccordion
             locale={locale}
@@ -61,6 +62,7 @@ export default async function GroupPage({
             metric={carboneMetric}
           />
         }
+        actionsSection={<ActionsBlock locale={locale} className="my-6" />}
       />
     </>
   )

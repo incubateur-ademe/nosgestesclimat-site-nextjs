@@ -6,9 +6,11 @@ interface Props {
   participant: Participant
 }
 
+/**
+ * Falls back on empty names too, not only on `null`: rows saved while the API
+ * still let an anonymous end-of-test overwrite the joined name carry `''`.
+ */
 export const getParticipantName = ({ t, participant }: Props) =>
-  participant.name ??
-  t(
-    'groups.results.rankingMember.simulationDeleted',
-    'Utilisateur anonyme (données supprimées par le participant)'
-  )
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  participant.name ||
+  t('groups.results.rankingMember.anonymous', 'Utilisateur anonyme')

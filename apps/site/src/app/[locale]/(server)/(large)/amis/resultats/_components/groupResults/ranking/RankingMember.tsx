@@ -7,17 +7,17 @@ import Badge from '@/design-system/layout/Badge'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import { useRemoveParticipant } from '@/hooks/groups/useRemoveParticipant'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group, Participant } from '@/types/groups'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/nextjs'
 import isMobile from 'is-mobile'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { useUser } from '../../../../../../../../../publicodes-state'
+import { getParticipantName } from '../../../../_helpers/getParticipantName'
 import { isGroupOwner } from '../../../../_helpers/isGroupOwner'
+import { removeParticipantAction } from '../../../_actions/remove-participant.action'
 
 const getRank = (index: number) => {
   switch (index) {
@@ -41,6 +41,7 @@ export default function RankingMember({
   numberOfParticipants,
   textColor,
   metric,
+  user,
 }: {
   isTopThree?: boolean
   index: number
@@ -50,19 +51,19 @@ export default function RankingMember({
   textColor?: string
   participant: Participant
   metric: Metrics
+  user: AppUser
 }) {
-  const { user } = useUser()
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
 
   const { t } = useClientTranslation()
 
   const shouldUseAbbreviation = isMobile()
 
-  const router = useRouter()
-
   const isOwner = isGroupOwner(group, user)
 
-  const { mutateAsync: removePartipant, isPending } = useRemoveParticipant()
+  const participantName = getParticipantName({ t, participant })
+
+  const [isPending, startTransition] = useTransition()
 
   const { formattedValue, unit } = formatFootprint(
     participant.simulation.computedResults?.[metric]?.bilan ?? '',
@@ -90,22 +91,19 @@ export default function RankingMember({
       '...'
     )
 
-  async function handleDelete() {
-    if (!group) return
+  function handleDelete() {
+    startTransition(async () => {
+      try {
+        await removeParticipantAction({
+          participantId: participant.id,
+          groupId: group.id,
+        })
 
-    try {
-      await removePartipant({
-        participantId: participant.id,
-        groupId: group.id,
-        isCurrentUser: !!isCurrentMember,
-      })
-
-      router.refresh()
-
-      setIsConfirmationModalOpen(false)
-    } catch (error) {
-      captureException(error)
-    }
+        setIsConfirmationModalOpen(false)
+      } catch (error) {
+        captureException(error)
+      }
+    })
   }
 
   return (
@@ -125,7 +123,7 @@ export default function RankingMember({
           </span>
 
           <span className={textColor} data-testid="participant-name">
-            {participant.name}
+            {participantName}
           </span>
 
           {isCurrentMember && (
@@ -159,7 +157,7 @@ export default function RankingMember({
                 textColor
               )}
               aria-label={t('{{name}}, supprimer cette participation', {
-                name: participant.name,
+                name: participantName,
               })}>
               <TrashIcon
                 className={twMerge(

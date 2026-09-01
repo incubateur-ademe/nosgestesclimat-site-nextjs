@@ -3,7 +3,6 @@ import type { Group } from '@/types/groups'
 import type {
   DottedName,
   Metrics,
-  NGCRuleNode,
   NodeValue,
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
@@ -66,7 +65,6 @@ export interface UpdateCurrentSimulationProps {
     isMosaicParent?: boolean
     isMosaicChild?: boolean
   }
-  actionChoices?: Partial<Record<DottedName, boolean>>
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
@@ -95,11 +93,6 @@ export interface FormattedSuggestion {
   label: string
   value: SuggestionValue | Record<string, SuggestionValue>
 }
-
-export type Action = {
-  dottedName: DottedName
-  value: number
-} & (EvaluatedNode & NGCRuleNode)
 
 export type PublicodesValue = string | number | boolean
 

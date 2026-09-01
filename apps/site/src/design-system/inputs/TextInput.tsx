@@ -1,4 +1,3 @@
-import { useDebounce } from '@/utils/debounce'
 import type {
   ChangeEventHandler,
   ForwardedRef,
@@ -27,7 +26,6 @@ interface Props {
   required?: boolean
   maxLength?: number
   disabled?: boolean
-  debounceTimeout?: number
   readOnly?: boolean
   'data-testid'?: string
   autoComplete?: string
@@ -50,7 +48,6 @@ export default forwardRef(function TextInput(
     value,
     required = false,
     disabled,
-    debounceTimeout = 100,
     readOnly = false,
     autoComplete = 'off',
     ...props
@@ -59,10 +56,6 @@ export default forwardRef(function TextInput(
 ) {
   const id = useId()
   const inputId = `input-${id}`
-  const debouncedOnChange = useDebounce(
-    onChange ?? (() => null),
-    debounceTimeout
-  )
   return (
     <InputGroup
       name={name}
@@ -80,7 +73,7 @@ export default forwardRef(function TextInput(
         readOnly={readOnly}
         name={name}
         placeholder={placeholder}
-        onChange={debouncedOnChange}
+        onChange={onChange}
         defaultValue={value}
         required={required}
         aria-disabled={disabled}

@@ -55,10 +55,6 @@ const meta: Meta<typeof TextInput> = {
       control: 'number',
       description: 'Maximum length of input',
     },
-    debounceTimeout: {
-      control: 'number',
-      description: 'Debounce timeout in milliseconds',
-    },
     mention: {
       control: 'text',
       description: 'Additional mention text to display next to label',

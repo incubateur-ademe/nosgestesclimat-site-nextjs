@@ -3,7 +3,6 @@
 import { useCallback, useContext } from 'react'
 import userContext from '../../providers/userProvider/context'
 import type { User } from '../../types'
-import useActions from './hooks/useActions'
 import useTutorials from './hooks/useTutorials'
 import useUpdateCurrentSimulation from './hooks/useUpdateCurrentSimulation'
 
@@ -21,11 +20,6 @@ export default function useUser() {
   )
 
   const updateCurrentSimulation = useUpdateCurrentSimulation({ setSimulation })
-
-  const { toggleActionChoice, rejectAction } = useActions({
-    currentSimulation: simulation,
-    updateCurrentSimulation,
-  })
 
   const { hideTutorial, showTutorial } = useTutorials({ setTutorials })
 
@@ -67,13 +61,5 @@ export default function useUser() {
      * Update the current simulation — a no-op when there is none
      */
     updateCurrentSimulation,
-    /**
-     * Toggle the action choice of the current simulation
-     */
-    toggleActionChoice,
-    /**
-     * Reject the action choice of the current simulation
-     */
-    rejectAction,
   }
 }

@@ -5,7 +5,6 @@ import Button from '@/design-system/buttons/Button'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
 import { useTransition } from 'react'
 
@@ -27,20 +26,21 @@ export default function InvitationForm({
   const [isPending, startTransition] = useTransition()
 
   const { t } = useClientTranslation()
-  const { user, updateName } = useUser()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useReactHookForm<Inputs>()
+  } = useReactHookForm<Inputs>({
+    defaultValues: {
+      guestName: currentSimulation?.user?.name,
+    },
+  })
 
   const hasCompletedTest = currentSimulation?.progression === 1
 
   function onSubmit({ guestName }: Inputs) {
     startTransition(async () => {
-      updateName(guestName)
-
       // Navigation is handled server-side by the action (redirect()).
       await joinGroup({
         groupId: group.id,
@@ -54,7 +54,6 @@ export default function InvitationForm({
     <form onSubmit={handleSubmit(onSubmit) as () => void} autoComplete="off">
       <PrenomInput
         data-testid="member-name"
-        value={user?.name ?? ''}
         error={errors.guestName?.message}
         {...register('guestName', {
           required: t('Ce champ est requis.'),

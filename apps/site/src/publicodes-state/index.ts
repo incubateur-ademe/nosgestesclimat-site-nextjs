@@ -2,9 +2,7 @@ export { default as EngineProvider } from './providers/engineProvider/provider'
 export { default as FormProvider } from './providers/formProvider/provider'
 export { default as UserProvider } from './providers/userProvider/provider'
 
-export { default as useActions } from './hooks/useActions/useActions'
 export {
-  EMPTY_ACTION_CHOICES,
   EMPTY_FOLDED_STEPS,
   EMPTY_SITUATION,
   default as useCurrentSimulation,

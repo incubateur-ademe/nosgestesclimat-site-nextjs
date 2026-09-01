@@ -12,17 +12,19 @@ import { updateGroupParticipant } from '@/services/groups/update-group-participa
 import type { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
-import { useRouter } from 'next/navigation'
 import { useState, useTransition } from 'react'
+import { findOwnParticipant } from '../../_helpers/findOwnParticipant'
 
 interface Props {
   group: Group
   user: AppUser
   /**
    * The user's newest completed simulation, when it postdates the one the group
-   * currently uses.
+   * currently uses. Undefined once the group already uses the newest one. The
+   * component stays mounted then, so that it can keep showing its own success
+   * alert.
    */
-  latestSimulation: Simulation
+  latestSimulation?: Simulation
 }
 
 export default function UpdateSimulationUsed({
@@ -34,37 +36,26 @@ export default function UpdateSimulationUsed({
   const [isError, setIsError] = useState(false)
   const [isUpdated, setIsUpdated] = useState(false)
 
-  const router = useRouter()
-
   const { t } = useClientTranslation()
 
   const handleUpdateSimulation = () => {
+    if (!latestSimulation) return
+
     startTransition(async () => {
       try {
         await updateGroupParticipant({
           groupId: group.id,
           simulation: latestSimulation,
-          name:
-            group.participants.find((p) => p.userId === user.id)?.name ?? '',
+          name: findOwnParticipant(group, user.id)?.name ?? '',
         })
 
         setIsUpdated(true)
-
-        router.refresh()
       } catch (error) {
         captureException(error)
         setIsError(true)
       }
     })
   }
-
-  const { formattedValue, unit } = formatFootprint(
-    latestSimulation.computedResults.carbone.bilan,
-    {
-      t,
-      localize: true,
-    }
-  )
 
   if (isError) {
     return (
@@ -106,6 +97,24 @@ export default function UpdateSimulationUsed({
       />
     )
   }
+
+  /*
+    Mounted even without a newer simulation: updating the participation
+    revalidates this page, which resolves `newSimulation` back to undefined.
+    Gating the mount in the parent would tear this component down, success alert
+    included.
+  */
+  if (!latestSimulation) {
+    return null
+  }
+
+  const { formattedValue, unit } = formatFootprint(
+    latestSimulation.computedResults.carbone.bilan,
+    {
+      t,
+      localize: true,
+    }
+  )
 
   return (
     <Alert
