@@ -72,6 +72,7 @@ export default function DropdownMenu({
   } = useDropdownMenu({ onToggle })
 
   const wrapperRef = useRef<HTMLDivElement>(null)
+
   const [panelPosition, setPanelPosition] = useState<{
     top: number
     left?: number
@@ -149,7 +150,7 @@ export default function DropdownMenu({
               zIndex: 1000,
             }}
             className={twMerge(
-              'min-w-[8.75rem] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg',
+              'min-w-3 overflow-hidden rounded-lg border border-slate-100 bg-white shadow-md',
               panelClassName
             )}>
             <ul className="m-0 list-none p-0">
@@ -188,7 +189,7 @@ export function getDropdownMenuItemClassName({
     positionClassNames[position],
     isActive
       ? 'bg-primary-700 hover:bg-primary-700 text-white hover:text-white'
-      : 'bg-white text-primary-700 hover:bg-primary-100 hover:text-primary-700',
+      : 'bg-white text-primary-700 hover:bg-primary-50 active:bg-primary-100 hover:text-primary-700',
     className
   )
 }

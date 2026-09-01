@@ -3,7 +3,6 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import { footerClickLanguage } from '@/constants/tracking/layout'
 import { captureFooterClickLanguage } from '@/constants/tracking/posthogTrackers'
-import Button from '@/design-system/buttons/Button'
 import DropdownMenu, {
   getDropdownMenuItemPosition,
 } from '@/design-system/layout/DropdownMenu'
@@ -34,14 +33,12 @@ const LANGUAGES: readonly {
   { locale: 'en', label: 'EN', flag: '🇬🇧' },
 ]
 
-const getLanguageTitle = (locale: Locale, isActive: boolean): string => {
+const getLanguageTitle = (locale: Locale): string => {
   if (locale === 'fr') {
-    return isActive
-      ? 'FR - Langue active'
-      : 'FR - Sélectionner la langue française'
+    return 'FR - Sélectionner la langue française'
+  } else {
+    return 'EN - Select English language'
   }
-
-  return isActive ? 'EN - Active language' : 'EN - Select English language'
 }
 
 // Keep the current origin and search params, swap only the pathname for
@@ -88,13 +85,13 @@ export default function LanguageSwitchButton({
       : i18nConfig.defaultLocale
 
   return (
-    <div className={twMerge('mr-2 max-tiny:mr-1', className)}>
+    <div className={twMerge('max-tiny:mr-1 mr-2', className)}>
       <DropdownMenu
+        panelClassName="max-w-24 min-w-24"
         trigger={({ isOpen, buttonRef, buttonId, panelId, onToggle }) => (
-          <Button
+          <button
             ref={buttonRef}
             id={buttonId}
-            size={size}
             color="secondary"
             aria-expanded={isOpen}
             aria-controls={panelId}
@@ -104,52 +101,56 @@ export default function LanguageSwitchButton({
                 : 'Sélectionner la langue'
             }
             lang={activeLocale}
-            title={getLanguageTitle(activeLocale, true)}
+            title={getLanguageTitle(activeLocale)}
             data-testid="language-switch-button"
-            className="inline-flex items-center gap-2 px-2 py-2 max-tiny:px-1.5 max-tiny:py-1.5 sm:px-4 sm:py-3"
+            className="hover:bg-primary-100 active:bg-primary-200 transitions-colors inline-flex items-center gap-2 rounded-lg px-2 py-2 sm:px-4 sm:py-3"
             onClick={onToggle}>
-            <span>{currentLanguage.label}</span>{' '}
             <Emoji>{currentLanguage.flag}</Emoji>
+            <span className="text-primary-700 capitalize">
+              {currentLanguage.label}
+            </span>{' '}
             <ChevronRight
               className={twMerge(
-                'ml-2 max-tiny:ml-1 inline-block w-2 transition-transform',
+                'ml-1 inline-block w-1.5 transition-transform',
                 isOpen ? 'rotate-[-90deg]' : 'rotate-90'
               )}
             />
-          </Button>
+          </button>
         )}>
         {({ closeMenu, getItemClassName }) => {
           const availableLanguages = LANGUAGES.filter(
             (language) => alternatePaths[language.locale]
           )
+          const notActiveLanguage = LANGUAGES.filter(
+            (language) => language.locale !== activeLocale
+          )[0]
+          return (
+            <li key={notActiveLanguage.locale}>
+              <Link
+                href={generateLanguageUrl(
+                  alternatePaths[notActiveLanguage.locale]!
+                )}
+                lang={notActiveLanguage.locale}
+                data-testid={`language-switch-button-${notActiveLanguage.locale}`}
+                title={getLanguageTitle(notActiveLanguage.locale)}
+                onClick={() => {
+                  handleLanguageClick(notActiveLanguage.locale)
+                  closeMenu()
+                }}
+                className={getItemClassName({
+                  position: getDropdownMenuItemPosition(
+                    0,
+                    availableLanguages.length
+                  ),
+                })}>
+                <Emoji>{notActiveLanguage.flag}</Emoji>
 
-          return availableLanguages.map((language, index) => {
-            const isActive = currentLocale === language.locale
-
-            return (
-              <li key={language.locale}>
-                <Link
-                  href={generateLanguageUrl(alternatePaths[language.locale]!)}
-                  lang={language.locale}
-                  aria-current={isActive ? 'true' : undefined}
-                  data-testid={`language-switch-button-${language.locale}`}
-                  title={getLanguageTitle(language.locale, isActive)}
-                  onClick={() => {
-                    handleLanguageClick(language.locale)
-                    closeMenu()
-                  }}
-                  className={getItemClassName({
-                    isActive,
-                    position: getDropdownMenuItemPosition(
-                      index,
-                      availableLanguages.length
-                    ),
-                  })}>
-                  <span>{language.label}</span> <Emoji>{language.flag}</Emoji>
-                </Link>
-              </li>
-            )
-          })
+                <span className="text-primary-700 font-normal capitalize">
+                  {notActiveLanguage.label}
+                </span>
+              </Link>
+            </li>
+          )
         }}
       </DropdownMenu>
     </div>
