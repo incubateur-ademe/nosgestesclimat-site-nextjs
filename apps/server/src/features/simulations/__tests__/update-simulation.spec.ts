@@ -15,7 +15,7 @@ import {
 describe('Given a completed simulation (progression = 1)', () => {
   const agent = supertest(app)
   const url = CREATE_SIMULATION_ROUTE
-  const { computedResults, situation, extendedSituation } = getRandomTestCase()
+  const { computedResults, situation } = getRandomTestCase()
 
   let userId: string
   let simulationId: string
@@ -40,7 +40,6 @@ describe('Given a completed simulation (progression = 1)', () => {
         situation,
         progression: 1,
         computedResults,
-        extendedSituation,
       },
     })
   })
@@ -52,7 +51,6 @@ describe('Given a completed simulation (progression = 1)', () => {
         situation,
         progression: 0.5,
         computedResults,
-        extendedSituation,
       }
 
       const response = await agent
@@ -72,7 +70,6 @@ describe('Given a completed simulation (progression = 1)', () => {
         situation,
         progression: 1,
         computedResults,
-        extendedSituation,
       }
 
       await agent

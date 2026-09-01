@@ -39,7 +39,7 @@ const model = `FR-fr-${defaultModelVersion}`
 describe('Given a NGC user', () => {
   const agent = supertest(app)
   const url = CREATE_ORGANISATION_PUBLIC_POLL_SIMULATION_ROUTE
-  const { computedResults, situation, extendedSituation } = getRandomTestCase()
+  const { computedResults, situation } = getRandomTestCase()
 
   afterEach(async () => {
     await EventBus.flush()
@@ -84,7 +84,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.BAD_REQUEST)
       })
@@ -100,7 +99,6 @@ describe('Given a NGC user', () => {
             situation: null,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.BAD_REQUEST)
       })
@@ -116,7 +114,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults: null,
-            extendedSituation,
           })
           .expect(StatusCodes.BAD_REQUEST)
       })
@@ -153,7 +150,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
 
         await agent
@@ -186,7 +182,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.NOT_FOUND)
       })
@@ -242,7 +237,6 @@ describe('Given a NGC user', () => {
 
         const payload: SimulationCreateInputDto = {
           ...expected,
-          extendedSituation,
         }
         mswServer.use(brevoUpdateContact(), brevoRemoveFromList(27))
 
@@ -287,7 +281,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
           actionChoices: {
             myAction: true,
           },
@@ -328,7 +321,6 @@ describe('Given a NGC user', () => {
             progression: true,
             actionChoices: true,
             computedResults: true,
-            extendedSituation: true,
             additionalQuestionsAnswers: {
               select: {
                 key: true,
@@ -385,7 +377,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
         mswServer.use(
           brevoUpdateContact({
@@ -424,7 +415,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
 
         mswServer.use(brevoUpdateContact(), brevoRemoveFromList(27))
@@ -459,7 +449,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 0.5,
           computedResults,
-          extendedSituation,
         }
 
         mswServer.use(brevoUpdateContact(), brevoRemoveFromList(27))
@@ -496,7 +485,6 @@ describe('Given a NGC user', () => {
 
           const payload: SimulationCreateInputDto = {
             ...expected,
-            extendedSituation,
           }
 
           mswServer.use(brevoUpdateContact(), brevoRemoveFromList(27))
@@ -541,7 +529,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
 
         mswServer.use(brevoUpdateContact(), brevoRemoveFromList(27))
@@ -575,7 +562,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           }
 
           mswServer.use(brevoUpdateContact(), brevoRemoveFromList(27))
@@ -648,7 +634,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
 
         mswServer.use(
@@ -701,7 +686,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.INTERNAL_SERVER_ERROR)
       })
@@ -715,7 +699,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.INTERNAL_SERVER_ERROR)
 
@@ -746,7 +729,6 @@ describe('Given a NGC user', () => {
               situation,
               progression: 1,
               computedResults,
-              extendedSituation,
             })
             .expect(StatusCodes.NOT_FOUND)
         })
@@ -800,7 +782,6 @@ describe('Given a NGC user', () => {
 
           const payload: SimulationCreateInputDto = {
             ...expected,
-            extendedSituation,
           }
 
           mswServer.use(
@@ -854,7 +835,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
             actionChoices: {
               myAction: true,
             },
@@ -902,7 +882,6 @@ describe('Given a NGC user', () => {
               progression: true,
               actionChoices: true,
               computedResults: true,
-              extendedSituation: true,
               additionalQuestionsAnswers: {
                 select: {
                   key: true,
@@ -968,7 +947,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           }
 
           mswServer.use(
@@ -1008,7 +986,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
             date,
           }
 
@@ -1099,7 +1076,6 @@ describe('Given a NGC user', () => {
               situation,
               progression: 1,
               computedResults,
-              extendedSituation,
             }
 
             mswServer.use(
@@ -1151,7 +1127,6 @@ describe('Given a NGC user', () => {
               situation,
               progression: 1,
               computedResults,
-              extendedSituation,
             }
 
             mswServer.use(brevoUpdateContact(), brevoRemoveFromList(27))
@@ -1174,7 +1149,6 @@ describe('Given a NGC user', () => {
               situation,
               progression: 1,
               computedResults,
-              extendedSituation,
             }
 
             mswServer.use(
