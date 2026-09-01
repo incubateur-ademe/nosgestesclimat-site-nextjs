@@ -120,10 +120,17 @@ server {
     }
 
     # Proxy vers le bucket S3 des assets CMS (images, PDF) avec cache 30 jours.
+    # Le `Host` est réécrit vers le bucket (sinon le `Host ${UPSTREAM}` global
+    # le fait pointer vers l'app Scalingo → NoSuchBucket), et le préfixe
+    # /_static/cms/ est mappé sur la clé /cms/ du bucket.
+    # Les assets sont versionnés par hash dans leur nom → cache navigateur immutable.
     location /_static/cms/ {
-        proxy_pass https://nosgestesclimat-prod.s3.fr-par.scw.cloud;
+        proxy_set_header Host nosgestesclimat-prod.s3.fr-par.scw.cloud;
+        proxy_pass https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/;
         proxy_cache_valid 200 30d;
         proxy_cache_lock on;
+        proxy_hide_header Cache-Control;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
     }
 
     # Images Next.js, fonts et assets divers via Scalingo, cachés 30 jours.
