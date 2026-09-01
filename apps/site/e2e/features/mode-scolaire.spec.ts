@@ -147,24 +147,11 @@ test.describe('When a user completes the test via the scolaire poll invite link'
   })
 
   test('offers to reuse the previous scolaire test when joining a new scolaire poll', async ({
-    browser,
+    scolairePoll,
   }) => {
-    // Create a second scolaire poll
-    const adminContext = await browser.newContext({
-      storageState: ORGANISATION_ADMIN_STATE,
-    })
-    const adminPage = await adminContext.newPage()
-
-    const organisation = await Organisation.fromContext(adminPage)
-    const newScolairePoll = new Poll(adminPage, organisation)
-    await adminPage.goto(newScolairePoll.createUrl)
-    await newScolairePoll.create('scolaire')
-    await newScolairePoll.copyInviteLink()
-    await adminContext.close()
-
     // Joining a new scolaire poll must offer to reuse the previous scolaire
     // test (same mode), with its date and result.
-    await page.goto(newScolairePoll.inviteLink)
+    await page.goto(scolairePoll.inviteLink)
     await expect(
       page.getByTestId('reuse-simulation-banner-title')
     ).toBeVisible()
