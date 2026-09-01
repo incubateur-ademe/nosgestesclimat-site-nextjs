@@ -4,13 +4,22 @@ import {
   SESSION_COOKIE,
 } from '@/helpers/server/cookie/auth.cookie'
 import { getCookieOptions } from '@/helpers/server/cookie/helpers'
-import { getLegacyCookieDomains } from '@/helpers/server/cookie/legacy-domains'
 import type { CookieToSet } from '@/helpers/server/cookie/types'
 import { type NextRequest, NextResponse } from 'next/server'
 
 // No legacy domain-scoped cookie can outlive 180 days: delete this whole file
 // after 2027-04-01.
 const LEGACY_COOKIE_MIGRATION_UNTIL_MS = Date.parse('2027-04-01T00:00:00Z')
+
+// Only two deployments ever issued domain-scoped cookies (old `getCookieOptions`
+// scoped them to the deployment's hostname): prod (apex) and preprod. The apex
+// cookie is the one that leaked to preprod; the preprod one is redundant with
+// the new host-only cookie but we purge it too. Review apps and localhost never
+// issued a cookie worth purging (they self-heal via the host-only overwrite).
+const LEGACY_COOKIE_DOMAINS = [
+  'nosgestesclimat.fr',
+  'preprod.nosgestesclimat.fr',
+]
 
 export interface LegacyCookieDomainPurgeResult {
   cookies: CookieToSet[]
@@ -46,9 +55,7 @@ export function middlewarePurgeLegacyCookieDomains(
   )
 
   const rawSetCookies = legacyNames.flatMap((name) =>
-    getLegacyCookieDomains(
-      new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
-    ).map((domain) =>
+    LEGACY_COOKIE_DOMAINS.map((domain) =>
       serializePurgeCookie(name, { ...getCookieOptions(), domain, maxAge: 0 })
     )
   )
