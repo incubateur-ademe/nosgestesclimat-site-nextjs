@@ -67,16 +67,14 @@ export default async function CampagnePage({
     redirect(SIMULATOR_PATH)
   }
 
-  // A completed simulation is only offered for reuse when it has the same
-  // mode as the poll (e.g. a previous scolaire test when joining another
-  // scolaire poll). A different-mode simulation is never reused: a fresh test
-  // is simply created, while the previous simulation stays in the account (an
-  // anonymous user only sees its last simulation, but both are listed once the
-  // user creates an account).
+  // A completed simulation is only offered for reuse when :
+  // - the previous completed simulation has "mode" === "standard"
+  // - the newer simulation also has "mode" === "standard"
   const allowToReuseExistingSimulation =
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     !!lastCompletedSimulation &&
-    getSimulationMode(lastCompletedSimulation) === poll.mode &&
+    poll.mode === 'standard' &&
+    getSimulationMode(lastCompletedSimulation) === 'standard' &&
     !poll.simulations.hasParticipated &&
     // eslint-disable-next-line react-hooks/purity
     Date.now() - new Date(lastCompletedSimulation.date as string).getTime() <
