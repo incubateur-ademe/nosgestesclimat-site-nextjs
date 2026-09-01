@@ -338,7 +338,6 @@ describe('Given a NGC user', () => {
                 },
               },
             },
-            states: true,
             user: {
               select: {
                 id: true,
@@ -362,14 +361,6 @@ describe('Given a NGC user', () => {
               poll: {
                 slug: pollSlug,
               },
-            },
-          ],
-          states: [
-            {
-              id: expect.any(String),
-              date: expect.any(Date),
-              simulationId: id,
-              progression: 1,
             },
           ],
           user: {
@@ -908,7 +899,6 @@ describe('Given a NGC user', () => {
                   },
                 },
               },
-              states: true,
               user: {
                 select: {
                   id: true,
@@ -937,14 +927,6 @@ describe('Given a NGC user', () => {
                 poll: {
                   slug: pollSlug,
                 },
-              },
-            ],
-            states: [
-              {
-                id: expect.any(String),
-                date: expect.any(Date),
-                simulationId: id,
-                progression: 1,
               },
             ],
             user: {

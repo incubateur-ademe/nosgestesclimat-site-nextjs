@@ -303,7 +303,6 @@ describe('Given a NGC user', () => {
             situation: true,
             progression: true,
             computedResults: true,
-            states: true,
             user: {
               select: {
                 id: true,
@@ -321,14 +320,6 @@ describe('Given a NGC user', () => {
           createdAt: expect.any(Date),
           date: expect.any(Date),
           updatedAt: expect.any(Date),
-          states: [
-            {
-              id: expect.any(String),
-              date: expect.any(Date),
-              simulationId: payload.simulation.id,
-              progression: 1,
-            },
-          ],
           user: {
             name: payload.name,
             id: userId,

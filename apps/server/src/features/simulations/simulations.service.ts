@@ -123,14 +123,12 @@ export const createSimulation = async ({
   let fullUser
   // Case 1. The user is authentified
   if (verifiedUser) {
-    const dbVerifiedUser = await transaction((session) =>
-      fetchVerifiedUser(
-        {
-          email: verifiedUser.email,
-          select: defaultVerifiedUserSelection,
-        },
-        { session }
-      )
+    const dbVerifiedUser = await fetchVerifiedUser(
+      {
+        email: verifiedUser.email,
+        select: defaultVerifiedUserSelection,
+      },
+      { session: prisma }
     )
 
     if (!dbVerifiedUser || dbVerifiedUser.id !== user.id) {
@@ -282,14 +280,12 @@ export const createPollSimulation = async ({
     // Case 1. The user is authentified
     if (verifiedUser) {
       const email = verifiedUser.email
-      user = await transaction((session) =>
-        fetchVerifiedUser(
-          {
-            email,
-            select: defaultVerifiedUserSelection,
-          },
-          { session }
-        )
+      user = await fetchVerifiedUser(
+        {
+          email,
+          select: defaultVerifiedUserSelection,
+        },
+        { session: prisma }
       )
 
       if (!user || user.id !== verifiedUser.id) {

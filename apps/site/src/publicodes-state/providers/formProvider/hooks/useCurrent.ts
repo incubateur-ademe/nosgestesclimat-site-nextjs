@@ -3,7 +3,7 @@ import { useDebug } from '@/hooks/useDebug'
 import { useLocale } from '@/hooks/useLocale'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat/types/dottedNames'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 
 export const useCurrent = (
@@ -45,18 +45,18 @@ const useQuestionInQueryParams = () => {
 export const useSyncQuestionWithQueryParams = (
   currentQuestion: DottedName | null
 ) => {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const locale = useLocale()
   useEffect(() => {
     if (!currentQuestion) return
-    router.replace(
+    window.history.replaceState(
+      null,
+      '',
       getLinkToSimulateur({
         question: currentQuestion,
         locale,
         searchParams,
-      }),
-      { scroll: false }
+      })
     )
   }, [currentQuestion])
 }
