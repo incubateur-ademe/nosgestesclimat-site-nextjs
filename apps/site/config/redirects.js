@@ -289,9 +289,9 @@ const redirects = [
     destination: '/blog/environnement/neuf-limites-planetaires-empreintes',
     permanent: true,
   },
-  // For now, we redirect actions/plus homepage to blog homepage. We still have each actions/plus page available but ghosted.
+  // We redirect actions/plus homepage to blog homepage, as well as each old action/plus pages.
   {
-    source: '/actions/plus',
+    source: '/actions/plus/:path*',
     destination: '/blog',
     permanent: true,
   },
@@ -524,6 +524,44 @@ const redirects = [
     destination: '/',
     permanent: true,
   },
+  {
+    source: '/actions/alimentation/choisir-la-volaille-comme-viande',
+    destination: '/actions/alimentation/reduire-viande-rouge',
+    permanent: true,
+  },
+  {
+    source: '/actions/alimentation/limiter-viande',
+    destination: '/actions/alimentation/reduire-viande',
+    permanent: true,
+  },
+  {
+    source: '/actions/transport/limiter-avion',
+    destination: '/actions/transport/limiter-avion-toutes-distances',
+    permanent: true,
+  },
+  ...english([
+    {
+      source: '/actions/food/reduce-meat',
+      destination: '/actions/food/eating-less-meat',
+      permanent: true,
+    },
+    {
+      source: '/actions/transport/reduce-flying',
+      destination: '/actions/transport/flying-less',
+      permanent: true,
+    },
+  ]),
 ]
+
+// English action redirects — EN-cookie users can reach action pages both with
+// and without the /en prefix, and use English theme/action slugs.
+function english(routes) {
+  return routes.flatMap((r) => {
+    return [
+      r,
+      { ...r, source: `/en${r.source}`, destination: `/en${r.destination}` },
+    ]
+  })
+}
 
 export default redirects

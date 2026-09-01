@@ -2,9 +2,22 @@ import { afterEach, describe, expect, it } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { simulationFactory } from '../../../simulation-computation/factories/simulation.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
+import { food, housing } from '../../data/themes/index.ts'
 import { actionAssessmentFactory } from '../../factories/action-assessment.factory.ts'
 import { actionFactory } from '../../factories/action.factory.ts'
+import type { Action } from '../../types/action.ts'
+import type { ThemeRow } from '../../types/theme.ts'
 import { getPersonalizedActionDetails } from '../get-personalized-action-details.service.ts'
+
+/** The factory picks a random theme: pin it to keep the themes apart */
+const toActionTheme = ({
+  id,
+  key,
+  slug,
+  trackingId,
+  title,
+  emoji,
+}: ThemeRow): Action['theme'] => ({ id, key, slug, trackingId, title, emoji })
 
 describe('getPersonalizedActionDetails', () => {
   afterEach(async () => {
@@ -46,7 +59,7 @@ describe('getPersonalizedActionDetails', () => {
       )
 
       expect.assert(result)
-      expect(result.assessment).toBeNull()
+      expect(result.action.assessment).toBeNull()
     })
 
     it('returns a PersonalizedAction without assessment when user has no simulation', async () => {
@@ -60,7 +73,7 @@ describe('getPersonalizedActionDetails', () => {
       )
 
       expect.assert(result)
-      expect(result.assessment).toBeNull()
+      expect(result.action.assessment).toBeNull()
     })
 
     it('returns a PersonalizedAction without assessment when the simulation has no computation (old simulation)', async () => {
@@ -75,7 +88,7 @@ describe('getPersonalizedActionDetails', () => {
       )
 
       expect.assert(result)
-      expect(result.assessment).toBeNull()
+      expect(result.action.assessment).toBeNull()
     })
 
     it.each(['pending', 'processing', 'failed'] as const)(
@@ -106,7 +119,7 @@ describe('getPersonalizedActionDetails', () => {
         )
 
         expect.assert(result)
-        expect(result.assessment).toBeNull()
+        expect(result.action.assessment).toBeNull()
       }
     )
   })
@@ -131,9 +144,12 @@ describe('getPersonalizedActionDetails', () => {
       )
 
       expect(result).toEqual({
-        ...action,
-        assessment,
-        choice: null,
+        action: {
+          ...action,
+          assessment,
+          choice: null,
+        },
+        otherThemeActions: [],
       })
     })
 
@@ -181,7 +197,7 @@ describe('getPersonalizedActionDetails', () => {
       )
 
       expect.assert(result)
-      expect(result.assessment?.id).toBe(newerAssessment.id)
+      expect(result.action.assessment?.id).toBe(newerAssessment.id)
     })
 
     it('returns a PersonalizedAction when published but pending deletion', async () => {
@@ -204,7 +220,7 @@ describe('getPersonalizedActionDetails', () => {
       )
 
       expect.assert(result)
-      expect(result.assessment?.id).toBe(assessment.id)
+      expect(result.action.assessment?.id).toBe(assessment.id)
     })
   })
 
@@ -267,17 +283,212 @@ describe('getPersonalizedActionDetails', () => {
       )
 
       expect(result).toMatchObject({
-        title: 'English title',
-        slug: 'english-slug',
-        longDescription: 'English description',
-        tips: 'English tips',
-        financialIncentives: 'English financial incentives',
-        furtherExplore: 'English further explore',
-        media,
-        metadata,
-        language: 'en',
-        assessment,
+        action: {
+          title: 'English title',
+          slug: 'english-slug',
+          longDescription: 'English description',
+          tips: 'English tips',
+          financialIncentives: 'English financial incentives',
+          furtherExplore: 'English further explore',
+          media,
+          metadata,
+          language: 'en',
+          assessment,
+        },
       })
+    })
+  })
+
+  describe('other theme actions', () => {
+    it('returns the other visible actions of the same theme', async () => {
+      const action = await actionFactory
+        .published()
+        .params({ theme: toActionTheme(housing) })
+        .create()
+      const sameTheme = await actionFactory
+        .published()
+        .params({ theme: action.theme })
+        .create()
+      await actionFactory
+        .published()
+        .params({ theme: toActionTheme(food) })
+        .create()
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        undefined
+      )
+
+      expect.assert(result)
+      expect(result.otherThemeActions.map(({ id }) => id)).toEqual([
+        sameTheme.id,
+      ])
+    })
+
+    it.each([
+      ['draft', () => actionFactory.draft()],
+      ['scheduled', () => actionFactory.scheduled()],
+      ['deleted', () => actionFactory.published().deleted()],
+    ])('leaves aside the %s actions of the theme', async (_, factory) => {
+      const action = await actionFactory.published().create()
+      await factory().params({ theme: action.theme }).create()
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        undefined
+      )
+
+      expect.assert(result)
+      expect(result.otherThemeActions).toEqual([])
+    })
+
+    it('sorts the assessed actions by descending impact, unassessed ones last', async () => {
+      const action = await actionFactory.published().create()
+      const [lowImpact, highImpact, unassessed] = await Promise.all([
+        actionFactory.published().params({ theme: action.theme }).create(),
+        actionFactory.published().params({ theme: action.theme }).create(),
+        actionFactory.published().params({ theme: action.theme }).create(),
+      ])
+
+      const user = await userFactory.create()
+      const simulation = await simulationFactory
+        .completed()
+        .params({ userId: user.id })
+        .create()
+
+      await Promise.all([
+        actionAssessmentFactory
+          .params({ simulationId: simulation.id, actionId: lowImpact.id })
+          .applicable({ impact: 100 })
+          .create(),
+        actionAssessmentFactory
+          .params({ simulationId: simulation.id, actionId: highImpact.id })
+          .applicable({ impact: 900 })
+          .create(),
+      ])
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        user.id
+      )
+
+      expect.assert(result)
+      expect(result.otherThemeActions.map(({ id }) => id)).toEqual([
+        highImpact.id,
+        lowImpact.id,
+        unassessed.id,
+      ])
+    })
+
+    it('leaves aside the actions the simulation ruled out', async () => {
+      const action = await actionFactory.published().create()
+      const notApplicable = await actionFactory
+        .published()
+        .params({ theme: action.theme })
+        .create()
+
+      const user = await userFactory.create()
+      const simulation = await simulationFactory
+        .completed()
+        .params({ userId: user.id })
+        .create()
+      await actionAssessmentFactory
+        .params({ simulationId: simulation.id, actionId: notApplicable.id })
+        .inapplicable()
+        .create()
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        user.id
+      )
+
+      expect.assert(result)
+      expect(result.otherThemeActions).toEqual([])
+    })
+
+    it('keeps the actions without an assessment alongside the ruled out ones', async () => {
+      const action = await actionFactory.published().create()
+      const [notApplicable, notAssessed] = await Promise.all([
+        actionFactory.published().params({ theme: action.theme }).create(),
+        actionFactory.published().params({ theme: action.theme }).create(),
+      ])
+
+      const user = await userFactory.create()
+      const simulation = await simulationFactory
+        .completed()
+        .params({ userId: user.id })
+        .create()
+      await actionAssessmentFactory
+        .params({ simulationId: simulation.id, actionId: notApplicable.id })
+        .inapplicable()
+        .create()
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        user.id
+      )
+
+      expect.assert(result)
+      expect(result.otherThemeActions.map(({ id }) => id)).toEqual([
+        notAssessed.id,
+      ])
+    })
+
+    it('keeps the actions whose applicability could not be determined', async () => {
+      const action = await actionFactory.published().create()
+      const unknownApplicability = await actionFactory
+        .published()
+        .params({ theme: action.theme })
+        .create()
+
+      const user = await userFactory.create()
+      const simulation = await simulationFactory
+        .completed()
+        .params({ userId: user.id })
+        .create()
+      await actionAssessmentFactory
+        .params({
+          simulationId: simulation.id,
+          actionId: unknownApplicability.id,
+        })
+        .unknownApplicability()
+        .create()
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        user.id
+      )
+
+      expect.assert(result)
+      expect(result.otherThemeActions.map(({ id }) => id)).toEqual([
+        unknownApplicability.id,
+      ])
+    })
+
+    it('returns the whole theme when nothing can be personalized', async () => {
+      const action = await actionFactory.published().create()
+      const sameTheme = await actionFactory
+        .published()
+        .params({ theme: action.theme })
+        .create()
+      const user = await userFactory.create()
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        user.id
+      )
+
+      expect.assert(result)
+      expect(result.otherThemeActions.map(({ id }) => id)).toEqual([
+        sameTheme.id,
+      ])
     })
   })
 })

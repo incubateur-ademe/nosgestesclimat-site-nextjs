@@ -397,40 +397,42 @@ export const createOrUpdateVerifiedUser = async <
 ) => {
   const existingUser = await fetchVerifiedUser({ email }, { session })
   const userData = { name, position, telephone, optedInForCommunications }
-  const [user] = await Promise.all([
-    existingUser
-      ? session.verifiedUser.update({
-          where: {
-            email,
-          },
-          data: {
-            id,
-            ...userData,
-            ...(newEmail ? { email: newEmail } : {}),
-          },
-          select,
-        })
-      : session.verifiedUser.create({
-          data: {
-            id,
-            email: newEmail || email,
-            ...userData,
-          },
-          select,
-        }),
 
-    createOrUpdateUser(
-      {
-        id,
-        user: {
-          email: newEmail || email,
-          name: userData.name,
-          ageRange,
-        },
+  // The VerifiedUser.id -> User.id FK requires the User row to exist before
+  // the VerifiedUser row is created/updated. We therefore upsert the User
+  // first and only then touch the VerifiedUser (no more Promise.all race).
+  await createOrUpdateUser(
+    {
+      id,
+      user: {
+        email: newEmail || email,
+        name: userData.name,
+        ageRange,
       },
-      { session }
-    ),
-  ])
+    },
+    { session }
+  )
+
+  const user = existingUser
+    ? await session.verifiedUser.update({
+        where: {
+          email,
+        },
+        data: {
+          id,
+          ...userData,
+          ...(newEmail ? { email: newEmail } : {}),
+        },
+        select,
+      })
+    : await session.verifiedUser.create({
+        data: {
+          id,
+          email: newEmail || email,
+          ...userData,
+        },
+        select,
+      })
 
   return {
     user,

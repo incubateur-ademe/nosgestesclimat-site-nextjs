@@ -4,12 +4,12 @@ import { StatusCodes } from 'http-status-codes'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { brevoSendEmail } from '../../../../../adapters/brevo/__tests__/fixtures/server.fixture.ts'
-import * as prismaTransactionAdapter from '../../../../../adapters/prisma/transaction.ts'
 import app from '../../../../../app.ts'
 import { mswServer } from '../../../../../core/__tests__/fixtures/server.fixture.ts'
 import { EventBus } from '../../../../../core/event-bus/event-bus.ts'
 import logger from '../../../../../logger.ts'
 import * as authenticationService from '../../../../authentication/authentication.service.ts'
+import * as emailWhitelistRepository from '../../email-whitelist/email-whitelist.repository.ts'
 import {
   createIntegrationEmailWhitelist,
   GENERATE_API_TOKEN_ROUTE,
@@ -221,13 +221,14 @@ describe('Given a NGC integrations API user', () => {
       const databaseError = new Error('Something went wrong')
 
       beforeEach(() => {
-        vi.spyOn(prismaTransactionAdapter, 'transaction').mockRejectedValueOnce(
-          databaseError
-        )
+        vi.spyOn(
+          emailWhitelistRepository,
+          'fetchWhitelists'
+        ).mockRejectedValueOnce(databaseError)
       })
 
       afterEach(() => {
-        vi.spyOn(prismaTransactionAdapter, 'transaction').mockRestore()
+        vi.spyOn(emailWhitelistRepository, 'fetchWhitelists').mockRestore()
       })
 
       test(`Then it returns a ${StatusCodes.INTERNAL_SERVER_ERROR} error`, async () => {

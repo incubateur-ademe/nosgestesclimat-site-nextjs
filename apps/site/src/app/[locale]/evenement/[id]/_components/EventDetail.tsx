@@ -6,10 +6,35 @@ import Image from 'next/image'
 interface Props {
   locale: Locale
   imageSrc: string
+  startDate: Date
+  endDate: Date
 }
 
-export default async function EventDetail({ locale, imageSrc }: Props) {
+export default async function EventDetail({
+  locale,
+  imageSrc,
+  startDate,
+  endDate,
+}: Props) {
   const { t } = await getServerTranslation({ locale })
+
+  const dateLocale = locale === 'fr' ? 'fr-FR' : 'en-GB'
+
+  const sameYear = startDate.getFullYear() === endDate.getFullYear()
+
+  const startDateLabel = startDate.toLocaleDateString(dateLocale, {
+    timeZone: 'Europe/Paris',
+    day: 'numeric',
+    month: 'long',
+    ...(sameYear ? {} : { year: 'numeric' }),
+  })
+  const endDateLabel = endDate.toLocaleDateString(dateLocale, {
+    timeZone: 'Europe/Paris',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+
   return (
     <div className="mt-6 mb-6 flex flex-row items-center gap-5">
       <div className="w-70 min-w-32">
@@ -19,16 +44,18 @@ export default async function EventDetail({ locale, imageSrc }: Props) {
           height="300"
           alt={t(
             'event.detail.alt',
-            'Du 18 septembre au 8 octobre, Semaine européenne du Développement Durable sur nosgestesclimat.fr'
+            'Du {{startDate}} au {{endDate}}, Semaine européenne du Développement Durable sur nosgestesclimat.fr',
+            { startDate: startDateLabel, endDate: endDateLabel }
           )}
         />
       </div>
 
       <div className="text-xs sm:text-base">
         <p className="text-secondary-700 mb-0 font-bold uppercase">
-          <Trans locale={locale} i18nKey="event.detail.dates">
-            Du 18 septembre au 8 octobre 2026
-          </Trans>
+          {t('event.detail.dates', 'Du {{startDate}} au {{endDate}}', {
+            startDate: startDateLabel,
+            endDate: endDateLabel,
+          })}
         </p>
 
         <p className="font-medium sm:text-lg">

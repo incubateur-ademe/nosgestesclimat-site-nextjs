@@ -1,8 +1,12 @@
 'use server'
 
-import { TUTORIAL_PATH } from '@/constants/urls/paths'
+import {
+  GROUP_RESULTS_ROUTE_PATTERN,
+  TUTORIAL_PATH,
+} from '@/constants/urls/paths'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import type { Simulation } from '@/helpers/server/model/simulations'
+import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { updateGroupParticipant } from '@/services/groups/update-group-participant'
@@ -23,6 +27,9 @@ export const joinGroup = async ({
   name?: string
 }) => {
   await updateGroupParticipant({ groupId, simulation, name })
+  // The joiner may hold a cached results page for this group — the invitation
+  // screen they were served before taking part.
+  revalidatePath(GROUP_RESULTS_ROUTE_PATTERN, 'page')
 
   if (simulation?.progression === 1) {
     redirect(getLinkToGroupDashboard({ groupId }))

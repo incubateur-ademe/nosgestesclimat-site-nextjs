@@ -83,7 +83,7 @@ const getObjectiveData = ({
             Bravo, aujourd'hui vous êtes déjà{' '}
             <strong>en transition vers l'objectif intermédiaire</strong> de{' '}
             <strong>
-              {{ secondObjectiveNumber } as unknown as ReactNode}T en{' '}
+              {{ secondObjectiveNumber } as unknown as ReactNode}t en{' '}
               {{ year } as unknown as ReactNode}
             </strong>
           </Trans>

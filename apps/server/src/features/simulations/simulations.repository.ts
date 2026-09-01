@@ -87,12 +87,6 @@ export const createParticipantSimulation = async <
     actionChoices,
     computedResults,
     extendedSituation,
-    states: {
-      create: {
-        date: new Date(),
-        progression,
-      },
-    },
     ...(additionalQuestionsAnswers?.length
       ? {
           additionalQuestionsAnswers: {

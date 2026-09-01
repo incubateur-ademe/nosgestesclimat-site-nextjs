@@ -8,12 +8,12 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AppUser } from '@/services/auth/get-user-session'
-import { updateGroupParticipant } from '@/services/groups/update-group-participant'
 import type { Group } from '@/types/groups'
 import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
 import { useState, useTransition } from 'react'
 import { findOwnParticipant } from '../../_helpers/findOwnParticipant'
+import { updateSimulationUsedAction } from '../_actions/update-simulation-used.action'
 
 interface Props {
   group: Group
@@ -43,7 +43,7 @@ export default function UpdateSimulationUsed({
 
     startTransition(async () => {
       try {
-        await updateGroupParticipant({
+        await updateSimulationUsedAction({
           groupId: group.id,
           simulation: latestSimulation,
           name: findOwnParticipant(group, user.id)?.name ?? '',

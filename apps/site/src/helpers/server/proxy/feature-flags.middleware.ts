@@ -23,7 +23,11 @@ export function middlewareFeatureFlags(request: NextRequest): MiddlewareResult {
   )
   response.cookies.set(FF_COOKIE_NAME, JSON.stringify(merged), {
     ...getCookieOptions(),
+    // Client components resolve flags through `useFeatureFlag`, which reads
+    // this override from `document.cookie`, so it must stay readable by JS.
+    httpOnly: false,
     sameSite: 'lax',
+    partitioned: false, // Partitioned does not work with SameSite=Lax
   })
   return { redirect: response, cookies: [] }
 }

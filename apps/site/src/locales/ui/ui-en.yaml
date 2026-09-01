@@ -162,7 +162,6 @@ entries:
   Vous avez une question ?: Do you have a question?
   Animez un atelier: Run a workshop
   Voir mes résultats: See my results
-  La valeur minimum pour ce champ est de: The minimum value for this field is
   Administrateur·ice: Administrator
   Valorisez vos données carbone: Make the most of your carbon data
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Your data will be stored securely and anonymously. They will be aggregated for statistical purposes; these statistics will be available on the "Detailed report" page of your survey at the end of the course. This page will remain accessible exclusively to participants and organisers.
@@ -495,8 +494,6 @@ entries:
   Partager l'article: Share this article
   Lien copié: Copied link
   Nos derniers articles: Our latest articles
-  La valeur maximum pour ce champ est de: The maximum value for this field is
-  La valeur pour ce champ est comprise entre: The value for this field is between
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: By taking part, you agree to your results being shared anonymously with this organisation.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: We are talking here about the "Organisations" and "Challenge your friends" modes. This section is generated via Metabase.
   Ressources: Resources
@@ -1387,14 +1384,14 @@ entries:
   results.objective.chart.trajectory.lock: Trajectoire proposée par Nos Gestes Climat
   results.objective.collectiveEffort.title: "Important: it's also a collective effort"
   results.objective.collectiveEffort.title.lock: "Important : c'est aussi un effort collectif"
-  results.objective.title: 'National target: <2>2T of CO₂e</2> per person by 2050'
-  results.objective.title.lock: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
+  results.objective.title: 'National target: <2>2 tonnes of CO₂e</2> per person by 2050'
+  results.objective.title.lock: 'Objectif national : <2>2t de CO₂e</2> par personne en 2050'
   results.objective.under4.description.title: You're already under {{secondObjectiveNumber}} tonnes - well done!
   results.objective.under4.description.title.lock: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
   results.objective.collectiveEffort.stateDescription: It can accelerate the <1>decarbonisation of</1> society by <3>passing laws</3> and providing <6>targeted financial aid</6>, as well as through its investments.
   results.objective.collectiveEffort.stateDescription.lock: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées</6>, ainsi qu'au travers de ses investissements.
-  results.objective.over4.description: Well done, today you are already <2>in transition towards the intermediate objective</2> of <5>{{secondObjectiveNumber}}T en {{year}}</5>
-  results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
+  results.objective.over4.description: Well done – today you’re already <2>on your way to achieving the interim target</2> of <5>{{secondObjectiveNumber}}t en {{year}}</5>
+  results.objective.over4.description.lock: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}t en {{year}}</5>
   results.objective.reduction.over4.description: Your indicative pace for achieving <2>{{secondObjectiveNumber}}T in {{year}}</2>
   results.objective.reduction.over4.description.lock: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
   results.objective.description: France's objective to achieve carbon neutrality by 2050 and help limit global warming to +2°C.
@@ -1641,7 +1638,7 @@ entries:
   Créez un test collectif Nos Gestes Climat personnalisé au sein de votre organisation et accédez à un kit clé en main pour sensibiliser vos partenaires au sein de votre organisation.: Create a personalised Nos Gestes Climat collective test within your organisation and access a turnkey kit to raise awareness among your partners.
   'Entreprises, collectivités, associations, écoles ou festivals : <2>engagez votre organisation dans une démarche durable</2> avec un test collectif Nos Gestes Climat. Sensibilisez vos parties prenantes à l’empreinte carbone et à l’empreinte eau <6>grâce à nos outils clés en main</6>.': "Businesses, local authorities, associations, schools or festivals: <2>get your organisation involved in a sustainable approach</2> with a Nos Gestes Climat collective test. Raise your stakeholders' awareness of your carbon and water footprints <6>using our tools</6>."
   groups.results.rankingMember.anonymous: Anonymous user
-  groups.results.rankingMember.anonymous.lock: Utilisateur anonyme (données supprimées par le participant)
+  groups.results.rankingMember.anonymous.lock: Utilisateur anonyme
   mon-espace.resultsList.hasMigratedSimulations: We have found simulations on this browser and added them to your space. You can delete them at any time.
   mon-espace.resultsList.hasMigratedSimulations.lock: Nous avons retrouvé des simulations sur ce navigateur et les avons ajoutées à votre espace. Vous pouvez les supprimer à tout moment.
   youthTutorial.secondlist.forYou.title: Answer for you
@@ -1842,12 +1839,24 @@ entries:
   actions.components.actionCard.lowImpactTag.lock: Moins de {{formattedValue}} {{unit}} CO<5>2</5>e / an
   actions.components.actionCard.impactAssessmentInProgress: Currently being calculated
   actions.components.actionCard.impactAssessmentInProgress.lock: En cours de calcul
-  actions.components.actionCard.link: View the "{{actionTitle}}" action
-  actions.components.actionCard.link.lock: Voir l'action "{{actionTitle}}"
+  actions.components.actionCard.link: See the<1> "{{actionTitle}}"</1> action
+  actions.components.actionCard.link.lock: Voir l'action<1> "{{actionTitle}}"</1>
   actions.components.highestImpactActionsSection.title: The winning trio
   actions.components.highestImpactActionsSection.title.lock: Le trio gagnant
   actions.components.highestImpactActionsSection.description: Actions that would have the greatest impact on your footprint
   actions.components.highestImpactActionsSection.description.lock: Les actions qui auraient le plus d'impact sur votre empreinte
+  actions.components.highestImpactActionsSection.testWhiteBackground.title: Here are your 3 actions with the greatest impact
+  actions.components.highestImpactActionsSection.testWhiteBackground.title.lock: Voici vos 3 actions qui auront le plus d'impact
+  actions.components.highestImpactActionsSection.testWhiteBackground.description: This is where most of your footprint is decided.
+  actions.components.highestImpactActionsSection.testWhiteBackground.description.lock: C'est ici que se joue l'essentiel de votre empreinte.
+  actions.components.actionCard.highlighted.link: View the action
+  actions.components.actionCard.highlighted.link.lock: Voir l'action
+  actions.components.actionCard.highlighted.potentialImpact: Potential impact
+  actions.components.actionCard.highlighted.potentialImpact.lock: Impact potentiel
+  actions.components.actionCard.highlighted.footprintShare: that is {{percentage}} % of your total footprint
+  actions.components.actionCard.highlighted.footprintShare.lock: soit {{percentage}} % de votre empreinte totale
+  actions.components.actionCard.highlighted.impactUnit: CO<1>2</1>e / year
+  actions.components.actionCard.highlighted.impactUnit.lock: CO<1>2</1>e / an
   simulator.tutorial.letsGoButton.label: Start now!
   simulator.tutorial.letsGoButton.label.lock: C'est parti !
   components.carousel.lastSlideMessage: This is the last slide
@@ -1951,8 +1960,8 @@ entries:
   event.dynamicCounter.promise.lock: Résultats en 10 minutes — 100% gratuit
   event.dynamicCounter.primaryCta: Mobilise my organisation
   event.dynamicCounter.primaryCta.lock: Je mobilise mon organisation
-  event.detail.dates: From 18 September to 8 October 2026
-  event.detail.dates.lock: Du 18 septembre au 8 octobre 2026
+  event.detail.dates: From {{startDate}} to {{endDate}}
+  event.detail.dates.lock: Du {{startDate}} au {{endDate}}
   event.tutorial.org.1.description: <0>Set up your campaign</0> in just a few clicks and define your objectives.
   event.tutorial.org.1.description.lock: <0>Configurez votre campagne</0> en quelques clics et définissez vos objectifs.
   event.ctas.description: There are two ways to take part in the challenge.
@@ -1967,8 +1976,8 @@ entries:
   event.ctas.card1.description.lock: Calculez votre empreinte en 10 minutes et découvrez vos leviers d'action personnalisés.
   event.tutorial.individual.3.description: Get personalised tips on how to reduce your environmental impact in your day-to-day life.
   event.tutorial.individual.3.description.lock: Recevez des actions personnalisées pour réduire votre impact au quotidien.
-  event.detail.alt: 'From 18 September to 8 October: European Sustainable Development Week on nosgestesclimat.fr'
-  event.detail.alt.lock: Du 18 septembre au 8 octobre, Semaine européenne du Développement Durable sur nosgestesclimat.fr
+  event.detail.alt: 'From {{startDate}} to {{endDate}}: European Sustainable Development Week on nosgestesclimat.fr'
+  event.detail.alt.lock: Du {{startDate}} au {{endDate}}, Semaine européenne du Développement Durable sur nosgestesclimat.fr
   event.ctas.card2.description: Create a dedicated space to engage your colleagues, pupils or students, or stakeholders.
   event.ctas.card2.description.lock: Créez un espace dédié pour mobiliser vos collègues, élèves / étudiants, ou parties prenantes.
   event.tutorial.individual.1.description: Browse the topics (food, transport, housing, etc.) in just a few minutes.
@@ -1995,18 +2004,40 @@ entries:
   contact.iframe.title.en.lock: Formulaire - give some feedback about Nos Gestes Climat
   actions.listPage.metaTitle: My actions – Nos Gestes Climat
   actions.listPage.metaTitle.lock: Mes actions - Nos Gestes Climat
-  event.podium.list.item.score.big: footprint calculations
-  event.podium.list.item.score.big.lock: calculs d'empreinte
-  event.podium.list.item.score.small: tests
-  event.podium.list.item.score.small.lock: tests
+  event.podium.list.item.participations: participations
+  event.podium.list.item.participations.lock: participations
+  event.podium.generalRankingLink: See the general rankings
+  event.podium.generalRankingLink.lock: Voir le classement général
+  event.podium.generalRankingLink.ariaLabel: See the general rankings, open in a new window
+  event.podium.generalRankingLink.ariaLabel.lock: Voir le classement général, ouvrir dans une nouvelle fenêtre
+  event.podium.updateNote: The podium updates about every 15 minutes
+  event.podium.updateNote.lock: Le podium se met à jour environ toutes les 15 minutes
+  event.dynamicCounter.primaryCta.ariaLabel: Mobilise my organisation, open in a new window
+  event.dynamicCounter.primaryCta.ariaLabel.lock: Je mobilise mon organisation, ouvrir dans une nouvelle fenêtre
+  event.dynamicCounter.secondaryCta.ariaLabel: Participate as an individual, open in a new window
+  event.dynamicCounter.secondaryCta.ariaLabel.lock: Je participe individuellement, ouvrir dans une nouvelle fenêtre
+  event.ctas.card1.buttonAriaLabel: Take part, open in a new window
+  event.ctas.card1.buttonAriaLabel.lock: Je participe, ouvrir dans une nouvelle fenêtre
+  event.ctas.card2.buttonAriaLabel: Start a collective test, open in a new window
+  event.ctas.card2.buttonAriaLabel.lock: Je crée un test collectif, ouvrir dans une nouvelle fenêtre
+  event.podium.categories.all: All
+  event.podium.categories.all.lock: Toutes
+  event.podium.categories.companies: Companies
+  event.podium.categories.companies.lock: Entreprises
+  event.podium.categories.associations: Associations
+  event.podium.categories.associations.lock: Associations
+  event.podium.categories.education: Education
+  event.podium.categories.education.lock: Éducation
+  event.podium.categories.publicServices: Public services
+  event.podium.categories.publicServices.lock: Services publics
   event.testimonies.4.text: I was surprised to find that the bulk of my carbon footprint doesn’t come from my direct actions, such as my journeys, but rather from more invisible aspects of daily life, such as public services or the production of the goods I buy. It made me realise that carbon impact is often indirect.
   event.testimonies.4.text.lock: J'ai été surprise de voir que l’essentiel de mon empreinte ne vient pas de mes actions directes comme mes déplacements, mais plutôt de choses plus invisibles au quotidien comme les services publics ou la production des biens que j’achète. Ça m’a fait réaliser que l’impact carbone est souvent indirect.
   event.countdown.label: Starting in
   event.countdown.label.lock: Début dans
   event.statistics.title: Live data will appear on launch
   event.statistics.title.lock: Les données en direct apparaîtront au lancement
-  event.countdown.date: Launch on 1 September 2026
-  event.countdown.date.lock: Lancement le 1er septembre 2026
+  event.countdown.date: Launch on {{date}}
+  event.countdown.date.lock: Lancement le {{date}}
   event.countdown.description: The live scoreboard and standings for the<1></1>will be available when the event begins.
   event.countdown.description.lock: Le compteur et le classement en direct<1></1>seront disponibles au lancement de l'évènement.
   Éducation: Education
@@ -2014,13 +2045,25 @@ entries:
   Services publics: Public services
   Individu: Individual
   Organisation: Organisation
+  event.podium.previousButton.label: Previous organisation
+  event.podium.previousButton.label.lock: Organisation précédente
   event.podium.nextButton.label: Next organisation
   event.podium.remainingList.ariaLabel: Rest of the rankings
   event.podium.nextButton.label.lock: Organisation suivante
-  event.podium.block.score.text1: footprint calculations
-  event.podium.block.score.text1.lock: calculs d'empreinte
   event.podium.block.score.text2: Awaiting launch
   event.podium.block.score.text2.lock: En attente du lancement
+  event.podium.empty: No {{organisationType}} has participated yet
+  event.podium.empty.lock: Aucune {{organisationType}} n'a participé pour le moment
+  event.podium.empty.type.all: organisation
+  event.podium.empty.type.all.lock: organisation
+  event.podium.empty.type.companies: company
+  event.podium.empty.type.companies.lock: entreprise
+  event.podium.empty.type.associations: association
+  event.podium.empty.type.associations.lock: association
+  event.podium.empty.type.education: school or university
+  event.podium.empty.type.education.lock: école ou université
+  event.podium.empty.type.public-services: local authority
+  event.podium.empty.type.public-services.lock: collectivité
   event.podium.remainingList.ariaLabel.lock: Suite du classement
   results.footprintBlock.actionsBlock.link: Find out about my activities
   results.footprintBlock.actionsBlock.link.lock: Découvrir mes actions
@@ -2097,8 +2140,8 @@ entries:
   actions.publicListPage.cta.title.lock: Connaissez-vous votre empreinte carbone ?
   actions.publicListPage.cta.description: Take the 10-minute simulator and discover the personalised actions that will have the greatest impact on your carbon footprint.
   actions.publicListPage.cta.description.lock: Passez le simulateur en 10 minutes et découvrez les actions personnalisées qui auront le plus d'impact sur votre empreinte.
-  footer.resources.actions: Shares
-  footer.resources.actions.lock: Actions
+  footer.resources.actions: Take action
+  footer.resources.actions.lock: J’agis
   emailConfirmation.title: Competition -
   emailConfirmation.title.lock: Jeu concours -
   emailConfirmation.subtitle: Your entry has been successfully recorded
@@ -2136,3 +2179,18 @@ entries:
   simulator.funFact.ia: <0><0><0>💡</0> A word on AI</0><1>The use of artificial intelligence leads <2>to increased consumption of electricity, water and space in data centres</2>. Studies are currently being carried out to gather reliable data on the impacts and keep you better informed.</1></0>
   simulator.funFact.ia.lock: <0><0><0>💡</0> Un mot sur l'IA</0><1>Le recours à l'intelligence artificielle entraîne une <2>hausse de la consommation d'électricité, d'eau et d'espace pour les data centers</2>. Des études sont en cours pour disposer de données fiables sur les impacts et mieux vous informer.</1></0>
   Quitter le groupe: Leave group
+  actions.components.themeSections.testWhiteBackground.description: 'Varying levels of impact: from high-impact actions to small steps.'
+  actions.components.themeSections.testWhiteBackground.description.lock: 'À impact variable : des gestes à fort impact aux petit pas.'
+  actions.components.themeSections.testWhiteBackground.title: Here are some other things you can do to help reduce your carbon footprint
+  actions.components.themeSections.testWhiteBackground.title.lock: Voici d’autres actions qui vous aideront à réduire votre empreinte
+  La valeur minimum pour ce champ est de: The minimum value for this field is
+  La valeur pour ce champ est comprise entre: The value for this field is between
+  La valeur maximum pour ce champ est de: The maximum value for this field is
+  actions.components.highestImpactActionsSection.publicDescription: The top 3 actions you can take to limit or reduce your CO<1>2</1> emissions
+  actions.components.highestImpactActionsSection.publicDescription.lock: Le top 3 des actions qui permettent de limiter ou réduire ses émissions de CO<1>2</1>
+  actions.detailPage.sections.otherThemeActions.description: Selected according to your answers to the simulator
+  actions.detailPage.sections.otherThemeActions.description.lock: Sélectionnées selon vos réponses au simulateur
+  actions.detailPage.sections.otherThemeActions.title: Find out about other ways to reduce your carbon footprint
+  actions.detailPage.sections.otherThemeActions.title.lock: Découvrez d’autres actions pour réduire votre empreinte
+  actions.components.actionCard.ctaVariant.link: See the<1> "{{actionTitle}}"</1> campaign
+  actions.components.actionCard.ctaVariant.link.lock: Voir l'action<1> "{{actionTitle}}"</1>

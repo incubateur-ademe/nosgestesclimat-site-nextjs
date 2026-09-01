@@ -5,7 +5,7 @@ import EventHeroCard from './eventHero/EventHeroCard'
 
 interface Props {
   locale: Locale
-  startDate: string
+  startDate: Date
   currentValue: number
   targetValue: number
   progressPercentage: number

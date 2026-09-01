@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 import {
   EMPTY_SITUATION,
@@ -28,8 +28,16 @@ export default function EngineProvider({
 }: PropsWithChildren<Props>) {
   // Mounted on routes where the user may have no simulation yet (documentation,
   // plan du site, actions with no completed test…): fall back to an empty situation.
-  const initialSituationFromUser = useOptionalSimulation()?.situation
-  const [situation] = useState(initialSituation ?? initialSituationFromUser ?? EMPTY_SITUATION)
+  const situationFromUser = useOptionalSimulation()?.situation
+  /**
+   * The situation the engine is seeded with. Deliberately not frozen at mount:
+   * the engine is rebuilt whenever the `rules` prop changes identity, and the
+   * server hands over a new (deep-equal) rules object on every route refresh.
+   * Seeding it with the answers given so far — rather than with the ones held
+   * at mount — keeps a rebuild from silently resetting the user's footprint to
+   * the model defaults mid-test.
+   */
+  const situation = initialSituation ?? situationFromUser ?? EMPTY_SITUATION
 
   const { engine, pristineEngine, safeEvaluate, safeGetRule } = useEngine(
     rules,
@@ -42,7 +50,6 @@ export default function EngineProvider({
     everyInactiveRules,
     everyQuestions,
     everyNotifications,
-    everyUiCategories,
     everyMosaicChildrenWithParent,
     rawMissingVariables,
   } = useRules({ engine: pristineEngine, root })
@@ -73,7 +80,6 @@ export default function EngineProvider({
         everyInactiveRules,
         everyQuestions,
         everyNotifications,
-        everyUiCategories,
         everyMosaicChildrenWithParent,
         rawMissingVariables,
         categories,
