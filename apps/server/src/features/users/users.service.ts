@@ -136,7 +136,7 @@ export const updateUserAndContact = async ({
   code?: string
   newUserData: UserUpdateDto
 }) => {
-  const { user, contact, nextEmail, verified, previousContact } =
+  const { user, verified, nextEmail, previousEmail, emailChanged } =
     await transaction(async (session) => {
       const verifiedUser = isVerifiedUser(userToUpdate)
 
@@ -186,15 +186,6 @@ export const updateUserAndContact = async ({
         }
       }
 
-      let contact: BrevoContact | undefined
-      let previousContact: BrevoContact | undefined
-      if (nextEmail) {
-        contact = await fetchContact(nextEmail)
-        if (emailChanged) {
-          previousContact = await fetchContact(previousEmail)
-        }
-      }
-
       const verified = verifiedUser || !nextEmail
 
       const update =
@@ -229,12 +220,21 @@ export const updateUserAndContact = async ({
 
       return {
         user,
-        contact,
         verified,
         nextEmail,
-        previousContact,
+        previousEmail,
+        emailChanged,
       }
     })
+
+  let contact: BrevoContact | undefined
+  let previousContact: BrevoContact | undefined
+  if (nextEmail) {
+    contact = await fetchContact(nextEmail)
+    if (emailChanged) {
+      previousContact = await fetchContact(previousEmail!)
+    }
+  }
 
   const userUpdatedEvent = new UserUpdatedEvent({
     previousContact,
