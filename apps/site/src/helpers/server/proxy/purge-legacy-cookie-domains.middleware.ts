@@ -11,11 +11,8 @@ import { type NextRequest, NextResponse } from 'next/server'
 // after 2027-04-01.
 const LEGACY_COOKIE_MIGRATION_UNTIL_MS = Date.parse('2027-04-01T00:00:00Z')
 
-// Only two deployments ever issued domain-scoped cookies (old `getCookieOptions`
-// scoped them to the deployment's hostname): prod (apex) and preprod. The apex
-// cookie is the one that leaked to preprod; the preprod one is redundant with
-// the new host-only cookie but we purge it too. Review apps and localhost never
-// issued a cookie worth purging (they self-heal via the host-only overwrite).
+// Legacy cookies were scoped to the deployment's hostname: only prod (apex)
+// and preprod ever issued one, so we purge both.
 const LEGACY_COOKIE_DOMAINS = [
   'nosgestesclimat.fr',
   'preprod.nosgestesclimat.fr',
