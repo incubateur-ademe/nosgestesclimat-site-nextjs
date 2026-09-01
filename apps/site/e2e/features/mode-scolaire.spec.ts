@@ -66,17 +66,13 @@ test.describe('When a user completes the test via the scolaire poll invite link'
     ).toBeVisible()
   })
 
-  test('offers to reuse the previous scolaire test when joining a new scolaire poll', async ({
+  test("shouldn't offer to reuse the previous scolaire test when joining a new scolaire poll", async ({
     scolairePoll,
   }) => {
     // Joining a new scolaire poll must offer to reuse the previous scolaire
     // test (same mode), with its date and result.
     await page.goto(scolairePoll.inviteLink)
-    await expect(
-      page.getByTestId('reuse-simulation-banner-title')
-    ).toBeVisible()
-    await expect(page.getByText('Test réalisé le')).toBeVisible()
-    await expect(page.getByText('Votre empreinte')).toBeVisible()
+    await expect(page.getByTestId('youth-tutorial-start-button')).toBeVisible()
   })
 
   test('starts a fresh test when joining a standard poll after completing a scolaire test', async ({
