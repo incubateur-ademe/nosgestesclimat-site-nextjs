@@ -150,8 +150,11 @@ server {
     # campagne-partenaire, evenement
     #
     # Note : /fr et /fr/* sont des 307 vers la locale par défaut,
-    # donc exclus volontairement de la regex.
-    location ~ ^/(en/)?($|simulateur/tutoriel|empreinte-carbone|empreinte-eau|cgu|mentions-legales|mentions-legales-base-empreinte|politique-de-confidentialite|accessibilite|contact|diffuser|nos-relais|plan-du-site|budget|international|gestion-infolettres|newsletter-confirmation|partenaire|questions-frequentes|stats|blog($|/.*)|documentation($|/.*)|nouveautes($|/.*)|guide($|/.*)|themes($|/.*)|campagne-partenaire($|/.*)|evenement($|/.*))$ {
+    # donc exclus volontairement de la regex. /en/* n'est volontairement
+    # PAS couvert : les pages anglaises (trafic minime) tombent dans le
+    # catch-all et ne sont pas forcées en cache — le middleware Next gère
+    # la langue côté app.
+    location ~ ^/($|simulateur/tutoriel|empreinte-carbone|empreinte-eau|cgu|mentions-legales|mentions-legales-base-empreinte|politique-de-confidentialite|accessibilite|contact|diffuser|nos-relais|plan-du-site|budget|international|gestion-infolettres|newsletter-confirmation|partenaire|questions-frequentes|stats|blog($|/.*)|documentation($|/.*)|nouveautes($|/.*)|guide($|/.*)|themes($|/.*)|campagne-partenaire($|/.*)|evenement($|/.*))$ {
         proxy_pass https://scalingo;
 
         # L'auth dans la clé : utilisateurs anonymes et authentifiés ont des caches distincts.
