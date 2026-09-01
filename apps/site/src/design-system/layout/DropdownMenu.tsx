@@ -10,7 +10,14 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { twMerge } from 'tailwind-merge'
-import { type DropdownMenuButtonRef, useDropdownMenu } from './useDropdownMenu'
+import {
+  type DropdownMenuItemClassNameProps,
+  getDropdownMenuItemClassName,
+} from './dropdownMenu/helpers'
+import {
+  type DropdownMenuButtonRef,
+  useDropdownMenu,
+} from './dropdownMenu/useDropdownMenu'
 
 export interface DropdownMenuTriggerProps {
   isOpen: boolean
@@ -29,27 +36,6 @@ interface Props {
   panelClassName?: string
   align?: 'left' | 'right'
   onToggle?: (isOpen: boolean) => void
-}
-
-export type DropdownMenuItemPosition = 'only' | 'first' | 'middle' | 'last'
-
-export function getDropdownMenuItemPosition(
-  index: number,
-  total: number
-): DropdownMenuItemPosition {
-  if (total === 1) {
-    return 'only'
-  }
-
-  if (index === 0) {
-    return 'first'
-  }
-
-  if (index === total - 1) {
-    return 'last'
-  }
-
-  return 'middle'
 }
 
 const PANEL_OFFSET = 8
@@ -102,10 +88,7 @@ export default function DropdownMenu({
     })
   }, [align])
 
-  // Position the panel when it opens. The panel is portaled to <body> with
-  // fixed positioning, so it can never be clipped by an ancestor (header,
-  // overflow containers...). It is measured on open and repositioned on
-  // scroll/resize to stay attached to its trigger.
+  // Trigger the positionning of the panel
   useLayoutEffect(() => {
     if (isOpen) {
       measurePanelPosition()
@@ -163,33 +146,5 @@ export default function DropdownMenu({
           document.body
         )}
     </div>
-  )
-}
-
-const positionClassNames: Record<DropdownMenuItemPosition, string> = {
-  only: 'rounded-lg',
-  first: 'rounded-t-lg',
-  middle: 'rounded-none',
-  last: 'rounded-b-lg',
-}
-
-export interface DropdownMenuItemClassNameProps {
-  isActive?: boolean
-  position?: DropdownMenuItemPosition
-  className?: string
-}
-
-export function getDropdownMenuItemClassName({
-  isActive = false,
-  position = 'only',
-  className,
-}: DropdownMenuItemClassNameProps) {
-  return twMerge(
-    'dropdown-menu-item flex w-full items-center gap-2 px-4 py-3 text-sm font-bold no-underline transition-colors',
-    positionClassNames[position],
-    isActive
-      ? 'bg-primary-700 hover:bg-primary-700 text-white hover:text-white'
-      : 'bg-white text-primary-700 hover:bg-primary-50 active:bg-primary-100 hover:text-primary-700',
-    className
   )
 }

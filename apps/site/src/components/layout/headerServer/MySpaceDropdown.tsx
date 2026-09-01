@@ -87,7 +87,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
             id={buttonId}
             size="sm"
             color="secondary"
-            className="inline-flex gap-1 align-baseline max-tiny:px-2 max-tiny:py-2"
+            className="max-tiny:px-2 max-tiny:py-2 inline-flex gap-1 align-baseline"
             data-testid="my-space-button"
             aria-expanded={isOpen}
             aria-controls={panelId}
@@ -101,20 +101,26 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
             <span className="hidden md:inline">({displayEmail})</span>
             <ChevronRight
               className={twMerge(
-                'ml-3 max-tiny:ml-1.5 inline-block w-2 transition-transform',
+                'max-tiny:ml-1.5 ml-3 inline-block w-2 transition-transform',
                 isOpen ? 'rotate-[-90deg]' : 'rotate-90'
               )}
             />
           </Button>
         )
       }}>
-      {({ closeMenu }) => (
+      {({ closeMenu, getItemClassName }) => (
         <>
           <li>
             <Link
               href={MON_ESPACE_PATH}
               data-testid="my-space-link"
-              className="text-default hover:bg-primary-100 focus-visible:bg-primary-50 block min-h-10 px-4 py-2 text-sm no-underline! transition-colors hover:underline! focus:outline-none focus-visible:underline!"
+              className={twMerge(
+                'text-default block min-h-10 px-4 py-2 text-sm',
+                getItemClassName({
+                  index: 0,
+                  itemsCount: 2,
+                })
+              )}
               onClick={() => {
                 trackAccess()
                 closeMenu()
@@ -128,7 +134,13 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
             <button
               type="button"
               data-testid="my-space-logout-button"
-              className="text-default hover:bg-primary-100 focus-visible:bg-primary-50 flex min-h-10 w-full items-center gap-2 px-4 py-2 text-sm transition-colors hover:underline! focus:outline-none focus-visible:underline!"
+              className={twMerge(
+                'flex min-h-10 w-full items-center gap-2 px-4 py-2 text-sm',
+                getItemClassName({
+                  index: 1,
+                  itemsCount: 2,
+                })
+              )}
               onClick={() => handleLogout(closeMenu)}>
               <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>
               <LogOutIcon className="fill-default w-4" />

@@ -3,9 +3,7 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import { footerClickLanguage } from '@/constants/tracking/layout'
 import { captureFooterClickLanguage } from '@/constants/tracking/posthogTrackers'
-import DropdownMenu, {
-  getDropdownMenuItemPosition,
-} from '@/design-system/layout/DropdownMenu'
+import DropdownMenu from '@/design-system/layout/DropdownMenu'
 import Emoji from '@/design-system/utils/Emoji'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { useAlternateLanguagePaths } from '@/hooks/useAlternateLanguagePaths'
@@ -121,9 +119,11 @@ export default function LanguageSwitchButton({
           const availableLanguages = LANGUAGES.filter(
             (language) => alternatePaths[language.locale]
           )
+
           const notActiveLanguage = LANGUAGES.filter(
             (language) => language.locale !== activeLocale
           )[0]
+
           return (
             <li key={notActiveLanguage.locale}>
               <Link
@@ -138,10 +138,8 @@ export default function LanguageSwitchButton({
                   closeMenu()
                 }}
                 className={getItemClassName({
-                  position: getDropdownMenuItemPosition(
-                    0,
-                    availableLanguages.length
-                  ),
+                  index: 0,
+                  itemsCount: 1,
                 })}>
                 <Emoji>{notActiveLanguage.flag}</Emoji>
 
