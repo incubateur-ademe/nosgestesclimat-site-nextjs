@@ -230,7 +230,6 @@ describe('Given a NGC user', () => {
               select: { key: true, answer: true, type: true },
             },
             polls: { select: { pollId: true } },
-            states: true,
             user: { select: { id: true, name: true, email: true } },
             createdAt: true,
             updatedAt: true,
@@ -243,14 +242,6 @@ describe('Given a NGC user', () => {
           date: expect.any(Date),
           updatedAt: expect.any(Date),
           polls: [],
-          states: [
-            {
-              id: expect.any(String),
-              date: expect.any(Date),
-              simulationId: payload.id,
-              progression: 1,
-            },
-          ],
           user: { id: userId, email: null, name: null },
         })
       })
@@ -369,24 +360,6 @@ describe('Given a NGC user', () => {
             ageRange: null,
           },
         })
-      })
-
-      test('Then it creates a new simulation state', async () => {
-        await agent
-          .post(url)
-          .set(authHeaders({ userId }))
-          .send(payload)
-          .expect(StatusCodes.CREATED)
-
-        await EventBus.flush()
-
-        expect(
-          await prisma.simulationState.count({
-            where: {
-              simulationId: payload.id,
-            },
-          })
-        ).toBe(2)
       })
     })
 
