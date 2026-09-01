@@ -1,3 +1,4 @@
+import { prisma } from '@nosgestesclimat/core/prisma/client'
 import dayjs from 'dayjs'
 import type { Session } from '../../adapters/prisma/transaction.ts'
 import { transaction } from '../../adapters/prisma/transaction.ts'
@@ -20,17 +21,13 @@ export const generateVerificationCode = async (
 ) => {
   const code = generateRandomVerificationCode()
 
-  const verificationCode = await transaction(
-    (session) =>
-      createUserVerificationCode(
-        {
-          ...verificationCodeDto,
-          code,
-          expirationDate,
-        },
-        { session }
-      ),
-    session
+  const verificationCode = await createUserVerificationCode(
+    {
+      ...verificationCodeDto,
+      code,
+      expirationDate,
+    },
+    { session: session ?? prisma }
   )
 
   return { code, verificationCode }
