@@ -1,16 +1,13 @@
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { isPrismaErrorNotFound } from '@nosgestesclimat/core/prisma/utils'
 import { randomUUID } from 'crypto'
-import jwt from 'jsonwebtoken'
 import {
   type VerificationCode,
   VerificationCodeMode,
-  type VerifiedUser,
 } from '../../adapters/prisma/generated.ts'
 import { defaultVerifiedUserSelection } from '../../adapters/prisma/selection.ts'
 import type { Session } from '../../adapters/prisma/transaction.ts'
 import { transaction } from '../../adapters/prisma/transaction.ts'
-import { config } from '../../config.ts'
 import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
 import { InvalidVerificationCodeException } from '../../core/errors/InvalidVerificationCodeException.ts'
 import { EventBus } from '../../core/event-bus/event-bus.ts'
@@ -29,8 +26,6 @@ import {
   findVerificationCodeIgnoringExpiration,
   invalidateVerificationCode,
 } from './verification-codes.repository.ts'
-
-export const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24 * 61 // 2 months
 
 export const generateRandomVerificationCode = () =>
   Math.floor(
@@ -147,16 +142,6 @@ export const login = async ({
   await EventBus.once(loginEvent)
 
   return { user, mode }
-}
-
-export function createToken(user: Pick<VerifiedUser, 'id' | 'email'>) {
-  return jwt.sign(
-    { userId: user.id, email: user.email },
-    config.security.jwt.secret,
-    {
-      expiresIn: COOKIE_MAX_AGE,
-    }
-  )
 }
 
 /**
