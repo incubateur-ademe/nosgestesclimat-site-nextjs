@@ -26,7 +26,7 @@ import { getRandomTestCase } from './fixtures/simulations.fixtures.ts'
 describe('Given a completed poll simulation (progression = 1)', () => {
   const agent = supertest(app)
   const url = CREATE_ORGANISATION_PUBLIC_POLL_SIMULATION_ROUTE
-  const { computedResults, situation, extendedSituation } = getRandomTestCase()
+  const { computedResults, situation } = getRandomTestCase()
 
   let userId: string
   let simulationId: string
@@ -73,7 +73,6 @@ describe('Given a completed poll simulation (progression = 1)', () => {
         situation,
         progression: 1,
         computedResults,
-        extendedSituation,
       },
     })
   })
@@ -85,7 +84,6 @@ describe('Given a completed poll simulation (progression = 1)', () => {
         situation,
         progression: 0.5,
         computedResults,
-        extendedSituation,
       }
 
       const response = await agent
@@ -105,7 +103,6 @@ describe('Given a completed poll simulation (progression = 1)', () => {
         situation,
         progression: 1,
         computedResults,
-        extendedSituation,
       }
 
       mswServer.use(

@@ -4,7 +4,6 @@ import { SIMULATION_URL } from '@/constants/urls/main'
 import { fetchServer } from '@/helpers/server/fetchServer'
 import { migrateSimulationIfNeeded } from '@/helpers/server/model/models'
 import type { Simulation } from '@/helpers/server/model/simulations'
-import { setDefaultExtendedSituation } from '@/helpers/server/model/utils/setDefaultExtendedSituation'
 import { getUserSession } from '@/services/auth/get-user-session'
 
 interface SimulationFilter {
@@ -24,9 +23,8 @@ export const getSimulations = async ({
   )
 
   const simulations = serverSimulations.map((simulation) => {
-    const updatedSimulation = setDefaultExtendedSituation(simulation)
-    delete updatedSimulation.user
-    return updatedSimulation
+    delete simulation.user
+    return simulation
   })
 
   const [lastSimulation, ...prev] = simulations

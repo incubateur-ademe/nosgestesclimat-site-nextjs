@@ -16,7 +16,6 @@ import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { ComponentProps, ReactElement } from 'react'
 import { vi } from 'vitest'
-import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
 import { stringifyModel } from '../server/model/models'
 
 // Mock useRules
@@ -38,7 +37,6 @@ const defaultSimulation: Simulation = {
   id: faker.string.uuid(),
   date: new Date(),
   situation: {},
-  extendedSituation: getInitialExtendedSituation(),
   foldedSteps: [],
   actionChoices: {},
   model: stringifyModel({

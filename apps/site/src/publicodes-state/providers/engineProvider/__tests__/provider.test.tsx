@@ -24,7 +24,6 @@ const simulation = {
   id: 'simulation-id',
   date: new Date(),
   situation: {},
-  extendedSituation: {},
   foldedSteps: [],
   actionChoices: {},
   computedResults: { carbone: {}, eau: {} },

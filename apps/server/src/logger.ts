@@ -31,9 +31,6 @@ export const redactBody = <T = unknown>(body: T) => {
     if ('computedResults' in body) {
       body.computedResults = '[REDACTED]'
     }
-    if ('extendedSituation' in body) {
-      body.extendedSituation = '[REDACTED]'
-    }
     if ('foldedSteps' in body) {
       body.foldedSteps = '[REDACTED]'
     }
