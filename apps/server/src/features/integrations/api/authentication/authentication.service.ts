@@ -117,24 +117,19 @@ export const generateApiToken = async ({
 }: {
   generateApiTokenDto: GenerateAPITokenRequestDto
 }) => {
-  await transaction(async (session) => {
-    const emailWhitelist = await fetchWhitelists(
-      { emailPattern: email },
-      { session }
-    )
+  const emailWhitelist = await fetchWhitelists(
+    { emailPattern: email },
+    { session: prisma }
+  )
 
-    if (emailWhitelist.length) {
-      await createVerificationCode(
-        {
-          verificationCodeDto: {
-            email,
-          },
-          locale: Locales.fr,
-        },
-        { session }
-      )
-    }
-  })
+  if (emailWhitelist.length) {
+    await createVerificationCode({
+      verificationCodeDto: {
+        email,
+      },
+      locale: Locales.fr,
+    })
+  }
 }
 
 export const exchangeCredentialsForToken = async (

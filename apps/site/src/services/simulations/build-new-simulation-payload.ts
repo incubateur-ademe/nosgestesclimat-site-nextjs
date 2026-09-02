@@ -1,5 +1,4 @@
 import { metrics } from '@/constants/model/metric'
-import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import type {
@@ -25,7 +24,6 @@ export function buildNewSimulationPayload({
   id = uuidv4(),
   date = new Date().toISOString(),
   situation = {},
-  extendedSituation = getInitialExtendedSituation(),
   foldedSteps = [],
   actionChoices = {},
   persona,
@@ -53,7 +51,6 @@ export function buildNewSimulationPayload({
     date,
     situation,
     foldedSteps,
-    extendedSituation,
     actionChoices,
     persona,
     computedResults,

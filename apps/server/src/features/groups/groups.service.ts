@@ -177,9 +177,9 @@ export const updateGroup = async (
   update: GroupUpdateDto
 ) => {
   try {
-    const group = await transaction((session) =>
-      updateUserGroup({ groupId, userId: user.id }, update, { session })
-    )
+    const group = await updateUserGroup({ groupId, userId: user.id }, update, {
+      session: prisma,
+    })
     const { participants } = group
 
     const groupUpdatedEvent = new GroupUpdatedEvent({
@@ -346,9 +346,9 @@ export const deleteGroup = async (params: {
   groupId: string
 }) => {
   try {
-    const { administrator, participants } = await transaction((session) =>
-      deleteUserGroup(params, { session })
-    )
+    const { administrator, participants } = await deleteUserGroup(params, {
+      session: prisma,
+    })
 
     const groupDeletedEvent = new GroupDeletedEvent({
       administrator: administrator!.user,

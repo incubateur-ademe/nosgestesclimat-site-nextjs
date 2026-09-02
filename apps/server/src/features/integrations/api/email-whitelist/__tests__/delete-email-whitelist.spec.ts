@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { ApiScopeName } from '../../../../../adapters/prisma/generated.ts'
-import * as prismaTransactionAdapter from '../../../../../adapters/prisma/transaction.ts'
 import app from '../../../../../app.ts'
 import { config } from '../../../../../config.ts'
 import logger from '../../../../../logger.ts'
@@ -13,6 +12,7 @@ import {
   randomApiScopeName,
   recoverApiToken,
 } from '../../authentication/__tests__/fixtures/authentication.fixtures.ts'
+import * as emailWhitelistRepository from '../email-whitelist.repository.ts'
 import {
   createEmailWhitelist,
   DELETE_EMAIL_WHITELIST_ROUTE,
@@ -183,13 +183,13 @@ describe('Given a NGC integrations API user', () => {
 
           beforeEach(() => {
             vi.spyOn(
-              prismaTransactionAdapter,
-              'transaction'
+              emailWhitelistRepository,
+              'deleteWhitelist'
             ).mockRejectedValueOnce(databaseError)
           })
 
           afterEach(() => {
-            vi.spyOn(prismaTransactionAdapter, 'transaction').mockRestore()
+            vi.spyOn(emailWhitelistRepository, 'deleteWhitelist').mockRestore()
           })
 
           test(`Then it returns a ${StatusCodes.INTERNAL_SERVER_ERROR} error`, async () => {
