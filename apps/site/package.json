@@ -86,7 +86,7 @@
     "react-select": "^5.10.1",
     "react-tooltip": "^5.30.0",
     "react-wavify": "^1.11.1",
-    "recharts": "2.15.1",
+    "recharts": "^2.15.1",
     "remove-markdown": "^0.6.4",
     "shadcn": "^4.19.0",
     "swiper": "^12.1.4",
