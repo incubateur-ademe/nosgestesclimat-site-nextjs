@@ -131,7 +131,6 @@ describe('Given a NGC user', () => {
             },
             actionChoices: {},
             situation: {},
-            extendedSituation: {},
             foldedSteps: [],
             userId,
           },

@@ -24,8 +24,8 @@ La branche source est configurée via `TEMPLATE_REF` dans `deploy.env`.
       │
       ├── preprod : tire depuis la branche configurée (canary)
       │
-      └── prod : tire uniquement si le combined status du commit
-                 est "success" (CI + E2E verts)
+      └── prod : tire uniquement si toutes les check-runs CI du commit
+                 sont vertes (success/skipped, CI + E2E)
 
 Aucun secret en CI, aucune clé SSH dans GitHub Actions, aucune branche
 spécifique. Le gate est le statut CI du commit, vérifié par le script

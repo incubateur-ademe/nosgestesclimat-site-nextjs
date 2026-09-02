@@ -33,7 +33,6 @@ export const createParticipantSimulation = async <
       foldedSteps,
       progression,
       situation,
-      extendedSituation,
       additionalQuestionsAnswers,
     },
     select = simulationSelectionWithPolls as T,
@@ -86,7 +85,6 @@ export const createParticipantSimulation = async <
     progression,
     actionChoices,
     computedResults,
-    extendedSituation,
     ...(additionalQuestionsAnswers?.length
       ? {
           additionalQuestionsAnswers: {

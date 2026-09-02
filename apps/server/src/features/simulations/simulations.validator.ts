@@ -92,30 +92,9 @@ const SituationNodeValue = v.union([
   }),
 ])
 
-const ExtendedSituationNodeValue = v.nullable(
-  v.union([SituationNodeValue, v.boolean()])
-)
-
 export const SituationSchema = v.record(v.string(), SituationNodeValue)
 
 export type SituationSchema = v.InferOutput<typeof SituationSchema>
-
-const ExtendedSituationSchema = v.record(
-  v.string(),
-  v.union([
-    v.strictObject({
-      source: v.literal('omitted'),
-    }),
-    v.object({
-      source: v.union([v.literal('answered'), v.literal('default')]),
-      nodeValue: ExtendedSituationNodeValue,
-    }),
-  ])
-)
-
-export type ExtendedSituationSchema = v.InferOutput<
-  typeof ExtendedSituationSchema
->
 
 export const SimulationParticipantCreateDto = v.object({
   id: v.pipe(v.string(), v.uuid()),
@@ -134,7 +113,6 @@ export const SimulationParticipantCreateDto = v.object({
   additionalQuestionsAnswers: v.optional(AdditionalQuestionsAnswersSchema),
   foldedSteps: v.optional(FoldedStepsSchema, []),
   situation: SituationSchema,
-  extendedSituation: v.optional(ExtendedSituationSchema),
 })
 
 export type SimulationParticipantCreateDto = v.InferOutput<
