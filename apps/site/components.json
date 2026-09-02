@@ -15,7 +15,7 @@
   "aliases": {
     "components": "@/components",
     "utils": "@/utils/cn",
-    "ui": "@/design-system/ui",
+    "ui": "@/design-system/shadcn",
     "lib": "@/utils",
     "hooks": "@/hooks"
   },

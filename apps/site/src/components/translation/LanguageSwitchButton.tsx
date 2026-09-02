@@ -3,7 +3,11 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import { footerClickLanguage } from '@/constants/tracking/layout'
 import { captureFooterClickLanguage } from '@/constants/tracking/posthogTrackers'
-import DropdownMenu from '@/design-system/layout/DropdownMenu'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/design-system/shadcn/popover'
 import Emoji from '@/design-system/utils/Emoji'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { useAlternateLanguagePaths } from '@/hooks/useAlternateLanguagePaths'
@@ -14,7 +18,7 @@ import {
 } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
@@ -43,6 +47,8 @@ const getLanguageTitle = (locale: Locale): string => {
 // the one declared by the page's hreflang metadata — handles pages whose
 // slugs differ per locale (e.g. action detail pages)
 const generateLanguageUrl = (alternatePath: string): string => {
+  if (typeof window == 'undefined') return ''
+
   const url = new URL(window.location.href)
 
   url.pathname = alternatePath
@@ -56,10 +62,7 @@ const handleLanguageClick = (newLocale: Locale) => {
   updateLangCookie(newLocale)
 }
 
-export default function LanguageSwitchButton({
-  size = 'sm',
-  className,
-}: Props) {
+export default function LanguageSwitchButton({ className }: Props) {
   const currentLocale = useCurrentLocale(i18nConfig)
   const alternatePaths = useAlternateLanguagePaths()
 
@@ -82,17 +85,18 @@ export default function LanguageSwitchButton({
       ? currentLocale
       : i18nConfig.defaultLocale
 
+  const notActiveLanguage = LANGUAGES.find(
+    (language) => language.locale !== activeLocale
+  )!
+
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+
   return (
     <div className={twMerge('max-tiny:mr-1 mr-2', className)}>
-      <DropdownMenu
-        panelClassName="max-w-24 min-w-24"
-        trigger={({ isOpen, buttonRef, buttonId, panelId, onToggle }) => (
+      <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+        <PopoverTrigger>
           <button
-            ref={buttonRef}
-            id={buttonId}
             color="secondary"
-            aria-expanded={isOpen}
-            aria-controls={panelId}
             aria-label={
               activeLocale === 'en'
                 ? 'Select language'
@@ -101,8 +105,7 @@ export default function LanguageSwitchButton({
             lang={activeLocale}
             title={getLanguageTitle(activeLocale)}
             data-testid="language-switch-button"
-            className="hover:bg-primary-100 active:bg-primary-200 transitions-colors inline-flex items-center gap-2 rounded-lg px-2 py-2 sm:px-4 sm:py-3"
-            onClick={onToggle}>
+            className="hover:bg-primary-100 active:bg-primary-200 transitions-colors inline-flex items-center gap-2 rounded-lg px-2 py-2 sm:px-4 sm:py-3">
             <Emoji>{currentLanguage.flag}</Emoji>
             <span className="text-primary-700 capitalize">
               {currentLanguage.label}
@@ -110,47 +113,31 @@ export default function LanguageSwitchButton({
             <ChevronRight
               className={twMerge(
                 'ml-1 inline-block w-1.5 transition-transform',
-                isOpen ? 'rotate-[-90deg]' : 'rotate-90'
+                isPopoverOpen ? 'rotate-[-90deg]' : 'rotate-90'
               )}
             />
           </button>
-        )}>
-        {({ closeMenu, getItemClassName }) => {
-          const availableLanguages = LANGUAGES.filter(
-            (language) => alternatePaths[language.locale]
-          )
-
-          const notActiveLanguage = LANGUAGES.filter(
-            (language) => language.locale !== activeLocale
-          )[0]
-
-          return (
-            <li key={notActiveLanguage.locale}>
-              <Link
-                href={generateLanguageUrl(
-                  alternatePaths[notActiveLanguage.locale]!
-                )}
-                lang={notActiveLanguage.locale}
-                data-testid={`language-switch-button-${notActiveLanguage.locale}`}
-                title={getLanguageTitle(notActiveLanguage.locale)}
-                onClick={() => {
-                  handleLanguageClick(notActiveLanguage.locale)
-                  closeMenu()
-                }}
-                className={getItemClassName({
-                  index: 0,
-                  itemsCount: 1,
-                })}>
-                <Emoji>{notActiveLanguage.flag}</Emoji>
-
-                <span className="text-primary-700 font-normal capitalize">
-                  {notActiveLanguage.label}
-                </span>
-              </Link>
-            </li>
-          )
-        }}
-      </DropdownMenu>
+        </PopoverTrigger>
+        <PopoverContent className="max-w-24 min-w-24 translate-y-6">
+          <Link
+            href={generateLanguageUrl(
+              alternatePaths[notActiveLanguage.locale]!
+            )}
+            lang={notActiveLanguage?.locale}
+            data-testid={`language-switch-button-${notActiveLanguage.locale}`}
+            title={getLanguageTitle(notActiveLanguage.locale)}
+            onClick={() => {
+              handleLanguageClick(notActiveLanguage.locale)
+              setIsPopoverOpen(false)
+            }}
+            className="hover:bg-primary-50 active:bg-primary-100 rounded-sm px-2 py-2">
+            <Emoji>{notActiveLanguage.flag}</Emoji>{' '}
+            <span className="text-primary-700 font-normal capitalize">
+              {notActiveLanguage.label}
+            </span>
+          </Link>
+        </PopoverContent>
+      </Popover>
     </div>
   )
 }

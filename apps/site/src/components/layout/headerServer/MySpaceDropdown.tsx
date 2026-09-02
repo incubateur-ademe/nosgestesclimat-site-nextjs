@@ -15,7 +15,11 @@ import {
 } from '@/constants/tracking/user-account'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
-import DropdownMenu from '@/design-system/layout/DropdownMenu'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/design-system/shadcn/popover'
 import { resetLocalState } from '@/helpers/user/resetLocalState'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -25,6 +29,7 @@ import {
 } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import posthog from 'posthog-js'
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const MAX_EMAIL_LENGTH = 20
@@ -65,65 +70,54 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     onLogout()
   }
 
-  return (
-    <DropdownMenu
-      panelClassName="min-w-[200px]"
-      trigger={({ isOpen, buttonRef, buttonId, panelId, onToggle }) => {
-        const ariaLabelTitle = isOpen
-          ? t(
-              'header.monEspace.openMenuButton.close.title',
-              'Mon espace ({{email}}), fermer le menu',
-              { email }
-            )
-          : t(
-              'header.monEspace.openMenuButton.open.title',
-              'Mon espace ({{email}}), ouvrir le menu',
-              { email }
-            )
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
-        return (
-          <Button
-            ref={buttonRef}
-            id={buttonId}
-            size="sm"
-            color="secondary"
-            className="max-tiny:px-2 max-tiny:py-2 inline-flex gap-1 align-baseline"
-            data-testid="my-space-button"
-            aria-expanded={isOpen}
-            aria-controls={panelId}
-            aria-label={ariaLabelTitle}
-            title={ariaLabelTitle}
-            onClick={() => {
-              trackToggle()
-              onToggle()
-            }}>
-            <Trans i18nKey="header.monEspace.title">Mon espace</Trans>{' '}
-            <span className="hidden md:inline">({displayEmail})</span>
-            <ChevronRight
-              className={twMerge(
-                'max-tiny:ml-1.5 ml-3 inline-block w-2 transition-transform',
-                isOpen ? 'rotate-[-90deg]' : 'rotate-90'
-              )}
-            />
-          </Button>
-        )
-      }}>
-      {({ closeMenu, getItemClassName }) => (
-        <>
+  const ariaLabelTitle = isPopoverOpen
+    ? t(
+        'header.monEspace.openMenuButton.close.title',
+        'Mon espace ({{email}}), fermer le menu',
+        { email }
+      )
+    : t(
+        'header.monEspace.openMenuButton.open.title',
+        'Mon espace ({{email}}), ouvrir le menu',
+        { email }
+      )
+
+  return (
+    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          size="sm"
+          color="secondary"
+          className="max-tiny:px-2 max-tiny:py-2 inline-flex gap-1 align-baseline"
+          data-testid="my-space-button"
+          aria-label={ariaLabelTitle}
+          title={ariaLabelTitle}
+          onClick={() => {
+            trackToggle()
+          }}>
+          <Trans i18nKey="header.monEspace.title">Mon espace</Trans>{' '}
+          <span className="hidden md:inline">({displayEmail})</span>
+          <ChevronRight
+            className={twMerge(
+              'max-tiny:ml-1.5 ml-3 inline-block w-2 transition-transform',
+              isPopoverOpen ? 'rotate-[-90deg]' : 'rotate-90'
+            )}
+          />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="relative z-400 w-80 translate-y-6 bg-white">
+        <ul>
           <li>
             <Link
               href={MON_ESPACE_PATH}
               data-testid="my-space-link"
               className={twMerge(
-                'text-default block min-h-10 px-4 py-2 text-sm',
-                getItemClassName({
-                  index: 0,
-                  itemsCount: 2,
-                })
+                'text-default hover:bg-primary-50 active:bg-primary-100 block min-h-10 rounded-sm px-4 py-2 text-sm'
               )}
               onClick={() => {
                 trackAccess()
-                closeMenu()
               }}>
               <Trans i18nKey="header.monEspace.access">
                 Accéder à mon espace
@@ -135,19 +129,15 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
               type="button"
               data-testid="my-space-logout-button"
               className={twMerge(
-                'flex min-h-10 w-full items-center gap-2 px-4 py-2 text-sm',
-                getItemClassName({
-                  index: 1,
-                  itemsCount: 2,
-                })
+                'hover:bg-primary-50 active:bg-primary-100 flex min-h-10 w-full items-center gap-2 rounded-sm px-4 py-2 text-sm'
               )}
-              onClick={() => handleLogout(closeMenu)}>
+              onClick={() => handleLogout(() => setIsPopoverOpen(false))}>
               <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>
               <LogOutIcon className="fill-default w-4" />
             </button>
           </li>
-        </>
-      )}
-    </DropdownMenu>
+        </ul>
+      </PopoverContent>
+    </Popover>
   )
 }

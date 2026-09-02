@@ -2,10 +2,10 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 @import '@radix-ui/themes/styles.css';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
-@config '../../../tailwind.config.js';
+@config '../../tailwind.config.js';
 
 @theme {
   --color-heroLightBackground: #f0f8ff;
