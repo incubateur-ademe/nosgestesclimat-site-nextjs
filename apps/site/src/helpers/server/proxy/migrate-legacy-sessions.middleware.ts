@@ -16,6 +16,19 @@ const anonSessionOptions = {
   ttl: 0,
 }
 
+
+// Options figées sur l'état des cookies legacy au moment de leur pose (avant
+// la refonte authentification, ec804e964^).
+const LEGACY_COOKIE_DELETION_OPTIONS = {
+  httpOnly: true,
+  secure: true,
+  partitioned: true,
+  sameSite: 'none' as const,
+  domain: new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname,
+  path: '/',
+  maxAge: 0,
+}
+
 export async function middlewareMigrateLegacySessions(
   request: NextRequest
 ): Promise<MiddlewareResult> {
@@ -59,7 +72,11 @@ export async function middlewareMigrateLegacySessions(
     redirect: null,
     cookies: [
       ...buildSessionCookies(tokens),
-      { name: ANON_SESSION_COOKIE, value: '', options: { maxAge: 0 } },
+      {
+        name: ANON_SESSION_COOKIE,
+        value: '',
+        options: LEGACY_COOKIE_DELETION_OPTIONS,
+      },
     ],
   }
 }
