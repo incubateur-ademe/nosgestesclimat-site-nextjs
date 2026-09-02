@@ -17,7 +17,7 @@ export default function Objective({ locale, carbonFootprint }: Props) {
         <Title size="lg" tag="h2" hasSeparator={false}>
           <Trans locale={locale} i18nKey="results.objective.title">
             Objectif national :{' '}
-            <span className="text-secondary-700">2T de CO₂e</span> par personne
+            <span className="text-secondary-700">2t de CO₂e</span> par personne
             en 2050
           </Trans>
         </Title>

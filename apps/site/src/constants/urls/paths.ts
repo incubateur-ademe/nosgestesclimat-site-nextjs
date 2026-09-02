@@ -2,6 +2,7 @@ export const SIMULATOR_PATH = '/simulateur/bilan'
 export const TUTORIAL_PATH = '/simulateur/tutoriel'
 export const SIMULATOR_INTERCALAIRE_PATH = '/simulateur/intercalaire'
 export const START_SIMULATION_PATH = '/simulateur/commencer'
+export const EMAIL_SIMULATOR_PATH = '/simulateur/email'
 
 export const MON_ESPACE_PATH = '/mon-espace'
 
@@ -24,6 +25,8 @@ export const ORGANISATION_HOME_PAGE = '/organisations'
 export const ORGANISATION_CREATE_PATH = '/organisations/creer'
 export const ORGANISATION_SIGN_IN_PATH = '/organisations/connexion'
 export const ORGANISATION_SIGN_UP_PATH = '/organisations/inscription'
+
+export const GROUP_RESULTS_ROUTE_PATTERN = '/[locale]/amis/resultats'
 
 export const ACTIONS_PATH = '/actions'
 export const ACTION_DETAIL_PATH = (themeSlug: string, actionSlug: string) =>

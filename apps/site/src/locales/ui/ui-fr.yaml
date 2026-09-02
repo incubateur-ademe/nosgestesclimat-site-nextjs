@@ -4,7 +4,6 @@ entries:
   Choisir une autre région: Choisir une autre région
   Choisissez une région parmi celles disponibles !: Choisissez une région parmi celles disponibles !
   Commencer: Commencer
-  Comprendre le calcul: Comprendre le calcul
   Copier le lien: Copier le lien
   Documentation: Documentation
   Envie de contribuer à une version pour votre région ?: Envie de contribuer à une version pour votre région ?
@@ -15,17 +14,14 @@ entries:
   Non: Non
   Nouveautés: Nouveautés
   Oui: Oui
-  Personnalisez cette estimation: Personnalisez cette estimation
   Précédent: Précédent
   'Quelques suggestions ': 'Quelques suggestions '
   Questions fréquentes: Questions fréquentes
   Suivez le guide !: Suivez le guide !
-  Sur le même sujet: Sur le même sujet
   components.localisation.LocalisationMessage.betaMsg: Elle est actuellement en version <1>bêta</1>.
   et: et
   participant: participant
   publicodes.planDuSite.title: Plan du site
-  publicodes.planDuSite.actionsPlus: Les actions
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
   tonne: tonne
   tonnes: tonnes
@@ -55,7 +51,6 @@ entries:
   Par rapport à la moyenne du groupe.: Par rapport à la moyenne du groupe.
   Vos points faibles: Vos points faibles
   Vos points forts: Vos points forts
-  Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.
   Modifier le nom du groupe: Modifier le nom du groupe
   Ok, sauvegarder la modification: Ok, sauvegarder la modification
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
@@ -83,13 +78,11 @@ entries:
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
   du test: du test
   Vous utilisez la version: Vous utilisez la version
-  Voir toutes les actions: Voir toutes les actions
   Distance: Distance
   Fréquence: Fréquence
   Label: Label
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
-  Comment agir ?: Comment agir ?
   Ajouter: Ajouter
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
   Retour à la liste des nouveautes: Retour à la liste des nouveautes
@@ -113,12 +106,10 @@ entries:
   Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.
   Cette opération est définitive et supprimera le groupe pour tous ses membres.: Cette opération est définitive et supprimera le groupe pour tous ses membres.
   Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.
-  Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
   D'autres questions ?: D'autres questions ?
   de: de
   Ma région de simulation: Ma région de simulation
   Quitter: Quitter
-  Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe
   Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.
   Période: Période
@@ -147,7 +138,6 @@ entries:
   Voir les paramètres: Voir les paramètres
   Vous avez une question ?: Vous avez une question ?
   Voir mes résultats: Voir mes résultats
-  La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
   Accéder au kit: Accéder au kit
   Administrateur·ice: Administrateur·ice
   Impact CO2: Impact CO2
@@ -183,7 +173,6 @@ entries:
   Notes: Notes
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.
   Accessibilité - Nos Gestes Climat: Accessibilité - Nos Gestes Climat
-  Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
   Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
   Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.
@@ -194,7 +183,6 @@ entries:
   Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
   Contactez l'équipe de Nos Gestes Climat.: Contactez l'équipe de Nos Gestes Climat.
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.
-  Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
   Découvrez les nouveautés du site Nos Gestes Climat.: Découvrez les nouveautés du site Nos Gestes Climat.
   Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Diffusez Nos Gestes Climat dans votre organisation.
@@ -480,8 +468,6 @@ entries:
   Lien copié: Lien copié
   Nos derniers articles: Nos derniers articles
   Partager l'article: Partager l'article
-  La valeur maximum pour ce champ est de: La valeur maximum pour ce champ est de
-  La valeur pour ce champ est comprise entre: La valeur pour ce champ est comprise entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.
   '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}': '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}'
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
@@ -634,7 +620,6 @@ entries:
   Qu'est-ce que l'empreinte carbone ?: Qu'est-ce que l'empreinte carbone ?
   Qu'est-ce que l'empreinte eau ?: Qu'est-ce que l'empreinte eau ?
   Réaliser des travaux d'isolation de son logement (pour les propriétaires): Réaliser des travaux d'isolation de son logement (pour les propriétaires)
-  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.
   footer.thematicLandingPages.title: Pages thématiques
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
@@ -784,6 +769,11 @@ entries:
   pollResults.radarChart.legend.average: Moyenne
   pollResults.radarChart.legend.userResults: Mes résultats
   pollResults.radarChart.title: Votre empreinte par rapport aux autres participants
+  pollResults.waterFootprint.title: Et à propos de l'empreinte eau ?
+  pollResults.waterFootprint.unit: litres / jour
+  pollResults.waterFootprint.averageLabel: empreinte eau moyenne des participants
+  pollResults.waterFootprint.body: C'est l'eau nécessaire pour produire et distribuer vos <2>biens et services</2>. En règle générale, les empreintes eau varient entre <4>3 000</4> et <7>9 000</7> litres par jour. L'eau dite "domestique" (douche, toilettes, cuisine...) n'est pas comptée.
+  pollResults.waterFootprint.learnMore: En savoir plus
   common.category.alimentationShort: Alim.
   pollResults.footprintBarChart.targetLabelMobile: 'Objectif 2050 :'
   Empreinte carbone moyenne: Empreinte carbone moyenne
@@ -811,7 +801,13 @@ entries:
   actions.detailPage.impact.value: <0>{{formattedValue}}</0> {{unit}} CO<4>2</4>e / an
   actions.components.highestImpactActionsSection.title: Le trio gagnant
   actions.components.highestImpactActionsSection.description: Les actions qui auraient le plus d'impact sur votre empreinte
-  actions.components.actionCard.link: Voir l'action "{{actionTitle}}"
+  actions.components.highestImpactActionsSection.testWhiteBackground.title: Voici vos 3 actions qui auront le plus d'impact
+  actions.components.highestImpactActionsSection.testWhiteBackground.description: C'est ici que se joue l'essentiel de votre empreinte.
+  actions.components.actionCard.highlighted.link: Voir l'action
+  actions.components.actionCard.highlighted.potentialImpact: Impact potentiel
+  actions.components.actionCard.highlighted.footprintShare: soit {{percentage}} % de votre empreinte totale
+  actions.components.actionCard.link: Voir l'action<1> "{{actionTitle}}"</1>
+  actions.components.actionCard.ctaVariant.link: Voir l'action<1> "{{actionTitle}}"</1>
   actions.components.actionCard.impactTag: Jusqu'à {{formattedValue}} {{unit}} CO<5>2</5>e / an
   actions.components.actionCard.noImpactTag: Impact non quantifiable
   actions.components.actionCard.lowImpactTag: Moins de {{formattedValue}} {{unit}} CO<5>2</5>e / an
@@ -1038,7 +1034,7 @@ entries:
   footer.wantToAct.button: Je choisis mes infolettres
   footer.wantToAct.description: Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.
   footer.wantToAct.title: Envie d'agir, pas à pas ?
-  footer.resources.actions: Actions
+  footer.resources.actions: J’agis
   ui.emailInput.error.invalid: 'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
   ui.emailInput.error.required: Veuillez entrer une adresse e-mail
   ui.emailInput.label: Votre adresse e-mail
@@ -1066,11 +1062,11 @@ entries:
   results.objective.collectiveEffort.stateDescription: Il peut accélérer la <1>décarbonation</1> de la société en <3>votant des lois</3> et des <6>aides financières ciblées</6>, ainsi qu'au travers de ses investissements.
   results.objective.collectiveEffort.title: "Important : c'est aussi un effort collectif"
   results.objective.description: L'objectif de la France pour atteindre la neutralité carbone en 2050 et aider à limiter le réchauffement mondial à + 2 °C.
-  results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}T en {{year}}</5>
+  results.objective.over4.description: Bravo, aujourd'hui vous êtes déjà <2>en transition vers l'objectif intermédiaire</2> de <5>{{secondObjectiveNumber}}t en {{year}}</5>
   results.objective.over7.description: Aujourd’hui, <1>vous êtes au-dessus des 7 tonnes</1>, l’objectif intermédiaire que nous proposons pour 2030.
   results.objective.reduction.over4.description: Votre rythme indicatif pour parvenir à <2>{{secondObjectiveNumber}}T en {{year}}</2>
   results.objective.reduction.over7.description: Votre rythme indicatif pour parvenir à <2>{{firstObjectiveNumber}}T en {{year}}</2>
-  results.objective.title: 'Objectif national : <2>2T de CO₂e</2> par personne en 2050'
+  results.objective.title: 'Objectif national : <2>2t de CO₂e</2> par personne en 2050'
   results.objective.under4.description.body: Avec le travail de l’État et toute la société dans les années à venir, votre empreinte devrait naturellement diminuer pour se rapprocher des 2 tonnes.
   results.objective.under4.description.title: Vous êtes déjà sous les {{secondObjectiveNumber}} tonnes, bravo !
   Vous aujourd'hui: Vous aujourd'hui
@@ -1157,7 +1153,6 @@ entries:
   organisations.askDemo.iframe.title: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
   results.tabs.groups: Test collectif
   results.tabs.myGroups: Créer un test collectif
-  Retour à la liste: Retour à la liste
   ctaButtons.collective.label: Créer un test collectif
   ctaButtons.retake.label: Repasser le test
   Résultats immédiats, confidentiel et gratuit.: Résultats immédiats, confidentiel et gratuit.
@@ -1212,7 +1207,7 @@ entries:
   Votre e-mail, rejoindre un test collectif - Nos Gestes Climat: Votre e-mail, rejoindre un test collectif - Nos Gestes Climat
   vous souhaitez lancer un test collectif Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: vous souhaitez lancer un test collectif Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
   Calculez votre empreinte sur le climat<1> en 10 minutes </1>top chrono.: Calculez votre empreinte sur le climat<1> en 10 minutes </1>top chrono.
-  groups.results.rankingMember.simulationDeleted: Utilisateur anonyme (données supprimées par le participant)
+  groups.results.rankingMember.anonymous: Utilisateur anonyme
   mon-espace.resultsList.hasMigratedSimulations: Nous avons retrouvé des simulations sur ce navigateur et les avons ajoutées à votre espace. Vous pouvez les supprimer à tout moment.
   mySpace.resultList.item.delete.mainButton.label: Supprimer
   mySpace.resultList.item.delete.modal.confirm: Confirmer la suppression
@@ -1280,7 +1275,7 @@ entries:
   simulator.intercalaire.goToConsommation: Passer à la consommation
   simulator.intercalaire.goToLogement: Passer au logement
   simulator.intercalaire.goToTransport: Passer au transport
-  common.authentication.verifyEmail: Vérifier mon adresse électronique
+  common.authentication.verifyEmail: Vérifier mon adresse e-mail
   common.optional: facultatif
   common.skip: Passer
   tutorial.email.contest.default: Votre e-mail sera utilisé pour le tirage au sort.
@@ -1288,8 +1283,8 @@ entries:
   tutorial.email.seeMore: En savoir plus
   tutorial.email.subtitle.default: Pour conserver vos résultats et les retrouver à l'avenir dans <2>votre espace personnel</2>
   tutorial.email.subtitle.youth: Pour conserver tes résultats et les retrouver à l'avenir dans <2>ton espace personnel</2>
-  tutorial.email.title.default: Votre adresse électronique
-  tutorial.email.title.youth: Ton adresse électronique
+  tutorial.email.title.default: Votre adresse e-mail
+  tutorial.email.title.youth: Ton adresse e-mail
   actions.components.themeSection.description: '{{count}} actions recommandées'
   components.markdown.linkTargetBlankAriaLabel: (ouvrir dans une nouvelle fenêtre)
   components.carousel.prevSlideMessage: Diapo précédente
@@ -1323,8 +1318,8 @@ entries:
   event.ctas.card2.title: Avec votre organisation
   event.ctas.description: Deux façons de participer au challenge.
   event.ctas.heading: Prêt·e à rejoindre l'aventure ?
-  event.detail.alt: Du 18 septembre au 8 octobre, Semaine européenne du Développement Durable sur nosgestesclimat.fr
-  event.detail.dates: Du 18 septembre au 8 octobre 2026
+  event.detail.alt: Du {{startDate}} au {{endDate}}, Semaine européenne du Développement Durable sur nosgestesclimat.fr
+  event.detail.dates: Du {{startDate}} au {{endDate}}
   event.detail.title: Semaine Européenne du<1></1>Développement<3></3>Durable
   event.dynamicCounter.primaryCta: Je mobilise mon organisation
   event.dynamicCounter.promise: Résultats en 10 minutes — 100% gratuit
@@ -1372,10 +1367,21 @@ entries:
   event.statistics.second: actions disponibles pour réduire son empreinte
   contact.iframe.title.en: Formulaire - give some feedback about Nos Gestes Climat
   contact.iframe.title.fr: Formulaire - nous faire part de vos remarques sur le site
-  event.podium.list.item.score.big: calculs d'empreinte
-  event.podium.list.item.score.small: tests
+  event.podium.list.item.participations: participations
+  event.podium.generalRankingLink: Voir le classement général
+  event.podium.generalRankingLink.ariaLabel: Voir le classement général, ouvrir dans une nouvelle fenêtre
+  event.podium.updateNote: Le podium se met à jour environ toutes les 15 minutes
+  event.dynamicCounter.primaryCta.ariaLabel: Je mobilise mon organisation, ouvrir dans une nouvelle fenêtre
+  event.dynamicCounter.secondaryCta.ariaLabel: Je participe individuellement, ouvrir dans une nouvelle fenêtre
+  event.ctas.card1.buttonAriaLabel: Je participe, ouvrir dans une nouvelle fenêtre
+  event.ctas.card2.buttonAriaLabel: Je crée un test collectif, ouvrir dans une nouvelle fenêtre
+  event.podium.categories.all: Toutes
+  event.podium.categories.companies: Entreprises
+  event.podium.categories.associations: Associations
+  event.podium.categories.education: Éducation
+  event.podium.categories.publicServices: Services publics
   event.testimonies.4.text: J'ai été surprise de voir que l’essentiel de mon empreinte ne vient pas de mes actions directes comme mes déplacements, mais plutôt de choses plus invisibles au quotidien comme les services publics ou la production des biens que j’achète. Ça m’a fait réaliser que l’impact carbone est souvent indirect.
-  event.countdown.date: Lancement le 1er septembre 2026
+  event.countdown.date: Lancement le {{date}}
   event.countdown.description: Le compteur et le classement en direct<1></1>seront disponibles au lancement de l'évènement.
   event.countdown.label: Début dans
   event.statistics.title: Les données en direct apparaîtront au lancement
@@ -1384,10 +1390,16 @@ entries:
   Services publics: Services publics
   Individu: Individu
   Organisation: Organisation
+  event.podium.previousButton.label: Organisation précédente
   event.podium.nextButton.label: Organisation suivante
   event.podium.remainingList.ariaLabel: Suite du classement
-  event.podium.block.score.text1: calculs d'empreinte
   event.podium.block.score.text2: En attente du lancement
+  event.podium.empty: Aucune {{organisationType}} n'a participé pour le moment
+  event.podium.empty.type.all: organisation
+  event.podium.empty.type.companies: entreprise
+  event.podium.empty.type.associations: association
+  event.podium.empty.type.education: école ou université
+  event.podium.empty.type.public-services: collectivité
   results.footprintBlock.actionsBlock.link: Découvrir mes actions
   results.footprintBlock.actionsBlock.title: 'Comment réduire votre empreinte :'
   common.co2eAn.title: CO₂e / an
@@ -1405,7 +1417,7 @@ entries:
   common.days: Jours
   common.hours: heures
   common.minutes: Minutes
-  common.seconds: seconds
+  common.seconds: secondes
   event.testimonies.4.author.job: Test collectif réalisé par l’organisation Pass Culture
   Toutes: Toutes
   simulator.dontKnow.button.reassuranceYouth: Pas d'inquiétude, on prend des données moyennes pour garder les résultats fiables.
@@ -1427,6 +1439,10 @@ entries:
   signIn.emailForm.error.rateLimited: Un code vient d'être envoyé à cette adresse. Veuillez patienter avant d'en demander un nouveau.
   signIn.code.rateLimited: Veuillez patienter un instant avant de réessayer.
   signIn.code.invalid: Le code est invalide
+  emailConfirmation.title: Jeu concours -
+  emailConfirmation.subtitle: Votre participation a bien été prise en compte
+  emailConfirmation.text: Vos résultats d'empreinte sont prêts. Cliquez sur le bouton ci-dessous pour les consulter.
+  emailConfirmation.seeResults: Voir mes résultats
   banner.close: Fermer la bannière
   common.errors.errorHappening: Une erreur est survenue. Veuillez réessayer.
   Gérez vos abonnements aux infolettres Nos Gestes Climat. Sélectionnez les newsletters qui vous intéressent pour recevoir des conseils personnalisés sur la réduction de votre empreinte carbone.: Gérez vos abonnements aux infolettres Nos Gestes Climat. Sélectionnez les newsletters qui vous intéressent pour recevoir des conseils personnalisés sur la réduction de votre empreinte carbone.
@@ -1437,3 +1453,13 @@ entries:
   userParams.updateInfo: Mettre à jour mes coordonnées
   simulator.funFact.clothing: <0><0><0>💡</0> Le saviez-vous ?</0><1>En moyenne, les Français achètent chaque année, <2>9,5 kg de vêtements... mais n'en trient que 3,4 kg !</2></1></0>
   simulator.funFact.ia: <0><0><0>💡</0> Un mot sur l'IA</0><1>Le recours à l'intelligence artificielle entraîne une <2>hausse de la consommation d'électricité, d'eau et d'espace pour les data centers</2>. Des études sont en cours pour disposer de données fiables sur les impacts et mieux vous informer.</1></0>
+  Quitter le groupe: Quitter le groupe
+  actions.components.actionCard.highlighted.impactUnit: CO<1>2</1>e / an
+  actions.components.themeSections.testWhiteBackground.title: Voici d’autres actions qui vous aideront à réduire votre empreinte
+  actions.components.themeSections.testWhiteBackground.description: 'À impact variable : des gestes à fort impact aux petit pas.'
+  La valeur maximum pour ce champ est de: La valeur maximum pour ce champ est de
+  La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
+  La valeur pour ce champ est comprise entre: La valeur pour ce champ est comprise entre
+  actions.components.highestImpactActionsSection.publicDescription: Le top 3 des actions qui permettent de limiter ou réduire ses émissions de CO<1>2</1>
+  actions.detailPage.sections.otherThemeActions.description: Sélectionnées selon vos réponses au simulateur
+  actions.detailPage.sections.otherThemeActions.title: Découvrez d’autres actions pour réduire votre empreinte

@@ -11,6 +11,10 @@ export interface Action {
   trackingId: string
   language: ISOSupportedLanguage
   /**
+   * Short teaser of the action (text only)
+   */
+  description?: string
+  /**
    * Explanation of the action and its impact (Markdown)
    */
   longDescription: string
@@ -39,6 +43,7 @@ export interface Action {
 export interface ActionTranslationInput {
   title: string
   slug: string
+  description?: string | null
   longDescription: string
   media?: ActionMedia | null
   tips?: string | null

@@ -67,9 +67,9 @@ export const addOrUpdateBrevoParticipantContact: Handler<
     if (email && participantId !== administratorId) {
       await addOrUpdateParticipantContactAfterGroupChange({
         email,
-        joinedGroupsCount: await transaction((session) =>
-          getGroupsJoinedCount(participantId, { session })
-        ),
+        joinedGroupsCount: await getGroupsJoinedCount(participantId, {
+          session: prisma,
+        }),
       })
     }
   }

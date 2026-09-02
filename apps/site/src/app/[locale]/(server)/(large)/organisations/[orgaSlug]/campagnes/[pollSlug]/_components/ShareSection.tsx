@@ -46,7 +46,7 @@ export default function ShareSection({ poll, className, title }: Props) {
   })
 
   return (
-    <section className={twMerge('mt-10', className)}>
+    <section className={twMerge('mt-8', className)}>
       <div className="flex flex-col items-start">
         <h2 className="mb-4">
           {title ?? (

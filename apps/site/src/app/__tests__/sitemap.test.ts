@@ -5,10 +5,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 const BASE_URL = 'http://localhost:3000'
 
 vi.mock('@/helpers/markdown/getPosts', () => ({
-  getPosts: vi.fn((folderPath: string) =>
+  getPosts: vi.fn((locale: Locale) =>
     Promise.resolve([
       {
-        slug: `release-${folderPath.includes('/en/') ? 'en' : 'fr'}`,
+        slug: `release-${locale}`,
         data: { date: '2024-01-15T00:00:00Z' },
       },
     ])

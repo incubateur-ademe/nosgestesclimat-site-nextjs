@@ -1,13 +1,13 @@
 'use client'
 
-import HowToAct from '@/components/actions/howToAct/HowToAct'
 import FootprintSelector from '@/components/footprints/FootprintSelector'
 import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import Separator from '@/design-system/layout/Separator'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
-import { useUser } from '@/publicodes-state'
+import type { Locale } from '@/i18nConfig'
+import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group, Results } from '@/types/groups'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import type { ReactNode } from 'react'
@@ -21,13 +21,16 @@ import Ranking from './groupResults/Ranking'
 
 export default function GroupResults({
   group,
+  user,
   categoriesAccordion,
+  actionsSection,
 }: {
+  locale: Locale
   group: Group
+  user: AppUser
   categoriesAccordion?: ReactNode
+  actionsSection?: ReactNode
 }) {
-  const { user } = useUser()
-
   const isOwner = isGroupOwner(group, user)
 
   const [footprintSelected, setFootprintSelected] =
@@ -37,7 +40,7 @@ export default function GroupResults({
 
   const results: Results = useGetGroupStats({
     groupMembers: group.participants,
-    userId: user!.id,
+    userId: user.id,
   })
 
   return (
@@ -53,7 +56,7 @@ export default function GroupResults({
         />
       </div>
 
-      <Ranking group={group} metric={footprintSelected} />
+      <Ranking group={group} metric={footprintSelected} user={user} />
 
       <InviteBlock group={group} />
 
@@ -82,11 +85,7 @@ export default function GroupResults({
 
             {categoriesAccordion}
 
-            <Separator className="my-6" />
-
-            <HowToAct />
-
-            <Separator className="my-6" />
+            {actionsSection}
           </>
         )
       }
@@ -94,7 +93,7 @@ export default function GroupResults({
       {isOwner ? (
         <OwnerAdminSection group={group} />
       ) : (
-        <ParticipantAdminSection group={group} />
+        <ParticipantAdminSection group={group} user={user} />
       )}
     </>
   )

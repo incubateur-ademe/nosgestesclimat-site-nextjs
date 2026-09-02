@@ -206,6 +206,79 @@ describe('Given a NGC user', () => {
         })
       })
 
+      test('Then it does not overwrite an existing participant name with an empty name', async () => {
+        const userId = faker.string.uuid()
+        const participantName = faker.person.fullName()
+        const updatedName = faker.person.fullName()
+
+        await agent
+          .post(url.replace(':groupId', groupId))
+          .set(authHeaders({ userId }))
+          .send({
+            name: participantName,
+            simulation: getSimulationPayload(),
+          })
+          .expect(StatusCodes.CREATED)
+
+        // Simulates the call made when an anonymous participant completes its
+        // test: the client holds no name in its session and sends an empty
+        // `name`, which must not erase the one saved when joining.
+        await agent
+          .post(url.replace(':groupId', groupId))
+          .set(authHeaders({ userId }))
+          .send({
+            name: '',
+            simulation: getSimulationPayload(),
+          })
+          .expect(StatusCodes.CREATED)
+
+        const createdParticipant = await prisma.groupParticipant.findUnique({
+          where: {
+            groupId_userId: {
+              groupId,
+              userId,
+            },
+          },
+          select: {
+            user: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        })
+
+        expect(createdParticipant?.user.name).toBe(participantName)
+
+        // A non-empty name must still update the participant name.
+        await agent
+          .post(url.replace(':groupId', groupId))
+          .set(authHeaders({ userId }))
+          .send({
+            name: updatedName,
+            simulation: getSimulationPayload(),
+          })
+          .expect(StatusCodes.CREATED)
+
+        const updatedParticipant = await prisma.groupParticipant.findUnique({
+          where: {
+            groupId_userId: {
+              groupId,
+              userId,
+            },
+          },
+          select: {
+            user: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        })
+
+        expect(updatedParticipant?.user.name).toBe(updatedName)
+      })
+
       test('Then it stores the participant simulation in database', async () => {
         const userId = faker.string.uuid()
         const payload: ParticipantInputCreateDto = {
@@ -230,7 +303,6 @@ describe('Given a NGC user', () => {
             situation: true,
             progression: true,
             computedResults: true,
-            states: true,
             user: {
               select: {
                 id: true,
@@ -248,14 +320,6 @@ describe('Given a NGC user', () => {
           createdAt: expect.any(Date),
           date: expect.any(Date),
           updatedAt: expect.any(Date),
-          states: [
-            {
-              id: expect.any(String),
-              date: expect.any(Date),
-              simulationId: payload.simulation.id,
-              progression: 1,
-            },
-          ],
           user: {
             name: payload.name,
             id: userId,

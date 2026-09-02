@@ -1,9 +1,10 @@
 /**
  * Monkey-patches `page.getByTestId` to always filter by `{ visible: true }`.
  *
- * With `cacheComponents`, React <Activity> keeps previous routes in the DOM
- * (hidden via `display: none`). Playwright locators would otherwise match
- * those hidden copies and fail strict-mode.
+ * During route transitions the previous page stays mounted until the new one
+ * commits, so a testid can briefly exist in several states at once. Filtering
+ * by visibility keeps locators from matching a copy that is not the one the
+ * user sees.
  *
  * Call this once per page (the fixture below does it for `page` from the
  * test fixture; `createPage` in feature-flags.ts does it for pages created

@@ -24,7 +24,6 @@ interface EngineContextType {
   everyInactiveRules: DottedName[]
   everyQuestions: DottedName[]
   everyNotifications: DottedName[]
-  everyUiCategories: DottedName[]
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   rawMissingVariables: MissingVariables
   categories: DottedName[]
@@ -42,7 +41,6 @@ export const EngineContext = createContext<EngineContextType>({
   everyInactiveRules: [],
   everyQuestions: [],
   everyNotifications: [],
-  everyUiCategories: [],
   everyMosaicChildrenWithParent: {} as Record<DottedName, DottedName[]>,
   rawMissingVariables: {} as MissingVariables,
   categories: [],

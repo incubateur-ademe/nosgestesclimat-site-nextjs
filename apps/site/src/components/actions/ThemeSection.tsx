@@ -1,6 +1,7 @@
 import Carousel from '@/design-system/carousel/Carousel'
 import type { Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
+import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
 import { useId } from 'react'
@@ -11,7 +12,7 @@ import HousingIcon from '../icons/HousingIcon'
 import MiscIcon from '../icons/MiscIcon'
 import PublicServicesIcon from '../icons/PublicServicesIcon'
 import Trans from '../translation/trans/TransServer'
-import ActionCard from './ActionCard/ActionCard'
+import ActionCardSwitchServer from './ActionCard/ActionCardSwitchServer'
 
 const classesByTheme: Record<
   Theme['key'],
@@ -50,12 +51,22 @@ export default function ThemeSection({
   locale,
   assessmentStatus,
   from,
+  trackingSource,
+  title,
+  description,
+  className,
 }: {
-  theme: Theme
+  theme: Pick<Theme, 'key' | 'title'>
   actions: MaybePersonalizedAction[]
   locale: Locale
   assessmentStatus?: SimulationComputationStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
+  trackingSource?: ActionEventSource
+  /** Defaults to the theme title */
+  title?: React.ReactNode
+  /** Defaults to the number of actions in the section */
+  description?: React.ReactNode
+  className?: string
 }) {
   const carouselLabelId = useId()
   const classes = classesByTheme[theme.key]
@@ -63,23 +74,26 @@ export default function ThemeSection({
   return (
     <section
       className={twMerge(
-        '-mx-4 border-t-2 border-b-2 px-2 pt-5 pb-4 md:mx-0 md:rounded-2xl md:border-2 md:px-5 md:pt-8 md:pb-7',
-        classes.section
+        '-mx-4 min-w-0 border-t-2 border-b-2 px-2 pt-5 pb-4 md:mx-0 md:rounded-2xl md:border-2 md:px-5 md:pt-8 md:pb-7',
+        classes.section,
+        className
       )}>
       <div className="mb-4 flex items-start justify-between gap-2">
         <div className="flex items-start gap-1">
           <ThemeIcon themeKey={theme.key} />
           <div className={classes.header}>
             <h2 id={carouselLabelId} className="mb-0 text-lg/normal font-bold">
-              {theme.title}
+              {title ?? theme.title}
             </h2>
             <p className="text-sm/normal font-normal">
-              <Trans
-                locale={locale}
-                i18nKey="actions.components.themeSection.description"
-                values={{ count }}>
-                {'{{count}} actions recommandées'}
-              </Trans>
+              {description ?? (
+                <Trans
+                  locale={locale}
+                  i18nKey="actions.components.themeSection.description"
+                  values={{ count }}>
+                  {'{{count}} actions recommandées'}
+                </Trans>
+              )}
             </p>
           </div>
         </div>
@@ -90,7 +104,7 @@ export default function ThemeSection({
         className="-mx-2 md:mx-0"
         innerClassName="py-1 px-2 md:px-0">
         {actions.map((action) => (
-          <ActionCard
+          <ActionCardSwitchServer
             key={action.id}
             action={action}
             locale={locale}
@@ -98,6 +112,7 @@ export default function ThemeSection({
             assessmentStatus={assessmentStatus}
             className="h-full"
             from={from}
+            source={trackingSource}
           />
         ))}
       </Carousel>

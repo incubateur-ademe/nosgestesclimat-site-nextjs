@@ -1,3 +1,4 @@
+import { ComputedResultSchema } from '@nosgestesclimat/core/features/simulations/validators/computed-results.schema'
 import * as v from 'valibot'
 import { ListIds } from '../../adapters/brevo/constant.ts'
 import {
@@ -21,26 +22,7 @@ const ActionChoicesSchema = v.record(v.string(), v.boolean())
 
 export type ActionChoicesSchema = v.InferOutput<typeof ActionChoicesSchema>
 
-const CategoriesSchema = v.strictObject({
-  alimentation: v.number(),
-  transport: v.number(),
-  logement: v.number(),
-  divers: v.number(),
-  'services sociétaux': v.number(),
-})
-
-const MetricComputedResultSchema = v.strictObject({
-  bilan: v.number(),
-  categories: CategoriesSchema,
-  subcategories: v.record(v.string(), v.number()),
-})
-
-export const ComputedResultSchema = v.strictObject({
-  carbone: MetricComputedResultSchema,
-  eau: MetricComputedResultSchema,
-})
-
-export type ComputedResultSchema = v.InferOutput<typeof ComputedResultSchema>
+export { ComputedResultSchema } from '@nosgestesclimat/core/features/simulations/validators/computed-results.schema'
 
 const AdditionalQuestionsAnswersSchema = v.array(
   v.union([
@@ -110,30 +92,9 @@ const SituationNodeValue = v.union([
   }),
 ])
 
-const ExtendedSituationNodeValue = v.nullable(
-  v.union([SituationNodeValue, v.boolean()])
-)
-
 export const SituationSchema = v.record(v.string(), SituationNodeValue)
 
 export type SituationSchema = v.InferOutput<typeof SituationSchema>
-
-const ExtendedSituationSchema = v.record(
-  v.string(),
-  v.union([
-    v.strictObject({
-      source: v.literal('omitted'),
-    }),
-    v.object({
-      source: v.union([v.literal('answered'), v.literal('default')]),
-      nodeValue: ExtendedSituationNodeValue,
-    }),
-  ])
-)
-
-export type ExtendedSituationSchema = v.InferOutput<
-  typeof ExtendedSituationSchema
->
 
 export const SimulationParticipantCreateDto = v.object({
   id: v.pipe(v.string(), v.uuid()),
@@ -152,7 +113,6 @@ export const SimulationParticipantCreateDto = v.object({
   additionalQuestionsAnswers: v.optional(AdditionalQuestionsAnswersSchema),
   foldedSteps: v.optional(FoldedStepsSchema, []),
   situation: SituationSchema,
-  extendedSituation: v.optional(ExtendedSituationSchema),
 })
 
 export type SimulationParticipantCreateDto = v.InferOutput<

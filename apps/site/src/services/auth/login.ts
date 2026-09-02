@@ -16,7 +16,6 @@ import { fetchServer } from '@/helpers/server/fetchServer'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
 import { revalidatePath } from 'next/cache'
-import { v4 } from 'uuid'
 import { createAppSession } from './create-app-session'
 import { getUserSession } from './get-user-session'
 
@@ -36,7 +35,13 @@ export const login = async ({
       `${AUTHENTICATION_URL}/login${params}`,
       {
         method: 'POST',
-        body: { email, code, userId: session?.id ?? v4() },
+        // userId is server-derived via x-user-id (fetchServer forwards it from
+        // the session cookie). Keeping it out of the body preserves the
+        // "one session id = one account" invariant.
+        body: {
+          email,
+          code,
+        },
       }
     )
 

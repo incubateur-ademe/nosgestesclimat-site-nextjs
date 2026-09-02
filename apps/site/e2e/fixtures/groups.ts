@@ -63,8 +63,7 @@ export class Group {
     await this.page.getByTestId('group-name-edit-button').click()
     await this.page.getByTestId('group-edit-input-name').fill(newName)
     await this.page.getByTestId('button-inline-input').click()
-    // eslint-disable-next-line playwright/no-networkidle
-    await this.page.waitForLoadState('networkidle')
+    await expect(this.page.getByTestId('group-name')).toContainText(newName)
     this.data.name = newName
   }
 
@@ -72,12 +71,24 @@ export class Group {
     await user.page.goto(this.inviteLink)
     await user.page.getByTestId('member-name').fill(user.firstName)
     await user.page.getByTestId('button-join-group').click()
+    await user.page.waitForURL(
+      (url) => !url.pathname.includes('/amis/invitation'),
+      {
+        timeout: 10_000,
+      }
+    )
   }
 
   async leave(page: Page) {
-    await page.getByRole('button', { name: 'Quitter le groupe' }).click()
+    await page.getByTestId('button-leave-group').click()
     await expect(page.getByTestId('button-confirm-leave-group')).toBeVisible()
     await page.getByTestId('button-confirm-leave-group').click()
+    // The action redirects server-side — to « mon espace » for a verified user,
+    // to the end-of-test group list otherwise. Wait for it to land rather than
+    // let the caller's next navigation race with it.
+    await page.waitForURL((url) => !url.pathname.includes('/amis/resultats'), {
+      timeout: 30_000,
+    })
   }
 
   async copyInviteLink() {

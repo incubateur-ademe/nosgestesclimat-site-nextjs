@@ -4,13 +4,13 @@ import { StatusCodes } from 'http-status-codes'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { brevoUpdateContact } from '../../../adapters/brevo/__tests__/fixtures/server.fixture.ts'
-import * as prismaTransactionAdapter from '../../../adapters/prisma/transaction.ts'
 import app from '../../../app.ts'
 import { authHeaders } from '../../../core/__tests__/fixtures/authentication.fixture.ts'
 import { mswServer } from '../../../core/__tests__/fixtures/server.fixture.ts'
 import { EventBus } from '../../../core/event-bus/event-bus.ts'
 import logger from '../../../logger.ts'
 import { getSimulationPayload } from '../../simulations/__tests__/fixtures/simulations.fixtures.ts'
+import * as groupsRepository from '../groups.repository.ts'
 import type { GroupUpdateDto } from '../groups.validator.ts'
 import {
   createGroup,
@@ -229,13 +229,13 @@ describe('Given a NGC user', () => {
       const databaseError = new Error('Something went wrong')
 
       beforeEach(() => {
-        vi.spyOn(prismaTransactionAdapter, 'transaction').mockRejectedValueOnce(
+        vi.spyOn(groupsRepository, 'updateUserGroup').mockRejectedValueOnce(
           databaseError
         )
       })
 
       afterEach(() => {
-        vi.spyOn(prismaTransactionAdapter, 'transaction').mockRestore()
+        vi.spyOn(groupsRepository, 'updateUserGroup').mockRestore()
       })
 
       test(`Then it returns a ${StatusCodes.INTERNAL_SERVER_ERROR} error`, async () => {

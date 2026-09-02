@@ -3,17 +3,22 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
+import { sortParticipantsByFootprint } from '@/helpers/groups/sortParticipantsByFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Group } from '@/types/groups'
 import type { ReactNode } from 'react'
+import { getParticipantName } from '../../_helpers/getParticipantName'
 
 interface Props {
   group: Group
 }
 
 export default function LaconicRanking({ group }: Props) {
+  const { t } = useClientTranslation()
+
   // If only one participant
   if (group.participants.length === 1) {
-    const name = group.participants[0].name
+    const name = getParticipantName({ t, participant: group.participants[0] })
     return (
       <section className="bg-primary-50 mt-6 rounded-xl p-4">
         <p className="mb-0">
@@ -30,19 +35,10 @@ export default function LaconicRanking({ group }: Props) {
     )
   }
 
-  const particpantsOrdered = group.participants.sort((a, b) => {
-    const computedResultsA = a.simulation.computedResults
-    const computedResultsB = b.simulation.computedResults
-
-    if (!computedResultsA || !computedResultsB) {
-      return 0
-    }
-
-    return computedResultsA?.[carboneMetric]?.bilan <
-      computedResultsB?.[carboneMetric]?.bilan
-      ? -1
-      : 1
-  })
+  const particpantsOrdered = sortParticipantsByFootprint(
+    group.participants,
+    carboneMetric
+  )
 
   // Display a list of participants with their rank and an emoji medal for the first three
   // then a number for the rest
@@ -71,9 +67,7 @@ export default function LaconicRanking({ group }: Props) {
               rank = index + 1
           }
           return (
-            <li
-              key={`participant-${index}`}
-              className="flex items-center gap-4">
+            <li key={participant.id} className="flex items-center gap-4">
               <span
                 className={
                   !isFirstThree ? 'mr-0.5 ml-1 text-sm font-bold' : ''
@@ -81,7 +75,7 @@ export default function LaconicRanking({ group }: Props) {
                 {rank}
                 {!isFirstThree && '. '}
               </span>{' '}
-              {participant.name}
+              {getParticipantName({ t, participant })}
             </li>
           )
         })}

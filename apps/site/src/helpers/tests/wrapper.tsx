@@ -16,7 +16,6 @@ import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { ComponentProps, ReactElement } from 'react'
 import { vi } from 'vitest'
-import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
 import { stringifyModel } from '../server/model/models'
 
 // Mock useRules
@@ -28,7 +27,7 @@ vi.mock('@/hooks/useRules', () => ({
   }),
 }))
 
-// Mock getGeolocation with a valid region to avoid userId issues in usePersistentUser
+// Mock getGeolocation with a valid region
 vi.mock('@/services/geolocation/get-geolocation', () => ({
   getGeolocation: () => Promise.resolve({ code: 'FR', name: 'France' }),
 }))
@@ -38,7 +37,6 @@ const defaultSimulation: Simulation = {
   id: faker.string.uuid(),
   date: new Date(),
   situation: {},
-  extendedSituation: getInitialExtendedSituation(),
   foldedSteps: [],
   actionChoices: {},
   model: stringifyModel({
@@ -137,7 +135,7 @@ const TestWrapper = ({
     wrapped = (
       <UserProvider
         userSession={userProviderProps?.userSession ?? null}
-        serverSimulations={userProviderProps?.serverSimulations}>
+        simulation={userProviderProps?.simulation}>
         {wrapped}
       </UserProvider>
     )
@@ -201,7 +199,7 @@ export const renderWithWrapper = (
   const userProviderProps: ComponentProps<typeof UserProvider> | undefined =
     providers.user
       ? {
-          serverSimulations: simulations,
+          simulation: simulations.at(0),
           userSession: null,
         }
       : undefined

@@ -22,7 +22,7 @@ export default function PointsFortsFaibles({
             <Trans>Par rapport à la moyenne du groupe.</Trans>
           </p>
           <ul className="pl-0">
-            {pointsForts?.map((point, index) => {
+            {pointsForts.map((point) => {
               const { name, value, difference } = point.resultObject
 
               return (
@@ -30,7 +30,7 @@ export default function PointsFortsFaibles({
                   name={name}
                   value={value}
                   difference={difference || 0}
-                  key={`points-forts-${index}`}
+                  key={point.key}
                 />
               )
             })}
@@ -44,14 +44,14 @@ export default function PointsFortsFaibles({
             <Trans>Vos points faibles</Trans>
           </h2>
           <ul className="pl-0">
-            {pointsFaibles?.map((point, index) => {
+            {pointsFaibles?.map((point) => {
               const { name, value, difference } = point.resultObject
               return (
                 <PointsListItem
                   name={name}
                   value={value}
                   difference={difference || 0}
-                  key={`points-faibles-${index}`}
+                  key={point.key}
                 />
               )
             })}

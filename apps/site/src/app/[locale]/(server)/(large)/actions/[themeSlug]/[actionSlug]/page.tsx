@@ -1,5 +1,6 @@
 import ActionTracker from '@/components/actions/ActionTracker'
 import BetaBanner from '@/components/actions/BetaBanner'
+import ThemeSection from '@/components/actions/ThemeSection'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import {
@@ -50,12 +51,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   const user = await getUserSession()
   const { t } = await getServerTranslation({ locale })
-  const [action, alternateLocales] = await Promise.all([
+  const [actionDetails, alternateLocales] = await Promise.all([
     getPersonalizedActionDetails(actionSlug, locale, user?.id),
     getActionAlternateLocales(actionSlug),
   ])
 
-  if (!action) {
+  if (!actionDetails) {
     return getMetadataObject({
       locale,
       title: t('actions.detailPage.404.title'),
@@ -63,6 +64,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       robots: noIndexObject,
     })
   }
+
+  const { action } = actionDetails
 
   const languages: Partial<Record<Locale, string>> = {}
   for (const [loc, alternate] of Object.entries(alternateLocales)) {
@@ -88,12 +91,12 @@ export default async function ActionPage({ params, searchParams }: Props) {
   const resolvedSearchParams = await searchParams
   const from = resolvedSearchParams?.from
   const user = await getUserSession()
-  const [action, alternateLocales] = await Promise.all([
+  const [actionDetails, alternateLocales] = await Promise.all([
     getPersonalizedActionDetails(actionSlug, locale, user?.id),
     getActionAlternateLocales(actionSlug),
   ])
 
-  if (!action) {
+  if (!actionDetails) {
     // The slug may belong to another locale (e.g. a shared URL with the wrong
     // language prefix): redirect to the localized path when a translation
     // exists for the page locale
@@ -113,9 +116,19 @@ export default async function ActionPage({ params, searchParams }: Props) {
     notFound()
   }
 
+  const { action, otherThemeActions } = actionDetails
+
   if (action.theme.slug !== themeSlug) notFound()
 
   const themeClasses = classNames[action.theme.key]
+
+  // The theme section spans the whole grid width, so it starts a new row: the
+  // sections around it can no longer be paired two by two.
+  const isThemeSectionDisplayed = otherThemeActions.length > 0
+  const halfWidthSectionClassName =
+    isThemeSectionDisplayed && !(action.tips && action.financialIncentives)
+      ? 'md:col-span-full'
+      : ''
 
   return (
     <div className="pt-2">
@@ -196,7 +209,9 @@ export default async function ActionPage({ params, searchParams }: Props) {
           ) : null}
         </Section>
         {action.tips ? (
-          <Section id={SECTION_ID_I_ACT} className="scroll-mt-24">
+          <Section
+            id={SECTION_ID_I_ACT}
+            className={twMerge('scroll-mt-24', halfWidthSectionClassName)}>
             <SectionTitle color="yellow">
               <Trans locale={locale} i18nKey="actions.detailPage.sections.act">
                 J'agis
@@ -206,7 +221,9 @@ export default async function ActionPage({ params, searchParams }: Props) {
           </Section>
         ) : null}
         {action.financialIncentives ? (
-          <Section id={SECTION_ID_I_BENEFIT} className="scroll-mt-24">
+          <Section
+            id={SECTION_ID_I_BENEFIT}
+            className={twMerge('scroll-mt-24', halfWidthSectionClassName)}>
             <SectionTitle color="green">
               <Trans
                 locale={locale}
@@ -219,8 +236,30 @@ export default async function ActionPage({ params, searchParams }: Props) {
             </Markdown>
           </Section>
         ) : null}
+        {isThemeSectionDisplayed ? (
+          <ThemeSection
+            theme={action.theme}
+            actions={otherThemeActions}
+            locale={locale}
+            from={from}
+            trackingSource="cross-sell"
+            className="md:col-span-full"
+            title={
+              <Trans
+                locale={locale}
+                i18nKey="actions.detailPage.sections.otherThemeActions.title">
+                Découvrez d’autres actions pour réduire votre empreinte
+              </Trans>
+            }
+          />
+        ) : null}
         {action.furtherExplore ? (
-          <Section id={SECTION_ID_FURTHER_READING} className="scroll-mt-24">
+          <Section
+            id={SECTION_ID_FURTHER_READING}
+            className={twMerge(
+              'scroll-mt-24',
+              isThemeSectionDisplayed && 'md:col-span-full'
+            )}>
             <SectionTitle color="blue">
               <Trans
                 locale={locale}

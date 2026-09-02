@@ -99,6 +99,7 @@ export const NotionActionRowSchema = v.pipe(
     slug: v.pipe(trimmedLowercaseString, v.slug()),
     tracking_id: v.pipe(trimmedLowercaseString, trackingIdSchema),
     front_title_fr: trimmedString,
+    short_description_fr: nullishTrimmedString,
     long_description_fr: trimmedString,
     media_fr: nullishString(MediaNotionRowSchema),
     media_title_fr: nullishTrimmedString,
@@ -110,6 +111,7 @@ export const NotionActionRowSchema = v.pipe(
     seo_json_ld: nullishString(v.pipe(v.string(), v.parseJson())),
     front_title_en: nullishTrimmedString,
     slug_en: nullishString(v.pipe(trimmedLowercaseString, v.slug())),
+    short_description_en: nullishTrimmedString,
     long_description_en: nullishTrimmedString,
     media_en: nullishString(MediaNotionRowSchema),
     media_title_en: nullishTrimmedString,
@@ -132,6 +134,7 @@ export interface NotionRawRow {
   slug?: string | null
   tracking_id?: string | null
   front_title_fr?: string | null
+  short_description_fr?: string | null
   long_description_fr?: string | null
   media_fr?: string | null
   media_title_fr?: string | null
@@ -143,6 +146,7 @@ export interface NotionRawRow {
   seo_json_ld?: string | null
   front_title_en?: string | null
   slug_en?: string | null
+  short_description_en?: string | null
   long_description_en?: string | null
   media_en?: string | null
   media_title_en?: string | null
@@ -514,6 +518,7 @@ function extractEnglishTranslation(
   return {
     title,
     slug,
+    description: row.short_description_en,
     longDescription,
     media,
     tips: row.tips_en,
@@ -547,6 +552,7 @@ function mapNotionRowToAction(
       fr: {
         title: row.front_title_fr,
         slug: row.slug,
+        description: row.short_description_fr,
         longDescription: row.long_description_fr,
         media,
         tips: row.tips_fr,

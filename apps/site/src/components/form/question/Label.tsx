@@ -11,7 +11,7 @@ import Button from '@/design-system/buttons/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { getSimulationMode } from '@/helpers/server/model/simulations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useOptionalSimulation } from '@/publicodes-state'
 import { MUST_SHOW_DESCRIPTION } from '@/publicodes-state/constants/questions'
 import type { QuestionSize } from '@/types/values'
 import {
@@ -53,8 +53,9 @@ export default function Label({
 
   const { t } = useClientTranslation()
 
+  const maybeSimulation = useOptionalSimulation()
   const mustShowDescription =
-    getSimulationMode(useCurrentSimulation()) === 'scolaire' ||
+    getSimulationMode(maybeSimulation) === 'scolaire' ||
     MUST_SHOW_DESCRIPTION.has(question)
 
   if (!label) return
@@ -169,7 +170,7 @@ export default function Label({
             id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
             role="region"
             aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
-            className="border-primary-50 mb-3 w-full origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
+            className="border-primary-50 mb-3 w-full origin-top rounded-xl border-2 bg-gray-100 p-3 text-xs md:text-sm">
             <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
               {description}
             </Markdown>{' '}

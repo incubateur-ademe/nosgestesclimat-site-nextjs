@@ -5,6 +5,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import modelRules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json' with { type: 'json' }
 import modelFunFacts from '@incubateur-ademe/nosgestesclimat/public/funFactsRules.json' with { type: 'json' }
+import { hasValidComputedResults } from '@nosgestesclimat/core/features/simulations/validators/computed-results.schema'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { isPrismaErrorNotFound } from '@nosgestesclimat/core/prisma/utils'
 import dayjs from 'dayjs'
@@ -122,14 +123,12 @@ export const createSimulation = async ({
   let fullUser
   // Case 1. The user is authentified
   if (verifiedUser) {
-    const dbVerifiedUser = await transaction((session) =>
-      fetchVerifiedUser(
-        {
-          email: verifiedUser.email,
-          select: defaultVerifiedUserSelection,
-        },
-        { session }
-      )
+    const dbVerifiedUser = await fetchVerifiedUser(
+      {
+        email: verifiedUser.email,
+        select: defaultVerifiedUserSelection,
+      },
+      { session: prisma }
     )
 
     if (!dbVerifiedUser || dbVerifiedUser.id !== user.id) {
@@ -204,7 +203,9 @@ export const fetchSimulations = async ({
   )
 
   return {
-    simulations: simulations.map((s) => simulationToDto(s, user)),
+    simulations: simulations
+      .map((s) => simulationToDto(s, user))
+      .filter(hasValidComputedResults),
     count,
   }
 }
@@ -222,7 +223,11 @@ export const fetchSimulation = async ({
       prisma
     )
 
-    if (!simulation.user || simulation.user.id !== user.id) {
+    if (
+      !simulation.user ||
+      simulation.user.id !== user.id ||
+      !hasValidComputedResults(simulation)
+    ) {
       throw new EntityNotFoundException('Simulation not found')
     }
 
@@ -275,14 +280,12 @@ export const createPollSimulation = async ({
     // Case 1. The user is authentified
     if (verifiedUser) {
       const email = verifiedUser.email
-      user = await transaction((session) =>
-        fetchVerifiedUser(
-          {
-            email,
-            select: defaultVerifiedUserSelection,
-          },
-          { session }
-        )
+      user = await fetchVerifiedUser(
+        {
+          email,
+          select: defaultVerifiedUserSelection,
+        },
+        { session: prisma }
       )
 
       if (!user || user.id !== verifiedUser.id) {

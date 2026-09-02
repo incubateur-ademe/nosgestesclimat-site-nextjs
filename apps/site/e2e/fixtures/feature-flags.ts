@@ -6,7 +6,10 @@ import { patchGetByTestId } from './visible-testid'
 
 const DOMAIN = new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
 
-export const DEFAULT_FLAGS = {} satisfies DefaultFlagValues
+export const DEFAULT_FLAGS = {
+  'abc-test-layout-catalogue': 'control',
+  'abc-test-action-card': 'control',
+} satisfies DefaultFlagValues
 
 export class FeatureFlags {
   constructor(private page: Page) {}

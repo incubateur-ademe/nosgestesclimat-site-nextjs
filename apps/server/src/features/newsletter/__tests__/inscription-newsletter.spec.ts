@@ -10,7 +10,6 @@ import {
   brevoUpdateContact,
 } from '../../../adapters/brevo/__tests__/fixtures/server.fixture.ts'
 import { ListIds } from '../../../adapters/brevo/constant.ts'
-import * as prismaTransactionAdapter from '../../../adapters/prisma/transaction.ts'
 import app from '../../../app.ts'
 import { authHeaders } from '../../../core/__tests__/fixtures/authentication.fixture.ts'
 import { mswServer } from '../../../core/__tests__/fixtures/server.fixture.ts'
@@ -18,6 +17,7 @@ import { EventBus } from '../../../core/event-bus/event-bus.ts'
 import logger from '../../../logger.ts'
 import { login } from '../../authentication/__tests__/fixtures/login.fixture.ts'
 import * as authenticationService from '../../authentication/authentication.service.ts'
+import * as verificationCodesRepository from '../../authentication/verification-codes.repository.ts'
 
 vi.mock('../../../adapters/prisma/transaction', async () => ({
   ...(await vi.importActual('../../../adapters/prisma/transaction')),
@@ -98,13 +98,17 @@ describe('Given a NGC user', () => {
       const databaseError = new Error('Something went wrong')
 
       beforeEach(() => {
-        vi.spyOn(prismaTransactionAdapter, 'transaction').mockRejectedValueOnce(
-          databaseError
-        )
+        vi.spyOn(
+          verificationCodesRepository,
+          'createUserVerificationCode'
+        ).mockRejectedValueOnce(databaseError)
       })
 
       afterEach(() => {
-        vi.spyOn(prismaTransactionAdapter, 'transaction').mockRestore()
+        vi.spyOn(
+          verificationCodesRepository,
+          'createUserVerificationCode'
+        ).mockRestore()
       })
 
       test(`Then it returns a ${StatusCodes.INTERNAL_SERVER_ERROR} error`, async () => {

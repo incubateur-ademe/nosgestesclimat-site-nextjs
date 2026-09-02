@@ -32,7 +32,7 @@ const defaultModelVersion = modelPackage.version
 describe('Given a NGC user', () => {
   const agent = supertest(app)
   const url = CREATE_SIMULATION_ROUTE
-  const { computedResults, situation, extendedSituation } = getRandomTestCase()
+  const { computedResults, situation } = getRandomTestCase()
 
   afterEach(async () => {
     // Simulation.user is onDelete: SetNull, so simulations must be removed
@@ -71,7 +71,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.BAD_REQUEST)
       })
@@ -87,7 +86,6 @@ describe('Given a NGC user', () => {
             progression: 1,
             computedResults,
             situation: null,
-            extendedSituation,
           })
           .expect(StatusCodes.BAD_REQUEST)
       })
@@ -102,10 +100,27 @@ describe('Given a NGC user', () => {
             id: faker.string.uuid(),
             situation,
             progression: 1,
-            extendedSituation,
             computedResults: null,
           })
           .expect(StatusCodes.BAD_REQUEST)
+      })
+
+      describe('And computedResults uses a legacy shape (before the carbone/eau format)', () => {
+        test(`Then it returns a ${StatusCodes.BAD_REQUEST} error`, async () => {
+          await agent
+            .post(url)
+            .set(authHeaders({ userId: faker.string.uuid() }))
+            .send({
+              id: faker.string.uuid(),
+              situation,
+              progression: 1,
+              computedResults: {
+                bilan: 1000,
+                categories: {},
+              },
+            })
+            .expect(StatusCodes.BAD_REQUEST)
+        })
       })
     })
 
@@ -120,7 +135,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
 
         await agent
@@ -156,7 +170,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
           actionChoices: {},
           foldedSteps: [],
           additionalQuestionsAnswers: [],
@@ -206,12 +219,10 @@ describe('Given a NGC user', () => {
             progression: true,
             actionChoices: true,
             computedResults: true,
-            extendedSituation: true,
             additionalQuestionsAnswers: {
               select: { key: true, answer: true, type: true },
             },
             polls: { select: { pollId: true } },
-            states: true,
             user: { select: { id: true, name: true, email: true } },
             createdAt: true,
             updatedAt: true,
@@ -224,14 +235,6 @@ describe('Given a NGC user', () => {
           date: expect.any(Date),
           updatedAt: expect.any(Date),
           polls: [],
-          states: [
-            {
-              id: expect.any(String),
-              date: expect.any(Date),
-              simulationId: payload.id,
-              progression: 1,
-            },
-          ],
           user: { id: userId, email: null, name: null },
         })
       })
@@ -252,7 +255,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
 
         const response = await agent
@@ -299,7 +301,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
           additionalQuestionsAnswers: [
             {
               type: SimulationAdditionalQuestionAnswerType.default,
@@ -332,10 +333,8 @@ describe('Given a NGC user', () => {
 
         await EventBus.flush()
 
-        const { extendedSituation: _, ...expected } = payload
-
         expect(response.body).toEqual({
-          ...expected,
+          ...payload,
           date: expect.any(String),
           createdAt: expect.any(String),
           updatedAt: expect.any(String),
@@ -350,24 +349,6 @@ describe('Given a NGC user', () => {
             ageRange: null,
           },
         })
-      })
-
-      test('Then it creates a new simulation state', async () => {
-        await agent
-          .post(url)
-          .set(authHeaders({ userId }))
-          .send(payload)
-          .expect(StatusCodes.CREATED)
-
-        await EventBus.flush()
-
-        expect(
-          await prisma.simulationState.count({
-            where: {
-              simulationId: payload.id,
-            },
-          })
-        ).toBe(2)
       })
     })
 
@@ -388,7 +369,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 0,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.CREATED)
 
@@ -399,7 +379,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
       })
 
@@ -434,7 +413,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 0,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.CREATED)
 
@@ -450,7 +428,6 @@ describe('Given a NGC user', () => {
           situation,
           progression: 1,
           computedResults,
-          extendedSituation,
         }
       })
 
@@ -484,7 +461,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.CREATED)
 
@@ -503,7 +479,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.CREATED)
 
@@ -553,7 +528,7 @@ describe('Given a NGC user', () => {
         const response = await agent
           .post(url)
           .set(authHeaders({ userId, email }))
-          .send({ ...expected, extendedSituation })
+          .send(expected)
           .expect(StatusCodes.CREATED)
 
         await EventBus.flush()
@@ -617,7 +592,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
           .expect(StatusCodes.INTERNAL_SERVER_ERROR)
       })
@@ -631,7 +605,6 @@ describe('Given a NGC user', () => {
             situation,
             progression: 1,
             computedResults,
-            extendedSituation,
           })
 
         expect(logger.error).toHaveBeenCalledWith(

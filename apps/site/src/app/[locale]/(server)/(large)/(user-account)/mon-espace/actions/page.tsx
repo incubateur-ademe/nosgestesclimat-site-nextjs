@@ -7,6 +7,7 @@ import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getPersonalizedActionsCatalogue } from '@/services/actions/get-personalized-actions-catalogue'
 import { getThemes } from '@/services/actions/get-themes'
 import { requireAuthUser } from '@/services/auth/require-auth-user'
+import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
 import type { DefaultPageProps } from '@/types'
 import ProfileTab from '../_components/ProfileTabs'
 
@@ -23,10 +24,12 @@ export default async function MonEspaceActionsPage({
   const { locale } = await params
   const user = await requireAuthUser()
 
-  const [personalizedActionsCatalogue, themes] = await Promise.all([
-    getPersonalizedActionsCatalogue(user.id, locale),
-    getThemes(locale),
-  ])
+  const [personalizedActionsCatalogue, themes, currentSimulation] =
+    await Promise.all([
+      getPersonalizedActionsCatalogue(user.id, locale),
+      getThemes(locale),
+      getCurrentSimulation(),
+    ])
 
   return (
     <div className="flex flex-col">
@@ -63,6 +66,7 @@ export default async function MonEspaceActionsPage({
             themes={themes}
             locale={locale}
             from="mon-espace"
+            totalFootprint={currentSimulation?.computedResults.carbone.bilan}
           />
         </div>
       )}

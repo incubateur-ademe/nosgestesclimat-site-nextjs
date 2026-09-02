@@ -1,3 +1,32 @@
+model Event {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  // Known limitation: events are French-only for now, so `name` stays a plain
+  // String. If multilingual events are ever needed, this should become a
+  // translated field (JSON column or translation table).
+  name      String
+  // Timestamptz so the instant is stored in UTC and displayed in Europe/Paris.
+  startDate DateTime @db.Timestamptz(3)
+  endDate   DateTime @db.Timestamptz(3)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@schema("ngc")
+}
+
+view EventComputation {
+  eventId          String
+  organisationId   String?
+  simulationsCount Int
+  organisation     Organisation? @relation(fields: [organisationId], references: [id])
+
+  // The materialized view already has a unique index on (eventId,
+  // organisationId): declaring it enables relations on the view.
+  @@unique([eventId, organisationId])
+  @@map("event_computation")
+  @@schema("ngc")
+}
+
 model Answer {
   id         String   @id @db.Uuid
   survey     String
@@ -213,6 +242,7 @@ model Organisation {
   administrators        OrganisationAdministrator[]
   numberOfCollaborators Int?                        @db.Integer
   polls                 Poll[]
+  eventComputations     EventComputation[]
   createdAt             DateTime                    @default(now())
   updatedAt             DateTime                    @updatedAt
 
@@ -318,9 +348,7 @@ model Simulation {
   computedResults            Json
   actionChoices              Json
   situation                  Json
-  extendedSituation          Json?
   foldedSteps                Json[]
-  states                     SimulationState[]
   additionalQuestionsAnswers SimulationAdditionalQuestionAnswer[]
   polls                      SimulationPoll[]
   groups                     GroupParticipant[]
@@ -335,17 +363,8 @@ model Simulation {
 
   @@index([userId])
   @@index([userEmail])
-  @@schema("ngc")
-}
-
-model SimulationState {
-  id           String     @id @default(uuid()) @db.Uuid
-  date         DateTime
-  simulationId String     @db.Uuid
-  simulation   Simulation @relation(fields: [simulationId], references: [id], onDelete: Cascade)
-  progression  Float      @db.Real
-
-  @@unique([date, simulationId])
+  @@index([createdAt])
+  @@index([progression])
   @@schema("ngc")
 }
 
@@ -415,6 +434,7 @@ model User {
   refreshTokens RefreshToken[]
   createdAt     DateTime             @default(now())
   updatedAt     DateTime             @updatedAt
+  verifiedUsers VerifiedUser[]
 
   @@schema("ngc")
 }
@@ -453,6 +473,7 @@ model VerificationCode {
 model VerifiedUser {
   email                    String                      @id
   id                       String                      @db.Uuid
+  user                     User                        @relation(fields: [id], references: [id], onDelete: Cascade)
   name                     String?
   telephone                String?
   position                 String?

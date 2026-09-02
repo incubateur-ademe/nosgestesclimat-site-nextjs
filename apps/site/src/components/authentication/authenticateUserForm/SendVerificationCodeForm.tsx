@@ -9,12 +9,12 @@ import Form from '@/design-system/form/Form'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import {match} from 'ts-pattern'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { type ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
+import { match } from 'ts-pattern'
 import { useAuth } from '../AuthProvider'
 
 interface Props {
@@ -103,19 +103,23 @@ export default function SendVerificationCodeForm({
         })}
         error={formErrors.email?.message}
       />
-      {state.phase === 'idle' && state.emailError && (
+      {state.phase === 'idle' &&
+        state.emailError &&
         match(state.emailError)
           .with({ code: 'rate_limited' }, () => (
-            <p className="mt-4 text-sm text-red-800 dark:text-white" role="alert">
+            <p
+              className="mt-4 text-sm text-red-800 dark:text-white"
+              role="alert">
               <Trans i18nKey="signIn.emailForm.error.rateLimited">
-                Un code vient d'être envoyé à cette adresse. Veuillez patienter avant
-                d'en demander un nouveau.
+                Un code vient d'être envoyé à cette adresse. Veuillez patienter
+                avant d'en demander un nouveau.
               </Trans>
             </p>
           ))
-          .with({ code: 'unknown' }, () => <DefaultSubmitErrorMessage className="mt-4 max-w-120" />)
-          .exhaustive()
-      )}
+          .with({ code: 'unknown' }, () => (
+            <DefaultSubmitErrorMessage className="mt-4 max-w-120" />
+          ))
+          .exhaustive()}
     </Form>
   )
 }

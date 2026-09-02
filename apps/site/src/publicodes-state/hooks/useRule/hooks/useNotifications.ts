@@ -41,5 +41,5 @@ export default function useNotifications({
     [notifications, safeEvaluate, situation]
   )
 
-  return { notifications, activeNotifications }
+  return { activeNotifications }
 }

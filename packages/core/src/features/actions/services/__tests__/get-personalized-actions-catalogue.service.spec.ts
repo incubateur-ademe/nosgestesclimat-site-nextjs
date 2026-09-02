@@ -74,7 +74,7 @@ describe('getPersonalizedActionsCatalogue', () => {
       }
     )
 
-    it('returns no assessments even when a previous simulation has assessments', async () => {
+    it('returns no assessments and the in-progress computation status of the latest completed simulation, ignoring an unfinished one', async () => {
       const [applicable, inapplicable] = await Promise.all([
         actionFactory.published().create(),
         actionFactory.published().create(),
@@ -111,7 +111,7 @@ describe('getPersonalizedActionsCatalogue', () => {
 
       const result = await getPersonalizedActionsCatalogue(user.id, 'fr')
       expect(result).toEqual({
-        assessmentStatus: null,
+        assessmentStatus: 'pending',
         actions: expect.arrayContaining([
           expect.objectContaining({ id: applicable.id, assessment: null }),
           expect.objectContaining({ id: inapplicable.id, assessment: null }),
@@ -122,6 +122,48 @@ describe('getPersonalizedActionsCatalogue', () => {
   })
 
   describe('when the latest simulation computation is completed', () => {
+    it('returns the completed assessments even when a newer simulation is unfinished', async () => {
+      const user = await userFactory.create()
+      const completed = await simulationFactory
+        .completed()
+        .params({ userId: user.id, createdAt: new Date('2024-01-01') })
+        .withCompletedComputation()
+        .create()
+      // A more recent simulation the user started but never finished: it has
+      // no computation and must not shadow the previous completed one.
+      await simulationFactory
+        .started()
+        .params({ userId: user.id, createdAt: new Date('2024-12-01') })
+        .create()
+
+      const [applicable, inapplicable] = await Promise.all([
+        actionFactory.published().create(),
+        actionFactory.published().create(),
+      ])
+      const [applicableAssessment] = await Promise.all([
+        actionAssessmentFactory
+          .params({ simulationId: completed.id, actionId: applicable.id })
+          .applicable({ impact: 1000 })
+          .create(),
+        actionAssessmentFactory
+          .params({ simulationId: completed.id, actionId: inapplicable.id })
+          .inapplicable()
+          .create(),
+      ])
+
+      const result = await getPersonalizedActionsCatalogue(user.id, 'fr')
+
+      expect(result).toEqual({
+        assessmentStatus: 'completed',
+        actions: [
+          { ...applicable, assessment: applicableAssessment, choice: null },
+        ],
+        topActions: [
+          { ...applicable, assessment: applicableAssessment, choice: null },
+        ],
+      })
+    })
+
     it('returns only applicable actions sorted by impact desc, unknown impact last', async () => {
       const user = await userFactory.create()
       const simulation = await simulationFactory

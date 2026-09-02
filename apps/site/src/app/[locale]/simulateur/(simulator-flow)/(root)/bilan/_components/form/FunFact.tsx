@@ -16,11 +16,15 @@ interface Props {
 export default function FunFact({ question }: Props) {
   const { currentCategory } = useFormState()
 
+  const funFactClassName = `rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(
+    currentCategory,
+    '100'
+  )} px-4 py-6 text-xs md:text-sm md:block`
+
   if (question === 'logement . surface') {
     return (
       <Trans i18nKey="simulator.funFact.housing">
-        <div
-          className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
+        <div className={funFactClassName}>
           <h3 className="mb-2">
             <Emoji>💡</Emoji> Le saviez-vous ?
           </h3>
@@ -40,8 +44,7 @@ export default function FunFact({ question }: Props) {
   if (question === 'divers . textile . volume') {
     return (
       <Trans i18nKey="simulator.funFact.clothing">
-        <div
-          className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
+        <div className={funFactClassName}>
           <h3 className="mb-2">
             <Emoji>💡</Emoji> Le saviez-vous ?
           </h3>
@@ -60,8 +63,7 @@ export default function FunFact({ question }: Props) {
   if (question === 'divers . numérique . internet . durée journalière') {
     return (
       <Trans i18nKey="simulator.funFact.ia">
-        <div
-          className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
+        <div className={funFactClassName}>
           <h3 className="mb-2">
             <Emoji>💡</Emoji> Un mot sur l'IA
           </h3>
