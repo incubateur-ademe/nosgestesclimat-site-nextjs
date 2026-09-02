@@ -14,7 +14,7 @@ import * as v from 'valibot'
 import { prisma } from '../../../../prisma/client.ts'
 import type { Logger } from '../../../logger/index.ts'
 import { ComputedResultSchema } from '../../../simulations/validators/computed-results.schema.ts'
-import { createGetSituationDottedNameValue } from './evaluate-situation.ts'
+import { getSituationDottedNameValue } from './evaluate-situation.ts'
 import { SituationSchema } from './situation.schema.ts'
 import { sumNested } from './sum-nested.ts'
 
@@ -90,7 +90,7 @@ async function* batchPollSimulations(pollId: string) {
       skip: cursor ? 1 : 0,
       ...(cursor ? { cursor } : {}),
       where: { pollId },
-      orderBy: { id: 'asc' },
+      orderBy: [{ createdAt: 'asc' }, { id: 'asc' }],
       select: {
         id: true,
         simulation: {
@@ -116,10 +116,6 @@ async function* batchPollSimulations(pollId: string) {
 }
 
 export function createComputePollStats({ logger }: { logger: Logger }) {
-  const getSituationDottedNameValue = createGetSituationDottedNameValue({
-    logger,
-  })
-
   return async function computePollStats(pollId: string): Promise<{
     computedResults: ComputedResultSchema
     funFacts: FunFacts
@@ -141,13 +137,17 @@ export function createComputePollStats({ logger }: { logger: Logger }) {
 
       for (const dottedName of Object.values(funFactsRules)) {
         if (dottedName in frRules) {
-          funFactValues[dottedName] =
-            (funFactValues[dottedName] || 0) +
-            getSituationDottedNameValue({
+          let value = 0
+          try {
+            value = getSituationDottedNameValue({
               dottedName,
               situation: simulation.situation,
               rules: frRules,
             })
+          } catch (error) {
+            logger.error('Cannot evaluate dottedName', { dottedName, error })
+          }
+          funFactValues[dottedName] = (funFactValues[dottedName] || 0) + value
         }
       }
     }
