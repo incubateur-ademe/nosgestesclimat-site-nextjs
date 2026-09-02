@@ -3,7 +3,6 @@ import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { captureException } from '@sentry/node'
 import dayjs from 'dayjs'
 import { StatusCodes } from 'http-status-codes'
-import jwt from 'jsonwebtoken'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import {
@@ -196,7 +195,7 @@ describe('Given a NGC user', () => {
     })
 
     describe('And verification code does exist', () => {
-      test(`Then it returns a ${StatusCodes.OK} response with a cookie`, async () => {
+      test(`Then it returns a ${StatusCodes.OK} response with no cookie`, async () => {
         const verificationCode = await createVerificationCode({ agent })
 
         const sessionUserId = faker.string.uuid()
@@ -214,19 +213,17 @@ describe('Given a NGC user', () => {
           .send(payload)
           .expect(StatusCodes.OK)
 
-        const [cookie] = response.headers['set-cookie']
-        const token = cookie
-          .split(';')
-          .shift()
-          ?.replace('ngc_server_auth_jwt=', '')
-        await EventBus.flush()
+        // Cookies are host-only and set by the site, never by the server: the
+        // login route must not return any `set-cookie` header.
+        expect(response.headers['set-cookie']).toBeUndefined()
 
-        expect(jwt.decode(token!)).toEqual({
-          userId: sessionUserId,
-          email: verificationCode.email,
-          exp: expect.any(Number),
-          iat: expect.any(Number),
-        })
+        expect(response.body).toEqual(
+          expect.objectContaining({
+            id: sessionUserId,
+            email: verificationCode.email,
+          })
+        )
+        await EventBus.flush()
       })
 
       test('Then it updates brevo contact', async () => {

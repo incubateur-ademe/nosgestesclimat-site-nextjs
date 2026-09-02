@@ -1,17 +1,13 @@
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { isPrismaErrorNotFound } from '@nosgestesclimat/core/prisma/utils'
 import { randomUUID } from 'crypto'
-import type { CookieOptions } from 'express'
-import jwt from 'jsonwebtoken'
 import {
   type VerificationCode,
   VerificationCodeMode,
-  type VerifiedUser,
 } from '../../adapters/prisma/generated.ts'
 import { defaultVerifiedUserSelection } from '../../adapters/prisma/selection.ts'
 import type { Session } from '../../adapters/prisma/transaction.ts'
 import { transaction } from '../../adapters/prisma/transaction.ts'
-import { config } from '../../config.ts'
 import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
 import { InvalidVerificationCodeException } from '../../core/errors/InvalidVerificationCodeException.ts'
 import { EventBus } from '../../core/event-bus/event-bus.ts'
@@ -30,23 +26,6 @@ import {
   findVerificationCodeIgnoringExpiration,
   invalidateVerificationCode,
 } from './verification-codes.repository.ts'
-
-export const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24 * 61 // 2 months
-
-export function getCookieOptions(origin: string): CookieOptions {
-  const domain = new URL(origin).hostname
-  const secure = !origin.startsWith('http://localhost')
-  return {
-    maxAge: COOKIE_MAX_AGE,
-    httpOnly: true,
-    secure,
-    sameSite: secure ? 'none' : 'strict', // Because ngc can be embeded in iframes
-    partitioned: secure,
-    domain,
-  }
-}
-
-export const COOKIE_NAME = config.security.cookie.name
 
 export const generateRandomVerificationCode = () =>
   Math.floor(
@@ -146,7 +125,7 @@ export const login = async ({
    */
   sessionUserId?: string
 }) => {
-  const { user, mode, token } = await createAccountOrSignin({
+  const { user, mode } = await createAccountOrSignin({
     loginDto,
     sessionUserId,
   })
@@ -162,17 +141,7 @@ export const login = async ({
 
   await EventBus.once(loginEvent)
 
-  return { token, user, mode }
-}
-
-export function createToken(user: Pick<VerifiedUser, 'id' | 'email'>) {
-  return jwt.sign(
-    { userId: user.id, email: user.email },
-    config.security.jwt.secret,
-    {
-      expiresIn: COOKIE_MAX_AGE,
-    }
-  )
+  return { user, mode }
 }
 
 /**
@@ -269,5 +238,5 @@ export async function createAccountOrSignin({
     await EventBus.once(accountCreatedEvent)
   }
 
-  return { user, mode, token: createToken(user) }
+  return { user, mode }
 }
