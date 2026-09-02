@@ -14,7 +14,7 @@ async function migrateIronUser(userId?: string): Promise<SessionTokens | null> {
   if (!userId) return null
 
   const user = await getFullUser({ userId })
-  if (!user) return null
+  if (!user || user.isVerified) return null
 
   return await createSession(user.id)
 }

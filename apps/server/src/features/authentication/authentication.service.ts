@@ -8,7 +8,7 @@ import {
 import { defaultVerifiedUserSelection } from '../../adapters/prisma/selection.ts'
 import type { Session } from '../../adapters/prisma/transaction.ts'
 import { transaction } from '../../adapters/prisma/transaction.ts'
-import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
+
 import { InvalidVerificationCodeException } from '../../core/errors/InvalidVerificationCodeException.ts'
 import { EventBus } from '../../core/event-bus/event-bus.ts'
 import type { Locales } from '../../core/i18n/constant.ts'
@@ -125,14 +125,14 @@ export const login = async ({
    */
   sessionUserId?: string
 }) => {
-  const { user, mode } = await createAccountOrSignin({
+  const { user, mode, previousUserId } = await createAccountOrSignin({
     loginDto,
     sessionUserId,
   })
 
   const loginEvent = new LoginEvent({
     user,
-    previousUserId: sessionUserId,
+    previousUserId,
     mode,
     locale,
   })
@@ -172,7 +172,7 @@ export async function createAccountOrSignin({
 }) {
   const verificationCode = await verifyCode(loginDto)
 
-  const [user, mode] = await transaction(async (session) => {
+  const [user, mode, previousUserId] = await transaction(async (session) => {
     // Try SignIn first
     const existingUser = await fetchVerifiedUser(
       {
@@ -184,24 +184,23 @@ export async function createAccountOrSignin({
 
     if (existingUser) {
       // SignIn: the existing account's own id wins - never generate a fresh
-      // one. Only refuse when the session's userId already belongs to another
-      // verified account: the login event reconciles the session's data
-      // (previousUserId) into this account, which would move that other
-      // account's data over and delete its user row.
-      if (
+      // one. Reconcile the session's data (previousUserId) into this account
+      // only when that id is still free: if it already belongs to another
+      // verified account, reconciling would move that other account's data
+      // over and delete its user row.
+      const sessionOwnedByOtherAccount =
         sessionUserId &&
         sessionUserId !== existingUser.id &&
         (await findOtherVerifiedAccountWithUserId(
           { userId: sessionUserId, email: loginDto.email },
           { session }
         ))
-      ) {
-        throw new ForbiddenException(
-          'userId is already attached to another verified account'
-        )
-      }
 
-      return [existingUser, VerificationCodeMode.signIn] as const
+      return [
+        existingUser,
+        VerificationCodeMode.signIn,
+        sessionOwnedByOtherAccount ? undefined : sessionUserId,
+      ] as const
     }
 
     // SignUp: reuse the session userId as the account id only when it is
@@ -229,7 +228,7 @@ export async function createAccountOrSignin({
     )
 
     await invalidateVerificationCode(verificationCode, { session })
-    return [newUser, VerificationCodeMode.signUp] as const
+    return [newUser, VerificationCodeMode.signUp, sessionUserId] as const
   })
 
   if (mode === VerificationCodeMode.signUp) {
@@ -238,5 +237,5 @@ export async function createAccountOrSignin({
     await EventBus.once(accountCreatedEvent)
   }
 
-  return { user, mode }
+  return { user, mode, previousUserId }
 }

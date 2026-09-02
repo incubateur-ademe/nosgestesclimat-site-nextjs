@@ -565,6 +565,7 @@ describe('Given a NGC user', () => {
         let emailA: string
         let emailB: string
         let userIdA: string
+        let userIdB: string
 
         beforeEach(async () => {
           emailA = faker.internet.email().toLocaleLowerCase()
@@ -593,7 +594,7 @@ describe('Given a NGC user', () => {
           await EventBus.flush()
 
           // Sign up user B with a different userId
-          const userIdB = faker.string.uuid()
+          userIdB = faker.string.uuid()
           const signUpCodeB = await createVerificationCode({
             agent,
             verificationCode: { email: emailB },
@@ -615,14 +616,16 @@ describe('Given a NGC user', () => {
           await EventBus.flush()
         })
 
-        test(`Then signing in with that session returns a ${StatusCodes.FORBIDDEN} error`, async () => {
+        test('Then signing in with that session succeeds on the requested account', async () => {
           const signInCode = await createVerificationCode({
             agent,
             verificationCode: { email: emailB },
             mode: VerificationCodeMode.signIn,
           })
 
-          await agent
+          mswServer.use(brevoUpdateContact())
+
+          const response = await agent
             .post(url)
             .set(loginHeaders)
             .set('x-user-id', userIdA)
@@ -630,15 +633,24 @@ describe('Given a NGC user', () => {
               email: signInCode.email,
               code: signInCode.code,
             })
-            .expect(StatusCodes.FORBIDDEN)
+            .expect(StatusCodes.OK)
+
+          // The session's userId (userIdA) belongs to account A, so it must not
+          // be reconciled into account B: the response carries the requested
+          // account (emailB, its own userIdB), not the session's userIdA.
+          expect(response.body.id).toBe(userIdB)
+          expect(response.body.id).not.toBe(userIdA)
+          expect(response.body.email).toBe(emailB)
         })
 
-        test('Then it logs the rejection', async () => {
+        test('Then it leaves the session account untouched', async () => {
           const signInCode = await createVerificationCode({
             agent,
             verificationCode: { email: emailB },
             mode: VerificationCodeMode.signIn,
           })
+
+          mswServer.use(brevoUpdateContact())
 
           await agent
             .post(url)
@@ -648,14 +660,17 @@ describe('Given a NGC user', () => {
               email: signInCode.email,
               code: signInCode.code,
             })
+            .expect(StatusCodes.OK)
 
-          expect(logger.warn).toHaveBeenCalledWith(
-            'Login rejected: userId attached to another account',
-            expect.objectContaining({
-              userId: userIdA,
-              email: maskEmail(emailB),
-            })
-          )
+          await EventBus.flush()
+
+          // Reconciling userIdA into account B would have moved account A's
+          // data over and deleted A's user row. The reconciliation must not
+          // have run: account A's user row is still there.
+          const accountA = await prisma.user.findUnique({
+            where: { id: userIdA },
+          })
+          expect(accountA).not.toBeNull()
         })
 
         test(`Then signing up a new email with that session creates the account with a fresh userId instead of reusing the taken one`, async () => {
