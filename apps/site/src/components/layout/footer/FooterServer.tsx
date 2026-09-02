@@ -244,7 +244,10 @@ export default async function FooterServer({
 
             <Link
               href="https://ademe.fr"
-              aria-label={t('ADEME (ouvrir dans une nouvelle fenêtre)')}
+              aria-label={t(
+                'footer.ademe.ariaLabel',
+                'ADEME (ouvrir dans une nouvelle fenêtre)'
+              )}
               target="_blank">
               <Ademe className="h-auto w-10 md:w-auto" />
             </Link>
