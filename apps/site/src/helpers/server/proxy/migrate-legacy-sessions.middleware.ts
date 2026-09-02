@@ -6,20 +6,14 @@ import { decryptSession } from '@nosgestesclimat/core/features/auth/services/dec
 import { migrateLegacySessions } from '@nosgestesclimat/core/features/auth/services/migrate-legacy-sessions.service'
 import { getIronSession } from 'iron-session'
 import type { NextRequest } from 'next/server'
-import { InternalError } from '../error'
 import type { MiddlewareResult } from './types'
 
 const ANON_SESSION_COOKIE = 'ngc_anon_user'
-const LEGACY_SESSION_COOKIE = process.env.SERVER_AUTH_COOKIE_NAME
 
 const anonSessionOptions = {
   password: process.env.IRON_SESSION_PASSWORD!,
   cookieName: ANON_SESSION_COOKIE,
   ttl: 0,
-}
-
-if (!LEGACY_SESSION_COOKIE) {
-  throw new InternalError('SERVER_AUTH_COOKIE_NAME is not defined')
 }
 
 export async function middlewareMigrateLegacySessions(
@@ -29,7 +23,6 @@ export async function middlewareMigrateLegacySessions(
     return { redirect: null, cookies: [] }
   }
 
-  const jwt = request.cookies.get(LEGACY_SESSION_COOKIE!)?.value
   let ironUserId: string | undefined
   const anonCookie = request.cookies.get(ANON_SESSION_COOKIE)
   if (anonCookie) {
@@ -45,7 +38,7 @@ export async function middlewareMigrateLegacySessions(
     }
   }
 
-  const tokens = await migrateLegacySessions({ jwt, ironUserId })
+  const tokens = await migrateLegacySessions({ ironUserId })
   if (!tokens) {
     return { redirect: null, cookies: [] }
   }
@@ -66,7 +59,6 @@ export async function middlewareMigrateLegacySessions(
     redirect: null,
     cookies: [
       ...buildSessionCookies(tokens),
-      { name: LEGACY_SESSION_COOKIE!, value: '', options: { maxAge: 0 } },
       { name: ANON_SESSION_COOKIE, value: '', options: { maxAge: 0 } },
     ],
   }
