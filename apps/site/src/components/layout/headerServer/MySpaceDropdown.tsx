@@ -39,6 +39,9 @@ interface Props {
   onLogout: () => void
 }
 
+const commonItemClassNames =
+  'hover:bg-primary-50 active:bg-primary-100 rounded-sm px-4 py-2 text-sm'
+
 export default function MySpaceDropdown({ email, onLogout }: Props) {
   const { t } = useClientTranslation()
   const { setUser, setSimulation } = useUser()
@@ -107,14 +110,15 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="relative z-400 w-80 translate-y-6 bg-white">
+      <PopoverContent className="relative z-400! w-80 bg-white">
         <ul>
           <li>
             <Link
               href={MON_ESPACE_PATH}
               data-testid="my-space-link"
               className={twMerge(
-                'text-default hover:bg-primary-50 active:bg-primary-100 block min-h-10 rounded-sm px-4 py-2 text-sm'
+                'text-default block min-h-10',
+                commonItemClassNames
               )}
               onClick={() => {
                 trackAccess()
@@ -129,7 +133,8 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
               type="button"
               data-testid="my-space-logout-button"
               className={twMerge(
-                'hover:bg-primary-50 active:bg-primary-100 flex min-h-10 w-full items-center gap-2 rounded-sm px-4 py-2 text-sm'
+                'flex min-h-10 w-full items-center gap-2',
+                commonItemClassNames
               )}
               onClick={() => handleLogout(() => setIsPopoverOpen(false))}>
               <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>

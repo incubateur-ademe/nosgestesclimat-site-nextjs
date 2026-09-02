@@ -118,7 +118,7 @@ export default function LanguageSwitchButton({ className }: Props) {
             />
           </button>
         </PopoverTrigger>
-        <PopoverContent className="max-w-24 min-w-24 translate-y-6">
+        <PopoverContent className="z-400! max-w-24 min-w-24">
           <Link
             href={generateLanguageUrl(
               alternatePaths[notActiveLanguage.locale]!
