@@ -27,29 +27,6 @@ const { prisma } = await import('@nosgestesclimat/core/prisma/client')
  * - A `User` row is created for the new id (FK target for the re-pointing).
  * - `Simulation` rows are re-pointed by (userId, userEmail) to the new id.
  * - `VerifiedUser.id` is updated.
- *
- * What is NOT migrated (deliberately):
- * - `RefreshToken` rows are indistinguishable by email (they only store a
- *   userId and a token hash), so ALL tokens of the duplicated id are revoked
- *   before reassigning. Every account of the group (owner included) must log
- *   in again; without this, a reassigned account's refresh token would keep
- *   issuing sessions bound to the owner's id for up to its 6-month TTL.
- * - `GroupParticipant` / `GroupAdministrator` rows reference the shared id
- *   with no way to attribute them to one account: they stay with the owner
- *   id. Reassigned accounts lose their group memberships, and the owner
- *   inherits the group data (including any group administration rights).
- *
- * Run it AFTER the auth fix is deployed (see commit "Enforce the one session
- * userId = one account invariant"), otherwise the previous client/server can
- * immediately recreate duplicates. It is idempotent: a second run is a no-op.
- *
- * Rehearse before applying: take a backup of VerifiedUser, User, RefreshToken,
- * Simulation, GroupParticipant and GroupAdministrator, run the dry run
- * (default) against a staging copy of the database, then apply with --no-dry.
- *
- * Usage (from apps/server):
- *   NODE_ENV=development node --experimental-strip-types ./scripts/NGC-3402-20260804.ts          # dry run (default)
- *   NODE_ENV=development node --experimental-strip-types ./scripts/NGC-3402-20260804.ts --no-dry  # apply
  */
 const findDuplicatedIdGroups = () =>
   prisma.$queryRaw<{ id: string }[]>`
