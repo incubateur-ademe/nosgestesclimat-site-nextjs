@@ -2,15 +2,18 @@ import Trans from '@/components/translation/trans/TransServer'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 
 import Emoji from '@/design-system/utils/Emoji'
-import { throwNextError } from '@/helpers/server/error'
+import type { Simulation } from '@/helpers/server/model/simulations'
 import { getSimulationMode } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
+import { getUserSession } from '@/services/auth/get-user-session'
 import { createPollSimulation } from '@/services/organisations/create-poll-simulation'
-import { getPublicPoll } from '@/services/organisations/get-public-poll'
+import { getPoll as baseGetPoll } from '@/services/polls/get-poll'
 import { getLastCompletedSimulation } from '@/services/simulations/get-last-completed-simulation'
-import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
 import { resolveNewSimulationModel } from '@/services/simulations/resolve-new-simulation-model'
-import { redirect } from 'next/navigation'
+import { toSimulationDto } from '@/services/simulations/simulation.dto'
+import { migrateSimulationIfNeeded } from '@nosgestesclimat/core/features/simulations/helpers/migrate-simulation'
+import { findLatestPollSimulation } from '@nosgestesclimat/core/features/simulations/repository/simulation.repository'
+import { notFound, redirect } from 'next/navigation'
 import { PollTracker } from '../../../../../../components/tracking/PollTracker'
 import PollTutorialButton from '../../_components/PollTutorialButton'
 import ReuseSimulationForPoll from '../../_components/ReuseSimulationForPoll'
@@ -26,20 +29,14 @@ export default async function CampagnePage({
     locale: Locale
   }
 
-  const [poll, lastCompletedSimulation, currentSimulation] =
-    await throwNextError(() =>
-      Promise.all([
-        getPublicPoll(pollIdOrSlug),
-        getLastCompletedSimulation(),
-        getCurrentSimulation(),
-      ])
-    )
+  const poll = await getPoll(pollIdOrSlug)
 
-  if (
-    currentSimulation &&
-    currentSimulation.progression < 1 &&
-    currentSimulation.polls?.some((p) => p.id === poll.id)
-  ) {
+  const [lastCompletedSimulation, currentPollSimulation] = await Promise.all([
+    getLastCompletedSimulation(),
+    getCurrentPollSimulation({ pollId: poll.id }),
+  ])
+
+  if (currentPollSimulation && currentPollSimulation.progression < 1) {
     redirect(SIMULATOR_PATH)
   }
 
@@ -75,7 +72,7 @@ export default async function CampagnePage({
     !!lastCompletedSimulation &&
     poll.mode === 'standard' &&
     getSimulationMode(lastCompletedSimulation) === 'standard' &&
-    !poll.simulations.hasParticipated &&
+    !currentPollSimulation &&
     // eslint-disable-next-line react-hooks/purity
     Date.now() - new Date(lastCompletedSimulation.date as string).getTime() <
       6 * 30 * 24 * 3600 * 1000
@@ -110,6 +107,7 @@ export default async function CampagnePage({
   const buttonNext = (
     <PollTutorialButton
       poll={poll}
+      hasCompletedPollSimulation={currentPollSimulation?.progression === 1}
       locale={locale}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       createSimulation={createNewSimulation}
@@ -133,4 +131,27 @@ export default async function CampagnePage({
       )}
     </>
   )
+}
+
+async function getPoll(...args: Parameters<typeof baseGetPoll>) {
+  const poll = await baseGetPoll(...args)
+  if (!poll) notFound()
+  return poll
+}
+
+async function getCurrentPollSimulation({
+  pollId,
+}: {
+  pollId: string
+}): Promise<Simulation | undefined> {
+  const session = await getUserSession()
+  if (!session) return undefined
+
+  const simulation = await findLatestPollSimulation({
+    userId: session.id,
+    pollId,
+  })
+  if (!simulation) return undefined
+
+  return toSimulationDto(migrateSimulationIfNeeded(simulation))
 }
