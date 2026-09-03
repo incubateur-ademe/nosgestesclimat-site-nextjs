@@ -16,10 +16,12 @@ import {
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/design-system/shadcn/popover'
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/design-system/shadcn/dropdown-menu'
 import { resetLocalState } from '@/helpers/user/resetLocalState'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -40,7 +42,7 @@ interface Props {
 }
 
 const commonItemClassNames =
-  'hover:bg-primary-50 active:bg-primary-100 rounded-sm px-4 py-2 text-sm'
+  'hover:bg-primary-50! active:bg-primary-100! text-sm px-4 py-2'
 
 export default function MySpaceDropdown({ email, onLogout }: Props) {
   const { t } = useClientTranslation()
@@ -88,8 +90,8 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
       )
 
   return (
-    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-      <PopoverTrigger asChild>
+    <DropdownMenu open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+      <DropdownMenuTrigger asChild>
         <Button
           size="sm"
           color="secondary"
@@ -109,17 +111,14 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
             )}
           />
         </Button>
-      </PopoverTrigger>
-      <PopoverContent className="relative z-400! w-80 bg-white">
-        <ul>
-          <li>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="relative z-400! w-80 bg-white">
+        <DropdownMenuGroup>
+          <DropdownMenuItem className={commonItemClassNames}>
             <Link
               href={MON_ESPACE_PATH}
               data-testid="my-space-link"
-              className={twMerge(
-                'text-default block min-h-10',
-                commonItemClassNames
-              )}
+              className="text-default"
               onClick={() => {
                 trackAccess()
               }}>
@@ -127,22 +126,19 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
                 Accéder à mon espace
               </Trans>
             </Link>
-          </li>
-          <li>
+          </DropdownMenuItem>
+          <DropdownMenuItem className={commonItemClassNames}>
             <button
               type="button"
               data-testid="my-space-logout-button"
-              className={twMerge(
-                'flex min-h-10 w-full items-center gap-2',
-                commonItemClassNames
-              )}
+              className="flex w-full items-center gap-2"
               onClick={() => handleLogout(() => setIsPopoverOpen(false))}>
               <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>
               <LogOutIcon className="fill-default w-4" />
             </button>
-          </li>
-        </ul>
-      </PopoverContent>
-    </Popover>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
