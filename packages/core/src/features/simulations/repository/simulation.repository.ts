@@ -43,13 +43,18 @@ export const findLatestSimulation = async ({
 
 export const findLatestPollSimulation = async ({
   userId,
-  pollId,
+  pollIdOrSlug,
 }: {
   userId: string
-  pollId: string
+  pollIdOrSlug: string
 }): Promise<Simulation | null> => {
   const row = await prisma.simulation.findFirst({
-    where: { userId, polls: { some: { pollId } } },
+    where: {
+      userId,
+      polls: {
+        some: { poll: { OR: [{ id: pollIdOrSlug }, { slug: pollIdOrSlug }] } },
+      },
+    },
     orderBy: { date: 'desc' },
     select: simulationSelect,
   })
