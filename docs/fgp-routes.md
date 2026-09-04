@@ -6,29 +6,41 @@ All requests authenticated with `X-FGP-Key: $FGP_DEPLOY_TOKEN`.
 
 ## Prod
 
-| Route                                                     | Method | Payload                                                                                                                            |
-| --------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `/v1/apps/nosgestesclimat-server/deployments`             | POST   | `{"deployment": {"git_ref": "main", "source_url": "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz"}}` |
-| `/v1/apps/nosgestesclimat-server/deployments/{id}`        | GET    | —                                                                                                                                  |
-| `/v1/apps/nosgestesclimat-server/deployments/{id}/output` | GET    | —                                                                                                                                  |
-| `/v1/apps/nosgestesclimat-site/deployments`               | POST   | `{"deployment": {"git_ref": "main", "source_url": "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz"}}` |
-| `/v1/apps/nosgestesclimat-site/deployments/{id}`          | GET    | —                                                                                                                                  |
-| `/v1/apps/nosgestesclimat-site/deployments/{id}/output`   | GET    | —                                                                                                                                  |
+```
+GET:/v1/apps/nosgestesclimat/deployments/*
+GET:/v1/apps/nosgestesclimat/deployments/*/output
 
-`DATABASE_URL` is set manually on `nosgestesclimat-site` — no FGP route needed.
+GET:/v1/apps/nosgestesclimat-site/deployments/*
+GET:/v1/apps/nosgestesclimat-site/deployments/*/output
+
+POST:/v1/apps/nosgestesclimat-site/deployments
+POST:/v1/apps/nosgestesclimat/deployments
+```
+
+```
+deployment.git_ref: main
+deployment.source_url: https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz
+```
 
 ---
 
 ## Preprod
 
-| Route                                                           | Method | Payload                                                                                                                            |
-| --------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `/v1/apps/nosgestesclimat-preprod/deployments`                  | POST   | `{"deployment": {"git_ref": "main", "source_url": "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz"}}` |
-| `/v1/apps/nosgestesclimat-preprod/deployments/{id}`             | GET    | —                                                                                                                                  |
-| `/v1/apps/nosgestesclimat-preprod/deployments/{id}/output`      | GET    | —                                                                                                                                  |
-| `/v1/apps/nosgestesclimat-site-preprod/deployments`             | POST   | `{"deployment": {"git_ref": "main", "source_url": "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz"}}` |
-| `/v1/apps/nosgestesclimat-site-preprod/deployments/{id}`        | GET    | —                                                                                                                                  |
-| `/v1/apps/nosgestesclimat-site-preprod/deployments/{id}/output` | GET    | —                                                                                                                                  |
+```
+GET:/v1/apps/nosgestesclimat-preprod/deployments/*
+GET:/v1/apps/nosgestesclimat-preprod/deployments/*/output
+
+GET:/v1/apps/nosgestesclimat-site-preprod/deployments/*
+GET:/v1/apps/nosgestesclimat-site-preprod/deployments/*/output
+
+POST:/v1/apps/nosgestesclimat-site-preprod/deployments
+POST:/v1/apps/nosgestesclimat-preprod/deployments
+```
+
+```
+deployment.git_ref: main
+deployment.source_url: https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz
+```
 
 `DATABASE_URL` is set manually on `nosgestesclimat-site-preprod` — no FGP route needed.
 
@@ -36,19 +48,37 @@ All requests authenticated with `X-FGP-Key: $FGP_DEPLOY_TOKEN`.
 
 ## Review (preprod PR)
 
-| Route                                                                   | Method | Payload                                                                                                                              | Notes                                       |
-| ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| `/v1/apps/nosgestesclimat-preprod/scm_repo_link/manual_review_app`      | POST   | `{"pull_request_id": 42}`                                                                                                            | Creates `nosgestesclimat-preprod-pr42`      |
-| `/v1/apps/nosgestesclimat-site-preprod/scm_repo_link/manual_review_app` | POST   | `{"pull_request_id": 42}`                                                                                                            | Creates `nosgestesclimat-site-preprod-pr42` |
-| `/v1/apps/nosgestesclimat-preprod-pr*/deployments`                      | POST   | `{"deployment": {"git_ref": "{sha}", "source_url": "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/{sha}.tar.gz"}}` |                                             |
-| `/v1/apps/nosgestesclimat-preprod-pr*/deployments/{id}`                 | GET    | —                                                                                                                                    |                                             |
-| `/v1/apps/nosgestesclimat-preprod-pr*/deployments/{id}/output`          | GET    | —                                                                                                                                    |                                             |
-| `/v1/apps/nosgestesclimat-site-preprod-pr*/deployments`                 | POST   | `{"deployment": {"git_ref": "{sha}", "source_url": "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/{sha}.tar.gz"}}` |                                             |
-| `/v1/apps/nosgestesclimat-site-preprod-pr*/deployments/{id}`            | GET    | —                                                                                                                                    |                                             |
-| `/v1/apps/nosgestesclimat-site-preprod-pr*/deployments/{id}/output`     | GET    | —                                                                                                                                    |                                             |
+```
+POST:/v1/apps/nosgestesclimat-preprod/scm_repo_link/manual_review_app
+POST:/v1/apps/nosgestesclimat-site-preprod/scm_repo_link/manual_review_app
+POST:/v1/apps/nosgestesclimat-preprod-pr*/deployments
+POST:/v1/apps/nosgestesclimat-site-preprod-pr*/deployments
+GET:/v1/apps/nosgestesclimat-preprod-pr*/deployments/*
+GET:/v1/apps/nosgestesclimat-site-preprod-pr*/deployments/*
+GET:/v1/apps/nosgestesclimat-preprod-pr*/deployments/*/output
+GET:/v1/apps/nosgestesclimat-site-preprod-pr*/deployments/*/output
+```
+
+**/scm_repo_link/manual_review_app**
+
+```
+pull_request_id: *
+```
+
+**/deployments**
+
+```
+deployment.git_ref: main
+deployment.source_url: https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz
+```
 
 ## From postdeploy scalingo hook on server review app
 
-| Route                                                 | Method | Payload                                                               | Notes                                                                                       |
-| ----------------------------------------------------- | ------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `/v1/apps/nosgestesclimat-site-preprod-pr*/variables` | POST   | `{"variable": {"name": "DATABASE_URL", "value": "postgresql://..."}}` | Called from server postdeploy, not GitHub Actions. Idempotent — ignored if variable exists. |
+```
+POST:/v1/apps/nosgestesclimat-site-preprod-pr*/variables`
+```
+
+```
+variable.name: "DATABASE_URL",
+variable.value: "postgresql://..."
+```
