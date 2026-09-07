@@ -31,7 +31,7 @@ const MAX_EMAIL_LENGTH = 20
 
 interface Props {
   email: string
-  onLogout: () => void
+  onLogout: () => Promise<void>
 }
 
 export default function MySpaceDropdown({ email, onLogout }: Props) {
@@ -203,7 +203,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     }
   }
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     trackMatomoEvent__deprecated(headerClickLogoutAuthenticatedServer)
     trackPosthogEvent(captureClickHeaderLogoutAuthenticatedServer)
     setIsOpen(false)
@@ -212,7 +212,14 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
 
     posthog.reset()
 
-    onLogout()
+    await onLogout()
+
+    // The server `logout()` action no longer calls `redirect()`: server-action
+    // redirects become soft RSC navigations that can replay the per-session
+    // prefetched App Shell (header still showing the logged-in user) from the
+    // client Router Cache. A full-document navigation forces a real request with
+    // the freshly-cleared cookies, so the proxy serves a logged-out header.
+    window.location.assign('/')
   }
 
   const ariaLabelTitle = isOpen
@@ -268,7 +275,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
           tabIndex={-1}>
           <ul>
             <li>
-                <Link
+              <Link
                 ref={firstMenuItemRef}
                 href={MON_ESPACE_PATH}
                 role="menuitem"
@@ -305,17 +312,19 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
               </Link>
             </li>
             <li>
-                <button
+              <button
                 ref={logoutButtonRef}
                 type="button"
                 role="menuitem"
                 data-testid="my-space-logout-button"
                 className="text-default hover:bg-primary-50 focus:bg-primary-50 focus:ring-primary-700 flex min-h-10 w-full items-center gap-2 px-4 py-2 text-sm transition-colors hover:underline! focus:underline! focus:ring-2 focus:ring-offset-2 focus:outline-none"
-                onClick={handleLogout}
+                onClick={() => {
+                  void handleLogout()
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault()
-                    handleLogout()
+                    void handleLogout()
                   }
                 }}>
                 <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>
