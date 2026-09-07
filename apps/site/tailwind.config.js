@@ -270,7 +270,7 @@ export default {
         'float-leaf-2': 'float-badge 5.5s ease-in-out 0.8s infinite',
         'float-leaf-3': 'float-badge 4.8s ease-in-out 1.5s infinite',
         'bg-pulse': 'bg-pulse 5s ease-in-out infinite',
-        'flash-scale': 'flash-scale 3s ease-in-out forwards',
+        'flash-scale': 'flash-scale 5s ease-in-out forwards',
         scale: 'scale 0.5s ease-out forwards',
         'rainbow-shadow-move': 'rainbow-shadow-move 8s linear infinite',
       },
