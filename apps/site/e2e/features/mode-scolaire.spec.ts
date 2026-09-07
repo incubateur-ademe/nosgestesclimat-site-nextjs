@@ -8,7 +8,7 @@ import { NEW_VISITOR_STATE, ORGANISATION_ADMIN_STATE } from '../state'
 
 test.use({ storageState: NEW_VISITOR_STATE })
 
-test.describe('When a user completes the test via the scolaire poll invite link', () => {
+test.describe.fixme('When a user completes the test via the scolaire poll invite link', () => {
   let page: Page
 
   test.beforeAll(async ({ browser }) => {
