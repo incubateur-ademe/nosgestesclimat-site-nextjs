@@ -1,6 +1,5 @@
 import { expect, test as setup } from '../fixtures'
 import { Group } from '../fixtures/groups'
-import { Poll } from '../fixtures/polls'
 import { UserSpace } from '../fixtures/user-account'
 import { saveContext } from '../helpers/save-context'
 
