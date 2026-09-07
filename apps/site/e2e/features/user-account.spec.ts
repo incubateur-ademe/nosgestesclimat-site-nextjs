@@ -40,6 +40,8 @@ test.describe('Login - invalid verification code', () => {
 })
 
 test.describe('Logout', () => {
+  test.describe.configure({ mode: 'serial' })
+
   test('should log out and redirect to homepage', async ({ page }) => {
     await page.goto('/mon-espace')
     await expect(page.getByTestId('my-results-tab')).toBeVisible()
@@ -50,15 +52,11 @@ test.describe('Logout', () => {
 
     await expect(page).toHaveURL('/')
 
-    // After logout, the personal space must redirect to the login page. This
-    // redirect is served through the PPR/RSC stream (the unauthorized
-    // boundary calls `redirect('/connexion')`), which can abort the document
-    // load in Chromium (net::ERR_ABORTED). Commit to the navigation first,
-    // then assert where the app actually lands.
-    await page
-      .goto('/mon-espace', { waitUntil: 'commit' })
-      .catch(() => undefined)
-    await expect(page).toHaveURL(/\/connexion/, { timeout: 15_000 })
+    await expect(page.getByTestId('my-space-button')).toHaveCount(0)
+    // …and replaced by a plain "Mon espace" link to the connexion page.
+    const connexionLink = page.getByTestId('my-space-connexion-link')
+    await expect(connexionLink).toBeVisible()
+    await expect(connexionLink).toHaveAttribute('href', '/connexion')
   })
 })
 
