@@ -8,7 +8,7 @@ import {
   STROKE_WIDTH,
   useAnimateCircularProgressBar,
   VIEWBOX,
-} from './circularProgressProut/useAnimateCircularProgressProut'
+} from './circularProgressBar/useAnimateCircularProgressBar'
 
 interface Props {
   value: number
