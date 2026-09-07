@@ -1,6 +1,4 @@
 export function getReducedMotionSnapshot() {
-  if (typeof window === 'undefined') return false
-
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
@@ -15,8 +13,6 @@ function hexToRgb(hex: string): [number, number, number] {
 // Renders a conic (radial) gradient of the rainbow palette on a canvas and
 // returns it as a data URL, so it can be used as an SVG pattern fill.
 export function buildConicGradientDataUrl(size = 256): string {
-  if (typeof window === 'undefined') return ''
-
   const canvas = document.createElement('canvas')
   canvas.width = size
   canvas.height = size
