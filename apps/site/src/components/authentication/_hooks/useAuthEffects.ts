@@ -63,7 +63,6 @@ function useCompletionEffect(
 ) {
   const router = useRouter()
   const { cookieState } = useCookieManagement()
-
   const authenticatedUserId =
     state.phase === 'authenticated' ? state.userId : null
   const authenticatedEmail =

@@ -1,0 +1,141 @@
+# config.toml
+#
+# Unique source de verite des blobs FGP (un par env, cf. [[env.*]]) : cette
+# config est l'image exacte des routes Scalingo autorisees (deploiements, review
+# apps, hook postdeploy).
+#
+# Chaque [env.*] expose :
+#   api         : cible Scalingo a proxifier (host de l'API). Absent => global.api.
+#   routes      : (tableau) routes SANS contrainte de body, eg "GET:/v1/apps/x".
+#   [[scope]]   : route PORTANT une contrainte de body, decomposee en
+#                 method/route + sous-table [body] (voir legende .body ci-dessous).
+#
+# En-tetes .body autorises pour une cle "dot-path" :
+#   { eq = "v" }        egalite STRICTE (comparaison JSON)
+#   { glob = "p*" }     glob sur une valeur string     (ex. "postgresql://*")
+#   { regex = "…" }     regex ancree (pas d'^/$)         (SHA via [0-9a-f]{40})
+#   { present = true }  cle presente (n'importe quelle valeur)
+
+ttl = 0               # validite (s) du blob ; 0 = sans expiration
+
+[global]
+fgp_base_url = "https://fgp.incubateur.ademe.fr"
+api          = "https://api.osc-fr1.scalingo.com"   # region STANDARD (defaut)
+github_repo  = "incubateur-ademe/nosgestesclimat-app"
+# NB : la prod vit sur la region securisee osc-secnum-fr1 ; [env.prod].api l'ecrase.
+
+# ============================================================================ #
+# PROD                 -> region securisee (osc-secnum-fr1)
+#   server nosgestesclimat ; site nosgestesclimat-site
+# ============================================================================ #
+[env.prod]
+api       = "https://api.osc-secnum-fr1.scalingo.com"
+
+routes = [
+  # monitoring des deploiements (server)
+  "GET:/v1/apps/nosgestesclimat/deployments/*",
+  "GET:/v1/apps/nosgestesclimat/deployments/*/output",
+  # monitoring (site)
+  "GET:/v1/apps/nosgestesclimat-site/deployments/*",
+  "GET:/v1/apps/nosgestesclimat-site/deployments/*/output",
+]
+
+# trigger deploy (server) : uniquement la branche main, tarball officiel.
+[[env.prod.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat/deployments"
+[env.prod.scope.body]
+"deployment.git_ref"     = { eq = "main" }
+"deployment.source_url"  = { eq = "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz" }
+
+# trigger deploy (site)
+[[env.prod.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-site/deployments"
+[env.prod.scope.body]
+"deployment.git_ref"     = { eq = "main" }
+"deployment.source_url"  = { eq = "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz" }
+
+# ============================================================================ #
+# PREPROD              -> region STANDARD (osc-fr1)
+#   server nosgestesclimat-preprod ; site nosgestesclimat-site-preprod
+# ============================================================================ #
+[env.preprod]
+
+routes = [
+  "GET:/v1/apps/nosgestesclimat-preprod/deployments/*",
+  "GET:/v1/apps/nosgestesclimat-preprod/deployments/*/output",
+  "GET:/v1/apps/nosgestesclimat-site-preprod/deployments/*",
+  "GET:/v1/apps/nosgestesclimat-site-preprod/deployments/*/output",
+]
+
+[[env.preprod.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-preprod/deployments"
+[env.preprod.scope.body]
+"deployment.git_ref"     = { eq = "main" }
+"deployment.source_url"  = { eq = "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz" }
+
+[[env.preprod.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-site-preprod/deployments"
+[env.preprod.scope.body]
+"deployment.git_ref"     = { eq = "main" }
+"deployment.source_url"  = { eq = "https://github.com/incubateur-ademe/nosgestesclimat-app/archive/main.tar.gz" }
+
+# ============================================================================ #
+# REVIEW (-pr<NN>)      -> region STANDARD
+#   cree le review app sur le PARENT preprod, puis deploye/monitor la review app
+#   elle-meme. git_ref d'un deploy est le HEAD SHA de la PR (dynamique), PAS main.
+# ============================================================================ #
+[env.review]
+
+routes = [
+  # monitor review app (server + site)
+  "GET:/v1/apps/nosgestesclimat-preprod-pr*/deployments/*",
+  "GET:/v1/apps/nosgestesclimat-preprod-pr*/deployments/*/output",
+  "GET:/v1/apps/nosgestesclimat-site-preprod-pr*/deployments/*",
+  "GET:/v1/apps/nosgestesclimat-site-preprod-pr*/deployments/*/output",
+]
+
+# appel du creation du review app (sur le PARENT), avec l'id de la PR
+[[env.review.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-preprod/scm_repo_link/manual_review_app"
+[env.review.scope.body]
+"pull_request_id" = { present = true }
+
+[[env.review.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-site-preprod/scm_repo_link/manual_review_app"
+[env.review.scope.body]
+"pull_request_id" = { present = true }
+
+# deploy sur la review app elle-meme : git_ref == sha immuable de la PR
+[[env.review.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-preprod-pr*/deployments"
+[env.review.scope.body]
+"deployment.git_ref"     = { regex = "[0-9a-f]{40}" }
+"deployment.source_url"  = { regex = "https://github\\.com/incubateur-ademe/nosgestesclimat-app/archive/[0-9a-f]{40}\\.tar\\.gz" }
+
+[[env.review.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-site-preprod-pr*/deployments"
+[env.review.scope.body]
+"deployment.git_ref"     = { regex = "[0-9a-f]{40}" }
+"deployment.source_url"  = { regex = "https://github\\.com/incubateur-ademe/nosgestesclimat-app/archive/[0-9a-f]{40}\\.tar\\.gz" }
+
+# ============================================================================ #
+# POSTDEPLOY           -> region STANDARD
+#   hook Scalingo postdeploy situe sur le review server : pousse DATABASE_URL
+#   vers le review app du site jumeau.
+# ============================================================================ #
+[env.postdeploy]
+
+[[env.postdeploy.scope]]
+method = "POST"
+route  = "/v1/apps/nosgestesclimat-site-preprod-pr*/variables"
+[env.postdeploy.scope.body]
+"variable.name"  = { eq = "DATABASE_URL" }
+"variable.value" = { glob = "postgresql://*" }

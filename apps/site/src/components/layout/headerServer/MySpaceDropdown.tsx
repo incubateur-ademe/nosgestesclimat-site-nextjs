@@ -38,7 +38,7 @@ const MAX_EMAIL_LENGTH = 20
 
 interface Props {
   email: string
-  onLogout: () => void
+  onLogout: () => Promise<void>
 }
 
 const commonItemClassNames =
@@ -63,7 +63,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     trackPosthogEvent(captureClickHeaderAccessMySpaceAuthenticatedServer)
   }
 
-  const handleLogout = (closeMenu: () => void) => {
+  const handleLogout = async (closeMenu: () => void) => {
     trackMatomoEvent__deprecated(headerClickLogoutAuthenticatedServer)
     trackPosthogEvent(captureClickHeaderLogoutAuthenticatedServer)
     closeMenu()
@@ -72,7 +72,14 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
 
     posthog.reset()
 
-    onLogout()
+    await onLogout()
+
+    // The server `logout()` action no longer calls `redirect()`: server-action
+    // redirects become soft RSC navigations that can replay the per-session
+    // prefetched App Shell (header still showing the logged-in user) from the
+    // client Router Cache. A full-document navigation forces a real request with
+    // the freshly-cleared cookies, so the proxy serves a logged-out header.
+    window.location.assign('/')
   }
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
@@ -132,7 +139,9 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
               type="button"
               data-testid="my-space-logout-button"
               className="flex w-full items-center gap-2"
-              onClick={() => handleLogout(() => setIsPopoverOpen(false))}>
+              onClick={() => {
+                void handleLogout(() => setIsPopoverOpen(false))
+              }}>
               <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>
               <LogOutIcon className="fill-default w-4" />
             </button>
