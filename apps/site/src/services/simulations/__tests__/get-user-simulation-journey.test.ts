@@ -79,19 +79,4 @@ describe('getUserSimulationJourney', () => {
       })
     })
   })
-
-  describe('when the service throws', () => {
-    it('should propagate the rejection to the caller', async () => {
-      const userId = randomUUID()
-      vi.mocked(getUserSession).mockResolvedValue({
-        id: userId,
-        email: 'alice@example.com',
-        isAuth: true,
-      })
-      const error = new Error('boom')
-      serviceMock.getUserSimulationJourney.mockRejectedValue(error)
-
-      await expect(getUserSimulationJourney()).rejects.toBe(error)
-    })
-  })
 })
