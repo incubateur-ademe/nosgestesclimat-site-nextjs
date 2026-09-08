@@ -36,6 +36,13 @@ export function useAutoSaveSimulation() {
     // Avoid useless server calls
     if (progression === 0) return
 
+    /**
+     * Persisting a progression of 1 completes the simulation server-side, which
+     * freezes it and makes the simulator layout redirect to the end page.
+     * Completing is the "Terminer" button's job, so the last answer waits for it.
+     */
+    if (progression === 1) return
+
     debouncedSave({
       id,
       model,
