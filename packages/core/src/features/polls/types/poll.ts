@@ -24,3 +24,10 @@ export interface Poll {
     slug: string
   }
 }
+
+export interface PollSummary {
+  id: string
+  name: string
+  slug: string
+  organisation: { slug: string }
+}

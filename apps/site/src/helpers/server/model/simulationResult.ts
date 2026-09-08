@@ -1,43 +1,25 @@
+import type {
+  SimulationResultGroupInfo,
+  Tendency,
+} from '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service'
+
 import type { Simulation } from '@/helpers/server/model/simulations'
-import type { ComputedResults } from '@/publicodes-state/types'
-import { getPoll } from '@/services/polls/get-poll'
-import { getGroup } from './groups'
 
-export interface SimulationResult {
-  computedResults: ComputedResults
-  group: { name: string; href: string } | null
-}
-
-export async function getSimulationResult({
-  simulation,
-}: {
+interface SimulationResultBase {
   simulation: Simulation
-}): Promise<SimulationResult> {
-  let group: { name: string; href: string } | null = null
-  if (simulation.groups?.length) {
-    const groupId = simulation.groups[0].id
-    const groupData = await getGroup({
-      groupId,
-    })
-    group = {
-      name: groupData.name,
-      href: `/amis/resultats?groupId=${groupData.id}`,
-    }
-  }
-
-  // If no group found, try to find an associated poll/campaign
-  if (!group && simulation.polls?.length) {
-    const poll = await getPoll(simulation.polls[0].id)
-    if (poll) {
-      group = {
-        name: poll.name,
-        href: `/organisations/${poll.organisation.slug}/campagnes/${poll.slug}`,
-      }
-    }
-  }
-
-  return {
-    computedResults: simulation.computedResults,
-    group,
-  }
+  group: SimulationResultGroupInfo | null
 }
+
+export interface TendencySimulationResult extends SimulationResultBase {
+  type: 'tendency'
+  previousSimulation: Simulation
+  tendency: Tendency
+}
+
+export interface PlainSimulationResult extends SimulationResultBase {
+  type: 'result'
+  previousSimulation: null
+  tendency: null
+}
+
+export type SimulationResult = TendencySimulationResult | PlainSimulationResult

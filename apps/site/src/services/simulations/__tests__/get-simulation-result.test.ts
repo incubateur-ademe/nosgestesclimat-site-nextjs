@@ -1,4 +1,5 @@
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
+import type { SimulationResult } from '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service'
 import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -6,9 +7,7 @@ import { getUserSession } from '@/services/auth/get-user-session'
 import { getSimulationResult } from '../get-simulation-result'
 
 const serviceMock = vi.hoisted(() => ({
-  getSimulation: vi.fn(),
-  getPoll: vi.fn(),
-  prismaGroupFindUnique: vi.fn(),
+  getSimulationResultService: vi.fn(),
 }))
 
 const notFoundMock = vi.hoisted(() => vi.fn())
@@ -18,23 +17,11 @@ vi.mock('@/services/auth/get-user-session', () => ({
 }))
 
 vi.mock(
-  '@nosgestesclimat/core/features/simulations/services/get-simulation.service',
+  '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service',
   () => ({
-    getSimulation: serviceMock.getSimulation,
+    getSimulationResult: serviceMock.getSimulationResultService,
   })
 )
-
-vi.mock('@/services/polls/get-poll', () => ({
-  getPoll: serviceMock.getPoll,
-}))
-
-vi.mock('@nosgestesclimat/core/prisma/client', () => ({
-  prisma: {
-    group: {
-      findUnique: serviceMock.prismaGroupFindUnique,
-    },
-  },
-}))
 
 vi.mock('next/navigation', () => ({
   notFound: notFoundMock,
@@ -51,13 +38,13 @@ describe('getSimulationResult', () => {
   it('calls notFound when there is no session', async () => {
     vi.mocked(getUserSession).mockResolvedValue(null)
 
-    await expect(getSimulationResult(randomUUID())).rejects.toThrow(
-      'NEXT_NOT_FOUND'
-    )
-    expect(serviceMock.getSimulation).not.toHaveBeenCalled()
+    await expect(
+      getSimulationResult({ by: 'id', id: randomUUID() })
+    ).rejects.toThrow('NEXT_NOT_FOUND')
+    expect(serviceMock.getSimulationResultService).not.toHaveBeenCalled()
   })
 
-  it('calls notFound when the core service returns null', async () => {
+  it('returns null when the core service returns null', async () => {
     const userId = randomUUID()
     const simulationId = randomUUID()
     vi.mocked(getUserSession).mockResolvedValue({
@@ -65,12 +52,13 @@ describe('getSimulationResult', () => {
       email: 'alice@example.com',
       isAuth: true,
     })
-    serviceMock.getSimulation.mockResolvedValue(null)
+    serviceMock.getSimulationResultService.mockResolvedValue(null)
 
-    await expect(getSimulationResult(simulationId)).rejects.toThrow(
-      'NEXT_NOT_FOUND'
-    )
-    expect(serviceMock.getSimulation).toHaveBeenCalledWith({
+    const result = await getSimulationResult({ by: 'id', id: simulationId })
+
+    expect(result).toBeNull()
+    expect(serviceMock.getSimulationResultService).toHaveBeenCalledWith({
+      by: 'id',
       id: simulationId,
       userId,
     })
@@ -78,7 +66,6 @@ describe('getSimulationResult', () => {
 
   it('returns SimulationResult with null group when simulation has no groups or polls', async () => {
     const userId = randomUUID()
-    const simulationId = randomUUID()
     vi.mocked(getUserSession).mockResolvedValue({
       id: userId,
       email: 'alice@example.com',
@@ -86,20 +73,26 @@ describe('getSimulationResult', () => {
     })
 
     const entity = simulationFactory.withModelRegion('FR').build()
-    entity.id = simulationId
-    serviceMock.getSimulation.mockResolvedValue(entity)
+    const coreResult: SimulationResult = {
+      type: 'result',
+      simulation: entity,
+      previousSimulation: null,
+      group: null,
+      tendency: null,
+    }
+    serviceMock.getSimulationResultService.mockResolvedValue(coreResult)
 
-    const result = await getSimulationResult(simulationId)
+    const result = await getSimulationResult({ by: 'id', id: entity.id })
 
-    expect(result.group).toBeNull()
-    expect(result.computedResults).toEqual(entity.computedResults)
-    expect(serviceMock.prismaGroupFindUnique).not.toHaveBeenCalled()
-    expect(serviceMock.getPoll).not.toHaveBeenCalled()
+    expect(result).not.toBeNull()
+    expect(result!.group).toBeNull()
+    expect(result!.tendency).toBeNull()
+    expect(result!.previousSimulation).toBeNull()
+    expect(result!.simulation.computedResults).toEqual(entity.computedResults)
   })
 
-  it('returns group from prisma when simulation has a group', async () => {
+  it('returns group info with type "group" when simulation has a group', async () => {
     const userId = randomUUID()
-    const simulationId = randomUUID()
     const groupId = randomUUID()
     vi.mocked(getUserSession).mockResolvedValue({
       id: userId,
@@ -108,30 +101,26 @@ describe('getSimulationResult', () => {
     })
 
     const entity = simulationFactory.withModelRegion('FR').build()
-    entity.id = simulationId
-    entity.groups = [{ id: groupId }]
-    serviceMock.getSimulation.mockResolvedValue(entity)
-    serviceMock.prismaGroupFindUnique.mockResolvedValue({
-      id: groupId,
-      name: 'My Group',
-    })
+    const coreResult: SimulationResult = {
+      type: 'result',
+      simulation: entity,
+      previousSimulation: null,
+      group: { type: 'group', value: { id: groupId, name: 'My Group' } },
+      tendency: null,
+    }
+    serviceMock.getSimulationResultService.mockResolvedValue(coreResult)
 
-    const result = await getSimulationResult(simulationId)
+    const result = await getSimulationResult({ by: 'id', id: entity.id })
 
-    expect(result.group).toEqual({
-      name: 'My Group',
-      href: `/amis/resultats?groupId=${groupId}`,
+    expect(result).not.toBeNull()
+    expect(result!.group).toEqual({
+      type: 'group',
+      value: { id: groupId, name: 'My Group' },
     })
-    expect(serviceMock.prismaGroupFindUnique).toHaveBeenCalledWith({
-      where: { id: groupId },
-      select: { id: true, name: true },
-    })
-    expect(serviceMock.getPoll).not.toHaveBeenCalled()
   })
 
-  it('returns group from poll repo when simulation has a poll but no group', async () => {
+  it('returns group info with type "poll" when simulation has a poll but no group', async () => {
     const userId = randomUUID()
-    const simulationId = randomUUID()
     const pollId = randomUUID()
     vi.mocked(getUserSession).mockResolvedValue({
       id: userId,
@@ -140,31 +129,72 @@ describe('getSimulationResult', () => {
     })
 
     const entity = simulationFactory.withModelRegion('FR').build()
-    entity.id = simulationId
-    entity.polls = [{ id: pollId, slug: 'my-poll', name: 'My Poll' }]
-    serviceMock.getSimulation.mockResolvedValue(entity)
-    serviceMock.getPoll.mockResolvedValue({
-      id: pollId,
-      name: 'My Poll',
-      slug: 'my-poll',
-      mode: 'standard',
-      expectedNumberOfParticipants: null,
-      funFacts: null,
-      computedResults: null,
-      defaultAdditionalQuestions: [],
-      customAdditionalQuestions: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      organisation: { id: 'org-id', name: 'My Org', slug: 'my-org' },
+    const coreResult: SimulationResult = {
+      type: 'result',
+      simulation: entity,
+      previousSimulation: null,
+      group: {
+        type: 'poll',
+        value: {
+          id: pollId,
+          name: 'My Poll',
+          slug: 'my-poll',
+          organisation: { slug: 'my-org' },
+        },
+      },
+      tendency: null,
+    }
+    serviceMock.getSimulationResultService.mockResolvedValue(coreResult)
+
+    const result = await getSimulationResult({ by: 'id', id: entity.id })
+
+    expect(result).not.toBeNull()
+    expect(result!.group).toEqual({
+      type: 'poll',
+      value: {
+        id: pollId,
+        name: 'My Poll',
+        slug: 'my-poll',
+        organisation: { slug: 'my-org' },
+      },
+    })
+  })
+
+  it('returns tendency result with previousSimulation', async () => {
+    const userId = randomUUID()
+    vi.mocked(getUserSession).mockResolvedValue({
+      id: userId,
+      email: 'alice@example.com',
+      isAuth: true,
     })
 
-    const result = await getSimulationResult(simulationId)
+    const entity = simulationFactory.withModelRegion('FR').build()
+    entity.computedResults.carbone.bilan = 800
+    const previousEntity = simulationFactory.withModelRegion('FR').build()
+    previousEntity.computedResults.carbone.bilan = 1000
 
-    expect(result.group).toEqual({
-      name: 'My Poll',
-      href: '/organisations/my-org/campagnes/my-poll',
+    const coreResult: SimulationResult = {
+      type: 'tendency',
+      simulation: entity,
+      previousSimulation: previousEntity,
+      group: null,
+      tendency: 'decrease',
+    }
+    serviceMock.getSimulationResultService.mockResolvedValue(coreResult)
+
+    const result = await getSimulationResult({
+      by: 'latest',
+      withTendency: true,
     })
-    expect(serviceMock.getPoll).toHaveBeenCalledWith(pollId)
-    expect(serviceMock.prismaGroupFindUnique).not.toHaveBeenCalled()
+
+    expect(result).not.toBeNull()
+    expect(result!.type).toBe('tendency')
+    expect(result!.tendency).toBe('decrease')
+    expect(result!.previousSimulation).not.toBeNull()
+    expect(serviceMock.getSimulationResultService).toHaveBeenCalledWith({
+      by: 'latest',
+      withTendency: true,
+      userId,
+    })
   })
 })

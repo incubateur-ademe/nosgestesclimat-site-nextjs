@@ -4,7 +4,7 @@ import type {
   PollDefaultAdditionalQuestionType,
   PollMode,
 } from '../../../prisma/generated/client.ts'
-import type { Poll } from '../types/poll.ts'
+import type { Poll, PollSummary } from '../types/poll.ts'
 import { toPoll } from './poll.mapper.ts'
 
 export interface PollRow {
@@ -47,6 +47,13 @@ const pollSelect = {
   },
 } as const
 
+const pollSummarySelect = {
+  id: true,
+  name: true,
+  slug: true,
+  organisation: { select: { slug: true } },
+} as const
+
 export const findPollByIdOrSlug = async ({
   pollIdOrSlug,
 }: {
@@ -60,4 +67,15 @@ export const findPollByIdOrSlug = async ({
   })
 
   return row ? toPoll(row) : null
+}
+
+export const findPollSummaryById = async ({
+  id,
+}: {
+  id: string
+}): Promise<PollSummary | null> => {
+  return prisma.poll.findUnique({
+    where: { id },
+    select: pollSummarySelect,
+  })
 }

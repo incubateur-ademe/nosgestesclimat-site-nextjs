@@ -7,9 +7,11 @@ import {
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { buildAlternates } from '@/helpers/metadata/getMetadataObject'
+import { getGroupDisplayInfo } from '@/helpers/server/model/utils/getGroupDisplayInfo'
 import { getSimulationResult } from '@/services/simulations/get-simulation-result'
 import type { DefaultPageProps } from '@/types'
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 export async function generateMetadata({
   params,
@@ -33,7 +35,11 @@ export default async function DetailledResultsPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const simulationResult = await getSimulationResult(simulationId)
+  const simulationResult = await getSimulationResult({
+    by: 'id',
+    id: simulationId,
+  })
+  if (!simulationResult) notFound()
 
   return (
     <>
@@ -67,9 +73,14 @@ export default async function DetailledResultsPage({
       />
 
       <CarbonFootprintResults
-        simulationResult={simulationResult}
+        computedResults={simulationResult.simulation.computedResults}
         locale={locale}
         hideSaveBlock
+        group={
+          simulationResult.group
+            ? getGroupDisplayInfo(simulationResult.group)
+            : null
+        }
       />
     </>
   )
