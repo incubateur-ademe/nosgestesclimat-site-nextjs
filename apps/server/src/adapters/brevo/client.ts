@@ -767,7 +767,6 @@ export const addOrUpdateContactAfterSimulationCreated = async ({
   const attributes = {
     [Attributes.USER_ID]: userId,
     [Attributes.LAST_SIMULATION_DATE]: lastSimulationDate.toISOString(),
-    [Attributes.ACTIONS_SELECTED_NUMBER]: 0,
     ...lastSimulationResult({
       locale: Locales.fr,
       computedResults,

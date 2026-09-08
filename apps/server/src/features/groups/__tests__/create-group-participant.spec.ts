@@ -624,7 +624,6 @@ describe('Given a NGC user', () => {
             attributes: {
               USER_ID: administratorId,
               LAST_SIMULATION_DATE: date.toISOString(),
-              ACTIONS_SELECTED_NUMBER: 0,
               LAST_SIMULATION_BILAN_FOOTPRINT: (
                 computedResults.carbone.bilan / 1000
               ).toLocaleString('fr-FR', {
