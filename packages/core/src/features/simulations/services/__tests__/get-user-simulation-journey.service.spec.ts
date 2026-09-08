@@ -207,6 +207,43 @@ describe('getUserSimulationJourney', () => {
     })
   })
 
+  it('excludes a completed simulation whose model string cannot be parsed', async () => {
+    const user = await userFactory.create()
+    const completed = await simulationFactory
+      .withModelRegion('FR')
+      .completed()
+      .withValidComputedResults()
+      .params({
+        userId: user.id,
+        date: new Date('2024-01-01'),
+      })
+      .create()
+    const current = await simulationFactory
+      .withModelRegion('FR')
+      .withProgression(0.5)
+      .withValidComputedResults()
+      .params({
+        userId: user.id,
+        date: new Date('2024-02-01'),
+      })
+      .create()
+
+    await prisma.simulation.update({
+      where: { id: completed.id },
+      data: { model: 'FR-de-1.2.3' },
+    })
+
+    const result = await getUserSimulationJourney({ userId: user.id })
+
+    expect(result).toEqual({
+      currentSimulation: {
+        id: current.id,
+        progression: 0.5,
+        model: serializeModel(current.model),
+      },
+    })
+  })
+
   it('does not return another user simulations', async () => {
     const user = await userFactory.create()
     const other = await userFactory.create()

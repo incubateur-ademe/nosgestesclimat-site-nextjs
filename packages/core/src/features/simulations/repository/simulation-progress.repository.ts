@@ -7,7 +7,7 @@ import {
   hasValidComputedResults,
   type ComputedResults,
 } from '../validators/computed-results.schema.ts'
-import { parseModelString } from './model.mapper.ts'
+import { isValidSimulation } from '../validators/simulation.validator.ts'
 
 const latestSimulationSelect = {
   id: true,
@@ -22,12 +22,6 @@ type SimulationProgressRow = {
   model: string
   computedResults: ComputedResults
 }
-
-const isValidSimulation = (row: {
-  model: string
-  computedResults?: unknown
-}): row is SimulationProgressRow =>
-  parseModelString(row.model) !== null && hasValidComputedResults(row)
 
 const toProgress = <Progression extends number>(row: {
   id: string
