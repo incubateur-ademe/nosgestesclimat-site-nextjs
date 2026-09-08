@@ -1,3 +1,4 @@
+import { EMAIL_PAGE_PATH } from '@/constants/urls/paths'
 import type { Page } from '@playwright/test'
 import { expect, test } from '../fixtures'
 import { createPage } from '../fixtures/feature-flags'
@@ -91,6 +92,7 @@ test.describe.skip('scolaire mode', () => {
   })
 
   test("shouldn't offer to reuse the previous scolaire test when joining a new scolaire poll", async ({
+    page,
     scolairePoll,
   }) => {
     // Joining a new scolaire poll must offer to reuse the previous scolaire
@@ -100,6 +102,7 @@ test.describe.skip('scolaire mode', () => {
   })
 
   test('starts a fresh test when joining a standard poll after completing a scolaire test', async ({
+    page,
     poll,
   }) => {
     // The shared page has just completed a test via the scolaire poll invite
