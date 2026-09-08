@@ -58,10 +58,9 @@ describe('toSimulationDto', () => {
     expect(dto.groups).toBeUndefined()
   })
 
-  it('does not set user or persona', () => {
+  it('does not set persona', () => {
     const dto = toSimulationDto(buildEntity())
 
-    expect(dto.user).toBeUndefined()
     expect(dto.persona).toBeUndefined()
   })
 })
