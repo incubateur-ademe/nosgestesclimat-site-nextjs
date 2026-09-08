@@ -346,6 +346,7 @@ model Simulation {
   progression                Float                                @db.Real
   model                      String                               @default("FR-fr-0.0.0")
   computedResults            Json
+  /// @deprecated replaced by the ActionAssessment relation
   actionChoices              Json                                 @default("{}")
   situation                  Json
   foldedSteps                Json[]
