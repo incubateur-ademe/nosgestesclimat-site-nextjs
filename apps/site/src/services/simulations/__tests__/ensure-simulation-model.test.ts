@@ -5,6 +5,7 @@ import { buildNewSimulationPayload } from '@/services/simulations/build-new-simu
 import { http, HttpResponse } from 'msw'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mswServer } from '../../../__tests__/server'
+import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
 import { createGroup } from '../../groups/create-group'
 import { updateGroupParticipant } from '../../groups/update-group-participant'
 import { saveSimulation } from '../save-simulation'
@@ -34,12 +35,7 @@ vi.mock('next/headers', () => ({
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }))
 
 vi.mock('@/services/auth/get-user-session', () => ({
-  getUserSession: () =>
-    Promise.resolve({
-      id: 'user-id',
-      isAuth: true,
-      email: 'alice@example.com',
-    }),
+  getUserSession: vi.fn(),
 }))
 
 vi.mock('@/services/auth/create-app-session', () => ({
@@ -79,6 +75,7 @@ const captureSimulationBody = (
 describe('simulation write paths', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    mockAuthenticatedSession()
   })
 
   describe('given a simulation without a model', () => {

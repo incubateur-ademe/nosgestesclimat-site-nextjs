@@ -1,9 +1,9 @@
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
-import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { parseModelString } from '@/helpers/server/model/models'
 import { getUserSession } from '@/services/auth/get-user-session'
+import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
 import { toSimulationDto } from '../simulation.dto'
 import { updateSimulationSituation } from '../update-simulation-situation'
 import type { UpdateSimulationSituationPayload } from '../update-simulation-situation-payload.schema'
@@ -82,12 +82,7 @@ describe('updateSimulationSituation', () => {
   })
 
   it('forwards the session user and the answered fields to the core service', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    const userId = mockAuthenticatedSession()
     const payload = aPayload()
 
     const result = await updateSimulationSituation(payload)
@@ -105,12 +100,7 @@ describe('updateSimulationSituation', () => {
   })
 
   it('passes the core failure through', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    mockAuthenticatedSession()
     const failure = {
       success: false,
       error: { code: 'simulation_completed' },
@@ -123,12 +113,7 @@ describe('updateSimulationSituation', () => {
   })
 
   it('repairs an unparseable model before writing', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    mockAuthenticatedSession()
     const payload = aPayload()
     delete payload.model
 
@@ -142,12 +127,7 @@ describe('updateSimulationSituation', () => {
   })
 
   it('rejects a malformed payload without reaching the core service', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    mockAuthenticatedSession()
     const payload = aPayload({ id: 'not-a-uuid' })
 
     const result = await updateSimulationSituation(payload)

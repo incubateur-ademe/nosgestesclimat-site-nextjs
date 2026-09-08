@@ -1,8 +1,8 @@
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
-import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getUserSession } from '@/services/auth/get-user-session'
+import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
 import { listCompletedSimulations } from '../list-completed-simulations'
 import { toSimulationDto } from '../simulation.dto'
 
@@ -36,12 +36,7 @@ describe('listCompletedSimulations', () => {
   })
 
   it('returns an empty array when the core service returns no simulations', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    const userId = mockAuthenticatedSession()
     serviceMock.listCompletedSimulations.mockResolvedValue([])
 
     const result = await listCompletedSimulations()
@@ -54,12 +49,7 @@ describe('listCompletedSimulations', () => {
   })
 
   it('maps entities to DTOs', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    const userId = mockAuthenticatedSession()
 
     const [older, newer] = [
       simulationFactory.withModelRegion('FR').build(),
@@ -77,12 +67,7 @@ describe('listCompletedSimulations', () => {
   })
 
   it('forwards the limit to the core service', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    const userId = mockAuthenticatedSession()
     serviceMock.listCompletedSimulations.mockResolvedValue([])
 
     await listCompletedSimulations({ limit: 2 })

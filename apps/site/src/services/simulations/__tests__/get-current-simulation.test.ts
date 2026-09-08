@@ -1,9 +1,9 @@
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
 import { serializeModel } from '@nosgestesclimat/core/features/simulations/repository/model.mapper'
-import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getUserSession } from '@/services/auth/get-user-session'
+import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
 import { getCurrentSimulation } from '../get-current-simulation'
 
 const serviceMock = vi.hoisted(() => ({
@@ -36,12 +36,7 @@ describe('getCurrentSimulation', () => {
   })
 
   it('returns undefined when the core service returns null', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    const userId = mockAuthenticatedSession()
     serviceMock.getCurrentSimulation.mockResolvedValue(null)
 
     const result = await getCurrentSimulation()
@@ -51,12 +46,7 @@ describe('getCurrentSimulation', () => {
   })
 
   it('maps the entity to a DTO', async () => {
-    const userId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
+    const userId = mockAuthenticatedSession()
 
     const entity = simulationFactory.withModelRegion('FR').build()
     serviceMock.getCurrentSimulation.mockResolvedValue(entity)

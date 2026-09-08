@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { NotFoundError, UnauthorizedError } from '@/helpers/server/error'
 import { getUserSession } from '@/services/auth/get-user-session'
+import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
 import { getSimulation } from '../get-simulation'
 
 const serviceMock = vi.hoisted(() => ({
@@ -37,13 +38,8 @@ describe('getSimulation', () => {
   })
 
   it('throws NotFoundError when the core service returns null', async () => {
-    const userId = randomUUID()
+    const userId = mockAuthenticatedSession()
     const simulationId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
     serviceMock.getSimulation.mockResolvedValue(null)
 
     await expect(getSimulation(simulationId)).rejects.toBeInstanceOf(
@@ -56,13 +52,8 @@ describe('getSimulation', () => {
   })
 
   it('maps the entity to a DTO', async () => {
-    const userId = randomUUID()
+    const userId = mockAuthenticatedSession()
     const simulationId = randomUUID()
-    vi.mocked(getUserSession).mockResolvedValue({
-      id: userId,
-      email: 'alice@example.com',
-      isAuth: true,
-    })
 
     const entity = simulationFactory.withModelRegion('FR').build()
     entity.id = simulationId

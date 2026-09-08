@@ -1,8 +1,8 @@
 import type { UserSimulationJourney } from '@nosgestesclimat/core/features/simulations/types/simulation-progress'
-import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getUserSession } from '@/services/auth/get-user-session'
+import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
 import { getUserSimulationJourney } from '../get-user-simulation-journey'
 
 const serviceMock = vi.hoisted(() => ({
@@ -41,12 +41,7 @@ describe('getUserSimulationJourney', () => {
 
   describe('given an authenticated user', () => {
     it('should delegate to the service with the authenticated user id only', async () => {
-      const userId = randomUUID()
-      vi.mocked(getUserSession).mockResolvedValue({
-        id: userId,
-        email: 'alice@example.com',
-        isAuth: true,
-      })
+      const userId = mockAuthenticatedSession()
       const progress: UserSimulationJourney = {
         currentSimulation: {
           id: 'sim-1',
@@ -68,8 +63,7 @@ describe('getUserSimulationJourney', () => {
 
   describe('given an anonymous user (session present, isAuth false)', () => {
     it('should still delegate to the service with the anonymous user id', async () => {
-      const userId = randomUUID()
-      vi.mocked(getUserSession).mockResolvedValue({ id: userId, isAuth: false })
+      const userId = mockAuthenticatedSession({ type: 'unverified' })
       serviceMock.getUserSimulationJourney.mockResolvedValue({})
 
       await getUserSimulationJourney()
