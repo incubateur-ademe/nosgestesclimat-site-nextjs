@@ -38,6 +38,9 @@ class SimulationFactory extends Factory<
       computedResults: { bilan: 1000 } as unknown as ComputedResults,
     })
   }
+  withValidComputedResults() {
+    return this.params({ computedResults: validComputedResults })
+  }
 
   started() {
     return this.params({ progression: 0.1 })
@@ -156,6 +159,31 @@ const zeroedComputedResults: ComputedResults = {
       divers: 0,
       logement: 0,
       transport: 0,
+    },
+    subcategories: {},
+  },
+}
+
+export const validComputedResults: ComputedResults = {
+  carbone: {
+    bilan: 1000,
+    categories: {
+      alimentation: 300,
+      transport: 400,
+      logement: 200,
+      divers: 50,
+      'services sociétaux': 50,
+    },
+    subcategories: {},
+  },
+  eau: {
+    bilan: 500,
+    categories: {
+      alimentation: 150,
+      transport: 200,
+      logement: 100,
+      divers: 25,
+      'services sociétaux': 25,
     },
     subcategories: {},
   },

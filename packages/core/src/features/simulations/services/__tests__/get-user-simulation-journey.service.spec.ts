@@ -5,31 +5,6 @@ import { simulationFactory } from '../../factories/simulation.factory.ts'
 import { serializeModel } from '../../repository/model.mapper.ts'
 import { getUserSimulationJourney } from '../get-user-simulation-journey.service.ts'
 
-const validComputedResults = {
-  carbone: {
-    bilan: 1000,
-    categories: {
-      alimentation: 300,
-      transport: 400,
-      logement: 200,
-      divers: 50,
-      'services sociétaux': 50,
-    },
-    subcategories: {},
-  },
-  eau: {
-    bilan: 500,
-    categories: {
-      alimentation: 150,
-      transport: 200,
-      logement: 100,
-      divers: 25,
-      'services sociétaux': 25,
-    },
-    subcategories: {},
-  },
-}
-
 describe('getUserSimulationJourney', () => {
   afterEach(async () => {
     await prisma.simulation.deleteMany()
@@ -49,19 +24,19 @@ describe('getUserSimulationJourney', () => {
     await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.2)
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-01-01'),
-        computedResults: validComputedResults,
       })
       .create()
     const latest = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-02-01'),
-        computedResults: validComputedResults,
       })
       .create()
 
@@ -81,19 +56,19 @@ describe('getUserSimulationJourney', () => {
     await simulationFactory
       .withModelRegion('FR')
       .completed()
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-01-01'),
-        computedResults: validComputedResults,
       })
       .create()
     const latestCompleted = await simulationFactory
       .withModelRegion('FR')
       .completed()
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-02-01'),
-        computedResults: validComputedResults,
       })
       .create()
 
@@ -118,19 +93,19 @@ describe('getUserSimulationJourney', () => {
     const completed = await simulationFactory
       .withModelRegion('FR')
       .completed()
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-01-01'),
-        computedResults: validComputedResults,
       })
       .create()
     const current = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-02-01'),
-        computedResults: validComputedResults,
       })
       .create()
 
@@ -155,19 +130,19 @@ describe('getUserSimulationJourney', () => {
     await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-01-01'),
-        computedResults: validComputedResults,
       })
       .create()
     const completed = await simulationFactory
       .withModelRegion('FR')
       .completed()
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-02-01'),
-        computedResults: validComputedResults,
       })
       .create()
 
@@ -214,10 +189,10 @@ describe('getUserSimulationJourney', () => {
     const current = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-02-01'),
-        computedResults: validComputedResults,
       })
       .create()
 
@@ -237,7 +212,8 @@ describe('getUserSimulationJourney', () => {
     const other = await userFactory.create()
     await simulationFactory
       .withProgression(0.5)
-      .params({ userId: other.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: other.id })
       .create()
 
     const result = await getUserSimulationJourney({ userId: user.id })

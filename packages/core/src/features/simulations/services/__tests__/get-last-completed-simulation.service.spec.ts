@@ -1,8 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
-import { simulationFactory } from '../../factories/simulation.factory.ts'
-import type { ComputedResults } from '../../validators/computed-results.schema.ts'
+import {
+  simulationFactory,
+  validComputedResults,
+} from '../../factories/simulation.factory.ts'
 import { getLastCompletedSimulation } from '../get-last-completed-simulation.service.ts'
 
 vi.mock('../../helpers/migrate-simulation.ts', () => ({
@@ -37,10 +39,10 @@ describe('getLastCompletedSimulation', () => {
     await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
+      .withValidComputedResults()
       .params({
         userId: user.id,
         date: new Date('2024-02-01'),
-        computedResults: validComputedResults,
       })
       .create()
 
@@ -55,19 +57,19 @@ describe('getLastCompletedSimulation', () => {
       simulationFactory
         .withModelRegion('FR')
         .completed()
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-01-01'),
-          computedResults: validComputedResults,
         })
         .create(),
       simulationFactory
         .withModelRegion('FR')
         .completed()
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-02-01'),
-          computedResults: validComputedResults,
         })
         .create(),
     ])
@@ -100,19 +102,19 @@ describe('getLastCompletedSimulation', () => {
       simulationFactory
         .withModelRegion('FR')
         .completed()
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-01-01'),
-          computedResults: validComputedResults,
         })
         .create(),
       simulationFactory
         .withModelRegion('FR')
         .withProgression(0.5)
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-02-01'),
-          computedResults: validComputedResults,
         })
         .create(),
     ])
@@ -131,7 +133,8 @@ describe('getLastCompletedSimulation', () => {
     ])
     await simulationFactory
       .completed()
-      .params({ userId: other.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: other.id })
       .create()
 
     const result = await getLastCompletedSimulation({ userId: user.id })
@@ -156,7 +159,8 @@ describe('getLastCompletedSimulation', () => {
     const user = await userFactory.create()
     const simulation = await simulationFactory
       .completed()
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
 
     await prisma.simulation.update({
@@ -176,7 +180,8 @@ describe('getLastCompletedSimulation', () => {
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .completed()
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
 
     await getLastCompletedSimulation({ userId: user.id })
@@ -191,28 +196,3 @@ describe('getLastCompletedSimulation', () => {
     )
   })
 })
-
-const validComputedResults = {
-  carbone: {
-    bilan: 1000,
-    categories: {
-      alimentation: 300,
-      transport: 400,
-      logement: 200,
-      divers: 50,
-      'services sociétaux': 50,
-    },
-    subcategories: {},
-  },
-  eau: {
-    bilan: 500,
-    categories: {
-      alimentation: 150,
-      transport: 200,
-      logement: 100,
-      divers: 25,
-      'services sociétaux': 25,
-    },
-    subcategories: {},
-  },
-} satisfies ComputedResults

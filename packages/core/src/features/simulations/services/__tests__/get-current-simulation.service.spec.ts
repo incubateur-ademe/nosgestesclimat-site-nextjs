@@ -1,8 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
-import { simulationFactory } from '../../factories/simulation.factory.ts'
-import type { ComputedResults } from '../../validators/computed-results.schema.ts'
+import {
+  simulationFactory,
+  validComputedResults,
+} from '../../factories/simulation.factory.ts'
 import { getCurrentSimulation } from '../get-current-simulation.service.ts'
 
 vi.mock('../../helpers/migrate-simulation.ts', () => ({
@@ -38,19 +40,19 @@ describe('getCurrentSimulation', () => {
       simulationFactory
         .withModelRegion('FR')
         .withProgression(0.2)
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-01-01'),
-          computedResults: validComputedResults,
         })
         .create(),
       simulationFactory
         .withModelRegion('FR')
         .withProgression(0.5)
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-02-01'),
-          computedResults: validComputedResults,
         })
         .create(),
     ])
@@ -84,7 +86,8 @@ describe('getCurrentSimulation', () => {
     ])
     await simulationFactory
       .withProgression(0.5)
-      .params({ userId: other.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: other.id })
       .create()
 
     const result = await getCurrentSimulation({ userId: user.id })
@@ -109,7 +112,8 @@ describe('getCurrentSimulation', () => {
     const user = await userFactory.create()
     const simulation = await simulationFactory
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
 
     await prisma.simulation.update({
@@ -127,7 +131,8 @@ describe('getCurrentSimulation', () => {
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
 
     const organisation = await prisma.organisation.create({
@@ -171,7 +176,8 @@ describe('getCurrentSimulation', () => {
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
 
     const result = await getCurrentSimulation({ userId: user.id })
@@ -186,7 +192,8 @@ describe('getCurrentSimulation', () => {
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
 
     await getCurrentSimulation({ userId: user.id })
@@ -201,28 +208,3 @@ describe('getCurrentSimulation', () => {
     )
   })
 })
-
-const validComputedResults = {
-  carbone: {
-    bilan: 1000,
-    categories: {
-      alimentation: 300,
-      transport: 400,
-      logement: 200,
-      divers: 50,
-      'services sociétaux': 50,
-    },
-    subcategories: {},
-  },
-  eau: {
-    bilan: 500,
-    categories: {
-      alimentation: 150,
-      transport: 200,
-      logement: 100,
-      divers: 25,
-      'services sociétaux': 25,
-    },
-    subcategories: {},
-  },
-} satisfies ComputedResults
