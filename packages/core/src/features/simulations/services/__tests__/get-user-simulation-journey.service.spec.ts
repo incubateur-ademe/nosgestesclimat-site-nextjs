@@ -220,4 +220,23 @@ describe('getUserSimulationJourney', () => {
 
     expect(result).toEqual({})
   })
+
+  it('excludes a simulation whose model string cannot be parsed', async () => {
+    const user = await userFactory.create()
+    const simulation = await simulationFactory
+      .withModelRegion('FR')
+      .withProgression(0.5)
+      .withValidComputedResults()
+      .params({ userId: user.id })
+      .create()
+
+    await prisma.simulation.update({
+      where: { id: simulation.id },
+      data: { model: 'FR-de-1.2.3' },
+    })
+
+    const result = await getUserSimulationJourney({ userId: user.id })
+
+    expect(result).toEqual({})
+  })
 })

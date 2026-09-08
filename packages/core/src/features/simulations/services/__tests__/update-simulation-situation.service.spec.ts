@@ -117,9 +117,15 @@ describe('updateSimulationSituation', () => {
 
     await prisma.simulation.update({
       where: { id: simulation.id },
-      data: { model: 'FR-fr-0.0.0' },
+      data: { model: 'FR-de-1.2.3' },
       select: { id: true },
     })
+
+    const broken = await findSimulationById({
+      id: simulation.id,
+      userId: user.id,
+    })
+    expect(broken).toBeNull()
 
     await updateSimulationSituation({
       userId: user.id,

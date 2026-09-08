@@ -7,6 +7,7 @@ import {
   hasValidComputedResults,
   type ComputedResults,
 } from '../validators/computed-results.schema.ts'
+import { parseModelString } from './model.mapper.ts'
 
 const latestSimulationSelect = {
   id: true,
@@ -21,6 +22,12 @@ type SimulationProgressRow = {
   model: string
   computedResults: ComputedResults
 }
+
+const isValidSimulation = (row: {
+  model: string
+  computedResults?: unknown
+}): row is SimulationProgressRow =>
+  parseModelString(row.model) !== null && hasValidComputedResults(row)
 
 const toProgress = <Progression extends number>(row: {
   id: string
@@ -42,7 +49,7 @@ const findLatestValid = async (where: {
     select: latestSimulationSelect,
   })
 
-  return row && hasValidComputedResults(row) ? row : null
+  return row && isValidSimulation(row) ? row : null
 }
 
 export const findLatestSimulationProgress = async ({
@@ -77,5 +84,6 @@ export const findSimulationProgressById = async ({
     select: latestSimulationSelect,
   })
 
+  // cannot validate model string here in order to be able to update it
   return row && hasValidComputedResults(row) ? toProgress(row) : null
 }
