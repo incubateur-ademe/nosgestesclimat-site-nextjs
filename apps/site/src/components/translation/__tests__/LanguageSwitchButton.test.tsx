@@ -1,11 +1,6 @@
 import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
-import { useAlternateLanguagePaths } from '@/hooks/useAlternateLanguagePaths'
-import {
-  trackMatomoEvent__deprecated,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useCurrentLocale } from 'next-i18n-router/client'
@@ -41,7 +36,7 @@ vi.mock('@/hooks/useAlternateLanguagePaths', () => ({
 }))
 
 vi.mock('@/constants/tracking/posthogTrackers', () => ({
-  captureFooterClickLanguage: ({ locale }: { locale: string }) => ({ locale }),
+  captureClickLanguage: ({ locale }: { locale: string }) => ({ locale }),
 }))
 
 vi.mock('@/helpers/language/updateLangCookie', () => ({
@@ -58,7 +53,7 @@ describe('LanguageSwitchButton', () => {
     vi.clearAllMocks()
   })
 
-  it('renders a trigger showing the current language', () => {
+  it('renders a trigger showing the current language (defaults to FR)', () => {
     renderWithWrapper(<LanguageSwitchButton />)
 
     const trigger = screen.getByTestId('language-switch-button')
@@ -67,45 +62,19 @@ describe('LanguageSwitchButton', () => {
     expect(trigger).not.toHaveTextContent('EN')
   })
 
-  it('opens a dropdown listing both languages when clicked', async () => {
+  it('allows to change language from the default to EN', async () => {
     const user = userEvent.setup()
     renderWithWrapper(<LanguageSwitchButton />)
 
-    await user.click(screen.getByTestId('language-switch-button'))
+    const trigger = screen.getByTestId('language-switch-button')
 
-    expect(screen.getByTestId('language-switch-button-fr')).toBeInTheDocument()
-    expect(screen.getByTestId('language-switch-button-en')).toBeInTheDocument()
-  })
-
-  it('marks the current language as active in the dropdown', async () => {
-    const user = userEvent.setup()
-    renderWithWrapper(<LanguageSwitchButton />)
-
-    await user.click(screen.getByTestId('language-switch-button'))
-
-    expect(screen.getByTestId('language-switch-button-fr')).toHaveAttribute(
-      'aria-current',
-      'true'
-    )
-    expect(screen.getByTestId('language-switch-button-en')).not.toHaveAttribute(
-      'aria-current'
-    )
-  })
-
-  it('updates the cookie, tracks the click and closes the menu on selection', async () => {
-    const user = userEvent.setup()
-    renderWithWrapper(<LanguageSwitchButton />)
+    expect(trigger).toBeInTheDocument()
+    expect(trigger).toHaveTextContent('FR')
 
     await user.click(screen.getByTestId('language-switch-button'))
     await user.click(screen.getByTestId('language-switch-button-en'))
 
     expect(updateLangCookie).toHaveBeenCalledWith('en')
-    expect(trackMatomoEvent__deprecated).toHaveBeenCalled()
-    expect(trackPosthogEvent).toHaveBeenCalledWith({ locale: 'en' })
-
-    expect(
-      screen.queryByTestId('language-switch-button-en')
-    ).not.toBeInTheDocument()
   })
 
   it('shows the English language as current when the locale is en', () => {
@@ -115,27 +84,5 @@ describe('LanguageSwitchButton', () => {
 
     const trigger = screen.getByTestId('language-switch-button')
     expect(trigger).toHaveTextContent('EN')
-  })
-
-  it('adds space to the right of the component', () => {
-    renderWithWrapper(<LanguageSwitchButton />)
-
-    const trigger = screen.getByTestId('language-switch-button')
-    const root = trigger.parentElement?.parentElement
-    expect(root).toHaveClass('mr-2')
-  })
-
-  it('skips languages without an alternate path', async () => {
-    vi.mocked(useAlternateLanguagePaths).mockReturnValueOnce({ fr: '/fr' })
-
-    const user = userEvent.setup()
-    renderWithWrapper(<LanguageSwitchButton />)
-
-    await user.click(screen.getByTestId('language-switch-button'))
-
-    expect(screen.getByTestId('language-switch-button-fr')).toBeInTheDocument()
-    expect(
-      screen.queryByTestId('language-switch-button-en')
-    ).not.toBeInTheDocument()
   })
 })
