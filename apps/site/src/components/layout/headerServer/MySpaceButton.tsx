@@ -17,6 +17,7 @@ export default async function MySpaceButton({ locale }: { locale: string }) {
     <ButtonLinkServer
       color="secondary"
       href={CONNEXION_PATH}
+      data-testid="my-space-connexion-link"
       data-track-event={headerClickMonEspaceUnauthenticatedServer}
       data-track-posthog={captureClickHeaderMonEspaceUnauthenticatedServer}>
       <Trans locale={locale} i18nKey="header.monEspace.title">
