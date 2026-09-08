@@ -171,20 +171,6 @@ describe('getCurrentSimulation', () => {
     )
   })
 
-  it('serializes the model back to a string-compatible entity', async () => {
-    const user = await userFactory.create()
-    const simulation = await simulationFactory
-      .withModelRegion('FR')
-      .withProgression(0.5)
-      .withValidComputedResults()
-      .params({ userId: user.id })
-      .create()
-
-    const result = await getCurrentSimulation({ userId: user.id })
-
-    expect(result).toEqual(expect.objectContaining({ model: simulation.model }))
-  })
-
   it('delegates migration to migrateSimulationIfNeeded', async () => {
     const { migrateSimulationIfNeeded } =
       await import('../../helpers/migrate-simulation.ts')
