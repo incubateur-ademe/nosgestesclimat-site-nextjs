@@ -46,6 +46,7 @@ export default function LanguageSwitchButton({ className }: Props) {
         </PopoverTrigger>
         <PopoverContent className="z-400! max-w-24 min-w-24">
           <Link
+            prefetch={false}
             href={inactiveLang.url}
             lang={inactiveLang.locale}
             data-testid={`language-switch-button-${inactiveLang.locale}`}

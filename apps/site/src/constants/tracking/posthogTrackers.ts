@@ -1,3 +1,4 @@
+import type { Locale } from '@/i18nConfig'
 import type { CookieState } from '@/services/tracking/cookieStateStore'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 interface PosthogProps {
@@ -133,10 +134,17 @@ export const captureExportPollData = {
 
 // Footer
 
-export const captureClickLanguage = ({ locale }: PosthogProps) => ({
+export const captureClickLanguage = ({
+  locale,
+}: PosthogProps): {
+  eventName: string
+  properties: {
+    locale: Locale
+  }
+} => ({
   eventName: 'Header click change language ',
   properties: {
-    locale,
+    locale: locale as Locale,
   },
 })
 // Actions
