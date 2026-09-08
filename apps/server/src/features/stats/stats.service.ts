@@ -4,8 +4,9 @@ import { isAxiosError } from 'axios'
 import dayjs from 'dayjs'
 import { fetchNewsletter } from '../../adapters/brevo/client.ts'
 import { ListIds } from '../../adapters/brevo/constant.ts'
+import { fetchNorthstarStats as fetchPosthogNorthstarStats } from '../../adapters/posthog/client.ts'
 import logger from '../../logger.ts'
-import { createNewsLetterStats, getNorthstarStats } from './stats.repository.ts'
+import { createNewsLetterStats } from './stats.repository.ts'
 import type { NorthstarStatsFetchQuery } from './stats.validator.ts'
 
 export const recoverNewsletterSubscriptions = async (date: string) => {
@@ -49,7 +50,12 @@ export const recoverNewsletterSubscriptions = async (date: string) => {
 }
 
 export const fetchNorthstarStats = async (query: NorthstarStatsFetchQuery) => {
-  const stats = await getNorthstarStats(query, { session: prisma })
+  const { periodicity, since } = query
+
+  const stats = await fetchPosthogNorthstarStats({
+    ...(periodicity ? { periodicity } : {}),
+    ...(since ? { since } : {}),
+  })
 
   return {
     description: 'Nombre de simulations réalisées',

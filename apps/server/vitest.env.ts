@@ -23,4 +23,7 @@ export default () => {
   process.env.SERVER_URL = 'https://server.nosgestesclimat.fr'
   process.env.NOTION_API_KEY = 'mySuperTestNotionApiKey'
   process.env.NOTION_ACTION_DATABASE_ID = 'mySuperTestNotionActionDatabaseId'
+  process.env.POSTHOG_PROJECT_ID = 'mySuperTestPosthogProjectId'
+  process.env.POSTHOG_PERSONAL_API_KEY = 'mySuperTestPosthogPersonalApiKey'
+  process.env.POSTHOG_URL = 'https://eu.posthog.com'
 }

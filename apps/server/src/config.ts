@@ -85,14 +85,21 @@ const NotionSchema = v.strictObject({
   actionDatabaseId: v.string(),
 })
 
+const PosthogSchema = v.strictObject({
+  projectId: v.string(),
+  personalApiKey: v.string(),
+  url: v.pipe(v.string(), v.url()),
+})
+
 const ThirdPartySchema = v.strictObject({
   agir: AgirSchema,
   brevo: BrevoSchema,
   connect: ConnectSchema,
+  notion: NotionSchema,
+  posthog: PosthogSchema,
   scaleway: ScalewaySchema,
   sentry: SentrySchema,
   twoTons: TwoTonsSchema,
-  notion: NotionSchema,
 })
 
 const ConfigSchema = v.pipe(
@@ -139,6 +146,9 @@ const {
     ORGANISATION_IDS_WITH_CUSTOM_QUESTIONS_ENABLED,
     ORIGIN,
     PORT,
+    POSTHOG_PROJECT_ID,
+    POSTHOG_PERSONAL_API_KEY,
+    POSTHOG_URL,
     REDIS_URL,
     SCALEWAY_SECRET_ACCESS_KEY,
     SCALEWAY_ACCESS_KEY_ID,
@@ -192,6 +202,11 @@ export const config = v.parse(ConfigSchema, {
     notion: {
       apiKey: NOTION_API_KEY,
       actionDatabaseId: NOTION_ACTION_DATABASE_ID,
+    },
+    posthog: {
+      projectId: POSTHOG_PROJECT_ID,
+      personalApiKey: POSTHOG_PERSONAL_API_KEY,
+      url: POSTHOG_URL,
     },
     scaleway: {
       secretAccessKey: SCALEWAY_SECRET_ACCESS_KEY,
