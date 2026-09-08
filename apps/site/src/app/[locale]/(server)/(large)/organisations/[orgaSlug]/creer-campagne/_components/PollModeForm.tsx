@@ -21,7 +21,9 @@ export default function PollModeForm({ organisation }: Props) {
     <form className="mt-2" action={handleSubmit} id="poll-form">
       <fieldset>
         <legend className="sr-only">
-          <Trans>Choisissez le mode du test</Trans>
+          <Trans i18nKey="poll.creation.mode.title">
+            Choisissez le mode du test
+          </Trans>
         </legend>
 
         <div className="flex flex-row items-stretch gap-1 md:gap-8">
@@ -81,7 +83,9 @@ export default function PollModeForm({ organisation }: Props) {
                 />
 
                 <span className="group-has-checked:border-primary-700 group-has-checked:text-primary-700 mt-auto inline-flex items-center gap-2 justify-self-end rounded-full border-2 border-gray-300 px-4 py-1.5 text-sm font-medium text-gray-600 transition-colors">
-                  <Trans>Sélectionner</Trans>
+                  <Trans i18nKey="poll.creation.mode.select">
+                    Sélectionner
+                  </Trans>
 
                   {/* Desktop radio dot */}
                   <span className="group-has-checked:border-primary-700 hidden h-4 w-4 items-center justify-center rounded-full border-2 border-gray-300 md:flex">
@@ -90,8 +94,11 @@ export default function PollModeForm({ organisation }: Props) {
                 </span>
 
                 {isModeDisabled && (
-                  <p className="text-primary text-primary-700 absolute -bottom-8 mt-2 mb-0 text-center text-sm font-medium">
-                    <Trans>Bientôt disponible</Trans>
+                  <p className="text-primary text-primary-700 xs:-bottom-18 absolute -bottom-20 mt-2 mb-0 text-center text-xs font-medium sm:-bottom-18 sm:text-sm">
+                    <Trans i18nKey="poll.creation.mode.tempDisabled">
+                      Fonctionnalité désactivée temporairement, en cours
+                      d'amélioration
+                    </Trans>
                   </p>
                 )}
               </label>
@@ -102,7 +109,7 @@ export default function PollModeForm({ organisation }: Props) {
 
       {isError && (
         <p role="alert" aria-live="polite" className="mt-4 text-red-800">
-          <Trans>
+          <Trans i18nKey="poll.creation.mode.error">
             Une erreur s'est produite lors de la création de votre test
             collectif. Veuillez réessayer.
           </Trans>
@@ -114,7 +121,7 @@ export default function PollModeForm({ organisation }: Props) {
         loading={isPending}
         data-testid="poll-form-type-button"
         form="poll-form"
-        className="mt-10 w-full sm:w-auto md:self-start">
+        className="mt-22 w-full sm:mt-18 sm:w-auto md:self-start">
         <Trans>Créer mon lien de test</Trans>
 
         <span aria-hidden className="ml-2 inline-block">
