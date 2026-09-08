@@ -121,7 +121,7 @@ export default function EventCountdown({
         </span>
         <AnimatedNumber
           value={timeLeft.seconds}
-          label={t('common.seconds', 'seconds')}
+          label={t('common.seconds', 'secondes')}
         />
       </div>
 

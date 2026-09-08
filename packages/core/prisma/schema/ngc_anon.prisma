@@ -147,3 +147,19 @@ view AnonGroupParticipant {
   @@map("GroupParticipant")
   @@schema("ngc_anon")
 }
+
+view AnonMatomoStats {
+  id                  String            @unique @db.Uuid
+  date                DateTime          @db.Date
+  source              MatomoStatsSource
+  kind                StatsKind
+  referrer            String
+  device              MatomoStatsDevice
+  iframe              Boolean
+  visits              Int               @db.Integer
+  firstAnswer         Int               @db.Integer
+  finishedSimulations Int               @db.Integer
+
+  @@map("MatomoStats")
+  @@schema("ngc_anon")
+}
