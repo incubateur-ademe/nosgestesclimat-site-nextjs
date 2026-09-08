@@ -7,7 +7,6 @@ import {
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { buildAlternates } from '@/helpers/metadata/getMetadataObject'
-import { throwNextError } from '@/helpers/server/error'
 import { getSimulationResult } from '@/helpers/server/model/simulationResult'
 import { getSimulation } from '@/services/simulations/get-simulation'
 import type { DefaultPageProps } from '@/types'
@@ -35,11 +34,9 @@ export default async function DetailledResultsWaterPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const simulationResult = await throwNextError(async () => {
-    const simulation = await getSimulation(simulationId)
-    return await getSimulationResult({
-      simulation,
-    })
+  const simulation = await getSimulation(simulationId)
+  const simulationResult = await getSimulationResult({
+    simulation,
   })
 
   return (

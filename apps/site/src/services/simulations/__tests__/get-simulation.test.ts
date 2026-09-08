@@ -3,13 +3,26 @@ import { serializeModel } from '@nosgestesclimat/core/features/simulations/repos
 import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { NotFoundError, UnauthorizedError } from '@/helpers/server/error'
 import { getUserSession } from '@/services/auth/get-user-session'
 import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
 import { getSimulation } from '../get-simulation'
 
 const serviceMock = vi.hoisted(() => ({
   getSimulation: vi.fn(),
+}))
+
+const navigationMock = vi.hoisted(() => ({
+  notFound: vi.fn(() => {
+    throw new Error('NEXT_NOT_FOUND')
+  }),
+  unauthorized: vi.fn(() => {
+    throw new Error('NEXT_UNAUTHORIZED')
+  }),
+}))
+
+vi.mock('next/navigation', () => ({
+  notFound: navigationMock.notFound,
+  unauthorized: navigationMock.unauthorized,
 }))
 
 vi.mock('@/services/auth/get-user-session', () => ({
@@ -28,23 +41,23 @@ describe('getSimulation', () => {
     vi.clearAllMocks()
   })
 
-  it('throws UnauthorizedError when there is no session', async () => {
+  it('calls unauthorized when there is no session', async () => {
     vi.mocked(getUserSession).mockResolvedValue(null)
 
-    await expect(getSimulation(randomUUID())).rejects.toBeInstanceOf(
-      UnauthorizedError
+    await expect(getSimulation(randomUUID())).rejects.toThrow(
+      'NEXT_UNAUTHORIZED'
     )
+    expect(navigationMock.unauthorized).toHaveBeenCalled()
     expect(serviceMock.getSimulation).not.toHaveBeenCalled()
   })
 
-  it('throws NotFoundError when the core service returns null', async () => {
+  it('calls notFound when the core service returns null', async () => {
     const userId = mockAuthenticatedSession()
     const simulationId = randomUUID()
     serviceMock.getSimulation.mockResolvedValue(null)
 
-    await expect(getSimulation(simulationId)).rejects.toBeInstanceOf(
-      NotFoundError
-    )
+    await expect(getSimulation(simulationId)).rejects.toThrow('NEXT_NOT_FOUND')
+    expect(navigationMock.notFound).toHaveBeenCalled()
     expect(serviceMock.getSimulation).toHaveBeenCalledWith({
       id: simulationId,
       userId,
