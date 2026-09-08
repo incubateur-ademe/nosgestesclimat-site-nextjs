@@ -21,7 +21,6 @@ async function PasserTestBannerServer({ locale }: { locale: string }) {
   const journey = await getUserSimulationJourney()
   const { t } = await getServerTranslation({ locale })
 
-  // Do not show the banner if the user has completed his/her test
   if (hasCompletedCurrentSimulation(journey)) return null
   return (
     <Card className="mb-4 flex-row flex-wrap items-baseline justify-between gap-4 border-none bg-gray-100 p-4 sm:flex-nowrap sm:p-6">
