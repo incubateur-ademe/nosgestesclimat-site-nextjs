@@ -1,4 +1,5 @@
 import type { CookieState } from '@/services/tracking/cookieStateStore'
+import type { AuthenticationMode } from '@/types/authentication'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 interface PosthogProps {
   question?: DottedName | null
@@ -12,10 +13,7 @@ interface PosthogProps {
   actionType?: 'précédent' | 'suivant' | 'passer'
   state?: 'opened' | 'closed'
   locale?: string //should be Locale
-  region?: string
   category?: string
-  subcategory?: string
-  url?: string
   tab?: string
   status?: 'authenticated' | 'unauthenticated'
   cookieState?: CookieState
@@ -278,3 +276,45 @@ export const captureCookieBannerStatus = ({ cookieState }: PosthogProps) => ({
     googleTagCookie: cookieState?.googleTag,
   },
 })
+
+export const captureAmisCreationConnexionComplete = {
+  eventName: 'Verification code validé',
+}
+
+export const captureOrganisationsLoginComplete = {
+  eventName: 'Organisations Login - Verification code validé',
+}
+
+export const captureEndClickDocumentationServer = JSON.stringify({
+  eventName: 'click documentation',
+})
+
+export const captureClickTab = ({
+  tab,
+}: {
+  tab: 'connexion' | 'inscription'
+}) => {
+  return {
+    eventName: 'click tab',
+    properties: {
+      tab,
+    },
+  }
+}
+
+export const captureClickResendCode = {
+  eventName: 'click resend code',
+}
+
+export const captureClickSubmitEmail = ({
+  mode,
+}: {
+  mode?: AuthenticationMode
+}) => {
+  return {
+    eventName: 'click submit email',
+    properties: {
+      mode,
+    },
+  }
+}

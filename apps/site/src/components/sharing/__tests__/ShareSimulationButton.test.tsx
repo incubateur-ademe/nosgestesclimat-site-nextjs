@@ -10,7 +10,6 @@ vi.mock('@/hooks/useClientTranslation', () => ({
 }))
 
 vi.mock('@/utils/analytics/trackEvent', () => ({
-  trackMatomoEvent__deprecated: vi.fn(),
   trackPosthogEvent: vi.fn(),
 }))
 

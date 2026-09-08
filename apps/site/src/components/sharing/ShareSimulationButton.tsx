@@ -1,7 +1,6 @@
 'use client'
 
-import { captureClickShareSimulationButton } from '@/constants/tracking/posthogTrackers'
-import { clickShareSimulationButton } from '@/constants/tracking/user-account'
+import { captureClickShareSimulationButton } from '@/constants/trackers'
 import {
   FACEBOOK_SHARE_URL,
   LINKEDIN_SHARE_URL,
@@ -9,12 +8,8 @@ import {
   WHATSAPP_SHARE_URL,
 } from '@/constants/urls/share'
 import Share from '@/design-system/sharing/Share'
-import { getShareTrackEvent } from '@/helpers/tracking/share'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import {
-  trackMatomoEvent__deprecated,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import FacebookIcon from '../icons/share/FacebookIcon'
 import LinkedinIcon from '../icons/share/LinkedinIcon'
 import MailIcon from '../icons/share/MailIcon'
@@ -37,7 +32,6 @@ export default function ShareSimulationButton({
   return (
     <Share
       onClick={() => {
-        trackMatomoEvent__deprecated(clickShareSimulationButton)
         trackPosthogEvent(captureClickShareSimulationButton)
       }}
       buttonLabel={buttonLabel ?? t('Partager')}
@@ -52,47 +46,27 @@ export default function ShareSimulationButton({
           icon: <WhatsappIcon />,
           label: t('Whatsapp'),
           link: `${WHATSAPP_SHARE_URL}${url}`,
-          eventTracked: getShareTrackEvent({
-            page: 'Fin',
-            target: 'Whatsapp',
-          }),
         },
         {
           icon: <FacebookIcon />,
           label: t('Facebook'),
           link: `${FACEBOOK_SHARE_URL}${url}`,
-          eventTracked: getShareTrackEvent({
-            page: 'Fin',
-            target: 'Facebook',
-          }),
         },
         {
           icon: <MessengerIcon />,
           label: t('Messenger'),
           link: `${MESSENGER_SHARE_MOBILE_URL}${url}`,
           mobileOnly: true,
-          eventTracked: getShareTrackEvent({
-            page: 'Fin',
-            target: 'Messenger',
-          }),
         },
         {
           icon: <LinkedinIcon />,
           label: t('Linkedin'),
           link: `${LINKEDIN_SHARE_URL}${url}`,
-          eventTracked: getShareTrackEvent({
-            page: 'Fin',
-            target: 'Linkedin',
-          }),
         },
         {
           icon: <MailIcon className="fill-primary-700 w-4" />,
           label: t('Envoyer par e-mail'),
           link: `mailto:?subject=${t('Voici mes empreintes carbone et eau ; tu connais les tiennes ?')}&body=${encodeURIComponent(url)}`,
-          eventTracked: getShareTrackEvent({
-            page: 'Fin',
-            target: 'E-mail',
-          }),
         },
       ]}
       linkShared={url}

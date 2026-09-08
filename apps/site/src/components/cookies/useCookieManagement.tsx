@@ -1,6 +1,6 @@
 'use client'
 
-import { captureCookieBannerStatus } from '@/constants/tracking/posthogTrackers'
+import { captureCookieBannerStatus } from '@/constants/trackers'
 import { GoogleTagManager } from '@/services/tracking/GoogleTagManager'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { PropsWithChildren } from 'react'

@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 
-import { captureDownloadPollQRCode } from '@/constants/tracking/posthogTrackers'
+import { captureDownloadPollQRCode } from '@/constants/trackers'
 import Button from '@/design-system/buttons/Button'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import JSZip from 'jszip'

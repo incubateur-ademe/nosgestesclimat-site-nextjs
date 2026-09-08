@@ -62,34 +62,6 @@ const ConnectSchema = v.strictObject({
   url: v.pipe(v.string(), v.url()),
 })
 
-const MatomoInstanceBaseSchema = v.strictObject({
-  token: v.string(),
-  timeout: v.optional(v.pipe(v.unknown(), v.toNumber(), v.number()), 60000),
-  secure: v.optional(
-    v.pipe(
-      v.string(),
-      v.transform((val) => val === 'true')
-    )
-  ),
-})
-
-const MatomoBetaSchema = v.strictObject({
-  ...MatomoInstanceBaseSchema.entries,
-  siteId: v.optional(v.string(), '20'),
-  url: v.optional(v.pipe(v.string(), v.url()), 'https://stats.beta.gouv.fr'),
-})
-
-const MatomoDataSchema = v.strictObject({
-  ...MatomoInstanceBaseSchema.entries,
-  siteId: v.optional(v.string(), '153'),
-  url: v.optional(v.pipe(v.string(), v.url()), 'https://stats.data.gouv.fr'),
-})
-
-const MatomoSchema = v.strictObject({
-  beta: MatomoBetaSchema,
-  data: v.optional(MatomoDataSchema),
-})
-
 const ScalewaySchema = v.strictObject({
   accessKeyId: v.string(),
   secretAccessKey: v.string(),
@@ -117,7 +89,6 @@ const ThirdPartySchema = v.strictObject({
   agir: AgirSchema,
   brevo: BrevoSchema,
   connect: ConnectSchema,
-  matomo: MatomoSchema,
   scaleway: ScalewaySchema,
   sentry: SentrySchema,
   twoTons: TwoTonsSchema,
@@ -162,11 +133,6 @@ const {
     INTERNAL_API_KEY,
     JOB_SECRET,
     JWT_SECRET,
-    MATOMO_BETA_SITE_ID,
-    MATOMO_BETA_SECURE,
-    MATOMO_BETA_TIMEOUT,
-    MATOMO_BETA_TOKEN,
-    MATOMO_BETA_URL,
     NOTION_API_KEY,
     NOTION_ACTION_DATABASE_ID,
     NODE_ENV,
@@ -222,15 +188,6 @@ export const config = v.parse(ConfigSchema, {
       clientId: CONNECT_CLIENT_ID,
       clientSecret: CONNECT_CLIENT_SECRET,
       url: CONNECT_URL,
-    },
-    matomo: {
-      beta: {
-        siteId: MATOMO_BETA_SITE_ID,
-        secure: MATOMO_BETA_SECURE,
-        timeout: MATOMO_BETA_TIMEOUT,
-        token: MATOMO_BETA_TOKEN,
-        url: MATOMO_BETA_URL,
-      },
     },
     notion: {
       apiKey: NOTION_API_KEY,

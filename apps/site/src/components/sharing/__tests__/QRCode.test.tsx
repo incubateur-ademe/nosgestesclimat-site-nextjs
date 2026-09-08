@@ -1,5 +1,5 @@
 import QRCode from '@/components/sharing/QRCode'
-import { captureDownloadPollQRCode } from '@/constants/tracking/posthogTrackers'
+import { captureDownloadPollQRCode } from '@/constants/trackers'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'

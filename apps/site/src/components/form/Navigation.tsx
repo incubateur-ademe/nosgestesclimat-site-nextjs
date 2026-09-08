@@ -10,11 +10,7 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import { captureClickFormNav } from '@/constants/tracking/posthogTrackers'
-import {
-  questionClickPrevious,
-  questionClickSuivant,
-} from '@/constants/tracking/question'
+import { captureClickFormNav } from '@/constants/trackers'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -23,10 +19,7 @@ import { useIsDisabledByBounds } from '@/hooks/useIsDisabledByBounds'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useEngine, useFormState, useRule, useUser } from '@/publicodes-state'
 import { useGotoNextQuestion } from '@/publicodes-state/hooks/useGotoNextQuestion/useGotoNextQuestion'
-import {
-  trackMatomoEvent__deprecated,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useRouter } from 'next/navigation'
 
 type SubmitButtonKind = 'loading' | 'finish' | 'next'
@@ -192,13 +185,6 @@ export default function Navigation({
 
   const trackNextNavigation = useCallback(
     (timeSpentOnQuestion: number) => {
-      trackMatomoEvent__deprecated(
-        questionClickSuivant({
-          question,
-          answer: value,
-          timeSpentOnQuestion,
-        })
-      )
       trackPosthogEvent(
         captureClickFormNav({
           actionType: 'suivant',
@@ -213,7 +199,6 @@ export default function Navigation({
 
   const trackPrevNavigation = useCallback(
     (timeSpentOnQuestion: number) => {
-      trackMatomoEvent__deprecated(questionClickPrevious({ question }))
       trackPosthogEvent(
         captureClickFormNav({
           actionType: 'précédent',

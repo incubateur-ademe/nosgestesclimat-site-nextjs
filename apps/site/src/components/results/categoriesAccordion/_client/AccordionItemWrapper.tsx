@@ -1,6 +1,6 @@
 'use client'
 
-import { captureEndClickCategory } from '@/constants/tracking/posthogTrackers'
+import { captureEndClickCategory } from '@/constants/trackers'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 

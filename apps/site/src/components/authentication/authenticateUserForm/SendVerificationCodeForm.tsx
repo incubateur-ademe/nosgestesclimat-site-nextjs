@@ -3,7 +3,7 @@
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
-import { captureClickSubmitEmail } from '@/constants/tracking/pages/signin'
+import { captureClickSubmitEmail } from '@/constants/trackers'
 import type { ButtonColor } from '@/design-system/buttons/Button'
 import Form from '@/design-system/form/Form'
 import EmailInput from '@/design-system/inputs/EmailInput'

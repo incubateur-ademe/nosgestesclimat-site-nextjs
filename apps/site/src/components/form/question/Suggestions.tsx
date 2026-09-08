@@ -1,7 +1,6 @@
 'use client'
 
-import { captureClickSuggestion } from '@/constants/tracking/posthogTrackers'
-import { questionClickSuggestion } from '@/constants/tracking/question'
+import { captureClickSuggestion } from '@/constants/trackers'
 import { baseClassNames, sizeClassNames } from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import {
@@ -13,10 +12,7 @@ import {
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
 import { useFormState, useRule } from '@/publicodes-state'
-import {
-  trackMatomoEvent__deprecated,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
+import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { capitalizeString } from '@/utils/capitalizeString'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
@@ -53,9 +49,6 @@ export default function Suggestions({ question, setValue }: Props) {
               .join(' ')}`
           )}
           onClick={() => {
-            trackMatomoEvent__deprecated(
-              questionClickSuggestion({ question, answer: suggestion.label })
-            )
             trackPosthogEvent(
               // We only send suggestion value for non mosaic questions
               captureClickSuggestion({

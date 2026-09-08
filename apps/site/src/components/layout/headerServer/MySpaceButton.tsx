@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
-import { captureClickHeaderMonEspaceUnauthenticatedServer } from '@/constants/tracking/posthogTrackers'
-import { headerClickMonEspaceUnauthenticatedServer } from '@/constants/tracking/user-account'
+import { captureClickHeaderMonEspaceUnauthenticatedServer } from '@/constants/trackers'
 import { CONNEXION_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -18,7 +17,6 @@ export default async function MySpaceButton({ locale }: { locale: string }) {
       color="secondary"
       href={CONNEXION_PATH}
       data-testid="my-space-connexion-link"
-      data-track-event={headerClickMonEspaceUnauthenticatedServer}
       data-track-posthog={captureClickHeaderMonEspaceUnauthenticatedServer}>
       <Trans locale={locale} i18nKey="header.monEspace.title">
         Mon espace

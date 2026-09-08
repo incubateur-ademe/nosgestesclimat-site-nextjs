@@ -93,13 +93,7 @@ export class PostHog {
       },
       rageclick: false,
 
-      custom_campaign_params: [
-        'mtm_campaign',
-        'mtm_kwd',
-        'mtm_keyword',
-        'organisation',
-        'poll',
-      ], // Enable to set query parameters as properties on the events
+      custom_campaign_params: ['mtm_campaign', 'mtm_kwd', 'mtm_keyword'], // Enable to set query parameters as properties on the events
 
       loaded: () => {
         this.registerProperties()

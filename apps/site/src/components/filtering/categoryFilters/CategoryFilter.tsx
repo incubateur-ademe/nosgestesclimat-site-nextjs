@@ -2,7 +2,7 @@
 
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 
-import { captureTrackingCategoryFilter } from '@/constants/tracking/posthogTrackers'
+import { captureTrackingCategoryFilter } from '@/constants/trackers'
 import { baseClassNames } from '@/design-system/buttons/Button'
 import {
   getBackgroundColor,

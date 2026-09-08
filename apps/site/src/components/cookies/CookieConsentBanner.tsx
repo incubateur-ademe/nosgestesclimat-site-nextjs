@@ -1,11 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  cookieBannerClick,
-  cookieBannerDisplayed,
-} from '@/constants/tracking/cookie'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import { useEffect } from 'react'
 import ReactModal from 'react-modal'
 
@@ -29,9 +24,7 @@ export default function CookieConsentBanner({
 }) {
   const { t } = useClientTranslation()
 
-  useEffect(() => {
-    trackMatomoEvent__deprecated(cookieBannerDisplayed)
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <Modal
@@ -96,7 +89,6 @@ export default function CookieConsentBanner({
               size="sm"
               color="secondary"
               onClick={() => {
-                trackMatomoEvent__deprecated(cookieBannerClick('Personnaliser'))
                 onOpenForm()
               }}
               data-testid="cookie-banner-customize-button">
@@ -108,7 +100,6 @@ export default function CookieConsentBanner({
               size="sm"
               color="secondary"
               onClick={() => {
-                trackMatomoEvent__deprecated(cookieBannerClick('Tout refuser'))
                 rejectAll()
               }}
               data-testid="cookie-banner-refuse-button">
@@ -120,7 +111,6 @@ export default function CookieConsentBanner({
               size="sm"
               color="primary"
               onClick={() => {
-                trackMatomoEvent__deprecated(cookieBannerClick('Tout accepter'))
                 acceptAll()
               }}
               data-testid="cookie-banner-accept-button">
