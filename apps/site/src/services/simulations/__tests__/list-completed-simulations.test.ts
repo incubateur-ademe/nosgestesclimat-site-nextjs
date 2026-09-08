@@ -1,10 +1,10 @@
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
-import { serializeModel } from '@nosgestesclimat/core/features/simulations/repository/model.mapper'
 import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getUserSession } from '@/services/auth/get-user-session'
 import { listCompletedSimulations } from '../list-completed-simulations'
+import { toSimulationDto } from '../simulation.dto'
 
 const serviceMock = vi.hoisted(() => ({
   listCompletedSimulations: vi.fn(),
@@ -73,28 +73,7 @@ describe('listCompletedSimulations', () => {
       userId,
       limit: undefined,
     })
-    expect(result).toEqual([
-      {
-        id: newer.id,
-        date: newer.date.toISOString(),
-        situation: newer.situation,
-        foldedSteps: newer.foldedSteps,
-        computedResults: newer.computedResults,
-        progression: newer.progression,
-        model: serializeModel(newer.model),
-        updatedAt: newer.updatedAt.toISOString(),
-      },
-      {
-        id: older.id,
-        date: older.date.toISOString(),
-        situation: older.situation,
-        foldedSteps: older.foldedSteps,
-        computedResults: older.computedResults,
-        progression: older.progression,
-        model: serializeModel(older.model),
-        updatedAt: older.updatedAt.toISOString(),
-      },
-    ])
+    expect(result).toEqual([newer, older].map(toSimulationDto))
   })
 
   it('forwards the limit to the core service', async () => {
