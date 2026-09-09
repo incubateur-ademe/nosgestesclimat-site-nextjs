@@ -1,3 +1,4 @@
+import { CACHE_PROFILES } from '@/constants/cache'
 import { getPoll as getPollService } from '@nosgestesclimat/core/features/polls/services/get-poll.service'
 import type { Poll } from '@nosgestesclimat/core/features/polls/types/poll'
 import { cacheLife } from 'next/cache'
@@ -11,8 +12,7 @@ import { cacheLife } from 'next/cache'
  */
 export async function getPoll(pollIdOrSlug: string): Promise<Poll | null> {
   'use cache'
-  // `minutes` revalidates after 60s, which is shorter than we need here.
-  cacheLife({ stale: 300, revalidate: 300, expire: 900 })
+  cacheLife(CACHE_PROFILES.FIVE_MINUTES)
 
   return await getPollService({ pollIdOrSlug })
 }
