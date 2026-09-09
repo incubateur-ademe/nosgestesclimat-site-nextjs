@@ -1,3 +1,4 @@
+import type { ComputedResults } from '@nosgestesclimat/core/features/simulations/validators/computed-results.schema'
 import {
   UTM_CAMPAIGN_KEY,
   UTM_MEDIUM_KEY,
@@ -10,10 +11,6 @@ import * as v from 'valibot'
 import { config } from '../../config.ts'
 import { Locales } from '../../core/i18n/constant.ts'
 import { isNetworkOrTimeoutOrRetryableError } from '../../core/typeguards/isRetryableAxiosError.ts'
-import type {
-  ActionChoicesSchema,
-  ComputedResultSchema,
-} from '../../features/simulations/simulations.validator.ts'
 import type {
   Group,
   Organisation,
@@ -184,7 +181,7 @@ const lastSimulationResult = ({
   computedResults,
   locale,
 }: {
-  computedResults?: ComputedResultSchema | null
+  computedResults?: ComputedResults | null
   locale: Locales
 }) => {
   const bilan = computedResults?.carbone?.bilan ?? 0
@@ -435,8 +432,7 @@ export const sendSimulationUpsertedEmail = ({
         DASHBOARD_URL: dashBoardUrl.toString(),
         ...lastSimulationResult({
           locale,
-          computedResults:
-            simulation.computedResults as ComputedResultSchema | null,
+          computedResults: simulation.computedResults as ComputedResults | null,
         }),
       },
     })
@@ -464,7 +460,7 @@ export const sendSimulationUpsertedEmail = ({
             ...lastSimulationResult({
               locale: Locales.fr,
               computedResults:
-                simulation.computedResults as ComputedResultSchema | null,
+                simulation.computedResults as ComputedResults | null,
             }),
           }
         : {}),
@@ -757,7 +753,6 @@ export const addOrUpdateContactAfterSimulationCreated = async ({
   email,
   userId,
   newsletters,
-  actionChoices,
   computedResults,
   lastSimulationDate,
   subscribeToGroupNewsletter,
@@ -766,17 +761,13 @@ export const addOrUpdateContactAfterSimulationCreated = async ({
   email: string
   userId: string
   newsletters?: Array<ListIds>
-  actionChoices?: ActionChoicesSchema
-  computedResults: ComputedResultSchema
+  computedResults: ComputedResults
   lastSimulationDate: Date
   subscribeToGroupNewsletter: boolean
 }) => {
   const attributes = {
     [Attributes.USER_ID]: userId,
     [Attributes.LAST_SIMULATION_DATE]: lastSimulationDate.toISOString(),
-    [Attributes.ACTIONS_SELECTED_NUMBER]: Object.values(
-      actionChoices || {}
-    ).filter((v) => !!v).length,
     ...lastSimulationResult({
       locale: Locales.fr,
       computedResults,
