@@ -2,7 +2,6 @@
 import type { SessionPayload } from '@nosgestesclimat/core/features/auth/types/session'
 import type {
   AnonUser,
-  AppUser,
   AuthUser,
   UserSession,
 } from '@nosgestesclimat/core/features/auth/types/user-session'
@@ -10,8 +9,6 @@ import * as Sentry from '@sentry/nextjs'
 
 import { headers } from 'next/headers'
 import { cache } from 'react'
-
-export type { AnonUser, AppUser, AuthUser, UserSession }
 
 export const getUserSession = cache(async function (): Promise<UserSession> {
   const reqHeaders = await headers()
