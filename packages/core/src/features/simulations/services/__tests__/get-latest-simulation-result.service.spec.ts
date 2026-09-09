@@ -3,10 +3,8 @@ import { prisma } from '../../../../prisma/client.ts'
 import { groupFactory } from '../../../groups/factories/group.factory.ts'
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
-import {
-  simulationFactory,
-  validComputedResults,
-} from '../../factories/simulation.factory.ts'
+import { computedResultsFactory } from '../../factories/computed-results.factory.ts'
+import { simulationFactory } from '../../factories/simulation.factory.ts'
 import { getLatestSimulationResult } from '../get-latest-simulation-result.service.ts'
 
 vi.mock('../../helpers/migrate-simulation.ts', () => ({
@@ -121,10 +119,10 @@ describe('getLatestSimulationResult', () => {
         .params({
           userId: user.id,
           date: new Date('2024-01-01'),
-          computedResults: {
-            ...validComputedResults,
-            carbone: { ...validComputedResults.carbone, bilan: 800 },
-          },
+          computedResults: computedResultsFactory
+            .valid()
+            .withCarboneBilan(800)
+            .build(),
         })
         .create(),
       simulationFactory
@@ -133,10 +131,10 @@ describe('getLatestSimulationResult', () => {
         .params({
           userId: user.id,
           date: new Date('2024-02-01'),
-          computedResults: {
-            ...validComputedResults,
-            carbone: { ...validComputedResults.carbone, bilan: 1200 },
-          },
+          computedResults: computedResultsFactory
+            .valid()
+            .withCarboneBilan(1200)
+            .build(),
         })
         .create(),
     ])
@@ -158,10 +156,10 @@ describe('getLatestSimulationResult', () => {
         .params({
           userId: user.id,
           date: new Date('2024-01-01'),
-          computedResults: {
-            ...validComputedResults,
-            carbone: { ...validComputedResults.carbone, bilan: 1200 },
-          },
+          computedResults: computedResultsFactory
+            .valid()
+            .withCarboneBilan(1200)
+            .build(),
         })
         .create(),
       simulationFactory
@@ -170,10 +168,10 @@ describe('getLatestSimulationResult', () => {
         .params({
           userId: user.id,
           date: new Date('2024-02-01'),
-          computedResults: {
-            ...validComputedResults,
-            carbone: { ...validComputedResults.carbone, bilan: 800 },
-          },
+          computedResults: computedResultsFactory
+            .valid()
+            .withCarboneBilan(800)
+            .build(),
         })
         .create(),
     ])
