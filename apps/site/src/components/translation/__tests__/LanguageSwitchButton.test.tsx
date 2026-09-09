@@ -59,22 +59,39 @@ describe('LanguageSwitchButton', () => {
 
   it('allows to change language from the default to EN and change back to FR', async () => {
     const user = userEvent.setup()
-    renderWithWrapper(<LanguageSwitchButton />)
 
-    const trigger = screen.getByTestId('language-switch-button')
+    // Clicking a language link navigates to the other locale's URL, then the
+    // i18n router provides the new locale. Navigation is prevented in tests
+    // (mocked next/link, static useCurrentLocale), so we simulate landing on
+    // the new page: update the mocked locale and remount the component.
+    let locale: 'fr' | 'en' = 'fr'
+    vi.mocked(useCurrentLocale).mockImplementation(() => locale)
 
-    expect(trigger).toBeInTheDocument()
-    expect(trigger).toHaveTextContent('FR')
+    let view = renderWithWrapper(<LanguageSwitchButton />)
+    const trigger = () => screen.getByTestId('language-switch-button')
 
-    await user.click(screen.getByTestId('language-switch-button'))
+    expect(trigger()).toBeInTheDocument()
+    expect(trigger()).toHaveTextContent('FR')
+
+    // Switch to EN
+    await user.click(trigger())
     await user.click(screen.getByTestId('language-switch-button-en'))
 
-    expect(trigger).toHaveTextContent('EN')
+    locale = 'en'
+    view.unmount()
+    view = renderWithWrapper(<LanguageSwitchButton />)
 
-    await user.click(screen.getByTestId('language-switch-button'))
-    await user.click(screen.getByTestId('language-switch-button-en'))
+    expect(trigger()).toHaveTextContent('EN')
 
-    expect(trigger).toHaveTextContent('FR')
+    // Switch back to FR (the EN page only offers the FR link)
+    await user.click(trigger())
+    await user.click(screen.getByTestId('language-switch-button-fr'))
+
+    locale = 'fr'
+    view.unmount()
+    view = renderWithWrapper(<LanguageSwitchButton />)
+
+    expect(trigger()).toHaveTextContent('FR')
   })
 
   it('shows the English language as current when the locale is en', () => {
