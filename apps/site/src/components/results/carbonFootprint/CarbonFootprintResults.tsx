@@ -1,8 +1,8 @@
 import HideInIframe from '@/components/layout/HideInIframe'
 import type { GroupDisplayInfo } from '@/helpers/server/model/utils/getGroupDisplayInfo'
-import type { Tendency } from '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service'
-import type { ComputedResults } from '@/publicodes-state/types'
 import type { Locale } from '@/i18nConfig'
+import type { ComputedResults } from '@/publicodes-state/types'
+import type { Tendency } from '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service'
 import Trans from '../../translation/trans/TransServer'
 import ActionsBlock from '../ActionsBlock'
 import FootprintBlock from '../FootprintBlock'
@@ -43,7 +43,7 @@ export default function CarbonFootprintResults({
         metric="carbone"
         unitSuffix={
           <Trans locale={locale} i18nKey="common.co2eAn.title">
-            CO₂e / an
+            CO₂e&nbsp;/&nbsp;an
           </Trans>
         }
       />
