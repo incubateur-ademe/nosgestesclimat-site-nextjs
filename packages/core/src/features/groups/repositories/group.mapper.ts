@@ -1,5 +1,13 @@
 import type { Group } from '../types/group.ts'
-import type { GroupRow } from './group.repository.ts'
+
+export interface GroupRow {
+  id: string
+  name: string
+  emoji: string
+  administrator: { userId: string } | null
+  createdAt: Date
+  updatedAt: Date
+}
 
 export const toGroup = (row: GroupRow): Group => ({
   id: row.id,
