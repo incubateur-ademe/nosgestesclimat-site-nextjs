@@ -9,15 +9,34 @@ jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
+    # The build prerenders PPR pages that query the DB (e.g. /fr/actions).
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ngc
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 5s
+          --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v6
 
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Run database migrations
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ngc
+        run: pnpm -F @nosgestesclimat/server db:migrate
+
       - name: Build site
         working-directory: apps/site
         env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ngc
           CMS_URL: ${{ vars.CMS_URL }}
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
         run: |
