@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
-import type { ComputedResults } from '../../../simulations/validators/computed-results.schema.ts'
+import { validComputedResults } from '../../../simulations/factories/simulation.factory.ts'
 import { organisationFactory } from '../../factories/organisation.factory.ts'
 import { pollFactory } from '../../factories/poll.factory.ts'
 import { getPoll } from '../get-poll.service.ts'
@@ -89,28 +89,3 @@ describe('getPoll', () => {
     expect(result?.computedResults).toBeNull()
   })
 })
-
-const validComputedResults = {
-  carbone: {
-    bilan: 1000,
-    categories: {
-      alimentation: 300,
-      transport: 400,
-      logement: 200,
-      divers: 50,
-      'services sociétaux': 50,
-    },
-    subcategories: {},
-  },
-  eau: {
-    bilan: 500,
-    categories: {
-      alimentation: 150,
-      transport: 200,
-      logement: 100,
-      divers: 25,
-      'services sociétaux': 25,
-    },
-    subcategories: {},
-  },
-} satisfies ComputedResults

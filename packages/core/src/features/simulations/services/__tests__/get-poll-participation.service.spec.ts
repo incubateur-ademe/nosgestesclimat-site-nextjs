@@ -4,7 +4,6 @@ import { organisationFactory } from '../../../polls/factories/organisation.facto
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
-import type { ComputedResults } from '../../validators/computed-results.schema.ts'
 import { getPollParticipation } from '../get-poll-participation.service.ts'
 
 vi.mock('../../helpers/migrate-simulation.ts', () => ({
@@ -48,7 +47,8 @@ describe('getPollParticipation', () => {
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
     await attachToPoll({ simulationId: simulation.id, pollId: poll.id })
 
@@ -69,7 +69,8 @@ describe('getPollParticipation', () => {
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
     await attachToPoll({ simulationId: simulation.id, pollId: poll.id })
 
@@ -92,7 +93,8 @@ describe('getPollParticipation', () => {
     ])
     const simulation = await simulationFactory
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
     await attachToPoll({ simulationId: simulation.id, pollId: otherPoll.id })
 
@@ -113,7 +115,8 @@ describe('getPollParticipation', () => {
     const poll = await pollFactory.withOrganisation(organisation.id).create()
     const simulation = await simulationFactory
       .withProgression(0.5)
-      .params({ userId: other.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: other.id })
       .create()
     await attachToPoll({ simulationId: simulation.id, pollId: poll.id })
 
@@ -135,19 +138,19 @@ describe('getPollParticipation', () => {
       simulationFactory
         .withModelRegion('FR')
         .withProgression(0.2)
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-01-01'),
-          computedResults: validComputedResults,
         })
         .create(),
       simulationFactory
         .withModelRegion('FR')
         .withProgression(0.5)
+        .withValidComputedResults()
         .params({
           userId: user.id,
           date: new Date('2024-02-01'),
-          computedResults: validComputedResults,
         })
         .create(),
     ])
@@ -175,7 +178,8 @@ describe('getPollParticipation', () => {
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
-      .params({ userId: user.id, computedResults: validComputedResults })
+      .withValidComputedResults()
+      .params({ userId: user.id })
       .create()
     await attachToPoll({ simulationId: simulation.id, pollId: poll.id })
 
@@ -187,31 +191,6 @@ describe('getPollParticipation', () => {
     )
   })
 })
-
-const validComputedResults = {
-  carbone: {
-    bilan: 1000,
-    categories: {
-      alimentation: 300,
-      transport: 400,
-      logement: 200,
-      divers: 50,
-      'services sociétaux': 50,
-    },
-    subcategories: {},
-  },
-  eau: {
-    bilan: 500,
-    categories: {
-      alimentation: 150,
-      transport: 200,
-      logement: 100,
-      divers: 25,
-      'services sociétaux': 25,
-    },
-    subcategories: {},
-  },
-} satisfies ComputedResults
 
 const attachToPoll = async ({
   simulationId,

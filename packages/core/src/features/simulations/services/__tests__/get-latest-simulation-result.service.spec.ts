@@ -4,7 +4,10 @@ import { groupFactory } from '../../../groups/factories/group.factory.ts'
 import { organisationFactory } from '../../../polls/factories/organisation.factory.ts'
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
-import { simulationFactory } from '../../factories/simulation.factory.ts'
+import {
+  simulationFactory,
+  validComputedResults,
+} from '../../factories/simulation.factory.ts'
 import { getLatestSimulationResult } from '../get-latest-simulation-result.service.ts'
 
 vi.mock('../../helpers/migrate-simulation.ts', () => ({
@@ -335,28 +338,3 @@ describe('getLatestSimulationResult', () => {
     )
   })
 })
-
-const validComputedResults = {
-  carbone: {
-    bilan: 1000,
-    categories: {
-      alimentation: 300,
-      transport: 400,
-      logement: 200,
-      divers: 50,
-      'services sociétaux': 50,
-    },
-    subcategories: {},
-  },
-  eau: {
-    bilan: 500,
-    categories: {
-      alimentation: 150,
-      transport: 200,
-      logement: 100,
-      divers: 25,
-      'services sociétaux': 25,
-    },
-    subcategories: {},
-  },
-}
