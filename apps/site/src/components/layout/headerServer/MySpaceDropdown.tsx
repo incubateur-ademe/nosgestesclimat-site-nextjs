@@ -3,11 +3,7 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import LogOutIcon from '@/components/icons/LogOutIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  captureClickHeaderAccessMySpaceAuthenticatedServer,
-  captureClickHeaderLogoutAuthenticatedServer,
-  captureClickHeaderMonEspaceAuthenticatedServer,
-} from '@/constants/tracking/trackers'
+import { captureClickHeaderMonEspace } from '@/constants/tracking/trackers'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import { resetLocalState } from '@/helpers/user/resetLocalState'
@@ -143,7 +139,12 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   }, [isOpen])
 
   const handleToggleMenu = () => {
-    trackEvent(captureClickHeaderMonEspaceAuthenticatedServer)
+    trackEvent(
+      captureClickHeaderMonEspace({
+        status: 'authenticated',
+        state: isOpen ? 'closed' : 'opened',
+      })
+    )
     setIsOpen((prev) => {
       const willOpen = !prev
       // If opening with mouse click, reset keyboard navigation flag
@@ -195,7 +196,6 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   }
 
   const handleLogout = async () => {
-    trackEvent(captureClickHeaderLogoutAuthenticatedServer)
     setIsOpen(false)
 
     resetLocalState({ setUser, setSimulation })
@@ -235,7 +235,8 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
         id={buttonId}
         size="sm"
         color="secondary"
-        className="inline-flex gap-1 align-baseline"
+        // avoid capturing the click event as this button contains email.
+        className="ph-no-capture inline-flex gap-1 align-baseline"
         data-testid="my-space-button"
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -276,16 +277,10 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
                     ? 'focus:bg-primary-50 focus:ring-primary-700 focus:underline! focus:ring-2 focus:ring-offset-2'
                     : 'focus:bg-primary-50 hover:bg-primary-50 focus:ring-color-transparent! hover:underline! focus:underline! focus:ring-0! focus:ring-offset-0!'
                 )}
-                onClick={() => {
-                  setIsOpen(false)
-                  trackEvent(captureClickHeaderAccessMySpaceAuthenticatedServer)
-                }}
+                onClick={() => setIsOpen(false)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     setIsOpen(false)
-                    trackEvent(
-                      captureClickHeaderAccessMySpaceAuthenticatedServer
-                    )
                   }
                 }}>
                 <Trans i18nKey="header.monEspace.access">

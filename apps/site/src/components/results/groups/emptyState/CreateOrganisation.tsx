@@ -2,10 +2,8 @@
 
 import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/trans/TransClient'
-import { captureClickDashboardGroupPageCreateOrganisation } from '@/constants/tracking/trackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function CreateOrganisation() {
   return (
@@ -23,12 +21,7 @@ export default function CreateOrganisation() {
         <Baseline />
       </div>
 
-      <ButtonLink
-        className="font-bold"
-        href="/organisations/connexion"
-        onClick={() => {
-          trackEvent(captureClickDashboardGroupPageCreateOrganisation)
-        }}>
+      <ButtonLink className="font-bold" href="/organisations/connexion">
         <Trans i18nKey="mon-espace.groups.organisation.create.button">
           Créer mon organisation
         </Trans>

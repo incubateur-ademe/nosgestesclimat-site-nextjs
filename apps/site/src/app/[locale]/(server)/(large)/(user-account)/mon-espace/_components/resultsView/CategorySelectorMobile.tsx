@@ -2,11 +2,9 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { testOrderedCategories } from '@/constants/model/orderedCategories'
-import { captureClickCategorySelectorMobile } from '@/constants/tracking/trackers'
 import Alert from '@/design-system/alerts/alert/Alert'
 import SelectInput from '@/design-system/inputs/SelectInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type TabId = 'global' | DottedName
@@ -48,9 +46,6 @@ export default function CategorySelectorMobile({
         value={activeTab}
         onChange={(e) => {
           setActiveTab(e.target.value as TabId)
-          trackEvent(
-            captureClickCategorySelectorMobile({ category: e.target.value })
-          )
         }}
         disabled={disabled}
         containerClassName="w-full">

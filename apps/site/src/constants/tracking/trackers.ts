@@ -3,7 +3,6 @@ import type { AuthenticationMode } from '@/types/authentication'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 interface PosthogProps {
   question?: DottedName | null
-  action?: DottedName
   label?: string
   answer?: NodeValue | string
   timeSpentOnQuestion?: number
@@ -14,7 +13,6 @@ interface PosthogProps {
   state?: 'opened' | 'closed'
   locale?: string //should be Locale
   category?: string
-  tab?: string
   status?: 'authenticated' | 'unauthenticated'
   cookieState?: CookieState
 }
@@ -137,41 +135,6 @@ export const captureFooterClickLanguage = ({ locale }: PosthogProps) => ({
     locale,
   },
 })
-// Actions
-
-export const captureTrackingCategoryFilter = ({ category }: PosthogProps) => ({
-  // /!\ This event is also sent for "relais"
-  eventName: 'Actions click category filter',
-  properties: {
-    category,
-  },
-})
-
-// Fin
-
-export const captureEndClickCategory = ({ category, action }: PosthogProps) => {
-  return {
-    eventName: 'Results page click see details category',
-    properties: {
-      category,
-      action,
-    },
-  }
-}
-
-// Landing
-
-export const captureLearnMoreCarbonLink = {
-  eventName: 'Accueil click En savoir plus LP carbone',
-}
-
-export const captureLearnMoreWaterLink = {
-  eventName: 'Accueil click En savoir plus LP eau',
-}
-
-export const captureCreateGroupLink = {
-  eventName: 'Accueil click Groupes',
-}
 
 // Compte U
 
@@ -183,109 +146,12 @@ export const captureSignupComplete = {
   eventName: 'Mon Espace - Inscription - Verification code validé',
 }
 
-// User Account
-
-export const captureClickHeaderMonEspaceAuthenticatedServer = {
-  eventName: 'click header mon espace',
-  properties: {
-    status: 'authenticated',
-  },
-}
-
-export const captureClickHeaderAccessMySpaceAuthenticatedServer = {
-  eventName: 'click header accéder à mon espace',
-  properties: {
-    status: 'authenticated',
-  },
-}
-
-export const captureClickHeaderLogoutAuthenticatedServer = {
-  eventName: 'click header logout',
-  properties: {
-    status: 'authenticated',
-  },
-}
-
-export const captureClickHeaderMonEspaceUnauthenticatedServer = {
-  eventName: 'click header mon espace',
-  properties: {
-    status: 'unauthenticated',
-  },
-}
-
-export const captureClickDashboardGroupPageNoGroupsCreate = {
-  eventName: 'click dashboard group page create group',
-}
-
-export const captureClickDashboardGroupPageCreateOrganisation = {
-  eventName: 'click dashboard group page create organisation',
-}
-
-export const captureClickResultsListResultViewDetail = {
-  eventName: 'click results list result view detail',
-}
-
-export const captureClickShareSimulationButton = {
-  eventName: 'click share simulation button',
-}
-
-export const captureClickCategorySelector = ({ category }: PosthogProps) => ({
-  eventName: 'click category selector',
-  properties: {
-    category,
-  },
-})
-
-export const captureClickCategorySelectorMobile = ({
-  category,
-}: PosthogProps) => ({
-  eventName: 'click category selector mobile',
-  properties: {
-    category,
-  },
-})
-
-export const captureClickUpdateUserEmail = {
-  eventName: 'click update user email',
-}
-
-export const captureClickUpdateUserNewsletters = {
-  eventName: 'click update newsletters',
-}
-
-// Cookies
-
-export const captureCookieBannerStatus = ({ cookieState }: PosthogProps) => ({
-  eventName: 'Cookie banner status',
-  properties: {
-    posthogCookie: cookieState?.posthog,
-    googleTagCookie: cookieState?.googleTag,
-  },
-})
-
 export const captureAmisCreationConnexionComplete = {
-  eventName: 'Verification code validé',
+  eventName: 'Amis Creation - Verification code validé',
 }
 
 export const captureOrganisationsLoginComplete = {
   eventName: 'Organisations Login - Verification code validé',
-}
-
-export const captureClickTab = ({
-  tab,
-}: {
-  tab: 'connexion' | 'inscription'
-}) => {
-  return {
-    eventName: 'click tab',
-    properties: {
-      tab,
-    },
-  }
-}
-
-export const captureClickResendCode = {
-  eventName: 'click resend code',
 }
 
 export const captureClickSubmitEmail = ({
@@ -300,3 +166,30 @@ export const captureClickSubmitEmail = ({
     },
   }
 }
+
+// User Account
+
+export const captureClickHeaderMonEspace = ({
+  status,
+  state,
+}: PosthogProps) => ({
+  eventName: 'click header mon espace',
+  properties: {
+    status,
+    state,
+  },
+})
+
+export const captureClickShareSimulationButton = {
+  eventName: 'click share simulation button',
+}
+
+// Cookies
+
+export const captureCookieBannerStatus = ({ cookieState }: PosthogProps) => ({
+  eventName: 'Cookie banner status',
+  properties: {
+    posthogCookie: cookieState?.posthog,
+    googleTagCookie: cookieState?.googleTag,
+  },
+})
