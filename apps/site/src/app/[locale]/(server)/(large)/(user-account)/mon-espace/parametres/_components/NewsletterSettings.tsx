@@ -5,7 +5,7 @@ import {
   postNewsletterFormAction,
 } from '@/actions/newsletters/postNewsletterFormAction'
 import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
-import { captureClickUpdateUserNewsletters } from '@/constants/trackers'
+import { captureClickUpdateUserNewsletters } from '@/constants/tracking/trackers'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 
@@ -15,7 +15,7 @@ import {
   type ListIds,
   type Newsletters,
 } from '@/helpers/server/model/newsletter'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import Form from 'next/form'
 import { useActionState } from 'react'
 
@@ -51,7 +51,7 @@ export default function NewsletterSettings({
           className="mt-8 h-14 w-72"
           disabled={pending}
           onClick={() => {
-            trackPosthogEvent(captureClickUpdateUserNewsletters)
+            trackEvent(captureClickUpdateUserNewsletters)
           }}>
           {pending ? (
             <Loader size="sm" color="light" />

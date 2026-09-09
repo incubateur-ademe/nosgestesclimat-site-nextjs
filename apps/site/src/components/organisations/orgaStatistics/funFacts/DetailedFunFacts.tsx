@@ -2,10 +2,10 @@
 
 import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { captureDownloadFunFactsPlus } from '@/constants/trackers'
+import { captureDownloadFunFactsPlus } from '@/constants/tracking/trackers'
 import Button from '@/design-system/buttons/Button'
 import type { Entries } from '@/publicodes-state/types'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { toPng } from 'html-to-image'
 import { useParams } from 'next/navigation'
@@ -78,7 +78,7 @@ export default function DetailedFunFacts({
           size="sm"
           color="secondary"
           onClick={() => {
-            trackPosthogEvent(captureDownloadFunFactsPlus)
+            trackEvent(captureDownloadFunFactsPlus)
 
             const funFactsPlus = document.getElementById('funFactsPlus')!
 

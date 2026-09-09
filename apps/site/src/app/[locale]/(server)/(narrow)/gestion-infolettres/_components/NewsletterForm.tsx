@@ -3,7 +3,7 @@
 import { postNewsletterFormAction } from '@/actions/newsletters/postNewsletterFormAction'
 import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
 import Trans from '@/components/translation/trans/TransClient'
-import { captureClickUpdateUserNewsletters } from '@/constants/trackers'
+import { captureClickUpdateUserNewsletters } from '@/constants/tracking/trackers'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
@@ -12,7 +12,7 @@ import {
   type ListIds,
   type Newsletters,
 } from '@/helpers/server/model/newsletter'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import Form from 'next/form'
 import { useActionState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -64,7 +64,7 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
           className="mb-8 h-14 w-60"
           disabled={pending}
           onClick={() => {
-            trackPosthogEvent(captureClickUpdateUserNewsletters)
+            trackEvent(captureClickUpdateUserNewsletters)
           }}>
           {pending ? (
             <Loader size="sm" color="light" />

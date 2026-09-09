@@ -12,7 +12,7 @@ interface Props {
   description: string
 }
 
-export default function MetabaseIframe({
+export default function PosthogIframe({
   id,
   title,
   src,

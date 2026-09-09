@@ -2,11 +2,11 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { SIGNIN_MODE, SIGNUP_MODE } from '@/constants/authentication/modes'
-import { captureClickTab } from '@/constants/trackers'
+import { captureClickTab } from '@/constants/tracking/trackers'
 import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AuthenticationMode } from '@/types/authentication'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 interface Props {
   mode: AuthenticationMode
@@ -24,7 +24,7 @@ export default function SigninSignupTabs({ mode, className }: Props) {
       isActive: mode === SIGNIN_MODE,
       onClick: () => {
         if (mode !== SIGNIN_MODE) {
-          trackPosthogEvent(captureClickTab({ tab: 'connexion' }))
+          trackEvent(captureClickTab({ tab: 'connexion' }))
         }
       },
       tab: 'connexion',
@@ -37,7 +37,7 @@ export default function SigninSignupTabs({ mode, className }: Props) {
       isActive: mode === SIGNUP_MODE,
       onClick: () => {
         if (mode !== SIGNUP_MODE) {
-          trackPosthogEvent(captureClickTab({ tab: 'inscription' }))
+          trackEvent(captureClickTab({ tab: 'inscription' }))
         }
       },
       tab: 'inscription',

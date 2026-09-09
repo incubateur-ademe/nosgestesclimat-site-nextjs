@@ -10,7 +10,7 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import { captureClickFormNav } from '@/constants/trackers'
+import { captureClickFormNav } from '@/constants/tracking/trackers'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -19,7 +19,7 @@ import { useIsDisabledByBounds } from '@/hooks/useIsDisabledByBounds'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useEngine, useFormState, useRule, useUser } from '@/publicodes-state'
 import { useGotoNextQuestion } from '@/publicodes-state/hooks/useGotoNextQuestion/useGotoNextQuestion'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useRouter } from 'next/navigation'
 
 type SubmitButtonKind = 'loading' | 'finish' | 'next'
@@ -185,7 +185,7 @@ export default function Navigation({
 
   const trackNextNavigation = useCallback(
     (timeSpentOnQuestion: number) => {
-      trackPosthogEvent(
+      trackEvent(
         captureClickFormNav({
           actionType: 'suivant',
           question,
@@ -199,7 +199,7 @@ export default function Navigation({
 
   const trackPrevNavigation = useCallback(
     (timeSpentOnQuestion: number) => {
-      trackPosthogEvent(
+      trackEvent(
         captureClickFormNav({
           actionType: 'précédent',
           question,

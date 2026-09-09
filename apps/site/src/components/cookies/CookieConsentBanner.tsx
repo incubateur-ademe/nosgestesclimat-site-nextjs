@@ -1,7 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEffect } from 'react'
 import ReactModal from 'react-modal'
 
 // Type assertion to resolve React types version mismatch
@@ -23,8 +22,6 @@ export default function CookieConsentBanner({
   acceptAll: () => void
 }) {
   const { t } = useClientTranslation()
-
-  useEffect(() => {}, [])
 
   return (
     <Modal

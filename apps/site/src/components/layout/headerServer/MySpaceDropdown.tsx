@@ -7,13 +7,13 @@ import {
   captureClickHeaderAccessMySpaceAuthenticatedServer,
   captureClickHeaderLogoutAuthenticatedServer,
   captureClickHeaderMonEspaceAuthenticatedServer,
-} from '@/constants/trackers'
+} from '@/constants/tracking/trackers'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import { resetLocalState } from '@/helpers/user/resetLocalState'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import posthog from 'posthog-js'
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
@@ -143,7 +143,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   }, [isOpen])
 
   const handleToggleMenu = () => {
-    trackPosthogEvent(captureClickHeaderMonEspaceAuthenticatedServer)
+    trackEvent(captureClickHeaderMonEspaceAuthenticatedServer)
     setIsOpen((prev) => {
       const willOpen = !prev
       // If opening with mouse click, reset keyboard navigation flag
@@ -195,7 +195,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   }
 
   const handleLogout = async () => {
-    trackPosthogEvent(captureClickHeaderLogoutAuthenticatedServer)
+    trackEvent(captureClickHeaderLogoutAuthenticatedServer)
     setIsOpen(false)
 
     resetLocalState({ setUser, setSimulation })
@@ -278,14 +278,12 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
                 )}
                 onClick={() => {
                   setIsOpen(false)
-                  trackPosthogEvent(
-                    captureClickHeaderAccessMySpaceAuthenticatedServer
-                  )
+                  trackEvent(captureClickHeaderAccessMySpaceAuthenticatedServer)
                 }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     setIsOpen(false)
-                    trackPosthogEvent(
+                    trackEvent(
                       captureClickHeaderAccessMySpaceAuthenticatedServer
                     )
                   }

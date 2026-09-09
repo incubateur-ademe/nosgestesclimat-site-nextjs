@@ -1,6 +1,6 @@
 'use client'
 
-import { captureClickShareSimulationButton } from '@/constants/trackers'
+import { captureClickShareSimulationButton } from '@/constants/tracking/trackers'
 import {
   FACEBOOK_SHARE_URL,
   LINKEDIN_SHARE_URL,
@@ -9,7 +9,7 @@ import {
 } from '@/constants/urls/share'
 import Share from '@/design-system/sharing/Share'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import FacebookIcon from '../icons/share/FacebookIcon'
 import LinkedinIcon from '../icons/share/LinkedinIcon'
 import MailIcon from '../icons/share/MailIcon'
@@ -32,7 +32,7 @@ export default function ShareSimulationButton({
   return (
     <Share
       onClick={() => {
-        trackPosthogEvent(captureClickShareSimulationButton)
+        trackEvent(captureClickShareSimulationButton)
       }}
       buttonLabel={buttonLabel ?? t('Partager')}
       buttonColor={buttonColor ?? 'text'}
