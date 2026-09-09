@@ -1,47 +1,16 @@
+import {
+  TemplateIds,
+  type TemplateId,
+} from '@nosgestesclimat/core/features/emails/template-ids'
 import { StatusCodes } from 'http-status-codes'
 import { Locales } from '../../core/i18n/constant.ts'
 import type { ValueOf } from '../../types/types.ts'
 
-const FrTemplateIds = {
-  SIMULATION_COMPLETED: 55,
-  GROUP_CREATED: 57,
-  GROUP_JOINED: 58,
-  VERIFICATION_CODE: 66,
-  ORGANISATION_CREATED: 70,
-  ORGANISATION_JOINED: 122,
-  POLL_CREATED: 126,
-  SIMULATION_IN_PROGRESS: 102,
-  API_VERIFICATION_CODE: 116,
-  NEWSLETTER_CONFIRMATION: 118,
-  SIGN_UP: 137,
-  SIGN_UP_SIMULATION_COMPLETED: 138,
-} as const
-
-type FrTemplateIds = ValueOf<typeof FrTemplateIds>
-
-const EnTemplateIds = {
-  VERIFICATION_CODE: 125,
-  ORGANISATION_CREATED: 124,
-  ORGANISATION_JOINED: 123,
-  POLL_CREATED: 127,
-  SIGN_UP: 139,
-  SIGN_UP_SIMULATION_COMPLETED: 140,
-} as const
-
-type EnTemplateIds = ValueOf<typeof EnTemplateIds>
-
-export const TemplateIds = {
-  [Locales.en]: EnTemplateIds,
-  [Locales.fr]: FrTemplateIds,
-} as const
-
-export type TemplateIds = ValueOf<typeof TemplateIds>
-
-export type TemplateId = FrTemplateIds | EnTemplateIds
+export { TemplateIds, type TemplateId }
 
 export type GroupTemplateId =
-  | typeof FrTemplateIds.GROUP_CREATED
-  | typeof FrTemplateIds.GROUP_JOINED
+  | typeof TemplateIds.fr.GROUP_CREATED
+  | typeof TemplateIds.fr.GROUP_JOINED
 
 export const Attributes = {
   NUMBER_CREATED_GROUPS_WITH_ONE_PARTICIPANT:

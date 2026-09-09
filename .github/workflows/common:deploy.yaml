@@ -42,9 +42,12 @@ jobs:
     name: Tests on preprod
     needs: [deploy-site-preprod, deploy-server-preprod]
     uses: ./.github/workflows/site:e2e.yaml
-    secrets: inherit
+    secrets:
+      FGP_BREVO_KEY: ${{ secrets.FGP_BREVO_KEY }}
     with:
       site_url: 'https://preprod.nosgestesclimat.fr'
+      mailbox: brevo
+      email_domain: e2e.test
 
   deploy-server-prod:
     name: Deploy server to prod

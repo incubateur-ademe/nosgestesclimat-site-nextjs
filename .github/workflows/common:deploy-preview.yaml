@@ -94,7 +94,7 @@ jobs:
   deploy-site-preview:
     name: Deploy site preview
     runs-on: ubuntu-latest
-    needs: [ensure-review-apps, resolve-pr, deploy-server-preview]
+    needs: [ensure-review-apps, resolve-pr, deploy-server-preview, urls]
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false
     environment:
       name: Preview app
@@ -110,11 +110,3 @@ jobs:
           fgp-deploy-url: ${{ vars.FGP_DEPLOY_URL }}
           scalingo-app-name: ${{ vars.SCALINGO_SITE_APP_NAME }}-pr${{ needs.resolve-pr.outputs.pr_number }}
           git-ref: ${{ needs.resolve-pr.outputs.head_sha }}
-
-  e2e:
-    name: Tests on preview
-    needs: [deploy-site-preview, deploy-server-preview, urls]
-    uses: ./.github/workflows/site:e2e.yaml
-    secrets: inherit
-    with:
-      site_url: ${{ needs.urls.outputs.site_url }}
