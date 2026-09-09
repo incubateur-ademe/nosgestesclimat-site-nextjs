@@ -1,5 +1,5 @@
 import type { Result } from '../../lib/result.ts'
-import type { TemplateId } from './email.constant.ts'
+import type { ListIds, TemplateId } from './email.constant.ts'
 import type { EmailRequestError } from './errors.ts'
 
 export type SendEmail = (params: {
@@ -13,5 +13,5 @@ export type ContactAttributes = Record<string, unknown>
 export type AddOrUpdateContact = (params: {
   email: string
   attributes: ContactAttributes
-  listIds?: number[]
+  listIds?: ListIds[]
 }) => Promise<Result<void, EmailRequestError>>
