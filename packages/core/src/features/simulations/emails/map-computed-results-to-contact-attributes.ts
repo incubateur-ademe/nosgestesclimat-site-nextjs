@@ -5,11 +5,10 @@ import type { ComputedResults } from '../validators/computed-results.schema.ts'
 const NUMBER_OF_KG_IN_A_TON = 1000
 const NUMBER_OF_DAYS_IN_A_YEAR = 365
 
-export const mapSimulationToContactAttributes = (
-  simulation: { computedResults: ComputedResults | null } | null,
+export const mapComputedResultsToContactAttributes = (
+  computedResults: ComputedResults | null | undefined,
   locale: ISOSupportedLanguage
 ) => {
-  const { computedResults } = simulation ?? {}
   const bilan = computedResults?.carbone?.bilan ?? 0
   const transport = computedResults?.carbone?.categories?.transport ?? 0
   const alimentation = computedResults?.carbone?.categories?.alimentation ?? 0

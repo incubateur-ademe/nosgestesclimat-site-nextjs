@@ -1,4 +1,4 @@
-import { mapSimulationToContactAttributes } from '@nosgestesclimat/core/features/simulations/emails/map-simulation-to-contact-attributes'
+import { mapComputedResultsToContactAttributes } from '@nosgestesclimat/core/features/simulations/emails/map-computed-results-to-contact-attributes'
 import type { ComputedResults } from '@nosgestesclimat/core/features/simulations/validators/computed-results.schema'
 import type { AxiosError } from 'axios'
 import axios, { isAxiosError } from 'axios'
@@ -374,11 +374,8 @@ export const sendSimulationUpsertedEmail = ({
       params: {
         SIMULATION_URL: simulationUrl.toString(),
         DASHBOARD_URL: dashBoardUrl.toString(),
-        ...mapSimulationToContactAttributes(
-          {
-            computedResults:
-              simulation.computedResults as ComputedResults | null,
-          },
+        ...mapComputedResultsToContactAttributes(
+          simulation.computedResults as ComputedResults | null,
           locale
         ),
       },
@@ -402,11 +399,8 @@ export const sendSimulationUpsertedEmail = ({
     params: {
       SIMULATION_URL: simulationUrl.toString(),
       ...(isSimulationCompleted
-        ? mapSimulationToContactAttributes(
-            {
-              computedResults:
-                simulation.computedResults as ComputedResults | null,
-            },
+        ? mapComputedResultsToContactAttributes(
+            simulation.computedResults as ComputedResults | null,
             Locales.fr
           )
         : {}),
@@ -714,12 +708,7 @@ export const addOrUpdateContactAfterSimulationCreated = async ({
   const attributes = {
     [Attributes.USER_ID]: userId,
     [Attributes.LAST_SIMULATION_DATE]: lastSimulationDate.toISOString(),
-    ...mapSimulationToContactAttributes(
-      {
-        computedResults,
-      },
-      Locales.fr
-    ),
+    ...mapComputedResultsToContactAttributes(computedResults, Locales.fr),
     ...(name
       ? {
           [Attributes.PRENOM]: name,

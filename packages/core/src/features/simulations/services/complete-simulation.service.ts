@@ -16,7 +16,7 @@ import { UnsupportedModelError } from '../../simulation-computation/errors/simul
 import { isModelSupported } from '../../simulation-computation/model-support/is-model-supported.ts'
 import { createSimulationComputation } from '../../simulation-computation/repositories/simulation-computations.repository.ts'
 import { findUserById } from '../../users/repositories/users.repository.ts'
-import { mapSimulationToContactAttributes } from '../emails/map-simulation-to-contact-attributes.js'
+import { mapComputedResultsToContactAttributes } from '../emails/map-computed-results-to-contact-attributes.ts'
 import {
   createSendGroupCreatedEmail,
   createSendGroupJoinedEmail,
@@ -136,12 +136,7 @@ export function createCompleteSimulation({
           attributes: {
             [Attributes.USER_ID]: userId,
             [Attributes.LAST_SIMULATION_DATE]: simulation.date.toISOString(),
-            ...mapSimulationToContactAttributes(
-              {
-                computedResults,
-              },
-              locale
-            ),
+            ...mapComputedResultsToContactAttributes(computedResults, locale),
           },
         }),
         (async () => {

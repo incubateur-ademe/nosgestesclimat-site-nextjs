@@ -9,7 +9,7 @@ import {
 import type { SendEmail } from '../../emails/types.ts'
 import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
 import type { Simulation } from '../types/simulation.ts'
-import { mapSimulationToContactAttributes } from './map-simulation-to-contact-attributes.ts'
+import { mapComputedResultsToContactAttributes } from './map-computed-results-to-contact-attributes.ts'
 
 type EmailUser = Readonly<{
   id: string
@@ -178,7 +178,7 @@ export const createSendSimulationCompletedEmail = (sendEmail: SendEmail) =>
       params: {
         SIMULATION_URL: simulationUrl.toString(),
         DASHBOARD_URL: dashboardUrl.toString(),
-        ...mapSimulationToContactAttributes({ computedResults }, locale),
+        ...mapComputedResultsToContactAttributes(computedResults, locale),
       },
     })
   }
