@@ -34,10 +34,7 @@ export default async function DetailledResultsWaterPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const simulationResult = await getSimulationResult({
-    by: 'id',
-    id: simulationId,
-  })
+  const simulationResult = await getSimulationResult(simulationId)
   if (!simulationResult) notFound()
 
   return (

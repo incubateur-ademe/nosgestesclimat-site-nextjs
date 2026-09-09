@@ -6,7 +6,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
 import { getUserSession } from '@/services/auth/get-user-session'
-import { getSimulationResult } from '@/services/simulations/get-simulation-result'
+import { getLatestSimulationResult } from '@/services/simulations/get-latest-simulation-result'
 import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
 
@@ -35,7 +35,7 @@ export default async function SimulationPage({
 }: PageProps<'/[locale]/fin/eau'>) {
   const { locale } = await params
   const user = await getUserSession()
-  const result = await getSimulationResult({ by: 'latest', withTendency: false })
+  const result = await getLatestSimulationResult({ withTendency: false })
   if (!user || !result) {
     notFound()
   }

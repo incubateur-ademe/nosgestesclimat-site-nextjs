@@ -12,7 +12,7 @@ import { NoSessionFoundError } from '@/helpers/server/error'
 import { getGroupDisplayInfo } from '@/helpers/server/model/utils/getGroupDisplayInfo'
 import type { Locale } from '@/i18nConfig'
 import { getUserSession } from '@/services/auth/get-user-session'
-import { getSimulationResult } from '@/services/simulations/get-simulation-result'
+import { getLatestSimulationResult } from '@/services/simulations/get-latest-simulation-result'
 import type { DefaultPageProps } from '@/types'
 import { captureException } from '@sentry/nextjs'
 import { notFound, redirect } from 'next/navigation'
@@ -57,10 +57,7 @@ export default async function FinPage({
     redirect('/')
   }
 
-  const result = await getSimulationResult({
-    by: 'latest',
-    withTendency: user.isAuth,
-  })
+  const result = await getLatestSimulationResult({ withTendency: user.isAuth })
   if (!result) {
     notFound()
   }
@@ -76,8 +73,8 @@ export default async function FinPage({
       <CarbonFootprintResults
         computedResults={result.simulation.computedResults}
         locale={locale as Locale}
-        tendency={result.type === 'tendency' ? result.tendency : undefined}
-        hasPreviousSimulation={result.type === 'tendency'}
+        tendency={result.tendency ?? undefined}
+        hasPreviousSimulation={result.tendency !== null}
         group={result.group ? getGroupDisplayInfo(result.group) : null}
       />
 

@@ -3,10 +3,7 @@ import type { GroupSummary } from '../../groups/types/group.ts'
 import { findPollSummaryById } from '../../polls/repositories/poll.repository.ts'
 import type { PollSummary } from '../../polls/types/poll.ts'
 import { migrateSimulationIfNeeded } from '../helpers/migrate-simulation.ts'
-import {
-  findCompletedSimulations,
-  findSimulationById,
-} from '../repository/simulation.repository.ts'
+import { findSimulationById } from '../repository/simulation.repository.ts'
 import type { Simulation } from '../types/simulation.ts'
 
 export type Tendency = 'increase' | 'decrease'
@@ -15,103 +12,56 @@ export type SimulationResultGroupInfo =
   | { type: 'group'; value: GroupSummary }
   | { type: 'poll'; value: PollSummary }
 
-interface SimulationResultBase {
+export interface SimulationResult {
   simulation: Simulation
   group: SimulationResultGroupInfo | null
+  tendency: Tendency | null
 }
 
-export interface TendencySimulationResult extends SimulationResultBase {
-  type: 'tendency'
-  previousSimulation: Simulation
-  tendency: Tendency
-}
-
-export interface PlainSimulationResult extends SimulationResultBase {
-  type: 'result'
-  previousSimulation: null
-  tendency: null
-}
-
-export type SimulationResult = TendencySimulationResult | PlainSimulationResult
-
-export type GetSimulationResultParams =
-  | { by: 'latest'; withTendency: boolean; userId: string }
-  | { by: 'id'; id: string; userId: string }
-
-export const getSimulationResult = async (
-  params: GetSimulationResultParams
-): Promise<SimulationResult | null> => {
-  const { by, userId } = params
-
-  let simulation: Simulation | null
-  let previousSimulation: Simulation | null = null
-  let withTendency = false
-
-  if (by === 'id') {
-    simulation = await findSimulationById({ id: params.id, userId })
-  } else {
-    withTendency = params.withTendency
-    const limit = withTendency ? 2 : 1
-    const simulations = await findCompletedSimulations({ userId, limit })
-    simulation = simulations[0] ?? null
-    if (simulations.length > 1) {
-      previousSimulation = simulations[1]
-    }
-  }
-
+export const getSimulationResult = async ({
+  id,
+  userId,
+}: {
+  id: string
+  userId: string
+}): Promise<SimulationResult | null> => {
+  const simulation = await findSimulationById({ id, userId })
   if (!simulation) return null
 
-  simulation = migrateSimulationIfNeeded(simulation)
-  if (previousSimulation) {
-    previousSimulation = migrateSimulationIfNeeded(previousSimulation)
-  }
-
-  let group: SimulationResultGroupInfo | null = null
-
-  if (simulation.groups?.length) {
-    const groupSummary = await findGroupSummaryById({
-      id: simulation.groups[0].id,
-    })
-    if (groupSummary) {
-      group = { type: 'group', value: groupSummary }
-    }
-  }
-
-  if (!group && simulation.polls?.length) {
-    const pollSummary = await findPollSummaryById({
-      id: simulation.polls[0].id,
-    })
-    if (pollSummary) {
-      group = { type: 'poll', value: pollSummary }
-    }
-  }
-
-  if (withTendency && previousSimulation) {
-    const tendency = computeTendency(
-      previousSimulation.computedResults.carbone.bilan,
-      simulation.computedResults.carbone.bilan
-    )
-    return {
-      type: 'tendency',
-      simulation,
-      previousSimulation,
-      group,
-      tendency,
-    }
-  }
+  const migratedSimulation = migrateSimulationIfNeeded(simulation)
+  const group = await findSimulationResultGroup(migratedSimulation)
 
   return {
-    type: 'result',
-    simulation,
-    previousSimulation: null,
+    simulation: migratedSimulation,
     group,
     tendency: null,
   }
 }
 
-const computeTendency = (
-  previousValue: number,
-  currentValue: number
-): Tendency => {
-  return previousValue < currentValue ? 'increase' : 'decrease'
+/**
+ * Resolves the group or poll a simulation belongs to, if any. Shared by
+ * `getSimulationResult` and `getLatestSimulationResult`.
+ */
+export const findSimulationResultGroup = async (
+  simulation: Simulation
+): Promise<SimulationResultGroupInfo | null> => {
+  if (simulation.groups?.length) {
+    const groupSummary = await findGroupSummaryById({
+      id: simulation.groups[0].id,
+    })
+    if (groupSummary) {
+      return { type: 'group', value: groupSummary }
+    }
+  }
+
+  if (simulation.polls?.length) {
+    const pollSummary = await findPollSummaryById({
+      id: simulation.polls[0].id,
+    })
+    if (pollSummary) {
+      return { type: 'poll', value: pollSummary }
+    }
+  }
+
+  return null
 }
