@@ -9,7 +9,7 @@ export const hasSimulation = (
 ): journey is ActiveUserSimulationJourney | CompletedUserSimulationJourney =>
   !!journey.currentSimulation
 
-export const hasFreshSimulation = (
+export const hasUnstartedSimulation = (
   journey: UserSimulationJourney
 ): journey is ActiveUserSimulationJourney | CompletedUserSimulationJourney =>
   journey.currentSimulation?.progression === 0

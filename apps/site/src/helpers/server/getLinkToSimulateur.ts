@@ -9,8 +9,8 @@ import type { UserSession } from '@/services/auth/get-user-session'
 import {
   hasCompletedCurrentSimulation,
   hasCompletedSimulation,
-  hasFreshSimulation,
   hasSimulation,
+  hasUnstartedSimulation,
 } from '@nosgestesclimat/core/features/simulations/helpers/user-simulation-journey'
 import type { UserSimulationJourney } from '@nosgestesclimat/core/features/simulations/types/simulation-progress'
 import type { TFunction } from 'i18next'
@@ -33,7 +33,7 @@ export function getMainCTA({
     }
   }
 
-  if (hasFreshSimulation(journey)) {
+  if (hasUnstartedSimulation(journey)) {
     return {
       children: t('Commencer le test'),
       href: hasCompletedSimulation(journey) ? SIMULATOR_PATH : TUTORIAL_PATH,

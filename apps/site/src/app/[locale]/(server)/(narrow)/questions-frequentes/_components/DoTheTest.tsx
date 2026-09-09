@@ -3,8 +3,8 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getUserSimulationJourney } from '@/services/simulations/get-user-simulation-journey'
 import {
-  hasFreshSimulation,
   hasSimulation,
+  hasUnstartedSimulation,
 } from '@nosgestesclimat/core/features/simulations/helpers/user-simulation-journey'
 
 /**
@@ -14,7 +14,7 @@ import {
 export default async function DoTheTest({ locale }: { locale: string }) {
   const journey = await getUserSimulationJourney()
 
-  if (!hasSimulation(journey) || hasFreshSimulation(journey)) {
+  if (!hasSimulation(journey) || hasUnstartedSimulation(journey)) {
     return (
       <div>
         <Trans i18nKey="faq.doTheTest.notStarted" locale={locale}>
