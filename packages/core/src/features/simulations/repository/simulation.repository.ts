@@ -1,5 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Situation } from 'publicodes'
+import { isCuid } from '../../../lib/cuid.ts'
 import type { Result } from '../../../lib/result.ts'
 import { failure, success } from '../../../lib/result.ts'
 import { prisma } from '../../../prisma/client.ts'
@@ -52,7 +53,11 @@ export const findLatestPollSimulation = async ({
     where: {
       userId,
       polls: {
-        some: { poll: { OR: [{ id: pollIdOrSlug }, { slug: pollIdOrSlug }] } },
+        some: {
+          poll: isCuid(pollIdOrSlug)
+            ? { id: pollIdOrSlug }
+            : { slug: pollIdOrSlug },
+        },
       },
     },
     orderBy: { date: 'desc' },

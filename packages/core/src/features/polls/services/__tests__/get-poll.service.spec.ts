@@ -32,6 +32,19 @@ describe('getPoll', () => {
     expect(result).toEqual(expect.objectContaining({ id: poll.id }))
   })
 
+  it('does not find a poll whose slug is shaped like a poll id', async () => {
+    // accepted trade-off of resolving the identifier before the query: an
+    // identifier shaped like a cuid is looked up as an id only, so a slug that
+    // happens to look like one is missed
+    const poll = await pollFactory.create({
+      slug: 'cslugthatlookslikeapollid',
+    })
+
+    const result = await getPoll({ pollIdOrSlug: poll.slug })
+
+    expect(result).toBeNull()
+  })
+
   it('exposes the poll and its organisation', async () => {
     const computedResults = computedResultsFactory.valid().build()
     const poll = await pollFactory.create({

@@ -50,7 +50,9 @@ export const pollFactory = PollFactory.define(
     const name = faker.company.buzzPhrase()
 
     return {
-      id: faker.string.uuid(),
+      // polls are created with `@default(cuid())` in production: keep the same
+      // shape so that id/slug resolution behaves like it does there
+      id: `c${faker.string.alphanumeric({ length: 24, casing: 'lower' })}`,
       name,
       slug: `${faker.helpers.slugify(name).toLocaleLowerCase()}-${faker.string.alphanumeric(6)}`,
       mode: 'standard' as const,

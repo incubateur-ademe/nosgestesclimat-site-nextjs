@@ -1,4 +1,5 @@
 import type { JsonValue } from '@prisma/client/runtime/client'
+import { isCuid } from '../../../lib/cuid.ts'
 import { prisma } from '../../../prisma/client.ts'
 import type { PollMode } from '../../../prisma/generated/client.ts'
 import type { Poll, PollSummary } from '../types/poll.ts'
@@ -50,10 +51,8 @@ export const findPollByIdOrSlug = async ({
 }: {
   pollIdOrSlug: string
 }): Promise<Poll | null> => {
-  const row = await prisma.poll.findFirst({
-    where: {
-      OR: [{ id: pollIdOrSlug }, { slug: pollIdOrSlug }],
-    },
+  const row = await prisma.poll.findUnique({
+    where: isCuid(pollIdOrSlug) ? { id: pollIdOrSlug } : { slug: pollIdOrSlug },
     select: pollSelect,
   })
 
