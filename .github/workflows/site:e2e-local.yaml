@@ -53,6 +53,8 @@ jobs:
         with:
           name: next-build
           path: apps/site/.next
+          # .next is a hidden dir: excluded by default
+          include-hidden-files: true
           retention-days: 1
 
   e2e-tests:
