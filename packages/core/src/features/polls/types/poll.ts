@@ -12,7 +12,7 @@ export interface Poll {
   mode: PollMode
   expectedNumberOfParticipants: number | null
   funFacts: FunFacts | null
-  /** null when the persisted results predate the current carbone/eau shape */
+  /** null until the poll's aggregated results have been computed server-side */
   computedResults: ComputedResults | null
   defaultAdditionalQuestions: PollDefaultAdditionalQuestionType[]
   customAdditionalQuestions: unknown

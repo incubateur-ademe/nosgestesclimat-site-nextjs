@@ -15,7 +15,7 @@ export interface PollRow {
   organisationId: string
   expectedNumberOfParticipants: number | null
   funFacts: JsonValue | null
-  computedResults: unknown
+  computedResults: JsonValue | null
   customAdditionalQuestions: unknown
   defaultAdditionalQuestions: { type: PollDefaultAdditionalQuestionType }[]
   createdAt: Date

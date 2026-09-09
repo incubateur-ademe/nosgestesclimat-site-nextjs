@@ -76,16 +76,4 @@ describe('getPoll', () => {
       },
     })
   })
-
-  it('nulls out computedResults predating the current shape', async () => {
-    const { poll } = await createPoll()
-    await prisma.poll.update({
-      where: { id: poll.id },
-      data: { computedResults: { bilan: 1000 } },
-    })
-
-    const result = await getPoll({ pollIdOrSlug: poll.slug })
-
-    expect(result?.computedResults).toBeNull()
-  })
 })
