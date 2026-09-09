@@ -6,6 +6,7 @@ import {
   END_PAGE_PATH,
   GROUP_RESULTS_ROUTE_PATTERN,
 } from '@/constants/urls/paths'
+import { env } from '@/env.server'
 import { getLocaleFromHeaders } from '@/helpers/server/getLocaleForNotFoundOrUnautorizedPage'
 import logger from '@/logger'
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -32,7 +33,7 @@ const completeSimulationService = createCompleteSimulation({
   captureException,
   sendEmail,
   addOrUpdateContact,
-  origin: process.env.NEXT_PUBLIC_SITE_URL!,
+  origin: env.NEXT_PUBLIC_SITE_URL,
   // The action redirects: side effects must outlive the request.
   runInBackground: (task) => after(task),
 })

@@ -1,8 +1,9 @@
+import { env } from '@/env.server'
 import { createBrevoClient } from '@nosgestesclimat/core/features/emails/brevo/client'
 
 const emailClient = createBrevoClient({
-  apiKey: process.env.BREVO_API_KEY!,
-  url: process.env.BREVO_URL!,
+  apiKey: env.BREVO_API_KEY,
+  url: env.BREVO_URL,
 })
 
 export const sendEmail = emailClient.sendEmail
