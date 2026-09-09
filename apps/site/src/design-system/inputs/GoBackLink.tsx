@@ -1,5 +1,3 @@
-'use client'
-
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 

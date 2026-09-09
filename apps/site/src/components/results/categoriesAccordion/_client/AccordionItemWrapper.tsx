@@ -1,8 +1,8 @@
 'use client'
 
-import { captureEndClickCategory } from '@/constants/trackers'
+import { captureEndClickCategory } from '@/constants/tracking/trackers'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 import type { ReactNode } from 'react'
 
@@ -37,7 +37,7 @@ export default function AccordionItemWrapper({
           action: eventConfig.properties.action ?? '',
         })
 
-        trackPosthogEvent({
+        trackEvent({
           eventName: eventConfig.eventName,
           properties,
         })

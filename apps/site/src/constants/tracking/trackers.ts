@@ -173,17 +173,7 @@ export const captureCreateGroupLink = {
   eventName: 'Accueil click Groupes',
 }
 
-// Compte U (server)
-
-export const captureClickMonEspaceTabServer = ({ tab }: PosthogProps) =>
-  JSON.stringify({
-    eventName: 'click tab mon espace',
-    properties: { tab },
-  })
-
-export const captureClickMySpaceNoResultsStartTest = JSON.stringify({
-  eventName: 'click mon espace pas de résultats',
-})
+// Compte U
 
 export const captureLoginComplete = {
   eventName: 'Connexion - Verification code validé',
@@ -216,12 +206,12 @@ export const captureClickHeaderLogoutAuthenticatedServer = {
   },
 }
 
-export const captureClickHeaderMonEspaceUnauthenticatedServer = JSON.stringify({
+export const captureClickHeaderMonEspaceUnauthenticatedServer = {
   eventName: 'click header mon espace',
   properties: {
     status: 'unauthenticated',
   },
-})
+}
 
 export const captureClickDashboardGroupPageNoGroupsCreate = {
   eventName: 'click dashboard group page create group',
@@ -230,10 +220,6 @@ export const captureClickDashboardGroupPageNoGroupsCreate = {
 export const captureClickDashboardGroupPageCreateOrganisation = {
   eventName: 'click dashboard group page create organisation',
 }
-
-export const captureClickLatestResultsViewDetail = JSON.stringify({
-  eventName: 'click latest results view detail',
-})
 
 export const captureClickResultsListResultViewDetail = {
   eventName: 'click results list result view detail',
@@ -284,10 +270,6 @@ export const captureAmisCreationConnexionComplete = {
 export const captureOrganisationsLoginComplete = {
   eventName: 'Organisations Login - Verification code validé',
 }
-
-export const captureEndClickDocumentationServer = JSON.stringify({
-  eventName: 'click documentation',
-})
 
 export const captureClickTab = ({
   tab,

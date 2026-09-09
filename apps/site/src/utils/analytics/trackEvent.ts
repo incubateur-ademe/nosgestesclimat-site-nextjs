@@ -7,6 +7,6 @@ export interface PosthogEvent {
   options?: CaptureOptions
 }
 
-export const trackPosthogEvent = (args: PosthogEvent) => {
+export const trackEvent = (args: PosthogEvent) => {
   posthog.capture(args.eventName, { ...args.properties }, args.options)
 }

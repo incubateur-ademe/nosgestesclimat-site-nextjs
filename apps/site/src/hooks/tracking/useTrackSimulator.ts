@@ -1,15 +1,19 @@
 import { useCookieManagement } from '@/components/cookies/useCookieManagement'
 import {
+  gtmSimulationCompleted,
+  gtmSimulationStarted,
+} from '@/constants/tracking/gtmEvents'
+import {
   captureSimulationCompleted,
   captureSimulationFirstQuestionSeen,
   captureSimulationStarted,
-} from '@/constants/trackers'
+} from '@/constants/tracking/trackers'
 import {
   useCurrentSimulation,
   useEngine,
   useFormState,
 } from '@/publicodes-state'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import {
   getIsEventTracked,
@@ -43,7 +47,7 @@ export function useTrackSimulator() {
       foldedSteps.length === 0 &&
       !getIsEventTracked(FIRST_QUESTION_SEEN, simulationId)
     ) {
-      trackPosthogEvent(
+      trackEvent(
         captureSimulationFirstQuestionSeen({
           question: remainingQuestions[0],
         })
@@ -62,10 +66,10 @@ export function useTrackSimulator() {
     ) {
       // Track GTM event if available
       if (cookieState.googleTag === 'accepted') {
-        trackGTMEvent({ event: 'start-form' })
+        trackGTMEvent(gtmSimulationStarted)
       }
 
-      trackPosthogEvent(
+      trackEvent(
         captureSimulationStarted({
           question:
             relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
@@ -89,10 +93,10 @@ export function useTrackSimulator() {
 
       // Track GTM event if available
       if (cookieState.googleTag === 'accepted') {
-        trackGTMEvent({ event: 'simulation-completed' })
+        trackGTMEvent(gtmSimulationCompleted)
       }
 
-      trackPosthogEvent(
+      trackEvent(
         captureSimulationCompleted({
           bilanCarbone: getNumericValue('bilan'),
           bilanEau: getNumericValue('bilan', 'eau'),

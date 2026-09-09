@@ -5,14 +5,14 @@ import OrganisationFilAriane from '@/components/layout/FilAriane'
 import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/trans/TransClient'
-import { captureClickPollSettings } from '@/constants/trackers'
+import { captureClickPollSettings } from '@/constants/tracking/trackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import { isOrganisationAdmin } from '@/services/organisations/is-organisation-admin'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
@@ -95,7 +95,7 @@ export default function CampagnePage() {
               <ButtonLink
                 href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
                 onClick={() => {
-                  trackPosthogEvent(captureClickPollSettings)
+                  trackEvent(captureClickPollSettings)
                 }}
                 color="secondary"
                 size="sm"

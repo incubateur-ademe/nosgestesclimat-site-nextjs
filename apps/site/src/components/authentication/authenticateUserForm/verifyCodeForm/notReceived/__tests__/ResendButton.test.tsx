@@ -1,6 +1,6 @@
 import type { AuthContextValue } from '@/components/authentication/AuthProvider'
 import { useAuth } from '@/components/authentication/AuthProvider'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -76,7 +76,7 @@ describe('ResendButton', () => {
   })
 
   it('tracks the resend click via PostHog', async () => {
-    const mockTrack = vi.mocked(trackPosthogEvent)
+    const mockTrack = vi.mocked(trackEvent)
     renderComponent()
     await userEvent.click(screen.getByRole('button'))
 

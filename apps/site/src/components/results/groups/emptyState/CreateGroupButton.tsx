@@ -2,15 +2,15 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
-import { captureClickDashboardGroupPageNoGroupsCreate } from '@/constants/trackers'
+import { captureClickDashboardGroupPageNoGroupsCreate } from '@/constants/tracking/trackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function CreateGroupButton() {
   return (
     <ButtonLink
       onClick={() => {
-        trackPosthogEvent(captureClickDashboardGroupPageNoGroupsCreate)
+        trackEvent(captureClickDashboardGroupPageNoGroupsCreate)
       }}
       data-testid="create-group-button"
       href={linkToGroupCreation}>

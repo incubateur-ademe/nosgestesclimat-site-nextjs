@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { testOrderedCategories } from '@/constants/model/orderedCategories'
-import { captureClickCategorySelector } from '@/constants/trackers'
+import { captureClickCategorySelector } from '@/constants/tracking/trackers'
 import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
-import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
@@ -34,7 +34,7 @@ export default function CategorySelectorDesktop({
       onClick: () => {
         if (!disabled) {
           setActiveTab('global')
-          trackPosthogEvent(captureClickCategorySelector({ category: 'bilan' }))
+          trackEvent(captureClickCategorySelector({ category: 'bilan' }))
         }
       },
       'aria-disabled': disabled,
@@ -46,7 +46,7 @@ export default function CategorySelectorDesktop({
       onClick: () => {
         if (!disabled) {
           setActiveTab(category)
-          trackPosthogEvent(captureClickCategorySelector({ category }))
+          trackEvent(captureClickCategorySelector({ category }))
         }
       },
       'aria-disabled': disabled,

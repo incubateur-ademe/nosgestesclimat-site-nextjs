@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/trans/TransClient'
-import { captureClickLatestResultsViewDetail } from '@/constants/trackers'
 import { END_PAGE_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
@@ -19,8 +18,7 @@ export default function SeeDetailLink({ className }: { className?: string }) {
         'mt-24 flex gap-2 md:mt-0',
         className
       )}
-      href={END_PAGE_PATH}
-      data-track-posthog={captureClickLatestResultsViewDetail}>
+      href={END_PAGE_PATH}>
       <span aria-hidden className="text-2xl leading-none">
         →
       </span>

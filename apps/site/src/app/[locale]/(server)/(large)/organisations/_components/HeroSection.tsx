@@ -1,5 +1,3 @@
-'use client'
-
 import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/buttons/ButtonLink'

@@ -2,7 +2,7 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import AuthenticateUserForm from '@/components/authentication/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import { linkToGroupCreation, SHOW_STEP_KEY } from '@/constants/group'
-import { captureAmisCreationConnexionComplete } from '@/constants/trackers'
+import { captureAmisCreationConnexionComplete } from '@/constants/tracking/trackers'
 import GoBackButton from '@/design-system/inputs/GoBackButton'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'

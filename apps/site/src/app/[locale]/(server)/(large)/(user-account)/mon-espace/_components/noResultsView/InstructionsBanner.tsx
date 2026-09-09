@@ -1,6 +1,5 @@
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/trans/TransServer'
-import { captureClickMySpaceNoResultsStartTest } from '@/constants/trackers'
 import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
@@ -138,8 +137,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
               colorClassNames.primary,
               sizeClassNames.md
             )}
-            scroll={false}
-            data-track-posthog={captureClickMySpaceNoResultsStartTest}>
+            scroll={false}>
             <Trans locale={locale} i18nKey="mon-espace.instructions.link.text">
               Passer le test
             </Trans>
