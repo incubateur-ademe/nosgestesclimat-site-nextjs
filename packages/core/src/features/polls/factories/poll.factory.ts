@@ -37,11 +37,8 @@ export const pollFactory = PollFactory.define(
           computedResults:
             (data.computedResults as unknown as Prisma.InputJsonValue | null) ??
             Prisma.DbNull,
-          customAdditionalQuestions:
-            data.customAdditionalQuestions as Prisma.InputJsonValue,
-          defaultAdditionalQuestions: {
-            create: data.defaultAdditionalQuestions.map((type) => ({ type })),
-          },
+          // no longer exposed on the Poll model but the column is required
+          customAdditionalQuestions: {},
           createdAt: data.createdAt,
           updatedAt: data.updatedAt,
         },
@@ -60,8 +57,6 @@ export const pollFactory = PollFactory.define(
       expectedNumberOfParticipants: null,
       funFacts: null,
       computedResults: null,
-      customAdditionalQuestions: [],
-      defaultAdditionalQuestions: [],
       createdAt: new Date(),
       updatedAt: new Date(),
       organisation: {

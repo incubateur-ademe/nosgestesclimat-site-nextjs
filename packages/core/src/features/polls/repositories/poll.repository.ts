@@ -1,9 +1,6 @@
 import type { JsonValue } from '@prisma/client/runtime/client'
 import { prisma } from '../../../prisma/client.ts'
-import type {
-  PollDefaultAdditionalQuestionType,
-  PollMode,
-} from '../../../prisma/generated/client.ts'
+import type { PollMode } from '../../../prisma/generated/client.ts'
 import type { Poll, PollSummary } from '../types/poll.ts'
 import { toPoll } from './poll.mapper.ts'
 
@@ -16,8 +13,6 @@ export interface PollRow {
   expectedNumberOfParticipants: number | null
   funFacts: JsonValue | null
   computedResults: JsonValue | null
-  customAdditionalQuestions: unknown
-  defaultAdditionalQuestions: { type: PollDefaultAdditionalQuestionType }[]
   createdAt: Date
   updatedAt: Date
   organisation: {
@@ -36,10 +31,6 @@ const pollSelect = {
   expectedNumberOfParticipants: true,
   funFacts: true,
   computedResults: true,
-  customAdditionalQuestions: true,
-  defaultAdditionalQuestions: {
-    select: { type: true },
-  },
   createdAt: true,
   updatedAt: true,
   organisation: {

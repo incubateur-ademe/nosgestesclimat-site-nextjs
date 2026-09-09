@@ -6,7 +6,6 @@ import { getPoll } from '../get-poll.service.ts'
 
 describe('getPoll', () => {
   afterEach(async () => {
-    await prisma.pollDefaultAdditionalQuestion.deleteMany()
     await prisma.poll.deleteMany()
     await prisma.organisation.deleteMany()
   })
@@ -38,8 +37,6 @@ describe('getPoll', () => {
       mode: 'scolaire',
       expectedNumberOfParticipants: 42,
       computedResults: validComputedResults,
-      defaultAdditionalQuestions: ['postalCode', 'birthdate'],
-      customAdditionalQuestions: [{ question: 'Votre service ?' }],
     })
 
     const result = await getPoll({ pollIdOrSlug: poll.slug })
@@ -52,8 +49,6 @@ describe('getPoll', () => {
       expectedNumberOfParticipants: 42,
       funFacts: null,
       computedResults: validComputedResults,
-      defaultAdditionalQuestions: ['postalCode', 'birthdate'],
-      customAdditionalQuestions: [{ question: 'Votre service ?' }],
       createdAt: poll.createdAt,
       updatedAt: poll.updatedAt,
       organisation: poll.organisation,

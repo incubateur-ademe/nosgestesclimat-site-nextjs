@@ -1,8 +1,5 @@
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
-import type {
-  PollDefaultAdditionalQuestionType,
-  PollMode,
-} from '../../../prisma/generated/client.ts'
+import type { PollMode } from '../../../prisma/generated/client.ts'
 import type { ComputedResults } from '../../simulations/validators/computed-results.schema.ts'
 
 export interface Poll {
@@ -14,8 +11,6 @@ export interface Poll {
   funFacts: FunFacts | null
   /** null until the poll's aggregated results have been computed server-side */
   computedResults: ComputedResults | null
-  defaultAdditionalQuestions: PollDefaultAdditionalQuestionType[]
-  customAdditionalQuestions: unknown
   createdAt: Date
   updatedAt: Date
   organisation: {

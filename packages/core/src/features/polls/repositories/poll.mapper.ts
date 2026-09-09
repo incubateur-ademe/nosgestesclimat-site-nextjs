@@ -12,10 +12,6 @@ export const toPoll = (row: PollRow): Poll => {
     expectedNumberOfParticipants: row.expectedNumberOfParticipants,
     funFacts: (row.funFacts as FunFacts | null) ?? null,
     computedResults: (row.computedResults as ComputedResults | null) ?? null,
-    defaultAdditionalQuestions: row.defaultAdditionalQuestions.map(
-      ({ type }) => type
-    ),
-    customAdditionalQuestions: row.customAdditionalQuestions,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
     organisation: row.organisation,
