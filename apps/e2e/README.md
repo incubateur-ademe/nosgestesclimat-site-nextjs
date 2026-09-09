@@ -46,7 +46,7 @@ reproduisez-la sans Docker :
 4. Lancez les tests (le serveur de dev du site est démarré automatiquement) :
 
    ```bash
-   pnpm -F @nosgestesclimat/e2e test
+   pnpm -F @nosgestesclimat/e2e test:e2e
    # ou l'interface Playwright :
    pnpm -F @nosgestesclimat/e2e test:ui
    ```

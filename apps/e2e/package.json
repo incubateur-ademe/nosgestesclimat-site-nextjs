@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "mock": "node mock/server.mjs",
-    "test": "playwright test",
+    "test:e2e": "playwright test",
     "test:ui": "playwright test --ui",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",

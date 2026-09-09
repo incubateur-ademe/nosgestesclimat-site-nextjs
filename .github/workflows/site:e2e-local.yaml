@@ -18,11 +18,14 @@ jobs:
       - name: Build site
         working-directory: apps/site
         env:
-          NEXT_PUBLIC_SITE_URL: http://localhost:3000
-          NEXT_PUBLIC_SERVER_URL: http://localhost:3001
           CMS_URL: ${{ vars.CMS_URL }}
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
-        run: pnpm build
+        run: |
+          # NEXT_PUBLIC_* and encryption keys come from .github/e2e-local.env
+          set -a
+          source ../../.github/e2e-local.env
+          set +a
+          pnpm build
 
       - name: Upload build
         uses: actions/upload-artifact@v6
@@ -123,7 +126,8 @@ jobs:
           retention-days: 7
 
   merge-reports:
-    if: ${{ !cancelled() }}
+    # Skip if e2e-tests was skipped (build failed) — nothing to merge.
+    if: ${{ !cancelled() && needs.e2e-tests.result != 'skipped' }}
     needs: e2e-tests
     runs-on: ubuntu-latest
     name: Merge reports

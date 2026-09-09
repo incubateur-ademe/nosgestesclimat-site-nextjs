@@ -1,8 +1,8 @@
-import { StatusCodes } from 'http-status-codes'
 import {
   TemplateIds,
   type TemplateId,
 } from '@nosgestesclimat/core/features/emails/template-ids'
+import { StatusCodes } from 'http-status-codes'
 import { Locales } from '../../core/i18n/constant.ts'
 import type { ValueOf } from '../../types/types.ts'
 
