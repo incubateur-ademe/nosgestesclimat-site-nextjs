@@ -9,6 +9,8 @@ jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
+    # CMS_URL/CMS_TOKEN (prerender CMS) viennent de l'env 'Test E2E'.
+    environment: Test E2E
     # The build prerenders PPR pages that query the DB (e.g. /fr/actions).
     services:
       postgres:
