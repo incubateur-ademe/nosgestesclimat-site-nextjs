@@ -9,6 +9,7 @@ import { getPoll } from '@/services/polls/get-poll'
 import { getLastCompletedSimulation } from '@/services/simulations/get-last-completed-simulation'
 import { getPollParticipation } from '@/services/simulations/get-poll-participation'
 import { resolveNewSimulationModel } from '@/services/simulations/resolve-new-simulation-model'
+import { isSimulationCompleted } from '@nosgestesclimat/core/features/simulations/helpers/simulation-guards'
 import { notFound, redirect } from 'next/navigation'
 import { PollTracker } from '../../../../../../components/tracking/PollTracker'
 import PollTutorialButton from '../../_components/PollTutorialButton'
@@ -33,7 +34,7 @@ export default async function CampagnePage({
     ])
   if (!poll) notFound()
 
-  if (currentPollSimulation && currentPollSimulation.progression < 1) {
+  if (currentPollSimulation && !isSimulationCompleted(currentPollSimulation)) {
     redirect(SIMULATOR_PATH)
   }
 
@@ -104,7 +105,9 @@ export default async function CampagnePage({
   const buttonNext = (
     <PollTutorialButton
       poll={poll}
-      hasCompletedPollSimulation={currentPollSimulation?.progression === 1}
+      hasCompletedPollSimulation={
+        !!currentPollSimulation && isSimulationCompleted(currentPollSimulation)
+      }
       locale={locale}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       createSimulation={createNewSimulation}
