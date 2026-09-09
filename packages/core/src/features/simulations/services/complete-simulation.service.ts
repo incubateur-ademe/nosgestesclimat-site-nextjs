@@ -129,7 +129,7 @@ export function createCompleteSimulation({
     if (!updated.success) return updated
 
     backgroundTaskRunner(async () => {
-      if (!userSession.isAuth || !userSession.email) return
+      if (!userSession.isAuth) return
       const promises = await Promise.allSettled([
         addOrUpdateContact({
           email: userSession.email,
