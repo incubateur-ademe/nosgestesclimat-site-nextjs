@@ -100,15 +100,28 @@ describe('completeSimulation', () => {
   it('rejects an unfinished simulation without reaching the core service', async () => {
     vi.mocked(getUserSession).mockResolvedValue(aSession())
 
-    const result = await completeSimulation(
-      aPayload({ progression: 0.5 as CompleteSimulationPayload['progression'] })
-    )
+    const result = await completeSimulation(aPayload({ progression: 0.5 }))
 
     expect(result).toMatchObject({
       success: false,
-      error: { code: 'invalid_payload' },
+      error: { code: 'simulation_incomplete' },
     })
     expect(serviceMock.completeSimulation).not.toHaveBeenCalled()
+    expect(nextMock.revalidatePath).not.toHaveBeenCalled()
+  })
+
+  it('passes the core `simulation_incomplete` failure through', async () => {
+    vi.mocked(getUserSession).mockResolvedValue(aSession())
+    const failure = {
+      success: false,
+      error: { code: 'simulation_incomplete' },
+    }
+    serviceMock.completeSimulation.mockResolvedValue(failure)
+
+    const result = await completeSimulation(aPayload())
+
+    expect(result).toEqual(failure)
+    expect(nextMock.revalidatePath).not.toHaveBeenCalled()
   })
 
   it('forwards the session, the answers and the locale to the core service', async () => {

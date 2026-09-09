@@ -13,6 +13,16 @@ export const CompleteSimulationPayloadSchema = v.strictObject({
   computedResults: ComputedResultsSchema,
 })
 
-export type CompleteSimulationPayload = v.InferOutput<
+type _CompleteSimulationPayload = v.InferOutput<
   typeof CompleteSimulationPayloadSchema
 >
+
+/**
+ * What the client actually sends: its progression is only known at runtime.
+ * The action guards it explicitly so an unfinished simulation answers with a
+ * `simulation_incomplete` failure instead of a generic `invalid_payload`.
+ */
+export type CompleteSimulationPayload = Omit<
+  _CompleteSimulationPayload,
+  'progression'
+> & { progression: number }

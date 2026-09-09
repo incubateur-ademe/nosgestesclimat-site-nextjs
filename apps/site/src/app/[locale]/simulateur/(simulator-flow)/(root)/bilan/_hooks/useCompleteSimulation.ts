@@ -14,11 +14,11 @@ export function useCompleteSimulation() {
   return {
     isPending,
     completeSimulation() {
-      const progression = currentSimulation.progression
-      if (progression !== 1) return
-
       startTransition(async () => {
-        const { id, situation, foldedSteps } = currentSimulation
+        const { id, progression, situation, foldedSteps } = currentSimulation
+        // An incomplete simulation is not filtered out here on purpose: the
+        // server answers with a `simulation_incomplete` failure, which lands in
+        // Sentry below instead of being silently dropped.
         const result = await completeSimulationAction({
           id,
           progression,

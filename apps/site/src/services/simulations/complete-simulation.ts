@@ -10,9 +10,12 @@ import { getLocaleFromHeaders } from '@/helpers/server/getLocaleForNotFoundOrUna
 import logger from '@/logger'
 import { getUserSession } from '@/services/auth/get-user-session'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { type CompleteSimulationError } from '@nosgestesclimat/core/features/simulations/errors/simulations.error'
+import {
+  type CompleteSimulationError,
+  SimulationIncompleteError,
+} from '@nosgestesclimat/core/features/simulations/errors/simulations.error'
 import { createCompleteSimulation } from '@nosgestesclimat/core/features/simulations/services/complete-simulation.service'
-import { type Result } from '@nosgestesclimat/core/lib/result'
+import { failure, type Result } from '@nosgestesclimat/core/lib/result'
 import { validatePayload } from '@nosgestesclimat/core/lib/validate-payload'
 import { captureException } from '@sentry/nextjs'
 import { revalidatePath } from 'next/cache'
@@ -39,6 +42,12 @@ export const completeSimulation = async (
 ): Promise<Result<never, CompleteSimulationError> | void> => {
   const session = await getUserSession()
   if (!session) unauthorized()
+
+  // Checked before the payload validation, and again by the core service, so
+  // that an unfinished simulation answers with the specific
+  // `simulation_incomplete` failure the caller reports to Sentry rather than
+  // collapsing into a generic `invalid_payload`.
+  if (payload.progression !== 1) return failure(new SimulationIncompleteError())
 
   const parsed = validatePayload(CompleteSimulationPayloadSchema, payload)
   if (!parsed.success) return parsed
