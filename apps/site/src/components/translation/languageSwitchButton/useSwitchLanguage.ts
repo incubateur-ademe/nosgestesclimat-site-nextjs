@@ -1,10 +1,9 @@
 import { captureClickLanguage } from '@/constants/tracking/posthogTrackers'
-import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { useAlternateLanguagePaths } from '@/hooks/useAlternateLanguagePaths'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 interface LanguageReturnedObject {
   url: string
@@ -22,18 +21,11 @@ export function useSwitchLanguage(): {
   const currentLocale = useCurrentLocale(i18nConfig)! as Locale
   const alternatePaths = useAlternateLanguagePaths()
 
-  useEffect(() => {
-    // If the current locale is different than the NEXT_LOCALE cookie, we update it
-    if (!document.cookie.includes(`NEXT_LOCALE=${currentLocale}`)) {
-      updateLangCookie(currentLocale)
-    }
-  }, [currentLocale])
-
   // Keep the current origin and search params, swap only the pathname for
   // the one declared by the page's hreflang metadata — handles pages whose
   // slugs differ per locale (e.g. action detail pages)
   const generateLanguageUrl = (alternatePath: string): string => {
-    if (typeof window == 'undefined') return ''
+    if (typeof window === 'undefined') return ''
 
     const url = new URL(window.location.href)
 
@@ -44,7 +36,6 @@ export function useSwitchLanguage(): {
 
   const onLanguageChange = (newLocale: Locale) => {
     trackPosthogEvent(captureClickLanguage({ locale: newLocale }))
-    updateLangCookie(newLocale)
   }
 
   const { activeLang, inactiveLang } = useMemo(() => {

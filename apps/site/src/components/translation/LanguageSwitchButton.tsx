@@ -18,31 +18,28 @@ interface Props {
 
 export default function LanguageSwitchButton({ className }: Props) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-
   const { activeLang, inactiveLang } = useSwitchLanguage()
 
   return (
     <div className={twMerge('max-tiny:mr-1 mr-2', className)}>
       <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-        <PopoverTrigger>
-          <button
-            color="secondary"
-            aria-label={activeLang.title}
-            lang={activeLang.locale}
-            title={activeLang.title}
-            data-testid="language-switch-button"
-            className="hover:bg-primary-100 active:bg-primary-200 transitions-colors inline-flex items-center gap-2 rounded-lg px-2 py-2 sm:px-4 sm:py-3">
-            <Emoji>{activeLang.flag}</Emoji>
-            <span className="text-primary-700 capitalize">
-              {activeLang.label}
-            </span>{' '}
-            <ChevronRight
-              className={twMerge(
-                'ml-1 inline-block w-1.5 transition-transform',
-                isPopoverOpen ? 'rotate-[-90deg]' : 'rotate-90'
-              )}
-            />
-          </button>
+        <PopoverTrigger
+          color="secondary"
+          aria-label={activeLang.title}
+          lang={activeLang.locale}
+          title={activeLang.title}
+          data-testid="language-switch-button"
+          className="hover:bg-primary-100 active:bg-primary-200 transitions-colors inline-flex items-center gap-2 rounded-lg px-2 py-2 sm:px-4 sm:py-3">
+          <Emoji>{activeLang.flag}</Emoji>
+          <span className="text-primary-700 capitalize">
+            {activeLang.label}
+          </span>{' '}
+          <ChevronRight
+            className={twMerge(
+              'ml-1 inline-block w-1.5 transition-transform',
+              isPopoverOpen ? 'rotate-[-90deg]' : 'rotate-90'
+            )}
+          />
         </PopoverTrigger>
         <PopoverContent className="z-400! max-w-24 min-w-24">
           <Link

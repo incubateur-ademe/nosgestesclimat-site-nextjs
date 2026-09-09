@@ -1,5 +1,4 @@
 import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
-import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -39,10 +38,6 @@ vi.mock('@/constants/tracking/posthogTrackers', () => ({
   captureClickLanguage: ({ locale }: { locale: string }) => ({ locale }),
 }))
 
-vi.mock('@/helpers/language/updateLangCookie', () => ({
-  updateLangCookie: vi.fn(),
-}))
-
 vi.mock('@/utils/analytics/trackEvent', () => ({
   trackMatomoEvent__deprecated: vi.fn(),
   trackPosthogEvent: vi.fn(),
@@ -62,7 +57,7 @@ describe('LanguageSwitchButton', () => {
     expect(trigger).not.toHaveTextContent('EN')
   })
 
-  it('allows to change language from the default to EN', async () => {
+  it('allows to change language from the default to EN and change back to FR', async () => {
     const user = userEvent.setup()
     renderWithWrapper(<LanguageSwitchButton />)
 
@@ -74,7 +69,12 @@ describe('LanguageSwitchButton', () => {
     await user.click(screen.getByTestId('language-switch-button'))
     await user.click(screen.getByTestId('language-switch-button-en'))
 
-    expect(updateLangCookie).toHaveBeenCalledWith('en')
+    expect(trigger).toHaveTextContent('EN')
+
+    await user.click(screen.getByTestId('language-switch-button'))
+    await user.click(screen.getByTestId('language-switch-button-en'))
+
+    expect(trigger).toHaveTextContent('FR')
   })
 
   it('shows the English language as current when the locale is en', () => {
