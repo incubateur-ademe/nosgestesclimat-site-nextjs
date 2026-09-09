@@ -11,6 +11,7 @@ test.use({ storageState: NEW_VISITOR_STATE })
 
 // @TODO: re-enable (replace `describe.skip` with `describe`) once the scolaire
 // mode is back.
+// eslint-disable-next-line playwright/no-skipped-test
 test.describe.skip('scolaire mode', () => {
   test('should show youth tutorial when joining via the scolaire poll invite link', async ({
     scolairePoll,
@@ -88,5 +89,30 @@ test.describe.skip('scolaire mode', () => {
         page.locator(`a[href="${scolairePoll.url}"]`).filter({ visible: true })
       ).toBeVisible()
     })
+  })
+
+  test("shouldn't offer to reuse the previous scolaire test when joining a new scolaire poll", async ({
+    page,
+    scolairePoll,
+  }) => {
+    // Joining a new scolaire poll must offer to reuse the previous scolaire
+    // test (same mode), with its date and result.
+    await page.goto(scolairePoll.inviteLink)
+    await expect(page.getByTestId('youth-tutorial-start-button')).toBeVisible()
+  })
+
+  test('starts a fresh test when joining a standard poll after completing a scolaire test', async ({
+    page,
+    poll,
+  }) => {
+    // The shared page has just completed a test via the scolaire poll invite
+    // link. Joining a standard poll (different mode) must not offer to reuse
+    // the scolaire test: the standard tutorial simply starts a fresh test,
+    // while the scolaire simulation stays in the account.
+    await page.goto(poll.inviteLink)
+    await expect(page.getByTestId('tutoriel-title')).toBeVisible()
+    await expect(page.getByTestId('reuse-simulation-banner-title')).toBeHidden()
+    await page.getByTestId('skip-tutorial-button').click()
+    await expect(page).toHaveURL(/\/simulateur\/bilan/)
   })
 })

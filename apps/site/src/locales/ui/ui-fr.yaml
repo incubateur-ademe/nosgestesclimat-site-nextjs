@@ -1459,3 +1459,7 @@ entries:
   event.dynamicCounter.target.title.default: Objectif
   event.dynamicCounter.target.title.over: Objectif dépassé
   event.dynamicCounter.target.title.topped: Objectif atteint
+  poll.creation.mode.error: Une erreur s'est produite lors de la création de votre test collectif. Veuillez réessayer.
+  poll.creation.mode.select: Sélectionner
+  poll.creation.mode.tempDisabled: Fonctionnalité désactivée temporairement, en cours d'amélioration
+  poll.creation.mode.title: Choisissez le mode du test

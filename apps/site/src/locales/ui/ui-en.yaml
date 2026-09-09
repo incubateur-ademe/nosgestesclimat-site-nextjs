@@ -2088,7 +2088,7 @@ entries:
   common.minutes: Minutes
   common.minutes.lock: Minutes
   common.seconds: seconds
-  common.seconds.lock: seconds
+  common.seconds.lock: secondes
   common.hours: hours
   common.hours.lock: heures
   Toutes: All
@@ -2186,3 +2186,11 @@ entries:
   event.dynamicCounter.target.title.topped.lock: Objectif atteint
   event.dynamicCounter.target.title.over: Target exceeded
   event.dynamicCounter.target.title.over.lock: Objectif dépassé
+  poll.creation.mode.select: Select
+  poll.creation.mode.select.lock: Sélectionner
+  poll.creation.mode.tempDisabled: This feature has been temporarily disabled whilst improvements are being made
+  poll.creation.mode.tempDisabled.lock: Fonctionnalité désactivée temporairement, en cours d'amélioration
+  poll.creation.mode.error: An error has occurred whilst creating your group test. Please try again.
+  poll.creation.mode.error.lock: Une erreur s'est produite lors de la création de votre test collectif. Veuillez réessayer.
+  poll.creation.mode.title: Select the test mode
+  poll.creation.mode.title.lock: Choisissez le mode du test
