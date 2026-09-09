@@ -59,6 +59,8 @@ const readAlternatePaths = (): Partial<Record<Locale, string>> => {
 
     // Only trust the pathname as the hostname may be set to incorrect values in dev env
     const pathname = new URL(link.href).pathname
+
+    // Overwrite pathname, adding "/fr" to ensure locale is duly changed
     if (link.hreflang === 'fr') {
       paths[link.hreflang] = `/fr${pathname.length > 1 ? `/${pathname}` : ''}`
     } else {
