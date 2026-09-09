@@ -9,13 +9,15 @@ import Button from '@/design-system/buttons/Button'
 import { resetLocalState } from '@/helpers/user/resetLocalState'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { PostHog } from '@/services/tracking/Posthog'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
-import posthog from 'posthog-js'
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const MAX_EMAIL_LENGTH = 20
+
+const posthog = new PostHog()
 
 interface Props {
   email: string
@@ -200,7 +202,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
 
     resetLocalState({ setUser, setSimulation })
 
-    posthog.reset()
+    posthog.resetIdentity()
 
     await onLogout()
 
