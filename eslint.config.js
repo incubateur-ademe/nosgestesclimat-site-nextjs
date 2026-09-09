@@ -34,6 +34,10 @@ export default defineConfig([
     'apps/site/.storybook/**',
     'apps/site/playwright-report/**',
     'apps/site/storybook-static/**',
+    'apps/e2e/playwright-report/**',
+    'apps/e2e/blob-report/**',
+    'apps/e2e/test-results/**',
+    'apps/e2e/mock/**', // plain-JS (.mjs) tool, like other .mjs scripts in the repo
     '.github/scripts/**/*',
   ]),
   {
@@ -97,7 +101,6 @@ export default defineConfig([
     // The only way to overload nextJS config with more aggressive ts-eslint rules
     ...nextVanilla[0],
     files: ['apps/site/**/*.{js,jsx,ts,tsx}'],
-    ignores: ['apps/site/e2e/**/*'],
     plugins: nextPlugins,
     settings: {
       '@next/next': {

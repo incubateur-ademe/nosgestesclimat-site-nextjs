@@ -1,0 +1,21 @@
+name: 'Start e2e stack'
+description: 'Migrates DB then starts mock server, API server, site and worker'
+
+inputs:
+  database-url:
+    description: 'Postgres URL of the e2e database'
+    required: true
+  redis-url:
+    description: 'Redis URL'
+    required: false
+    default: redis://localhost:6379
+
+runs:
+  using: composite
+  steps:
+    - name: Start stack
+      shell: bash
+      env:
+        DATABASE_URL: ${{ inputs.database-url }}
+        REDIS_URL: ${{ inputs.redis-url }}
+      run: bash .github/scripts/e2e-stack.sh
