@@ -1,3 +1,5 @@
+type ValueOf<T> = T[keyof T]
+
 export const Attributes = {
   NUMBER_CREATED_GROUPS_WITH_ONE_PARTICIPANT:
     'NUMBER_CREATED_GROUPS_WITH_ONE_PARTICIPANT',
@@ -26,7 +28,7 @@ export const Attributes = {
   OPT_IN: 'OPT_IN',
 } as const
 
-export type Attributes = (typeof Attributes)[keyof typeof Attributes]
+export type Attributes = ValueOf<typeof Attributes>
 
 export const ListIds = {
   MAIN_NEWSLETTER: 22,
@@ -40,7 +42,7 @@ export const ListIds = {
   CITOYENS_NEWSLETTER: 42,
 } as const
 
-export type ListIds = (typeof ListIds)[keyof typeof ListIds]
+export type ListIds = ValueOf<typeof ListIds>
 
 const FrTemplateIds = {
   SIMULATION_COMPLETED: 55,
@@ -78,8 +80,6 @@ export const TemplateIds = {
 export type TemplateIds = ValueOf<typeof TemplateIds>
 
 export type TemplateId = FrTemplateIds | EnTemplateIds
-
-type ValueOf<T> = T[keyof T]
 
 export type GroupTemplateId =
   | typeof FrTemplateIds.GROUP_CREATED
