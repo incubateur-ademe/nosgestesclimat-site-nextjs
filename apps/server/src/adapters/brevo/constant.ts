@@ -96,12 +96,10 @@ export const AllNewsletters = [
   ListIds.CITOYENS_NEWSLETTER,
 ] as const
 
-// Matomo campaigns & keywords
-export const MATOMO_CAMPAIGN_KEY = 'mtm_campaign'
-export const MATOMO_CAMPAIGN_EMAIL_AUTOMATISE = 'email-automatise'
-
-export const MATOMO_KEYWORD_KEY = 'mtm_kwd'
-export const MATOMO_KEYWORDS = {
+// tracking
+export const TRACKING_SOURCE = 'NGC'
+export const TRACKING_MEDIUM = 'email-automatise'
+export const TRACKING_CAMPAIGNS = {
   [TemplateIds[Locales.fr].SIMULATION_COMPLETED]: 'fin-retrouver-simulation',
   [TemplateIds[Locales.en].SIGN_UP_SIMULATION_COMPLETED]:
     'fin-retrouver-simulation',
@@ -111,12 +109,10 @@ export const MATOMO_KEYWORDS = {
   [TemplateIds[Locales.fr].GROUP_CREATED]: {
     GROUP_URL: 'groupe-admin-voir-classement',
     SHARE_URL: 'groupe-admin-url-partage',
-    DELETE_URL: 'groupe-admin-delete',
   },
   [TemplateIds[Locales.fr].GROUP_JOINED]: {
     GROUP_URL: 'groupe-invite-voir-classement',
     SHARE_URL: 'groupe-invite-url-partage',
-    DELETE_URL: 'groupe-invite-delete',
   },
   [TemplateIds[Locales.en].ORGANISATION_CREATED]: 'orga-admin-creation',
   [TemplateIds[Locales.fr].ORGANISATION_CREATED]: 'orga-admin-creation',

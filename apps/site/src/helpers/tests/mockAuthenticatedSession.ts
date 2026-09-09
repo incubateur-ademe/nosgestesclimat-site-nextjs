@@ -1,12 +1,8 @@
 import { v4 as randomUUID } from 'uuid'
 import { vi } from 'vitest'
 
-import type {
-  AnonUser,
-  AuthUser} from '@/services/auth/get-user-session';
-import {
-  getUserSession,
-} from '@/services/auth/get-user-session'
+import type { AnonUser, AuthUser } from '@/services/auth/get-user-session'
+import { getUserSession } from '@/services/auth/get-user-session'
 
 export function mockAuthenticatedSession({
   userId = randomUUID(),
