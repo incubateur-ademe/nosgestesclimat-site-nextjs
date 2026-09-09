@@ -1,8 +1,32 @@
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type { JsonValue } from '@prisma/client/runtime/client'
 import * as v from 'valibot'
+import type {
+  PollDefaultAdditionalQuestionType,
+  PollMode,
+} from '../../../prisma/generated/client.ts'
 import { ComputedResultsSchema } from '../../simulations/validators/computed-results.schema.ts'
 import type { Poll } from '../types/poll.ts'
-import type { PollRow } from './poll.repository.ts'
+
+export interface PollRow {
+  id: string
+  name: string
+  slug: string
+  mode: PollMode
+  organisationId: string
+  expectedNumberOfParticipants: number | null
+  funFacts: JsonValue | null
+  computedResults: unknown
+  customAdditionalQuestions: unknown
+  defaultAdditionalQuestions: { type: PollDefaultAdditionalQuestionType }[]
+  createdAt: Date
+  updatedAt: Date
+  organisation: {
+    id: string
+    name: string
+    slug: string
+  }
+}
 
 export const toPoll = (row: PollRow): Poll => {
   const computedResults = v.safeParse(
