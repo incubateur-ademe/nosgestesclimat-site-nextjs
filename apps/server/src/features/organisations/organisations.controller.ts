@@ -5,7 +5,6 @@ import { ForbiddenException } from '../../core/errors/ForbiddenException.ts'
 import { ImmutableSimulationException } from '../../core/errors/ImmutableSimulationException.ts'
 import { UnauthorizedException } from '../../core/errors/UnauthorizedException.ts'
 import { EventBus } from '../../core/event-bus/event-bus.ts'
-import { withPaginationHeaders } from '../../core/pagination.ts'
 import { isVerifiedUser } from '../../core/typeguards/isVerifiedUser.ts'
 import logger from '../../logger.ts'
 import { authentificationMiddleware } from '../../middlewares/authentificationMiddleware.ts'
@@ -147,14 +146,12 @@ router
         return res.status(StatusCodes.UNAUTHORIZED).end()
       }
       try {
-        const { organisations, count } = await fetchOrganisations({
+        const { organisations } = await fetchOrganisations({
           user,
           query,
         })
 
-        return withPaginationHeaders({ ...query, count })(res)
-          .status(StatusCodes.OK)
-          .json(organisations)
+        return res.status(StatusCodes.OK).json(organisations)
       } catch (err) {
         logger.error('Organisations fetch failed', err)
 
