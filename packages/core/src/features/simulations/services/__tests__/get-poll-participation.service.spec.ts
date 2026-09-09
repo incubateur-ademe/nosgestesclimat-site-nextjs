@@ -1,6 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
-import { organisationFactory } from '../../../polls/factories/organisation.factory.ts'
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import { simulationFactory } from '../../factories/simulation.factory.ts'
@@ -24,11 +23,8 @@ describe('getPollParticipation', () => {
   })
 
   it('returns null when the user has no simulation attached to the poll', async () => {
-    const [user, organisation] = await Promise.all([
-      userFactory.create(),
-      organisationFactory.create(),
-    ])
-    const poll = await pollFactory.withOrganisation(organisation.id).create()
+    const user = await userFactory.create()
+    const poll = await pollFactory.create()
 
     const result = await getPollParticipation({
       userId: user.id,
@@ -39,11 +35,8 @@ describe('getPollParticipation', () => {
   })
 
   it('resolves the poll by id', async () => {
-    const [user, organisation] = await Promise.all([
-      userFactory.create(),
-      organisationFactory.create(),
-    ])
-    const poll = await pollFactory.withOrganisation(organisation.id).create()
+    const user = await userFactory.create()
+    const poll = await pollFactory.create()
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
@@ -61,11 +54,8 @@ describe('getPollParticipation', () => {
   })
 
   it('resolves the poll by slug', async () => {
-    const [user, organisation] = await Promise.all([
-      userFactory.create(),
-      organisationFactory.create(),
-    ])
-    const poll = await pollFactory.withOrganisation(organisation.id).create()
+    const user = await userFactory.create()
+    const poll = await pollFactory.create()
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)
@@ -83,13 +73,10 @@ describe('getPollParticipation', () => {
   })
 
   it('does not return a simulation attached to another poll', async () => {
-    const [user, organisation] = await Promise.all([
-      userFactory.create(),
-      organisationFactory.create(),
-    ])
+    const user = await userFactory.create()
     const [poll, otherPoll] = await Promise.all([
-      pollFactory.withOrganisation(organisation.id).create(),
-      pollFactory.withOrganisation(organisation.id).create(),
+      pollFactory.create(),
+      pollFactory.create(),
     ])
     const simulation = await simulationFactory
       .withProgression(0.5)
@@ -107,12 +94,11 @@ describe('getPollParticipation', () => {
   })
 
   it('does not return another user simulation', async () => {
-    const [user, other, organisation] = await Promise.all([
+    const [user, other] = await Promise.all([
       userFactory.create(),
       userFactory.create(),
-      organisationFactory.create(),
     ])
-    const poll = await pollFactory.withOrganisation(organisation.id).create()
+    const poll = await pollFactory.create()
     const simulation = await simulationFactory
       .withProgression(0.5)
       .withValidComputedResults()
@@ -129,11 +115,8 @@ describe('getPollParticipation', () => {
   })
 
   it('returns the latest simulation attached to the poll, ordered by date', async () => {
-    const [user, organisation] = await Promise.all([
-      userFactory.create(),
-      organisationFactory.create(),
-    ])
-    const poll = await pollFactory.withOrganisation(organisation.id).create()
+    const user = await userFactory.create()
+    const poll = await pollFactory.create()
     const [older, latest] = await Promise.all([
       simulationFactory
         .withModelRegion('FR')
@@ -170,11 +153,8 @@ describe('getPollParticipation', () => {
   it('delegates migration to migrateSimulationIfNeeded', async () => {
     const { migrateSimulationIfNeeded } =
       await import('../../helpers/migrate-simulation.ts')
-    const [user, organisation] = await Promise.all([
-      userFactory.create(),
-      organisationFactory.create(),
-    ])
-    const poll = await pollFactory.withOrganisation(organisation.id).create()
+    const user = await userFactory.create()
+    const poll = await pollFactory.create()
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .withProgression(0.5)

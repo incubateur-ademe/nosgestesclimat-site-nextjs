@@ -3,33 +3,34 @@ import { Factory } from 'fishery'
 import { prisma } from '../../../prisma/client.ts'
 import { Prisma } from '../../../prisma/generated/client.ts'
 import type { Poll } from '../types/poll.ts'
+import { organisationFactory } from './organisation.factory.ts'
 
 interface PollTransientParams {
   organisationId: string
 }
 
 class PollFactory extends Factory<Poll, PollTransientParams, Poll> {
-  withOrganisation(organisationId: string) {
-    return this.transient({ organisationId })
-  }
-
   scolaire() {
     return this.params({ mode: 'scolaire' })
   }
 }
 
 export const pollFactory = PollFactory.define(
-  ({ onCreate, transientParams }) => {
-    const organisationId = transientParams.organisationId ?? faker.string.uuid()
-
+  ({ onCreate, transientParams: { organisationId } }) => {
     onCreate(async (data) => {
+      // a poll cannot exist without an organisation: create one unless the
+      // caller pointed the poll at an existing organisation
+      const organisation = organisationId
+        ? data.organisation
+        : await organisationFactory.create({ id: data.organisation.id })
+
       await prisma.poll.create({
         data: {
           id: data.id,
           name: data.name,
           slug: data.slug,
           mode: data.mode,
-          organisationId,
+          organisationId: organisation.id,
           expectedNumberOfParticipants: data.expectedNumberOfParticipants,
           funFacts:
             (data.funFacts as Prisma.InputJsonValue | null) ?? Prisma.DbNull,
@@ -45,7 +46,8 @@ export const pollFactory = PollFactory.define(
           updatedAt: data.updatedAt,
         },
       })
-      return data
+
+      return { ...data, organisation }
     })
 
     const name = faker.company.buzzPhrase()
@@ -63,7 +65,7 @@ export const pollFactory = PollFactory.define(
       createdAt: new Date(),
       updatedAt: new Date(),
       organisation: {
-        id: organisationId,
+        id: organisationId ?? faker.string.uuid(),
         name: '',
         slug: '',
       },

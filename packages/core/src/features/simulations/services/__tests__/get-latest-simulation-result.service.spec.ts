@@ -1,7 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { groupFactory } from '../../../groups/factories/group.factory.ts'
-import { organisationFactory } from '../../../polls/factories/organisation.factory.ts'
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import {
@@ -288,11 +287,8 @@ describe('getLatestSimulationResult', () => {
   })
 
   it('resolves group info with type "poll" when the latest simulation belongs to a poll but no group', async () => {
-    const [user, organisation] = await Promise.all([
-      userFactory.create(),
-      organisationFactory.create(),
-    ])
-    const poll = await pollFactory.withOrganisation(organisation.id).create()
+    const user = await userFactory.create()
+    const poll = await pollFactory.create()
     const simulation = await simulationFactory
       .withModelRegion('FR')
       .completed()
@@ -314,7 +310,7 @@ describe('getLatestSimulationResult', () => {
         id: poll.id,
         name: poll.name,
         slug: poll.slug,
-        organisation: { slug: organisation.slug },
+        organisation: { slug: poll.organisation.slug },
       },
     })
   })
