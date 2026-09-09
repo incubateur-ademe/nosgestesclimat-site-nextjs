@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Situation } from 'publicodes'
-import type { RunInBackground } from '../../../lib/background-task.ts'
+import type { BackgroundTaskRunner } from '../../../lib/background-task-runner.ts'
 import { invariant } from '../../../lib/invariant.ts'
 import type { Result } from '../../../lib/result.ts'
 import { failure, success } from '../../../lib/result.ts'
@@ -46,7 +46,7 @@ interface CompleteSimulationDependencies {
   /** Public origin the emails link back to */
   origin: string
   /** Runs the post-completion side effects outside of the request lifecycle */
-  runInBackground: RunInBackground
+  backgroundTaskRunner: BackgroundTaskRunner
 }
 
 export function createCompleteSimulation({
@@ -55,7 +55,7 @@ export function createCompleteSimulation({
   addOrUpdateContact,
   sendEmail,
   origin,
-  runInBackground,
+  backgroundTaskRunner,
 }: CompleteSimulationDependencies) {
   const sendGroupCreatedEmail = createSendGroupCreatedEmail(sendEmail)
   const sendGroupJoinedEmail = createSendGroupJoinedEmail(sendEmail)
@@ -128,7 +128,7 @@ export function createCompleteSimulation({
 
     if (!updated.success) return updated
 
-    runInBackground(async () => {
+    backgroundTaskRunner(async () => {
       if (!userSession.isAuth || !userSession.email) return
       const promises = await Promise.allSettled([
         addOrUpdateContact({

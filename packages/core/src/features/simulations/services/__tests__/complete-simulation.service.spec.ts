@@ -183,7 +183,7 @@ describe('completeSimulation', () => {
   })
 
   it('fails with simulation_incomplete when the progression is not 1', async () => {
-    const { completeSimulation, runInBackground } = setup()
+    const { completeSimulation, backgroundTaskRunner } = setup()
     const user = await verifiedUser()
     const simulation = await startedSimulation(user.id)
 
@@ -198,7 +198,7 @@ describe('completeSimulation', () => {
       success: false,
       error: new SimulationIncompleteError(),
     })
-    expect(runInBackground).not.toHaveBeenCalled()
+    expect(backgroundTaskRunner).not.toHaveBeenCalled()
 
     const updated = await findSimulationById({
       id: simulation.id,
@@ -211,7 +211,7 @@ describe('completeSimulation', () => {
   })
 
   it('fails with zero_footprint when the carbon footprint is zero as it is a sign of a bigger issue', async () => {
-    const { completeSimulation, runInBackground } = setup()
+    const { completeSimulation, backgroundTaskRunner } = setup()
     const user = await verifiedUser()
     const simulation = await startedSimulation(user.id)
 
@@ -226,7 +226,7 @@ describe('completeSimulation', () => {
       success: false,
       error: new ZeroFootprintError(),
     })
-    expect(runInBackground).not.toHaveBeenCalled()
+    expect(backgroundTaskRunner).not.toHaveBeenCalled()
 
     const updated = await findSimulationById({
       id: simulation.id,
@@ -281,7 +281,7 @@ describe('completeSimulation', () => {
   })
 
   it('refuses to complete an already completed simulation', async () => {
-    const { completeSimulation, runInBackground } = setup()
+    const { completeSimulation, backgroundTaskRunner } = setup()
     const user = await verifiedUser()
     const simulation = await simulationFactory
       .withModelRegion('FR')
@@ -299,7 +299,7 @@ describe('completeSimulation', () => {
       success: false,
       error: new SimulationCompletedError(),
     })
-    expect(runInBackground).not.toHaveBeenCalled()
+    expect(backgroundTaskRunner).not.toHaveBeenCalled()
 
     const updated = await findSimulationById({
       id: simulation.id,
@@ -594,7 +594,7 @@ describe('completeSimulation', () => {
 const origin = 'https://nosgestesclimat.fr'
 
 /**
- * Builds the service with spied dependencies. `runInBackground` keeps the
+ * Builds the service with spied dependencies. `backgroundTaskRunner` keeps the
  * scheduled task so that `settleBackground` can await the side effects the
  * real runtime runs outside of the request lifecycle.
  */
@@ -609,7 +609,7 @@ const setup = () => {
   const addOrUpdateContact = vi.fn().mockResolvedValue(success())
   const sendEmail = vi.fn().mockResolvedValue(success())
   const backgroundTasks: Promise<void>[] = []
-  const runInBackground = vi.fn((task: () => Promise<void>) => {
+  const backgroundTaskRunner = vi.fn((task: () => Promise<void>) => {
     backgroundTasks.push(task())
   })
 
@@ -618,14 +618,14 @@ const setup = () => {
     captureException,
     addOrUpdateContact,
     sendEmail,
-    runInBackground,
+    backgroundTaskRunner,
     completeSimulation: createCompleteSimulation({
       logger,
       captureException,
       addOrUpdateContact,
       sendEmail,
       origin,
-      runInBackground,
+      backgroundTaskRunner,
     }),
     settleBackground: () => Promise.all(backgroundTasks),
   }

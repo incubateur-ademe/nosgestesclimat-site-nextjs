@@ -35,7 +35,7 @@ const completeSimulationService = createCompleteSimulation({
   addOrUpdateContact,
   origin: env.NEXT_PUBLIC_SITE_URL,
   // The action redirects: side effects must outlive the request.
-  runInBackground: (task) => after(task),
+  backgroundTaskRunner: after,
 })
 
 export const completeSimulation = async (

@@ -6,4 +6,4 @@
  * their own primitive - `after` from `next/server`, `waitUntil`... - so the
  * task keeps running outside of the request lifecycle.
  */
-export type RunInBackground = (task: () => Promise<void>) => void
+export type BackgroundTaskRunner = (task: () => Promise<void>) => void
