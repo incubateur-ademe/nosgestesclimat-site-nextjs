@@ -1,5 +1,6 @@
-import type { CaptureException, Logger } from '../features/logger/index.ts'
+import type { Logger } from '../features/logger/index.ts'
 import type { Result } from './result.ts'
+import { toError } from './to-error.ts'
 
 /**
  * Creates a settle function that waits for every side effect and reports the
@@ -7,13 +8,7 @@ import type { Result } from './result.ts'
  * of them fails the caller's main operation.
  */
 export const createSettle =
-  ({
-    logger,
-    captureException,
-  }: {
-    logger: Logger
-    captureException: CaptureException
-  }) =>
+  ({ logger }: { logger: Logger }) =>
   async (label: string, sideEffects: Promise<Result<void> | void>[]) => {
     const results = await Promise.allSettled(sideEffects)
 
@@ -22,8 +17,7 @@ export const createSettle =
       if (result.status === 'rejected') error = result.reason
       else if (result.value && !result.value.success) error = result.value.error
       if (error) {
-        captureException(error)
-        logger.error(`Failed to settle: ${label}`, { index, error })
+        logger.error(toError(error), { label, index })
       }
     }
   }

@@ -5,7 +5,6 @@ import {
 } from '@/components/authentication/errors'
 import { InvalidVerificationCodeError } from '@nosgestesclimat/core/features/auth/errors/login.error'
 import { failure, success } from '@nosgestesclimat/core/lib/result'
-import { captureException } from '@sentry/nextjs'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { login } from '../login'
 
@@ -20,6 +19,8 @@ const mocks = vi.hoisted(() => ({
   addOrUpdateContact: vi.fn(),
   loginService: vi.fn(),
   loggerInfo: vi.fn(),
+  loggerWarn: vi.fn(),
+  loggerError: vi.fn(),
 }))
 
 vi.mock('../get-user-session', () => ({
@@ -56,11 +57,11 @@ vi.mock('@/env/server', () => ({
   env: { NEXT_PUBLIC_SITE_URL: 'http://localhost:3000' },
 }))
 
-vi.mock('@/logger', () => ({
+vi.mock('@/logger/logger.server', () => ({
   default: {
     info: mocks.loggerInfo,
-    warn: vi.fn(),
-    error: vi.fn(),
+    warn: mocks.loggerWarn,
+    error: mocks.loggerError,
     debug: vi.fn(),
   },
 }))
@@ -300,15 +301,12 @@ describe('login', () => {
     })
 
     expect(result).toEqual(failure(new InvalidCodeError()))
-    expect(captureException).toHaveBeenCalledWith(
+    expect(mocks.loggerWarn).toHaveBeenCalledWith(
       expect.any(InvalidVerificationCodeError),
-      {
-        level: 'warning',
-        extra: expect.objectContaining({
-          email: 'us***@ex***',
-          userId: sessionUserId,
-        }) as Record<string, unknown>,
-      }
+      expect.objectContaining({
+        email: 'us***@ex***',
+        userId: sessionUserId,
+      })
     )
     expect(mocks.revokeAllSessions).not.toHaveBeenCalled()
     expect(mocks.createAppSession).not.toHaveBeenCalled()
@@ -324,11 +322,12 @@ describe('login', () => {
     })
 
     expect(result).toEqual(failure(new UnknownCodeError()))
-    expect(captureException).toHaveBeenCalledWith(expect.any(Error), {
-      extra: expect.objectContaining({
+    expect(mocks.loggerError).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({
         email: 'us***@ex***',
-      }) as Record<string, unknown>,
-    })
+      })
+    )
     expect(mocks.createAppSession).not.toHaveBeenCalled()
   })
 
@@ -345,10 +344,11 @@ describe('login', () => {
     expect(mocks.loginService).not.toHaveBeenCalled()
     expect(mocks.revokeAllSessions).not.toHaveBeenCalled()
     expect(mocks.createAppSession).not.toHaveBeenCalled()
-    expect(captureException).toHaveBeenCalledWith(expect.any(Error), {
-      extra: expect.objectContaining({
+    expect(mocks.loggerError).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({
         email: 'us***@ex***',
-      }) as Record<string, unknown>,
-    })
+      })
+    )
   })
 })

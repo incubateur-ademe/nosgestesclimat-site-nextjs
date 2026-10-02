@@ -15,7 +15,7 @@ vi.mock('@/adapters/redis/client', () => ({
   redis: { set: mocks.redisSet },
 }))
 
-vi.mock('@/logger', () => ({
+vi.mock('@/logger/logger.server', () => ({
   default: { warn: mocks.loggerWarn },
 }))
 
@@ -93,9 +93,6 @@ describe('rateLimitSameRequest', () => {
     })
 
     expect(result).toEqual(success({ degraded: true }))
-    expect(mocks.loggerWarn).toHaveBeenCalledWith(
-      'Could not rate limit same requests',
-      { error: expect.any(Error) }
-    )
+    expect(mocks.loggerWarn).toHaveBeenCalledWith(expect.any(Error))
   })
 })

@@ -8,15 +8,15 @@ import {
 } from '@/components/authentication/errors'
 import { env } from '@/env/server'
 import { rateLimitSameRequest } from '@/helpers/server/rateLimitSameRequest'
-import logger from '@/logger'
+import logger from '@/logger/logger.server'
 import type { Intent } from '@nosgestesclimat/core/features/auth/schemas/auth.schema'
 import { LoginPayloadSchema } from '@nosgestesclimat/core/features/auth/schemas/auth.schema'
 import { createLogin } from '@nosgestesclimat/core/features/auth/services/login.service'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
 import { maskEmail } from '@nosgestesclimat/core/lib/pii'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { validatePayload } from '@nosgestesclimat/core/lib/validate-payload'
-import { captureException } from '@sentry/nextjs'
 import { revalidatePath } from 'next/cache'
 import { after } from 'next/server'
 import { createAppSession } from './create-app-session'
@@ -24,7 +24,6 @@ import { getUserSession } from './get-user-session'
 
 const loginService = createLogin({
   logger,
-  captureException,
   sendEmail,
   addOrUpdateContact,
   origin: env.NEXT_PUBLIC_SITE_URL,
@@ -91,8 +90,7 @@ export const login = async ({
     if (!result.success) {
       const outcome = { ...context, durationMs: Date.now() - startedAt }
 
-      logger.warn('Login rejected: invalid verification code', outcome)
-      captureException(result.error, { level: 'warning', extra: outcome })
+      logger.warn(result.error, outcome)
 
       return failure(new InvalidCodeError())
     }
@@ -121,8 +119,7 @@ export const login = async ({
       durationMs: Date.now() - startedAt,
     }
 
-    logger.error('Login failed', { ...outcome, error })
-    captureException(error, { extra: outcome })
+    logger.error(toError(error), outcome)
 
     return failure(new UnknownCodeError())
   }

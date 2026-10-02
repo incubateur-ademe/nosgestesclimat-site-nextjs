@@ -4,13 +4,12 @@ import type { BackgroundTaskRunner } from '../../../lib/background-task-runner.t
 import type { VerificationCodeUsage } from '../../../prisma/generated/client.ts'
 import type { SendEmail } from '../../emails/types.ts'
 import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
-import type { CaptureException, Logger } from '../../logger/index.ts'
+import type { Logger } from '../../logger/index.ts'
 import { createVerificationCodeEmail } from '../emails/auth-emails.ts'
 import { createVerificationCode as createVerificationCodeRepository } from '../repositories/verification-codes.repository.ts'
 
 interface CreateVerificationCodeDependencies {
   logger: Logger
-  captureException: CaptureException
   sendEmail: SendEmail
   /** Runs the email outside of the request lifecycle */
   backgroundTaskRunner: BackgroundTaskRunner
@@ -24,7 +23,6 @@ const VERIFICATION_CODE_TTL_MS = 60 * 60 * 1000 // 1 hour
 
 export function createCreateVerificationCodeService({
   logger,
-  captureException,
   sendEmail,
   backgroundTaskRunner,
   usage,
@@ -52,10 +50,7 @@ export function createCreateVerificationCodeService({
         createVerificationCodeEmail({ locale, email, code })
       )
       if (!result.success) {
-        captureException(result.error)
-        logger.error('Failed to send verification code email', {
-          error: result.error,
-        })
+        logger.error(result.error)
       }
     })
 

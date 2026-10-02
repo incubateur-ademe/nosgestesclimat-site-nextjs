@@ -3,7 +3,6 @@ import {
   UnknownCodeError,
 } from '@/components/authentication/errors'
 import { maskEmail } from '@nosgestesclimat/core/lib/pii'
-import { captureException } from '@sentry/nextjs'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createVerificationCode } from '../create-verification-code'
 
@@ -25,7 +24,7 @@ vi.mock('@/adapters/brevoClient', () => ({
   sendEmail: mocks.sendEmail,
 }))
 
-vi.mock('@/logger', () => ({
+vi.mock('@/logger/logger.server', () => ({
   default: {
     info: mocks.loggerInfo,
     warn: vi.fn(),
@@ -159,7 +158,7 @@ describe('createVerificationCode', () => {
     expect(mocks.createVerificationCode).not.toHaveBeenCalled()
   })
 
-  it('maps a service failure to the unknown error and captures it', async () => {
+  it('maps a service failure to the unknown error and logs it', async () => {
     const failure = new Error('boom')
     mocks.createVerificationCode.mockRejectedValue(failure)
 
@@ -173,17 +172,11 @@ describe('createVerificationCode', () => {
       error: new UnknownCodeError(),
     })
     expect(mocks.loggerError).toHaveBeenCalledWith(
-      'VerificationCode creation failed',
+      failure,
       expect.objectContaining({
         email: maskEmail('throwing@example.com'),
         durationMs: expect.any(Number),
-        error: failure,
       })
     )
-    expect(captureException).toHaveBeenCalledWith(failure, {
-      extra: expect.objectContaining({
-        email: maskEmail('throwing@example.com'),
-      }),
-    })
   })
 })

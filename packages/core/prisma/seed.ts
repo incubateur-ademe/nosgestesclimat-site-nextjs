@@ -18,10 +18,16 @@ const report = (message: string) => {
 }
 
 const logger: Logger = {
+  child: () => logger,
+  // No tracer in a one-shot seed script: the span is a no-op.
+  withSpan: (_scope, run) => run(logger),
+  setSpanAttribute: () => undefined,
   info: report,
-  warn: report,
+  warn: (message: string | Error) =>
+    report(message instanceof Error ? message.message : message),
   debug: report,
-  error: (message, meta) => console.error(message, meta ?? ''),
+  error: (error, meta) => console.error(error, meta ?? ''),
+  fatal: (error, meta) => console.error(error, meta ?? ''),
 }
 
 seedDemoData({ logger })

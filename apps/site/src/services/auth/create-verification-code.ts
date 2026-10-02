@@ -6,19 +6,18 @@ import {
   type EmailError,
 } from '@/components/authentication/errors'
 import { rateLimitSameRequest } from '@/helpers/server/rateLimitSameRequest'
-import logger from '@/logger'
+import logger from '@/logger/logger.server'
 import { CreateVerificationCodePayloadSchema } from '@nosgestesclimat/core/features/auth/schemas/auth.schema'
 import { createCreateVerificationCodeService } from '@nosgestesclimat/core/features/auth/services/create-verification-code.service'
 import { maskEmail } from '@nosgestesclimat/core/lib/pii'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { validatePayload } from '@nosgestesclimat/core/lib/validate-payload'
 import { VerificationCodeUsage } from '@nosgestesclimat/core/prisma/generated/client'
-import { captureException } from '@sentry/nextjs'
 import { after } from 'next/server'
 
 const createVerificationCodeService = createCreateVerificationCodeService({
   logger,
-  captureException,
   sendEmail,
   // The action returns before the email is dispatched: the task must outlive
   // the request.
@@ -72,8 +71,7 @@ export const createVerificationCode = async ({
   } catch (error) {
     const outcome = { ...context, durationMs: Date.now() - startedAt }
 
-    logger.error('VerificationCode creation failed', { ...outcome, error })
-    captureException(error, { extra: outcome })
+    logger.error(toError(error), outcome)
 
     return failure(new UnknownCodeError())
   }

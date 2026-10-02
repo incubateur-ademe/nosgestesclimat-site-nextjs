@@ -5,6 +5,7 @@ import { failure, success } from '../../../../lib/result.ts'
 import { prisma } from '../../../../prisma/client.ts'
 import { VerificationCodeUsage } from '../../../../prisma/generated/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { TemplateIds } from '../../../emails/email.constant.ts'
 import { EmailRequestError } from '../../../emails/errors.ts'
 import { mapComputedResultsToContactAttributes } from '../../../simulations/emails/map-computed-results-to-contact-attributes.ts'
@@ -33,13 +34,7 @@ vi.mock(
   })
 )
 
-const logger = {
-  error: vi.fn(),
-  warn: vi.fn(),
-  info: vi.fn(),
-  debug: vi.fn(),
-}
-const captureException = vi.fn()
+const logger = createTestLogger()
 const sendEmail = vi.fn().mockResolvedValue(success())
 const addOrUpdateContact = vi.fn().mockResolvedValue(success())
 
@@ -62,7 +57,6 @@ describe('login', () => {
 
   const login = createLogin({
     logger,
-    captureException,
     sendEmail,
     addOrUpdateContact,
     origin,
@@ -710,23 +704,14 @@ describe('login', () => {
       )
       expect.assert(createdUser)
 
-      expect(captureException).toHaveBeenCalledTimes(2)
-      expect(captureException).toHaveBeenCalledWith(contactError)
-      expect(captureException).toHaveBeenCalledWith(emailError)
-      expect(logger.error).toHaveBeenCalledWith(
-        'Failed to settle: side effects',
-        {
-          index: 0,
-          error: contactError,
-        }
-      )
-      expect(logger.error).toHaveBeenCalledWith(
-        'Failed to settle: side effects',
-        {
-          index: 1,
-          error: emailError,
-        }
-      )
+      expect(logger.error).toHaveBeenCalledWith(contactError, {
+        label: 'side effects',
+        index: 0,
+      })
+      expect(logger.error).toHaveBeenCalledWith(emailError, {
+        label: 'side effects',
+        index: 1,
+      })
     })
   })
 })

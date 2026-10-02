@@ -10,7 +10,7 @@ import { VerificationCodeUsage } from '../../../prisma/generated/client.ts'
 import { Attributes } from '../../emails/email.constant.ts'
 import type { AddOrUpdateContact, SendEmail } from '../../emails/types.ts'
 import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
-import type { CaptureException, Logger } from '../../logger/index.ts'
+import type { Logger } from '../../logger/index.ts'
 import { createSimulationCompletedEmail } from '../../simulations/emails/simulation-emails.ts'
 import { findLatestCompletedSimulation } from '../../simulations/repository/simulation.repository.ts'
 import {
@@ -35,7 +35,6 @@ type LoginResult = {
 
 interface LoginDependencies {
   logger: Logger
-  captureException: CaptureException
   sendEmail: SendEmail
   addOrUpdateContact: AddOrUpdateContact
   /** Public origin the welcome email's dashboard link points to. */
@@ -46,13 +45,12 @@ interface LoginDependencies {
 
 export function createLogin({
   logger,
-  captureException,
   sendEmail,
   addOrUpdateContact,
   origin,
   backgroundTaskRunner,
 }: LoginDependencies) {
-  const settle = createSettle({ logger, captureException })
+  const settle = createSettle({ logger })
 
   return async function login({
     email,
