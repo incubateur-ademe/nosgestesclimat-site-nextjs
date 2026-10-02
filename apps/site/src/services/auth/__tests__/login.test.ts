@@ -52,7 +52,7 @@ vi.mock('next/cache', () => ({ revalidatePath: mocks.revalidatePath }))
 
 vi.mock('next/server', () => ({ after: mocks.after }))
 
-vi.mock('@/env.server', () => ({
+vi.mock('@/env/server', () => ({
   env: { NEXT_PUBLIC_SITE_URL: 'http://localhost:3000' },
 }))
 

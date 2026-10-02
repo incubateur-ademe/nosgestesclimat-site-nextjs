@@ -1,4 +1,4 @@
-import { env } from '@/env.server'
+import { env } from '@/env/server'
 import logger from '@/logger'
 import { Redis } from 'ioredis'
 

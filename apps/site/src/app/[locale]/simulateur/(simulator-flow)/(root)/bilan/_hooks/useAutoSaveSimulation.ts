@@ -5,7 +5,6 @@ import { updateSimulationSituation } from '@/services/simulations/update-simulat
 import type { UpdateSimulationSituationPayload } from '@/services/simulations/update-simulation-situation-payload.schema'
 import { useDebounce } from '@/utils/debounce'
 import { getComputedResults } from '@nosgestesclimat/core/features/simulations/helpers/get-computed-results'
-import { captureException, setExtra } from '@sentry/nextjs'
 import { useEffect } from 'react'
 
 /**
@@ -18,13 +17,9 @@ export function useAutoSaveSimulation() {
 
   const debouncedSave = useDebounce(
     async (payload: UpdateSimulationSituationPayload) => {
-      const result = await updateSimulationSituation(payload)
-
-      if (!result.success) {
-        setExtra('simulationId', payload.id)
-        setExtra('situation', JSON.stringify(payload.situation))
-        captureException(result.error)
-      }
+      // The result is not used here: the server logs the failure, with its
+      // context.
+      await updateSimulationSituation(payload)
     },
     5000
   )

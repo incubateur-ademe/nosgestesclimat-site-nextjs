@@ -6,7 +6,7 @@ import {
   UnknownCodeError,
   type CodeError,
 } from '@/components/authentication/errors'
-import { env } from '@/env.server'
+import { env } from '@/env/server'
 import { rateLimitSameRequest } from '@/helpers/server/rateLimitSameRequest'
 import logger from '@/logger'
 import type { Intent } from '@nosgestesclimat/core/features/auth/schemas/auth.schema'
