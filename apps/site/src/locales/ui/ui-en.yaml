@@ -2291,3 +2291,15 @@ entries:
   login.default.login.title.lock: Accédez à votre espace Nos Gestes Climat
   login.actionPlan.login.title: Log in to access your action plan
   login.actionPlan.login.title.lock: Connectez-vous pour accéder à votre plan d’action
+  actions.myPlanPage.title: My action plan
+  actions.myPlanPage.title.lock: Mon plan d’action
+  actions.myPlanPage.exploreOtherActions: Explore other actions
+  actions.myPlanPage.exploreOtherActions.lock: Explorer d’autres actions
+  actions.myPlanPage.description_one: You have added <1>{{count}} action</1> to your plan.
+  actions.myPlanPage.description_one.lock: Vous avez ajouté <1>{{count}} action</1> à votre plan.
+  actions.myPlanPage.description_many: You have added <1>{{count}} actions</1> to your plan.
+  actions.myPlanPage.description_many.lock: Vous avez ajouté <1>{{count}} actions</1> à votre plan.
+  actions.myPlanPage.description_other: You have added <1>{{count}} actions</1> to your plan.
+  actions.myPlanPage.description_other.lock: Vous avez ajouté <1>{{count}} actions</1> à votre plan.
+  actions.myPlanPage.metaTitle: My action plan – Nos Gestes Climat
+  actions.myPlanPage.metaTitle.lock: Mon plan d’action - Nos Gestes Climat
