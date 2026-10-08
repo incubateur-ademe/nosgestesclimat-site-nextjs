@@ -1,24 +1,50 @@
+import {
+  ACTIONS_MY_PLAN_PATH,
+  END_PAGE_ACTIONS_PATH,
+} from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import CountBadge from '@/design-system/layout/CountBadge'
 import type { Locale } from '@/i18nConfig'
 import type { ActionPlan } from '@nosgestesclimat/core/features/actions/types/action'
+import { cn } from 'cn'
 import { Star } from 'lucide-react'
 import FileWithMagnifierIcon from '../icons/FileWithMagnifierIcon'
 import Trans from '../translation/trans/TransServer'
 
+const ACTIVE_LINK_CLASSES = 'bg-primary-100 border-primary-300'
+const INACTIVE_LINK_CLASSES = 'text-default border-slate-300'
+
 interface Props {
   plan: ActionPlan
   locale: Locale
+  activeLink?: 'explore' | 'plan'
+  exploreHref?: string
 }
 
-export default function ActionPlanLinks({ plan, locale }: Props) {
+export default function ActionPlanLinks({
+  plan,
+  locale,
+  activeLink = 'explore',
+  exploreHref = END_PAGE_ACTIONS_PATH,
+}: Props) {
+  const isExploreActive = activeLink === 'explore'
+  const isPlanActive = activeLink === 'plan'
+
   return (
     <div className="mb-8 flex gap-4 overflow-auto">
       <ButtonLinkServer
         color="secondary"
-        className="bg-primary-100 border-primary-300"
-        href="/fin/actions">
-        <FileWithMagnifierIcon className="fill-primary-700 mr-2.5" />
+        className={
+          isExploreActive ? ACTIVE_LINK_CLASSES : INACTIVE_LINK_CLASSES
+        }
+        aria-current={isExploreActive ? 'page' : undefined}
+        href={exploreHref}>
+        <FileWithMagnifierIcon
+          className={cn(
+            'mr-2.5',
+            isExploreActive ? 'fill-primary-700' : 'fill-default'
+          )}
+        />
         <Trans i18nKey="actions.plan.links.exploreActions" locale={locale}>
           Explorer les actions
         </Trans>
@@ -26,9 +52,18 @@ export default function ActionPlanLinks({ plan, locale }: Props) {
 
       <ButtonLinkServer
         color="secondary"
-        className="text-default relative border-slate-300 pr-13!"
-        href="/actions/mon-plan">
-        <Star className="stroke-default mr-2.5 h-4" />
+        className={cn(
+          'relative pr-13!',
+          isPlanActive ? ACTIVE_LINK_CLASSES : INACTIVE_LINK_CLASSES
+        )}
+        aria-current={isPlanActive ? 'page' : undefined}
+        href={ACTIONS_MY_PLAN_PATH}>
+        <Star
+          className={cn(
+            'mr-2.5 h-4',
+            isPlanActive ? 'stroke-primary-700' : 'stroke-default'
+          )}
+        />
         <Trans i18nKey="actions.plan.links.myActionPlan" locale={locale}>
           Mon plan d'action
         </Trans>

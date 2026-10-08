@@ -7,7 +7,15 @@ export default function Trans({
   children,
   i18nKey,
   values,
-}: TransPropsWithInterpolation & { locale: string }): ReactElement {
+  count,
+}: TransPropsWithInterpolation & {
+  locale: string
+  /**
+   * Only read by i18next-parser (`pnpm ui:parse`) to generate the `_one`
+   * plural form, which otherwise defaults to the children (plural) text.
+   */
+  defaultValue_one?: string
+}): ReactElement {
   const { t } = getServerTranslation({ locale })
 
   return (
@@ -15,6 +23,7 @@ export default function Trans({
       i18nKey={i18nKey}
       t={t}
       values={values}
+      count={count}
       tOptions={{ interpolation: { escapeValue: false } }}>
       {children}
     </TransReactI18n>
