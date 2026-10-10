@@ -18,8 +18,6 @@ const main = async () => {
   // Order matters here
   const scripts = [
     await import('./scripts/grant-roles.ts'),
-    await import('./scripts/add-integrations-api-scopes.ts'),
-    await import('./scripts/add-integrations-email-whitelist.ts'),
     await import('./scripts/geolocation-sorted-ips.ts'),
   ]
 

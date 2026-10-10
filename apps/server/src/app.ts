@@ -1,5 +1,3 @@
-import { createExpressEndpoints } from '@ts-rest/express'
-import { generateOpenApi } from '@ts-rest/open-api'
 import cors from 'cors'
 import type { Request } from 'express'
 import express from 'express'
@@ -7,13 +5,9 @@ import { StatusCodes } from 'http-status-codes'
 import morgan from 'morgan'
 import path from 'path'
 import requestIp from 'request-ip'
-import swaggerUi from 'swagger-ui-express'
 import { allowedOrigins } from './config.ts'
 import { isAllowedOrigin } from './core/allowed-urls.ts'
 import groupsController from './features/groups/groups.controller.ts'
-import integrationsApiContract from './features/integrations/api/api.contract.ts'
-import integrationsApiController from './features/integrations/api/api.controller.ts'
-import integrationsController from './features/integrations/integrations.controller.ts'
 import modeleController from './features/modele/modele.controller.ts'
 import newslettersController from './features/newsletter/newsletter.controller.ts'
 import organisationController from './features/organisations/organisations.controller.ts'
@@ -64,7 +58,6 @@ app.use(
 
 app.use('/modele', modeleController)
 app.use('/groups', groupsController)
-app.use('/integrations', integrationsController)
 app.use('/newsletters', newslettersController)
 app.use('/organisations', organisationController)
 app.use('/simulations', simulationController)
@@ -74,47 +67,6 @@ app.use('/users', usersController)
 // public routes
 app.get('/api/stats', (_, res) =>
   res.redirect(StatusCodes.MOVED_PERMANENTLY, '/stats/v1/northstar')
-)
-
-createExpressEndpoints(
-  integrationsApiContract,
-  integrationsApiController,
-  app,
-  {
-    logInitialization: false,
-  }
-)
-
-const integrationsOpenApiDocument = generateOpenApi(
-  integrationsApiContract,
-  {
-    info: {
-      title: 'Integrations API',
-      version: '1.0.0',
-    },
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-        },
-      },
-    },
-  },
-  {
-    setOperationId: true,
-    operationMapper: (operation, appRoute) => ({
-      ...operation,
-      ...(appRoute.metadata || {}),
-    }),
-  }
-)
-
-app.use(
-  '/integrations-api/docs',
-  swaggerUi.serve,
-  swaggerUi.setup(integrationsOpenApiDocument)
 )
 
 export default app
