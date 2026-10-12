@@ -50,7 +50,7 @@ describe('createBrowserLogger', () => {
     vi.spyOn(console, 'warn').mockImplementation(() => undefined)
     vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
-    logger = createBrowserLogger({ level: 'debug' })
+    logger = createBrowserLogger({ verbosity: 'debug' })
   })
 
   afterEach(() => {
@@ -101,7 +101,7 @@ describe('createBrowserLogger', () => {
   })
 
   it('drops a line below its level from both sinks', () => {
-    const quietLogger = createBrowserLogger({ level: 'warn' })
+    const quietLogger = createBrowserLogger({ verbosity: 'warn' })
 
     quietLogger.info('ignored')
 
@@ -109,10 +109,10 @@ describe('createBrowserLogger', () => {
     expect(posthogLogger.info).not.toHaveBeenCalled()
   })
 
-  it('writes nothing at all when set to `off`', () => {
-    const offLogger = createBrowserLogger({ level: 'off' })
+  it('writes nothing at all when set to `silent`', () => {
+    const silentLogger = createBrowserLogger({ verbosity: 'silent' })
 
-    offLogger.error(new Error('engine blew up'))
+    silentLogger.error(new Error('engine blew up'))
 
     expect(console.error).not.toHaveBeenCalled()
     expect(posthogLogger.error).not.toHaveBeenCalled()
@@ -233,7 +233,7 @@ describe('createBrowserLogger', () => {
     const { createBrowserLogger: inProduction } =
       await import('../logger.browser')
 
-    inProduction({ level: 'debug' }).warn('engine blew up')
+    inProduction({ verbosity: 'debug' }).warn('engine blew up')
 
     expect(console.warn).not.toHaveBeenCalled()
     expect(posthogLogger.warn).toHaveBeenCalled()

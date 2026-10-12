@@ -22,7 +22,7 @@ const ServerEnvSchema = v.object({
     v.transform((tiers: string) => parseCooldownTiers(tiers))
   ),
   // Observability. A tuning knob may stay unset — the logger has its own
-  // default (`pretty = false`; the level is `NEXT_PUBLIC_LOG_LEVEL`, one
+  // default (`pretty = false`; the verbosity is `NEXT_PUBLIC_LOG_VERBOSITY`, one
   // variable for every runtime, validated in `public.ts`).
   LOG_PRETTY: mayBeUnset(v.pipe(v.string(), v.parseBoolean())),
   // Where the OTLP exporters post. Required in production: the region is a

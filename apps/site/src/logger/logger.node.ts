@@ -5,7 +5,7 @@ import type {
   Logger,
   LogLevel,
   LogMeta,
-  LogSetting,
+  LogVerbosity,
   ScopeName,
 } from '@nosgestesclimat/core/features/logger/index'
 import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
@@ -45,7 +45,7 @@ const noControlFlow = (): void => undefined
 
 export function createLogger({
   service,
-  level = 'info',
+  verbosity = 'info',
   pretty = false,
   onCapture,
   rethrowControlFlow = noControlFlow,
@@ -53,7 +53,7 @@ export function createLogger({
   service: string
   /** The root hands over the validated one: `env/server.ts` on the site, its
    * own environment in the worker. */
-  level?: LogSetting
+  verbosity?: LogVerbosity
   pretty?: boolean
   /**
    * Receives the original `Error` — Sentry needs its prototype and its stack —
@@ -71,7 +71,7 @@ export function createLogger({
   /** One JSON line per call: Scalingo's drain fragments multi-line objects.
    * Field names are pino's own; apps/server (legacy winston) keeps its shape. */
   const pinoLogger = pino({
-    level: level === 'off' ? 'silent' : level,
+    level: verbosity,
     base: { service },
     timestamp: pino.stdTimeFunctions.isoTime,
     messageKey: 'message',
@@ -96,7 +96,7 @@ export function createLogger({
       error?: Error
     ) => {
       // The level filters both outputs: a line pino drops from stdout must not
-      // reach PostHog either, or `NEXT_PUBLIC_LOG_LEVEL` stops being the volume lever.
+      // reach PostHog either, or `NEXT_PUBLIC_LOG_VERBOSITY` stops being the volume lever.
       if (!instance.isLevelEnabled(level)) {
         return
       }

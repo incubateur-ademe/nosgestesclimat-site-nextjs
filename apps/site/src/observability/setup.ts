@@ -100,7 +100,7 @@ export function initObservability(
   logs.setGlobalLoggerProvider(loggerProvider)
 
   // No sampler: every trace is exported, so a line always points to a trace
-  // that exists. `NEXT_PUBLIC_LOG_LEVEL` is the volume lever; reintroducing a sampler means
+  // that exists. `NEXT_PUBLIC_LOG_VERBOSITY` is the volume lever; reintroducing a sampler means
   // a `ParentBasedSampler`, plus a look at the propagator's `SAMPLED` flag.
   tracerProvider = new NodeTracerProvider({
     resource,

@@ -80,7 +80,7 @@ describe('deferred side effect', () => {
     const deferred: (() => Promise<void>)[] = []
     const logger = createLogger({
       service: 'web-server',
-      level: 'debug',
+      verbosity: 'debug',
       pretty: false,
       onCapture: vi.fn(),
     })

@@ -15,8 +15,8 @@ export default defineConfig({
       BREVO_API_KEY: 'fake-test-brevo-api-key',
       REDIS_URL: 'redis://localhost:6379',
       // The suite is silent: a spec that asserts on a line mocks the logger it
-      // reads. `fatal` is the only level nothing in the app writes.
-      NEXT_PUBLIC_LOG_LEVEL: 'fatal',
+      // reads.
+      NEXT_PUBLIC_LOG_VERBOSITY: 'silent',
     },
     css: true,
     exclude: ['**/node_modules/**', '**/e2e/**', '**/.next/**'],

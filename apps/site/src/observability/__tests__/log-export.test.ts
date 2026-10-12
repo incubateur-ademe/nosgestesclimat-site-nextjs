@@ -63,7 +63,7 @@ describe('log export', () => {
   const logger = () =>
     createLogger({
       service: 'web-server',
-      level: 'debug',
+      verbosity: 'debug',
       pretty: false,
       onCapture: vi.fn(),
     })
@@ -119,7 +119,7 @@ describe('log export', () => {
   it('drops from the export what the level drops from stdout', () => {
     createLogger({
       service: 'web-server',
-      level: 'warn',
+      verbosity: 'warn',
       pretty: false,
       onCapture: vi.fn(),
     }).info('too quiet')

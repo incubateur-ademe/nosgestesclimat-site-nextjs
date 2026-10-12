@@ -2,7 +2,7 @@ import type {
   Logger,
   LogLevel,
   LogMeta,
-  LogSetting,
+  LogVerbosity,
 } from '@nosgestesclimat/core/features/logger/index'
 import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
 import { ErrorWithCode } from '@nosgestesclimat/core/lib/errors'
@@ -45,7 +45,7 @@ const CONSOLE_METHOD: Record<LogLevel, 'debug' | 'info' | 'warn' | 'error'> = {
   fatal: 'error',
 }
 
-/** pino's own ordering, so one `NEXT_PUBLIC_LOG_LEVEL` reads the same on both
+/** pino's own ordering, so one `NEXT_PUBLIC_LOG_VERBOSITY` reads the same on both
  * runtimes. */
 const RANK: Record<LogLevel, number> = {
   debug: 20,
@@ -74,12 +74,12 @@ const DEFAULT_LEVEL: LogLevel = APP_ENV === 'development' ? 'debug' : 'warn'
  * logger's own — nothing reports on the side. */
 export function createBrowserLogger({
   service = 'browser',
-  level = publicEnv.NEXT_PUBLIC_LOG_LEVEL ?? DEFAULT_LEVEL,
+  verbosity = publicEnv.NEXT_PUBLIC_LOG_VERBOSITY ?? DEFAULT_LEVEL,
 }: {
   service?: string
-  level?: LogSetting
+  verbosity?: LogVerbosity
 } = {}): Logger {
-  const threshold = level === 'off' ? Infinity : RANK[level]
+  const threshold = verbosity === 'silent' ? Infinity : RANK[verbosity]
 
   /** Console (dev/review/preprod) + PostHog Logs. posthog-js merges its own
    * context (`distinctId`, `sessionId`) — never re-add those keys here. */

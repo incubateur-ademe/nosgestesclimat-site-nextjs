@@ -42,7 +42,7 @@ class TestDomainError extends DomainError<'test_domain_error'> {
 const createTestLogger = (rethrowControlFlow?: (error: unknown) => void) =>
   createLogger({
     service: 'web-server',
-    level: 'debug',
+    verbosity: 'debug',
     pretty: false,
     onCapture: vi.fn(),
     rethrowControlFlow,

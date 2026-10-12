@@ -11,7 +11,7 @@ import { createLogger } from './logger.node'
  * worker via `logger.node.ts`; both sinks receive the same attributes. */
 const logger = createLogger({
   service: 'web-server',
-  level: env.NEXT_PUBLIC_LOG_LEVEL,
+  verbosity: env.NEXT_PUBLIC_LOG_VERBOSITY,
   pretty: env.LOG_PRETTY,
   onCapture: (error, line) => {
     captureException(error, { extra: line })

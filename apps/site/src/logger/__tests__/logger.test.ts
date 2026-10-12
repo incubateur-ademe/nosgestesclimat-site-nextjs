@@ -30,7 +30,7 @@ describe('createLogger', () => {
 
     logger = createLogger({
       service: 'web-server',
-      level: 'debug',
+      verbosity: 'debug',
       pretty: false,
       onCapture,
     })
