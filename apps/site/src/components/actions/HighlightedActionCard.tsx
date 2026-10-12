@@ -10,12 +10,12 @@ import CommitToActionButton from './highlightedActionCard/CommitToActionButton'
 import ImpactSection from './highlightedActionCard/ImpactSection'
 import { classesByTheme } from './highlightedActionCard/impactSection/classes-by-theme'
 import { ThemeBadge } from './ThemeBadge'
-import type { ActionCatalogueContext } from './types/actions'
+import type { ActionCatalogueContext, ActionFrom } from './types/actions'
 
 export interface HighlightedActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
   action: MaybePersonalizedAction
   rank?: number
-  from?: 'fin' | 'mon-espace' | 'index'
+  from?: ActionFrom
   actionCatalogueContext: ActionCatalogueContext
 }
 

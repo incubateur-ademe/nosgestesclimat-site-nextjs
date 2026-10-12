@@ -1,3 +1,4 @@
+import type { ActionFrom } from '@/components/actions/types/actions'
 import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
 import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
 import { LOCALE_EN_KEY, LOCALE_FR_KEY } from '@/i18nConfig'
@@ -5,7 +6,7 @@ import type { Action } from '@nosgestesclimat/core/features/actions/types/action
 import { getLocale } from '../getLocale'
 
 interface Props {
-  from?: 'fin' | 'mon-espace' | 'index'
+  from?: ActionFrom
   action: Action
 }
 
