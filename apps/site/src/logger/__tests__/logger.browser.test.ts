@@ -180,20 +180,19 @@ describe('createBrowserLogger', () => {
     )
   })
 
-  it('is inert during the SSR pass of a client component', () => {
+  it('throws during the SSR pass of a client component', () => {
     vi.stubGlobal('window', undefined)
 
     const failure = new Error('engine blew up')
-    clientLogger.error(failure)
 
-    // No line, no capture: the pass replays at hydration, where both happen.
+    // Thrown, not dropped: on the server this logger has no sink, and a line
+    // that disappears silently is a layer mistake nobody fixes.
+    expect(() => clientLogger.error(failure)).toThrow(
+      /browser logger called during server rendering: "engine blew up"/
+    )
     expect(console.error).not.toHaveBeenCalled()
     expect(posthogLogger.error).not.toHaveBeenCalled()
     expect(sentryCaptureException).not.toHaveBeenCalled()
-    // Local dev names the layer mistake out loud (APP_ENV is `development`).
-    expect(console.warn).toHaveBeenCalledWith(
-      expect.stringContaining('engine blew up')
-    )
   })
 
   it('keeps the console silent in production, where the line still exports', async () => {

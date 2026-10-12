@@ -87,22 +87,13 @@ export function createBrowserLogger({
       meta?: LogMeta,
       error?: Error
     ) => {
-      // The browser logger exists in the browser: during the SSR pass of a
-      // client component it is inert — no line, no capture. The pass replays
-      // at hydration, where both happen, once; a failure that crashes the
-      // server render is `onRequestError`'s. Code that must log while it runs
-      // on the server belongs to the server logger.
+      // A client component's body also runs during the SSR pass, where this
+      // logger has no sink: thrown rather than dropped, so the layer mistake
+      // cannot pass unnoticed.
       if (isServerSide()) {
-        // The mistake is easy to make — a log in a render body — and silent
-        // in production, so local dev says it out loud.
-        if (APP_ENV === 'development') {
-          // eslint-disable-next-line no-console
-          console.warn(
-            `[ngc] browser logger called during server rendering, line dropped: "${message}"`
-          )
-        }
-
-        return
+        throw new Error(
+          `browser logger called during server rendering: "${message}". Use the server logger.`
+        )
       }
 
       // The level filters both sinks, as it filters stdout and the export on
