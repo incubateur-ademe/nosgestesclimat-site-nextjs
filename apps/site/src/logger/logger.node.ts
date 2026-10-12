@@ -5,6 +5,7 @@ import type {
   Logger,
   LogLevel,
   LogMeta,
+  LogSetting,
   ScopeName,
 } from '@nosgestesclimat/core/features/logger/index'
 import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
@@ -52,7 +53,7 @@ export function createLogger({
   service: string
   /** The root hands over the validated one: `env/server.ts` on the site, its
    * own environment in the worker. */
-  level?: LogLevel
+  level?: LogSetting
   pretty?: boolean
   /**
    * Receives the original `Error` — Sentry needs its prototype and its stack —
@@ -70,7 +71,7 @@ export function createLogger({
   /** One JSON line per call: Scalingo's drain fragments multi-line objects.
    * Field names are pino's own; apps/server (legacy winston) keeps its shape. */
   const pinoLogger = pino({
-    level,
+    level: level === 'off' ? 'silent' : level,
     base: { service },
     timestamp: pino.stdTimeFunctions.isoTime,
     messageKey: 'message',

@@ -109,6 +109,16 @@ describe('createBrowserLogger', () => {
     expect(posthogLogger.info).not.toHaveBeenCalled()
   })
 
+  it('writes nothing at all when set to `off`', () => {
+    const offLogger = createBrowserLogger({ level: 'off' })
+
+    offLogger.error(new Error('engine blew up'))
+
+    expect(console.error).not.toHaveBeenCalled()
+    expect(posthogLogger.error).not.toHaveBeenCalled()
+    expect(sentryCaptureException).not.toHaveBeenCalled()
+  })
+
   it('merges child bindings into every following line', () => {
     logger.child({ simulationId: 'sim_1' }).warn('slow evaluation')
 

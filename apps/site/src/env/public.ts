@@ -1,11 +1,11 @@
-import { LOG_LEVELS } from '@nosgestesclimat/core/features/logger/index'
+import { LOG_SETTINGS } from '@nosgestesclimat/core/features/logger/index'
 import * as v from 'valibot'
 
 import { mayBeUnset, NonEmptyStringSchema, parseEnv } from './shared'
 
 const PublicEnvSchema = v.object({
   NEXT_PUBLIC_SITE_URL: v.pipe(NonEmptyStringSchema, v.url()),
-  NEXT_PUBLIC_LOG_LEVEL: mayBeUnset(v.picklist(LOG_LEVELS)),
+  NEXT_PUBLIC_LOG_LEVEL: mayBeUnset(v.picklist(LOG_SETTINGS)),
   // Inlined by `next.config.ts` from `SENTRY_DSN`, which the server contract
   // validates once: same project, one source.
   NEXT_PUBLIC_SENTRY_DSN: mayBeUnset(NonEmptyStringSchema),

@@ -6,6 +6,12 @@ export const LOG_LEVELS = ['debug', 'info', 'warn', 'error', 'fatal'] as const
 
 export type LogLevel = (typeof LOG_LEVELS)[number]
 
+/** What a runtime may be set to: a level, or `off` — the logger writes nothing,
+ * which is not a level but a switch (`pino`'s `silent`). */
+export const LOG_SETTINGS = [...LOG_LEVELS, 'off'] as const
+
+export type LogSetting = (typeof LOG_SETTINGS)[number]
+
 /** Layers a unit can belong to. Widening this list is deliberate: the values
  * end up in searches and alerts. */
 export type ScopeLayer =

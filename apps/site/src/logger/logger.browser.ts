@@ -2,6 +2,7 @@ import type {
   Logger,
   LogLevel,
   LogMeta,
+  LogSetting,
 } from '@nosgestesclimat/core/features/logger/index'
 import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
 import { ErrorWithCode } from '@nosgestesclimat/core/lib/errors'
@@ -76,9 +77,9 @@ export function createBrowserLogger({
   level = publicEnv.NEXT_PUBLIC_LOG_LEVEL ?? DEFAULT_LEVEL,
 }: {
   service?: string
-  level?: LogLevel
+  level?: LogSetting
 } = {}): Logger {
-  const threshold = RANK[level]
+  const threshold = level === 'off' ? Infinity : RANK[level]
 
   /** Console (dev/review/preprod) + PostHog Logs. posthog-js merges its own
    * context (`distinctId`, `sessionId`) — never re-add those keys here. */

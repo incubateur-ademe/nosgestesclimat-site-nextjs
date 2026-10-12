@@ -1,5 +1,5 @@
 import { createAssessActions } from '@nosgestesclimat/core/features/actions/services/assess-actions.service'
-import type { LogLevel } from '@nosgestesclimat/core/features/logger/index'
+import type { LogSetting } from '@nosgestesclimat/core/features/logger/index'
 import { createComputePollStats } from '@nosgestesclimat/core/features/polls/stats/legacy/compute-poll-stats'
 import { createProcessNextPendingPollStats } from '@nosgestesclimat/core/features/polls/stats/services/process-next-pending-poll-stats'
 import {
@@ -18,7 +18,8 @@ import { captureException, flushObservability } from './observability.ts'
 // variables its logger cares about here, rather than in the shared factory.
 const logger = createLogger({
   service: 'worker',
-  level: (process.env.NEXT_PUBLIC_LOG_LEVEL as LogLevel | undefined) ?? 'info',
+  level:
+    (process.env.NEXT_PUBLIC_LOG_LEVEL as LogSetting | undefined) ?? 'info',
   pretty: process.env.LOG_PRETTY === 'true',
   onCapture: captureException,
 })
