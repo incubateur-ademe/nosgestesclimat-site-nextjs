@@ -18,7 +18,7 @@ import { captureException, flushObservability } from './observability.ts'
 // variables its logger cares about here, rather than in the shared factory.
 const logger = createLogger({
   service: 'worker',
-  level: (process.env.LOG_LEVEL as LogLevel | undefined) ?? 'info',
+  level: (process.env.NEXT_PUBLIC_LOG_LEVEL as LogLevel | undefined) ?? 'info',
   pretty: process.env.LOG_PRETTY === 'true',
   onCapture: captureException,
 })

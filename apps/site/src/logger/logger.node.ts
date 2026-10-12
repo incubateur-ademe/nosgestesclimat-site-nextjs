@@ -95,7 +95,7 @@ export function createLogger({
       error?: Error
     ) => {
       // The level filters both outputs: a line pino drops from stdout must not
-      // reach PostHog either, or `LOG_LEVEL` stops being the volume lever.
+      // reach PostHog either, or `NEXT_PUBLIC_LOG_LEVEL` stops being the volume lever.
       if (!instance.isLevelEnabled(level)) {
         return
       }

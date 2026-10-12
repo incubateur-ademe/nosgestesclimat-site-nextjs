@@ -25,7 +25,8 @@ const CONSOLE_METHOD: Record<LogLevel, 'debug' | 'info' | 'warn' | 'error'> = {
   fatal: 'error',
 }
 
-/** pino's own ordering, so one `LOG_LEVEL` reads the same on both runtimes. */
+/** pino's own ordering, so one `NEXT_PUBLIC_LOG_LEVEL` reads the same on both
+ * runtimes. */
 const RANK: Record<LogLevel, number> = {
   debug: 20,
   info: 30,

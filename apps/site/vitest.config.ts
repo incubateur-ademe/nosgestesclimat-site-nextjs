@@ -14,6 +14,10 @@ export default defineConfig({
       BREVO_URL: 'https://api.brevo.test',
       BREVO_API_KEY: 'fake-test-brevo-api-key',
       REDIS_URL: 'redis://localhost:6379',
+      // Tests exercise the failure paths: `error` keeps them — and the capture
+      // they assert — while silencing the lines they do not look at. A level the
+      // app accepts, since `env/public.ts` validates the variable.
+      NEXT_PUBLIC_LOG_LEVEL: 'error',
     },
     css: true,
     exclude: ['**/node_modules/**', '**/e2e/**', '**/.next/**'],
