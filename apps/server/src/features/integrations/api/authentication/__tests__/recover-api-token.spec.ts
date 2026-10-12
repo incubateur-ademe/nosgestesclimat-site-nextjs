@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
+import { emptyDatabase } from '@nosgestesclimat/core/test-utils/empty-database'
 import dayjs from 'dayjs'
 import { StatusCodes } from 'http-status-codes'
 import jwt from 'jsonwebtoken'
@@ -23,11 +24,7 @@ describe('Given a NGC integrations API user', () => {
   const url = RECOVER_API_TOKEN_ROUTE
 
   afterEach(async () => {
-    await prisma.integrationWhitelist.deleteMany()
-    await Promise.all([
-      prisma.verificationCode.deleteMany(),
-      prisma.integrationApiScope.deleteMany(),
-    ])
+    await emptyDatabase(prisma)
   })
 
   describe('When recovering an API token', () => {
@@ -134,7 +131,17 @@ describe('Given a NGC integrations API user', () => {
     describe('And database failure', () => {
       const databaseError = new Error('Something went wrong')
 
-      beforeEach(() => {
+      let email: string
+      let code: string
+
+      beforeEach(async () => {
+        // The token exchange reaches the failing transaction only once the
+        // verification code has been found: create a valid one first.
+        ;({ email, code } = await generateApiToken({
+          prisma,
+          agent,
+        }))
+
         vi.spyOn(prismaTransactionAdapter, 'transaction').mockRejectedValueOnce(
           databaseError
         )
@@ -148,8 +155,8 @@ describe('Given a NGC integrations API user', () => {
         await agent
           .get(url)
           .query({
-            email: faker.internet.email(),
-            code: faker.number.int({ min: 100000, max: 999999 }).toString(),
+            email,
+            code,
           })
           .expect(StatusCodes.INTERNAL_SERVER_ERROR)
       })
@@ -158,8 +165,8 @@ describe('Given a NGC integrations API user', () => {
         await agent
           .get(url)
           .query({
-            email: faker.internet.email(),
-            code: faker.number.int({ min: 100000, max: 999999 }).toString(),
+            email,
+            code,
           })
           .expect(StatusCodes.INTERNAL_SERVER_ERROR)
 

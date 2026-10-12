@@ -1,3 +1,4 @@
+import { parseCooldownTiers } from '@nosgestesclimat/core/features/polls/stats/helpers/cooldown-policy'
 import dotenv from 'dotenv'
 import * as v from 'valibot'
 
@@ -14,6 +15,7 @@ const AppEnvSchema = v.picklist([
   'development',
   'production',
   'test',
+  'e2e',
   'preproduction',
   'review',
 ])
@@ -33,6 +35,7 @@ const AppSchema = v.strictObject({
     ListCommaSeparatedSchema,
     ''
   ),
+  pollStatsCooldownTiers: v.optional(v.string(), ''),
   port: v.optional(v.pipe(v.unknown(), v.toNumber(), v.number())),
   serverUrl: v.optional(v.string()),
   redis: v.strictObject({
@@ -41,9 +44,6 @@ const AppSchema = v.strictObject({
 })
 
 const SecuritySchema = v.strictObject({
-  cookie: v.strictObject({
-    name: v.optional(v.string(), 'ngc_server_auth_jwt'),
-  }),
   job: v.strictObject({ secret: v.string() }),
   jwt: v.strictObject({ secret: v.string() }),
   internalApiKey: v.string(),
@@ -63,34 +63,6 @@ const ConnectSchema = v.strictObject({
   clientId: v.string(),
   clientSecret: v.string(),
   url: v.pipe(v.string(), v.url()),
-})
-
-const MatomoInstanceBaseSchema = v.strictObject({
-  token: v.string(),
-  timeout: v.optional(v.pipe(v.unknown(), v.toNumber(), v.number()), 60000),
-  secure: v.optional(
-    v.pipe(
-      v.string(),
-      v.transform((val) => val === 'true')
-    )
-  ),
-})
-
-const MatomoBetaSchema = v.strictObject({
-  ...MatomoInstanceBaseSchema.entries,
-  siteId: v.optional(v.string(), '20'),
-  url: v.optional(v.pipe(v.string(), v.url()), 'https://stats.beta.gouv.fr'),
-})
-
-const MatomoDataSchema = v.strictObject({
-  ...MatomoInstanceBaseSchema.entries,
-  siteId: v.optional(v.string(), '153'),
-  url: v.optional(v.pipe(v.string(), v.url()), 'https://stats.data.gouv.fr'),
-})
-
-const MatomoSchema = v.strictObject({
-  beta: MatomoBetaSchema,
-  data: v.optional(MatomoDataSchema),
 })
 
 const ScalewaySchema = v.strictObject({
@@ -116,15 +88,21 @@ const NotionSchema = v.strictObject({
   actionDatabaseId: v.string(),
 })
 
+const PosthogSchema = v.strictObject({
+  projectId: v.string(),
+  personalApiKey: v.string(),
+  url: v.pipe(v.string(), v.url()),
+})
+
 const ThirdPartySchema = v.strictObject({
   agir: AgirSchema,
   brevo: BrevoSchema,
   connect: ConnectSchema,
-  matomo: MatomoSchema,
+  notion: NotionSchema,
+  posthog: PosthogSchema,
   scaleway: ScalewaySchema,
   sentry: SentrySchema,
   twoTons: TwoTonsSchema,
-  notion: NotionSchema,
 })
 
 const ConfigSchema = v.pipe(
@@ -137,6 +115,7 @@ const ConfigSchema = v.pipe(
     ...config,
     app: {
       ...app,
+      pollStatsCooldownTiers: parseCooldownTiers(app.pollStatsCooldownTiers),
       port:
         typeof app.port === 'number'
           ? app.port
@@ -162,21 +141,19 @@ const {
     CONNECT_CLIENT_ID,
     CONNECT_CLIENT_SECRET,
     CONNECT_URL,
-    AUTH_COOKIE_NAME,
     INTERNAL_API_KEY,
     JOB_SECRET,
     JWT_SECRET,
-    MATOMO_BETA_SITE_ID,
-    MATOMO_BETA_SECURE,
-    MATOMO_BETA_TIMEOUT,
-    MATOMO_BETA_TOKEN,
-    MATOMO_BETA_URL,
     NOTION_API_KEY,
     NOTION_ACTION_DATABASE_ID,
     NODE_ENV,
     ORGANISATION_IDS_WITH_CUSTOM_QUESTIONS_ENABLED,
     ORIGIN,
+    POLL_STATS_COOLDOWN_TIERS,
     PORT,
+    POSTHOG_PROJECT_ID,
+    POSTHOG_PERSONAL_API_KEY,
+    POSTHOG_URL,
     REDIS_URL,
     SCALEWAY_SECRET_ACCESS_KEY,
     SCALEWAY_ACCESS_KEY_ID,
@@ -198,6 +175,7 @@ export const config = v.parse(ConfigSchema, {
     origin: ORIGIN,
     organisationIdsWithCustomQuestionsEnabled:
       ORGANISATION_IDS_WITH_CUSTOM_QUESTIONS_ENABLED,
+    pollStatsCooldownTiers: POLL_STATS_COOLDOWN_TIERS,
     port: PORT,
     redis: {
       url: REDIS_URL,
@@ -205,9 +183,6 @@ export const config = v.parse(ConfigSchema, {
     serverUrl: SERVER_URL,
   },
   security: {
-    cookie: {
-      name: AUTH_COOKIE_NAME,
-    },
     job: {
       secret: JOB_SECRET,
     },
@@ -230,18 +205,14 @@ export const config = v.parse(ConfigSchema, {
       clientSecret: CONNECT_CLIENT_SECRET,
       url: CONNECT_URL,
     },
-    matomo: {
-      beta: {
-        siteId: MATOMO_BETA_SITE_ID,
-        secure: MATOMO_BETA_SECURE,
-        timeout: MATOMO_BETA_TIMEOUT,
-        token: MATOMO_BETA_TOKEN,
-        url: MATOMO_BETA_URL,
-      },
-    },
     notion: {
       apiKey: NOTION_API_KEY,
       actionDatabaseId: NOTION_ACTION_DATABASE_ID,
+    },
+    posthog: {
+      projectId: POSTHOG_PROJECT_ID,
+      personalApiKey: POSTHOG_PERSONAL_API_KEY,
+      url: POSTHOG_URL,
     },
     scaleway: {
       secretAccessKey: SCALEWAY_SECRET_ACCESS_KEY,
@@ -266,6 +237,8 @@ const up = (str: string) => new URLPattern(str) // improves readability of confi
 const ALLOWED_ORIGINS_BY_APP_ENV: Record<AppEnv, URLPattern[]> = {
   development: [up('http://localhost:3000'), up('https://localhost:3000')],
   test: [up('https://nosgestesclimat.test')],
+  // The e2e stack (apps/e2e) serves the site from localhost:3000.
+  e2e: [up('http://localhost:3000'), up('https://localhost:3000')],
   preproduction: [up('https://preprod.nosgestesclimat.fr')],
   review: [up('https://nosgestesclimat-site-preprod-pr*.osc-fr1.scalingo.io')],
   production: [up('https://nosgestesclimat.fr')],

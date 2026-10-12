@@ -1,27 +1,19 @@
 import { useCookieManagement } from '@/components/cookies/useCookieManagement'
 import {
+  gtmSimulationCompleted,
+  gtmSimulationStarted,
+} from '@/constants/tracking/gtmEvents'
+import {
   captureSimulationCompleted,
   captureSimulationFirstQuestionSeen,
   captureSimulationStarted,
-} from '@/constants/tracking/posthogTrackers'
-import {
-  gtmSimulationCompleted,
-  gtmSimulationStarted,
-  simulationCategoryCompleted,
-  simulationCategoryStarted,
-  simulationSimulationCompleted,
-  simulationSimulationFirstQuestionSeen,
-  simulationSimulationStarted,
-} from '@/constants/tracking/simulation'
+} from '@/constants/tracking/trackers'
 import {
   useCurrentSimulation,
   useEngine,
   useFormState,
 } from '@/publicodes-state'
-import {
-  trackMatomoEvent__deprecated,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import {
   getIsEventTracked,
@@ -38,15 +30,9 @@ export function useTrackSimulator() {
   const currentSimulation = useCurrentSimulation()
   const simulationId = currentSimulation.id
 
-  const {
-    isFirstQuestionOfCategory,
-    isLastQuestionOfCategory,
-    currentCategory,
-    relevantAnsweredQuestions,
-    remainingQuestions,
-  } = useFormState()
+  const { relevantAnsweredQuestions, remainingQuestions } = useFormState()
 
-  const { progression, foldedSteps } = currentSimulation
+  const { progression, foldedSteps, situation } = currentSimulation
 
   const { cookieState } = useCookieManagement()
 
@@ -61,9 +47,7 @@ export function useTrackSimulator() {
       foldedSteps.length === 0 &&
       !getIsEventTracked(FIRST_QUESTION_SEEN, simulationId)
     ) {
-      trackMatomoEvent__deprecated(simulationSimulationFirstQuestionSeen)
-
-      trackPosthogEvent(
+      trackEvent(
         captureSimulationFirstQuestionSeen({
           question: remainingQuestions[0],
         })
@@ -80,14 +64,12 @@ export function useTrackSimulator() {
       foldedSteps.length === 1 &&
       !getIsEventTracked(FIRST_QUESTION_ANSWERED, simulationId)
     ) {
-      trackMatomoEvent__deprecated(simulationSimulationStarted)
-
       // Track GTM event if available
       if (cookieState.googleTag === 'accepted') {
         trackGTMEvent(gtmSimulationStarted)
       }
 
-      trackPosthogEvent(
+      trackEvent(
         captureSimulationStarted({
           question:
             relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
@@ -109,21 +91,21 @@ export function useTrackSimulator() {
     if (progression === 1 && !getIsEventTracked(TEST_COMPLETED, simulationId)) {
       const timeSpentOnSimulation = trackTimeOnSimulation()
 
-      const bilan = getNumericValue('bilan')
-
-      // Track Matomo event
-      trackMatomoEvent__deprecated(simulationSimulationCompleted(bilan))
-
       // Track GTM event if available
       if (cookieState.googleTag === 'accepted') {
         trackGTMEvent(gtmSimulationCompleted)
       }
 
-      trackPosthogEvent(
+      trackEvent(
         captureSimulationCompleted({
           bilanCarbone: getNumericValue('bilan'),
           bilanEau: getNumericValue('bilan', 'eau'),
           timeSpentOnSimulation,
+          age:
+            (situation['profil . âge'] as string | undefined) ?? 'non défini',
+          location:
+            (situation['logement . lieu de vie'] as string | undefined) ??
+            'non défini',
         })
       )
 
@@ -136,17 +118,6 @@ export function useTrackSimulator() {
     simulationId,
     currentSimulation,
     cookieState,
+    situation,
   ])
-
-  useEffect(() => {
-    if (!currentCategory) return
-
-    if (isFirstQuestionOfCategory) {
-      trackMatomoEvent__deprecated(simulationCategoryStarted(currentCategory))
-    }
-
-    if (isLastQuestionOfCategory) {
-      trackMatomoEvent__deprecated(simulationCategoryCompleted(currentCategory))
-    }
-  }, [currentCategory, isFirstQuestionOfCategory, isLastQuestionOfCategory])
 }

@@ -23,9 +23,9 @@ import { getUserSession } from '@/services/auth/get-user-session'
 import type { DefaultPageProps } from '@/types'
 import type { Theme } from '@/types/themes'
 import { toSearchParams } from '@/utils/nextjs/toSearchParams'
+import { twMerge } from 'cn'
 import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
-import { twMerge } from 'tailwind-merge'
 import { ActionMedia } from './_components/ActionMedia'
 import { Section, SectionTitle } from './_components/Section'
 
@@ -50,7 +50,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale, actionSlug } = await params
 
   const user = await getUserSession()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = getServerTranslation({ locale })
   const [actionDetails, alternateLocales] = await Promise.all([
     getPersonalizedActionDetails(actionSlug, locale, user?.id),
     getActionAlternateLocales(actionSlug),

@@ -3,7 +3,7 @@ import AuthenticateUserForm from '@/components/authentication/AuthenticateUserFo
 import SigninSignupTabs from '@/components/signIn/SignInSignUpTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
-import { captureSignupComplete } from '@/constants/tracking/posthogTrackers'
+import { captureSignupComplete } from '@/constants/tracking/trackers'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
@@ -28,7 +28,7 @@ export const generateMetadata = getCommonMetadata({
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
 
-  const { t } = await getServerTranslation({ locale })
+  const { t } = getServerTranslation({ locale })
 
   const userSession = await getUserSession()
 
@@ -52,6 +52,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
         <QueryClientProviderWrapper>
           <UserProvider userSession={userSession}>
             <AuthenticateUserForm
+              intent="create-account"
               mode="signUp"
               buttonLabel={t('signup.button.label', "M'inscrire")}
               redirectPathname={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}

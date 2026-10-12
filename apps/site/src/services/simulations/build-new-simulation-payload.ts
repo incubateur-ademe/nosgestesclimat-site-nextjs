@@ -25,7 +25,6 @@ export function buildNewSimulationPayload({
   date = new Date().toISOString(),
   situation = {},
   foldedSteps = [],
-  actionChoices = {},
   persona,
   computedResults = metrics.reduce((acc, metric) => {
     acc[metric] = {
@@ -42,8 +41,6 @@ export function buildNewSimulationPayload({
     return acc
   }, {} as ComputedResults),
   progression = 0,
-  polls,
-  groups,
   model,
 }: Partial<Omit<Simulation, 'model'>> & { model: string }): Simulation {
   const simulation: Simulation = {
@@ -51,12 +48,9 @@ export function buildNewSimulationPayload({
     date,
     situation,
     foldedSteps,
-    actionChoices,
     persona,
     computedResults,
     progression,
-    polls,
-    groups,
     model,
   }
 

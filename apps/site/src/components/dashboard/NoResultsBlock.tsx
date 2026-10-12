@@ -1,5 +1,3 @@
-import { clickMySpaceNoResultsStartTest } from '@/constants/tracking/pages/mon-espace'
-import { captureClickMySpaceNoResultsStartTest } from '@/constants/tracking/posthogTrackers'
 import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
@@ -7,7 +5,7 @@ import {
   sizeClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import type { Locale } from '@/i18nConfig'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'cn'
 import LockIcon from '../icons/LockIcon'
 import Link from '../Link'
 import Trans from '../translation/trans/TransServer'
@@ -25,8 +23,6 @@ export default function NoResultsBlock({ locale }: { locale: Locale }) {
       <div className="flex justify-center">
         <Link
           href={TUTORIAL_PATH}
-          data-track-event={clickMySpaceNoResultsStartTest}
-          data-track-posthog={captureClickMySpaceNoResultsStartTest}
           className={twMerge(
             baseClassNames,
             colorClassNames.secondary,
@@ -40,7 +36,7 @@ export default function NoResultsBlock({ locale }: { locale: Locale }) {
 
       <div className="flex justify-center">
         <img
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/engagement_collectif_pour_le_climat_4f8f1edfc1.svg"
+          src="/_static/cms/engagement_collectif_pour_le_climat_4f8f1edfc1.svg"
           alt=""
           width={340}
           className="grayscale"

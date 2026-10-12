@@ -1,21 +1,25 @@
 import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
+import { getUserSimulationJourney } from '@/services/simulations/get-user-simulation-journey'
+import {
+  hasSimulation,
+  hasUnstartedSimulation,
+} from '@nosgestesclimat/core/features/simulations/helpers/user-simulation-journey'
 
 /**
  * Server component: this page mounts no `UserProvider`, so the simulation has
  * to be resolved here rather than read from the client context.
  */
 export default async function DoTheTest({ locale }: { locale: string }) {
-  const currentSimulation = await getCurrentSimulation()
+  const journey = await getUserSimulationJourney()
 
-  if (!currentSimulation?.progression) {
+  if (!hasSimulation(journey) || hasUnstartedSimulation(journey)) {
     return (
       <div>
         <Trans i18nKey="faq.doTheTest.notStarted" locale={locale}>
           Vous n'avez pas encore débuté votre test,{' '}
-          <InlineLink href={getLinkToSimulateur()}>
+          <InlineLink href={getLinkToSimulateur()} prefetch={true}>
             <strong>lancez-vous !</strong>
           </InlineLink>
         </Trans>
@@ -27,7 +31,7 @@ export default async function DoTheTest({ locale }: { locale: string }) {
     <div>
       <Trans i18nKey="faq.doTheTest.started" locale={locale}>
         Vous avez commencé votre test,{' '}
-        <InlineLink href={getLinkToSimulateur()}>
+        <InlineLink href={getLinkToSimulateur()} prefetch={true}>
           <strong>cliquez ici pour le reprendre !</strong>
         </InlineLink>
       </Trans>

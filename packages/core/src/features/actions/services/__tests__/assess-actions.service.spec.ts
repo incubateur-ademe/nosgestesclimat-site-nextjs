@@ -1,18 +1,14 @@
 import type { RawPublicodes } from 'publicodes'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
+import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
+import { noopLogger } from '../../../logger/index.ts'
 import { createTestEngine } from '../../../simulation-computation/factories/engine.factory.ts'
-import { simulationFactory } from '../../../simulation-computation/factories/simulation.factory.ts'
+import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import { ActionAssessmentPublicodesException } from '../../exceptions/action-assessment.exception.ts'
 import { actionFactory } from '../../factories/action.factory.ts'
 import { createAssessActions } from '../assess-actions.service.ts'
 
-const noopLogger = {
-  error: () => {},
-  warn: () => {},
-  info: () => {},
-  debug: () => {},
-}
 const assessActions = createAssessActions({
   logger: noopLogger,
   captureException: () => {},
@@ -52,9 +48,7 @@ describe('compute action assessments service', () => {
 
   afterEach(async () => {
     vi.restoreAllMocks()
-    await prisma.actionAssessment.deleteMany()
-    await prisma.action.deleteMany()
-    await prisma.simulation.deleteMany()
+    await emptyDatabase(prisma)
   })
 
   it('computes applicable and non-applicable action assessments', async () => {

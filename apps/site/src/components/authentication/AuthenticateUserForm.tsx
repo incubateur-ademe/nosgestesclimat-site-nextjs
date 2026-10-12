@@ -2,13 +2,14 @@
 
 import Button from '@/design-system/buttons/Button'
 import type { AuthenticationMode } from '@/types/authentication'
+import type { Intent } from '@nosgestesclimat/core/features/auth/schemas/auth.schema'
+import { twMerge } from 'cn'
 import { type ReactNode, useCallback } from 'react'
-import { twMerge } from 'tailwind-merge'
 import type { ButtonColor } from '../../design-system/buttons/Button'
 import Trans from '../translation/trans/TransClient'
+import { useLogin } from './_hooks/useLogin'
 import SendVerificationCodeForm from './authenticateUserForm/SendVerificationCodeForm'
 import VerifyCodeForm from './authenticateUserForm/VerifyCodeForm'
-import { useLogin } from './_hooks/useLogin'
 import { AuthProvider, useAuth } from './AuthProvider'
 import type { AuthenticatedUser, Tracker } from './types'
 
@@ -24,6 +25,9 @@ interface Props {
   tracker?: Tracker
   isVerticalLayout?: boolean
   verificationClassName?: string
+  verificationButtonLabel?: string | ReactNode
+  /** Why the user logs in: decides which post-login email is sent. */
+  intent: Intent
 }
 
 export default function AuthenticateUserForm({
@@ -38,12 +42,14 @@ export default function AuthenticateUserForm({
   tracker,
   isVerticalLayout = true,
   verificationClassName,
+  verificationButtonLabel,
+  intent,
 }: Props) {
   const { mutateAsync } = useLogin()
 
   const verify = useCallback(
-    (email: string, code: string) => mutateAsync({ email, code }),
-    [mutateAsync]
+    (email: string, code: string) => mutateAsync({ email, code, intent }),
+    [mutateAsync, intent]
   )
 
   return (
@@ -61,6 +67,7 @@ export default function AuthenticateUserForm({
         required={required}
         isVerticalLayout={isVerticalLayout}
         verificationClassName={verificationClassName}
+        verificationButtonLabel={verificationButtonLabel}
       />
     </AuthProvider>
   )
@@ -74,6 +81,7 @@ function AuthenticateUserFormContent({
   required,
   isVerticalLayout,
   verificationClassName,
+  verificationButtonLabel,
 }: {
   buttonLabel?: string | ReactNode
   buttonColor?: ButtonColor
@@ -82,6 +90,7 @@ function AuthenticateUserFormContent({
   required?: boolean
   isVerticalLayout?: boolean
   verificationClassName?: string
+  verificationButtonLabel?: string | ReactNode
 }) {
   const { state, goBack } = useAuth()
 
@@ -107,7 +116,7 @@ function AuthenticateUserFormContent({
             'dark:bg-primary-700 mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8 dark:text-white',
             verificationClassName
           )}>
-          <VerifyCodeForm />
+          <VerifyCodeForm verificationButtonLabel={verificationButtonLabel} />
 
           {state.phase !== 'authenticated' && (
             <Button

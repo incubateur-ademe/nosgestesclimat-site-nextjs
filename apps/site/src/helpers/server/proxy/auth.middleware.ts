@@ -2,19 +2,14 @@ import {
   buildSessionCookies,
   deleteSessionCookies,
   REFRESH_COOKIE,
-  SESSION_COOKIE,
 } from '@/helpers/server/cookie/auth.cookie'
 import { TokenConsumedException } from '@nosgestesclimat/core/features/auth/exceptions/token-consumed.exception'
 import { TokenExpiredException } from '@nosgestesclimat/core/features/auth/exceptions/token-expired.exception'
-import { isSessionExpired } from '@nosgestesclimat/core/features/auth/helpers/is-session-expired'
-import { decryptSession } from '@nosgestesclimat/core/features/auth/services/decrypt-session.service'
 import { rotateSession } from '@nosgestesclimat/core/features/auth/services/rotate-session.service'
-import type {
-  Session,
-  SessionTokens,
-} from '@nosgestesclimat/core/features/auth/types/session'
+import type { SessionTokens } from '@nosgestesclimat/core/features/auth/types/session'
 import { captureException } from '@sentry/nextjs'
 import { type NextRequest, NextResponse } from 'next/server'
+import { readSession, setSessionHeader } from './session-header'
 import type { MiddlewareResult } from './types'
 
 /**
@@ -27,27 +22,23 @@ import type { MiddlewareResult } from './types'
 export async function middlewareAuth(
   request: NextRequest
 ): Promise<MiddlewareResult> {
-  const sessionCookie = request.cookies.get(SESSION_COOKIE)
+  const session = await readSession(request)
 
   // (A) No session cookie: anonymous user.
-  if (!sessionCookie) {
+  if (session.status === 'absent') {
     return { redirect: null, cookies: [] }
   }
 
-  let payload: Session
-  try {
-    payload = await decryptSession(sessionCookie.value)
-  } catch (err) {
-    // (B) Corrupted or tampered session cookie: log and treat as anonymous.
-    captureException(err)
-    return { redirect: null, cookies: [] }
+  // (B) Corrupted or tampered session cookie: log and treat as anonymous.
+  if (session.status === 'invalid') {
+    captureException(session.error)
+    return { redirect: null, cookies: deleteSessionCookies() }
   }
 
-  if (!isSessionExpired(payload)) {
-    request.headers.set(
-      'x-session',
-      JSON.stringify({ userId: payload.userId, email: payload.email })
-    )
+  const { payload } = session
+
+  if (session.status === 'valid') {
+    setSessionHeader(request, payload)
     // (C) Valid session. Forward user info downstream.
     // If a stale `_rt` param is present (leftover from a previous rotation),
     // strip it with a redirect to keep URLs clean.
@@ -62,7 +53,7 @@ export async function middlewareAuth(
       new Error('Session expired but no refresh cookie present'),
       { level: 'error' }
     )
-    return { redirect: null, cookies: [] }
+    return { redirect: null, cookies: deleteSessionCookies() }
   }
 
   let tokens: SessionTokens
@@ -72,7 +63,7 @@ export async function middlewareAuth(
     if (err instanceof TokenExpiredException) {
       // (E) Refresh token exists but is past its expiration.
       // The user must log in again; continue anonymously.
-      return { redirect: null, cookies: [] }
+      return { redirect: null, cookies: deleteSessionCookies() }
     }
 
     if (err instanceof TokenConsumedException) {
@@ -113,10 +104,7 @@ export async function middlewareAuth(
 
   // (H) Fresh tokens obtained. Return the new session + refresh
   // cookies to be applied in the post-routing phase.
-  request.headers.set(
-    'x-session',
-    JSON.stringify({ userId: payload.userId, email: payload.email })
-  )
+  setSessionHeader(request, payload)
   return {
     redirect: null,
     cookies: buildSessionCookies(tokens),

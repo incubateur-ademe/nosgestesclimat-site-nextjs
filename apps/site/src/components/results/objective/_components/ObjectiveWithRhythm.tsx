@@ -9,7 +9,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { ReactNode } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from "cn";
 
 interface Props {
   carbonFootprint: number
@@ -141,13 +141,13 @@ const getObjectiveData = ({
   }
 }
 
-export default async function ObjectiveWithRhythm({
+export default function ObjectiveWithRhythm({
   locale,
   carbonFootprint,
   className,
   shouldDisplayBadge = true,
 }: Props) {
-  const { t } = await getServerTranslation({ locale })
+  const { t } = getServerTranslation({ locale })
   const {
     displayValue,
     unit,

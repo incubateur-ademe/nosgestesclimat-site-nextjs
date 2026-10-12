@@ -6,6 +6,7 @@ import { buildAlternates } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
 import { getUserSession } from '@/services/auth/get-user-session'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
+import { getPollSummary } from '@/services/polls/get-poll-summary'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ClientLayout } from '../../../../components/layout/ClientLayout'
@@ -36,12 +37,12 @@ export default async function PartnerCampaignPage({
 
   const userSession = await getUserSession()
 
-  const partnerCampaign = await fetchPartnerCampaign({
-    locale,
-    pollSlug,
-  })
+  const [partnerCampaign, poll] = await Promise.all([
+    fetchPartnerCampaign({ locale, pollSlug }),
+    getPollSummary(pollSlug),
+  ])
 
-  if (!partnerCampaign) {
+  if (!partnerCampaign || !poll) {
     notFound()
   }
 
@@ -52,7 +53,7 @@ export default async function PartnerCampaignPage({
         alt={partnerCampaign.logo?.alternativeText ?? ''}>
         {/* Mobile */}
         <div className="block sm:hidden">
-          <LanguageSwitchButton size="xs" />
+          <LanguageSwitchButton />
         </div>
 
         {/* Desktop */}
@@ -62,10 +63,11 @@ export default async function PartnerCampaignPage({
       </PartnerCampaignHeader>
       <PartnerCampaignContent
         pollSlug={pollSlug}
+        organisationSlug={poll.organisation.slug}
         partnerCampaign={partnerCampaign}
         partnersComponent={<Partners locale={locale} />}
         faqComponent={
-          !!partnerCampaign.faq?.questions?.length && (
+          !!partnerCampaign.faq?.questions.length && (
             <FAQ
               isBackgroundSkewed={false}
               className="bg-white"

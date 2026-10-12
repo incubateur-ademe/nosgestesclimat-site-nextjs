@@ -22,9 +22,6 @@ if (config.thirdParty.sentry.dsn) {
 
 export const redactBody = <T = unknown>(body: T) => {
   if (typeof body === 'object' && !!body) {
-    if ('actionChoices' in body) {
-      body.actionChoices = '[REDACTED]'
-    }
     if ('additionalQuestionsAnswers' in body) {
       body.additionalQuestionsAnswers = '[REDACTED]'
     }
@@ -40,22 +37,6 @@ export const redactBody = <T = unknown>(body: T) => {
   }
 
   return body
-}
-
-/**
- * Keeps a log line correlatable with a user report without storing the address:
- * `jo***@ex***.com` is enough to match an email a user gives us in support.
- */
-export const maskEmail = (email: unknown) => {
-  if (typeof email !== 'string') {
-    return '[REDACTED]'
-  }
-
-  const [local, domain] = email.split('@')
-
-  return domain
-    ? `${local.slice(0, 2)}***@${domain.slice(0, 2)}***`
-    : '[REDACTED]'
 }
 
 /**

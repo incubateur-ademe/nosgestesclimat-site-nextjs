@@ -5,39 +5,49 @@ import {
   START_SIMULATION_PATH,
   TUTORIAL_PATH,
 } from '@/constants/urls/paths'
-import type { Simulation } from '@/helpers/server/model/simulations'
-import type { UserSession } from '@/services/auth/get-user-session'
+import type { UserSession } from '@nosgestesclimat/core/features/auth/types/user-session'
+import {
+  hasCompletedCurrentSimulation,
+  hasCompletedSimulation,
+  hasSimulation,
+  hasUnstartedSimulation,
+} from '@nosgestesclimat/core/features/simulations/helpers/user-simulation-journey'
+import type { UserSimulationJourney } from '@nosgestesclimat/core/features/simulations/types/simulation-progress'
 import type { TFunction } from 'i18next'
+
 export function getMainCTA({
-  currentSimulation,
-  completedSimulations,
+  journey,
   user,
   t,
 }: {
-  currentSimulation?: Simulation
+  journey: UserSimulationJourney
   user: UserSession
-  completedSimulations: Simulation[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   t: TFunction<any, string>
 }) {
-  if (!currentSimulation) {
+  if (!hasSimulation(journey)) {
     return {
       children: t('Commencer le test'),
       href: START_SIMULATION_PATH,
-      prefetch: false,
+      prefetch: true,
     }
   }
 
-  if (currentSimulation.progression === 0) {
+  if (hasUnstartedSimulation(journey)) {
     return {
       children: t('Commencer le test'),
-      href: completedSimulations.length ? SIMULATOR_PATH : TUTORIAL_PATH,
+      href: hasCompletedSimulation(journey) ? SIMULATOR_PATH : TUTORIAL_PATH,
+      prefetch: true,
     }
   }
-  if (currentSimulation.progression === 1) {
+  if (hasCompletedCurrentSimulation(journey)) {
     return {
       children: t('Voir mes résultats'),
       href: user?.isAuth ? MON_ESPACE_PATH : END_PAGE_PATH,
+      // L'espace personnel reste au prefetch à l'intention : sa coquille est
+      // propre à la session et une coquille préchargée peut être rejouée après
+      // déconnexion (cf. MySpaceDropdown).
+      prefetch: user?.isAuth ? undefined : true,
     }
   }
 
@@ -45,5 +55,6 @@ export function getMainCTA({
   return {
     children: t('Reprendre mon test'),
     href: SIMULATOR_PATH,
+    prefetch: true,
   }
 }

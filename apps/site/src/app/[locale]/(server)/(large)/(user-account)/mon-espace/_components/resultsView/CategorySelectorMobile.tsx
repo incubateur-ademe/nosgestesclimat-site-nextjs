@@ -1,16 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { testOrderedCategories } from '@/constants/model/orderedCategories'
-import { captureClickCategorySelectorMobile } from '@/constants/tracking/posthogTrackers'
-import { clickCategorySelectorMobile } from '@/constants/tracking/user-account'
+import { orderedTestCategories } from '@/constants/model/categories'
 import Alert from '@/design-system/alerts/alert/Alert'
 import SelectInput from '@/design-system/inputs/SelectInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import {
-  trackMatomoEvent__deprecated,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type TabId = 'global' | DottedName
@@ -34,7 +28,7 @@ export default function CategorySelectorMobile({
 
   const options: { value: TabId; label: string }[] = [
     { value: 'global', label: globalLabel },
-    ...testOrderedCategories.map((category) => ({
+    ...orderedTestCategories.map((category) => ({
       value: category,
       label: categoryLabels[category] ?? category,
     })),
@@ -52,12 +46,6 @@ export default function CategorySelectorMobile({
         value={activeTab}
         onChange={(e) => {
           setActiveTab(e.target.value as TabId)
-          trackMatomoEvent__deprecated(
-            clickCategorySelectorMobile(e.target.value)
-          )
-          trackPosthogEvent(
-            captureClickCategorySelectorMobile({ category: e.target.value })
-          )
         }}
         disabled={disabled}
         containerClassName="w-full">

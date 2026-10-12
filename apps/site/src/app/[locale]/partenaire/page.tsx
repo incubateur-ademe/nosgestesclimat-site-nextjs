@@ -1,10 +1,10 @@
-import HeaderServer from '@/components/layout/HeaderServer'
+import Header from '@/components/layout/Header'
 import { PARTNER_KEY } from '@/constants/partners'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { verifyPartner } from '@/services/partners/verifyPartner'
-import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
+import { getUserSimulationJourney } from '@/services/simulations/get-user-simulation-journey'
 import { notFound } from 'next/navigation'
 import AdaptiveMessage from './_components/AdaptiveMessage'
 
@@ -20,9 +20,7 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function PartenairePage({
   searchParams,
-  params,
 }: PageProps<'/[locale]/partenaire'>) {
-  const { locale } = await params
   const searchParamsObject = (await searchParams) ?? { partner: '' }
 
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''
@@ -37,16 +35,16 @@ export default async function PartenairePage({
     notFound()
   }
 
-  const simulation = await getCurrentSimulation()
+  const journey = await getUserSimulationJourney()
 
   return (
     <>
-      <HeaderServer locale={locale} />
+      <Header />
 
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">
-            <AdaptiveMessage partner={partner} simulation={simulation} />
+            <AdaptiveMessage partner={partner} journey={journey} />
           </div>
         </div>
       </Main>

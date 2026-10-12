@@ -7,9 +7,9 @@ import {
   sizeClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Title from '@/design-system/layout/Title'
+import Link from '@/design-system/links/Link'
 import type { Group } from '@/types/groups'
-import Link from 'next/link'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'cn'
 import GroupContent from './groups/GroupContent'
 
 interface Props {
@@ -46,7 +46,7 @@ export default function Groups({ groups }: Props) {
               }
               color="secondary"
               imageAlt=""
-              imageSrc="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_raising_arm_fe915601cd.png"
+              imageSrc="/_static/cms/medium_people_raising_arm_fe915601cd.png"
               icon={<PlusIcon className="stroke-primary-700 min-w-8" />}
               ctaClassName="min-w-64"
             />

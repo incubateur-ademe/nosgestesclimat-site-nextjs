@@ -4,9 +4,9 @@ import ChevronLeft from '@/components/icons/ChevronLeft'
 import ChevronRight from '@/components/icons/ChevronRight'
 import Link from '@/components/Link'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from "cn";
 
-export default async function Pagination({
+export default function Pagination({
   currentPage,
   totalPages,
   locale,
@@ -15,7 +15,7 @@ export default async function Pagination({
   totalPages: number
   locale: string
 }) {
-  const { t } = await getServerTranslation({ locale })
+  const { t } = getServerTranslation({ locale })
 
   return (
     <div className="text-center">

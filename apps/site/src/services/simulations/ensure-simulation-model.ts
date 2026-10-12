@@ -14,10 +14,10 @@ import { resolveNewSimulationModelString } from './resolve-new-simulation-model'
  * Server actions run current server code even for stale browser tabs, which is
  * what makes repairing here reliable.
  */
-export async function ensureSimulationModel(
-  simulation: Simulation
-): Promise<Simulation> {
-  if (simulation.model && parseModelString(simulation.model)) {
+export async function ensureSimulationModel<
+  Payload extends { id: Simulation['id']; model?: Simulation['model'] },
+>(simulation: Payload): Promise<Payload & { model: Simulation['model'] }> {
+  if (hasValidModel(simulation)) {
     return simulation
   }
 
@@ -30,4 +30,10 @@ export async function ensureSimulationModel(
   )
 
   return { ...simulation, model: await resolveNewSimulationModelString() }
+}
+
+function hasValidModel<Payload extends { model?: Simulation['model'] }>(
+  simulation: Payload
+): simulation is Payload & { model: Simulation['model'] } {
+  return !!simulation.model && !!parseModelString(simulation.model)
 }

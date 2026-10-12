@@ -1,8 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
+import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
+import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import type { ModelRegion } from '../../../simulations/types/model.ts'
 import { SimulationNotFinishedException } from '../../exceptions/simulation-computation.exception.ts'
-import { simulationFactory } from '../../factories/simulation.factory.ts'
 import { PREVIOUS_MODEL_VERSION } from '../../model-support/model-versions.ts'
 import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
 import { createProgramSimulationComputation } from '../program-simulation-computation.ts'
@@ -20,8 +21,7 @@ const programSimulationComputation = createProgramSimulationComputation({
 
 describe('programSimulationComputation', () => {
   afterEach(async () => {
-    await prisma.simulationComputation.deleteMany()
-    await prisma.simulation.deleteMany()
+    await emptyDatabase(prisma)
     vi.clearAllMocks()
   })
 

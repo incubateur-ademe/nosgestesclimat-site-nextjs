@@ -6,10 +6,10 @@ import {
 } from '@/design-system/buttons/buttonStyles'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Link from '@/design-system/links/Link'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
-import Link from 'next/link'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'cn'
 import CarIcon from '../icons/CarIcon'
 import DownArrow from '../icons/DownArrow'
 import FoodIcon from '../icons/FoodIcon'
@@ -23,8 +23,8 @@ interface Props {
   className?: string
 }
 
-export default async function ActionsBlock({ locale, className }: Props) {
-  const { t } = await getServerTranslation({ locale })
+export default function ActionsBlock({ locale, className }: Props) {
+  const { t } = getServerTranslation({ locale })
   return (
     <Card
       className={twMerge(

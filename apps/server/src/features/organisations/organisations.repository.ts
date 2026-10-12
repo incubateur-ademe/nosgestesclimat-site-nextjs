@@ -1,4 +1,7 @@
-import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import {
+  ComputedResultsSchema,
+  type ComputedResults,
+} from '@nosgestesclimat/core/features/simulations/validators/computed-results.schema'
 import slugify from 'slugify'
 import * as v from 'valibot'
 import type { JsonValue } from '../../adapters/prisma/generated.ts'
@@ -7,14 +10,11 @@ import {
   defaultOrganisationSelection,
   defaultOrganisationSelectionWithoutPolls,
   defaultPollSelection,
-  defaultVerifiedUserSelection,
 } from '../../adapters/prisma/selection.ts'
 import type { Session } from '../../adapters/prisma/transaction.ts'
 import type { PaginationQuery } from '../../core/pagination.ts'
-import type { PartialUser, PartialVerifiedUser } from '../../core/types/user.ts'
-import type { SimulationParams } from '../simulations/simulations.validator.ts'
-import { ComputedResultSchema } from '../simulations/simulations.validator.ts'
-import { createOrUpdateVerifiedUser } from '../users/users.repository.ts'
+import type { PartialVerifiedUser } from '../../core/types/user.ts'
+import { createOrUpdateUser } from '../users/users.repository.ts'
 import type {
   OrganisationCreateDto,
   OrganisationParams,
@@ -22,7 +22,6 @@ import type {
   OrganisationPollParams,
   OrganisationPollUpdateDto,
   OrganisationUpdateDto,
-  PublicPollParams,
 } from './organisations.validator.ts'
 
 const findModelUniqueSlug = (model: 'organisation' | 'poll') => {
@@ -152,16 +151,15 @@ export const createOrganisationAndAdministrator = async (
   { id, email }: PartialVerifiedUser,
   { session }: { session: Session }
 ) => {
-  const { user: administrator } = await createOrUpdateVerifiedUser(
+  const administrator = await createOrUpdateUser(
     {
-      id: { id, email },
-      user: {
-        name: administratorName,
-        position,
-        telephone,
-        optedInForCommunications,
-      },
-      select: defaultVerifiedUserSelection,
+      type: 'verified',
+      id,
+      email,
+      name: administratorName,
+      telephone,
+      position,
+      optedInForCommunications,
     },
     { session }
   )
@@ -232,21 +230,18 @@ export const updateAdministratorOrganisation = async (
       },
     ] = administrators
 
-    const { user: adminUser } = await createOrUpdateVerifiedUser(
+    administrator = await createOrUpdateUser(
       {
-        id: { id: user.id, email: userEmail },
-        user: {
-          name: administratorName,
-          email,
-          position,
-          telephone,
-          optedInForCommunications,
-        },
-        select: defaultVerifiedUserSelection,
+        type: 'verified',
+        id: user.id,
+        email: email || userEmail,
+        name: administratorName,
+        telephone,
+        position,
+        optedInForCommunications,
       },
       { session }
     )
-    administrator = adminUser
 
     if (email) {
       user.email = email
@@ -319,22 +314,13 @@ const findUniquePollSlug = findModelUniqueSlug('poll')
 type SimulationsInfo = {
   count: number
   finished: number
-} & (
-  | {
-      hasParticipated: false
-    }
-  | {
-      hasParticipated: true
-      progression: number
-      userComputedResults: ComputedResultSchema
-    }
-)
+}
 
 const fetchPollSimulationsInfo = async (
-  { poll: { id }, user }: { poll: { id: string }; user?: PartialUser },
+  { poll: { id } }: { poll: { id: string } },
   { session }: { session: Session }
 ): Promise<SimulationsInfo> => {
-  const [count, finished, userSimulation] = await Promise.all([
+  const [count, finished] = await Promise.all([
     session.simulationPoll.count({
       where: {
         pollId: id,
@@ -348,60 +334,18 @@ const fetchPollSimulationsInfo = async (
         },
       },
     }),
-    user
-      ? session.simulationPoll.findFirst({
-          where: {
-            pollId: id,
-            simulation: {
-              user: {
-                id: user.id,
-              },
-            },
-          },
-          select: {
-            simulation: {
-              select: {
-                computedResults: true,
-                progression: true,
-              },
-            },
-          },
-          orderBy: {
-            simulation: {
-              createdAt: 'desc',
-            },
-          },
-        })
-      : null,
   ])
 
-  const userComputedResults = v.safeParse(
-    ComputedResultSchema,
-    userSimulation?.simulation.computedResults
-  )
-
-  return {
-    count,
-    finished,
-    ...(userComputedResults.success
-      ? {
-          hasParticipated: true,
-          progression: userSimulation!.simulation.progression,
-          userComputedResults: userComputedResults.output,
-        }
-      : {
-          hasParticipated: false,
-        }),
-  }
+  return { count, finished }
 }
 
 const sanitizePollComputedResults = <T extends { computedResults: JsonValue }>({
   computedResults: rawComputedResults,
   ...poll
 }: T): Omit<T, 'computedResults'> & {
-  computedResults: ComputedResultSchema | null
+  computedResults: ComputedResults | null
 } => {
-  const computedResults = v.safeParse(ComputedResultSchema, rawComputedResults)
+  const computedResults = v.safeParse(ComputedResultsSchema, rawComputedResults)
   return {
     ...poll,
     ...(computedResults.success
@@ -462,13 +406,7 @@ export const createOrganisationPoll = async (
     },
   })
 
-  const simulationsInfos = await fetchPollSimulationsInfo(
-    {
-      poll,
-      user,
-    },
-    { session }
-  )
+  const simulationsInfos = await fetchPollSimulationsInfo({ poll }, { session })
 
   return {
     poll: sanitizePollComputedResults(poll),
@@ -555,13 +493,7 @@ export const updateOrganisationPoll = async (
     },
   })
 
-  const simulationsInfos = await fetchPollSimulationsInfo(
-    {
-      poll,
-      user,
-    },
-    { session }
-  )
+  const simulationsInfos = await fetchPollSimulationsInfo({ poll }, { session })
 
   return {
     poll: sanitizePollComputedResults(poll),
@@ -610,10 +542,7 @@ export const fetchOrganisationPolls = async (
     polls: await Promise.all(
       polls.map(async (poll) => ({
         poll: sanitizePollComputedResults(poll),
-        simulationsInfos: await fetchPollSimulationsInfo(
-          { poll, user },
-          { session }
-        ),
+        simulationsInfos: await fetchPollSimulationsInfo({ poll }, { session }),
       }))
     ),
   }
@@ -638,102 +567,13 @@ export const fetchOrganisationPoll = async (
     { session }
   )
 
-  const simulationsInfos = await fetchPollSimulationsInfo(
-    {
-      poll,
-      user,
-    },
-    { session }
-  )
+  const simulationsInfos = await fetchPollSimulationsInfo({ poll }, { session })
 
   return {
     simulationsInfos,
     organisation,
     poll: sanitizePollComputedResults(poll),
   }
-}
-
-export const fetchOrganisationPublicPoll = async (
-  { pollIdOrSlug, user }: PublicPollParams & { user?: PartialUser },
-  { session }: { session: Session }
-) => {
-  const { organisation, ...poll } = await session.poll.findFirstOrThrow({
-    where: {
-      OR: [
-        {
-          id: pollIdOrSlug,
-        },
-        {
-          slug: pollIdOrSlug,
-        },
-      ],
-    },
-    select: {
-      ...defaultPollSelection,
-      organisation: {
-        select: defaultOrganisationSelectionWithoutPolls,
-      },
-    },
-  })
-
-  const simulationsInfos = await fetchPollSimulationsInfo(
-    {
-      poll,
-      user,
-    },
-    { session }
-  )
-
-  return {
-    poll: sanitizePollComputedResults(poll),
-    simulationsInfos,
-    organisation,
-  }
-}
-
-export const findSimulationPoll = (
-  { simulationId }: SimulationParams,
-  { session }: { session: Session }
-) => {
-  return session.simulationPoll.findFirst({
-    where: {
-      simulationId,
-    },
-    select: {
-      pollId: true,
-      simulationId: true,
-      updatedAt: true,
-      poll: {
-        select: {
-          computeRealTimeStats: true,
-        },
-      },
-    },
-  })
-}
-
-export const setPollStats = (
-  id: string,
-  {
-    computedResults,
-    funFacts,
-  }: { computedResults: ComputedResultSchema; funFacts: FunFacts },
-  { session }: { session: Session }
-) => {
-  return session.poll.update({
-    where: {
-      id,
-    },
-    data: {
-      computedResults,
-      funFacts,
-    },
-    select: {
-      id: true,
-      funFacts: true,
-      computedResults: true,
-    },
-  })
 }
 
 export type OrganisationsBatchBrevoStats = {

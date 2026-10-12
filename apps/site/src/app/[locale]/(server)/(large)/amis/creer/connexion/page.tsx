@@ -2,10 +2,7 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import AuthenticateUserForm from '@/components/authentication/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import { linkToGroupCreation, SHOW_STEP_KEY } from '@/constants/group'
-import {
-  amisCreationConnexionRetour,
-  captureAmisCreationConnexionComplete,
-} from '@/constants/tracking/pages/amisCreation'
+import { captureAmisCreationConnexionComplete } from '@/constants/tracking/trackers'
 import GoBackButton from '@/design-system/inputs/GoBackButton'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -33,14 +30,11 @@ export default async function GroupConnexionPage({ params }: DefaultPageProps) {
     redirect('/amis/creer/votre-groupe')
   }
 
-  const { t } = await getServerTranslation(params)
+  const { t } = getServerTranslation(await params)
 
   return (
     <div className="pb-8">
-      <GoBackButton
-        eventTracked={amisCreationConnexionRetour}
-        className="mb-4 font-bold"
-      />
+      <GoBackButton className="mb-4 font-bold" />
 
       <StepsDisplay currentStep={1} />
 
@@ -52,6 +46,7 @@ export default async function GroupConnexionPage({ params }: DefaultPageProps) {
       <QueryClientProviderWrapper>
         <UserProvider userSession={userSession}>
           <AuthenticateUserForm
+            intent="create-group"
             redirectPathname={`/amis/creer/votre-groupe?${SHOW_STEP_KEY}=true`}
             buttonLabel={t('auth.verifyemail', 'Vérifier mon adresse email')}
             tracker={captureAmisCreationConnexionComplete}

@@ -11,7 +11,7 @@
     },
     "worker": {
       "amount": 1,
-      "size": "S"
+      "size": "M"
     }
   },
   "env": {
@@ -21,10 +21,6 @@
     "NEXT_PUBLIC_SERVER_URL": {
       "generator": "template",
       "template": "https://nosgestesclimat-preprod-pr%PR_NUMBER%.osc-fr1.scalingo.io"
-    },
-    "NEXT_PUBLIC_MATOMO_DOMAIN": {
-      "value": "*.osc-fr1.scalingo.io",
-      "description": "Matomo domain for Scalingo review apps"
     },
     "ENGINE_HOT_KEYS": {
       "value": "FR:current",

@@ -5,9 +5,9 @@ import CloseIcon from '@/components/icons/Close'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
+import { twMerge } from 'cn'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
 import BannerLink from './banner/BannerLink'
 
@@ -27,7 +27,7 @@ export const BannerContent = ({
   banner: Pick<BannerType, 'link' | 'text' | 'id'> | null
   color?: BannerColor
 }) => {
-  const [shouldHideBanner, setShouldHideBanner] = useState(false)
+  const [shouldHideBanner, setShouldHideBanner] = useState(true)
 
   // Necessary to let hydration occur first
   useEffect(() => {

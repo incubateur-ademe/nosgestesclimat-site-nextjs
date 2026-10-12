@@ -5,6 +5,7 @@ import {
   getIframeInformation,
   type IframeInformation,
 } from './iframeInformation'
+import { reapplySessionProperties } from './posthogSessionProperties'
 
 export type PostHogCookieState = 'accepted' | 'refused' | 'do_not_track'
 
@@ -38,6 +39,21 @@ export class PostHog {
         cookieState satisfies never
     }
     this.registerProperties()
+
+    // Answering the banner rebuilds the SDK session manager, which drops every
+    // session property registered so far (they were not persisted yet while the
+    // consent was undecided). Replay them now that the consent is known.
+    reapplySessionProperties()
+  }
+
+  /**
+   * Resets the PostHog identity (new anonymous `distinct_id`) on logout without
+   * dropping tracking: `posthog.reset()` also clears the SDK consent marker
+   * (`__ph_opt_in_out_<token>`), we re-apply it right after the reset so the user is still tracked according to his previous consent.
+   */
+  resetIdentity() {
+    posthog.reset()
+    this.update(savedCookieState.posthog)
   }
 
   private switchDNTOn() {
@@ -79,7 +95,8 @@ export class PostHog {
     }
 
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+      api_host: process.env.NEXT_PUBLIC_POSTHOG_API_HOST,
+      ui_host: process.env.NEXT_PUBLIC_POSTHOG_UI_HOST,
       cookieless_mode: 'on_reject',
       defaults: '2026-01-30',
       debug: APP_ENV !== 'production',
@@ -93,16 +110,14 @@ export class PostHog {
       },
       rageclick: false,
 
-      custom_campaign_params: [
-        'mtm_campaign',
-        'mtm_kwd',
-        'mtm_keyword',
-        'organisation',
-        'poll',
-      ], // Enable to set query parameters as properties on the events
+      custom_campaign_params: ['mtm_campaign', 'mtm_kwd', 'mtm_keyword'], // Enable to set query parameters as properties on the events
 
       loaded: () => {
         this.registerProperties()
+        // Inside an iframe `posthog.init()` is deferred until the visitor
+        // scrolls; trackers may already have registered session properties by
+        // then, when the SDK could not store them.
+        reapplySessionProperties()
       },
     })
 

@@ -1,6 +1,3 @@
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useCallback, useMemo } from 'react'
-
 import {
   MUST_ASK_QUESTIONS,
   MUST_NOT_ASK_QUESTIONS,
@@ -8,6 +5,9 @@ import {
   PRIORITY_QUESTIONS,
 } from '@/publicodes-state/constants/questions'
 import getSortedQuestionsList from '@/publicodes-state/helpers/getSortedQuestionsList'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { utils } from 'publicodes'
+import { useCallback, useMemo } from 'react'
 import type {
   Entries,
   MissingVariables,
@@ -89,6 +89,11 @@ export default function useQuestions({
         }
       })
 
+      // We artificially add some questions in the missing variables.
+      MUST_ASK_QUESTIONS.forEach((dottedName) => {
+        tempMissingVariables[dottedName] = 1
+      })
+
       // We artificially set the missing variables of the whiteList to a high value
       PRIORITY_QUESTIONS.forEach((dottedName) => {
         if (dottedName in tempMissingVariables) {
@@ -101,11 +106,6 @@ export default function useQuestions({
         if (dottedName in tempMissingVariables) {
           tempMissingVariables[dottedName] -= 1000
         }
-      })
-
-      // We artificially add some questions in the missing variables.
-      MUST_ASK_QUESTIONS.forEach((dottedName) => {
-        tempMissingVariables[dottedName] = 1
       })
 
       return tempMissingVariables
@@ -166,7 +166,7 @@ export default function useQuestions({
     [foldedSteps, everyQuestions]
   )
 
-  const relevantQuestions = sortQuestions(
+  const sortedRelevantQuestions = sortQuestions(
     [
       /**
        * We add every answered questions to display and every not answered
@@ -182,20 +182,36 @@ export default function useQuestions({
       categories.reduce(
         (accumulator, currentValue) => ({
           ...accumulator,
-          [currentValue]: relevantQuestions.filter((question) =>
-            question.includes(currentValue)
+          [currentValue]: sortedRelevantQuestions.filter((question) =>
+            // We check that the question is in the current category
+            utils.ruleParent(question).includes(currentValue)
           ),
         }),
         {} as Record<DottedName, DottedName[]>
       ),
-    [relevantQuestions, categories]
+    [sortedRelevantQuestions, categories]
+  )
+
+  const remainingQuestionsByCategories = useMemo(
+    () =>
+      Object.entries(questionsByCategories).reduce(
+        (accumulator, [category, questions]) => ({
+          ...accumulator,
+          [category]: questions.filter((question) =>
+            remainingQuestions.includes(question)
+          ),
+        }),
+        {} as Record<DottedName, DottedName[]>
+      ),
+    [questionsByCategories, remainingQuestions]
   )
 
   return {
     missingVariables,
     remainingQuestions,
     relevantAnsweredQuestions,
-    relevantQuestions,
+    relevantQuestions: sortedRelevantQuestions,
     questionsByCategories,
+    remainingQuestionsByCategories,
   }
 }

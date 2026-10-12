@@ -1,12 +1,3 @@
-export const defaultUserSelection = {
-  id: true,
-  name: true,
-  email: true,
-  createdAt: true,
-  updatedAt: true,
-  ageRange: true,
-}
-
 export const defaultVerifiedUserSelection = {
   id: true,
   name: true,
@@ -16,6 +7,15 @@ export const defaultVerifiedUserSelection = {
   optedInForCommunications: true,
   createdAt: true,
   updatedAt: true,
+}
+
+export const defaultUserSelection = {
+  id: true,
+  name: true,
+  email: true,
+  createdAt: true,
+  updatedAt: true,
+  ageRange: true,
 }
 
 export const defaultUserSelectionWithoutAgeRange = {
@@ -64,7 +64,6 @@ export const defaultGroupParticipantSimulationSelection = {
   situation: true,
   foldedSteps: true,
   progression: true,
-  actionChoices: true,
   computedResults: true,
   additionalQuestionsAnswers: {
     select: {
@@ -126,11 +125,11 @@ export const defaultPollSelection = {
   organisationId: true,
   funFacts: true,
   computedResults: true,
+  participantsCount: true,
   defaultAdditionalQuestions: true,
   customAdditionalQuestions: true,
   expectedNumberOfParticipants: true,
   mode: true,
-  computeRealTimeStats: true,
   createdAt: true,
   updatedAt: true,
 }
@@ -142,7 +141,6 @@ export const defaultSimulationSelection = {
   situation: true,
   foldedSteps: true,
   progression: true,
-  actionChoices: true,
   computedResults: true,
   additionalQuestionsAnswers: {
     select: {
@@ -198,7 +196,6 @@ export const defaultSimulationSelectionWithoutPollAndSituation = {
   ...simulationSelectionWithUsers,
   situation: false,
   foldedSteps: false,
-  actionChoices: false,
 }
 
 export const simulationSelection = {

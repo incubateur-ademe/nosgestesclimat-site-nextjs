@@ -1,6 +1,7 @@
 import Link from '@/components/Link'
+import type { LinkProps } from 'next/link'
 import type { HTMLAttributes, PropsWithChildren } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from "cn";
 
 type Props = {
   href: string
@@ -8,6 +9,7 @@ type Props = {
   title?: string
   onClick?: () => void
   target?: string
+  prefetch?: LinkProps['prefetch']
 } & PropsWithChildren &
   HTMLAttributes<HTMLAnchorElement>
 

@@ -1,0 +1,142 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { prisma } from '../../../../prisma/client.ts'
+import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
+import { userFactory } from '../../../users/factories/user.factory.ts'
+import { computedResultsFactory } from '../../factories/computed-results.factory.ts'
+import { simulationFactory } from '../../factories/simulation.factory.ts'
+import { getCurrentSimulation } from '../get-current-simulation.service.ts'
+
+vi.mock('../../helpers/migrate-simulation.ts', () => ({
+  migrateSimulationIfNeeded: vi.fn((simulation) => simulation),
+}))
+
+describe('getCurrentSimulation', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  afterEach(async () => {
+    await emptyDatabase(prisma)
+  })
+
+  it('returns null when the user has no simulations', async () => {
+    const user = await userFactory.create()
+
+    const result = await getCurrentSimulation({ userId: user.id })
+
+    expect(result).toBeNull()
+  })
+
+  it('returns the latest simulation ordered by date', async () => {
+    const user = await userFactory.create()
+    const [, latest] = await Promise.all([
+      simulationFactory
+        .withModelRegion('FR')
+        .withProgression(0.2)
+        .withValidComputedResults()
+        .params({
+          userId: user.id,
+          date: new Date('2024-01-01'),
+        })
+        .create(),
+      simulationFactory
+        .withModelRegion('FR')
+        .withProgression(0.5)
+        .withValidComputedResults()
+        .params({
+          userId: user.id,
+          date: new Date('2024-02-01'),
+        })
+        .create(),
+    ])
+
+    const result = await getCurrentSimulation({ userId: user.id })
+
+    expect(result).toEqual({
+      id: latest.id,
+      date: latest.date,
+      model: {
+        region: 'FR',
+        locale: 'fr',
+        version: { publishedTag: expect.any(String) },
+      },
+      progression: 0.5,
+      situation: {},
+      foldedSteps: [],
+      computedResults: computedResultsFactory.valid().build(),
+      createdAt: latest.createdAt,
+      updatedAt: latest.updatedAt,
+      userId: user.id,
+    })
+  })
+
+  it('does not return another user simulation', async () => {
+    const [user, other] = await Promise.all([
+      userFactory.create(),
+      userFactory.create(),
+    ])
+    await simulationFactory
+      .withProgression(0.5)
+      .withValidComputedResults()
+      .params({ userId: other.id })
+      .create()
+
+    const result = await getCurrentSimulation({ userId: user.id })
+
+    expect(result).toBeNull()
+  })
+
+  it('returns null when the latest simulation has invalid computedResults', async () => {
+    const user = await userFactory.create()
+    await simulationFactory
+      .withProgression(0.5)
+      .withDeprecatedComputedResults()
+      .params({ userId: user.id })
+      .create()
+
+    const result = await getCurrentSimulation({ userId: user.id })
+
+    expect(result).toBeNull()
+  })
+
+  it('returns null when the model string cannot be parsed', async () => {
+    const user = await userFactory.create()
+    const simulation = await simulationFactory
+      .withProgression(0.5)
+      .withValidComputedResults()
+      .params({ userId: user.id })
+      .create()
+
+    await prisma.simulation.update({
+      where: { id: simulation.id },
+      data: { model: 'FR-de-1.2.3' },
+    })
+
+    const result = await getCurrentSimulation({ userId: user.id })
+
+    expect(result).toBeNull()
+  })
+
+  it('delegates migration to migrateSimulationIfNeeded', async () => {
+    const { migrateSimulationIfNeeded } =
+      await import('../../helpers/migrate-simulation.ts')
+    const user = await userFactory.create()
+    const simulation = await simulationFactory
+      .withModelRegion('FR')
+      .withProgression(0.5)
+      .withValidComputedResults()
+      .params({ userId: user.id })
+      .create()
+
+    await getCurrentSimulation({ userId: user.id })
+
+    expect(migrateSimulationIfNeeded).toHaveBeenCalledTimes(1)
+    expect(migrateSimulationIfNeeded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: simulation.id,
+        userId: user.id,
+        situation: simulation.situation,
+      })
+    )
+  })
+})

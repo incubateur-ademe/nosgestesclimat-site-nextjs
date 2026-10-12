@@ -1,9 +1,9 @@
 import Carousel from '@/design-system/carousel/Carousel'
 import type { Locale } from '@/i18nConfig'
+import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
-import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
+import { twMerge } from 'cn'
 import { useId } from 'react'
-import { twMerge } from 'tailwind-merge'
 import TrophyIcon from '../icons/TrophyIcon'
 import Trans from '../translation/trans/TransServer'
 import ActionCardSwitchServer from './ActionCard/ActionCardSwitchServer'
@@ -11,7 +11,7 @@ import ActionCardSwitchServer from './ActionCard/ActionCardSwitchServer'
 interface HighestImpactActionsSectionProps extends React.ComponentPropsWithoutRef<'section'> {
   actions: MaybePersonalizedAction[]
   locale: Locale
-  assessmentStatus?: SimulationComputationStatus | null
+  assessmentStatus?: AssessmentStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
   textOverrides?: { description?: React.ReactNode }
 }

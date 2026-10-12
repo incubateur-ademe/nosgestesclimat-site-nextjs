@@ -1,14 +1,8 @@
 import Trans from '@/components/translation/trans/TransClient'
-import { testOrderedCategories } from '@/constants/model/orderedCategories'
-import { captureClickCategorySelector } from '@/constants/tracking/posthogTrackers'
-import { clickCategorySelector } from '@/constants/tracking/user-account'
+import { orderedTestCategories } from '@/constants/model/categories'
 import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
-import {
-  trackMatomoEvent__deprecated,
-  trackPosthogEvent,
-} from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from "cn";
 
 type TabId = 'global' | DottedName
 
@@ -38,21 +32,17 @@ export default function CategorySelectorDesktop({
       onClick: () => {
         if (!disabled) {
           setActiveTab('global')
-          trackMatomoEvent__deprecated(clickCategorySelector('bilan'))
-          trackPosthogEvent(captureClickCategorySelector({ category: 'bilan' }))
         }
       },
       'aria-disabled': disabled,
     },
-    ...testOrderedCategories.map((category) => ({
+    ...orderedTestCategories.map((category) => ({
       id: category,
       label: categoryLabels[category] ?? category,
       isActive: activeTab === category,
       onClick: () => {
         if (!disabled) {
           setActiveTab(category)
-          trackMatomoEvent__deprecated(clickCategorySelector(category))
-          trackPosthogEvent(captureClickCategorySelector({ category }))
         }
       },
       'aria-disabled': disabled,

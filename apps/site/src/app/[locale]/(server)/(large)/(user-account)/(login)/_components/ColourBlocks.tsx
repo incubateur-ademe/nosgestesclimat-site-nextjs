@@ -1,6 +1,6 @@
 import DownArrow from '@/components/icons/DownArrow'
 import type { ReactNode } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from "cn";
 
 interface Props {
   highlights: ReactNode[]
@@ -26,7 +26,7 @@ export default function ColourBlock({ highlights, className }: Props) {
       <div className="mt-14">
         <img
           className="w-full"
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/visuel_login_cbf2f03684.svg"
+          src="/_static/cms/visuel_login_cbf2f03684.svg"
           alt=""
         />
       </div>

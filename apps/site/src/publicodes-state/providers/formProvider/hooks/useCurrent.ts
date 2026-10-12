@@ -1,6 +1,5 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useDebug } from '@/hooks/useDebug'
-import { useLocale } from '@/hooks/useLocale'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat/types/dottedNames'
 import { usePathname, useSearchParams } from 'next/navigation'
@@ -14,9 +13,9 @@ export const useCurrent = (
   const questionInQueryParams = useQuestionInQueryParams()
   const pathname = usePathname()
   const nextQuestion = remainingQuestions.at(0)
-  const lastQuestion = relevantAnsweredQuestions.at(-1)
+  const lastAnsweredQuestion = relevantAnsweredQuestions.at(-1)
   const defaultCurrentQuestion = pathname.includes('intercalaire')
-    ? lastQuestion
+    ? lastAnsweredQuestion
     : questionInQueryParams &&
         (relevantAnsweredQuestions.includes(questionInQueryParams) || isDebug)
       ? questionInQueryParams
@@ -46,17 +45,12 @@ export const useSyncQuestionWithQueryParams = (
   currentQuestion: DottedName | null
 ) => {
   const searchParams = useSearchParams()
-  const locale = useLocale()
   useEffect(() => {
     if (!currentQuestion) return
     window.history.replaceState(
       null,
       '',
-      getLinkToSimulateur({
-        question: currentQuestion,
-        locale,
-        searchParams,
-      })
+      getLinkToSimulateur({ question: currentQuestion, searchParams })
     )
   }, [currentQuestion])
 }

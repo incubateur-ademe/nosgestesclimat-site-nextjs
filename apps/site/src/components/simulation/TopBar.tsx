@@ -1,9 +1,10 @@
 'use client'
 
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
+import Link from '@/design-system/links/Link'
+import { useIsClient } from '@/hooks/useIsClient'
 import { useFormState } from '@/publicodes-state'
-import Link from 'next/link'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'cn'
 import Logo from '../misc/Logo'
 import TotalFootprintNumber from '../misc/TotalFootprintNumber'
 import Category from './topBar/Category'
@@ -22,6 +23,11 @@ export default function TopBar({
   className?: string
 }) {
   const { currentCategory } = useFormState()
+
+  // The category comes from the engine, which only exists on the client: without
+  // this the server would render the skeleton and the first client render the
+  // category, and React would regenerate the tree during hydration.
+  const isClient = useIsClient()
 
   return (
     <header
@@ -54,7 +60,7 @@ export default function TopBar({
                   size="lg"
                   className="flex-row items-baseline bg-white md:gap-1"
                 />
-              ) : currentCategory ? (
+              ) : isClient && currentCategory ? (
                 <Category category={currentCategory} />
               ) : (
                 <BlockSkeleton />

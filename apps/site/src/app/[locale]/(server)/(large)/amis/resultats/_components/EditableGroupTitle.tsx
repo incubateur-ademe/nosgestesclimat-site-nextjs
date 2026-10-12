@@ -2,19 +2,14 @@
 
 import PencilIcon from '@/components/icons/PencilIcon'
 
-import {
-  amisDashboardOpenEditName,
-  amisDashboardValidateEditName,
-} from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/buttons/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group } from '@/types/groups'
-import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
-import { captureException } from '@sentry/nextjs'
+import { captureErrorForSentryAndPosthog } from '@/utils/analytics/captureErrorForSentryAndPosthog'
+import type { AppUser } from '@nosgestesclimat/core/features/auth/types/user-session'
 import { useState, useTransition } from 'react'
 import { isGroupOwner } from '../../_helpers/isGroupOwner'
 import { updateGroupAction } from '../_actions/update-group.action'
@@ -41,7 +36,7 @@ export default function EditableGroupTitle({
           name: groupNameUpdated,
         })
       } catch (e) {
-        captureException(e)
+        captureErrorForSentryAndPosthog(e)
       }
     })
   }
@@ -63,7 +58,6 @@ export default function EditableGroupTitle({
             name="group-name-input"
             onClose={() => {
               setIsEditingTitle(false)
-              trackMatomoEvent__deprecated(amisDashboardValidateEditName)
             }}
             onSubmit={handleSubmit}
             isLoading={isPending}
@@ -85,7 +79,6 @@ export default function EditableGroupTitle({
                     aria-label={t('Modifier le nom du groupe')}
                     onClick={() => {
                       setIsEditingTitle(true)
-                      trackMatomoEvent__deprecated(amisDashboardOpenEditName)
                     }}
                     color="secondary"
                     data-testid="group-name-edit-button">

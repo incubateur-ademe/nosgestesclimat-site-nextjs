@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
+import { emptyDatabase } from '@nosgestesclimat/core/test-utils/empty-database'
 import { StatusCodes } from 'http-status-codes'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
@@ -22,11 +23,7 @@ describe('Given a NGC user', () => {
   const url = CREATE_GROUP_ROUTE
 
   afterEach(async () => {
-    await Promise.all([
-      prisma.groupAdministrator.deleteMany(),
-      prisma.groupParticipant.deleteMany(),
-    ])
-    await Promise.all([prisma.user.deleteMany(), prisma.group.deleteMany()])
+    await emptyDatabase(prisma)
   })
 
   describe('When creating his group', () => {
@@ -376,7 +373,6 @@ describe('Given a NGC user', () => {
                 updatedAt: expect.any(String),
                 polls: [],
                 foldedSteps: [],
-                actionChoices: {},
                 additionalQuestionsAnswers: [],
               },
               createdAt: expect.any(String),
@@ -530,7 +526,6 @@ describe('Given a NGC user', () => {
                 attributes: {
                   USER_ID: userId,
                   LAST_SIMULATION_DATE: date.toISOString(),
-                  ACTIONS_SELECTED_NUMBER: 0,
                   LAST_SIMULATION_BILAN_FOOTPRINT: (
                     computedResults.carbone.bilan / 1000
                   ).toLocaleString('fr-FR', {
@@ -604,12 +599,12 @@ describe('Given a NGC user', () => {
                 params: {
                   GROUP_URL: expect.stringMatching(
                     new RegExp(
-                      '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/resultats\\?groupId=[a-zA-Z0-9_]+&mtm_campaign=email-automatise&mtm_kwd=groupe-admin-voir-classement$'
+                      '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/resultats\\?groupId=[a-zA-Z0-9_]+&utm_source=NGC&utm_medium=email-automatise&utm_campaign=groupe-admin-voir-classement$'
                     )
                   ),
                   SHARE_URL: expect.stringMatching(
                     new RegExp(
-                      '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/invitation\\?groupId=[a-zA-Z0-9_]+&mtm_campaign=email-automatise&mtm_kwd=groupe-admin-url-partage$'
+                      '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/invitation\\?groupId=[a-zA-Z0-9_]+&utm_source=NGC&utm_medium=email-automatise&utm_campaign=groupe-admin-url-partage$'
                     )
                   ),
                   GROUP_NAME: payload.name,
@@ -661,12 +656,12 @@ describe('Given a NGC user', () => {
                   params: {
                     GROUP_URL: expect.stringMatching(
                       new RegExp(
-                        '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/resultats\\?groupId=[a-zA-Z0-9_]+&mtm_campaign=email-automatise&mtm_kwd=groupe-admin-voir-classement$'
+                        '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/resultats\\?groupId=[a-zA-Z0-9_]+&utm_source=NGC&utm_medium=email-automatise&utm_campaign=groupe-admin-voir-classement$'
                       )
                     ),
                     SHARE_URL: expect.stringMatching(
                       new RegExp(
-                        '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/invitation\\?groupId=[a-zA-Z0-9_]+&mtm_campaign=email-automatise&mtm_kwd=groupe-admin-url-partage$'
+                        '^https:\\/\\/nosgestesclimat\\.test\\/amis\\/invitation\\?groupId=[a-zA-Z0-9_]+&utm_source=NGC&utm_medium=email-automatise&utm_campaign=groupe-admin-url-partage$'
                       )
                     ),
 

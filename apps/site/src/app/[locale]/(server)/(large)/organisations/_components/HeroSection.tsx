@@ -1,13 +1,6 @@
-'use client'
-
 import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  organisationsAccueilClickCommencer,
-  organisationsAccueilClickDemo,
-} from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { trackMatomoEvent__deprecated } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 
 export default function HeroSection() {
@@ -27,19 +20,13 @@ export default function HeroSection() {
           <li>
             <ButtonLink
               href="/organisations/connexion"
-              data-testid="start-link"
-              trackingEvent={organisationsAccueilClickCommencer}>
+              data-testid="start-link">
               <Trans>Commencer</Trans>
             </ButtonLink>
           </li>
 
           <li>
-            <ButtonLink
-              color="text"
-              href="/organisations/demander-demo"
-              onClick={() => {
-                trackMatomoEvent__deprecated(organisationsAccueilClickDemo)
-              }}>
+            <ButtonLink color="text" href="/organisations/demander-demo">
               <Trans>Demander une démo</Trans>
             </ButtonLink>
           </li>
@@ -49,7 +36,7 @@ export default function HeroSection() {
       <div>
         <Image
           className="self-start"
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_with_paperboard_9c8d47f4b3.png"
+          src="/_static/cms/medium_people_with_paperboard_9c8d47f4b3.png"
           width="400"
           height="400"
           alt=""

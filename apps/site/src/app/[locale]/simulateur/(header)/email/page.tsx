@@ -3,15 +3,12 @@ import AuthenticateUserForm from '@/components/authentication/AuthenticateUserFo
 import Trans from '@/components/translation/trans/TransServer'
 import { EMAIL_SIMULATOR_PATH, END_PAGE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import { getUserSession } from '@/services/auth/get-user-session'
-import { getCurrentSimulation } from '@/services/simulations/get-current-simulation'
-import { notFound } from 'next/navigation'
+import { getEmailPageData } from './_actions/getEmailPageData'
 import EmailConfirmation from './_components/EmailConfirmation'
-import { getEmailPageData } from './_helpers/getEmailPageData'
 
 export default async function Email({
   params,
@@ -19,17 +16,16 @@ export default async function Email({
 }: PageProps<'/[locale]/simulateur/email'>) {
   const { locale } = await params
   const { confirm } = await searchParams
-  const { t } = await getServerTranslation({ locale })
+  const { t } = getServerTranslation({ locale })
 
   const user = await getUserSession()
-
-  const currentSimulation = await getCurrentSimulation()
-  if (!currentSimulation) {
-    notFound()
-  }
-
-  const { isSchoolMode, hasContest, organisationName } =
-    await getEmailPageData(currentSimulation)
+  const {
+    currentSimulation,
+    isSchoolMode,
+    hasContest,
+    hasPoll,
+    organisationName,
+  } = await getEmailPageData()
 
   if (confirm === 'true') {
     return <EmailConfirmation organisationName={organisationName ?? ''} />
@@ -39,9 +35,23 @@ export default async function Email({
     <>
       <Title
         data-testid="tutoriel-title"
-        className="mt-10 text-lg md:text-2xl"
+        className="mt-6 text-lg md:mt-10 md:text-2xl"
         title={
-          isSchoolMode ? (
+          hasContest ? (
+            isSchoolMode ? (
+              <Trans
+                i18nKey="tutorial.email.title.youthContest"
+                locale={locale}>
+                Ton adresse e-mail pour le tirage au sort
+              </Trans>
+            ) : (
+              <Trans
+                i18nKey="tutorial.email.title.defaultContest"
+                locale={locale}>
+                Votre adresse e-mail pour le tirage au sort
+              </Trans>
+            )
+          ) : isSchoolMode ? (
             <Trans i18nKey="tutorial.email.title.youth" locale={locale}>
               Ton adresse e-mail
             </Trans>
@@ -53,7 +63,32 @@ export default async function Email({
         }
         subtitle={
           <>
-            {isSchoolMode ? (
+            {hasContest ? (
+              <span>
+                {isSchoolMode ? (
+                  <Trans
+                    values={{ organisationName }}
+                    i18nKey="tutorial.email.contest.youth"
+                    locale={locale}>
+                    Vérifie ton e-mail pour le tirage au sort du jeu concours{' '}
+                    <strong>{'{{organisationName}}'}</strong>. Tes résultats
+                    d’empreinte carbone seront également conservés dans un
+                    espace personnel sur Nos Gestes Climat.
+                  </Trans>
+                ) : (
+                  <Trans
+                    values={{ organisationName }}
+                    i18nKey="tutorial.email.contest.default"
+                    locale={locale}>
+                    Veuillez vérifier votre adresse e-mail pour le tirage au
+                    sort du jeu concours{' '}
+                    <strong>{'{{organisationName}}'}</strong>. Vos résultats
+                    d’empreinte carbone seront également conservés dans un
+                    espace personnel sur Nos Gestes Climat.
+                  </Trans>
+                )}
+              </span>
+            ) : isSchoolMode ? (
               <Trans i18nKey="tutorial.email.subtitle.youth" locale={locale}>
                 Pour conserver tes résultats et les retrouver à l'avenir dans{' '}
                 <strong>ton espace personnel</strong>
@@ -64,28 +99,6 @@ export default async function Email({
                 <strong>votre espace personnel</strong>
               </Trans>
             )}
-            {hasContest ? (
-              <span>
-                {isSchoolMode ? (
-                  <Trans i18nKey="tutorial.email.contest.youth" locale={locale}>
-                    Ton e-mail sera utilisé pour le tirage au sort.
-                  </Trans>
-                ) : (
-                  <Trans
-                    i18nKey="tutorial.email.contest.default"
-                    locale={locale}>
-                    Votre e-mail sera utilisé pour le tirage au sort.
-                  </Trans>
-                )}{' '}
-                <InlineLink
-                  target="_blank"
-                  href="/politique-de-confidentialite">
-                  <Trans i18nKey="tutorial.email.seeMore" locale={locale}>
-                    En savoir plus
-                  </Trans>
-                </InlineLink>
-              </span>
-            ) : null}
 
             <span className="text-secondary-700 ml-2 inline-block font-bold italic">
               <Trans i18nKey="common.optional" locale={locale}>
@@ -98,6 +111,7 @@ export default async function Email({
       <UserProvider userSession={user} simulation={currentSimulation}>
         <QueryClientProviderWrapper>
           <AuthenticateUserForm
+            intent={hasPoll ? 'participate-to-poll' : 'save-simulation'}
             inputLabel={
               isSchoolMode ? (
                 <Trans i18nKey="tutorial.email.title.youth" locale={locale}>
@@ -118,6 +132,7 @@ export default async function Email({
                 color="secondary"
                 showLoadingOnClick
                 href={END_PAGE_PATH}
+                prefetch={true}
                 data-testid="skip-email-button">
                 <Trans i18nKey="common.skip" locale={locale}>
                   Passer

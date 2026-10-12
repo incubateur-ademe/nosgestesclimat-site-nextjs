@@ -3,7 +3,7 @@ import OrganisationFilAriane from '@/components/layout/FilAriane'
 import SigninSignupTabs from '@/components/signIn/SignInSignUpTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNIN_MODE } from '@/constants/authentication/modes'
-import { captureOrganisationsLoginComplete } from '@/constants/tracking/pages/organisationsConnexion'
+import { captureOrganisationsLoginComplete } from '@/constants/tracking/trackers'
 import Separator from '@/design-system/layout/Separator'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
@@ -29,7 +29,7 @@ export default async function Page({
     await redirectAfterLogin()
   }
 
-  const { t } = await getServerTranslation({ locale })
+  const { t } = getServerTranslation({ locale })
 
   return (
     <>
@@ -64,6 +64,7 @@ export default async function Page({
               mode={SIGNIN_MODE}
             />
             <AuthenticateUserForm
+              intent="create-organisation"
               onComplete={redirectAfterLogin}
               tracker={captureOrganisationsLoginComplete}
             />

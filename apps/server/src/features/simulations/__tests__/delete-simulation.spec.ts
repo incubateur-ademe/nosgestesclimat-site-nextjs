@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
+import { emptyDatabase } from '@nosgestesclimat/core/test-utils/empty-database'
 import { StatusCodes } from 'http-status-codes'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
@@ -23,17 +24,8 @@ describe('Given a NGC user', () => {
   const simulationIds: string[] = []
 
   afterEach(async () => {
-    await Promise.all([
-      prisma.groupParticipant.deleteMany(),
-      prisma.groupAdministrator.deleteMany(),
-      prisma.group.deleteMany(),
-      prisma.simulation.deleteMany({
-        where: { id: { in: simulationIds.splice(0) } },
-      }),
-      prisma.user.deleteMany(),
-      prisma.verificationCode.deleteMany(),
-      prisma.verifiedUser.deleteMany(),
-    ])
+    simulationIds.splice(0)
+    await emptyDatabase(prisma)
   })
 
   describe('When deleting a simulation', () => {
@@ -66,7 +58,6 @@ describe('Given a NGC user', () => {
     describe('And simulation was created by another user', () => {
       test(`Then it returns a ${StatusCodes.NOT_FOUND} error`, async () => {
         const simulation = await createSimulation({
-          agent,
           userId: faker.string.uuid(),
         })
         simulationIds.push(simulation.id)
@@ -84,7 +75,7 @@ describe('Given a NGC user', () => {
 
       beforeEach(async () => {
         userId = faker.string.uuid()
-        const simulation = await createSimulation({ agent, userId })
+        const simulation = await createSimulation({ userId })
         simulationId = simulation.id
         simulationIds.push(simulation.id)
       })
@@ -163,7 +154,7 @@ describe('Given a NGC user', () => {
 
       test(`Then it returns a ${StatusCodes.INTERNAL_SERVER_ERROR} error`, async () => {
         const userId = faker.string.uuid()
-        const simulation = await createSimulation({ agent, userId })
+        const simulation = await createSimulation({ userId })
         simulationIds.push(simulation.id)
 
         vi.spyOn(prismaTransactionAdapter, 'transaction').mockRejectedValueOnce(
@@ -178,7 +169,7 @@ describe('Given a NGC user', () => {
 
       test('Then it logs the exception', async () => {
         const userId = faker.string.uuid()
-        const simulation = await createSimulation({ agent, userId })
+        const simulation = await createSimulation({ userId })
         simulationIds.push(simulation.id)
 
         vi.spyOn(prismaTransactionAdapter, 'transaction').mockRejectedValueOnce(

@@ -2,10 +2,10 @@ import Carousel from '@/design-system/carousel/Carousel'
 import type { Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
+import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
-import type { SimulationComputationStatus } from '@nosgestesclimat/core/features/simulation-computation/types/computation'
+import { twMerge } from 'cn'
 import { useId } from 'react'
-import { twMerge } from 'tailwind-merge'
 import CarIcon from '../icons/CarIcon'
 import FoodIcon from '../icons/FoodIcon'
 import HousingIcon from '../icons/HousingIcon'
@@ -59,7 +59,7 @@ export default function ThemeSection({
   theme: Pick<Theme, 'key' | 'title'>
   actions: MaybePersonalizedAction[]
   locale: Locale
-  assessmentStatus?: SimulationComputationStatus | null
+  assessmentStatus?: AssessmentStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
   trackingSource?: ActionEventSource
   /** Defaults to the theme title */

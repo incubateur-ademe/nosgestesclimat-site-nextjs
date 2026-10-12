@@ -1,5 +1,4 @@
 entries:
-  404.action: Revenir en lieu sûr
   'Accessibilité : partiellement conforme': 'Accessibilité : partiellement conforme'
   Choisir une autre région: Choisir une autre région
   Choisissez une région parmi celles disponibles !: Choisissez une région parmi celles disponibles !
@@ -72,7 +71,6 @@ entries:
   publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
   Répondez aux questions en votre nom, pas pour votre foyer.: Répondez aux questions en votre nom, pas pour votre foyer.
   'Revenir à ma région par défaut ': 'Revenir à ma région par défaut '
-  Sélectionner: Sélectionner
   Supprimer: Supprimer
   Vous: Vous
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
@@ -148,12 +146,9 @@ entries:
   Télécharger le kit, ouvrir dans un nouvel onglet: Télécharger le kit, ouvrir dans un nouvel onglet
   Valorisez vos données carbone: Valorisez vos données carbone
   Veuillez entrer votre code postal: Veuillez entrer votre code postal
-  Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.
-  (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
-  Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Partage de vos résultats à {{ parent }} ?: Partage de vos résultats à {{ parent }} ?
   Découvrir le calculateur: Découvrir le calculateur
   Empreinte: Empreinte
@@ -208,11 +203,9 @@ entries:
   Reprendre mon test: Reprendre mon test
   Votre empreinte: Votre empreinte
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.'
-  Simulation terminée: Simulation terminée
   Diffusion: Diffusion
   International: International
   Ce champ est requis.: Ce champ est requis.
-  Simulations terminées: Simulations terminées
   Votre nom: Votre nom
   Association: Association
   Autre: Autre
@@ -228,7 +221,6 @@ entries:
   Ce champ est requis: Ce champ est requis
   Cette opération est définitive.: Cette opération est définitive.
   'Créée le ': 'Créée le '
-  Données consultables à partir de 3 participants, dans un souci d'anonymat.: Données consultables à partir de 3 participants, dans un souci d'anonymat.
   Nombre de collaborateurs: Nombre de collaborateurs
   Paramètres de: Paramètres de
   'Paramètres de ': 'Paramètres de '
@@ -279,9 +271,6 @@ entries:
   sur: sur
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
-  Données qualitatives: Données qualitatives
-  Modes "Groupes": Modes "Groupes"
-  Visites et simulations: Visites et simulations
   Vos informations ont bien été mises à jour.: Vos informations ont bien été mises à jour.
   L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.: L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.
   Les 3 réflexes à adopter pour une garde-robe économe en eau: Les 3 réflexes à adopter pour une garde-robe économe en eau
@@ -470,7 +459,6 @@ entries:
   Partager l'article: Partager l'article
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.
   '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}': '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}'
-  Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
   Diffuser Nos Gestes Climat: Diffuser Nos Gestes Climat
   Qui sommes-nous: Qui sommes-nous
   Relais et partenaires: Relais et partenaires
@@ -692,16 +680,8 @@ entries:
   documentation.search.results_many: '{{count}} résultat(s) trouvé(s)'
   documentation.search.results_other: '{{count}} résultat(s) trouvé(s)'
   documentation.search.results.label: Résultats de recherche
-  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.
-  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
   Chargement du tableau de bord...: Chargement du tableau de bord...
-  Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
-  Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
   Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Impossible de charger le tableau de bord. Veuillez réessayer plus tard.
-  Statistiques d'usage du mode "Challenge tes amis": Statistiques d'usage du mode "Challenge tes amis"
-  Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
-  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
-  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
   common.burgerMenu.title: Fermer le menu de navigation
   common.buttons.close: Fermer
   common.interactiveIllustration.item.car: Voiture
@@ -738,6 +718,10 @@ entries:
   common.category.logement: Logement
   common.category.services: Services
   common.category.transport: Transport
+  pollResults.participantsCount_one: Simulation terminée
+  pollResults.participantsCount_many: Simulations terminées
+  pollResults.participantsCount_other: Simulations terminées
+  pollResults.anonymityNotice: Données consultables à partir de {{minParticipants}} participants, dans un souci d'anonymat.
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.chart: 'Graphique en donut montrant la répartition des émissions par catégorie. '
   pollResults.distribution.title: Répartition des empreintes carbone
@@ -774,6 +758,7 @@ entries:
   pollResults.waterFootprint.averageLabel: empreinte eau moyenne des participants
   pollResults.waterFootprint.body: C'est l'eau nécessaire pour produire et distribuer vos <2>biens et services</2>. En règle générale, les empreintes eau varient entre <4>3 000</4> et <7>9 000</7> litres par jour. L'eau dite "domestique" (douche, toilettes, cuisine...) n'est pas comptée.
   pollResults.waterFootprint.learnMore: En savoir plus
+  pollResults.funFacts.refreshNote: Les chiffres se mettent à jour toutes les {{duration}} environ
   common.category.alimentationShort: Alim.
   pollResults.footprintBarChart.targetLabelMobile: 'Objectif 2050 :'
   Empreinte carbone moyenne: Empreinte carbone moyenne
@@ -807,7 +792,6 @@ entries:
   actions.components.actionCard.highlighted.potentialImpact: Impact potentiel
   actions.components.actionCard.highlighted.footprintShare: soit {{percentage}} % de votre empreinte totale
   actions.components.actionCard.link: Voir l'action<1> "{{actionTitle}}"</1>
-  actions.components.actionCard.ctaVariant.link: Voir l'action<1> "{{actionTitle}}"</1>
   actions.components.actionCard.impactTag: Jusqu'à {{formattedValue}} {{unit}} CO<5>2</5>e / an
   actions.components.actionCard.noImpactTag: Impact non quantifiable
   actions.components.actionCard.lowImpactTag: Moins de {{formattedValue}} {{unit}} CO<5>2</5>e / an
@@ -824,7 +808,6 @@ entries:
   Sélectionné: Sélectionné
   Sélectionner cette option: Sélectionner cette option
   simulator.car.addTravel: Ajouter un trajet
-  simulator.inputs.choice.questionButton.title: Plus d'informations - {{label}}
   simulator.mosaicNumberInput.add: 'Ajouter un élément : {{title}}'
   simulator.mosaicNumberInput.remove: 'Retirer un élément : {{title}}'
   Cliquez pour afficher la réponse: Cliquez pour afficher la réponse
@@ -1102,7 +1085,7 @@ entries:
   simulation.eau.documentation.description: Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
   simulation.eau.documentation.link: Comprendre le calcul
   simulation.eau.documentation.title: Comment est calculée votre empreinte ?
-  simulation.eau.title: L’empreinte eau qui sert à produire ce que vous consommez
+  simulation.eau.title: L'empreinte eau qui sert à produire ce que vous consommez
   simulation.eau.whatIsWaterFootprint.description: "L'empreinte eau, c'est <2>l'ensemble de l'eau consommée</2> pour <5>produire</5>et <7>distribuer</7> les biens et services de votre quotidien. Par exemple il faut de l'eau pour :"
   simulation.eau.whatIsWaterFootprint.list.animals: l'alimentation des <1>animaux</1> que vous consommez
   simulation.eau.whatIsWaterFootprint.list.cotton: la culture du <1>coton</1> que vous portez
@@ -1149,6 +1132,8 @@ entries:
   cookies.management.required.detail.description2: Sauvegarde de la session anonyme (pour retrouver les simulations précédentes)
   cookies.management.required.detail.description3: Sauvegarde des données de simulation en local
   cookies.management.required.detail.description4: Sauvegarde des préférences de cookie (cette bannière)
+  cookies.management.required.detail.description5: Authentification sur l'espace personnel
+  cookies.management.required.detail.description6: Renouvellement de la session d'authentification
   cookies.management.required.detail.title: Voir le détail des cookies
   organisations.askDemo.iframe.title: Formulaire - prendre rendez-vous pour une démo de nos fonctionnalités pour les organisations
   results.tabs.groups: Test collectif
@@ -1159,7 +1144,6 @@ entries:
   (Cela peut durer quelques dizaines de secondes pour les tests avec un grand nombre de participants ! Merci pour votre patience.): (Cela peut durer quelques dizaines de secondes pour les tests avec un grand nombre de participants ! Merci pour votre patience.)
   '{mode.descriptionDefault}': '{mode.descriptionDefault}'
   '{mode.titleDefault}': '{mode.titleDefault}'
-  Choisissez le mode du test: Choisissez le mode du test
   collectiveTest.form.name.label: Choisissez un nom pour votre test collectif
   collectiveTest.form.name.placeholder: 'ex : Défi climat équipe RH, Classe 5ème A…'
   collectiveTest.form.name.required: Veuillez renseigner un nom
@@ -1190,7 +1174,6 @@ entries:
   organisations.inscription.cta: Créer mon compte
   organisations.inscription.subtitle: Pour diffuser un test collectif à vos élèves, vos étudiants, vos collègues ou encore vos clients, il vous suffit de créer votre espace personnel.
   organisations.inscription.title: Créez votre compte pour diffuser un lien collectif
-  Oups ! Une erreur s'est produite au moment de récupérer les informations du test collectif. Veuillez réessayer ultérieurement.: Oups ! Une erreur s'est produite au moment de récupérer les informations du test collectif. Veuillez réessayer ultérieurement.
   Oups, nous n'avons pas trouvé les résultats de ce test collectif: Oups, nous n'avons pas trouvé les résultats de ce test collectif
   Paramètres de mon test collectif - Nos Gestes Climat: Paramètres de mon test collectif - Nos Gestes Climat
   Précisez le nombre de participants attendus: Précisez le nombre de participants attendus
@@ -1202,7 +1185,6 @@ entries:
   Test collectif créé par: Test collectif créé par
   Test collectif personnalisé: Test collectif personnalisé
   Une erreur est survenue lors de la suppression du test.: Une erreur est survenue lors de la suppression du test.
-  Une erreur s'est produite lors de la création de votre test collectif. Veuillez réessayer.: Une erreur s'est produite lors de la création de votre test collectif. Veuillez réessayer.
   Voir tous les tests collectifs: Voir tous les tests collectifs
   Votre e-mail, rejoindre un test collectif - Nos Gestes Climat: Votre e-mail, rejoindre un test collectif - Nos Gestes Climat
   vous souhaitez lancer un test collectif Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: vous souhaitez lancer un test collectif Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
@@ -1278,9 +1260,8 @@ entries:
   common.authentication.verifyEmail: Vérifier mon adresse e-mail
   common.optional: facultatif
   common.skip: Passer
-  tutorial.email.contest.default: Votre e-mail sera utilisé pour le tirage au sort.
-  tutorial.email.contest.youth: Ton e-mail sera utilisé pour le tirage au sort.
-  tutorial.email.seeMore: En savoir plus
+  tutorial.email.contest.default: Veuillez vérifier votre adresse e-mail pour le tirage au sort du jeu concours <2>{{organisationName}}</2>. Vos résultats d’empreinte carbone seront également conservés dans un espace personnel sur Nos Gestes Climat.
+  tutorial.email.contest.youth: Vérifie ton e-mail pour le tirage au sort du jeu concours <2>{{organisationName}}</2>. Tes résultats d’empreinte carbone seront également conservés dans un espace personnel sur Nos Gestes Climat.
   tutorial.email.subtitle.default: Pour conserver vos résultats et les retrouver à l'avenir dans <2>votre espace personnel</2>
   tutorial.email.subtitle.youth: Pour conserver tes résultats et les retrouver à l'avenir dans <2>ton espace personnel</2>
   tutorial.email.title.default: Votre adresse e-mail
@@ -1322,16 +1303,14 @@ entries:
   event.detail.dates: Du {{startDate}} au {{endDate}}
   event.detail.title: Semaine Européenne du<1></1>Développement<3></3>Durable
   event.dynamicCounter.primaryCta: Je mobilise mon organisation
-  event.dynamicCounter.promise: Résultats en 10 minutes — 100% gratuit
+  event.dynamicCounter.promise: Résultats en 10 minutes — sans inscription
   event.dynamicCounter.secondaryCta: Je participe individuellement
   event.dynamicCounter.target.text: calculs d'empreinte carbone
-  event.dynamicCounter.target.title: Objectif
   event.dynamicCounter.text: EN DIRECT
   event.hero.title.description: "A l'occasion de la Semaine européenne du développement durable, relevez le défi avec votre organisation : <2>mesurez votre empreinte carbone et passez à l'action pour la réduire collectivement</2>"
   event.hero.title.part1: L'impact est plus fort
   event.hero.title.part2: quand il est collectif
   event.podium.subtitle: Le podium de la mobilisation
-  event.podium.yourOrg: Organisation 1
   event.statistics.first: calculs d'empreinte carbone déjà réalisés
   event.statistics.third.link: Rejoignez-les !
   event.statistics.third.text: Organisations déjà mobilisées
@@ -1375,13 +1354,8 @@ entries:
   event.dynamicCounter.secondaryCta.ariaLabel: Je participe individuellement, ouvrir dans une nouvelle fenêtre
   event.ctas.card1.buttonAriaLabel: Je participe, ouvrir dans une nouvelle fenêtre
   event.ctas.card2.buttonAriaLabel: Je crée un test collectif, ouvrir dans une nouvelle fenêtre
-  event.podium.categories.all: Toutes
-  event.podium.categories.companies: Entreprises
-  event.podium.categories.associations: Associations
-  event.podium.categories.education: Éducation
-  event.podium.categories.publicServices: Services publics
   event.testimonies.4.text: J'ai été surprise de voir que l’essentiel de mon empreinte ne vient pas de mes actions directes comme mes déplacements, mais plutôt de choses plus invisibles au quotidien comme les services publics ou la production des biens que j’achète. Ça m’a fait réaliser que l’impact carbone est souvent indirect.
-  event.countdown.date: Lancement le {{date}}
+  event.countdown.date: Rejoignez l'opération jusqu'au {{date}}
   event.countdown.description: Le compteur et le classement en direct<1></1>seront disponibles au lancement de l'évènement.
   event.countdown.label: Début dans
   event.statistics.title: Les données en direct apparaîtront au lancement
@@ -1402,7 +1376,7 @@ entries:
   event.podium.empty.type.public-services: collectivité
   results.footprintBlock.actionsBlock.link: Découvrir mes actions
   results.footprintBlock.actionsBlock.title: 'Comment réduire votre empreinte :'
-  common.co2eAn.title: CO₂e / an
+  common.co2eAn.title: CO₂e / an
   iframe.safari.openInNewTab: Ouvrir le calculateur dans un nouvel onglet
   iframe.safari.errorDescription: Votre version de Safari ne permet pas à notre site de fonctionner correctement dans cette page intégrée. Pour utiliser le calculateur, mettez à jour votre navigateur Safari vers la dernière version ou ouvrez le calculateur dans une nouvelle fenêtre.
   iframe.safari.errorTitle: Version de Safari incompatible
@@ -1461,5 +1435,48 @@ entries:
   La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
   La valeur pour ce champ est comprise entre: La valeur pour ce champ est comprise entre
   actions.components.highestImpactActionsSection.publicDescription: Le top 3 des actions qui permettent de limiter ou réduire ses émissions de CO<1>2</1>
-  actions.detailPage.sections.otherThemeActions.description: Sélectionnées selon vos réponses au simulateur
   actions.detailPage.sections.otherThemeActions.title: Découvrez d’autres actions pour réduire votre empreinte
+  event.dynamicCounter.target.title.default: Objectif
+  event.dynamicCounter.target.title.over: Objectif dépassé
+  event.dynamicCounter.target.title.topped: Objectif atteint
+  tutorial.email.title.defaultContest: Votre adresse e-mail pour le tirage au sort
+  tutorial.email.title.youthContest: Ton adresse e-mail pour le tirage au sort
+  poll.creation.mode.error: Une erreur s'est produite lors de la création de votre test collectif. Veuillez réessayer.
+  poll.creation.mode.select: Sélectionner
+  poll.creation.mode.tempDisabled: Fonctionnalité désactivée temporairement, en cours d'amélioration
+  poll.creation.mode.title: Choisissez le mode du test
+  appCrash.metadata.description: Le site connaît une forte affluence, nos équipes travaillent à rétablir l’accès.
+  appCrash.metadata.title: Erreur - Nos Gestes Climat
+  common.errors.reload: Recharger la page
+  common.errors.description: L'application rencontre quelques difficultés en ce moment. Nos équipes sont prévenues et mettent tout en œuvre pour rétablir la situation au plus vite.
+  common.errors.retryLater: Merci de réessayer dans quelques minutes.
+  common.errors.title: Oups, une erreur est survenue
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, actions consultées. Sont inclues également des statistiques sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, actions consultées. Sont inclues également des statistiques sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants.
+  Cette section est générée via Posthog.: Cette section est générée via Posthog.
+  Face à une affluence très élevée, notre site connaît quelques ralentissements.: Face à une affluence très élevée, notre site connaît quelques ralentissements.
+  footer.ademe.ariaLabel: ADEME (ouvrir dans une nouvelle fenêtre)
+  Nous mettons tout en œuvre pour rétablir l'accès rapidement, n'hésitez pas à réessayer dans quelques minutes. Merci de votre patience et de votre mobilisation pour le climat !: Nous mettons tout en œuvre pour rétablir l'accès rapidement, n'hésitez pas à réessayer dans quelques minutes. Merci de votre patience et de votre mobilisation pour le climat !
+  Pour patienter, testez vos connaissances avec le Quiz Carbone de l'ADEME: Pour patienter, testez vos connaissances avec le Quiz Carbone de l'ADEME
+  shared.english: anglais
+  shared.french: français
+  Statistiques publiques du site Nos Gestes Climat.: Statistiques publiques du site Nos Gestes Climat.
+  switchLang.linkTitle: '{{languageAbbreviation}} - Définir le {{completeLanguageString}} comme langue du site'
+  save-results-form.verification.button-label: Enregistrer mes résultats
+  group.ranking.expand.button.label.plural: Afficher les {{croppedParticipantsLength}} autres participants
+  group.ranking.expand.button.label.singular: Afficher 1 autre participant
+  results.footprintBlock.carbone.comparison.less: '{{delta}} {{unit}} de moins que la moyenne*'
+  results.footprintBlock.carbone.comparison.more: '{{delta}} {{unit}} de plus que la moyenne*'
+  results.footprintBlock.carbone.info.definition: Le CO₂e (équivalent CO₂) regroupe tous les gaz à effet de serre que vous émettez, notamment via vos déplacements, votre alimentation, votre logement et votre consommation.
+  results.footprintBlock.carbone.info.impact: 'Ces gaz retiennent la chaleur dans l’atmosphère : plus ils s’accumulent, plus le climat se dérègle, avec des canicules, sécheresses et inondations plus fréquentes.'
+  results.footprintBlock.carbone.info.label: Qu’est-ce que l’empreinte carbone ?
+  results.footprintBlock.carbone.legend: '* Moyenne de nos utilisateurs (plus de 600 000 simulations par an).'
+  results.footprintBlock.carbone.message.above: <0>Il est toujours temps de réduire votre impact !</0> Explorez les actions que vous pourriez mettre en place à votre échelle pour faire baisser vos émissions.
+  results.footprintBlock.carbone.title: Votre empreinte carbone
+  results.footprintBlock.carbone.unitSuffix: de CO₂e / an
+  results.footprintBlock.carbone.message.below: <0>Bravo, vous montrez la voie !</0> Votre empreinte tire notre moyenne vers le bas. Continuez sur votre lancée, et embarquez vos proches en leur montrant l’exemple !
+  results.footprintBlock.carbone.message.close: '<0>Votre empreinte ressemble à celle de millions de Français.</0> Ensemble, nous pouvons faire baisser notre moyenne : trouvez votre première action, et embarquez vos proches.'
+  results.footprintBlock.carbone.comparison.equal: Égal à la moyenne*
+  results.footprintBlock.carbone.chart.average: Moyenne*
+  results.footprintBlock.carbone.chart.label: 'Votre empreinte : {{footprint}}. Moyenne de nos utilisateurs : {{average}}. Objectif 2050 : {{objective}}.'
+  results.footprintBlock.carbone.chart.objective: Objectif 2050
+  results.footprintBlock.carbone.chart.you: Vous

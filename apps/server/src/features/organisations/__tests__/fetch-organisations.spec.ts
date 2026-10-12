@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
+import { emptyDatabase } from '@nosgestesclimat/core/test-utils/empty-database'
 import { StatusCodes } from 'http-status-codes'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
@@ -21,13 +22,7 @@ describe('Given a NGC user', () => {
   const url = FETCH_ORGANISATIONS_ROUTE
 
   afterEach(async () => {
-    await prisma.organisationAdministrator.deleteMany()
-    await Promise.all([
-      prisma.organisation.deleteMany(),
-      prisma.user.deleteMany(),
-      prisma.verifiedUser.deleteMany(),
-      prisma.verificationCode.deleteMany(),
-    ])
+    await emptyDatabase(prisma)
   })
 
   describe('And no authentication', () => {
@@ -67,15 +62,6 @@ describe('Given a NGC user', () => {
             .expect(StatusCodes.OK)
 
           expect(response.body).toEqual([])
-          expect(response.headers).toEqual(
-            expect.objectContaining({
-              'x-page': '1',
-              'x-page-size': '20',
-              'x-page-items': '0',
-              'x-total-pages': '0',
-              'x-total-items': '0',
-            })
-          )
         })
       })
 
@@ -94,15 +80,6 @@ describe('Given a NGC user', () => {
             .expect(StatusCodes.OK)
 
           expect(response.body).toEqual([organisation])
-          expect(response.headers).toEqual(
-            expect.objectContaining({
-              'x-page': '1',
-              'x-page-size': '20',
-              'x-page-items': '1',
-              'x-total-pages': '1',
-              'x-total-items': '1',
-            })
-          )
         })
       })
 

@@ -27,12 +27,40 @@ export DOMAIN UPSTREAM ENVIRONMENT REPO TEMPLATE_REF
 
 mkdir -p "$STATE_DIR"
 
+# ─── Pré-chauffage du cache page d'erreur ────────────────────────
+# L'entrée de /app-crash doit exister AVANT une panne : la sous-requête
+# d'`error_page` repart sinon vers l'upstream, qui est injoignable.
+#
+# Le second appel lit ce que le premier vient d'écrire. Vérifier que l'amont
+# répond ne suffirait pas : c'est l'entrée de cache qui fait tenir la page.
+# Non fatal : nginx n'existe pas encore au first boot (pas de certificat).
+crash_cache_status() {
+    curl -sS -o /dev/null -D - --max-time 10 \
+        --resolve "${DOMAIN}:443:127.0.0.1" \
+        "https://${DOMAIN}/app-crash" 2>/dev/null |
+        tr -d '\r' | awk 'tolower($1) == "x-cache-status:" { print $2 }' || true
+}
+
+warm_app_crash_cache() {
+    systemctl is-active --quiet nginx || return 0
+
+    local first second
+    first=$(crash_cache_status)
+    second=$(crash_cache_status)
+
+    if [ "$second" != "HIT" ]; then
+        echo "WARN: app-crash non mis en cache (1er=${first:-?} 2e=${second:-?}) — injoignable en panne"
+    fi
+}
+
+warm_app_crash_cache
+
 # ─── Get latest commit SHA ───────────────────────────────────────
 SHA=$(curl -fsSL --max-time 30 --retry 3 \
     -H "Accept: application/vnd.github+json" \
     -H "User-Agent: nginx-config-pull" \
-    "${GITHUB_API}/repos/${REPO}/git/refs/heads/${TEMPLATE_REF}" \
-    | jq -r '.object.sha')
+    "${GITHUB_API}/repos/${REPO}/git/refs/heads/${TEMPLATE_REF}" |
+    jq -r '.object.sha')
 
 if [ -z "$SHA" ] || [ "$SHA" = "null" ]; then
     echo "ERROR: could not fetch latest SHA from GitHub"
@@ -56,7 +84,10 @@ if [ "$ENVIRONMENT" = "prod" ]; then
         -H "User-Agent: nginx-config-pull" \
         "${GITHUB_API}/repos/${REPO}/commits/${SHA}/check-runs?per_page=100")
 
-    [ -z "$RESP" ] && { echo "ERROR: could not fetch check-runs for ${SHA:0:7}"; exit 1; }
+    [ -z "$RESP" ] && {
+        echo "ERROR: could not fetch check-runs for ${SHA:0:7}"
+        exit 1
+    }
 
     # Commit fraîchement poussé/mergé : GitHub n'a pas encore créé les
     # check-runs des workflows. Sans ce garde-fou, un tableau vide serait
@@ -75,6 +106,43 @@ if [ "$ENVIRONMENT" = "prod" ]; then
         exit 0
     fi
 fi
+
+# ─── OpenTelemetry Collector config ─────────────────────────────
+# Indépendant de nginx : une défaillance du collecteur (téléchargement,
+# validation ou restart) ne doit jamais bloquer le déploiement nginx.
+# `update_otelcol || true` garantit que ce bloc n'abort jamais le script.
+update_otelcol() {
+    command -v otelcol-contrib >/dev/null 2>&1 || return 0
+
+    local conf="/etc/otelcol-contrib/config.yaml"
+    local tmp
+    tmp=$(mktemp)
+
+    if ! curl -fsSL --max-time 30 --retry 3 \
+        -H "User-Agent: nginx-config-pull" \
+        "${GITHUB_RAW}/${REPO}/refs/heads/${TEMPLATE_REF}/infra/nginx/otelcol-config.yaml" \
+        -o "$tmp"; then
+        echo "ERROR: failed to download otelcol-config.yaml"
+        rm -f "$tmp"
+        return 0
+    fi
+
+    if [ -s "$tmp" ] && ! cmp -s "$tmp" "$conf"; then
+        if otelcol-contrib validate --config "$tmp" >/dev/null 2>&1; then
+            cp "$tmp" "$conf"
+            if systemctl restart otelcol-contrib; then
+                echo "OK: otelcol config deployed (commit ${SHA:0:7})"
+            else
+                echo "ERROR: otelcol restart failed — retrying next pull"
+            fi
+        else
+            echo "ERROR: otelcol config invalid — keeping previous config"
+        fi
+    fi
+    rm -f "$tmp"
+    return 0
+}
+update_otelcol || true
 
 # ─── Download template ──────────────────────────────────────────
 TMP_TEMPLATE=$(mktemp)
@@ -96,11 +164,11 @@ if [ ! -s "$TMP_TEMPLATE" ] || ! head -1 "$TMP_TEMPLATE" | grep -qv '^<!DOCTYPE'
 fi
 
 # ─── Render ─────────────────────────────────────────────────────
-envsubst '${DOMAIN} ${UPSTREAM}' < "$TMP_TEMPLATE" > "$TMP_RENDERED"
+envsubst '${DOMAIN} ${UPSTREAM}' <"$TMP_TEMPLATE" >"$TMP_RENDERED"
 
 # ─── Skip if rendered config is identical ───────────────────────
 if [ -f "$NGINX_CONF" ] && cmp -s "$NGINX_CONF" "$TMP_RENDERED"; then
-    echo "$SHA" > "$LAST_SHA_FILE"
+    echo "$SHA" >"$LAST_SHA_FILE"
     exit 0
 fi
 
@@ -115,7 +183,7 @@ cp "$TMP_RENDERED" "$NGINX_CONF"
 # and nginx can't start without them). So we gate on nginx being active.
 if ! systemctl is-active --quiet nginx; then
     echo "OK: config installed (nginx not running yet — commit ${SHA:0:7})"
-    echo "$SHA" > "$LAST_SHA_FILE"
+    echo "$SHA" >"$LAST_SHA_FILE"
     exit 0
 fi
 
@@ -143,4 +211,4 @@ if ! curl -fsS --max-time 10 \
 fi
 
 echo "OK: config deployed and nginx reloaded (commit ${SHA:0:7})"
-echo "$SHA" > "$LAST_SHA_FILE"
+echo "$SHA" >"$LAST_SHA_FILE"

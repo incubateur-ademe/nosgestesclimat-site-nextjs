@@ -8,13 +8,13 @@ import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { AppUser } from '@/services/auth/get-user-session'
 import type { Group, Participant } from '@/types/groups'
+import { captureErrorForSentryAndPosthog } from '@/utils/analytics/captureErrorForSentryAndPosthog'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import { captureException } from '@sentry/nextjs'
+import type { AppUser } from '@nosgestesclimat/core/features/auth/types/user-session'
+import { twMerge } from 'cn'
 import isMobile from 'is-mobile'
 import { useState, useTransition } from 'react'
-import { twMerge } from 'tailwind-merge'
 import { getParticipantName } from '../../../../_helpers/getParticipantName'
 import { isGroupOwner } from '../../../../_helpers/isGroupOwner'
 import { removeParticipantAction } from '../../../_actions/remove-participant.action'
@@ -101,7 +101,7 @@ export default function RankingMember({
 
         setIsConfirmationModalOpen(false)
       } catch (error) {
-        captureException(error)
+        captureErrorForSentryAndPosthog(error)
       }
     })
   }

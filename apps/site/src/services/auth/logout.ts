@@ -1,13 +1,23 @@
 'use server'
 
 import { deleteSessionCookies } from '@/helpers/server/cookie/auth.cookie'
+import i18nConfig from '@/i18nConfig'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { getCookieOptions } from '../../helpers/server/cookie/helpers'
 import { getUserSession } from './get-user-session'
 
+/**
+ * Logs the current user out (server-side): revokes every backend session,
+ * deletes the session cookies and purges the server-side route cache.
+ *
+ * It deliberately does **not** call {@link redirect}: the client caller owns the
+ * navigation and must do a full-document navigation (e.g. `window.location`)
+ * after this resolves. A server-action `redirect()` is turned into a soft RSC
+ * navigation that replays the per-session prefetched App Shell (header still
+ * showing the logged-in state) from the client Router Cache without re-fetching
+ * from the server.
+ */
 export async function logout(): Promise<void> {
   const cookieStore = await cookies()
   const session = await getUserSession()
@@ -18,18 +28,10 @@ export async function logout(): Promise<void> {
     cookieStore.delete({ name: cookie.name, ...cookie.options })
   }
 
-  // Legacy Express-issued auth cookie. Only cleared on an explicit logout —
-  // middlewareMigrateLegacySessions otherwise uses it to transparently
-  // re-issue a session, which is desirable for the token-rotation-failure
-  // paths in auth.middleware.ts but must NOT happen after the user logs out.
-  if (process.env.SERVER_AUTH_COOKIE_NAME) {
-    cookieStore.delete({
-      name: process.env.SERVER_AUTH_COOKIE_NAME,
-      ...getCookieOptions(),
-      maxAge: 0,
-    })
+  // Revalidate the destination route files (the i18n middleware rewrites the
+  // locale-less URL, so the route tags are keyed on /fr, /en, ...). Invalidating
+  // each locale's layout also invalidates all nested layouts and pages beneath.
+  for (const locale of i18nConfig.locales) {
+    revalidatePath(`/${locale}`, 'layout')
   }
-
-  revalidatePath('/', 'layout')
-  redirect('/')
 }
