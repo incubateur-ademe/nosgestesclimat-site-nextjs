@@ -4,6 +4,7 @@ import type {
   LogMeta,
 } from '@nosgestesclimat/core/features/logger/index'
 import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
+import { ErrorWithCode } from '@nosgestesclimat/core/lib/errors'
 import { captureException } from '@sentry/nextjs'
 import posthog, { type LogAttributes } from 'posthog-js'
 
@@ -12,6 +13,24 @@ import { publicEnv } from '../env/public'
 import { toLogAttributes } from '../observability/otlp-attributes.ts'
 import { isServerSide } from '../utils/nextjs/isServerSide'
 import { captureProperties, prefixKeys, shapeLine, shouldCapture } from './line'
+
+/**
+ * The SSR pass runs a client component in the server process, where this logger
+ * has no sink: the layer mistake is thrown rather than dropped.
+ */
+export class BrowserLoggerOnServerError extends ErrorWithCode<'browser_logger_on_server'> {
+  /** The line the caller tried to write. A field, not a message: Error Tracking
+   * groups on the message, and one issue per attempted line is not an issue. */
+  public readonly logMessage: string
+
+  constructor(logMessage: string) {
+    super(
+      'browser_logger_on_server',
+      'Browser logger called during server rendering: use the server logger'
+    )
+    this.logMessage = logMessage
+  }
+}
 
 /**
  * Where each level writes on the console. `fatal` borrows `error`: the browser
@@ -87,13 +106,8 @@ export function createBrowserLogger({
       meta?: LogMeta,
       error?: Error
     ) => {
-      // A client component's body also runs during the SSR pass, where this
-      // logger has no sink: thrown rather than dropped, so the layer mistake
-      // cannot pass unnoticed.
       if (isServerSide()) {
-        throw new Error(
-          `browser logger called during server rendering: "${message}". Use the server logger.`
-        )
+        throw new BrowserLoggerOnServerError(message)
       }
 
       // The level filters both sinks, as it filters stdout and the export on

@@ -28,7 +28,10 @@ vi.mock('@sentry/nextjs', () => ({
   captureException: sentryCaptureException,
 }))
 
-import clientLogger, { createBrowserLogger } from '../logger.browser'
+import clientLogger, {
+  BrowserLoggerOnServerError,
+  createBrowserLogger,
+} from '../logger.browser'
 
 /** Runs a body in its own span, now: the shape the decorator wraps. */
 const runInSpan = <Result>(
@@ -183,16 +186,31 @@ describe('createBrowserLogger', () => {
   it('throws during the SSR pass of a client component', () => {
     vi.stubGlobal('window', undefined)
 
-    const failure = new Error('engine blew up')
+    let thrown: unknown
+    try {
+      clientLogger.error(new Error('engine blew up'))
+    } catch (error) {
+      thrown = error
+    }
 
-    // Thrown, not dropped: on the server this logger has no sink, and a line
-    // that disappears silently is a layer mistake nobody fixes.
-    expect(() => clientLogger.error(failure)).toThrow(
-      /browser logger called during server rendering: "engine blew up"/
-    )
+    // Thrown, not dropped: on the server this logger has no sink. The message
+    // stays a stable sentence, and the attempted line rides along as a field.
+    expect(thrown).toBeInstanceOf(BrowserLoggerOnServerError)
+    expect(thrown).toMatchObject({ logMessage: 'engine blew up' })
     expect(console.error).not.toHaveBeenCalled()
     expect(posthogLogger.error).not.toHaveBeenCalled()
     expect(sentryCaptureException).not.toHaveBeenCalled()
+  })
+
+  it('carries the fields of an error as attributes, not in its message', () => {
+    const failure = new BrowserLoggerOnServerError('engine blew up')
+
+    logger.error(failure)
+
+    expect(posthogLogger.error).toHaveBeenCalledWith(
+      failure.message,
+      expect.objectContaining({ 'ngc.logMessage': 'engine blew up' })
+    )
   })
 
   it('keeps the console silent in production, where the line still exports', async () => {
