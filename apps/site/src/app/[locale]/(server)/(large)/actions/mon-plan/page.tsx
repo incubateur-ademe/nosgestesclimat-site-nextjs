@@ -55,17 +55,19 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
     ? MON_ESPACE_ACTIONS_PATH
     : END_PAGE_ACTIONS_PATH
 
+  if (!actionsCatalogue.plan) {
+    redirect(exploreHref)
+  }
+
   return (
     <div className="flex flex-col pb-24">
       {user.isAuth && <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />}
 
-      {actionsCatalogue.plan ? (
-        <ActionPlanLinks
-          plan={actionsCatalogue.plan}
-          activeLink="plan"
-          exploreHref={exploreHref}
-        />
-      ) : null}
+      <ActionPlanLinks
+        plan={actionsCatalogue.plan}
+        activeLink="plan"
+        exploreHref={exploreHref}
+      />
 
       {plannedActionsCount === 0 ? (
         <NoResultsBlock />
