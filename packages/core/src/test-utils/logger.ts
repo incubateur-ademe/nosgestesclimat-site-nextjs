@@ -17,7 +17,8 @@ export type TestLogger = Logger & {
 }
 
 /**
- * Spied `Logger` for service tests. `child` returns the same instance, so
+ * Spied `Logger` for tests, the site's specs included
+ * (`helpers/tests/mockLogger.ts`). `child` returns the same instance, so
  * assertions keep targeting the top-level spies whatever the bindings.
  */
 export function createTestLogger(): TestLogger {

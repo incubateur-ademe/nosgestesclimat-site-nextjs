@@ -2,6 +2,7 @@ import {
   RateLimitedError,
   UnknownCodeError,
 } from '@/components/authentication/errors'
+import { serverLoggerMock } from '@/helpers/tests/mockLogger'
 import { maskEmail } from '@nosgestesclimat/core/lib/pii'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createVerificationCode } from '../create-verification-code'
@@ -10,9 +11,6 @@ const mocks = vi.hoisted(() => ({
   createVerificationCode: vi.fn(),
   sendEmail: vi.fn(),
   after: vi.fn(),
-  loggerInfo: vi.fn(),
-  loggerWarn: vi.fn(),
-  loggerError: vi.fn(),
 }))
 
 vi.mock('@/adapters/redis/client', async () => {
@@ -25,23 +23,7 @@ vi.mock('@/adapters/brevoClient', () => ({
   sendEmail: mocks.sendEmail,
 }))
 
-vi.mock('@/logger/logger.server', () => {
-  const logger = {
-    info: mocks.loggerInfo,
-    warn: mocks.loggerWarn,
-    error: mocks.loggerError,
-    debug: vi.fn(),
-  }
-
-  return {
-    default: {
-      ...logger,
-      child: () => logger,
-      withSpan: (_scope: string, run: (logger: unknown) => unknown) =>
-        run(logger),
-    },
-  }
-})
+vi.mock('@/logger/logger.server', () => ({ default: serverLoggerMock }))
 
 vi.mock(
   '@nosgestesclimat/core/features/auth/services/create-verification-code.service',
@@ -82,7 +64,7 @@ describe('createVerificationCode', () => {
       email: 'success@example.com',
       locale: 'fr',
     })
-    expect(mocks.loggerInfo).toHaveBeenCalledWith(
+    expect(serverLoggerMock.info).toHaveBeenCalledWith(
       'VerificationCode created',
       expect.objectContaining({
         email: maskEmail('Success@Example.com'),
@@ -181,7 +163,7 @@ describe('createVerificationCode', () => {
       success: false,
       error: new UnknownCodeError(),
     })
-    expect(mocks.loggerError).toHaveBeenCalledWith(
+    expect(serverLoggerMock.error).toHaveBeenCalledWith(
       failure,
       expect.objectContaining({
         email: maskEmail('throwing@example.com'),

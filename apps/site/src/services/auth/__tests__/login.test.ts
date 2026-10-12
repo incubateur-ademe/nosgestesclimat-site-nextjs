@@ -3,6 +3,7 @@ import {
   RateLimitedError,
   UnknownCodeError,
 } from '@/components/authentication/errors'
+import { serverLoggerMock } from '@/helpers/tests/mockLogger'
 import { InvalidVerificationCodeError } from '@nosgestesclimat/core/features/auth/errors/login.error'
 import { failure, success } from '@nosgestesclimat/core/lib/result'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -18,9 +19,6 @@ const mocks = vi.hoisted(() => ({
   sendEmail: vi.fn(),
   addOrUpdateContact: vi.fn(),
   loginService: vi.fn(),
-  loggerInfo: vi.fn(),
-  loggerWarn: vi.fn(),
-  loggerError: vi.fn(),
 }))
 
 vi.mock('../get-user-session', () => ({
@@ -57,23 +55,7 @@ vi.mock('@/env/server', () => ({
   env: { NEXT_PUBLIC_SITE_URL: 'http://localhost:3000' },
 }))
 
-vi.mock('@/logger/logger.server', () => {
-  const logger = {
-    info: mocks.loggerInfo,
-    warn: mocks.loggerWarn,
-    error: mocks.loggerError,
-    debug: vi.fn(),
-  }
-
-  return {
-    default: {
-      ...logger,
-      child: () => logger,
-      withSpan: (_scope: string, run: (logger: unknown) => unknown) =>
-        run(logger),
-    },
-  }
-})
+vi.mock('@/logger/logger.server', () => ({ default: serverLoggerMock }))
 
 const sessionUserId = crypto.randomUUID()
 
@@ -263,13 +245,13 @@ describe('login', () => {
       locale: 'en',
     })
 
-    expect(mocks.loggerInfo).toHaveBeenCalledWith('Login attempt', {
+    expect(serverLoggerMock.info).toHaveBeenCalledWith('Login attempt', {
       userId: sessionUserId,
       email: 'us***@ex***',
       locale: 'en',
       intent: 'create-account',
     })
-    expect(mocks.loggerInfo).toHaveBeenCalledWith('Login succeeded', {
+    expect(serverLoggerMock.info).toHaveBeenCalledWith('Login succeeded', {
       userId: sessionUserId,
       email: 'us***@ex***',
       locale: 'en',
@@ -290,7 +272,7 @@ describe('login', () => {
       code: '123456',
     })
 
-    expect(mocks.loggerInfo).toHaveBeenCalledWith('Login attempt', {
+    expect(serverLoggerMock.info).toHaveBeenCalledWith('Login attempt', {
       userId: sessionUserId,
       email: 'us***@ex***',
       locale: 'fr',
@@ -310,7 +292,7 @@ describe('login', () => {
     })
 
     expect(result).toEqual(failure(new InvalidCodeError()))
-    expect(mocks.loggerWarn).toHaveBeenCalledWith(
+    expect(serverLoggerMock.warn).toHaveBeenCalledWith(
       expect.any(InvalidVerificationCodeError),
       expect.objectContaining({
         email: 'us***@ex***',
@@ -331,7 +313,7 @@ describe('login', () => {
     })
 
     expect(result).toEqual(failure(new UnknownCodeError()))
-    expect(mocks.loggerError).toHaveBeenCalledWith(
+    expect(serverLoggerMock.error).toHaveBeenCalledWith(
       expect.any(Error),
       expect.objectContaining({
         email: 'us***@ex***',
@@ -353,7 +335,7 @@ describe('login', () => {
     expect(mocks.loginService).not.toHaveBeenCalled()
     expect(mocks.revokeAllSessions).not.toHaveBeenCalled()
     expect(mocks.createAppSession).not.toHaveBeenCalled()
-    expect(mocks.loggerError).toHaveBeenCalledWith(
+    expect(serverLoggerMock.error).toHaveBeenCalledWith(
       expect.any(Error),
       expect.objectContaining({
         email: 'us***@ex***',
