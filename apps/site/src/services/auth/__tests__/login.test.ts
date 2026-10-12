@@ -246,13 +246,15 @@ describe('login', () => {
     })
 
     expect(serverLoggerMock.info).toHaveBeenCalledWith('Login attempt', {
-      userId: sessionUserId,
+      sessionUserId,
       email: 'us***@ex***',
       locale: 'en',
       intent: 'create-account',
     })
+    // The outcome names the account, not the session it came in with.
     expect(serverLoggerMock.info).toHaveBeenCalledWith('Login succeeded', {
-      userId: sessionUserId,
+      sessionUserId,
+      userId: verifiedUser.id,
       email: 'us***@ex***',
       locale: 'en',
       intent: 'create-account',
@@ -273,7 +275,7 @@ describe('login', () => {
     })
 
     expect(serverLoggerMock.info).toHaveBeenCalledWith('Login attempt', {
-      userId: sessionUserId,
+      sessionUserId,
       email: 'us***@ex***',
       locale: 'fr',
       intent: 'create-account',
@@ -296,7 +298,7 @@ describe('login', () => {
       expect.any(InvalidVerificationCodeError),
       expect.objectContaining({
         email: 'us***@ex***',
-        userId: sessionUserId,
+        sessionUserId,
       })
     )
     expect(mocks.revokeAllSessions).not.toHaveBeenCalled()

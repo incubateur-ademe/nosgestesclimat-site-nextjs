@@ -590,11 +590,13 @@ describe('login', () => {
 
         expect.assert(result.success)
         // No simulation behind a save-simulation sign-up is unexpected
-        // enough to be logged.
+        // enough to be logged, on a line the account is bound to.
         expect(logger.warn).toHaveBeenCalledWith(
-          'Save-simulation sign-up without any completed simulation',
-          { userId: unverifiedUser.id }
+          'Save-simulation sign-up without any completed simulation'
         )
+        expect(logger.child).toHaveBeenCalledWith({
+          userId: result.data.user.id,
+        })
         expect(sendEmail).toHaveBeenCalledTimes(1)
         expect(sendEmail).toHaveBeenCalledWith({
           email: verificationCode.email,

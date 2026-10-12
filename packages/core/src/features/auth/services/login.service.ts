@@ -176,15 +176,19 @@ export function createLogin({
 
       const { user, mode, reconcileUserId } = account.data
 
+      // The account the login resolved to: every step below is about it, and
+      // carries it - lines and spans alike.
+      const userLogger = logger.child({ userId: user.id })
+
       if (mode === 'signUp') {
         // merge legacy unverified users.
-        await syncUserData({ logger, user, verified: true })
+        await syncUserData({ logger: userLogger, user, verified: true })
       }
 
       if (mode === 'signIn' && reconcileUserId) {
         // transfer the unverified user's data to the verified user.
         await reconcileSimulationsAfterLogin({
-          logger,
+          logger: userLogger,
           user,
           previousUserId: reconcileUserId,
         })
@@ -192,7 +196,7 @@ export function createLogin({
 
       runSideEffect(
         'addOrUpdateContact',
-        { logger, backgroundTaskRunner },
+        { logger: userLogger, backgroundTaskRunner },
         () =>
           addOrUpdateContact({
             email: user.email,
@@ -204,7 +208,7 @@ export function createLogin({
 
       runSideEffect(
         'signUpEmail',
-        { logger, backgroundTaskRunner },
+        { logger: userLogger, backgroundTaskRunner },
         async () => {
           if (mode !== 'signUp') return success()
 
@@ -223,8 +227,7 @@ export function createLogin({
             // unexpected enough to investigate - the welcome email is sent
             // as a fallback.
             logger.warn(
-              'Save-simulation sign-up without any completed simulation',
-              { userId: user.id }
+              'Save-simulation sign-up without any completed simulation'
             )
           }
 

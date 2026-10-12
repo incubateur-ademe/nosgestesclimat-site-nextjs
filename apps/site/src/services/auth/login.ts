@@ -74,7 +74,9 @@ export const login = async ({
       existingSessionUserId = session?.id
 
       const context = {
-        userId: existingSessionUserId,
+        // The session the request came in with: the account it resolves to is
+        // only known once the service answers.
+        sessionUserId: existingSessionUserId,
         email: maskEmail(parsed.data.email),
         locale: loginLocale,
         intent: parsed.data.intent,
@@ -101,6 +103,7 @@ export const login = async ({
 
       logger.info('Login succeeded', {
         ...context,
+        userId: user.id,
         mode,
         durationMs: Date.now() - startedAt,
       })
@@ -115,7 +118,7 @@ export const login = async ({
       return success({ userId: user.id })
     } catch (error) {
       const outcome = {
-        userId: existingSessionUserId,
+        sessionUserId: existingSessionUserId,
         email: maskEmail(email),
         locale: loginLocale,
         durationMs: Date.now() - startedAt,
