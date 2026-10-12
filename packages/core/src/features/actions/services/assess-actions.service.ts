@@ -73,9 +73,9 @@ export function createAssessActions(deps: AssessActionsDeps) {
             evaluation.applicability
           )
         } catch (error) {
-          // The line keeps the stack, and there is nothing more to do: the
-          // action is skipped and the iteration goes on.
-          logger.warn(toError(error), {
+          // The action is skipped, never retried: the failure is captured, so
+          // a rule the engine chokes on does not vanish with its assessment.
+          logger.error(toError(error), {
             actionId: id,
             ruleId: ruleId,
             dottedName: dottedName,

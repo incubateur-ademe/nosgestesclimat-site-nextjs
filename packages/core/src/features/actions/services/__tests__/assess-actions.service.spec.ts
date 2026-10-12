@@ -111,6 +111,14 @@ describe('compute action assessments service', () => {
       where: { simulationId: simulation.id },
     })
     expect(assessments).toHaveLength(0)
+
+    // The assessment is dropped, not skipped and forgotten: the failure is
+    // reported.
+    expect(logger.error).toHaveBeenCalledWith(expect.any(Error), {
+      actionId: expect.any(String),
+      ruleId: APPLICABLE_RULE_ID,
+      dottedName: 'test . applicable',
+    })
   })
 
   it('skips actions whose nodeValue is an unexpected type', async () => {
@@ -122,6 +130,13 @@ describe('compute action assessments service', () => {
       where: { simulationId: simulation.id },
     })
     expect(assessments).toHaveLength(0)
+
+    // Detected, not thrown: no `Error` to report, so the line names the shape
+    // and the failure stays an anomaly to watch by rate.
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.stringContaining('Unexpected nodeValue type:'),
+      expect.objectContaining({ ruleId: BOOLEAN_RULE_ID })
+    )
   })
 
   describe('throws ActionAssessmentPublicodesException', () => {
