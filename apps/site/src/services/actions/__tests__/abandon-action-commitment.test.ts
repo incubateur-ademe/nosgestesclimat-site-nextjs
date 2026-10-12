@@ -2,8 +2,8 @@ import { faker } from '@faker-js/faker/locale/th'
 import { afterEach, describe, vi } from 'vitest'
 import { abandonActionCommitment } from '../abandon-action-commitment'
 import { getActionsPlanCacheTagWithUserId } from '../get-actions-plan'
-import { getPersonalizedActionDetailsCacheTagWithId } from '../get-personalized-action-details'
-import { GET_PERSONALIZED_ACTIONS_CACHE_TAG } from '../get-personalized-actions-catalogue'
+import { getPersonalizedActionDetailsCacheTagWithIds } from '../get-personalized-action-details'
+import { getPersonalizedActionsCacheTagWithUserId } from '../get-personalized-actions-catalogue'
 
 const { abandonActionCommitment: abandonActionCommitmentCoreServiceMock } =
   vi.hoisted(() => ({
@@ -83,13 +83,16 @@ describe('abandonActionCommitment service', () => {
 
     expect(updateTagMock).toHaveBeenCalledTimes(3)
     expect(updateTagMock).toHaveBeenCalledWith(
-      GET_PERSONALIZED_ACTIONS_CACHE_TAG
+      getPersonalizedActionsCacheTagWithUserId(mockUser.id)
     )
     expect(updateTagMock).toHaveBeenCalledWith(
       getActionsPlanCacheTagWithUserId(mockUser.id)
     )
     expect(updateTagMock).toHaveBeenCalledWith(
-      getPersonalizedActionDetailsCacheTagWithId(actionId)
+      getPersonalizedActionDetailsCacheTagWithIds({
+        userId: mockUser.id,
+        actionId,
+      })
     )
   })
 })
