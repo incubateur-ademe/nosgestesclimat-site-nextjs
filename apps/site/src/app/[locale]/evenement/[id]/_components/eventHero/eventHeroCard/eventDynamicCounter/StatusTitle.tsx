@@ -37,7 +37,7 @@ export default function StatusTitle({ status, locale }: Props) {
       <span className="text-xs font-bold uppercase">
         {status === 'inProgress' ? (
           <Trans i18nKey="event.dynamicCounter.text.running" locale={locale}>
-            EN DIRECT
+            En direct
           </Trans>
         ) : (
           <Trans i18nKey="event.dynamicCounter.text.ended" locale={locale}>
