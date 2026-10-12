@@ -86,17 +86,19 @@ export type SpanAttributeValue = string | number | boolean
  * binding.
  */
 /** The parameters a decorated service is called with: its own, without the
- * logger the decorator merges in. Distributes over a union of payloads. */
+ * logger the decorator merges in. */
 export type WithoutLogger<Params> = Params extends unknown
   ? Omit<Params, 'logger'>
   : never
 
-/** The decorated service. Takes no argument when nothing is left to pass. */
+/** The decorated service: takes no argument when nothing is left to pass. */
 export type DecoratedService<Params, Result> =
   keyof WithoutLogger<Params> extends never
     ? () => Promise<Result>
     : (params: WithoutLogger<Params>) => Promise<Result>
 
+/** What the span and the lines carry: the parameters to take as they are, or a
+ * function that builds them to rename or mask. */
 export type SpanBindings<Params> =
   | readonly (Exclude<keyof Params, 'logger'> & string)[]
   | ((params: Params) => LogMeta)
@@ -107,74 +109,37 @@ export interface Logger {
    * parent.
    */
   child(bindings: LogBindings): Logger
-  /**
-   * Decorates a parameterless service: each call runs in its own span, named by
-   * `scope`, and the body receives the logger bound to it.
+  /** Decorates a parameterless service: each call runs in its own span.
    *
-   * @param scope Qualified name of the operation, `<package>.<layer>.<unit>`,
-   * e.g. `site.action.getUserSession`. It names the span and every line the
-   * body writes.
+   * @param scope The operation's name, `<package>.<layer>.<unit>`.
    * @param service The body, taking `{ logger }`.
    * @returns The service to call, taking no argument.
-   *
-   * @example
-   * export const getUserSession = cache(
-   *   logger.withSpan('site.action.getUserSession', async ({ logger }) => {
-   *     logger.warn('no session header')
-   *   })
-   * )
+   * @example logger.withSpan('site.action.getUserSession', async ({ logger }) => …)
    */
   withSpan<Result>(
     scope: ScopeName,
     service: (params: { logger: Logger }) => Promise<Result>
   ): () => Promise<Result>
-  /**
-   * Decorates a service that takes parameters, binding none of them: use it when
-   * the parameters do not name the operation, or when a single call needs no
-   * context on its span.
+  /** Decorates a service that takes parameters, binding none of them.
    *
-   * @param scope Qualified name of the operation, e.g. `site.action.login`.
-   * @param service The body. It receives the caller's parameters, plus `logger`.
-   * @returns The service to call, with the same parameters minus `logger`.
-   *
-   * @example
-   * export const login = logger.withSpan(
-   *   'site.action.login',
-   *   async ({ email, code, logger }) => {
-   *     logger.info('login attempt')
-   *   }
-   * )
+   * @param scope The operation's name, e.g. `site.action.login`.
+   * @param service The body: the caller's parameters, plus `logger`.
+   * @returns The service to call, without `logger`.
+   * @example logger.withSpan('site.action.login', async ({ email, logger }) => …)
    */
   withSpan<Params extends object, Result>(
     scope: ScopeName,
     service: (params: Params) => Promise<Result>
   ): DecoratedService<Params, Result>
-  /**
-   * Decorates a service, binding the parameters that name the operation. What is
-   * bound goes on the span **and** on every line the body writes, so one filter
-   * reads the trace and the logs.
+  /** Decorates a service, binding the parameters that name the operation: on
+   * the span as on every line, so one filter reads both.
    *
-   * Bind identifiers and small scalars, never a payload: a bound value lands on
-   * both sinks, where logs are billed by volume and PII is the caller's to keep
-   * out.
-   *
-   * @param scope Qualified name of the operation, e.g.
-   * `core.service.completeSimulation`.
-   * @param bindings Which parameters to bind: the keys to take as they are
-   * (`['simulationId', 'model']`), or a function that builds them when they need
-   * renaming or masking (`({ id }) => ({ simulationId: id })`). Keys are checked
-   * against the parameters.
-   * @param service The body. It receives the caller's parameters, plus `logger`.
-   * @returns The service to call, with the same parameters minus `logger`.
-   *
-   * @example
-   * export const completeSimulation = logger.withSpan(
-   *   'site.action.completeSimulation',
-   *   ['simulationId'],
-   *   async ({ simulationId, logger }) => {
-   *     logger.info('completing')
-   *   }
-   * )
+   * @param scope The operation's name, e.g. `core.service.completeSimulation`.
+   * @param bindings The keys to take as they are (`['simulationId']`), or a
+   * function that builds them (`({ id }) => ({ simulationId: id })`).
+   * @param service The body: the caller's parameters, plus `logger`.
+   * @returns The service to call, without `logger`.
+   * @example logger.withSpan('core.service.completeSimulation', ['simulationId'], …)
    */
   withSpan<Params extends object, Result>(
     scope: ScopeName,
