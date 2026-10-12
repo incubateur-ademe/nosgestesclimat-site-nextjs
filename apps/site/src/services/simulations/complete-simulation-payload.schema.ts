@@ -12,7 +12,7 @@ export const CompleteSimulationPayloadSchema = v.strictObject({
   // when the client resumed an older simulation. Without it the completion
   // would judge computability from the persisted, possibly outdated model.
   model: ModelStringSchema,
-  progression: v.pipe(v.number(), v.minValue(0), v.maxValue(1)),
+  progression: v.literal(1),
   situation: SituationSchema,
   foldedSteps: FoldedStepsSchema,
   computedResults: ComputedResultsSchema,
