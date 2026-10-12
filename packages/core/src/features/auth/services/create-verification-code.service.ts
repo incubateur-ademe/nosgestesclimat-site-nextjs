@@ -23,7 +23,7 @@ interface CreateVerificationCodeDependencies {
 const VERIFICATION_CODE_TTL_MS = 60 * 60 * 1000 // 1 hour
 
 export function createCreateVerificationCodeService({
-  logger: _logger,
+  logger,
   sendEmail,
   backgroundTaskRunner,
   usage,
@@ -36,33 +36,28 @@ export function createCreateVerificationCodeService({
     email: string
     locale: ISOSupportedLanguage
   }): Promise<{ email: string; expirationDate: Date }> {
-    return await _logger.withSpan(
-      'core.service.createVerificationCode',
-      async (logger) => {
-        const code = generateCode()
-        const expirationDate = new Date(Date.now() + VERIFICATION_CODE_TTL_MS)
+    const code = generateCode()
+    const expirationDate = new Date(Date.now() + VERIFICATION_CODE_TTL_MS)
 
-        await createVerificationCodeRepository({
-          email,
-          code,
-          expirationDate,
-          usage,
-        })
+    await createVerificationCodeRepository({
+      email,
+      code,
+      expirationDate,
+      usage,
+    })
 
-        runSideEffect(
-          'verificationCodeEmail',
-          { logger, backgroundTaskRunner },
-          () => sendEmail(createVerificationCodeEmail({ locale, email, code }))
-        )
-
-        // The code itself must not leave the service: only the caller-facing
-        // fields of the stored row are returned.
-        return {
-          email,
-          expirationDate,
-        }
-      }
+    runSideEffect(
+      'verificationCodeEmail',
+      { logger, backgroundTaskRunner },
+      () => sendEmail(createVerificationCodeEmail({ locale, email, code }))
     )
+
+    // The code itself must not leave the service: only the caller-facing
+    // fields of the stored row are returned.
+    return {
+      email,
+      expirationDate,
+    }
   }
 }
 
