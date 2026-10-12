@@ -274,6 +274,7 @@ describe('login', () => {
           email: verifiedUser.email,
         })
         expect(vi.mocked(reconcileSimulationsAfterLogin)).toHaveBeenCalledWith({
+          logger,
           user: expect.objectContaining({
             id: verifiedUser.id,
             email: verifiedUser.email,
@@ -356,6 +357,7 @@ describe('login', () => {
         // The fresh sign-up merges the legacy users sharing the email, but
         // has no session user to reconcile from.
         expect(vi.mocked(syncUserData)).toHaveBeenCalledWith({
+          logger,
           user: expect.objectContaining({ id: createdUser.id }),
           verified: true,
         })
@@ -434,6 +436,7 @@ describe('login', () => {
         // data attached: the sign-up sync runs, and no reconciliation is
         // needed since the data stays attached to the same id.
         expect(vi.mocked(syncUserData)).toHaveBeenCalledWith({
+          logger,
           user: expect.objectContaining({ id: unverifiedUser.id }),
           verified: true,
         })
@@ -672,6 +675,7 @@ describe('login', () => {
         expect.assert(createdUser)
         expect(createdUser.id).toBe(result.data.user.id)
         expect(vi.mocked(syncUserData)).toHaveBeenCalledWith({
+          logger,
           user: expect.objectContaining({ id: result.data.user.id }),
           verified: true,
         })

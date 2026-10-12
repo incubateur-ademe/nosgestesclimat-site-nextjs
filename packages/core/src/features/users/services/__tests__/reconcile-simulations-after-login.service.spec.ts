@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import { userFactory } from '../../factories/user.factory.ts'
 import { reconcileSimulationsAfterLogin } from '../reconcile-simulations-after-login.service.ts'
@@ -25,8 +26,11 @@ const createGroupParticipant = ({
     select: { userId: true },
   })
 
+const logger = createTestLogger()
+
 describe('reconcileSimulationsAfterLogin', () => {
   afterEach(async () => {
+    vi.clearAllMocks()
     await Promise.all([
       prisma.simulationPoll.deleteMany(),
       prisma.groupParticipant.deleteMany(),
@@ -48,6 +52,7 @@ describe('reconcileSimulationsAfterLogin', () => {
         .create()
 
       await reconcileSimulationsAfterLogin({
+        logger,
         user: { id: user.id, email: user.email },
         previousUserId: user.id,
       })
@@ -68,6 +73,7 @@ describe('reconcileSimulationsAfterLogin', () => {
       await simulationFactory.params({ userId: user.id }).create()
 
       await reconcileSimulationsAfterLogin({
+        logger,
         user: { id: user.id, email: user.email },
         previousUserId: faker.string.uuid(),
       })
@@ -90,6 +96,7 @@ describe('reconcileSimulationsAfterLogin', () => {
         .create()
 
       await reconcileSimulationsAfterLogin({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         previousUserId: anonymousUser.id,
       })
@@ -109,6 +116,7 @@ describe('reconcileSimulationsAfterLogin', () => {
       await simulationFactory.params({ userId: anonymousUser.id }).create()
 
       await reconcileSimulationsAfterLogin({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         previousUserId: anonymousUser.id,
       })
@@ -139,6 +147,7 @@ describe('reconcileSimulationsAfterLogin', () => {
       })
 
       await reconcileSimulationsAfterLogin({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         previousUserId: anonymousUser.id,
       })
@@ -175,6 +184,7 @@ describe('reconcileSimulationsAfterLogin', () => {
       ])
 
       await reconcileSimulationsAfterLogin({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         previousUserId: anonymousUser.id,
       })

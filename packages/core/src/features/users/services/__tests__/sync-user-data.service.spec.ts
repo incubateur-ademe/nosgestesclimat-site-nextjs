@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import { userFactory } from '../../factories/user.factory.ts'
@@ -37,8 +38,11 @@ const createLegacyUserWithEmail = async (email: string) =>
     select: { id: true, name: true, email: true },
   })
 
+const logger = createTestLogger()
+
 describe('syncUserData', () => {
   afterEach(async () => {
+    vi.clearAllMocks()
     await Promise.all([
       prisma.simulationPoll.deleteMany(),
       prisma.groupParticipant.deleteMany(),
@@ -59,6 +63,7 @@ describe('syncUserData', () => {
       await simulationFactory.params({ userId: user.id }).create()
 
       await syncUserData({
+        logger,
         user: { id: user.id, email: user.email },
         verified: true,
       })
@@ -71,6 +76,9 @@ describe('syncUserData', () => {
       expect(
         await prisma.simulation.findMany({ where: { userId: user.id } })
       ).toHaveLength(1)
+      // Nothing merged: no line, so the legacy path's line count stays a
+      // count of migrations.
+      expect(logger.info).not.toHaveBeenCalled()
     })
   })
 
@@ -83,6 +91,7 @@ describe('syncUserData', () => {
         .create()
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -97,6 +106,9 @@ describe('syncUserData', () => {
       expect(
         await prisma.user.findUnique({ where: { id: legacyUser.id } })
       ).toBeNull()
+      expect(logger.info).toHaveBeenCalledWith('Legacy user data merged', {
+        mergedUserCount: 1,
+      })
     })
 
     it('adopts the legacy user profile on the user row', async () => {
@@ -104,6 +116,7 @@ describe('syncUserData', () => {
       const legacyUser = await createLegacyUserWithEmail(verifiedUser.email)
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -124,6 +137,7 @@ describe('syncUserData', () => {
       const legacyUser = await createLegacyUserWithEmail(verifiedUser.email)
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -143,6 +157,7 @@ describe('syncUserData', () => {
       await createLegacyUserWithEmail(verifiedUser.email)
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -179,6 +194,7 @@ describe('syncUserData', () => {
       ])
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -210,6 +226,7 @@ describe('syncUserData', () => {
       })
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -232,6 +249,7 @@ describe('syncUserData', () => {
       })
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -258,6 +276,7 @@ describe('syncUserData', () => {
         .create()
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -279,6 +298,7 @@ describe('syncUserData', () => {
       await simulationFactory.params({ userId: legacyUser.id }).create()
 
       await syncUserData({
+        logger,
         user: { id: verifiedUser.id, email: verifiedUser.email },
       })
 

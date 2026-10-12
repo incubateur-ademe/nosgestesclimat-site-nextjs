@@ -178,12 +178,13 @@ export function createLogin({
 
       if (mode === 'signUp') {
         // merge legacy unverified users.
-        await syncUserData({ user, verified: true })
+        await syncUserData({ logger, user, verified: true })
       }
 
       if (mode === 'signIn' && reconcileUserId) {
         // transfer the unverified user's data to the verified user.
         await reconcileSimulationsAfterLogin({
+          logger,
           user,
           previousUserId: reconcileUserId,
         })
