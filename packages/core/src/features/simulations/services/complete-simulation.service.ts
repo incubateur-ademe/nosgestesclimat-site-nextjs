@@ -4,7 +4,7 @@ import type { BackgroundTaskRunner } from '../../../lib/background-task-runner.t
 import { invariant } from '../../../lib/invariant.ts'
 import type { Result } from '../../../lib/result.ts'
 import { failure, success } from '../../../lib/result.ts'
-import { createSettle } from '../../../lib/settle.ts'
+import { runSideEffect } from '../../../lib/run-side-effect.ts'
 import { transaction } from '../../../lib/transaction.ts'
 import type { AppUser } from '../../auth/types/user-session.ts'
 import { Attributes } from '../../emails/email.constant.ts'
@@ -12,11 +12,10 @@ import type { AddOrUpdateContact, SendEmail } from '../../emails/types.ts'
 import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
 import { findManyGroupsBySimulationId } from '../../groups/repositories/group.repository.ts'
 import type { Group } from '../../groups/types/group.ts'
-import type { CaptureException, Logger } from '../../logger/index.ts'
+import type { Logger } from '../../logger/index.ts'
 import { findManyPollSummariesBySimulationId } from '../../polls/repositories/poll.repository.ts'
 import { enqueuePollStatsComputation } from '../../polls/stats/services/enqueue-poll-stats-computation.ts'
 import type { PollSummary } from '../../polls/types/poll.ts'
-import { UnsupportedModelError } from '../../simulation-computation/errors/simulation-computation.error.ts'
 import { isModelSupported } from '../../simulation-computation/model-support/is-model-supported.ts'
 import { createSimulationComputation } from '../../simulation-computation/repositories/simulation-computations.repository.ts'
 import { findUserById } from '../../users/repositories/users.repository.ts'
@@ -30,7 +29,7 @@ import {
   type CompleteSimulationError,
   SimulationCompletedError,
   SimulationIncompleteError,
-  SimulationInvalidModelError,
+  SimulationInvalidModelStringError,
   SimulationNotFoundError,
   ZeroFootprintError,
 } from '../errors/simulations.error.ts'
@@ -44,7 +43,6 @@ import type { ComputedResults } from '../validators/computed-results.schema.ts'
 
 interface CompleteSimulationDependencies {
   logger: Logger
-  captureException: CaptureException
   addOrUpdateContact: AddOrUpdateContact
   sendEmail: SendEmail
   /** Public origin the emails link back to */
@@ -55,113 +53,132 @@ interface CompleteSimulationDependencies {
 
 export function createCompleteSimulation({
   logger,
-  captureException,
   addOrUpdateContact,
   sendEmail,
   origin,
   backgroundTaskRunner,
 }: CompleteSimulationDependencies) {
-  const settle = createSettle({ logger, captureException })
-
-  return async function completeSimulation({
-    userSession,
-    simulationId,
-    progression,
-    model,
-    situation,
-    foldedSteps,
-    computedResults,
-    locale,
-  }: {
-    userSession: AppUser
-    simulationId: string
-    progression: number
-    /** The model the client ran the test with; persisted with the completion. */
-    model: string
-    situation: Situation<DottedName>
-    foldedSteps: DottedName[]
-    computedResults: ComputedResults
-    locale: ISOSupportedLanguage
-  }): Promise<
-    Result<{ groups: Group[]; polls: PollSummary[] }, CompleteSimulationError>
-  > {
-    const userId = userSession.id
-
-    if (progression !== 1) return failure(new SimulationIncompleteError())
-    if (computedResults.carbone.bilan === 0) {
-      return failure(new ZeroFootprintError())
-    }
-
-    // The client's model is the one its answers were given against — never
-    // substituted by the persisted one, which can be stale.
-    const clientModel = parseModelString(model)
-    if (!clientModel) return failure(new SimulationInvalidModelError(model))
-
-    const simulation = await findSimulationById({ id: simulationId, userId })
-    if (!simulation) return failure(new SimulationNotFoundError())
-    if (isSimulationCompleted(simulation))
-      return failure(new SimulationCompletedError())
-
-    const isModelSupportedForComputation = isModelSupported(clientModel)
-
-    if (!isModelSupportedForComputation) {
-      const exception = new UnsupportedModelError(clientModel)
-      logger.error(exception.message, { model: exception.model })
-      captureException(exception)
-    }
-
-    const polls = await findManyPollSummariesBySimulationId({
+  return logger.withSpan(
+    'core.service.completeSimulation',
+    ['simulationId', 'model'],
+    async ({
+      userSession,
       simulationId,
-    })
+      progression,
+      model,
+      situation,
+      foldedSteps,
+      computedResults,
+      locale,
+      logger,
+    }: {
+      userSession: AppUser
+      simulationId: string
+      progression: number
+      /** The model the client ran the test with; persisted with the completion. */
+      model: string
+      situation: Situation<DottedName>
+      foldedSteps: DottedName[]
+      computedResults: ComputedResults
+      locale: ISOSupportedLanguage
+      logger: Logger
+    }): Promise<
+      Result<{ groups: Group[]; polls: PollSummary[] }, CompleteSimulationError>
+    > => {
+      const userId = userSession.id
 
-    const updated = await transaction(async (tx) => {
-      const update = await updateSimulation(
-        {
-          id: simulationId,
-          userId,
-          situation,
-          foldedSteps,
-          progression,
-          computedResults,
-          model: serializeModel(clientModel),
-        },
-        tx
-      )
-      if (!update.success) return update
-
-      if (isModelSupportedForComputation) {
-        const computation = await createSimulationComputation(simulationId, tx)
-        if (!computation.success) return computation
+      if (progression !== 1) return failure(new SimulationIncompleteError())
+      if (computedResults.carbone.bilan === 0) {
+        return failure(new ZeroFootprintError())
       }
 
-      // The completed simulation changes the poll totals; every poll it belongs
-      // to is queued for a full recomputation.
-      for (const { id } of polls) {
-        const enqueued = await enqueuePollStatsComputation(id, tx)
-        if (!enqueued.success) return enqueued
+      // The client's model is the one its answers were given against — never
+      // substituted by the persisted one, which can be stale.
+      const clientModel = parseModelString(model)
+      if (!clientModel)
+        return failure(new SimulationInvalidModelStringError(model))
+
+      const simulation = await findSimulationById({
+        id: simulationId,
+        userId,
+      })
+      if (!simulation) return failure(new SimulationNotFoundError())
+      if (isSimulationCompleted(simulation))
+        return failure(new SimulationCompletedError())
+
+      const isModelSupportedForComputation = isModelSupported(clientModel)
+
+      if (!isModelSupportedForComputation) {
+        logger.warn('Unsupported model', {
+          model: clientModel,
+        })
       }
 
-      return success()
-    })
+      const polls = await findManyPollSummariesBySimulationId({
+        simulationId,
+      })
 
-    if (!updated.success) return updated
-
-    const groups = await findManyGroupsBySimulationId({
-      simulationId,
-    })
-
-    backgroundTaskRunner(async () => {
-      if (!userSession.isAuth) return
-      await settle('side effects', [
-        addOrUpdateContact({
-          email: userSession.email,
-          attributes: {
-            [Attributes.USER_ID]: userId,
-            [Attributes.LAST_SIMULATION_DATE]: simulation.date.toISOString(),
-            ...mapComputedResultsToContactAttributes(computedResults, locale),
+      const updated = await transaction(async (tx) => {
+        const update = await updateSimulation(
+          {
+            id: simulationId,
+            userId,
+            situation,
+            foldedSteps,
+            progression,
+            computedResults,
+            model: serializeModel(clientModel),
           },
-        }),
-        (async () => {
+          tx
+        )
+        if (!update.success) return update
+
+        if (isModelSupportedForComputation) {
+          const computation = await createSimulationComputation(
+            simulationId,
+            tx
+          )
+          if (!computation.success) return computation
+        }
+
+        // The completed simulation changes the poll totals; every poll it belongs
+        // to is queued for a full recomputation.
+        for (const { id } of polls) {
+          const enqueued = await enqueuePollStatsComputation(id, tx)
+          if (!enqueued.success) return enqueued
+        }
+
+        return success()
+      })
+
+      if (!updated.success) return updated
+
+      const groups = await findManyGroupsBySimulationId({
+        simulationId,
+      })
+
+      if (!userSession.isAuth) {
+        return success({ groups, polls })
+      }
+
+      runSideEffect(
+        'addOrUpdateContact',
+        { logger, backgroundTaskRunner },
+        () =>
+          addOrUpdateContact({
+            email: userSession.email,
+            attributes: {
+              [Attributes.USER_ID]: userId,
+              [Attributes.LAST_SIMULATION_DATE]: simulation.date.toISOString(),
+              ...mapComputedResultsToContactAttributes(computedResults, locale),
+            },
+          })
+      )
+
+      runSideEffect(
+        'joinedEmail',
+        { logger, backgroundTaskRunner },
+        async () => {
           // The most recent membership is the one the user just completed.
           const lastPoll = polls[0]
           if (lastPoll) {
@@ -193,13 +210,13 @@ export function createCompleteSimulation({
           }
 
           return success()
-        })(),
-      ])
-    })
+        }
+      )
 
-    return success({
-      groups,
-      polls,
-    })
-  }
+      return success({
+        groups,
+        polls,
+      })
+    }
+  )
 }

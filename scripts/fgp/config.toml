@@ -147,4 +147,4 @@ method = "POST"
 route  = "/v1/apps/nosgestesclimat-site-preprod-pr*/variables"
 [env.postdeploy.scope.body]
 "variable.name"  = { eq = "REDIS_URL" }
-"variable.value" = { regex = "rediss?://.*" }
+"variable.value" = { glob = "redis://*" }

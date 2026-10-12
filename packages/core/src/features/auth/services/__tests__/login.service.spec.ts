@@ -5,6 +5,7 @@ import { failure, success } from '../../../../lib/result.ts'
 import { prisma } from '../../../../prisma/client.ts'
 import { VerificationCodeUsage } from '../../../../prisma/generated/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { TemplateIds } from '../../../emails/email.constant.ts'
 import { EmailRequestError } from '../../../emails/errors.ts'
 import { mapComputedResultsToContactAttributes } from '../../../simulations/emails/map-computed-results-to-contact-attributes.ts'
@@ -12,8 +13,6 @@ import { computedResultsFactory } from '../../../simulations/factories/computed-
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import { findVerifiedUserByEmail } from '../../../users/repositories/users.repository.ts'
-import { reconcileSimulationsAfterLogin } from '../../../users/services/reconcile-simulations-after-login.service.ts'
-import { syncUserData } from '../../../users/services/sync-user-data.service.ts'
 import { InvalidVerificationCodeError } from '../../errors/login.error.ts'
 import { verificationCodeFactory } from '../../factories/verification-code.factory.ts'
 import { findValidVerificationCode } from '../../repositories/verification-codes.repository.ts'
@@ -22,24 +21,21 @@ import { createLogin } from '../login.service.ts'
 // Both reconciliation helpers are fully mocked: their database effects are
 // covered by their own specs. This file only asserts that the login service
 // reaches for them when it should - and never when it should not.
+const syncUserData = vi.fn()
+const reconcileSimulationsAfterLogin = vi.fn()
+
 vi.mock('../../../users/services/sync-user-data.service.ts', () => ({
-  syncUserData: vi.fn(),
+  createSyncUserData: () => syncUserData,
 }))
 
 vi.mock(
   '../../../users/services/reconcile-simulations-after-login.service.ts',
   () => ({
-    reconcileSimulationsAfterLogin: vi.fn(),
+    createReconcileSimulationsAfterLogin: () => reconcileSimulationsAfterLogin,
   })
 )
 
-const logger = {
-  error: vi.fn(),
-  warn: vi.fn(),
-  info: vi.fn(),
-  debug: vi.fn(),
-}
-const captureException = vi.fn()
+const logger = createTestLogger()
 const sendEmail = vi.fn().mockResolvedValue(success())
 const addOrUpdateContact = vi.fn().mockResolvedValue(success())
 
@@ -62,7 +58,6 @@ describe('login', () => {
 
   const login = createLogin({
     logger,
-    captureException,
     sendEmail,
     addOrUpdateContact,
     origin,
@@ -317,12 +312,14 @@ describe('login', () => {
           email: userB.email,
         })
         // Swapping between verified accounts is surprising enough to be
-        // logged.
+        // logged, with both identities on the line.
         expect(logger.warn).toHaveBeenCalledWith(
-          'Login account swap: the session user belongs to another verified account',
+          'Login account swap: the session user belongs to another verified account'
+        )
+        expect(logger.child).toHaveBeenCalledWith(
           expect.objectContaining({
-            sessionUserId: userA.id,
-            signedInUserId: userB.id,
+            existingVerifiedUser: expect.objectContaining({ id: userB.id }),
+            sessionUser: expect.objectContaining({ id: userA.id }),
           })
         )
         // Reconciling userA.id into account B would have moved account A's
@@ -591,11 +588,13 @@ describe('login', () => {
 
         expect.assert(result.success)
         // No simulation behind a save-simulation sign-up is unexpected
-        // enough to be logged.
+        // enough to be logged, on a line the account is bound to.
         expect(logger.warn).toHaveBeenCalledWith(
-          'Save-simulation sign-up without any completed simulation',
-          { userId: unverifiedUser.id }
+          'Save-simulation sign-up without any completed simulation'
         )
+        expect(logger.child).toHaveBeenCalledWith({
+          userId: result.data.user.id,
+        })
         expect(sendEmail).toHaveBeenCalledTimes(1)
         expect(sendEmail).toHaveBeenCalledWith({
           email: verificationCode.email,
@@ -660,9 +659,11 @@ describe('login', () => {
         // is surprising enough to be logged.
         expect(logger.warn).toHaveBeenCalledWith(
           'Sign-up with a fresh identity: the session user belongs to another verified account',
+          { signedUpUserId: result.data.user.id }
+        )
+        expect(logger.child).toHaveBeenCalledWith(
           expect.objectContaining({
-            sessionUserId: userA.id,
-            signedUpUserId: result.data.user.id,
+            sessionUser: expect.objectContaining({ id: userA.id }),
           })
         )
 
@@ -684,7 +685,7 @@ describe('login', () => {
   })
 
   describe('Given the email side effects fail', () => {
-    it('still succeeds and captures the errors', async () => {
+    it('still succeeds and reports the errors', async () => {
       const verificationCode = await verificationCodeFactory.create()
 
       const contactError = new EmailRequestError('Brevo unavailable')
@@ -710,23 +711,8 @@ describe('login', () => {
       )
       expect.assert(createdUser)
 
-      expect(captureException).toHaveBeenCalledTimes(2)
-      expect(captureException).toHaveBeenCalledWith(contactError)
-      expect(captureException).toHaveBeenCalledWith(emailError)
-      expect(logger.error).toHaveBeenCalledWith(
-        'Failed to settle: side effects',
-        {
-          index: 0,
-          error: contactError,
-        }
-      )
-      expect(logger.error).toHaveBeenCalledWith(
-        'Failed to settle: side effects',
-        {
-          index: 1,
-          error: emailError,
-        }
-      )
+      expect(logger.error).toHaveBeenCalledWith(contactError)
+      expect(logger.error).toHaveBeenCalledWith(emailError)
     })
   })
 })

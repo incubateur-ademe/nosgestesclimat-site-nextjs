@@ -3,9 +3,9 @@ import {
   RateLimitedError,
   UnknownCodeError,
 } from '@/components/authentication/errors'
+import { serverLoggerMock } from '@/helpers/tests/mockLogger'
 import { InvalidVerificationCodeError } from '@nosgestesclimat/core/features/auth/errors/login.error'
 import { failure, success } from '@nosgestesclimat/core/lib/result'
-import { captureException } from '@sentry/nextjs'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { login } from '../login'
 
@@ -19,7 +19,6 @@ const mocks = vi.hoisted(() => ({
   sendEmail: vi.fn(),
   addOrUpdateContact: vi.fn(),
   loginService: vi.fn(),
-  loggerInfo: vi.fn(),
 }))
 
 vi.mock('../get-user-session', () => ({
@@ -52,18 +51,11 @@ vi.mock('next/cache', () => ({ revalidatePath: mocks.revalidatePath }))
 
 vi.mock('next/server', () => ({ after: mocks.after }))
 
-vi.mock('@/env.server', () => ({
+vi.mock('@/env/server', () => ({
   env: { NEXT_PUBLIC_SITE_URL: 'http://localhost:3000' },
 }))
 
-vi.mock('@/logger', () => ({
-  default: {
-    info: mocks.loggerInfo,
-    warn: vi.fn(),
-    error: vi.fn(),
-    debug: vi.fn(),
-  },
-}))
+vi.mock('@/logger/logger.server', () => ({ default: serverLoggerMock }))
 
 const sessionUserId = crypto.randomUUID()
 
@@ -253,17 +245,21 @@ describe('login', () => {
       locale: 'en',
     })
 
-    expect(mocks.loggerInfo).toHaveBeenCalledWith('Login attempt', {
-      userId: sessionUserId,
+    // The attempt's identity is bound to the span, and the locale to the lines.
+    expect(serverLoggerMock.child).toHaveBeenCalledWith({
       email: 'us***@ex***',
-      locale: 'en',
       intent: 'create-account',
+      scope: 'site.action.login',
     })
-    expect(mocks.loggerInfo).toHaveBeenCalledWith('Login succeeded', {
-      userId: sessionUserId,
-      email: 'us***@ex***',
-      locale: 'en',
-      intent: 'create-account',
+    expect(serverLoggerMock.child).toHaveBeenCalledWith({ locale: 'en' })
+
+    expect(serverLoggerMock.info).toHaveBeenCalledWith('Login attempt', {
+      sessionUserId,
+    })
+    // The outcome names the account, not the session it came in with.
+    expect(serverLoggerMock.info).toHaveBeenCalledWith('Login succeeded', {
+      sessionUserId,
+      userId: verifiedUser.id,
       mode: 'signIn',
       durationMs: expect.any(Number) as number,
     })
@@ -280,11 +276,9 @@ describe('login', () => {
       code: '123456',
     })
 
-    expect(mocks.loggerInfo).toHaveBeenCalledWith('Login attempt', {
-      userId: sessionUserId,
-      email: 'us***@ex***',
-      locale: 'fr',
-      intent: 'create-account',
+    expect(serverLoggerMock.child).toHaveBeenCalledWith({ locale: 'fr' })
+    expect(serverLoggerMock.info).toHaveBeenCalledWith('Login attempt', {
+      sessionUserId,
     })
   })
 
@@ -300,15 +294,9 @@ describe('login', () => {
     })
 
     expect(result).toEqual(failure(new InvalidCodeError()))
-    expect(captureException).toHaveBeenCalledWith(
+    expect(serverLoggerMock.warn).toHaveBeenCalledWith(
       expect.any(InvalidVerificationCodeError),
-      {
-        level: 'warning',
-        extra: expect.objectContaining({
-          email: 'us***@ex***',
-          userId: sessionUserId,
-        }) as Record<string, unknown>,
-      }
+      expect.objectContaining({ sessionUserId })
     )
     expect(mocks.revokeAllSessions).not.toHaveBeenCalled()
     expect(mocks.createAppSession).not.toHaveBeenCalled()
@@ -324,11 +312,14 @@ describe('login', () => {
     })
 
     expect(result).toEqual(failure(new UnknownCodeError()))
-    expect(captureException).toHaveBeenCalledWith(expect.any(Error), {
-      extra: expect.objectContaining({
-        email: 'us***@ex***',
-      }) as Record<string, unknown>,
-    })
+    // The email it came from is on the span, through the bindings.
+    expect(serverLoggerMock.child).toHaveBeenCalledWith(
+      expect.objectContaining({ email: 'us***@ex***' })
+    )
+    expect(serverLoggerMock.error).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({ sessionUserId })
+    )
     expect(mocks.createAppSession).not.toHaveBeenCalled()
   })
 
@@ -345,10 +336,14 @@ describe('login', () => {
     expect(mocks.loginService).not.toHaveBeenCalled()
     expect(mocks.revokeAllSessions).not.toHaveBeenCalled()
     expect(mocks.createAppSession).not.toHaveBeenCalled()
-    expect(captureException).toHaveBeenCalledWith(expect.any(Error), {
-      extra: expect.objectContaining({
-        email: 'us***@ex***',
-      }) as Record<string, unknown>,
-    })
+    // The email it came from is on the span, through the bindings; the session
+    // user was never read, so the line has none.
+    expect(serverLoggerMock.child).toHaveBeenCalledWith(
+      expect.objectContaining({ email: 'us***@ex***' })
+    )
+    expect(serverLoggerMock.error).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({ sessionUserId: undefined })
+    )
   })
 })

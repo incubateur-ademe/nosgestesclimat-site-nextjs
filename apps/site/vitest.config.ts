@@ -14,6 +14,14 @@ export default defineConfig({
       BREVO_URL: 'https://api.brevo.test',
       BREVO_API_KEY: 'fake-test-brevo-api-key',
       REDIS_URL: 'redis://localhost:6379',
+      // The suite is silent: a spec that asserts on a line mocks the logger it
+      // reads.
+      NEXT_PUBLIC_LOG_VERBOSITY: 'silent',
+      // A spec stubs the production URL, which puts `APP_ENV` in production and
+      // the contract in its required mode.
+      NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: 'phc_test',
+      NEXT_PUBLIC_POSTHOG_HOST: 'https://eu.i.posthog.com',
+      NEXT_PUBLIC_SENTRY_DSN: 'https://sentry.test/1',
     },
     css: true,
     exclude: ['**/node_modules/**', '**/e2e/**', '**/.next/**'],
@@ -34,6 +42,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      // Marker package that throws outside Next's `react-server` condition.
+      'server-only': path.resolve(__dirname, './vitest.empty-module.ts'),
     },
   },
   define: {

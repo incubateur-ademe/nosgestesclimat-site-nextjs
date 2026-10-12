@@ -5,6 +5,7 @@ import { failure, success } from '../../../../lib/result.ts'
 import { prisma } from '../../../../prisma/client.ts'
 import { VerificationCodeUsage } from '../../../../prisma/generated/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { EmailRequestError } from '../../../emails/errors.ts'
 import {
   createCreateVerificationCodeService,
@@ -12,8 +13,7 @@ import {
 } from '../create-verification-code.service.ts'
 
 const sendEmail = vi.fn().mockResolvedValue(success())
-const logger = { error: vi.fn(), warn: vi.fn(), info: vi.fn(), debug: vi.fn() }
-const captureException = vi.fn()
+const logger = createTestLogger()
 
 const ONE_HOUR_MS = 1000 * 60 * 60
 
@@ -31,7 +31,6 @@ describe('createVerificationCode', () => {
 
   const createVerificationCode = createCreateVerificationCodeService({
     logger,
-    captureException,
     sendEmail,
     backgroundTaskRunner,
     usage: VerificationCodeUsage.login,
@@ -92,7 +91,6 @@ describe('createVerificationCode', () => {
   it('stores the code with the injected custom usage', async () => {
     const createApiTokenVerificationCode = createCreateVerificationCodeService({
       logger,
-      captureException,
       sendEmail,
       backgroundTaskRunner,
       usage: VerificationCodeUsage.apiToken,
@@ -159,7 +157,7 @@ describe('createVerificationCode', () => {
     ).resolves.toMatchObject({ email })
   })
 
-  it('logs and captures the exception when the email delivery fails', async () => {
+  it('logs the email delivery failure without the address', async () => {
     const email = faker.internet.email().toLocaleLowerCase()
     const emailError = new EmailRequestError('Brevo timeout')
     sendEmail.mockResolvedValueOnce(failure(emailError))
@@ -168,16 +166,12 @@ describe('createVerificationCode', () => {
 
     await flushBackgroundTasks()
 
-    expect(logger.error).toHaveBeenCalledWith(
-      'Failed to send verification code email',
-      { error: emailError }
-    )
+    expect(logger.error).toHaveBeenCalledWith(emailError)
     // The address must never reach the logs in clear.
     expect(logger.error).not.toHaveBeenCalledWith(
-      'Failed to send verification code email',
+      expect.anything(),
       expect.objectContaining({ email })
     )
-    expect(captureException).toHaveBeenCalledWith(emailError)
   })
 })
 

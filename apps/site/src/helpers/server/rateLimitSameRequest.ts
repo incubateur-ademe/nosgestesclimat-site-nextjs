@@ -2,8 +2,11 @@ import { createHash } from 'node:crypto'
 
 import { redis } from '@/adapters/redis/client'
 import { RateLimitedError } from '@/components/authentication/errors'
-import logger from '@/logger'
+import _logger from '@/logger/logger.server'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
+
+const logger = _logger.child({ scope: 'site.action.rateLimitSameRequest' })
 
 /**
  * Redis-backed rate limiter for the server actions: one call per key and TTL
@@ -51,7 +54,7 @@ export const rateLimitSameRequest = async ({
     // Fail-open like the previous server implementation: availability of the
     // action wins over throttling when Redis is down. The limiter is the only
     // place that warns, so no caller has to repeat it.
-    logger.warn('Could not rate limit same requests', { error })
+    logger.warn(toError(error))
 
     return success({ degraded: true })
   }

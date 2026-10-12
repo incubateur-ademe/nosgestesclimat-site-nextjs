@@ -4,6 +4,8 @@ import type {
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import { type Locale } from '@/i18nConfig'
+import _logger from '@/logger/logger.server'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 
 type Article = PopulatedArticleType<'image' | 'blogCategory'> & {
   author: PopulatedAuthorType<'image'>
@@ -24,6 +26,13 @@ export async function fetchArticlePageContent({
     }
   | undefined
 > {
+  const logger = _logger.child({
+    scope: 'site.action.fetchArticlePageContent',
+    articleSlug,
+    categorySlug,
+    locale,
+  })
+
   try {
     const articleSearchParams = new URLSearchParams({
       locale,
@@ -41,10 +50,7 @@ export async function fetchArticlePageContent({
     }>(`/api/articles?${articleSearchParams}`)
 
     if (articleResponse.data?.length !== 1) {
-      // eslint-disable-next-line no-console
-      console.error(
-        `Error: fetch article error for articleSlug: ${articleSlug}`
-      )
+      logger.info('The CMS returned no article')
       return
     }
 
@@ -73,7 +79,9 @@ export async function fetchArticlePageContent({
       article,
       otherArticles: otherArticlesResponse?.data ?? [],
     }
-  } catch {
+  } catch (error) {
+    logger.warn(toError(error))
+
     return
   }
 }

@@ -3,21 +3,19 @@ import { createHash } from 'node:crypto'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { RateLimitedError } from '@/components/authentication/errors'
+import { serverLoggerMock } from '@/helpers/tests/mockLogger'
 import { failure, success } from '@nosgestesclimat/core/lib/result'
 import { rateLimitSameRequest } from '../rateLimitSameRequest'
 
 const mocks = vi.hoisted(() => ({
   redisSet: vi.fn(),
-  loggerWarn: vi.fn(),
 }))
 
 vi.mock('@/adapters/redis/client', () => ({
   redis: { set: mocks.redisSet },
 }))
 
-vi.mock('@/logger', () => ({
-  default: { warn: mocks.loggerWarn },
-}))
+vi.mock('@/logger/logger.server', () => ({ default: serverLoggerMock }))
 
 const hashKey = (key: string) => createHash('sha256').update(key).digest('hex')
 
@@ -93,9 +91,6 @@ describe('rateLimitSameRequest', () => {
     })
 
     expect(result).toEqual(success({ degraded: true }))
-    expect(mocks.loggerWarn).toHaveBeenCalledWith(
-      'Could not rate limit same requests',
-      { error: expect.any(Error) }
-    )
+    expect(serverLoggerMock.warn).toHaveBeenCalledWith(expect.any(Error))
   })
 })

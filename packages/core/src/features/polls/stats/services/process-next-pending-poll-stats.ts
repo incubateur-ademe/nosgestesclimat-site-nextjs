@@ -1,7 +1,7 @@
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { failure, success, type Result } from '../../../../lib/result.ts'
 import type { ComputedResults } from '../../../simulations/validators/computed-results.schema.ts'
-import { PollStatsComputationFailedError } from '../exceptions/poll-stats-computation.exception.ts'
+import { PollStatsComputationFailedError } from '../errors/poll-stats-computation.error.ts'
 import {
   claimNextPendingPollStatsComputation,
   markPollStatsComputationCompleted,
@@ -9,7 +9,7 @@ import {
 } from '../repositories/poll-stats-computations.repository.ts'
 import { updatePollStats } from '../repositories/poll-stats.repository.ts'
 
-type ComputePollStats = (pollId: string) => Promise<{
+type ComputePollStats = (params: { pollId: string }) => Promise<{
   computedResults: ComputedResults
   funFacts: FunFacts
   participantsCount: number
@@ -39,7 +39,7 @@ export function createProcessNextPendingPollStats({
 
     try {
       const { computedResults, funFacts, participantsCount } =
-        await computePollStats(pollId)
+        await computePollStats({ pollId: pollId })
 
       await updatePollStats(pollId, {
         computedResults,
