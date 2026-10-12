@@ -24,9 +24,6 @@ const browserEnv = {
   ...(process.env.SOURCE_VERSION
     ? { NEXT_PUBLIC_APP_VERSION: process.env.SOURCE_VERSION }
     : {}),
-  ...(process.env.SENTRY_DSN
-    ? { NEXT_PUBLIC_SENTRY_DSN: process.env.SENTRY_DSN }
-    : {}),
 }
 
 const nextConfig = withMDX({

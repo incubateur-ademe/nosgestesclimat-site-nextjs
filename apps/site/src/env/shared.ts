@@ -1,5 +1,7 @@
 import * as v from 'valibot'
 
+import { APP_ENV } from './app-env'
+
 export const NonEmptyStringSchema = v.pipe(v.string(), v.nonEmpty())
 
 /** `.env` writes unset as `KEY=` → `process.env` reports `''`. As the first
@@ -17,6 +19,14 @@ const EmptyIsUnsetSchema = v.pipe(
 export const mayBeUnset = <TWrapped extends v.GenericSchema>(
   wrapped: TWrapped
 ) => v.optional(v.union([EmptyIsUnsetSchema, wrapped]))
+
+/**
+ * A variable whose absence costs the telemetry without saying so: required in
+ * production, free elsewhere, where nothing is exported anyway.
+ */
+export const requiredInProduction = <TWrapped extends v.GenericSchema>(
+  wrapped: TWrapped
+) => (APP_ENV === 'production' ? wrapped : mayBeUnset(wrapped))
 
 /**
  * Validates a contract once, at import time, naming the variable that broke it:

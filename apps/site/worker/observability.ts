@@ -11,7 +11,7 @@ import {
 } from '../src/observability/setup.ts'
 
 Sentry.init({
-  dsn: process.env.SENTRY_DSN,
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   environment: APP_ENV,
   sampleRate: 1,
   // Traces live in PostHog, and this process reads them from the provider
