@@ -1,6 +1,7 @@
 import ActionsPage from '@/components/actions/pages/ActionsPage'
 import CTAButtons from '@/components/cta/CTAButtons'
 import Link from '@/components/Link'
+import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { START_SIMULATION_PATH } from '@/constants/urls/paths'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -9,7 +10,7 @@ import type { Locale } from '@/i18nConfig'
 import { getPublicActionsCatalogue } from '@/services/actions/get-public-actions-catalogue'
 import { getThemes } from '@/services/actions/get-themes'
 import type { DefaultPageProps } from '@/types'
-import { twMerge } from "cn";
+import { twMerge } from 'cn'
 
 export const generateMetadata = getCommonMetadata({
   title: t('actions.publicListPage.metaTitle'),
@@ -30,6 +31,61 @@ export default async function PublicActionsCatalogue({
 
   return (
     <>
+      <JSONLD
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            '@id': 'https://nosgestesclimat.fr/actions#webpage',
+            url: 'https://nosgestesclimat.fr/actions',
+            name: 'Actions de réduction CO2',
+            description:
+              "Catalogue d'actions pour réduire son empreinte carbone et prendre soin de soi",
+            inLanguage: 'fr-FR',
+            isPartOf: { '@id': 'https://nosgestesclimat.fr/#website' },
+            about: { '@id': 'https://www.ademe.fr/#organization' },
+            isAccessibleForFree: true,
+            breadcrumb: {
+              '@id': 'https://nosgestesclimat.fr/actions#breadcrumb',
+            },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            '@id': 'https://nosgestesclimat.fr/actions#breadcrumb',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: 'https://nosgestesclimat.fr/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Actions',
+                item: 'https://nosgestesclimat.fr/actions',
+              },
+            ],
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            '@id': 'https://nosgestesclimat.fr/#website',
+            url: 'https://nosgestesclimat.fr/',
+            name: 'Nos Gestes Climat',
+            publisher: { '@id': 'https://www.ademe.fr/#organization' },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'GovernmentOrganization',
+            '@id': 'https://www.ademe.fr/#organization',
+            name: 'ADEME',
+            url: 'https://www.ademe.fr/',
+            description: 'Agence de la transition écologique',
+          },
+        ]}
+      />
       <ActionsPage
         title={
           <Trans locale={locale} i18nKey="actions.publicListPage.title">
