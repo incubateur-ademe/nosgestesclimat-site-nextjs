@@ -21,6 +21,12 @@ export function getSubcategories({
   parsedRules: NGCRulesNodes | undefined
   safeGetRule?: (rule: DottedName) => NGCRuleNode | undefined
 }) {
+  // No parsed rules means no engine — the server builds none (`useEngine`), so
+  // every category would be reported as missing.
+  if (!parsedRules) {
+    return []
+  }
+
   return categories.reduce(
     (accumulator: DottedName[], currentValue: DottedName) => {
       const subCat: DottedName[] = []
