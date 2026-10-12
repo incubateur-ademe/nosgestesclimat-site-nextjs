@@ -1488,3 +1488,5 @@ entries:
   actions.myPlanPage.description_one: Vous avez ajouté <1>{{count}} action</1> à votre plan.
   actions.myPlanPage.description_many: Vous avez ajouté <1>{{count}} actions</1> à votre plan.
   actions.myPlanPage.description_other: Vous avez ajouté <1>{{count}} actions</1> à votre plan.
+  actions.myPlanPage.removeButton.ariaLabel: Retirer l’action "{{actionTitle}}" de votre plan
+  actions.myPlanPage.removeButton.tooltip: Retirer

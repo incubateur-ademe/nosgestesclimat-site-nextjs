@@ -1,13 +1,13 @@
 import { ImpactTag } from '@/components/actions/ImpactTag'
 import { classesByTheme } from '@/components/actions/theme/constants/classesByTheme'
 import ArrowNarrowRightIcon from '@/components/icons/ArrowNarrowRightIcon'
-import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransServer'
 import { getActionHref } from '@/helpers/actions/getActionHref'
 import type { Locale } from '@/i18nConfig'
 import type { PersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { twMerge } from 'cn'
 import Link from 'next/link'
+import RemoveFromPlanButton from './RemoveFromPlanButton'
 
 interface PlannedActionCardProps {
   action: PersonalizedAction
@@ -38,10 +38,7 @@ export default function PlannedActionCard({
       </div>
 
       <div className="flex shrink-0 items-center gap-4">
-        {/* @TODO: allow removing the action from the plan */}
-        <span className="flex size-8 items-center justify-center rounded-full bg-green-600">
-          <CheckIcon className="size-5 fill-white" />
-        </span>
+        <RemoveFromPlanButton action={action} />
 
         <ArrowNarrowRightIcon className="text-primary-700 h-3 w-4" />
       </div>
