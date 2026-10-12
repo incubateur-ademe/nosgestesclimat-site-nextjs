@@ -311,12 +311,14 @@ describe('login', () => {
           email: userB.email,
         })
         // Swapping between verified accounts is surprising enough to be
-        // logged.
+        // logged, with both identities on the line.
         expect(logger.warn).toHaveBeenCalledWith(
-          'Login account swap: the session user belongs to another verified account',
+          'Login account swap: the session user belongs to another verified account'
+        )
+        expect(logger.child).toHaveBeenCalledWith(
           expect.objectContaining({
-            sessionUserId: userA.id,
-            signedInUserId: userB.id,
+            existingVerifiedUser: expect.objectContaining({ id: userB.id }),
+            sessionUser: expect.objectContaining({ id: userA.id }),
           })
         )
         // Reconciling userA.id into account B would have moved account A's
@@ -654,9 +656,11 @@ describe('login', () => {
         // is surprising enough to be logged.
         expect(logger.warn).toHaveBeenCalledWith(
           'Sign-up with a fresh identity: the session user belongs to another verified account',
+          { signedUpUserId: result.data.user.id }
+        )
+        expect(logger.child).toHaveBeenCalledWith(
           expect.objectContaining({
-            sessionUserId: userA.id,
-            signedUpUserId: result.data.user.id,
+            sessionUser: expect.objectContaining({ id: userA.id }),
           })
         )
 

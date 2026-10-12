@@ -19,7 +19,7 @@ const participateToPollService = createParticipateToPoll({
   sendEmail,
   origin: env.NEXT_PUBLIC_SITE_URL,
   // The action redirects: the email must outlive the request.
-  backgroundTaskRunner: (task) => after(task),
+  backgroundTaskRunner: after,
 })
 
 const ParticipateToPollPayloadSchema = v.union([
