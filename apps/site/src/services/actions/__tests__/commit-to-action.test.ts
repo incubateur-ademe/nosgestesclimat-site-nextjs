@@ -1,6 +1,9 @@
 import { faker } from '@faker-js/faker/locale/th'
 import { afterEach, describe, vi } from 'vitest'
 import { commitToAction } from '../commit-to-action'
+import { getActionsPlanCacheTagWithUserId } from '../get-actions-plan'
+import { getPersonalizedActionDetailsCacheTagWithId } from '../get-personalized-action-details'
+import { GET_PERSONALIZED_ACTIONS_CACHE_TAG } from '../get-personalized-actions-catalogue'
 
 const { commitToAction: commitToActionCoreServiceMock } = vi.hoisted(() => ({
   commitToAction: vi.fn(),
@@ -51,9 +54,9 @@ describe('commitToAction service', () => {
   it('should call unauthorized() if no user session is found', async () => {
     sessionMock.getUserSession.mockResolvedValue(null)
 
-    await expect(
-      commitToAction(faker.string.uuid(), faker.string.uuid())
-    ).rejects.toThrow('NEXT_UNAUTHORIZED')
+    await expect(commitToAction(faker.string.uuid())).rejects.toThrow(
+      'NEXT_UNAUTHORIZED'
+    )
 
     expect(unauthorizedMock).toHaveBeenCalledTimes(1)
     expect(commitToActionCoreServiceMock).not.toHaveBeenCalled()
@@ -64,20 +67,26 @@ describe('commitToAction service', () => {
 
     commitToActionCoreServiceMock.mockRejectedValue('db error')
 
-    await expect(
-      commitToAction(faker.string.uuid(), faker.string.uuid())
-    ).rejects.toThrow()
+    await expect(commitToAction(faker.string.uuid())).rejects.toThrow()
 
     expect(updateTagMock).not.toHaveBeenCalled()
   })
 
-  it('should update the actions list and the action detail caches if the service call result is a success', async () => {
+  it('should update the actions list, action plan and action detail caches if the service call result is a success', async () => {
     sessionMock.getUserSession.mockResolvedValue(mockUser)
 
-    await expect(
-      commitToAction(faker.string.uuid(), faker.string.uuid())
-    ).resolves.toBeUndefined()
+    const actionId = faker.string.uuid()
+    await expect(commitToAction(actionId)).resolves.toBeUndefined()
 
-    expect(updateTagMock).toHaveBeenCalledTimes(2)
+    expect(updateTagMock).toHaveBeenCalledTimes(3)
+    expect(updateTagMock).toHaveBeenCalledWith(
+      GET_PERSONALIZED_ACTIONS_CACHE_TAG
+    )
+    expect(updateTagMock).toHaveBeenCalledWith(
+      getActionsPlanCacheTagWithUserId(mockUser.id)
+    )
+    expect(updateTagMock).toHaveBeenCalledWith(
+      getPersonalizedActionDetailsCacheTagWithId(actionId)
+    )
   })
 })
