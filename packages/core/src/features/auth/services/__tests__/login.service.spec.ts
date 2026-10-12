@@ -678,7 +678,7 @@ describe('login', () => {
   })
 
   describe('Given the email side effects fail', () => {
-    it('still succeeds and captures the errors', async () => {
+    it('still succeeds and reports the errors', async () => {
       const verificationCode = await verificationCodeFactory.create()
 
       const contactError = new EmailRequestError('Brevo unavailable')
@@ -704,14 +704,8 @@ describe('login', () => {
       )
       expect.assert(createdUser)
 
-      expect(logger.error).toHaveBeenCalledWith(contactError, {
-        label: 'side effects',
-        index: 0,
-      })
-      expect(logger.error).toHaveBeenCalledWith(emailError, {
-        label: 'side effects',
-        index: 1,
-      })
+      expect(logger.error).toHaveBeenCalledWith(contactError)
+      expect(logger.error).toHaveBeenCalledWith(emailError)
     })
   })
 })

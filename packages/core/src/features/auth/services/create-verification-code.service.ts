@@ -1,6 +1,7 @@
 import { randomInt } from 'node:crypto'
 
 import type { BackgroundTaskRunner } from '../../../lib/background-task-runner.ts'
+import { runSideEffect } from '../../../lib/run-side-effect.ts'
 import type { VerificationCodeUsage } from '../../../prisma/generated/client.ts'
 import type { SendEmail } from '../../emails/types.ts'
 import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
@@ -22,7 +23,7 @@ interface CreateVerificationCodeDependencies {
 const VERIFICATION_CODE_TTL_MS = 60 * 60 * 1000 // 1 hour
 
 export function createCreateVerificationCodeService({
-  logger,
+  logger: _logger,
   sendEmail,
   backgroundTaskRunner,
   usage,
@@ -35,31 +36,33 @@ export function createCreateVerificationCodeService({
     email: string
     locale: ISOSupportedLanguage
   }): Promise<{ email: string; expirationDate: Date }> {
-    const code = generateCode()
-    const expirationDate = new Date(Date.now() + VERIFICATION_CODE_TTL_MS)
+    return await _logger.withSpan(
+      'core.service.createVerificationCode',
+      async (logger) => {
+        const code = generateCode()
+        const expirationDate = new Date(Date.now() + VERIFICATION_CODE_TTL_MS)
 
-    await createVerificationCodeRepository({
-      email,
-      code,
-      expirationDate,
-      usage,
-    })
+        await createVerificationCodeRepository({
+          email,
+          code,
+          expirationDate,
+          usage,
+        })
 
-    backgroundTaskRunner(async () => {
-      const result = await sendEmail(
-        createVerificationCodeEmail({ locale, email, code })
-      )
-      if (!result.success) {
-        logger.error(result.error)
+        runSideEffect(
+          'verificationCodeEmail',
+          { logger, backgroundTaskRunner },
+          () => sendEmail(createVerificationCodeEmail({ locale, email, code }))
+        )
+
+        // The code itself must not leave the service: only the caller-facing
+        // fields of the stored row are returned.
+        return {
+          email,
+          expirationDate,
+        }
       }
-    })
-
-    // The code itself must not leave the service: only the caller-facing
-    // fields of the stored row are returned.
-    return {
-      email,
-      expirationDate,
-    }
+    )
   }
 }
 

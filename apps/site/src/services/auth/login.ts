@@ -40,87 +40,89 @@ export const login = async ({
   code: string
   locale?: string
   intent: Intent
-}): Promise<Result<{ userId: string }, CodeError>> => {
-  const startedAt = Date.now()
+}): Promise<Result<{ userId: string }, CodeError>> =>
+  await logger.withSpan('site.action.login', async (logger) => {
+    const startedAt = Date.now()
 
-  // The schema lowercases the email before the DB lookup; the throttle key
-  // must normalize the same way, or case permutations split the bucket.
-  const rateLimit = await rateLimitSameRequest({
-    key: `login:${email.toLocaleLowerCase()}`,
-    ttlInSeconds: 30,
-  })
-  if (!rateLimit.success) return rateLimit
-
-  const parsed = validatePayload(LoginPayloadSchema, {
-    email,
-    code,
-    locale,
-    intent,
-  })
-  if (!parsed.success) {
-    return failure(new UnknownCodeError())
-  }
-  const loginLocale = parsed.data.locale
-
-  let existingSessionUserId: string | undefined
-
-  try {
-    const session = await getUserSession()
-    // session.id is the user id, derived server-side from the signed session
-    // payload. Passing it to the service directly preserves the "one session
-    // id = one account" invariant.
-    existingSessionUserId = session?.id
-
-    const context = {
-      userId: existingSessionUserId,
-      email: maskEmail(parsed.data.email),
-      locale: loginLocale,
-      intent: parsed.data.intent,
-    }
-
-    // Every branch below logs an outcome, so an attempt left without one is
-    // how a request that hung - or killed the process - stays visible.
-    logger.info('Login attempt', context)
-
-    const result = await loginService({
-      ...parsed.data,
-      sessionUserId: existingSessionUserId,
+    // The schema lowercases the email before the DB lookup; the throttle key
+    // must normalize the same way, or case permutations split the bucket.
+    const rateLimit = await rateLimitSameRequest({
+      key: `login:${email.toLocaleLowerCase()}`,
+      ttlInSeconds: 30,
     })
+    if (!rateLimit.success) return rateLimit
 
-    if (!result.success) {
-      const outcome = { ...context, durationMs: Date.now() - startedAt }
-
-      logger.warn(result.error, outcome)
-
-      return failure(new InvalidCodeError())
-    }
-
-    const { user, mode } = result.data
-
-    logger.info('Login succeeded', {
-      ...context,
-      mode,
-      durationMs: Date.now() - startedAt,
+    const parsed = validatePayload(LoginPayloadSchema, {
+      email,
+      code,
+      locale,
+      intent,
     })
-
-    if (existingSessionUserId) {
-      await revokeAllSessions(existingSessionUserId)
+    if (!parsed.success) {
+      logger.warn(parsed.error)
+      return failure(new UnknownCodeError())
     }
-    await createAppSession(user.id, email)
+    const loginLocale = parsed.data.locale
 
-    revalidatePath('/', 'layout')
+    let existingSessionUserId: string | undefined
 
-    return success({ userId: user.id })
-  } catch (error) {
-    const outcome = {
-      userId: existingSessionUserId,
-      email: maskEmail(email),
-      locale: loginLocale,
-      durationMs: Date.now() - startedAt,
+    try {
+      const session = await getUserSession()
+      // session.id is the user id, derived server-side from the signed session
+      // payload. Passing it to the service directly preserves the "one session
+      // id = one account" invariant.
+      existingSessionUserId = session?.id
+
+      const context = {
+        userId: existingSessionUserId,
+        email: maskEmail(parsed.data.email),
+        locale: loginLocale,
+        intent: parsed.data.intent,
+      }
+
+      // Every branch below logs an outcome, so an attempt left without one is
+      // how a request that hung - or killed the process - stays visible.
+      logger.info('Login attempt', context)
+
+      const result = await loginService({
+        ...parsed.data,
+        sessionUserId: existingSessionUserId,
+      })
+
+      if (!result.success) {
+        const outcome = { ...context, durationMs: Date.now() - startedAt }
+
+        logger.warn(result.error, outcome)
+
+        return failure(new InvalidCodeError())
+      }
+
+      const { user, mode } = result.data
+
+      logger.info('Login succeeded', {
+        ...context,
+        mode,
+        durationMs: Date.now() - startedAt,
+      })
+
+      if (existingSessionUserId) {
+        await revokeAllSessions(existingSessionUserId)
+      }
+      await createAppSession(user.id, email)
+
+      revalidatePath('/', 'layout')
+
+      return success({ userId: user.id })
+    } catch (error) {
+      const outcome = {
+        userId: existingSessionUserId,
+        email: maskEmail(email),
+        locale: loginLocale,
+        durationMs: Date.now() - startedAt,
+      }
+
+      logger.error(toError(error), outcome)
+
+      return failure(new UnknownCodeError())
     }
-
-    logger.error(toError(error), outcome)
-
-    return failure(new UnknownCodeError())
-  }
-}
+  })

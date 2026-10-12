@@ -57,14 +57,23 @@ vi.mock('@/env/server', () => ({
   env: { NEXT_PUBLIC_SITE_URL: 'http://localhost:3000' },
 }))
 
-vi.mock('@/logger/logger.server', () => ({
-  default: {
+vi.mock('@/logger/logger.server', () => {
+  const logger = {
     info: mocks.loggerInfo,
     warn: mocks.loggerWarn,
     error: mocks.loggerError,
     debug: vi.fn(),
-  },
-}))
+  }
+
+  return {
+    default: {
+      ...logger,
+      child: () => logger,
+      withSpan: (_scope: string, run: (logger: unknown) => unknown) =>
+        run(logger),
+    },
+  }
+})
 
 const sessionUserId = crypto.randomUUID()
 

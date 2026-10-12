@@ -31,48 +31,53 @@ export const createVerificationCode = async ({
 }: {
   email: string
   locale?: string
-}): Promise<Result<{ expirationDate: Date }, EmailError>> => {
-  const startedAt = Date.now()
+}): Promise<Result<{ expirationDate: Date }, EmailError>> =>
+  await logger.withSpan(
+    'site.action.createVerificationCode',
+    async (logger) => {
+      const startedAt = Date.now()
 
-  // The schema lowercases the email before the DB lookup; the throttle key
-  // must normalize the same way, or case permutations split the bucket.
-  const rateLimit = await rateLimitSameRequest({
-    key: `verification-code:${email.toLocaleLowerCase()}`,
-    ttlInSeconds: 30,
-  })
-  if (!rateLimit.success) return rateLimit
+      // The schema lowercases the email before the DB lookup; the throttle key
+      // must normalize the same way, or case permutations split the bucket.
+      const rateLimit = await rateLimitSameRequest({
+        key: `verification-code:${email.toLocaleLowerCase()}`,
+        ttlInSeconds: 30,
+      })
+      if (!rateLimit.success) return rateLimit
 
-  const parsed = validatePayload(CreateVerificationCodePayloadSchema, {
-    email,
-    locale,
-  })
-  if (!parsed.success) {
-    return failure(new UnknownCodeError())
-  }
+      const parsed = validatePayload(CreateVerificationCodePayloadSchema, {
+        email,
+        locale,
+      })
+      if (!parsed.success) {
+        logger.warn(parsed.error)
+        return failure(new UnknownCodeError())
+      }
 
-  const context = {
-    email: maskEmail(email),
-    locale: parsed.data.locale,
-  }
+      const context = {
+        email: maskEmail(email),
+        locale: parsed.data.locale,
+      }
 
-  try {
-    const { expirationDate } = await createVerificationCodeService({
-      email: parsed.data.email,
-      locale: parsed.data.locale,
-    })
+      try {
+        const { expirationDate } = await createVerificationCodeService({
+          email: parsed.data.email,
+          locale: parsed.data.locale,
+        })
 
-    logger.info('VerificationCode created', {
-      ...context,
-      expirationDate,
-      durationMs: Date.now() - startedAt,
-    })
+        logger.info('VerificationCode created', {
+          ...context,
+          expirationDate,
+          durationMs: Date.now() - startedAt,
+        })
 
-    return success({ expirationDate })
-  } catch (error) {
-    const outcome = { ...context, durationMs: Date.now() - startedAt }
+        return success({ expirationDate })
+      } catch (error) {
+        const outcome = { ...context, durationMs: Date.now() - startedAt }
 
-    logger.error(toError(error), outcome)
+        logger.error(toError(error), outcome)
 
-    return failure(new UnknownCodeError())
-  }
-}
+        return failure(new UnknownCodeError())
+      }
+    }
+  )

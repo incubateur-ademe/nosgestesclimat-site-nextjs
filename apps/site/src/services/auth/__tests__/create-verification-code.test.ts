@@ -11,6 +11,7 @@ const mocks = vi.hoisted(() => ({
   sendEmail: vi.fn(),
   after: vi.fn(),
   loggerInfo: vi.fn(),
+  loggerWarn: vi.fn(),
   loggerError: vi.fn(),
 }))
 
@@ -24,14 +25,23 @@ vi.mock('@/adapters/brevoClient', () => ({
   sendEmail: mocks.sendEmail,
 }))
 
-vi.mock('@/logger/logger.server', () => ({
-  default: {
+vi.mock('@/logger/logger.server', () => {
+  const logger = {
     info: mocks.loggerInfo,
-    warn: vi.fn(),
+    warn: mocks.loggerWarn,
     error: mocks.loggerError,
     debug: vi.fn(),
-  },
-}))
+  }
+
+  return {
+    default: {
+      ...logger,
+      child: () => logger,
+      withSpan: (_scope: string, run: (logger: unknown) => unknown) =>
+        run(logger),
+    },
+  }
+})
 
 vi.mock(
   '@nosgestesclimat/core/features/auth/services/create-verification-code.service',
