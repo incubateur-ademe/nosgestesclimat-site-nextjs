@@ -67,6 +67,8 @@ export const recordUserActivity = async (
   await session.user.update({
     where: { id: userId },
     data: { lastActivityAt: new Date() },
+    // `select` is narrowed to the id to reduce data transfer because Prisma
+    // always returns a row: nothing here reads it.
     select: { id: true },
   })
 }
