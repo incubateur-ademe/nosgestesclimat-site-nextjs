@@ -20,7 +20,7 @@ import {
 } from '../../users/repositories/users.repository.ts'
 import { reconcileSimulationsAfterLogin } from '../../users/services/reconcile-simulations-after-login.service.ts'
 import { syncUserData } from '../../users/services/sync-user-data.service.ts'
-import type { User, VerifiedUser } from '../../users/types/user.ts'
+import type { VerifiedUser } from '../../users/types/user.ts'
 import { createWelcomeEmail } from '../emails/auth-emails.ts'
 import type { LoginError } from '../errors/login.error.ts'
 import type { Intent } from '../schemas/auth.schema.ts'
@@ -94,8 +94,20 @@ export function createLogin({
         // The two identities the decision below is made for: each of its lines
         // carries them, flattened as `ngc.sessionUser.email`.
         const decisionLogger = logger.child({
-          existingVerifiedUser: toUserAttributes(existingVerifiedUser),
-          sessionUser: toUserAttributes(sessionUser),
+          // Only the id: the lookup matched this email on a verified account,
+          // so both fields would repeat the query.
+          existingVerifiedUser: existingVerifiedUser
+            ? { id: existingVerifiedUser.id }
+            : undefined,
+          sessionUser: sessionUser
+            ? {
+                id: sessionUser.id,
+                type: sessionUser.type,
+                email: sessionUser.email
+                  ? maskEmail(sessionUser.email)
+                  : undefined,
+              }
+            : undefined,
         })
 
         decisionLogger.info('Login users found')
@@ -237,14 +249,3 @@ export function createLogin({
     })
   }
 }
-
-/** A user as the login lines carry it: their identity, never the address in
- * clear. */
-const toUserAttributes = (user: User | null) =>
-  user
-    ? {
-        id: user.id,
-        type: user.type,
-        email: user.email ? maskEmail(user.email) : undefined,
-      }
-    : undefined
