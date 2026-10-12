@@ -144,7 +144,7 @@ const configWithSourceMaps =
         sourcemaps: {
           // The same release string as `service.version` and the Sentry release
           // when the build knows it; the package falls back to the git commit.
-          ...(env.SOURCE_VERSION ? { releaseVersion: env.SOURCE_VERSION } : {}),
+          ...(releaseName ? { releaseVersion: releaseName } : {}),
         },
       })
     : nextConfig

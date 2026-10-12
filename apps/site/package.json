@@ -19,7 +19,7 @@
     "dev:worker": "LOG_PRETTY=true node --experimental-strip-types --env-file=.env --import ./worker/observability.ts --watch ./worker/worker.ts",
     "dev:all": "pnpm run '/dev(:worker)?$/'",
     "dev:webpack": "next dev --webpack",
-    "build": "DATABASE_POOL_MAX=1 next build",
+    "build": "DATABASE_POOL_MAX=1 next build && node scripts/inline-source-version.mjs",
     "build:analyze": "ANALYZE=true next build",
     "format": "prettier --write \"**/*.{js,ts,tsx,md,json}\"",
     "start": "DATABASE_POOL_MAX=6 DATABASE_STATEMENT_TIMEOUT_MS=15000 next start",

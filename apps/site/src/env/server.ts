@@ -44,11 +44,20 @@ const ServerEnvSchema = v.object({
   // stack traces nobody can read.
   POSTHOG_PERSONAL_API_KEY: requiredInProduction(NonEmptyStringSchema),
   POSTHOG_PROJECT_ID: requiredInProduction(NonEmptyStringSchema),
-  SOURCE_VERSION: requiredInProduction(NonEmptyStringSchema),
+  // The deployed commit, as the browser gets it: `next.config.ts` inlines it
+  // from the build-time `SOURCE_VERSION`. Required in production, where its
+  // absence would cost the version of every server-side line.
+  NEXT_PUBLIC_APP_VERSION: requiredInProduction(NonEmptyStringSchema),
   SENTRY_DSN: requiredInProduction(v.pipe(NonEmptyStringSchema, v.url())),
 })
 
-// The whole `process.env` is passed to the schema and the plain `v.object`
-// drops every key it does not know from its output, so unrelated host
-// variables (NVM_INC, CI, ...) neither fail validation nor leak into `env`.
-export const env = { ...publicEnv, ...parseEnv(ServerEnvSchema, process.env) }
+// The whole `process.env` is passed: the plain `v.object` drops what it does not
+// know, so host variables neither fail nor leak. `NEXT_PUBLIC_APP_VERSION` is
+// named because the bundler wrote it as a literal, not in the environment.
+export const env = {
+  ...publicEnv,
+  ...parseEnv(ServerEnvSchema, {
+    ...process.env,
+    NEXT_PUBLIC_APP_VERSION: process.env.NEXT_PUBLIC_APP_VERSION,
+  }),
+}

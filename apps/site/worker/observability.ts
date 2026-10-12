@@ -27,7 +27,9 @@ Sentry.init({
 // No token or no endpoint: nothing to export, so nothing to instrument.
 const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
 const endpoint = process.env.POSTHOG_OTLP_ENDPOINT
-const version = process.env.SOURCE_VERSION
+// Replaced at build by `scripts/inline-source-version.mjs` with the deployed
+// commit: the value Next inlines for the web never reaches this process.
+const version = '__SOURCE_VERSION__'
 if (token && endpoint) {
   initObservability('worker', version, { token, endpoint })
 }

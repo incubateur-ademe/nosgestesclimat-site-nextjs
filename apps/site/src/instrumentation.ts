@@ -24,7 +24,7 @@ export async function register() {
     const {
       NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: token,
       POSTHOG_OTLP_ENDPOINT: endpoint,
-      SOURCE_VERSION: version,
+      NEXT_PUBLIC_APP_VERSION: version,
     } = env
     // No token or no endpoint: nothing to export, so nothing to instrument.
     if (token && endpoint) {
