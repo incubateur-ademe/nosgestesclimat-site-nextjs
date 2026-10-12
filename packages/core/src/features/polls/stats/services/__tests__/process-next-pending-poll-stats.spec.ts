@@ -4,7 +4,7 @@ import { prisma } from '../../../../../prisma/client.ts'
 import { emptyDatabase } from '../../../../../test-utils/empty-database.ts'
 import { computedResultsFactory } from '../../../../simulations/factories/computed-results.factory.ts'
 import { pollFactory } from '../../../factories/poll.factory.ts'
-import { PollStatsComputationFailedError } from '../../exceptions/poll-stats-computation.exception.ts'
+import { PollStatsComputationFailedError } from '../../errors/poll-stats-computation.error.ts'
 import { getPollStatsComputationStatus } from '../../repositories/poll-stats-computations.repository.ts'
 import { createProcessNextPendingPollStats } from '../process-next-pending-poll-stats.ts'
 

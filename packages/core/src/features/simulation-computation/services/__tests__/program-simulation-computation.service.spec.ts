@@ -4,7 +4,7 @@ import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
 import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import type { ModelRegion } from '../../../simulations/types/model.ts'
-import { SimulationNotFinishedException } from '../../exceptions/simulation-computation.exception.ts'
+import { SimulationNotFinishedError } from '../../errors/simulation-computation.error.ts'
 import { PREVIOUS_MODEL_VERSION } from '../../model-support/model-versions.ts'
 import { findSimulationComputation } from '../../repositories/simulation-computations.repository.ts'
 import { createProgramSimulationComputation } from '../program-simulation-computation.ts'
@@ -28,7 +28,7 @@ describe('programSimulationComputation', () => {
     const { id } = await simulationFactory.params({ progression: 0.5 }).create()
 
     await expect(programSimulationComputation(id)).rejects.toThrow(
-      SimulationNotFinishedException
+      SimulationNotFinishedError
     )
   })
 

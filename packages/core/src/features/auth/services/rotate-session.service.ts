@@ -1,5 +1,5 @@
-import { TokenConsumedException } from '../exceptions/token-consumed.exception.ts'
-import { TokenExpiredException } from '../exceptions/token-expired.exception.ts'
+import { TokenConsumedError } from '../errors/token-consumed.error.ts'
+import { TokenExpiredError } from '../errors/token-expired.error.ts'
 import { hashToken } from '../helpers/hash-token.ts'
 import {
   deleteAndReturn,
@@ -20,10 +20,10 @@ export async function rotateSession(
     const existing = await findByToken(hashed)
 
     if (existing) {
-      throw new TokenExpiredException()
+      throw new TokenExpiredError()
     }
 
-    throw new TokenConsumedException()
+    throw new TokenConsumedError()
   }
 
   return createSession(deleted.userId, email)

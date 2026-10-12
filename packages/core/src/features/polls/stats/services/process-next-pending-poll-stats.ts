@@ -1,7 +1,7 @@
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { failure, success, type Result } from '../../../../lib/result.ts'
 import type { ComputedResults } from '../../../simulations/validators/computed-results.schema.ts'
-import { PollStatsComputationFailedError } from '../exceptions/poll-stats-computation.exception.ts'
+import { PollStatsComputationFailedError } from '../errors/poll-stats-computation.error.ts'
 import {
   claimNextPendingPollStatsComputation,
   markPollStatsComputationCompleted,

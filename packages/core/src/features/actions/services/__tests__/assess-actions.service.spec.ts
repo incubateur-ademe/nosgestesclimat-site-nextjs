@@ -5,7 +5,7 @@ import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
 import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { createTestEngine } from '../../../simulation-computation/factories/engine.factory.ts'
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
-import { ActionAssessmentPublicodesException } from '../../exceptions/action-assessment.exception.ts'
+import { ActionAssessmentPublicodesError } from '../../errors/action-assessment.error.ts'
 import { actionFactory } from '../../factories/action.factory.ts'
 import { createAssessActions } from '../assess-actions.service.ts'
 
@@ -139,10 +139,10 @@ describe('compute action assessments service', () => {
     )
   })
 
-  describe('throws ActionAssessmentPublicodesException', () => {
+  describe('throws ActionAssessmentPublicodesError', () => {
     it('when there are no actions in database', async () => {
       await expect(assessActions(engine, simulation.id)).rejects.toThrow(
-        ActionAssessmentPublicodesException
+        ActionAssessmentPublicodesError
       )
     })
 
@@ -158,7 +158,7 @@ describe('compute action assessments service', () => {
 
       await expect(
         assessActions(engineWithoutMeta, simulation.id)
-      ).rejects.toThrow(ActionAssessmentPublicodesException)
+      ).rejects.toThrow(ActionAssessmentPublicodesError)
     })
   })
 })

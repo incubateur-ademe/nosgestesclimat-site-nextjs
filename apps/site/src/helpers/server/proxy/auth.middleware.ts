@@ -4,8 +4,8 @@ import {
   REFRESH_COOKIE,
 } from '@/helpers/server/cookie/auth.cookie'
 import logger from '@/logger/logger.server'
-import { TokenConsumedException } from '@nosgestesclimat/core/features/auth/exceptions/token-consumed.exception'
-import { TokenExpiredException } from '@nosgestesclimat/core/features/auth/exceptions/token-expired.exception'
+import { TokenConsumedError } from '@nosgestesclimat/core/features/auth/errors/token-consumed.error'
+import { TokenExpiredError } from '@nosgestesclimat/core/features/auth/errors/token-expired.error'
 import { rotateSession } from '@nosgestesclimat/core/features/auth/services/rotate-session.service'
 import type { SessionTokens } from '@nosgestesclimat/core/features/auth/types/session'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
@@ -54,13 +54,13 @@ export async function middlewareAuth(
   try {
     tokens = await rotateSession(refreshCookie.value, payload.email)
   } catch (err) {
-    if (err instanceof TokenExpiredException) {
+    if (err instanceof TokenExpiredError) {
       // (E) Refresh token exists but is past its expiration.
       // The user must log in again; continue anonymously.
       return { redirect: null, cookies: deleteSessionCookies() }
     }
 
-    if (err instanceof TokenConsumedException) {
+    if (err instanceof TokenConsumedError) {
       // Replay protection: the token was consumed by a concurrent request.
       // Retry up to 2 times with a short delay to let the winner commit.
       const url = request.nextUrl.clone()

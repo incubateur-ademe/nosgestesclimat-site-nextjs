@@ -1,7 +1,7 @@
 import type Engine from 'publicodes'
 import { toError } from '../../../lib/to-error.ts'
 import type { Logger } from '../../logger/index.ts'
-import { ActionAssessmentPublicodesException } from '../exceptions/action-assessment.exception.ts'
+import { ActionAssessmentPublicodesError } from '../errors/action-assessment.error.ts'
 import {
   buildRuleIdToDottedName,
   evaluateAction,
@@ -27,7 +27,7 @@ export function createAssessActions(deps: AssessActionsDeps) {
     const actions = await findActionRuleIds()
 
     if (actions.length === 0) {
-      throw new ActionAssessmentPublicodesException({
+      throw new ActionAssessmentPublicodesError({
         message: 'No actions found in database. Cannot assess actions.',
       })
     }
@@ -35,7 +35,7 @@ export function createAssessActions(deps: AssessActionsDeps) {
     const ruleIdToDottedName = buildRuleIdToDottedName(engine)
 
     if (ruleIdToDottedName.size === 0) {
-      throw new ActionAssessmentPublicodesException({
+      throw new ActionAssessmentPublicodesError({
         message:
           'No publicodes rules have meta.id, cannot link actions to dotted names. ' +
           'Ensure the model includes meta.id on action rules.',

@@ -1,5 +1,5 @@
 import * as jose from 'jose'
-import { SessionCryptoException } from '../exceptions/session-crypto.exception.ts'
+import { SessionCryptoError } from '../errors/session-crypto.error.ts'
 import { getSessionEncryptionKey } from '../helpers/get-session-encryption-key.ts'
 import type { Session } from '../types/session.ts'
 
@@ -11,7 +11,7 @@ export async function decryptSession(token: string): Promise<Session> {
       currentDate: EXPIRATION_BYPASS_DATE,
     })
     .catch(() => {
-      throw new SessionCryptoException()
+      throw new SessionCryptoError()
     })
 
   return {

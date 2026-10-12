@@ -1,7 +1,7 @@
 import type Engine from 'publicodes'
 import { failure, success, type Result } from '../../../lib/result.ts'
 import type { Simulation } from '../../simulations/types/simulation.ts'
-import { SimulationComputationFailedError } from '../exceptions/simulation-computation.exception.ts'
+import { SimulationComputationFailedError } from '../errors/simulation-computation.error.ts'
 import {
   claimNextPendingSimulationComputation,
   markSimulationComputationCompleted,

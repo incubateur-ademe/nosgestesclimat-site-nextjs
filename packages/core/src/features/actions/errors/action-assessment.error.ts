@@ -1,7 +1,7 @@
 import { DomainError } from '../../../lib/errors.ts'
 import type { Action } from '../types/action.ts'
 
-export class ActionAssessmentPublicodesException extends DomainError<'action_assessment_publicodes'> {
+export class ActionAssessmentPublicodesError extends DomainError<'action_assessment_publicodes'> {
   public readonly action?: Pick<Action, 'id' | 'ruleId'>
   public readonly dottedName?: string
 

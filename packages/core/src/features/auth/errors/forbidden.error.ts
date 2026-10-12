@@ -1,6 +1,6 @@
 import { DomainError } from '../../../lib/errors.ts'
 
-export class ForbiddenException extends DomainError<'forbidden'> {
+export class ForbiddenError extends DomainError<'forbidden'> {
   public readonly resourceId?: string
 
   constructor(params: { resourceId?: string } = {}) {
