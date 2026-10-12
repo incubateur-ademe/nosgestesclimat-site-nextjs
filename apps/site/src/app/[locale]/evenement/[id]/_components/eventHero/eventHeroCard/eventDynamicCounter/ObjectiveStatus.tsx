@@ -20,7 +20,7 @@ export default function ObjectiveStatus({
         <Trans i18nKey="event.dynamicCounter.target.title.over" locale={locale}>
           Objectif dépassé
         </Trans>{' '}
-        {status === 'ended' ? '✅' : '🚀'}
+        <Emoji>{status === 'ended' ? '✅' : '🚀'}</Emoji>
       </span>
     )
   }
