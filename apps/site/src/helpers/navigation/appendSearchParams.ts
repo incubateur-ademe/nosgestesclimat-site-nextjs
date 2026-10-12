@@ -1,15 +1,10 @@
 import type { SearchParams } from 'next/dist/server/request/search-params'
 import type { ReadonlyURLSearchParams } from 'next/navigation'
 
-interface Props {
-  urlOrPathname: string
+export function appendSearchParams(
+  urlOrPathname: string,
   searchParams: ReadonlyURLSearchParams | SearchParams | undefined
-}
-
-export function appendSearchParams({
-  urlOrPathname,
-  searchParams,
-}: Props): string {
+): string {
   if (!searchParams) return urlOrPathname
 
   const urlSearchParams = new URLSearchParams()

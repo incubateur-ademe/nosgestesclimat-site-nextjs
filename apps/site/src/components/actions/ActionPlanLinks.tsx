@@ -3,7 +3,7 @@ import CountBadge from '@/design-system/layout/CountBadge'
 import type { Locale } from '@/i18nConfig'
 import type { ActionPlan } from '@nosgestesclimat/core/features/actions/types/action'
 import { Star } from 'lucide-react'
-import FileSearchIcon from '../icons/FileSearchIcon'
+import FileWithMagnifierIcon from '../icons/FileWithMagnifierIcon'
 import Trans from '../translation/trans/TransServer'
 
 interface Props {
@@ -18,7 +18,7 @@ export default function ActionPlanLinks({ plan, locale }: Props) {
         color="secondary"
         className="bg-primary-100 border-primary-300"
         href="/fin/actions">
-        <FileSearchIcon className="fill-primary-700 mr-2.5" />
+        <FileWithMagnifierIcon className="fill-primary-700 mr-2.5" />
         <Trans i18nKey="actions.plan.links.exploreActions" locale={locale}>
           Explorer les actions
         </Trans>

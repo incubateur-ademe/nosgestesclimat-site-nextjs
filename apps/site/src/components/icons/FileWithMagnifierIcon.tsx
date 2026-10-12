@@ -1,6 +1,10 @@
 import { twMerge } from 'cn'
 
-export default function FileSearchIcon({ className }: { className?: string }) {
+export default function FileWithMagnifierIcon({
+  className,
+}: {
+  className?: string
+}) {
   return (
     <svg
       width="14"
