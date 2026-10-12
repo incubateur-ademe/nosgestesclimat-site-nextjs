@@ -5,8 +5,8 @@ import { updateTag } from 'next/cache'
 import { unauthorized } from 'next/navigation'
 import { getUserSession } from '../auth/get-user-session'
 import { getActionsPlanCacheTagWithUserId } from './get-actions-plan'
-import { getPersonalizedActionDetailsCacheTagWithId } from './get-personalized-action-details'
-import { GET_PERSONALIZED_ACTIONS_CACHE_TAG } from './get-personalized-actions-catalogue'
+import { getPersonalizedActionDetailsCacheTagWithIds } from './get-personalized-action-details'
+import { getPersonalizedActionsCacheTagWithUserId } from './get-personalized-actions-catalogue'
 
 export async function commitToAction(actionId: string) {
   const session = await getUserSession()
@@ -18,8 +18,13 @@ export async function commitToAction(actionId: string) {
   })
 
   // Reset actions list, action plan AND specific action cache to avoid
-  // missmatch between pages
-  updateTag(GET_PERSONALIZED_ACTIONS_CACHE_TAG)
+  // missmatch between pages, for the current user only
+  updateTag(getPersonalizedActionsCacheTagWithUserId(session.id))
   updateTag(getActionsPlanCacheTagWithUserId(session.id))
-  updateTag(getPersonalizedActionDetailsCacheTagWithId(actionId))
+  updateTag(
+    getPersonalizedActionDetailsCacheTagWithIds({
+      userId: session.id,
+      actionId,
+    })
+  )
 }

@@ -19,7 +19,6 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
 import { getActionAlternateLocales } from '@/services/actions/get-action-alternate-locales'
 import { getPersonalizedActionDetails } from '@/services/actions/get-personalized-action-details'
-import { getUserSession } from '@/services/auth/get-user-session'
 import type { DefaultPageProps } from '@/types'
 import type { Theme } from '@/types/themes'
 import { toSearchParams } from '@/utils/nextjs/toSearchParams'
@@ -50,10 +49,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props
   const { locale, actionSlug } = await params
 
-  const user = await getUserSession()
   const { t } = getServerTranslation({ locale })
   const [actionDetails, alternateLocales] = await Promise.all([
-    getPersonalizedActionDetails(actionSlug, locale, user?.id),
+    getPersonalizedActionDetails(actionSlug, locale),
     getActionAlternateLocales(actionSlug),
   ])
 
@@ -91,9 +89,8 @@ export default async function ActionPage({ params, searchParams }: Props) {
   const { locale, themeSlug, actionSlug } = await params
   const resolvedSearchParams = await searchParams
   const from = resolvedSearchParams?.from
-  const user = await getUserSession()
   const [actionDetails, alternateLocales] = await Promise.all([
-    getPersonalizedActionDetails(actionSlug, locale, user?.id),
+    getPersonalizedActionDetails(actionSlug, locale),
     getActionAlternateLocales(actionSlug),
   ])
 
