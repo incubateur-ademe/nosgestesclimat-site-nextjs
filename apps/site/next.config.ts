@@ -83,6 +83,7 @@ const nextConfig = withMDX({
     webpackBuildWorker: true,
     authInterrupts: true,
     mdxRs: true,
+    turbopackFileSystemCacheForBuild: false,
   },
 
   webpack(config) {
