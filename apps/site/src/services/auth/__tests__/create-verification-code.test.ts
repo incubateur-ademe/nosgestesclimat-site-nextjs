@@ -64,11 +64,14 @@ describe('createVerificationCode', () => {
       email: 'success@example.com',
       locale: 'fr',
     })
+    expect(serverLoggerMock.child).toHaveBeenCalledWith({
+      email: maskEmail('Success@Example.com'),
+      scope: 'site.action.createVerificationCode',
+    })
+    expect(serverLoggerMock.child).toHaveBeenCalledWith({ locale: 'fr' })
     expect(serverLoggerMock.info).toHaveBeenCalledWith(
       'VerificationCode created',
       expect.objectContaining({
-        email: maskEmail('Success@Example.com'),
-        locale: 'fr',
         expirationDate: new Date('2026-01-02T03:04:05.678Z'),
         durationMs: expect.any(Number),
       })
@@ -165,10 +168,7 @@ describe('createVerificationCode', () => {
     })
     expect(serverLoggerMock.error).toHaveBeenCalledWith(
       failure,
-      expect.objectContaining({
-        email: maskEmail('throwing@example.com'),
-        durationMs: expect.any(Number),
-      })
+      expect.objectContaining({ durationMs: expect.any(Number) })
     )
   })
 })

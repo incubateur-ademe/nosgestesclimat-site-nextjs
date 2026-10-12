@@ -33,6 +33,12 @@ const loginService = createLogin({
 
 export const login = logger.withSpan(
   'site.action.login',
+  // Known before anything runs: what names the attempt, on the span and on
+  // every line below.
+  ({ email, intent }: { email: string; intent: Intent }) => ({
+    email: maskEmail(email),
+    intent,
+  }),
   async ({
     email,
     code,
@@ -66,7 +72,8 @@ export const login = logger.withSpan(
       logger.warn(parsed.error)
       return failure(new UnknownCodeError())
     }
-    const loginLocale = parsed.data.locale
+    // The locale only exists once the schema has defaulted it.
+    const boundLogger = logger.child({ locale: parsed.data.locale })
 
     let existingSessionUserId: string | undefined
 
@@ -77,18 +84,13 @@ export const login = logger.withSpan(
       // id = one account" invariant.
       existingSessionUserId = session?.id
 
-      const context = {
-        // The session the request came in with: the account it resolves to is
-        // only known once the service answers.
-        sessionUserId: existingSessionUserId,
-        email: maskEmail(parsed.data.email),
-        locale: loginLocale,
-        intent: parsed.data.intent,
-      }
-
       // Every branch below logs an outcome, so an attempt left without one is
-      // how a request that hung - or killed the process - stays visible.
-      logger.info('Login attempt', context)
+      // how a request that hung - or killed the process - stays visible. The
+      // session user is only known here, and the catch needs it too: it stays
+      // in the meta of the lines that carry it.
+      boundLogger.info('Login attempt', {
+        sessionUserId: existingSessionUserId,
+      })
 
       const result = await loginService({
         ...parsed.data,
@@ -96,17 +98,18 @@ export const login = logger.withSpan(
       })
 
       if (!result.success) {
-        const outcome = { ...context, durationMs: Date.now() - startedAt }
-
-        logger.warn(result.error, outcome)
+        boundLogger.warn(result.error, {
+          sessionUserId: existingSessionUserId,
+          durationMs: Date.now() - startedAt,
+        })
 
         return failure(new InvalidCodeError())
       }
 
       const { user, mode } = result.data
 
-      logger.info('Login succeeded', {
-        ...context,
+      boundLogger.info('Login succeeded', {
+        sessionUserId: existingSessionUserId,
         userId: user.id,
         mode,
         durationMs: Date.now() - startedAt,
@@ -121,14 +124,10 @@ export const login = logger.withSpan(
 
       return success({ userId: user.id })
     } catch (error) {
-      const outcome = {
+      boundLogger.error(toError(error), {
         sessionUserId: existingSessionUserId,
-        email: maskEmail(email),
-        locale: loginLocale,
         durationMs: Date.now() - startedAt,
-      }
-
-      logger.error(toError(error), outcome)
+      })
 
       return failure(new UnknownCodeError())
     }

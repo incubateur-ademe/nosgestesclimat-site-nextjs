@@ -28,6 +28,7 @@ const createVerificationCodeService = createCreateVerificationCodeService({
 
 export const createVerificationCode = logger.withSpan(
   'site.action.createVerificationCode',
+  ({ email }: { email: string }) => ({ email: maskEmail(email) }),
   async ({
     email,
     locale,
@@ -56,10 +57,7 @@ export const createVerificationCode = logger.withSpan(
       return failure(new UnknownCodeError())
     }
 
-    const context = {
-      email: maskEmail(email),
-      locale: parsed.data.locale,
-    }
+    const boundLogger = logger.child({ locale: parsed.data.locale })
 
     try {
       const { expirationDate } = await createVerificationCodeService({
@@ -67,17 +65,14 @@ export const createVerificationCode = logger.withSpan(
         locale: parsed.data.locale,
       })
 
-      logger.info('VerificationCode created', {
-        ...context,
+      boundLogger.info('VerificationCode created', {
         expirationDate,
         durationMs: Date.now() - startedAt,
       })
 
       return success({ expirationDate })
     } catch (error) {
-      const outcome = { ...context, durationMs: Date.now() - startedAt }
-
-      logger.error(toError(error), outcome)
+      boundLogger.error(toError(error), { durationMs: Date.now() - startedAt })
 
       return failure(new UnknownCodeError())
     }
