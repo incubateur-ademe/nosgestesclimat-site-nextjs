@@ -1,9 +1,5 @@
 import { test as base, expect } from '@playwright/test'
 
-/** A chunk or a stylesheet of the deployment that served the HTML: its URL
- * exists only there. */
-const NEXT_STATIC_ASSET = new URLPattern({ pathname: '/_next/static/*' })
-
 /**
  * Fails the test as soon as an asset served from `/_next/static/…` comes back in
  * error: the chunk no longer exists, so the served HTML comes from another
@@ -19,7 +15,7 @@ export const test = base.extend<{ staticAssetsAreServed: void }>({
       page.on('response', (response) => {
         if (
           response.status() >= 400 &&
-          NEXT_STATIC_ASSET.test(response.url())
+          new URL(response.url()).pathname.startsWith('/_next/static/')
         ) {
           failures.push(`${response.status()} ${response.url()}`)
         }
