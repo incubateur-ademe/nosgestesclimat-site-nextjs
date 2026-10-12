@@ -36,8 +36,10 @@ export interface SeedDemoDataResult {
  * has to be cleared first.
  */
 export const seedDemoData = async ({
-  logger = noopLogger,
+  logger: _logger = noopLogger,
 }: { logger?: Logger } = {}): Promise<SeedDemoDataResult> => {
+  const logger = _logger.child({ scope: 'core.service.seedDemoData' })
+
   logger.info('Seeding the default event…')
   await ensureSeddEvent()
 

@@ -16,7 +16,7 @@ vi.mock('@/adapters/redis/client', () => ({
 }))
 
 vi.mock('@/logger/logger.server', () => ({
-  default: { warn: mocks.loggerWarn },
+  default: { child: () => ({ warn: mocks.loggerWarn }) },
 }))
 
 const hashKey = (key: string) => createHash('sha256').update(key).digest('hex')

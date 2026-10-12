@@ -1,7 +1,9 @@
 import { env } from '@/env/server'
-import logger from '@/logger/logger.server'
+import _logger from '@/logger/logger.server'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { Redis } from 'ioredis'
+
+const logger = _logger.child({ scope: 'site.action.redis' })
 
 export const redisClientFactory = () =>
   new Redis(env.REDIS_URL, {

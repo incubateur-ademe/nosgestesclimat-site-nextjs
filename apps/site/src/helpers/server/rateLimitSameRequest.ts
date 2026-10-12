@@ -2,9 +2,11 @@ import { createHash } from 'node:crypto'
 
 import { redis } from '@/adapters/redis/client'
 import { RateLimitedError } from '@/components/authentication/errors'
-import logger from '@/logger/logger.server'
+import _logger from '@/logger/logger.server'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
+
+const logger = _logger.child({ scope: 'site.action.rateLimitSameRequest' })
 
 /**
  * Redis-backed rate limiter for the server actions: one call per key and TTL
