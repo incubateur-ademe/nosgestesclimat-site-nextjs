@@ -3,11 +3,11 @@
 import logger from '@/logger/logger.server'
 import { getUserSession } from '@/services/auth/get-user-session'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 import { type UpdateSimulationSituationError } from '@nosgestesclimat/core/features/simulations/errors/simulations.error'
 import { updateSimulationSituation as updateSimulationSituationService } from '@nosgestesclimat/core/features/simulations/services/update-simulation-situation.service'
 import { type Result } from '@nosgestesclimat/core/lib/result'
 import { validatePayload } from '@nosgestesclimat/core/lib/validate-payload'
-import { withSpan } from '@nosgestesclimat/core/lib/with-span'
 import { unauthorized } from 'next/navigation'
 import { match, P } from 'ts-pattern'
 import { ensureSimulationModel } from './ensure-simulation-model'
@@ -20,13 +20,15 @@ import {
  * Saves the progress of a simulation being answered. Scoped to what a question
  * changes.
  */
-export const updateSimulationSituation = withSpan(
-  logger,
+export const updateSimulationSituation = logger.withSpan(
   'site.action.updateSimulationSituation',
   ({ id }: UpdateSimulationSituationPayload) => ({ simulationId: id }),
-  async (
-    payload: UpdateSimulationSituationPayload
-  ): Promise<Result<void, UpdateSimulationSituationError>> => {
+  async ({
+    logger,
+    ...payload
+  }: UpdateSimulationSituationPayload & { logger: Logger }): Promise<
+    Result<void, UpdateSimulationSituationError>
+  > => {
     const session = await getUserSession()
     if (!session) unauthorized()
 

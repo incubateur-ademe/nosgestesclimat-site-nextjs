@@ -66,26 +66,30 @@ async function loop(
 ) {
   const jobLogger = logger.child({ job: name })
 
+  // The span covers the whole iteration: its lines share the trace ids, and a
+  // failure marks the iteration as failed. Either way the loop keeps running: a
+  // job that cannot be processed is not retried in place, it needs a human.
+  const iterate = jobLogger.withSpan(
+    `site.worker.${name}`,
+    async ({ logger }) => {
+      const result = await processNext()
+
+      if (!result.success) {
+        logger.error(result.error)
+        return
+      }
+
+      if (result.data) {
+        logger.info('job processed', { ...memoryAttributes() })
+      }
+    }
+  )
+
   while (running) {
     try {
-      // The span covers the whole iteration: its lines share the trace ids, and
-      // a failure marks the iteration as failed. Either way the loop keeps
-      // running: a job that cannot be processed is not retried in place, it
-      // needs a human.
-      await jobLogger.openSpan(`site.worker.${name}`, async (logger) => {
-        const result = await processNext()
-
-        if (!result.success) {
-          logger.error(result.error)
-          return
-        }
-
-        if (result.data) {
-          logger.info('job processed', { ...memoryAttributes() })
-        }
-      })
+      await iterate()
     } catch (error) {
-      // The span is already marked as failed by `openSpan`.
+      // The span is already marked as failed by `withSpan`.
       jobLogger.error(toError(error))
     }
 

@@ -6,7 +6,6 @@ import type { Result } from '../../../lib/result.ts'
 import { failure, success } from '../../../lib/result.ts'
 import { runSideEffect } from '../../../lib/run-side-effect.ts'
 import { transaction } from '../../../lib/transaction.ts'
-import { withSpan } from '../../../lib/with-span.ts'
 import type { AppUser } from '../../auth/types/user-session.ts'
 import { Attributes } from '../../emails/email.constant.ts'
 import type { AddOrUpdateContact, SendEmail } from '../../emails/types.ts'
@@ -59,33 +58,31 @@ export function createCompleteSimulation({
   origin,
   backgroundTaskRunner,
 }: CompleteSimulationDependencies) {
-  return withSpan(
-    logger,
+  return logger.withSpan(
     'core.service.completeSimulation',
     ['simulationId', 'model'],
-    async (
-      {
-        userSession,
-        simulationId,
-        progression,
-        model,
-        situation,
-        foldedSteps,
-        computedResults,
-        locale,
-      }: {
-        userSession: AppUser
-        simulationId: string
-        progression: number
-        /** The model the client ran the test with; persisted with the completion. */
-        model: string
-        situation: Situation<DottedName>
-        foldedSteps: DottedName[]
-        computedResults: ComputedResults
-        locale: ISOSupportedLanguage
-      },
-      logger
-    ): Promise<
+    async ({
+      userSession,
+      simulationId,
+      progression,
+      model,
+      situation,
+      foldedSteps,
+      computedResults,
+      locale,
+      logger,
+    }: {
+      userSession: AppUser
+      simulationId: string
+      progression: number
+      /** The model the client ran the test with; persisted with the completion. */
+      model: string
+      situation: Situation<DottedName>
+      foldedSteps: DottedName[]
+      computedResults: ComputedResults
+      locale: ISOSupportedLanguage
+      logger: Logger
+    }): Promise<
       Result<{ groups: Group[]; polls: PollSummary[] }, CompleteSimulationError>
     > => {
       const userId = userSession.id

@@ -22,17 +22,20 @@ export function runSideEffect<Failure extends ErrorWithCode>(
   { logger, backgroundTaskRunner }: SideEffectDeps,
   run: (logger: Logger) => Promise<Result<void, Failure>>
 ): void {
-  backgroundTaskRunner(() =>
-    logger.openSpan(`core.sideEffect.${name}`, async (sideEffectLogger) => {
-      try {
-        const result = await run(sideEffectLogger)
+  backgroundTaskRunner(
+    logger.withSpan(
+      `core.sideEffect.${name}`,
+      async ({ logger: sideEffectLogger }) => {
+        try {
+          const result = await run(sideEffectLogger)
 
-        if (!result.success) {
-          sideEffectLogger.error(result.error)
+          if (!result.success) {
+            sideEffectLogger.error(result.error)
+          }
+        } catch (error) {
+          sideEffectLogger.error(toError(error))
         }
-      } catch (error) {
-        sideEffectLogger.error(toError(error))
       }
-    })
+    )
   )
 }

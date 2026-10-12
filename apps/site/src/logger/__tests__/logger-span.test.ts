@@ -14,9 +14,21 @@ import {
   vi,
 } from 'vitest'
 
+import type {
+  Logger,
+  ScopeName,
+} from '@nosgestesclimat/core/features/logger/index'
 import { DomainError } from '@nosgestesclimat/core/lib/errors'
 
 import { createLogger } from '../logger.node'
+
+/** Runs a body in its own span, now: the shape the decorator wraps. */
+const runInSpan = <Result>(
+  logger: Logger,
+  scope: ScopeName,
+  run: (logger: Logger) => Promise<Result>
+): Promise<Result> =>
+  logger.withSpan(scope, async ({ logger }) => await run(logger))()
 
 class TestDomainError extends DomainError<'test_domain_error'> {
   public readonly actionId: string
@@ -67,7 +79,8 @@ describe('openSpan', () => {
   })
 
   it('runs the body in a span named after the scope', async () => {
-    const value = await createTestLogger().openSpan(
+    const value = await runInSpan(
+      createTestLogger(),
       'site.action.getGeolocation',
       () => Promise.resolve('EU')
     )
@@ -78,7 +91,8 @@ describe('openSpan', () => {
   })
 
   it('binds the scope to the logger of the body', async () => {
-    await createTestLogger().openSpan(
+    await runInSpan(
+      createTestLogger(),
       'site.action.getUserSession',
       (logger) => {
         logger.info('read')
@@ -94,8 +108,8 @@ describe('openSpan', () => {
   it('gives an operation called from another its own nested span', async () => {
     const logger = createTestLogger()
 
-    await logger.openSpan('site.action.completeSimulation', () =>
-      logger.openSpan('core.sideEffect.joinedEmail', noResult)
+    await runInSpan(logger, 'site.action.completeSimulation', () =>
+      runInSpan(logger, 'core.sideEffect.joinedEmail', noResult)
     )
 
     const spans = exporter.getFinishedSpans()
@@ -109,16 +123,19 @@ describe('openSpan', () => {
   })
 
   it("puts the logger's bindings on the span, like on the lines", async () => {
-    await createTestLogger()
-      .child({ simulationId: 'sim-1' })
-      .openSpan('core.sideEffect.joinedEmail', noResult)
+    await runInSpan(
+      createTestLogger().child({ simulationId: 'sim-1' }),
+      'core.sideEffect.joinedEmail',
+      noResult
+    )
 
     const [span] = exporter.getFinishedSpans()
     expect(span.attributes).toMatchObject({ 'ngc.simulationId': 'sim-1' })
   })
 
   it('keeps the service off the span, where the resource already names it', async () => {
-    await createTestLogger().openSpan(
+    await runInSpan(
+      createTestLogger(),
       'site.action.getUserSession',
       (logger) => {
         logger.info('read')
@@ -140,8 +157,8 @@ describe('openSpan', () => {
   it('does not carry a parent scope onto a nested span', async () => {
     const logger = createTestLogger()
 
-    await logger.openSpan('site.action.completeSimulation', (inner) =>
-      inner.openSpan('core.sideEffect.joinedEmail', noResult)
+    await runInSpan(logger, 'site.action.completeSimulation', (inner) =>
+      runInSpan(inner, 'core.sideEffect.joinedEmail', noResult)
     )
 
     const inner = exporter
@@ -151,7 +168,8 @@ describe('openSpan', () => {
   })
 
   it('annotates the span without touching the lines', async () => {
-    await createTestLogger().openSpan(
+    await runInSpan(
+      createTestLogger(),
       'core.service.computePollStats',
       (logger) => {
         logger.setSpanAttribute('participantsCount', 42)
@@ -172,7 +190,7 @@ describe('openSpan', () => {
     const failure = new Error('brevo is down')
 
     await expect(
-      createTestLogger().openSpan('site.action.completeSimulation', () =>
+      runInSpan(createTestLogger(), 'site.action.completeSimulation', () =>
         Promise.reject(failure)
       )
     ).rejects.toThrow(failure)
@@ -195,7 +213,7 @@ describe('openSpan', () => {
     const failure = new TestDomainError('action-1')
 
     await expect(
-      createTestLogger().openSpan('site.action.assessActions', () =>
+      runInSpan(createTestLogger(), 'site.action.assessActions', () =>
         Promise.reject(failure)
       )
     ).rejects.toThrow(failure)
@@ -219,7 +237,8 @@ describe('openSpan', () => {
     })
 
     await expect(
-      createTestLogger(rethrowControlFlow).openSpan(
+      runInSpan(
+        createTestLogger(rethrowControlFlow),
         'site.action.getLatestSimulationResult',
         () => Promise.reject(new Error('NEXT_REDIRECT'))
       )

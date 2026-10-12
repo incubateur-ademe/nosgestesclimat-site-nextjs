@@ -9,7 +9,7 @@ import {
 } from '../repositories/poll-stats-computations.repository.ts'
 import { updatePollStats } from '../repositories/poll-stats.repository.ts'
 
-type ComputePollStats = (pollId: string) => Promise<{
+type ComputePollStats = (params: { pollId: string }) => Promise<{
   computedResults: ComputedResults
   funFacts: FunFacts
   participantsCount: number
@@ -39,7 +39,7 @@ export function createProcessNextPendingPollStats({
 
     try {
       const { computedResults, funFacts, participantsCount } =
-        await computePollStats(pollId)
+        await computePollStats({ pollId: pollId })
 
       await updatePollStats(pollId, {
         computedResults,

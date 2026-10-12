@@ -3,7 +3,6 @@ import type { SessionPayload } from '@nosgestesclimat/core/features/auth/types/s
 import type {
   AnonUser,
   AuthUser,
-  UserSession,
 } from '@nosgestesclimat/core/features/auth/types/user-session'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
 import * as Sentry from '@sentry/nextjs'
@@ -14,43 +13,42 @@ import logger from '@/logger/logger.server'
 
 /** The session of the request being served. */
 export const getUserSession = cache(
-  async (): Promise<UserSession> =>
-    await logger.openSpan('site.action.getUserSession', async () => {
-      const reqHeaders = await headers()
-      const sessionHeader = reqHeaders.get('x-session')
+  logger.withSpan('site.action.getUserSession', async ({ logger }) => {
+    const reqHeaders = await headers()
+    const sessionHeader = reqHeaders.get('x-session')
 
-      if (!sessionHeader) {
-        return null
-      }
+    if (!sessionHeader) {
+      return null
+    }
 
-      let userId: string
-      let email: string | null | undefined
-      try {
-        const parsed = JSON.parse(sessionHeader) as SessionPayload
-        userId = parsed.userId
-        email = parsed.email
-      } catch (error) {
-        logger.error(toError(error))
-        return null
-      }
+    let userId: string
+    let email: string | null | undefined
+    try {
+      const parsed = JSON.parse(sessionHeader) as SessionPayload
+      userId = parsed.userId
+      email = parsed.email
+    } catch (error) {
+      logger.error(toError(error))
+      return null
+    }
 
-      if (email) {
-        const user: AuthUser = {
-          id: userId,
-          email,
-          isAuth: true,
-        }
-        // The PostHog link is the proxy's job (`middlewareIdentity`): this
-        // service only resolves who the caller is.
-        Sentry.setUser(user)
-        return user
-      }
-
-      const user: AnonUser = {
+    if (email) {
+      const user: AuthUser = {
         id: userId,
-        isAuth: false,
+        email,
+        isAuth: true,
       }
+      // The PostHog link is the proxy's job (`middlewareIdentity`): this
+      // service only resolves who the caller is.
       Sentry.setUser(user)
       return user
-    })
+    }
+
+    const user: AnonUser = {
+      id: userId,
+      isAuth: false,
+    }
+    Sentry.setUser(user)
+    return user
+  })
 )

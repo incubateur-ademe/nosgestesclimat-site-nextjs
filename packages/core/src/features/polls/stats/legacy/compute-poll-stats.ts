@@ -123,87 +123,88 @@ async function* batchPollSimulations(pollId: string) {
   }
 }
 
-export function createComputePollStats({
-  logger: _logger,
-}: {
-  logger: Logger
-}) {
-  return async function computePollStats(pollId: string): Promise<{
-    computedResults: ComputedResults
-    funFacts: FunFacts
-    participantsCount: number
-  }> {
-    return await _logger
-      .child({ pollId })
-      .openSpan('core.service.computePollStats', async (logger) => {
-        let simulationCount = 0
-        let participantsCount = 0
-        let computedResults = getEmptyComputedResults()
-        const funFactValues: { [key in DottedName]?: number } = {}
+export function createComputePollStats({ logger }: { logger: Logger }) {
+  return logger.withSpan(
+    'core.service.computePollStats',
+    ['pollId'],
+    async ({
+      pollId,
+      logger,
+    }: {
+      pollId: string
+      logger: Logger
+    }): Promise<{
+      computedResults: ComputedResults
+      funFacts: FunFacts
+      participantsCount: number
+    }> => {
+      let simulationCount = 0
+      let participantsCount = 0
+      let computedResults = getEmptyComputedResults()
+      const funFactValues: { [key in DottedName]?: number } = {}
 
-        for await (const { simulation, simulationId } of batchPollSimulations(
-          pollId
-        )) {
-          // Counted even when the results cannot be aggregated: the simulation
-          // took part.
-          participantsCount++
+      for await (const { simulation, simulationId } of batchPollSimulations(
+        pollId
+      )) {
+        // Counted even when the results cannot be aggregated: the simulation
+        // took part.
+        participantsCount++
 
-          if (!isValidSimulation(simulation)) {
-            // Skipped silently, the poll totals lose it: naming it is the only
-            // way to tell a data problem from a quiet poll.
-            logger.warn('Skipping a simulation the poll stats cannot read', {
-              simulationId,
-            })
-            continue
-          }
-
-          simulationCount++
-          computedResults = sumNested(
-            computedResults,
-            simulation.computedResults
-          ) as ComputedResults
-
-          for (const dottedName of Object.values(funFactsRules)) {
-            if (dottedName in frRules) {
-              let value = 0
-              try {
-                value = getSituationDottedNameValue({
-                  dottedName,
-                  situation: simulation.situation,
-                  rules: frRules,
-                })
-              } catch (error) {
-                logger.error(toError(error), { dottedName: dottedName })
-              }
-              funFactValues[dottedName] =
-                (funFactValues[dottedName] || 0) + value
-            }
-          }
+        if (!isValidSimulation(simulation)) {
+          // Skipped silently, the poll totals lose it: naming it is the only
+          // way to tell a data problem from a quiet poll.
+          logger.warn('Skipping a simulation the poll stats cannot read', {
+            simulationId,
+          })
+          continue
         }
 
-        // The duration scales with the rows the batch iterated, not with the
-        // ones it could aggregate: both are recorded, and they differ on the
-        // invalid simulations.
-        logger.setSpanAttribute('participantsCount', participantsCount)
-        logger.setSpanAttribute('simulationCount', simulationCount)
+        simulationCount++
+        computedResults = sumNested(
+          computedResults,
+          simulation.computedResults
+        ) as ComputedResults
 
-        const funFacts = Object.fromEntries(
-          Object.entries(funFactsRules).map(([key, dottedName]) => {
-            let value = funFactValues[dottedName] || 0
-
-            if (key.startsWith('average')) {
-              value = value / simulationCount
+        for (const dottedName of Object.values(funFactsRules)) {
+          if (dottedName in frRules) {
+            let value = 0
+            try {
+              value = getSituationDottedNameValue({
+                dottedName,
+                situation: simulation.situation,
+                rules: frRules,
+              })
+            } catch (error) {
+              logger.error(toError(error), { dottedName: dottedName })
             }
+            funFactValues[dottedName] = (funFactValues[dottedName] || 0) + value
+          }
+        }
+      }
 
-            if (key.startsWith('percentage')) {
-              value = (value / simulationCount) * 100
-            }
+      // The duration scales with the rows the batch iterated, not with the
+      // ones it could aggregate: both are recorded, and they differ on the
+      // invalid simulations.
+      logger.setSpanAttribute('participantsCount', participantsCount)
+      logger.setSpanAttribute('simulationCount', simulationCount)
 
-            return [key, value]
-          })
-        ) as FunFacts
+      const funFacts = Object.fromEntries(
+        Object.entries(funFactsRules).map(([key, dottedName]) => {
+          let value = funFactValues[dottedName] || 0
 
-        return { computedResults, funFacts, participantsCount }
-      })
-  }
+          if (key.startsWith('average')) {
+            value = value / simulationCount
+          }
+
+          if (key.startsWith('percentage')) {
+            value = (value / simulationCount) * 100
+          }
+
+          return [key, value]
+        })
+      ) as FunFacts
+
+      return { computedResults, funFacts, participantsCount }
+    }
+  )
 }

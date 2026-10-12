@@ -1,3 +1,5 @@
+import { spanDecorator } from './with-span.ts'
+
 /** The levels a logger writes, quietest first. `LogLevel` derives from the list,
  * so a level cannot be added to one without the other. */
 export const LOG_LEVELS = ['debug', 'info', 'warn', 'error', 'fatal'] as const
@@ -75,19 +77,50 @@ export type LogBindings = LogMeta
  */
 export type SpanAttributeValue = string | number | boolean
 
+/**
+ * What the span and the lines of an operation carry about it, picked from the
+ * service's own parameters: a list of keys, or a function that builds them.
+ *
+ * A list is checked against the parameters and cannot rename; a function is the
+ * way to rename (`({ id }) => ({ simulationId: id })`) or to mask before
+ * binding.
+ */
+/** The parameters a decorated service is called with: its own, without the
+ * logger the decorator merges in. Distributes over a union of payloads. */
+export type WithoutLogger<Params> = Params extends unknown
+  ? Omit<Params, 'logger'>
+  : never
+
+export type SpanBindings<Params> =
+  | readonly (Exclude<keyof Params, 'logger'> & string)[]
+  | ((params: Params) => LogMeta)
+
 export interface Logger {
   /**
    * New logger with `bindings` merged into every line. Does not mutate the
    * parent.
    */
   child(bindings: LogBindings): Logger
-  /** Runs an operation in its own span with a scoped logger. The span covers
-   * the whole body. Failure marks the span but goes out unchanged — reporting
-   * stays the caller's decision. */
-  openSpan<Result>(
+  /**
+   * Decorates a service so that each call runs in its own span, named by
+   * `scope`. The bindings are picked from the arguments: what names the
+   * operation on the lines names it on the trace. The body receives its
+   * parameters with the logger merged in, and the caller passes them without
+   * it.
+   *
+   * A failure marks the span and comes back out unchanged — reporting stays the
+   * caller's decision.
+   */
+  withSpan<Params extends object, Result>(
     scope: ScopeName,
-    run: (logger: Logger) => Promise<Result>
-  ): Promise<Result>
+    bindings: SpanBindings<Params>,
+    service: (params: Params) => Promise<Result>
+  ): (params: WithoutLogger<Params>) => Promise<Result>
+  /** Without parameters to pick from: the decorated service takes none. */
+  withSpan<Result>(
+    scope: ScopeName,
+    service: (params: { logger: Logger }) => Promise<Result>
+  ): () => Promise<Result>
   /** Annotates the span with a measurement (size, branch taken). Only for
    * values unknown before the span opens; known values go in `child` bindings. */
   setSpanAttribute(key: string, value: SpanAttributeValue): void
@@ -113,9 +146,11 @@ export interface Logger {
  * A logger that swallows everything: the default for a caller that does not
  * want to hear about a step.
  */
+const noopChild = () => noopLogger
+
 export const noopLogger: Logger = {
-  child: () => noopLogger,
-  openSpan: (_scope, run) => run(noopLogger),
+  child: noopChild,
+  withSpan: spanDecorator((_scope, run) => run(noopLogger)),
   setSpanAttribute: () => {},
   debug: () => {},
   info: () => {},

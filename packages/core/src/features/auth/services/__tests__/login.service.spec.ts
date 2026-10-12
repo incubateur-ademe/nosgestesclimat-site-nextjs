@@ -13,8 +13,6 @@ import { computedResultsFactory } from '../../../simulations/factories/computed-
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import { findVerifiedUserByEmail } from '../../../users/repositories/users.repository.ts'
-import { reconcileSimulationsAfterLogin } from '../../../users/services/reconcile-simulations-after-login.service.ts'
-import { syncUserData } from '../../../users/services/sync-user-data.service.ts'
 import { InvalidVerificationCodeError } from '../../errors/login.error.ts'
 import { verificationCodeFactory } from '../../factories/verification-code.factory.ts'
 import { findValidVerificationCode } from '../../repositories/verification-codes.repository.ts'
@@ -23,14 +21,17 @@ import { createLogin } from '../login.service.ts'
 // Both reconciliation helpers are fully mocked: their database effects are
 // covered by their own specs. This file only asserts that the login service
 // reaches for them when it should - and never when it should not.
+const syncUserData = vi.fn()
+const reconcileSimulationsAfterLogin = vi.fn()
+
 vi.mock('../../../users/services/sync-user-data.service.ts', () => ({
-  syncUserData: vi.fn(),
+  createSyncUserData: () => syncUserData,
 }))
 
 vi.mock(
   '../../../users/services/reconcile-simulations-after-login.service.ts',
   () => ({
-    reconcileSimulationsAfterLogin: vi.fn(),
+    createReconcileSimulationsAfterLogin: () => reconcileSimulationsAfterLogin,
   })
 )
 
@@ -274,7 +275,6 @@ describe('login', () => {
           email: verifiedUser.email,
         })
         expect(vi.mocked(reconcileSimulationsAfterLogin)).toHaveBeenCalledWith({
-          logger,
           user: expect.objectContaining({
             id: verifiedUser.id,
             email: verifiedUser.email,
@@ -357,7 +357,6 @@ describe('login', () => {
         // The fresh sign-up merges the legacy users sharing the email, but
         // has no session user to reconcile from.
         expect(vi.mocked(syncUserData)).toHaveBeenCalledWith({
-          logger,
           user: expect.objectContaining({ id: createdUser.id }),
           verified: true,
         })
@@ -436,7 +435,6 @@ describe('login', () => {
         // data attached: the sign-up sync runs, and no reconciliation is
         // needed since the data stays attached to the same id.
         expect(vi.mocked(syncUserData)).toHaveBeenCalledWith({
-          logger,
           user: expect.objectContaining({ id: unverifiedUser.id }),
           verified: true,
         })
@@ -677,7 +675,6 @@ describe('login', () => {
         expect.assert(createdUser)
         expect(createdUser.id).toBe(result.data.user.id)
         expect(vi.mocked(syncUserData)).toHaveBeenCalledWith({
-          logger,
           user: expect.objectContaining({ id: result.data.user.id }),
           verified: true,
         })

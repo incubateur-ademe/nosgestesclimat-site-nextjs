@@ -7,6 +7,7 @@ import type {
   LogMeta,
   ScopeName,
 } from '@nosgestesclimat/core/features/logger/index'
+import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { context, SpanStatusCode, trace } from '@opentelemetry/api'
 import pino, { type Logger as PinoLogger } from 'pino'
@@ -117,9 +118,13 @@ export function createLogger({
       }
     }
 
+    const child = (bindings: LogMeta) =>
+      build(instance.child(prefixKeys(bindings)))
+
     async function openSpan<Result>(
       scope: ScopeName,
-      run: (logger: Logger) => Promise<Result>
+      run: (logger: Logger) => Promise<Result>,
+      bindings: LogMeta
     ): Promise<Result> {
       // The span carries the logger's own context, so a `child(...)` chain
       // reaches the trace as it reaches the lines. Two keys are dropped:
@@ -133,10 +138,16 @@ export function createLogger({
       } = instance.bindings()
 
       return await appTracer().startActiveSpan(scope, async (span) => {
-        span.setAttributes(toSpanAttributes(flattenMeta(inherited)))
+        span.setAttributes(
+          toSpanAttributes(
+            flattenMeta({ ...inherited, ...prefixKeys(bindings) })
+          )
+        )
 
         try {
-          return await run(build(instance.child(prefixKeys({ scope }))))
+          return await run(
+            build(instance.child(prefixKeys({ ...bindings, scope })))
+          )
         } catch (error) {
           // Before anything else: a control-flow error must leave the span
           // untouched, or every redirect reads as a failure.
@@ -163,8 +174,8 @@ export function createLogger({
     }
 
     return {
-      child: (bindings) => build(instance.child(prefixKeys(bindings))),
-      openSpan,
+      child,
+      withSpan: spanDecorator(openSpan),
       // Shaped like a binding, so the attribute reads the same as the ones the
       // span inherited; only the destination differs.
       setSpanAttribute: (key, value) =>

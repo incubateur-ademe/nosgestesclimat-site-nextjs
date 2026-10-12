@@ -11,11 +11,11 @@ import { getLocaleFromHeaders } from '@/helpers/server/getLocaleForNotFoundOrUna
 import logger from '@/logger/logger.server'
 import { getUserSession } from '@/services/auth/get-user-session'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 import { type CompleteSimulationError } from '@nosgestesclimat/core/features/simulations/errors/simulations.error'
 import { createCompleteSimulation } from '@nosgestesclimat/core/features/simulations/services/complete-simulation.service'
 import { type Result } from '@nosgestesclimat/core/lib/result'
 import { validatePayload } from '@nosgestesclimat/core/lib/validate-payload'
-import { withSpan } from '@nosgestesclimat/core/lib/with-span'
 import { revalidatePath } from 'next/cache'
 import { redirect, unauthorized } from 'next/navigation'
 import { after } from 'next/server'
@@ -36,13 +36,16 @@ const completeSimulationService = createCompleteSimulation({
   backgroundTaskRunner: after,
 })
 
-export const completeSimulation = withSpan(
-  logger,
+export const completeSimulation = logger.withSpan(
   'site.action.completeSimulation',
   ({ id }: CompleteSimulationPayload) => ({ simulationId: id }),
-  async (
-    payload: CompleteSimulationPayload
-  ): Promise<Result<never, CompleteSimulationError> | void> => {
+  async ({
+    logger,
+    ...payload
+  }: CompleteSimulationPayload & { logger: Logger }): Promise<Result<
+    never,
+    CompleteSimulationError
+  > | void> => {
     const session = await getUserSession()
     if (!session) unauthorized()
 

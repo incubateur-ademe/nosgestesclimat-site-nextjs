@@ -2,8 +2,8 @@ import type {
   Logger,
   LogLevel,
   LogMeta,
-  ScopeName,
 } from '@nosgestesclimat/core/features/logger/index'
+import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
 import { captureException } from '@sentry/nextjs'
 import posthog, { type LogAttributes } from 'posthog-js'
 
@@ -48,7 +48,7 @@ function capture(error: Error, line: LogMeta): void {
 const DEFAULT_LEVEL: LogLevel = APP_ENV === 'development' ? 'debug' : 'warn'
 
 /** Browser logger: console + PostHog Logs. No spans (no OTel SDK in the
- * browser); `openSpan` binds the scope only. Correlation via posthog-js's own
+ * browser); `withSpan` binds the scope only. Correlation via posthog-js's own
  * `distinctId`/`sessionId`, not a trace id from here. The capture is the
  * logger's own — nothing reports on the side. */
 export function createBrowserLogger({
@@ -124,18 +124,16 @@ export function createBrowserLogger({
       }
     }
 
-    async function openSpan<Result>(
-      scope: ScopeName,
-      run: (logger: Logger) => Promise<Result>
-    ): Promise<Result> {
-      // No span opens and none closes: the body gets the logger bound to the
-      // scope, and its own `finally` stays its business.
-      return await run(build({ ...bindings, ...prefixKeys({ scope }) }))
-    }
+    const child = (more: LogMeta) => build({ ...bindings, ...prefixKeys(more) })
 
     return {
-      child: (more) => build({ ...bindings, ...prefixKeys(more) }),
-      openSpan,
+      child,
+      // No span opens and none closes: the body gets the logger bound to the
+      // scope and to what names the operation, and its own `finally` stays its
+      // business.
+      withSpan: spanDecorator(
+        async (scope, run, picked) => await run(child({ ...picked, scope }))
+      ),
       // Nothing to annotate: the line carries what the server would put on a
       // span, through the bindings and the meta.
       setSpanAttribute: () => undefined,

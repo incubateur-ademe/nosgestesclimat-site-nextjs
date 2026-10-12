@@ -48,7 +48,7 @@ describe('processNextPendingPollStats', () => {
     expect(computation!.scheduledAt).toBeNull()
     expect(computation!.startedAt).toBeNull()
 
-    expect(mockComputePollStats).toHaveBeenCalledWith(poll.id)
+    expect(mockComputePollStats).toHaveBeenCalledWith({ pollId: poll.id })
 
     const updated = await prisma.poll.findUnique({
       where: { id: poll.id },

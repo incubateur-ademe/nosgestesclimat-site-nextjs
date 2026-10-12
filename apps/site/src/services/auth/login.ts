@@ -13,6 +13,7 @@ import type { Intent } from '@nosgestesclimat/core/features/auth/schemas/auth.sc
 import { LoginPayloadSchema } from '@nosgestesclimat/core/features/auth/schemas/auth.schema'
 import { createLogin } from '@nosgestesclimat/core/features/auth/services/login.service'
 import { revokeAllSessions } from '@nosgestesclimat/core/features/auth/services/revoke-all-sessions.service'
+import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 import { maskEmail } from '@nosgestesclimat/core/lib/pii'
 import { failure, success, type Result } from '@nosgestesclimat/core/lib/result'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
@@ -30,18 +31,22 @@ const loginService = createLogin({
   backgroundTaskRunner: after,
 })
 
-export const login = async ({
-  email,
-  code,
-  locale,
-  intent,
-}: {
-  email: string
-  code: string
-  locale?: string
-  intent: Intent
-}): Promise<Result<{ userId: string }, CodeError>> =>
-  await logger.openSpan('site.action.login', async (logger) => {
+export const login = logger.withSpan(
+  'site.action.login',
+  [],
+  async ({
+    email,
+    code,
+    locale,
+    intent,
+    logger,
+  }: {
+    email: string
+    code: string
+    locale?: string
+    intent: Intent
+    logger: Logger
+  }): Promise<Result<{ userId: string }, CodeError>> => {
     const startedAt = Date.now()
 
     // The schema lowercases the email before the DB lookup; the throttle key
@@ -128,4 +133,5 @@ export const login = async ({
 
       return failure(new UnknownCodeError())
     }
-  })
+  }
+)

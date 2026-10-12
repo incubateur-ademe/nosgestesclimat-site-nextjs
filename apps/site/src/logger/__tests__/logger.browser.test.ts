@@ -1,6 +1,9 @@
 // @vitest-environment jsdom
 /* eslint-disable no-console -- the console is the sink under test */
-import type { Logger } from '@nosgestesclimat/core/features/logger/index'
+import type {
+  Logger,
+  ScopeName,
+} from '@nosgestesclimat/core/features/logger/index'
 import type { Logger as PosthogLogger } from 'posthog-js'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -27,6 +30,13 @@ vi.mock('@sentry/nextjs', () => ({
 
 import clientLogger, { createBrowserLogger } from '../logger.browser'
 
+/** Runs a body in its own span, now: the shape the decorator wraps. */
+const runInSpan = <Result>(
+  logger: Logger,
+  scope: ScopeName,
+  run: (logger: Logger) => Promise<Result>
+): Promise<Result> =>
+  logger.withSpan(scope, async ({ logger }) => await run(logger))()
 describe('createBrowserLogger', () => {
   let logger: Logger
 
@@ -137,7 +147,8 @@ describe('createBrowserLogger', () => {
   })
 
   it('binds the scope for the body of `openSpan`, which has no span here', async () => {
-    const result = await logger.openSpan(
+    const result = await runInSpan(
+      logger,
       'site.engine.safeEvaluate',
       (scoped) => {
         scoped.info('evaluating')
@@ -190,6 +201,7 @@ describe('createBrowserLogger', () => {
     vi.resetModules()
 
     // `APP_ENV` is read once, where the module is evaluated: the import has to
+
     // come after the stub for the production branch to be the one under test.
     const { createBrowserLogger: inProduction } =
       await import('../logger.browser')

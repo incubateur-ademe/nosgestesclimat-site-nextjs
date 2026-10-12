@@ -18,8 +18,8 @@ import {
   findUserById,
   findVerifiedUserByEmail,
 } from '../../users/repositories/users.repository.ts'
-import { reconcileSimulationsAfterLogin } from '../../users/services/reconcile-simulations-after-login.service.ts'
-import { syncUserData } from '../../users/services/sync-user-data.service.ts'
+import { createReconcileSimulationsAfterLogin } from '../../users/services/reconcile-simulations-after-login.service.ts'
+import { createSyncUserData } from '../../users/services/sync-user-data.service.ts'
 import type { VerifiedUser } from '../../users/types/user.ts'
 import { createWelcomeEmail } from '../emails/auth-emails.ts'
 import type { LoginError } from '../errors/login.error.ts'
@@ -44,31 +44,35 @@ interface LoginDependencies {
 }
 
 export function createLogin({
-  logger: _logger,
+  logger,
   sendEmail,
   addOrUpdateContact,
   origin,
   backgroundTaskRunner,
 }: LoginDependencies) {
-  return async function login({
-    email,
-    code,
-    locale,
-    intent,
-    sessionUserId,
-  }: {
-    email: string
-    code: string
-    locale: ISOSupportedLanguage
-    /** Why the user logs in: decides which post-login email is sent. */
-    intent: Intent
-    /**
-     * The current session's userId. A session user that cannot be found is
-     * the same as no session.
-     */
-    sessionUserId?: string
-  }): Promise<Result<LoginResult, LoginError>> {
-    return await _logger.openSpan('core.service.login', async (logger) => {
+  return logger.withSpan(
+    'core.service.login',
+    [],
+    async ({
+      email,
+      code,
+      locale,
+      intent,
+      sessionUserId,
+      logger,
+    }: {
+      email: string
+      code: string
+      locale: ISOSupportedLanguage
+      /** Why the user logs in: decides which post-login email is sent. */
+      intent: Intent
+      /**
+       * The current session's userId. A session user that cannot be found is
+       * the same as no session.
+       */
+      sessionUserId?: string
+      logger: Logger
+    }): Promise<Result<LoginResult, LoginError>> => {
       const account = await transaction(async (session) => {
         // Single-use by construction, on both branches: the code is claimed
         // atomically, inside the transaction, before the sign-in/sign-up
@@ -182,13 +186,15 @@ export function createLogin({
 
       if (mode === 'signUp') {
         // merge legacy unverified users.
-        await syncUserData({ logger: userLogger, user, verified: true })
+        await createSyncUserData({ logger: userLogger })({
+          user,
+          verified: true,
+        })
       }
 
       if (mode === 'signIn' && reconcileUserId) {
         // transfer the unverified user's data to the verified user.
-        await reconcileSimulationsAfterLogin({
-          logger: userLogger,
+        await createReconcileSimulationsAfterLogin({ logger: userLogger })({
           user,
           previousUserId: reconcileUserId,
         })
@@ -250,6 +256,6 @@ export function createLogin({
       )
 
       return success({ user, mode })
-    })
-  }
+    }
+  )
 }

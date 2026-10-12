@@ -1,4 +1,5 @@
 import type { Logger as CoreLogger } from '@nosgestesclimat/core/features/logger/index'
+import { spanDecorator } from '@nosgestesclimat/core/features/logger/with-span'
 import winston from 'winston'
 import SentryTransport from 'winston-transport-sentry-node'
 import { config } from './config.ts'
@@ -65,8 +66,10 @@ const logger = winston.createLogger({
 const toCoreLogger = (winstonLogger: winston.Logger): CoreLogger => ({
   child: (bindings) => toCoreLogger(winstonLogger.child(bindings)),
   // No tracer in the legacy server: the span is a no-op, and the callback gets
-  // the scope-bound logger — what a `openSpan` call site actually uses.
-  openSpan: (scope, run) => run(toCoreLogger(winstonLogger.child({ scope }))),
+  // the logger bound to the scope and to what names the operation.
+  withSpan: spanDecorator((scope, run, bindings) =>
+    run(toCoreLogger(winstonLogger.child({ ...bindings, scope })))
+  ),
   // No tracer either: there is no span to annotate.
   setSpanAttribute: () => undefined,
   debug: (message, meta) => winstonLogger.debug(message, meta),

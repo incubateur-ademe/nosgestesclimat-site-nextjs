@@ -30,9 +30,9 @@ describe('computePollStats', () => {
       .create()
     await simulationFactory.started().withPollId(poll.id).create()
 
-    const { computedResults, participantsCount } = await computePollStats(
-      poll.id
-    )
+    const { computedResults, participantsCount } = await computePollStats({
+      pollId: poll.id,
+    })
 
     expect(computedResults.carbone.bilan).toBe(
       validSimulation1.computedResults.carbone.bilan +
@@ -60,7 +60,7 @@ describe('computePollStats', () => {
       .withPollId(poll.id)
       .create()
 
-    const { funFacts } = await computePollStats(poll.id)
+    const { funFacts } = await computePollStats({ pollId: poll.id })
 
     expect(funFacts.averageOfCarKilometers).toBe(12000)
     expect(funFacts.percentageOfBicycleUsers).toBe(100)

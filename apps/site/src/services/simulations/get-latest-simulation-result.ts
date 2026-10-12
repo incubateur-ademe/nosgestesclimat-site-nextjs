@@ -5,16 +5,20 @@ import { getLatestSimulationResult as getLatestSimulationResultService } from '@
 import type { SimulationResult } from '@/helpers/server/model/simulationResult'
 import logger from '@/logger/logger.server'
 import { getUserSession } from '@/services/auth/get-user-session'
+import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 import { notFound } from 'next/navigation'
 
 import { toSimulationDto } from './simulation.dto'
 
-export const getLatestSimulationResult = async ({
-  withTendency,
-}: {
-  withTendency: boolean
-}): Promise<SimulationResult> =>
-  await logger.openSpan('site.action.getLatestSimulationResult', async () => {
+export const getLatestSimulationResult = logger.withSpan(
+  'site.action.getLatestSimulationResult',
+  [],
+  async ({
+    withTendency,
+  }: {
+    withTendency: boolean
+    logger: Logger
+  }): Promise<SimulationResult> => {
     const session = await getUserSession()
     if (!session) notFound()
 
@@ -29,4 +33,5 @@ export const getLatestSimulationResult = async ({
       ...result,
       simulation: toSimulationDto(result.simulation),
     }
-  })
+  }
+)

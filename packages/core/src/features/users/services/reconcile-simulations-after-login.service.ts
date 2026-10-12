@@ -7,18 +7,21 @@ import { transferSimulationsFromUser } from '../repositories/ownership-transfer.
  * signed into: its simulations and group participations follow, the anonymous
  * row is deleted. The outcome of the login is logged by its caller.
  */
-export const reconcileSimulationsAfterLogin = async ({
+export const createReconcileSimulationsAfterLogin = ({
   logger,
-  user,
-  previousUserId,
 }: {
   logger: Logger
-  user: { id: string; email: string }
-  previousUserId: string
 }) =>
-  await logger.openSpan(
+  logger.withSpan(
     'core.service.reconcileSimulationsAfterLogin',
-    async () => {
+    [],
+    async ({
+      user,
+      previousUserId,
+    }: {
+      user: { id: string; email: string }
+      previousUserId: string
+    }) => {
       await transaction((session) =>
         transferSimulationsFromUser({ user, previousUserId }, { session })
       )

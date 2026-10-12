@@ -601,11 +601,11 @@ describe('completeSimulation', () => {
 
       expect(result).toEqual(expect.objectContaining({ success: true }))
       expect(logger.error).toHaveBeenCalledWith(error)
+      // The decorator binds the params that name the operation, and the scope
+      // with them.
       expect(logger.child).toHaveBeenCalledWith({
         simulationId: simulation.id,
         model: payload.model,
-      })
-      expect(logger.child).toHaveBeenCalledWith({
         scope: 'core.service.completeSimulation',
       })
     })

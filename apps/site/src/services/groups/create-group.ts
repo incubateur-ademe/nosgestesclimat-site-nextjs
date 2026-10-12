@@ -8,19 +8,24 @@ import logger from '@/logger/logger.server'
 import { getUserSession } from '@/services/auth/get-user-session'
 import { ensureSimulationModel } from '@/services/simulations/ensure-simulation-model'
 import type { Group } from '@/types/groups'
+import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 
-export const createGroup = async ({
-  name,
-  emoji,
-  administratorName,
-  participants,
-}: {
-  name: string
-  emoji: string
-  administratorName: string
-  participants?: { simulation: Simulation }[]
-}) =>
-  await logger.openSpan('site.action.createGroup', async (logger) => {
+export const createGroup = logger.withSpan(
+  'site.action.createGroup',
+  [],
+  async ({
+    name,
+    emoji,
+    administratorName,
+    participants,
+    logger,
+  }: {
+    name: string
+    emoji: string
+    administratorName: string
+    participants?: { simulation: Simulation }[]
+    logger: Logger
+  }) => {
     const session = await getUserSession()
     if (!session?.isAuth) {
       throw new UnauthorizedError()
@@ -44,4 +49,5 @@ export const createGroup = async ({
           : undefined,
       },
     })
-  })
+  }
+)

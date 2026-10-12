@@ -1,6 +1,7 @@
 import { vi } from 'vitest'
 
-import type { Logger, ScopeName } from '../features/logger/index.ts'
+import type { Logger } from '../features/logger/index.ts'
+import { spanDecorator } from '../features/logger/with-span.ts'
 
 /** Spied function, typed so the declaration build can name it: an inferred
  * `Mock` fails it (TS2742, `@vitest/spy` only a transitive dependency). */
@@ -30,16 +31,23 @@ export function createTestLogger(): TestLogger {
     fatal: vi.fn(),
     child: vi.fn(),
     setSpanAttribute: vi.fn(),
+  }
+
+  const full: TestLogger = {
+    ...logger,
     // No span in a test: what a service hands to the logger is asserted, not
     // the trace it sits in. The body logs through the same spied instance,
     // whichever scope it runs under.
-    openSpan: <Result>(
-      scope: ScopeName,
-      run: (logger: Logger) => Promise<Result>
-    ): Promise<Result> => run(logger.child({ scope })),
-  } satisfies Logger
+    // Like the real loggers: the body gets the logger bound to the scope and to
+    // what names the operation.
+    withSpan: spanDecorator((scope, run, bindings) => {
+      logger.child({ ...bindings, scope })
 
-  logger.child.mockReturnValue(logger)
+      return run(full)
+    }),
+  }
 
-  return logger
+  logger.child.mockReturnValue(full)
+
+  return full
 }

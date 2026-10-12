@@ -4,13 +4,13 @@ import { sendEmail } from '@/adapters/brevoClient'
 import { env } from '@/env/server'
 import logger from '@/logger/logger.server'
 import { ISOSupportedLanguageSchema } from '@nosgestesclimat/core/features/geo/types/language'
+import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 import type { ParticipateToPollError } from '@nosgestesclimat/core/features/polls/errors/polls.error'
 import { createParticipateToPoll } from '@nosgestesclimat/core/features/polls/services/participate-to-poll.service'
 import { ModelSchema } from '@nosgestesclimat/core/features/simulations/types/model'
 import type { InvalidPayloadError } from '@nosgestesclimat/core/lib/errors'
 import { type Result } from '@nosgestesclimat/core/lib/result'
 import { validatePayload } from '@nosgestesclimat/core/lib/validate-payload'
-import { withSpan } from '@nosgestesclimat/core/lib/with-span'
 import { after } from 'next/server'
 import * as v from 'valibot'
 import { ensureUserSession } from '../auth/ensure-user-session'
@@ -44,13 +44,13 @@ type ParticipateToPollPayload = v.InferOutput<
  * Enters the current user in a poll, either by reusing a simulation they
  * already completed or by starting a new one.
  */
-export const participateToPoll = withSpan(
-  logger,
+export const participateToPoll = logger.withSpan(
   'site.action.participateToPoll',
   ['pollId'],
-  async (
-    params: ParticipateToPollPayload
-  ): Promise<
+  async ({
+    logger,
+    ...params
+  }: ParticipateToPollPayload & { logger: Logger }): Promise<
     Result<
       { simulationId: string },
       ParticipateToPollError | InvalidPayloadError

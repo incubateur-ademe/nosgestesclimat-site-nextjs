@@ -158,7 +158,7 @@ describe('simulation write paths', () => {
     it('should leave them without a model, on purpose', async () => {
       importLegacyLocalSimulationsMock.mockResolvedValue(undefined)
 
-      await uploadLocalSimulations([modellessSimulation()])
+      await uploadLocalSimulations({ simulations: [modellessSimulation()] })
 
       expect(importLegacyLocalSimulationsMock).toHaveBeenCalledTimes(1)
       const { simulations } = importLegacyLocalSimulationsMock.mock
