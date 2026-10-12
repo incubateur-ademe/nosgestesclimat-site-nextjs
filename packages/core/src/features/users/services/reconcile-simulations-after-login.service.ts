@@ -14,7 +14,6 @@ export const createReconcileSimulationsAfterLogin = ({
 }) =>
   logger.withSpan(
     'core.service.reconcileSimulationsAfterLogin',
-    [],
     async ({
       user,
       previousUserId,

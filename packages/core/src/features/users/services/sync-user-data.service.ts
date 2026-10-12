@@ -10,7 +10,6 @@ import { transferOwnershipToUser } from '../repositories/ownership-transfer.repo
 export const createSyncUserData = ({ logger }: { logger: Logger }) =>
   logger.withSpan(
     'core.service.syncUserData',
-    [],
     async ({
       user,
       verified,

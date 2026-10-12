@@ -12,7 +12,6 @@ import type { ComputedResults as CoreComputedResults } from '@nosgestesclimat/co
  * lie about what rules computed them. Stored with the database default instead. */
 export const uploadLocalSimulations = logger.withSpan(
   'site.action.uploadLocalSimulations',
-  [],
   async ({
     simulations,
     logger,

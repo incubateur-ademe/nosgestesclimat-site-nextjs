@@ -12,7 +12,6 @@ import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 
 export const createGroup = logger.withSpan(
   'site.action.createGroup',
-  [],
   async ({
     name,
     emoji,

@@ -52,7 +52,6 @@ export function createLogin({
 }: LoginDependencies) {
   return logger.withSpan(
     'core.service.login',
-    [],
     async ({
       email,
       code,

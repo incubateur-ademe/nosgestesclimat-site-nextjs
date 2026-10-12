@@ -33,7 +33,6 @@ const loginService = createLogin({
 
 export const login = logger.withSpan(
   'site.action.login',
-  [],
   async ({
     email,
     code,

@@ -91,6 +91,12 @@ export type WithoutLogger<Params> = Params extends unknown
   ? Omit<Params, 'logger'>
   : never
 
+/** The decorated service. Takes no argument when nothing is left to pass. */
+export type DecoratedService<Params, Result> =
+  keyof WithoutLogger<Params> extends never
+    ? () => Promise<Result>
+    : (params: WithoutLogger<Params>) => Promise<Result>
+
 export type SpanBindings<Params> =
   | readonly (Exclude<keyof Params, 'logger'> & string)[]
   | ((params: Params) => LogMeta)
@@ -111,16 +117,24 @@ export interface Logger {
    * A failure marks the span and comes back out unchanged — reporting stays the
    * caller's decision.
    */
-  withSpan<Params extends object, Result>(
-    scope: ScopeName,
-    bindings: SpanBindings<Params>,
-    service: (params: Params) => Promise<Result>
-  ): (params: WithoutLogger<Params>) => Promise<Result>
-  /** Without parameters to pick from: the decorated service takes none. */
+  /**
+   * Sans paramètres à passer. En premier : un corps `async ({ logger }) => …`
+   * n'est pas annoté, et c'est cette surcharge qui lui donne le logger. Dès que
+   * les paramètres sont annotés, la surcharge générique prend le relais.
+   */
   withSpan<Result>(
     scope: ScopeName,
     service: (params: { logger: Logger }) => Promise<Result>
   ): () => Promise<Result>
+  withSpan<Params extends object, Result>(
+    scope: ScopeName,
+    service: (params: Params) => Promise<Result>
+  ): DecoratedService<Params, Result>
+  withSpan<Params extends object, Result>(
+    scope: ScopeName,
+    bindings: SpanBindings<Params>,
+    service: (params: Params) => Promise<Result>
+  ): DecoratedService<Params, Result>
   /** Annotates the span with a measurement (size, branch taken). Only for
    * values unknown before the span opens; known values go in `child` bindings. */
   setSpanAttribute(key: string, value: SpanAttributeValue): void

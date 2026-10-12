@@ -28,7 +28,6 @@ const createVerificationCodeService = createCreateVerificationCodeService({
 
 export const createVerificationCode = logger.withSpan(
   'site.action.createVerificationCode',
-  [],
   async ({
     email,
     locale,

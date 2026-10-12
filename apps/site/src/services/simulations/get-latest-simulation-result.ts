@@ -12,7 +12,6 @@ import { toSimulationDto } from './simulation.dto'
 
 export const getLatestSimulationResult = logger.withSpan(
   'site.action.getLatestSimulationResult',
-  [],
   async ({
     withTendency,
   }: {
