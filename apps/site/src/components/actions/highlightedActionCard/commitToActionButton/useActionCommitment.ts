@@ -16,7 +16,7 @@ export function useActionCommitment(action: PersonalizedAction) {
   const handleCommitToAction = () => {
     startTransition(async () => {
       try {
-        await commitToAction(action.id, action.slug)
+        await commitToAction(action.id)
 
         captureUniqueSessionActionEvent({
           actionThemeTrackingId: action.theme.trackingId,
@@ -50,7 +50,6 @@ export function useActionCommitment(action: PersonalizedAction) {
       try {
         await abandonActionCommitment({
           actionId: action.id,
-          actionSlug: action.slug,
         })
 
         captureUniqueSessionActionEvent({
