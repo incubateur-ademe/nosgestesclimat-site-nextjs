@@ -29,9 +29,15 @@ const posthogMock = vi.hoisted(() => ({
 
 vi.mock('posthog-js', () => ({ default: posthogMock }))
 
-const captureExceptionMock = vi.hoisted(() => vi.fn())
+const loggerMock = vi.hoisted(() => ({
+  error: vi.fn(),
+  warn: vi.fn(),
+  info: vi.fn(),
+  debug: vi.fn(),
+  fatal: vi.fn(),
+}))
 
-vi.mock('@sentry/nextjs', () => ({ captureException: captureExceptionMock }))
+vi.mock('@/logger/logger.browser', () => ({ default: loggerMock }))
 
 const action = {
   trackingId: 'chauffage',
@@ -89,6 +95,9 @@ describe('ActionTracker', () => {
       expect.objectContaining({ action_name: 'alimentation' }),
       undefined
     )
-    expect(captureExceptionMock).toHaveBeenCalledOnce()
+    expect(loggerMock.error).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({ scope: 'site.interaction.actionTracker' })
+    )
   })
 })
