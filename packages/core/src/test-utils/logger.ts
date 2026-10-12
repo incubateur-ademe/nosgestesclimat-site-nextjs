@@ -2,8 +2,8 @@ import { vi } from 'vitest'
 
 import type { Logger, ScopeName } from '../features/logger/index.ts'
 
-/** Spied function, typed so the declaration build does not leak vitest's
- * `Mock`. */
+/** Spied function, typed so the declaration build can name it: an inferred
+ * `Mock` fails it (TS2742, `@vitest/spy` only a transitive dependency). */
 type Spy = (...args: unknown[]) => void
 
 export type TestLogger = Logger & {
