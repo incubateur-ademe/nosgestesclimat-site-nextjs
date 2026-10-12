@@ -1455,7 +1455,6 @@ entries:
   Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, actions consultées. Sont inclues également des statistiques sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, actions consultées. Sont inclues également des statistiques sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants.
   Cette section est générée via Posthog.: Cette section est générée via Posthog.
   Face à une affluence très élevée, notre site connaît quelques ralentissements.: Face à une affluence très élevée, notre site connaît quelques ralentissements.
-  footer.ademe.ariaLabel: ADEME (ouvrir dans une nouvelle fenêtre)
   Nous mettons tout en œuvre pour rétablir l'accès rapidement, n'hésitez pas à réessayer dans quelques minutes. Merci de votre patience et de votre mobilisation pour le climat !: Nous mettons tout en œuvre pour rétablir l'accès rapidement, n'hésitez pas à réessayer dans quelques minutes. Merci de votre patience et de votre mobilisation pour le climat !
   Pour patienter, testez vos connaissances avec le Quiz Carbone de l'ADEME: Pour patienter, testez vos connaissances avec le Quiz Carbone de l'ADEME
   shared.english: anglais
