@@ -1,14 +1,11 @@
 import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import type { Locale } from '@/i18nConfig'
+import { getLocale } from '@/helpers/getLocale'
 import i18nConfig from '@/i18nConfig'
 import { fetchThematicLandingPages } from '@/services/cms/fetchThematicLandingPages'
 
-export default async function ThematicPagesSection({
-  locale,
-}: {
-  locale: Locale
-}) {
+export default async function ThematicPagesSection() {
+  const locale = await getLocale()
   if (locale !== i18nConfig.defaultLocale) {
     return null
   }

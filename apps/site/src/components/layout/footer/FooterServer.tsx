@@ -190,7 +190,7 @@ export default async function FooterServer({
               </ul>
             </div>
             <div className="flex flex-col gap-y-2">
-              <ThematicPagesSection locale={locale} />
+              <ThematicPagesSection />
             </div>
           </div>
           {locale === 'fr' && (

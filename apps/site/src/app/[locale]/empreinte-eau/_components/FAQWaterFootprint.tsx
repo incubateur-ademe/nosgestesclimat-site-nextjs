@@ -1,9 +1,10 @@
 import FAQ from '@/components/landing-pages/FAQ'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
-export default function FAQWaterFootprint({ locale }: { locale: Locale }) {
+export default async function FAQWaterFootprint() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

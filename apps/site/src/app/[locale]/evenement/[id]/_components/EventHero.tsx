@@ -51,7 +51,6 @@ export default function EventHero({
       </div>
 
       <EventHeroCard
-        locale={locale}
         startDate={startDate}
         currentValue={currentValue}
         targetValue={targetValue}

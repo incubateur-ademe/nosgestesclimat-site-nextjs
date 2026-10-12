@@ -37,7 +37,6 @@ export default function CarbonFootprintResults({
     <FootprintBlock
       className="mb-8 md:mb-12"
       tendency={tendency}
-      locale={locale}
       value={computedResults.carbone.bilan}
       title={
         <Trans locale={locale} i18nKey="simulation.carbone.title">
@@ -61,7 +60,6 @@ export default function CarbonFootprintResults({
           test={
             <CarbonFootprintHero
               className="mb-8 md:mb-12"
-              locale={locale}
               value={computedResults.carbone.bilan}
               tendency={tendency}
             />
@@ -82,7 +80,6 @@ export default function CarbonFootprintResults({
       {!hideSaveBlock && (
         <SaveResultsBlock
           hasPreviousSimulation={hasPreviousSimulation}
-          locale={locale}
         />
       )}
 
@@ -100,7 +97,7 @@ export default function CarbonFootprintResults({
         </Trans>
       </p>
 
-      <ActionsBlock locale={locale} className="mb-20" />
+      <ActionsBlock className="mb-20" />
     </>
   )
 }

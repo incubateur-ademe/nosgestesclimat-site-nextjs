@@ -4,10 +4,11 @@ import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 
-export default function WelcomeBanner({ locale }: { locale: Locale }) {
+export default async function WelcomeBanner() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

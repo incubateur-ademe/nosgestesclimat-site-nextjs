@@ -1,6 +1,5 @@
 import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransServer'
-import type { Locale } from '@/i18nConfig'
 
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Ademe from '@/components/images/partners/Ademe'
@@ -8,6 +7,7 @@ import Marianne from '@/components/images/partners/Marianne'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getUserSession } from '@/services/auth/get-user-session'
 import Image from 'next/image'
@@ -15,14 +15,13 @@ import HideInIframe from '../layout/HideInIframe'
 import SaveResultsForm from './SaveResultsForm'
 
 interface Props {
-  locale: Locale
   hasPreviousSimulation?: boolean
 }
 
 export default async function SaveResultsBlock({
-  locale,
   hasPreviousSimulation,
 }: Props) {
+  const locale = await getLocale()
   const user = await getUserSession()
 
   const { t } = getServerTranslation({ locale })

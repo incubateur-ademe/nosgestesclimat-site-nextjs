@@ -30,7 +30,6 @@ export default function EventTestimonies({ locale, testimonies }: Props) {
 
       <ScrollReveal className="px-0 md:px-10">
         <Carousel
-          locale={locale}
           className="-mx-4 md:-mx-3"
           innerClassName="py-4 px-4 lg:px-3"
           slideClassName="w-full max-w-none sm:w-full md:w-1/2"

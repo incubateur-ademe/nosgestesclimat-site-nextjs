@@ -88,7 +88,7 @@ function CallToAction({ locale, className, ...rest }: CallToActionProps) {
         </Trans>
       </p>
       <div className="flex items-start">
-        <CTAButtons locale={locale} withRestart />
+        <CTAButtons withRestart />
       </div>
     </aside>
   )

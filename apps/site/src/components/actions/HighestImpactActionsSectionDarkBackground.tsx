@@ -65,7 +65,6 @@ export default function HighestImpactActionsSectionDarkBackground({
           <li key={action.id}>
             <HighlightedActionCard
               action={action}
-              locale={locale}
               assessmentStatus={assessmentStatus}
               rank={index + 1}
               from={from}

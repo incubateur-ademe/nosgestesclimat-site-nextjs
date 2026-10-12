@@ -9,6 +9,11 @@ vi.mock('next-i18n-router/client', () => ({
   useCurrentLocale: vi.fn(() => 'fr'),
 }))
 
+// Mock next/root-params (placeholder module throws outside the Next compiler)
+vi.mock('next/root-params', () => ({
+  locale: vi.fn(() => Promise.resolve('fr')),
+}))
+
 // Mock useLocale
 vi.mock('@/hooks/useLocale', () => ({
   useLocale: vi.fn(() => 'fr'),

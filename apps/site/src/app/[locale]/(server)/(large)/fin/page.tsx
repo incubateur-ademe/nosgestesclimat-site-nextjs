@@ -62,7 +62,6 @@ export default async function FinPage({
   return (
     <>
       <FootprintsLinks
-        locale={locale as Locale}
         currentPage="carbone"
         basePathname={END_PAGE_PATH}
       />

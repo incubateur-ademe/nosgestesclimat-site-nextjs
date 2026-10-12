@@ -1,21 +1,20 @@
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
 
 interface Props {
-  locale: Locale
   imageSrc: string
   startDate: Date
   endDate: Date
 }
 
-export default function EventDetail({
-  locale,
+export default async function EventDetail({
   imageSrc,
   startDate,
   endDate,
 }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const dateLocale = locale === 'fr' ? 'fr-FR' : 'en-GB'

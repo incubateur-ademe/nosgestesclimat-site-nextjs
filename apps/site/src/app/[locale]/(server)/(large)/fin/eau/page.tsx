@@ -43,7 +43,6 @@ export default async function SimulationPage({
   return (
     <>
       <FootprintsLinks
-        locale={locale as Locale}
         currentPage="eau"
         basePathname={END_PAGE_PATH}
       />

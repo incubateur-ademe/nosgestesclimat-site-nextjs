@@ -1,8 +1,10 @@
 import { BannerContent } from '@/design-system/cms/BannerContent'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Trans from '../translation/trans/TransServer'
 
-export default function BetaBanner({ locale }: { locale: string }) {
+export default async function BetaBanner() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

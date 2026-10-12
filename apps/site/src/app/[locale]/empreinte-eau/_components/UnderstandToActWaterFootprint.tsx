@@ -1,12 +1,10 @@
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function UnderstandToActWaterFootprint({
-  locale,
-}: {
-  locale: string
-}) {
+export default async function UnderstandToActWaterFootprint() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

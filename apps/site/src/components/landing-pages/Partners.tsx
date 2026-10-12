@@ -1,9 +1,11 @@
 import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function Partners({ locale }: { locale: string }) {
+export default async function Partners() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

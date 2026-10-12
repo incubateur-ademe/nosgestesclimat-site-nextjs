@@ -49,7 +49,6 @@ export default function LatestResults({
       </div>
 
       <ObjectiveWithRhythm
-        locale={locale}
         carbonFootprint={simulation.computedResults.carbone.bilan}
         className="border-none p-0"
         shouldDisplayBadge={false}

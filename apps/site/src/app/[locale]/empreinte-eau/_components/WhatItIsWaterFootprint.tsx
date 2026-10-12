@@ -1,9 +1,11 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function WhatItIsWaterFootprint({ locale }: { locale: string }) {
+export default async function WhatItIsWaterFootprint() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

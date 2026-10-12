@@ -26,7 +26,6 @@ export default function WaterFootprintResults({
     <>
       <FootprintBlock
         className="mb-12"
-        locale={locale}
         value={computedResults.eau.bilan}
         title={
           <Trans locale={locale} i18nKey="simulation.eau.title">
@@ -51,12 +50,12 @@ export default function WaterFootprintResults({
 
       <WhatIsWaterFootprint locale={locale} />
 
-      {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
+      {!hideSaveBlock && <SaveResultsBlock />}
 
       <div className="mb-16 w-full md:w-2xl">
         <ClimateAndWater />
 
-        <WaterActions locale={locale} />
+        <WaterActions />
 
         <DocumentationBlock locale={locale} />
       </div>

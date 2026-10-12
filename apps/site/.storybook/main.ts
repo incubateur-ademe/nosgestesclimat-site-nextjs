@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs'
+import path from 'node:path'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -23,6 +24,12 @@ const config: StorybookConfig = {
         test: /\.ya?ml$/,
         use: 'yaml-loader',
       })
+    }
+    // `next/root-params` throws when imported outside the Next compiler.
+    config.resolve = config.resolve ?? {}
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'next/root-params': path.resolve(__dirname, 'next-root-params-stub.ts'),
     }
     return config
   },

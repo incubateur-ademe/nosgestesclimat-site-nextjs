@@ -1,10 +1,12 @@
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import CreateGroupLink from './mobilise/CreateGroupLink'
 import CreateOrganisationLink from './mobilise/CreateOrganisationLink'
 
-export default function Mobilise({ locale }: { locale: string }) {
+export default async function Mobilise() {
+  const locale = await getLocale()
   getServerTranslation({ locale })
 
   return (

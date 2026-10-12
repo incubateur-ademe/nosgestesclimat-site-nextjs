@@ -31,7 +31,6 @@ export default function Objective({ locale, carbonFootprint }: Props) {
 
       <ObjectiveWithRhythm
         className="order-1 mb-8 md:order-0 md:mb-0"
-        locale={locale}
         carbonFootprint={carbonFootprint}
       />
 

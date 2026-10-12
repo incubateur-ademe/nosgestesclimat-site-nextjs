@@ -2,20 +2,19 @@ import Title from '@/design-system/layout/Title'
 
 import SquareImageContainer from '@/components/images/SquareImageContainer'
 import Trans from '@/components/translation/trans/TransClient'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import SearchBar from './SearchBar'
 import DocumentationLandingCard from './documentationLanding/DocumentationLandingCard'
 
-export default function DocumentationLanding({
+export default async function DocumentationLanding({
   rules,
-  locale,
 }: {
   rules: NGCRules
-  locale: Locale
 }) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   // We want to be able to define an order for the cards and their summary here

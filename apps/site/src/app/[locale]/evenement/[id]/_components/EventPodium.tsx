@@ -48,14 +48,12 @@ export default async function EventPodium({
 
       <EventTabs
         filter={activeCategoryFilter}
-        locale={locale}
         params={params}
       />
 
       <PodiumVisual
         // Trigger animation on each change
         key={`podium-visual-${activeCategoryFilter}`}
-        locale={locale}
         items={podiumItemsByCategory[activeCategoryFilter]}
         prevHref={prevHref}
         nextHref={nextHref}

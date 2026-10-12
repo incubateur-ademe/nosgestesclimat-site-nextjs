@@ -1,8 +1,10 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function WhatItIsCarbon({ locale }: { locale: string }) {
+export default async function WhatItIsCarbon() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

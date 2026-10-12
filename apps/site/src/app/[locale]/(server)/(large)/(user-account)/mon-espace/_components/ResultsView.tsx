@@ -27,11 +27,11 @@ export default function ResultsView({
 
   return (
     <>
-      <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
+      <ProfileTab activePath={MON_ESPACE_PATH} />
 
       <LatestResults locale={locale} simulation={simulations[0]} />
 
-      <ShareSimulator locale={locale} />
+      <ShareSimulator />
 
       <ResultsList
         locale={locale}

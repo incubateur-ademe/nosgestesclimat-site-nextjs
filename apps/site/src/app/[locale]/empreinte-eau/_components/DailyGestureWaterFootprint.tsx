@@ -1,12 +1,10 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function DailyGestureWaterFootprint({
-  locale,
-}: {
-  locale: string
-}) {
+export default async function DailyGestureWaterFootprint() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const gesturesKeysForTranslation = {
@@ -47,7 +45,6 @@ export default function DailyGestureWaterFootprint({
           </p>
         </>
       }
-      locale={locale}
       gestures={{
         [gesturesKeysForTranslation.alimentation]: {
           imageSrc: '/_static/cms/empreinte_alimentation_8dce62c4e4.svg',

@@ -66,7 +66,6 @@ export default function ArticleList({
         <Pagination
           currentPage={currentPage}
           totalPages={pageCount}
-          locale={locale}
         />
       )}
     </section>

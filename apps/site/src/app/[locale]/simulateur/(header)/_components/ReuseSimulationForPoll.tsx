@@ -3,6 +3,7 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import type { PollSummary } from '@nosgestesclimat/core/features/polls/types/poll'
@@ -12,19 +13,18 @@ import ReuseButtons from './reuseSimulationForPoll/ReuseButtons'
 interface ReuseSimulationForPollProps {
   reuseSimulation: () => void
   createNewSimulation: () => void
-  locale: string
   disclaimer: React.ReactNode
   simulation: Simulation
   polls: PollSummary[]
 }
-export default function ReuseSimulationForPoll({
+export default async function ReuseSimulationForPoll({
   reuseSimulation,
   createNewSimulation,
-  locale,
   disclaimer,
   simulation,
   polls,
 }: ReuseSimulationForPollProps) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const { formattedValue, unit } = formatFootprint(

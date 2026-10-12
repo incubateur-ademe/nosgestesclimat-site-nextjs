@@ -62,7 +62,6 @@ export default async function DetailledResultsPage({
       />
 
       <FootprintsLinks
-        locale={locale}
         currentPage="carbone"
         basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />

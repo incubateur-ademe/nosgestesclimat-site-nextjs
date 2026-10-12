@@ -2,8 +2,8 @@ import ChevronLeft from '@/components/icons/ChevronLeft'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { PodiumItem } from '@nosgestesclimat/core/features/events/types/event-info'
 import { twMerge } from 'cn'
 import type { FilterValue } from './EventTabs'
@@ -16,7 +16,6 @@ const GENERAL_RANKING_URL =
 interface Props {
   items: PodiumItem[]
   className?: string
-  locale: Locale
   prevHref: string | null
   nextHref: string | null
   hasStarted: boolean
@@ -33,10 +32,9 @@ const ZERO_BASED_INDEX_COMPENSATION_FACTOR = 1
 const RANK_COMPENSATION_FOR_AFTER_PODIUM_ITEMS = 3
 const getRank = (index: number) => index + ZERO_BASED_INDEX_COMPENSATION_FACTOR
 
-export default function PodiumVisual({
+export default async function PodiumVisual({
   items,
   className,
-  locale,
   prevHref,
   nextHref,
   hasStarted,
@@ -45,6 +43,7 @@ export default function PodiumVisual({
   const podiumItems = items.slice(0, 3)
   const remainingItems = items.slice(3, 15)
 
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const organisationType = {

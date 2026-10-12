@@ -1,12 +1,10 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function DailyGestureCarbonFootprint({
-  locale,
-}: {
-  locale: string
-}) {
+export default async function DailyGestureCarbonFootprint() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const gesturesKeysForTranslation = {
@@ -39,7 +37,6 @@ export default function DailyGestureCarbonFootprint({
           </Trans>
         </p>
       }
-      locale={locale}
       gestures={{
         [gesturesKeysForTranslation.transport]: {
           imageSrc: '/_static/cms/empreinte_carbone_velo_a7262d1e2e.svg',

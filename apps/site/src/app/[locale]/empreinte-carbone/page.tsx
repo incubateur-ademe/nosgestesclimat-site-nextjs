@@ -86,7 +86,7 @@ export default async function CarbonFootprintLandingPage({
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <CTAButtons locale={locale} />
+              <CTAButtons />
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
@@ -109,20 +109,20 @@ export default async function CarbonFootprintLandingPage({
             />
           </div>
         }
-        heroPartners={<Partners locale={locale} />}>
-        <WhatItIsCarbon locale={locale} />
+        heroPartners={<Partners />}>
+        <WhatItIsCarbon />
 
-        <WhatDoWeMeasureCarbon locale={locale} />
+        <WhatDoWeMeasureCarbon />
 
         <DidYouKnowCarbon locale={locale} />
 
-        <DailyGestureCarbonFootprint locale={locale} />
+        <DailyGestureCarbonFootprint />
 
-        <UnderstandToActCarbonFootprint locale={locale} />
+        <UnderstandToActCarbonFootprint />
 
-        <MotivationSectionCarbonFootprint locale={locale} />
+        <MotivationSectionCarbonFootprint />
 
-        <FAQCarbonFootprint locale={locale} />
+        <FAQCarbonFootprint />
       </LandingPage>
 
       <Footer backgroundColor="white" locale={locale} />

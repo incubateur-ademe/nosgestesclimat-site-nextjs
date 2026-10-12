@@ -1,5 +1,6 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMainCTA } from '@/helpers/server/getLinkToSimulateur'
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -8,15 +9,16 @@ import { hasCompletedCurrentSimulation } from '@nosgestesclimat/core/features/si
 import { Suspense } from 'react'
 import Trans from '../translation/trans/TransServer'
 
-export default function PasserTestBanner({ locale }: { locale: string }) {
+export default function PasserTestBanner() {
   return (
     <Suspense>
-      <PasserTestBannerServer locale={locale} />
+      <PasserTestBannerServer />
     </Suspense>
   )
 }
 
-async function PasserTestBannerServer({ locale }: { locale: string }) {
+async function PasserTestBannerServer() {
+  const locale = await getLocale()
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
   const { t } = getServerTranslation({ locale })

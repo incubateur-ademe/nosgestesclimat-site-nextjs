@@ -2,15 +2,12 @@ import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
 
-interface Props {
-  locale: Locale
-}
-
-export default function WaterActions({ locale }: Props) {
+export default async function WaterActions() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

@@ -132,7 +132,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
 
   return (
     <div className="pt-2">
-      <BetaBanner locale={locale} />
+      <BetaBanner />
       <ActionTracker eventName="consulted" action={action} />
       <GoBackLink
         href={

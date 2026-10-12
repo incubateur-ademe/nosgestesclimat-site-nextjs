@@ -2,6 +2,7 @@ import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import Link from '@/design-system/links/Link'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
 import { LOCALE_EN_KEY, LOCALE_FR_KEY, type Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
@@ -47,7 +48,6 @@ const classesByTheme: Record<
 
 interface HighlightedActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
   action: MaybePersonalizedAction
-  locale: Locale
   assessmentStatus?: AssessmentStatus | null
   rank?: number
   from?: 'fin' | 'mon-espace' | 'index'
@@ -55,16 +55,16 @@ interface HighlightedActionCardProps extends React.ComponentPropsWithoutRef<'art
   totalFootprint?: number
 }
 
-export default function HighlightedActionCard({
+export default async function HighlightedActionCard({
   action,
   className,
-  locale,
   assessmentStatus,
   rank,
   from,
   totalFootprint,
   ...props
 }: HighlightedActionCardProps) {
+  const locale = await getLocale()
   const classes = classesByTheme[action.theme.key]
   const actionDetailPath = ACTION_DETAIL_PATH(action.theme.slug, action.slug)
   // On an /en page, an unprefixed (fr) path would be redirected to /en by the

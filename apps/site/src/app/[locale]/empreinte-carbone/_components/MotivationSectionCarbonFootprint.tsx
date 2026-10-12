@@ -1,12 +1,10 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function MotivationSectionCarbonFootprint({
-  locale,
-}: {
-  locale: string
-}) {
+export default async function MotivationSectionCarbonFootprint() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
   return (
     <MotivationSection

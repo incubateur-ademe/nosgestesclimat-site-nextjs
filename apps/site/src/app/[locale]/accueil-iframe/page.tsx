@@ -55,7 +55,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
             </p>
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-75 md:items-start">
-              <CTAButtons locale={locale} className="w-full" />
+              <CTAButtons className="w-full" />
 
               {/* Displayed on mobile only */}
               <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
@@ -74,7 +74,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
             </div>
           </div>
         }
-        heroPartners={<Partners locale={locale} />}>
+        heroPartners={<Partners />}>
         <></>
       </LandingPage>
 

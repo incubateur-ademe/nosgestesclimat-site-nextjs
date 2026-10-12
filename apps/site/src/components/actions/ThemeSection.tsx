@@ -99,7 +99,6 @@ export default function ThemeSection({
         </div>
       </div>
       <Carousel
-        locale={locale}
         aria-labelledby={carouselLabelId}
         className="-mx-2 md:mx-0"
         innerClassName="py-1 px-2 md:px-0">
@@ -107,7 +106,6 @@ export default function ThemeSection({
           <ActionCardSwitchServer
             key={action.id}
             action={action}
-            locale={locale}
             withThemeBadge={false}
             assessmentStatus={assessmentStatus}
             className="h-full"

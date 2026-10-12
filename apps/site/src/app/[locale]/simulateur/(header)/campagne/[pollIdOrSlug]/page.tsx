@@ -77,7 +77,6 @@ export default async function CampagnePage({
           createNewSimulation={createNewSimulation}
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
           reuseSimulation={reuseSimulation}
-          locale={locale}
           disclaimer={disclaimer}
           simulation={data.reusableSimulation}
           polls={data.reusableSimulationPolls}

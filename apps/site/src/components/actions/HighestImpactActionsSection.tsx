@@ -63,7 +63,6 @@ export default function HighestImpactActionsSection({
         </div>
       </div>
       <Carousel
-        locale={locale}
         aria-labelledby={carouselLabelId}
         className="-mx-2 md:mx-0"
         innerClassName="py-1 px-2 md:px-0">
@@ -71,7 +70,6 @@ export default function HighestImpactActionsSection({
           <ActionCardSwitchServer
             key={action.id}
             action={action}
-            locale={locale}
             assessmentStatus={assessmentStatus}
             className="h-full"
             rank={index + 1}

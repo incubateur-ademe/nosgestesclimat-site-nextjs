@@ -68,7 +68,6 @@ export default async function DetailledResultsWaterPage({
       />
 
       <FootprintsLinks
-        locale={locale}
         currentPage="eau"
         basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />

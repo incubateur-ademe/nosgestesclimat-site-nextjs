@@ -9,7 +9,7 @@ export default function DidYouKnowWaterFootprint({
 }) {
   return (
     <DidYouKnowSlider
-      ctaButtons={<CTAButtons locale={locale} />}
+      ctaButtons={<CTAButtons />}
       slides={[
         {
           illustration: '/_static/cms/icone_ordinateur_392d915ff0.svg',

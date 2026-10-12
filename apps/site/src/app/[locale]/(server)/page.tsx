@@ -58,7 +58,7 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
             <HomePageDescription locale={locale} />
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
-              <CTAButtons locale={locale} withCollectiveTest withRestart />
+              <CTAButtons withCollectiveTest withRestart />
 
               {/* Displayed on mobile only */}
               <div className="mb-8 md:hidden">
@@ -75,16 +75,16 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
             </div>
           </div>
         }
-        heroPartners={<Partners locale={locale} />}>
+        heroPartners={<Partners />}>
         <TwoFootprints locale={locale} />
 
         <DidYouKnowMainLanding locale={locale} />
 
-        <Mobilise locale={locale} />
+        <Mobilise />
 
         <DecryptChallenges locale={locale} />
 
-        <CollectivelyCommit locale={locale} />
+        <CollectivelyCommit />
 
         <ModelInfo locale={locale} />
 

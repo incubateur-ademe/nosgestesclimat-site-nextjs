@@ -2,8 +2,8 @@ import { END_PAGE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { Tendency } from '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service'
 import { twMerge } from 'cn'
 import { ThermometerSun } from 'lucide-react'
@@ -18,7 +18,6 @@ import {
 } from './footprintComparison'
 
 interface Props {
-  locale: Locale
   value: number
   tendency?: Tendency
   className?: string
@@ -30,12 +29,12 @@ const pillClassNames: Record<FootprintComparisonLevel, string> = {
   below: 'bg-logement-100 text-logement-800',
 }
 
-export default function CarbonFootprintHero({
-  locale,
+export default async function CarbonFootprintHero({
   value,
   tendency,
   className,
 }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const { formattedValue, unit } = formatFootprint(value, {
@@ -155,7 +154,6 @@ export default function CarbonFootprintHero({
         </div>
 
         <FootprintComparisonChart
-          locale={locale}
           value={value}
           orientation="horizontal"
           className="mb-6 lg:hidden"
@@ -225,7 +223,6 @@ export default function CarbonFootprintHero({
       </div>
 
       <FootprintComparisonChart
-        locale={locale}
         value={value}
         orientation="vertical"
         className="hidden lg:block"

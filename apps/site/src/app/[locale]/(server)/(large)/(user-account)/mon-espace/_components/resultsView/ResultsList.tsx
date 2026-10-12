@@ -51,7 +51,6 @@ export default function ResultsList({
               <li key={simulation.id}>
                 <ResultListItem
                   simulation={simulation}
-                  locale={locale}
                   buttons={
                     <>
                       <SeeListItemDetailLink simulationId={simulation.id} />
@@ -70,7 +69,6 @@ export default function ResultsList({
                         </h2>
                         <ResultListItem
                           simulation={simulation}
-                          locale={locale}
                         />
                       </DeleteButtonWithConfirmModal>
                     </>

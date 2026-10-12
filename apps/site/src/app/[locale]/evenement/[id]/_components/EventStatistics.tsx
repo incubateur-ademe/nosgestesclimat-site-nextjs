@@ -1,11 +1,10 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import EventNumber from './eventStatistics/EventNumber'
 
 interface Props {
-  locale: Locale
   hasStarted: boolean
   values: {
     simulations: number
@@ -14,7 +13,8 @@ interface Props {
   }
 }
 
-export default function EventStatistics({ locale, hasStarted, values }: Props) {
+export default async function EventStatistics({ hasStarted, values }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

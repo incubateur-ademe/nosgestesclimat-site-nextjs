@@ -74,7 +74,7 @@ export default async function DocumentationPage({
 
   return (
     <div className="mt-4 mb-16 w-full px-2">
-      <PasserTestBanner locale={locale} />
+      <PasserTestBanner />
       <DocumentationRouter
         rules={rules}
         currentSimulation={currentSimulation}

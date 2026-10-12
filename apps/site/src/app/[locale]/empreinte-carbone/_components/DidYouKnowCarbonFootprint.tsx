@@ -5,7 +5,7 @@ import Trans from '@/components/translation/trans/TransServer'
 export default function DidYouKnowCarbon({ locale }: { locale: string }) {
   return (
     <DidYouKnowSlider
-      ctaButtons={<CTAButtons locale={locale} />}
+      ctaButtons={<CTAButtons />}
       slides={[
         {
           illustration: '/_static/cms/icone_trophee_32ee5f6d9a.svg',

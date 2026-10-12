@@ -143,7 +143,7 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      <AuthorBlock locale={locale} author={article.author} />
+      <AuthorBlock author={article.author} />
 
       <OtherArticles articles={otherArticles} locale={locale} />
 

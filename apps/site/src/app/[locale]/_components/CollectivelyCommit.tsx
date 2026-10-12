@@ -1,9 +1,11 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function CollectivelyCommit({ locale }: { locale: string }) {
+export default async function CollectivelyCommit() {
+  const locale = await getLocale()
   getServerTranslation({ locale })
 
   return (

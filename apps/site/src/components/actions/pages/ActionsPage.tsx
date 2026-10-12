@@ -81,7 +81,7 @@ export default function ActionsPage({
 
   return (
     <>
-      <BetaBanner locale={locale} />
+      <BetaBanner />
 
       <div {...props} className={twMerge('pb-24', className)}>
         <ActionsPageHeaderSwitch

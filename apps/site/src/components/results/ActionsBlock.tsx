@@ -7,8 +7,8 @@ import {
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Link from '@/design-system/links/Link'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import { twMerge } from 'cn'
 import CarIcon from '../icons/CarIcon'
 import DownArrow from '../icons/DownArrow'
@@ -19,11 +19,11 @@ import Trans from '../translation/trans/TransServer'
 const ACTIONS_HREF = `${END_PAGE_PATH}/actions` as const
 
 interface Props {
-  locale: Locale
   className?: string
 }
 
-export default function ActionsBlock({ locale, className }: Props) {
+export default async function ActionsBlock({ className }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
   return (
     <Card

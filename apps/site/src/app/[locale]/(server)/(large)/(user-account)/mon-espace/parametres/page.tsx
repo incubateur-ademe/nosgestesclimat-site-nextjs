@@ -50,7 +50,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
   return (
     <div className="flex flex-col">
-      <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} locale={locale} />
+      <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} />
 
       <div className="mb-6 flex w-full items-start justify-between">
         <Title

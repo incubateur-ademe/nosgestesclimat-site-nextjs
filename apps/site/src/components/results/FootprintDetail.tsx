@@ -29,7 +29,6 @@ export default async function FootprintDetail({
           </Title>
 
           <CategoriesAccordion
-            locale={locale}
             rules={rules}
             computedResults={computedResults}
             metric={metric}

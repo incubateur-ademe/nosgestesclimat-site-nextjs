@@ -9,7 +9,7 @@ export default function NoResultsView({ locale }: { locale: Locale }) {
     <>
       <InstructionsBanner locale={locale} />
 
-      <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
+      <ProfileTab activePath={MON_ESPACE_PATH} />
 
       <NoResultsBlock locale={locale} />
     </>

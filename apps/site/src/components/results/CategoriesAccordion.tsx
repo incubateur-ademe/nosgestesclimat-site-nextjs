@@ -2,8 +2,8 @@ import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import { carboneMetric } from '@/constants/model/metric'
 import Card from '@/design-system/layout/Card'
 import { getCategoriesDisplayData } from '@/helpers/getCategoriesDisplayData'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './categoriesAccordion/SubcategoriesList'
@@ -15,18 +15,17 @@ interface Props {
   rules: Partial<NGCRules>
   computedResults: ComputedResults
   metric?: Metric
-  locale: Locale
 }
 
 // Makes the bars in the chart just the right width
 const BEAUTIFUL_COEFFICIENT = 0.75
 
-export default function CategoriesAccordion({
+export default async function CategoriesAccordion({
   rules,
   computedResults,
   metric = carboneMetric,
-  locale,
 }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const categories = getCategoriesDisplayData({

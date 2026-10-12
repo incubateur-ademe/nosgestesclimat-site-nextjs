@@ -1,13 +1,12 @@
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import { COUNTER_BLOCK_ANIMATION_TOTAL } from './AnimatedCounterBlock'
 import ClientCircularProgressBar from './eventDynamicCounter/ClientCircularProgressBar'
 
 interface Props {
-  locale: Locale
   currentValue: number
   targetValue: number
   progressPercentage: number
@@ -15,14 +14,14 @@ interface Props {
   secondaryCtaHref: string
 }
 
-export default function EventDynamicCounter({
-  locale,
+export default async function EventDynamicCounter({
   currentValue,
   targetValue,
   progressPercentage,
   primaryCtaHref,
   secondaryCtaHref,
 }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
   const numberFormatter = new Intl.NumberFormat(locale)
 

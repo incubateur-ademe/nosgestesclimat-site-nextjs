@@ -71,13 +71,12 @@ export default function GroupResults({
             <CategoriesChart />
 
             <CategoriesAccordion
-              locale={locale}
               rules={rules}
               computedResults={computedResults}
               metric={metric}
             />
 
-            <ActionsBlock locale={locale} className="my-6" />
+            <ActionsBlock className="my-6" />
           </>
         )
       }

@@ -3,6 +3,7 @@ import {
   START_SIMULATION_PATH,
 } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMainCTA } from '@/helpers/server/getLinkToSimulateur'
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -21,7 +22,6 @@ interface Props {
   withCollectiveTest?: boolean
   withRestart?: boolean
   className?: string
-  locale: string
 }
 
 export default function CTAButtons(props: Props) {
@@ -36,8 +36,8 @@ async function ServerCTAButtons({
   withCollectiveTest = false,
   withRestart = false,
   className = '',
-  locale,
 }: Props) {
+  const locale = await getLocale()
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
   const { t } = getServerTranslation({ locale })

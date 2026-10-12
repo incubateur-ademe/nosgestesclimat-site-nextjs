@@ -1,16 +1,16 @@
 import Trans from '@/components/translation/trans/TransServer'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Simulation } from '@/helpers/server/model/simulations'
-import type { Locale } from '@/i18nConfig'
 
 interface Props {
   simulation: Simulation
   buttons?: React.ReactNode
-  locale: Locale
 }
 
-export function ResultListItem({ simulation, buttons = null, locale }: Props) {
+export async function ResultListItem({ simulation, buttons = null }: Props) {
+  const locale = await getLocale()
   const { formattedValue, unit } = formatFootprint(
     simulation.computedResults.carbone.bilan,
     {

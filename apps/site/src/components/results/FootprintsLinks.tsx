@@ -1,20 +1,19 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Switch from '@/design-system/inputs/Switch'
 import Emoji from '@/design-system/utils/Emoji'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 
 interface Props {
-  locale: Locale
   currentPage: 'carbone' | 'eau'
   basePathname: string
 }
 
-export default function FootprintsLinks({
-  locale,
+export default async function FootprintsLinks({
   currentPage,
   basePathname,
 }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

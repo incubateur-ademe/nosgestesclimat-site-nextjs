@@ -89,7 +89,7 @@ export default async function WaterFootprintLandingPage(
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <CTAButtons locale={locale} />
+              <CTAButtons />
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
@@ -115,19 +115,19 @@ export default async function WaterFootprintLandingPage(
           />
         }
         heroPartners={<WaterFootprintPartners />}>
-        <WhatItIsWaterFootprint locale={locale} />
+        <WhatItIsWaterFootprint />
 
-        <WhatDoWeMeasureWaterFootprint locale={locale} />
+        <WhatDoWeMeasureWaterFootprint />
 
         <DidYouKnowWaterFootprint locale={locale} />
 
-        <DailyGestureWaterFootprint locale={locale} />
+        <DailyGestureWaterFootprint />
 
-        <UnderstandToActWaterFootprint locale={locale} />
+        <UnderstandToActWaterFootprint />
 
-        <MotivationSectionWaterFootprint locale={locale} />
+        <MotivationSectionWaterFootprint />
 
-        <FAQWaterFootprint locale={locale} />
+        <FAQWaterFootprint />
       </LandingPage>
       <Footer backgroundColor="white" locale={locale} />
     </ClientLayout>

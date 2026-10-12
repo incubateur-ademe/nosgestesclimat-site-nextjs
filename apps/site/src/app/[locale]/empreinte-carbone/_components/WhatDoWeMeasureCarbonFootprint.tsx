@@ -1,8 +1,10 @@
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
+export default async function WhatDoWeMeasureCarbon() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
   return (
     <WhatDoWeMeasure

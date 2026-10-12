@@ -1,10 +1,9 @@
-import type { Locale } from '@/i18nConfig'
+import { getLocale } from '@/helpers/getLocale'
 import AnimatedCounterBlock from './eventHeroCard/AnimatedCounterBlock'
 import EventCountdown from './eventHeroCard/EventCountdown'
 import EventDynamicCounter from './eventHeroCard/EventDynamicCounter'
 
 interface Props {
-  locale: Locale
   startDate: Date
   currentValue: number
   targetValue: number
@@ -13,8 +12,7 @@ interface Props {
   secondaryCtaHref: string
 }
 
-export default function EventHeroCard({
-  locale,
+export default async function EventHeroCard({
   startDate,
   currentValue,
   targetValue,
@@ -22,6 +20,7 @@ export default function EventHeroCard({
   primaryCtaHref,
   secondaryCtaHref,
 }: Props) {
+  const locale = await getLocale()
   const hasEventStarted = new Date() >= startDate
 
   const launchDateLabel = startDate.toLocaleDateString(
@@ -37,7 +36,6 @@ export default function EventHeroCard({
   const content = hasEventStarted ? (
     <AnimatedCounterBlock>
       <EventDynamicCounter
-        locale={locale}
         currentValue={currentValue}
         targetValue={targetValue}
         progressPercentage={progressPercentage}

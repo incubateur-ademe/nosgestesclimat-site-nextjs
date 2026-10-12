@@ -1,18 +1,15 @@
 import ShareSimulationButton from '@/components/sharing/ShareSimulationButton'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import {
   UTM_MEDIUM_KEY,
   UTM_SOURCE_KEY,
 } from '@nosgestesclimat/core/features/tracking/utm'
 
-interface Props {
-  locale: Locale
-}
-
-export default function ShareSimulator({ locale }: Props) {
+export default async function ShareSimulator() {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const shareLink = `https://nosgestesclimat.fr${SIMULATOR_PATH}?${UTM_MEDIUM_KEY}=sharelink&${UTM_SOURCE_KEY}=NGC`

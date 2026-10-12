@@ -2,8 +2,8 @@ import { END_PAGE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { titleSizesClassNames } from '@/design-system/layout/Title'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { Metric } from '@/publicodes-state/types'
 import type { Tendency } from '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service'
 import { twMerge } from 'cn'
@@ -13,22 +13,21 @@ import TendencyIndicator from './TendencyIndicator'
 
 interface Props {
   className?: string
-  locale: Locale
   value: number
   title: ReactNode
   metric: Metric
   tendency?: Tendency
   unitSuffix: ReactNode
 }
-export default function FootprintBlock({
+export default async function FootprintBlock({
   className,
   tendency,
   value,
   title,
   metric,
-  locale,
   unitSuffix,
 }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
   const { formattedValue, unit } = formatFootprint(value, {
     locale,

@@ -11,16 +11,16 @@ import {
 } from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { twMerge } from "cn";
 
-export default function ProfileTab({
+export default async function ProfileTab({
   activePath,
-  locale,
 }: {
   activePath: string
-  locale: string
 }) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   const tabsItems: TabItem[] = [

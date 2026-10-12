@@ -6,6 +6,7 @@ import {
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { ReactNode } from 'react'
@@ -13,7 +14,6 @@ import { twMerge } from "cn";
 
 interface Props {
   carbonFootprint: number
-  locale: Locale
   className?: string
   shouldDisplayBadge?: boolean
 }
@@ -141,12 +141,12 @@ const getObjectiveData = ({
   }
 }
 
-export default function ObjectiveWithRhythm({
-  locale,
+export default async function ObjectiveWithRhythm({
   carbonFootprint,
   className,
   shouldDisplayBadge = true,
 }: Props) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
   const {
     displayValue,

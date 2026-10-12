@@ -1,20 +1,20 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import type { Group } from '@/types/groups'
 import InvitationForm from './InvitationForm'
 import LaconicRanking from './LaconicRanking'
 
-export default function InvitationPage({
+export default async function InvitationPage({
   currentSimulation,
   group,
-  locale,
 }: {
   currentSimulation?: Simulation
   group: Group
-  locale: string
 }) {
+  const locale = await getLocale()
   const { t } = getServerTranslation({ locale })
 
   return (

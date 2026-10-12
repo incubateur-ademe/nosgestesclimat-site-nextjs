@@ -40,7 +40,7 @@ export default async function Release({
         ← <Trans locale={locale}>Retour à la liste des nouveautes</Trans>
       </Link>
 
-      <PasserTestBanner locale={locale} />
+      <PasserTestBanner />
 
       {nouveaute ? (
         <Markdown>{nouveaute.content}</Markdown>

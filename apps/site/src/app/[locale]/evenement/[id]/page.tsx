@@ -79,7 +79,6 @@ export default async function EvenementPage({
       <Main>
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
           <EventDetail
-            locale={locale}
             imageSrc={detailImageSrc}
             startDate={startDate}
             endDate={endDate}
@@ -97,7 +96,6 @@ export default async function EvenementPage({
         </div>
 
         <EventStatistics
-          locale={locale}
           values={statisticsValues}
           hasStarted={hasStarted}
         />
