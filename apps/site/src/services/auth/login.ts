@@ -41,7 +41,7 @@ export const login = async ({
   locale?: string
   intent: Intent
 }): Promise<Result<{ userId: string }, CodeError>> =>
-  await logger.withSpan('site.action.login', async (logger) => {
+  await logger.openSpan('site.action.login', async (logger) => {
     const startedAt = Date.now()
 
     // The schema lowercases the email before the DB lookup; the throttle key

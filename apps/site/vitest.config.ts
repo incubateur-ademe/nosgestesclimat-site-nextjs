@@ -14,12 +14,6 @@ export default defineConfig({
       BREVO_URL: 'https://api.brevo.test',
       BREVO_API_KEY: 'fake-test-brevo-api-key',
       REDIS_URL: 'redis://localhost:6379',
-      // Tests exercise the failure paths: without this the suite prints the
-      // lines it asserts on.
-      // A level the app accepts: `env/server.ts` validates this variable, so a
-      // test environment has to be a valid one. Tests assert on loggers they
-      // configure themselves, so `fatal` keeps the output clean.
-      LOG_LEVEL: 'fatal',
     },
     css: true,
     exclude: ['**/node_modules/**', '**/e2e/**', '**/.next/**'],

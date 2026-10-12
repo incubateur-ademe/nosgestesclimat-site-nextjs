@@ -23,7 +23,7 @@ export function runSideEffect<Failure extends ErrorWithCode>(
   run: (logger: Logger) => Promise<Result<void, Failure>>
 ): void {
   backgroundTaskRunner(() =>
-    logger.withSpan(`core.sideEffect.${name}`, async (sideEffectLogger) => {
+    logger.openSpan(`core.sideEffect.${name}`, async (sideEffectLogger) => {
       try {
         const result = await run(sideEffectLogger)
 

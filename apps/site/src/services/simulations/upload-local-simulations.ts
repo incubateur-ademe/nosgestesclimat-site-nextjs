@@ -10,7 +10,7 @@ import type { ComputedResults as CoreComputedResults } from '@nosgestesclimat/co
  * so `ensureSimulationModel` is NOT applied: stamping a current model would
  * lie about what rules computed them. Stored with the database default instead. */
 export const uploadLocalSimulations = async (simulations: Simulation[]) =>
-  await logger.withSpan(
+  await logger.openSpan(
     'site.action.uploadLocalSimulations',
     async (logger) => {
       const session = await getUserSession()

@@ -48,7 +48,7 @@ function capture(error: Error, line: LogMeta): void {
 const DEFAULT_LEVEL: LogLevel = APP_ENV === 'development' ? 'debug' : 'warn'
 
 /** Browser logger: console + PostHog Logs. No spans (no OTel SDK in the
- * browser); `withSpan` binds the scope only. Correlation via posthog-js's own
+ * browser); `openSpan` binds the scope only. Correlation via posthog-js's own
  * `distinctId`/`sessionId`, not a trace id from here. The capture is the
  * logger's own — nothing reports on the side. */
 export function createBrowserLogger({
@@ -124,7 +124,7 @@ export function createBrowserLogger({
       }
     }
 
-    async function withSpan<Result>(
+    async function openSpan<Result>(
       scope: ScopeName,
       run: (logger: Logger) => Promise<Result>
     ): Promise<Result> {
@@ -135,7 +135,7 @@ export function createBrowserLogger({
 
     return {
       child: (more) => build({ ...bindings, ...prefixKeys(more) }),
-      withSpan,
+      openSpan,
       // Nothing to annotate: the line carries what the server would put on a
       // span, through the bindings and the meta.
       setSpanAttribute: () => undefined,

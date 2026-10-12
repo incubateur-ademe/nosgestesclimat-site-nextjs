@@ -32,7 +32,7 @@ export const createVerificationCode = async ({
   email: string
   locale?: string
 }): Promise<Result<{ expirationDate: Date }, EmailError>> =>
-  await logger.withSpan(
+  await logger.openSpan(
     'site.action.createVerificationCode',
     async (logger) => {
       const startedAt = Date.now()

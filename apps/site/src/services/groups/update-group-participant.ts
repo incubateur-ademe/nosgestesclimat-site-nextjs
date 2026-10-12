@@ -25,7 +25,7 @@ export const updateGroupParticipant = async ({
   simulation?: Simulation
   name?: string
 }) =>
-  await logger.withSpan(
+  await logger.openSpan(
     'site.action.updateGroupParticipant',
     async (logger) =>
       await withUserSession(async (session) => {

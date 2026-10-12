@@ -16,7 +16,7 @@ export const syncUserData = async ({
   user: { id: string; email: string }
   verified?: boolean
 }) =>
-  await logger.withSpan('core.service.syncUserData', async (logger) => {
+  await logger.openSpan('core.service.syncUserData', async (logger) => {
     // `transaction` carries a `Result` out of its callback, not a count.
     let mergedUserCount = 0
 

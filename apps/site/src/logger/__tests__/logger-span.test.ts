@@ -38,7 +38,7 @@ const createTestLogger = (rethrowControlFlow?: (error: unknown) => void) =>
 
 const noResult = () => Promise.resolve()
 
-describe('withSpan', () => {
+describe('openSpan', () => {
   const exporter = new InMemorySpanExporter()
   const provider = new NodeTracerProvider({
     spanProcessors: [new SimpleSpanProcessor(exporter)],
@@ -67,7 +67,7 @@ describe('withSpan', () => {
   })
 
   it('runs the body in a span named after the scope', async () => {
-    const value = await createTestLogger().withSpan(
+    const value = await createTestLogger().openSpan(
       'site.action.getGeolocation',
       () => Promise.resolve('EU')
     )
@@ -78,7 +78,7 @@ describe('withSpan', () => {
   })
 
   it('binds the scope to the logger of the body', async () => {
-    await createTestLogger().withSpan(
+    await createTestLogger().openSpan(
       'site.action.getUserSession',
       (logger) => {
         logger.info('read')
@@ -94,8 +94,8 @@ describe('withSpan', () => {
   it('gives an operation called from another its own nested span', async () => {
     const logger = createTestLogger()
 
-    await logger.withSpan('site.action.completeSimulation', () =>
-      logger.withSpan('core.sideEffect.joinedEmail', noResult)
+    await logger.openSpan('site.action.completeSimulation', () =>
+      logger.openSpan('core.sideEffect.joinedEmail', noResult)
     )
 
     const spans = exporter.getFinishedSpans()
@@ -111,14 +111,14 @@ describe('withSpan', () => {
   it("puts the logger's bindings on the span, like on the lines", async () => {
     await createTestLogger()
       .child({ simulationId: 'sim-1' })
-      .withSpan('core.sideEffect.joinedEmail', noResult)
+      .openSpan('core.sideEffect.joinedEmail', noResult)
 
     const [span] = exporter.getFinishedSpans()
     expect(span.attributes).toMatchObject({ 'ngc.simulationId': 'sim-1' })
   })
 
   it('keeps the service off the span, where the resource already names it', async () => {
-    await createTestLogger().withSpan(
+    await createTestLogger().openSpan(
       'site.action.getUserSession',
       (logger) => {
         logger.info('read')
@@ -140,8 +140,8 @@ describe('withSpan', () => {
   it('does not carry a parent scope onto a nested span', async () => {
     const logger = createTestLogger()
 
-    await logger.withSpan('site.action.completeSimulation', (inner) =>
-      inner.withSpan('core.sideEffect.joinedEmail', noResult)
+    await logger.openSpan('site.action.completeSimulation', (inner) =>
+      inner.openSpan('core.sideEffect.joinedEmail', noResult)
     )
 
     const inner = exporter
@@ -151,7 +151,7 @@ describe('withSpan', () => {
   })
 
   it('annotates the span without touching the lines', async () => {
-    await createTestLogger().withSpan(
+    await createTestLogger().openSpan(
       'core.service.computePollStats',
       (logger) => {
         logger.setSpanAttribute('participantsCount', 42)
@@ -172,7 +172,7 @@ describe('withSpan', () => {
     const failure = new Error('brevo is down')
 
     await expect(
-      createTestLogger().withSpan('site.action.completeSimulation', () =>
+      createTestLogger().openSpan('site.action.completeSimulation', () =>
         Promise.reject(failure)
       )
     ).rejects.toThrow(failure)
@@ -195,7 +195,7 @@ describe('withSpan', () => {
     const failure = new TestDomainError('action-1')
 
     await expect(
-      createTestLogger().withSpan('site.action.assessActions', () =>
+      createTestLogger().openSpan('site.action.assessActions', () =>
         Promise.reject(failure)
       )
     ).rejects.toThrow(failure)
@@ -219,7 +219,7 @@ describe('withSpan', () => {
     })
 
     await expect(
-      createTestLogger(rethrowControlFlow).withSpan(
+      createTestLogger(rethrowControlFlow).openSpan(
         'site.action.getLatestSimulationResult',
         () => Promise.reject(new Error('NEXT_REDIRECT'))
       )

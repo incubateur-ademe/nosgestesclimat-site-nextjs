@@ -117,7 +117,7 @@ export function createLogger({
       }
     }
 
-    async function withSpan<Result>(
+    async function openSpan<Result>(
       scope: ScopeName,
       run: (logger: Logger) => Promise<Result>
     ): Promise<Result> {
@@ -164,7 +164,7 @@ export function createLogger({
 
     return {
       child: (bindings) => build(instance.child(prefixKeys(bindings))),
-      withSpan,
+      openSpan,
       // Shaped like a binding, so the attribute reads the same as the ones the
       // span inherited; only the destination differs.
       setSpanAttribute: (key, value) =>

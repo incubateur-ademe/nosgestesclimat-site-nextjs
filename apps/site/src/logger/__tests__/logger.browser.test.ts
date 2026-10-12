@@ -136,8 +136,8 @@ describe('createBrowserLogger', () => {
     expect(posthogCaptureException).toHaveBeenCalledTimes(1)
   })
 
-  it('binds the scope for the body of `withSpan`, which has no span here', async () => {
-    const result = await logger.withSpan(
+  it('binds the scope for the body of `openSpan`, which has no span here', async () => {
+    const result = await logger.openSpan(
       'site.engine.safeEvaluate',
       (scoped) => {
         scoped.info('evaluating')

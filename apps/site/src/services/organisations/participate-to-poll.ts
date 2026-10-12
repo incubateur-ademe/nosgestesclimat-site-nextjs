@@ -10,6 +10,7 @@ import { ModelSchema } from '@nosgestesclimat/core/features/simulations/types/mo
 import type { InvalidPayloadError } from '@nosgestesclimat/core/lib/errors'
 import { type Result } from '@nosgestesclimat/core/lib/result'
 import { validatePayload } from '@nosgestesclimat/core/lib/validate-payload'
+import { withSpan } from '@nosgestesclimat/core/lib/with-span'
 import { after } from 'next/server'
 import * as v from 'valibot'
 import { ensureUserSession } from '../auth/ensure-user-session'
@@ -43,37 +44,42 @@ type ParticipateToPollPayload = v.InferOutput<
  * Enters the current user in a poll, either by reusing a simulation they
  * already completed or by starting a new one.
  */
-export const participateToPoll = async (
-  params: ParticipateToPollPayload
-): Promise<
-  Result<{ simulationId: string }, ParticipateToPollError | InvalidPayloadError>
-> =>
-  await logger
-    .child({ pollId: params.pollId })
-    .withSpan('site.action.participateToPoll', async (logger) => {
-      // A visitor can land straight on a campaign without ever having answered
-      // anything: they need an identity before joining it.
-      const session = await ensureUserSession()
-      const parsed = validatePayload(ParticipateToPollPayloadSchema, params)
-      if (!parsed.success) {
-        logger.error(parsed.error)
-        return parsed
-      }
-      const { pollId, locale } = parsed.data
+export const participateToPoll = withSpan(
+  logger,
+  'site.action.participateToPoll',
+  ['pollId'],
+  async (
+    params: ParticipateToPollPayload
+  ): Promise<
+    Result<
+      { simulationId: string },
+      ParticipateToPollError | InvalidPayloadError
+    >
+  > => {
+    // A visitor can land straight on a campaign without ever having answered
+    // anything: they need an identity before joining it.
+    const session = await ensureUserSession()
+    const parsed = validatePayload(ParticipateToPollPayloadSchema, params)
+    if (!parsed.success) {
+      logger.error(parsed.error)
+      return parsed
+    }
+    const { pollId, locale } = parsed.data
 
-      return await participateToPollService(
-        'reuseSimulationId' in parsed.data
-          ? {
-              userSession: session,
-              pollId,
-              locale,
-              reuseSimulationId: parsed.data.reuseSimulationId,
-            }
-          : {
-              userSession: session,
-              pollId,
-              locale,
-              model: parsed.data.model,
-            }
-      )
-    })
+    return await participateToPollService(
+      'reuseSimulationId' in parsed.data
+        ? {
+            userSession: session,
+            pollId,
+            locale,
+            reuseSimulationId: parsed.data.reuseSimulationId,
+          }
+        : {
+            userSession: session,
+            pollId,
+            locale,
+            model: parsed.data.model,
+          }
+    )
+  }
+)

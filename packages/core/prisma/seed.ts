@@ -20,7 +20,7 @@ const report = (message: string) => {
 const logger: Logger = {
   child: () => logger,
   // No tracer in a one-shot seed script: the span is a no-op.
-  withSpan: (_scope, run) => run(logger),
+  openSpan: (_scope, run) => run(logger),
   setSpanAttribute: () => undefined,
   info: report,
   warn: (message: string | Error) =>

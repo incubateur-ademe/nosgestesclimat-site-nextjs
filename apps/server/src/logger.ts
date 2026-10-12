@@ -65,8 +65,8 @@ const logger = winston.createLogger({
 const toCoreLogger = (winstonLogger: winston.Logger): CoreLogger => ({
   child: (bindings) => toCoreLogger(winstonLogger.child(bindings)),
   // No tracer in the legacy server: the span is a no-op, and the callback gets
-  // the scope-bound logger — what a `withSpan` call site actually uses.
-  withSpan: (scope, run) => run(toCoreLogger(winstonLogger.child({ scope }))),
+  // the scope-bound logger — what a `openSpan` call site actually uses.
+  openSpan: (scope, run) => run(toCoreLogger(winstonLogger.child({ scope }))),
   // No tracer either: there is no span to annotate.
   setSpanAttribute: () => undefined,
   debug: (message, meta) => winstonLogger.debug(message, meta),

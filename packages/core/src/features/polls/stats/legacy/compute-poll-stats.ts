@@ -135,7 +135,7 @@ export function createComputePollStats({
   }> {
     return await _logger
       .child({ pollId })
-      .withSpan('core.service.computePollStats', async (logger) => {
+      .openSpan('core.service.computePollStats', async (logger) => {
         let simulationCount = 0
         let participantsCount = 0
         let computedResults = getEmptyComputedResults()

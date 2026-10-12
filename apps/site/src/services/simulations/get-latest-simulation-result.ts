@@ -14,7 +14,7 @@ export const getLatestSimulationResult = async ({
 }: {
   withTendency: boolean
 }): Promise<SimulationResult> =>
-  await logger.withSpan('site.action.getLatestSimulationResult', async () => {
+  await logger.openSpan('site.action.getLatestSimulationResult', async () => {
     const session = await getUserSession()
     if (!session) notFound()
 

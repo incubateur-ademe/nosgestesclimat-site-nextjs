@@ -84,7 +84,7 @@ export interface Logger {
   /** Runs an operation in its own span with a scoped logger. The span covers
    * the whole body. Failure marks the span but goes out unchanged — reporting
    * stays the caller's decision. */
-  withSpan<Result>(
+  openSpan<Result>(
     scope: ScopeName,
     run: (logger: Logger) => Promise<Result>
   ): Promise<Result>
@@ -115,7 +115,7 @@ export interface Logger {
  */
 export const noopLogger: Logger = {
   child: () => noopLogger,
-  withSpan: (_scope, run) => run(noopLogger),
+  openSpan: (_scope, run) => run(noopLogger),
   setSpanAttribute: () => {},
   debug: () => {},
   info: () => {},

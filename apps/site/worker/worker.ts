@@ -72,7 +72,7 @@ async function loop(
       // a failure marks the iteration as failed. Either way the loop keeps
       // running: a job that cannot be processed is not retried in place, it
       // needs a human.
-      await jobLogger.withSpan(`site.worker.${name}`, async (logger) => {
+      await jobLogger.openSpan(`site.worker.${name}`, async (logger) => {
         const result = await processNext()
 
         if (!result.success) {
@@ -85,7 +85,7 @@ async function loop(
         }
       })
     } catch (error) {
-      // The span is already marked as failed by `withSpan`.
+      // The span is already marked as failed by `openSpan`.
       jobLogger.error(toError(error))
     }
 

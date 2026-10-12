@@ -33,7 +33,7 @@ export function createTestLogger(): TestLogger {
     // No span in a test: what a service hands to the logger is asserted, not
     // the trace it sits in. The body logs through the same spied instance,
     // whichever scope it runs under.
-    withSpan: <Result>(
+    openSpan: <Result>(
       scope: ScopeName,
       run: (logger: Logger) => Promise<Result>
     ): Promise<Result> => run(logger.child({ scope })),

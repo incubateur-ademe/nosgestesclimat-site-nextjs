@@ -68,7 +68,7 @@ export function createLogin({
      */
     sessionUserId?: string
   }): Promise<Result<LoginResult, LoginError>> {
-    return await _logger.withSpan('core.service.login', async (logger) => {
+    return await _logger.openSpan('core.service.login', async (logger) => {
       const account = await transaction(async (session) => {
         // Single-use by construction, on both branches: the code is claimed
         // atomically, inside the transaction, before the sign-in/sign-up

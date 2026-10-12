@@ -15,7 +15,7 @@ import logger from '@/logger/logger.server'
 /** The session of the request being served. */
 export const getUserSession = cache(
   async (): Promise<UserSession> =>
-    await logger.withSpan('site.action.getUserSession', async () => {
+    await logger.openSpan('site.action.getUserSession', async () => {
       const reqHeaders = await headers()
       const sessionHeader = reqHeaders.get('x-session')
 

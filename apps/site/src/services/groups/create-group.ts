@@ -20,7 +20,7 @@ export const createGroup = async ({
   administratorName: string
   participants?: { simulation: Simulation }[]
 }) =>
-  await logger.withSpan('site.action.createGroup', async (logger) => {
+  await logger.openSpan('site.action.createGroup', async (logger) => {
     const session = await getUserSession()
     if (!session?.isAuth) {
       throw new UnauthorizedError()

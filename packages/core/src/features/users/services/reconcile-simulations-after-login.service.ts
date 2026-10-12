@@ -16,7 +16,7 @@ export const reconcileSimulationsAfterLogin = async ({
   user: { id: string; email: string }
   previousUserId: string
 }) =>
-  await logger.withSpan(
+  await logger.openSpan(
     'core.service.reconcileSimulationsAfterLogin',
     async () => {
       await transaction((session) =>
