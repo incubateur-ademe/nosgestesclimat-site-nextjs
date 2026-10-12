@@ -18,7 +18,7 @@ export default function PlannedActionCard({
   action,
   locale,
 }: PlannedActionCardProps) {
-  const href = getActionHref({ action, locale })
+  const href = getActionHref({ from: 'mon-plan', action, locale })
 
   return (
     <article

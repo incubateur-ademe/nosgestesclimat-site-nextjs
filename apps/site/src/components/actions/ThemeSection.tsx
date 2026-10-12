@@ -10,13 +10,14 @@ import Trans from '../translation/trans/TransServer'
 import ActionCardSwitchServer from './actionCard/ActionCardSwitchServer'
 import { classesByTheme } from './theme/constants/classesByTheme'
 import ThemeIcon from './ThemeIcon'
+import type { ActionFrom } from './types/actions'
 
 interface Props {
   theme: Pick<Theme, 'key' | 'title'>
   actions: MaybePersonalizedAction[]
   locale: Locale
   assessmentStatus?: AssessmentStatus | null
-  from?: 'fin' | 'mon-espace' | 'index'
+  from?: ActionFrom
   trackingSource?: ActionEventSource
   /** Defaults to the theme title */
   title?: React.ReactNode
