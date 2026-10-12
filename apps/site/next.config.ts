@@ -139,9 +139,11 @@ const configWithSourceMaps =
         // The project is on the EU instance; the package defaults to the US one.
         host: 'https://eu.posthog.com',
         sourcemaps: {
-          // The same release string as `service.version` and the Sentry release
-          // when the build knows it; the package falls back to the git commit.
-          ...(releaseName ? { releaseVersion: releaseName } : {}),
+          // The CLI needs a name and a version, and the deploy environment has
+          // no git metadata to derive them from: the version is the commit, the
+          // name keeps one release timeline across the environments.
+          releaseName: 'nosgestesclimat-site',
+          releaseVersion: releaseName,
         },
       })
     : nextConfig
