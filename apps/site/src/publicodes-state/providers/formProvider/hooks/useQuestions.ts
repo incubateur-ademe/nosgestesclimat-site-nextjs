@@ -166,7 +166,7 @@ export default function useQuestions({
     [foldedSteps, everyQuestions]
   )
 
-  const relevantQuestions = sortQuestions(
+  const sortedRelevantQuestions = sortQuestions(
     [
       /**
        * We add every answered questions to display and every not answered
@@ -182,14 +182,14 @@ export default function useQuestions({
       categories.reduce(
         (accumulator, currentValue) => ({
           ...accumulator,
-          [currentValue]: relevantQuestions.filter((question) =>
+          [currentValue]: sortedRelevantQuestions.filter((question) =>
             // We check that the question is in the current category
             utils.ruleParent(question).includes(currentValue)
           ),
         }),
         {} as Record<DottedName, DottedName[]>
       ),
-    [relevantQuestions, categories]
+    [sortedRelevantQuestions, categories]
   )
 
   const remainingQuestionsByCategories = useMemo(
@@ -210,7 +210,7 @@ export default function useQuestions({
     missingVariables,
     remainingQuestions,
     relevantAnsweredQuestions,
-    relevantQuestions,
+    relevantQuestions: sortedRelevantQuestions,
     questionsByCategories,
     remainingQuestionsByCategories,
   }

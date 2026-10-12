@@ -45,7 +45,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@incubateur-ademe/nosgestesclimat": "4.17.1",
+    "@incubateur-ademe/nosgestesclimat": "4.17.2",
     "@next/mdx": "^16.3.8",
     "@nosgestesclimat/core": "workspace:*",
     "@publicodes/react-ui": "^1.10.0",
@@ -65,6 +65,7 @@
     "gray-matter": "^4.0.3",
     "html-to-image": "^1.11.13",
     "i18next": "^26.4.2",
+    "ioredis": "^5.10.1",
     "iron-session": "^8.0.4",
     "is-mobile": "^5.0.0",
     "jszip": "^3.10.1",

@@ -1,8 +1,5 @@
 'use client'
 
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { MouseEvent } from 'react'
-import { useCallback, useEffect, useState } from 'react'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   DEFAULT_FOCUS_ELEMENT_ID,
@@ -17,9 +14,13 @@ import { useIsDisabledByBounds } from '@/hooks/useIsDisabledByBounds'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useEngine, useFormState, useRule, useUser } from '@/publicodes-state'
 import { useGotoNextQuestion } from '@/publicodes-state/hooks/useGotoNextQuestion/useGotoNextQuestion'
+import { captureErrorForSentryAndPosthog } from '@/utils/analytics/captureErrorForSentryAndPosthog'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { twMerge } from 'cn'
 import { useRouter } from 'next/navigation'
-import { twMerge } from "cn";
+import type { MouseEvent } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 type SubmitButtonKind = 'loading' | 'finish' | 'next'
 
@@ -91,6 +92,7 @@ export default function Navigation({
     noNextQuestion,
     currentQuestion,
     setCurrentQuestion,
+    forgottenQuestions,
   } = useFormState()
 
   const { goToNextQuestion, isIntercalaireNext } = useGotoNextQuestion()
@@ -102,6 +104,21 @@ export default function Navigation({
       remainingQuestions.length === 0
     : noNextQuestion
 
+  const hasForgottenQuestionsOnLastQuestion =
+    isLastQuestion && forgottenQuestions.length > 0
+
+  useEffect(() => {
+    if (hasForgottenQuestionsOnLastQuestion) {
+      captureErrorForSentryAndPosthog(
+        new Error(
+          `Forgotten questions detected: ${forgottenQuestions.join(', ')}`
+        )
+      )
+    }
+    // Error is only captured once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasForgottenQuestionsOnLastQuestion])
+
   const {
     isMissing,
     isFolded,
@@ -111,6 +128,9 @@ export default function Navigation({
   } = useRule(question)
 
   const { getValue } = useEngine()
+
+  const canNavigateFromAnsweredForgottenQuestion =
+    forgottenQuestions.includes(question) && !isMissing
 
   // Reset notifications when navigating away
   const hasActiveNotifications = activeNotifications.length > 0
@@ -320,7 +340,10 @@ export default function Navigation({
     ),
   }[submitButtonKind]
 
-  const submitButtonIsDisabled = isPending || isNextDisabled || !isFolded
+  const submitButtonIsDisabled =
+    isPending === true ||
+    isNextDisabled ||
+    (!isFolded && !canNavigateFromAnsweredForgottenQuestion)
 
   const submitButtonColor = 'primary'
 
