@@ -7,9 +7,10 @@ import Loader from '@/design-system/layout/Loader'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import logger from '@/logger/logger.browser'
 import type { Group } from '@/types/groups'
-import { captureErrorForSentryAndPosthog } from '@/utils/analytics/captureErrorForSentryAndPosthog'
 import type { AppUser } from '@nosgestesclimat/core/features/auth/types/user-session'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import dayjs from 'dayjs'
 import { useState, useTransition } from 'react'
 import { findOwnParticipant } from '../../_helpers/findOwnParticipant'
@@ -18,12 +19,9 @@ import { updateSimulationUsedAction } from '../_actions/update-simulation-used.a
 interface Props {
   group: Group
   user: AppUser
-  /**
-   * The user's newest completed simulation, when it postdates the one the group
-   * currently uses. Undefined once the group already uses the newest one. The
-   * component stays mounted then, so that it can keep showing its own success
-   * alert.
-   */
+  /** User's newest completed simulation, when it postdates the group's
+   * current one. Undefined once the group uses the newest; component stays
+   * mounted to show its success alert. */
   latestSimulation?: Simulation
 }
 
@@ -51,7 +49,9 @@ export default function UpdateSimulationUsed({
 
         setIsUpdated(true)
       } catch (error) {
-        captureErrorForSentryAndPosthog(error)
+        logger.error(toError(error), {
+          scope: 'site.interaction.updateSimulationUsed',
+        })
         setIsError(true)
       }
     })

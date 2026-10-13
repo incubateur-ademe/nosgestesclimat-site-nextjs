@@ -22,6 +22,17 @@ class PosthogServer {
     return await this.client.getFeatureFlag(flag, userId)
   }
 
+  captureException(
+    error: Error,
+    // Without one the SDK files the error anonymously
+    // (`$process_person_profile: false`) rather than inventing a person, which
+    // is what a crash outside a request deserves.
+    distinctId?: string,
+    properties?: Record<string, string>
+  ): void {
+    this.client.captureException(error, distinctId, properties)
+  }
+
   async shutdown(): Promise<void> {
     return await this.client.shutdown()
   }
@@ -30,6 +41,9 @@ class PosthogServer {
 class PosthogServerNoop {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   track() {}
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  captureException() {}
 
   // eslint-disable-next-line @typescript-eslint/require-await
   async getFeatureFlag(): Promise<FeatureFlagValue | undefined> {
@@ -41,9 +55,10 @@ class PosthogServerNoop {
 }
 
 export const posthogClient =
-  process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST
+  process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
+  process.env.NEXT_PUBLIC_POSTHOG_HOST
     ? new PosthogServer(
-        process.env.NEXT_PUBLIC_POSTHOG_KEY,
+        process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN,
         process.env.NEXT_PUBLIC_POSTHOG_HOST,
         process.env.POSTHOG_PERSONAL_API_KEY ?? undefined
       )
