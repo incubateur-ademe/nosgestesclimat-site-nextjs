@@ -32,6 +32,7 @@ export default function CopyInput({
   const [isCopied, setIsCopied] = useState(false)
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [randomNumber] = useState(() => Math.random())
 
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -40,7 +41,7 @@ export default function CopyInput({
 
   // Auto-generate IDs if not provided
   const generatedInputId =
-    inputId || `copy-input-${Math.random().toString(36).substr(2, 9)}`
+    inputId || `copy-input-${randomNumber.toString(36).substr(2, 9)}`
   const generatedLabel =
     inputLabel || t('copyInput.defaultLabel', 'Lien à copier')
 
