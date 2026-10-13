@@ -21,7 +21,7 @@ export default async function ProfileTab({
   activePath: string
 }) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const tabsItems: TabItem[] = [
     {

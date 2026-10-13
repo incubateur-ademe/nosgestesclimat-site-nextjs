@@ -22,17 +22,15 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default async function GroupNamePage({
-  params,
   searchParams,
 }: DefaultPageProps<{ searchParams: { [SHOW_STEP_KEY]: string } }>) {
-  const { locale } = await params
   const { [SHOW_STEP_KEY]: showStep } = (await searchParams) ?? {}
 
   await requireAuthUser()
   const lastSimulation = await throwNextError(() =>
     getLastCompletedSimulation()
   )
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="pb-8">

@@ -5,7 +5,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function WhatDoWeMeasureWaterFootprint() {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <WhatDoWeMeasure

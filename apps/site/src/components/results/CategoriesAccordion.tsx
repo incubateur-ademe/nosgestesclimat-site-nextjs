@@ -26,7 +26,7 @@ export default async function CategoriesAccordion({
   metric = carboneMetric,
 }: Props) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const categories = getCategoriesDisplayData({
     computedResults,

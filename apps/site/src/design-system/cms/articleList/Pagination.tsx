@@ -3,7 +3,6 @@
 import ChevronLeft from '@/components/icons/ChevronLeft'
 import ChevronRight from '@/components/icons/ChevronRight'
 import Link from '@/components/Link'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { twMerge } from "cn";
 
@@ -14,8 +13,7 @@ export default async function Pagination({
   currentPage: number
   totalPages: number
 }) {
-  const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="text-center">

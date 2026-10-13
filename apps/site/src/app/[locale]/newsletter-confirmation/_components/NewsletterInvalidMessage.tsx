@@ -9,7 +9,7 @@ export default async function NewsletterInvalidMessage({
 }: {
   locale: string
 }) {
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   return (
     <MessageTemplate
       title={t("L'invitation a expiré")}

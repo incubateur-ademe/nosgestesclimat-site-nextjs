@@ -5,7 +5,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function WhatDoWeMeasureCarbon() {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   return (
     <WhatDoWeMeasure
       title={<Trans locale={locale}>Calculer son empreinte carbone</Trans>}

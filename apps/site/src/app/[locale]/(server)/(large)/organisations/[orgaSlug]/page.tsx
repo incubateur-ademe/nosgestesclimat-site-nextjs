@@ -16,10 +16,10 @@ import { organisationAdminGuard } from './guard'
 export default async function OrganisationPage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]'>) {
-  const { orgaSlug, locale } = await params
+  const { orgaSlug } = await params
   const { organisation } = await organisationAdminGuard(orgaSlug)
   const polls = await getOrganisationPolls(orgaSlug)
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <>

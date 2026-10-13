@@ -13,7 +13,7 @@ import LogoHeader from './headerServer/LogoHeader'
 export default async function Route404({ locale }: { locale: Locale }) {
   'use cache'
   cacheLife('days')
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <>

@@ -2,7 +2,6 @@ import Title from '@/design-system/layout/Title'
 
 import SquareImageContainer from '@/components/images/SquareImageContainer'
 import Trans from '@/components/translation/trans/TransClient'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
@@ -14,8 +13,7 @@ export default async function DocumentationLanding({
 }: {
   rules: NGCRules
 }) {
-  const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   // We want to be able to define an order for the cards and their summary here
   const fixedCardSummaries = {

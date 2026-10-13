@@ -14,7 +14,7 @@ export default async function FootprintsLinks({
   basePathname,
 }: Props) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="mb-6 text-center md:mb-8 md:text-right">

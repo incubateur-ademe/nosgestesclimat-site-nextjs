@@ -9,7 +9,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function WelcomeBanner() {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="relative mb-10 rounded-lg bg-blue-50 p-4 md:p-6">

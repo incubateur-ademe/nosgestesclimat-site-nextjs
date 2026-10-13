@@ -3,16 +3,13 @@ import initI18next from '@/locales/initServer'
 import { isLocale } from '@/utils/is-locale'
 import type { i18n } from 'i18next'
 import { getLocale } from './getLocale'
-
-export async function getServerTranslation({
-  locale: _locale,
-  namespace,
-  options,
-}: {
+interface Props {
   locale?: string
   namespace?: string
   options?: { keyPrefix: string }
-}) {
+}
+export async function getServerTranslation(props?: Props) {
+  const { locale: _locale, namespace, options } = props ?? {}
   const locale = _locale && isLocale(_locale) ? _locale : await getLocale()
 
   const i18nextInstance = initI18next(locale)

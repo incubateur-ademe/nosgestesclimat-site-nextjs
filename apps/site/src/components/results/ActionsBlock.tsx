@@ -24,7 +24,7 @@ interface Props {
 
 export default async function ActionsBlock({ className }: Props) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   return (
     <Card
       className={twMerge(

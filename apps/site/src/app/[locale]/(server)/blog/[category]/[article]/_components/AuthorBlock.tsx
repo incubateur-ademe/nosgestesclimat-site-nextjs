@@ -1,5 +1,4 @@
 import type { AuthorType } from '@/adapters/cmsClient'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
@@ -8,8 +7,7 @@ export default async function AuthorBlock({
 }: {
   author?: AuthorType | null
 }) {
-  const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   if (!author) return null
 

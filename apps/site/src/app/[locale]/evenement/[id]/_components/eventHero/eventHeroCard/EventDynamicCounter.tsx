@@ -22,7 +22,7 @@ export default async function EventDynamicCounter({
   secondaryCtaHref,
 }: Props) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   const numberFormatter = new Intl.NumberFormat(locale)
 
   return (

@@ -81,7 +81,7 @@ export default async function FootprintComparisonChart({
   describedById,
 }: Props) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const { level, deltaKg } = getFootprintComparison(value)
   const percents = getComparisonBarPercents(value)

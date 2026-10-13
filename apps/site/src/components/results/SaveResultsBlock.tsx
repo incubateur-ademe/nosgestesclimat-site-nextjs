@@ -24,7 +24,7 @@ export default async function SaveResultsBlock({
   const locale = await getLocale()
   const user = await getUserSession()
 
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <HideInIframe hideIfNotFrenchRegion>

@@ -25,7 +25,7 @@ export default async function ReuseSimulationForPoll({
   polls,
 }: ReuseSimulationForPollProps) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const { formattedValue, unit } = formatFootprint(
     simulation.computedResults.carbone.bilan,

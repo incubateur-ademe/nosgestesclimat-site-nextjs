@@ -1,4 +1,3 @@
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { twMerge } from 'cn'
 import CarouselClient from './CarouselClient'
@@ -19,8 +18,7 @@ export default async function Carousel({
   slidesPerGroup,
   ...rest
 }: CarouselProps) {
-  const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const translations = {
     prevSlideMessage: t(

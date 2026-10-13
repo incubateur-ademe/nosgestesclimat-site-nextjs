@@ -44,7 +44,7 @@ export default async function PodiumVisual({
   const remainingItems = items.slice(3, 15)
 
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const organisationType = {
     all: t('event.podium.empty.type.all', 'organisation'),

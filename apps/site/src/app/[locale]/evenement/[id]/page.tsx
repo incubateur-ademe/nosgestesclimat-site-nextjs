@@ -21,7 +21,7 @@ export async function generateMetadata({
 }: PageProps<'/[locale]/evenement/[id]'>) {
   const { locale: localeParam, id } = await params
   const locale = localeParam as Locale
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   const event = await findEvent(id)
 
   return getMetadataObject({

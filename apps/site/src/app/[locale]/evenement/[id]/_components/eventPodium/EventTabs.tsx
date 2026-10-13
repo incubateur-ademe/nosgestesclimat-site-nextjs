@@ -1,5 +1,4 @@
 import Tabs from '@/design-system/layout/Tabs'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 
@@ -62,8 +61,7 @@ interface Props {
 }
 
 export default async function EventTabs({ filter, params }: Props) {
-  const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const rawFilter = Array.isArray(filter) ? filter[0] : filter
   const activeFilter: FilterValue =

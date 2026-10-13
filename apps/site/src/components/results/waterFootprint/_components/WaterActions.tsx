@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 export default async function WaterActions() {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="mb-12">

@@ -18,7 +18,7 @@ export async function ResultListItem({ simulation, buttons = null }: Props) {
       locale,
     }
   )
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <article className="flex flex-col items-baseline gap-2 rounded-lg border border-slate-200 px-6 py-4 md:flex-row">

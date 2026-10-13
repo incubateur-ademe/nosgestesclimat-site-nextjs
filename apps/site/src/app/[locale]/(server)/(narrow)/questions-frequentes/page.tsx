@@ -29,7 +29,7 @@ export default async function FAQPage({
   params,
 }: DefaultPageProps<{ params: { locale: Locale } }>) {
   const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const faqCategories =
     (await fetchFaq({

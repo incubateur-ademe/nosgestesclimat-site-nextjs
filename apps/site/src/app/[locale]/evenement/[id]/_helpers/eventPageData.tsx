@@ -77,7 +77,7 @@ export async function getEventPageData({
   'use cache'
   cacheLife('minutes')
 
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const eventInfo = await getEventInfo(eventId)
 

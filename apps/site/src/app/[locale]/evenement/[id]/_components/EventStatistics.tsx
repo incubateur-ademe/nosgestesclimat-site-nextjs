@@ -15,7 +15,7 @@ interface Props {
 
 export default async function EventStatistics({ hasStarted, values }: Props) {
   const locale = await getLocale()
-  const { t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="bg-primary-700 py-12">
