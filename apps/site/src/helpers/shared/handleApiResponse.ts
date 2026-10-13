@@ -24,7 +24,7 @@ export async function handleApiResponse<T>(response: Response): Promise<T> {
 
     switch (response.status) {
       case 404:
-        throw new NotFoundError()
+        throw new NotFoundError(body)
       case 401:
         throw new UnauthorizedError()
       case 403:

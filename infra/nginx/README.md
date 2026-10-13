@@ -110,14 +110,64 @@ par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
     `deployment.environment.name=preprod|production` ;
   - exporte vers `https://eu.i.posthog.com/i/v1/logs` (OTLP HTTP) avec
     `Authorization: Bearer <POSTHOG_PROJECT_TOKEN>`.
-- Corrélation : `$request_id` (généré par nginx) est propagé à l'app via
-  `X-Request-ID` et mappé en `trace_id` du log (convention OTel), pour relier
-  logs nginx et logs applicatifs partageant cet ID.
+- Corrélation : le `trace_id` du log est celui du span racine d'nginx
+  (`$otel_trace_id`, voir les traces ci-dessous). C'est le seul identifiant
+  citabie : il résout une trace dans PostHog, et relie les logs de l'app comme
+  ses spans. `$request_id` a été retiré — plus personne ne le lisait, et un
+  identifiant que rien ne résout ne sert à rien.
   `connection` (extrait des deux logs) permet de filtrer dans PostHog une ligne
   d'`access.log` et la ligne d'`error.log` correspondante ; `upstream_addr`
   distingue un 502 « upstream a répondu » d'un 502 « aucun serveur joignable ».
 - La clé est stockée dans `/etc/otelcol-contrib/otelcol-contrib.env` (0600),
   chargée par systemd (`EnvironmentFile`).
+
+### Traces
+
+Nginx émet un span par requête via le module **`ngx_otel_module`**, exporté en
+OTLP/gRPC vers le collecteur (pipeline `traces/nginx`, port 4317), qui les
+pousse vers PostHog à côté des logs. Ce span **est la racine** des traces de
+l'application : sans lui, les spans de l'app arrivent sans parent, PostHog les
+marque orphelines, et la vue traces n'affiche rien — un log applicatif ne peut
+alors plus ouvrir sa trace.
+
+Le module ne vient **que** de nginx.org : ni Debian ni Ubuntu ne fournissent de
+paquet `libnginx-mod-http-otel` (vérifié sur toutes les suites et architectures).
+Il faut donc installer `nginx` **et** `nginx-module-otel` depuis le dépôt
+nginx.org, la paire étant construite ensemble — un module dynamique doit
+correspondre exactement au binaire, celui d'Ubuntu ne peut pas le charger.
+
+```bash
+apt-cache policy nginx-module-otel libnginx-mod-http-otel   # état des lieux
+```
+
+Le dépôt se déclare sans `lsb_release`, absent de certaines images :
+
+```bash
+. /etc/os-release
+printf 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu %s nginx\n' \
+  "$VERSION_CODENAME" > /etc/apt/sources.list.d/nginx.list
+apt update && apt-cache policy nginx nginx-module-otel
+# stable absent pour ce nom de code ? remplacer /packages/ubuntu par /packages/mainline/ubuntu
+```
+
+L'installation ne demande aucune option : le `nginx.conf` livré par nginx.org
+inclut `conf.d/`, où vit le vhost.
+
+```bash
+sudo apt install nginx nginx-module-otel
+```
+
+Le module est un **prérequis** : `otel_exporter`, `otel_trace` et
+`$otel_trace_id` sont inconnus sans lui, et nginx refuse de démarrer. Le
+provisioning l'installe donc avant tout pull — cloud-init installe ses paquets
+avant ses `runcmd` — et la CI l'installe pour valider la configuration complète.
+Sur une VM existante, l'installer **avant** que cette conf n'arrive : sans lui,
+nginx refuse de démarrer.
+
+```bash
+nginx -t                                # avant tout rechargement
+journalctl -u otelcol-contrib -n 50     # le collecteur démarre-t-il ?
+```
 
 ### Résilience
 

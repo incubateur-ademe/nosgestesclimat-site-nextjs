@@ -3,7 +3,13 @@ set -euo pipefail
 
 # ─── Configuration ──────────────────────────────────────────────
 DEPLOY_ENV="/etc/nginx/deploy.env"
-NGINX_CONF="/etc/nginx/sites-available/nosgestesclimat"
+# Le module OTel impose le nginx de nginx.org, dont le `nginx.conf` inclut
+# `conf.d/` et non `sites-enabled/`.
+NGINX_CONF="/etc/nginx/conf.d/nosgestesclimat.conf"
+
+# Un vhost resté dans `sites-enabled` serait chargé deux fois : le `nginx.conf`
+# d'Ubuntu, lui, inclut les deux répertoires.
+rm -f /etc/nginx/sites-enabled/nosgestesclimat
 BACKUP_CONF="${NGINX_CONF}.bak"
 STATE_DIR="/var/lib/nginx-config"
 LAST_SHA_FILE="${STATE_DIR}/last-sha"
