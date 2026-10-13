@@ -22,7 +22,7 @@ export default function ResultsView({
   onSimulationDelete,
 }: Props) {
   if (simulations.length === 0) {
-    return <NoResultsView locale={locale} />
+    return <NoResultsView />
   }
 
   return (
@@ -34,7 +34,6 @@ export default function ResultsView({
       <ShareSimulator />
 
       <ResultsList
-        locale={locale}
         simulations={simulations}
         isNewAccount={isNewAccount}
         onSimulationDelete={onSimulationDelete}

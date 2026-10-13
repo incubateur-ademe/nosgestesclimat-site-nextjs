@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
-import type { Locale } from '@/i18nConfig'
 import type {
   PodiumCategory,
   PodiumItem,
@@ -11,14 +10,12 @@ import { getActiveCategoryFilter } from './eventPodium/helpers/getActiveCategory
 import { getNavigationParameters } from './eventPodium/helpers/getNavigationLinks'
 
 interface Props {
-  locale: Locale
   searchParams: Promise<Record<string, string | string[] | undefined>>
   podiumItemsByCategory: Record<PodiumCategory, PodiumItem[]>
   hasStarted: boolean
 }
 
 export default async function EventPodium({
-  locale,
   searchParams,
   podiumItemsByCategory,
   hasStarted,
@@ -35,13 +32,13 @@ export default async function EventPodium({
   return (
     <div className="mb-16">
       <p className="text-secondary-700 pt-16 text-center text-base font-bold uppercase">
-        <Trans i18nKey="event.podium.title" locale={locale}>
+        <Trans i18nKey="event.podium.title">
           Classement des organisations en direct
         </Trans>
       </p>
 
       <Title hasSeparator={false} size="xl" className="mb-12 text-center">
-        <Trans i18nKey="event.podium.subtitle" locale={locale}>
+        <Trans i18nKey="event.podium.subtitle">
           Le podium de la mobilisation
         </Trans>
       </Title>

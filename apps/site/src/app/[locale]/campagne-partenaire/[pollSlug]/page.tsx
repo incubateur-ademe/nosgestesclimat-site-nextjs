@@ -77,7 +77,6 @@ export default async function PartnerCampaignPage({
                   answer: <Markdown>{questionObject.answer}</Markdown>,
                 })
               )}
-              locale={locale}
             />
           )
         }

@@ -22,7 +22,7 @@ export default async function EventStatistics({ hasStarted, values }: Props) {
       <div className="mx-auto flex w-5xl max-w-full flex-col px-4 lg:p-0">
         {!hasStarted && (
           <p className="mb-6 text-center text-sm font-bold tracking-wide text-white uppercase">
-            <Trans i18nKey="event.statistics.title" locale={locale}>
+            <Trans i18nKey="event.statistics.title">
               Les données en direct apparaîtront au lancement
             </Trans>
           </p>
@@ -53,7 +53,7 @@ export default async function EventStatistics({ hasStarted, values }: Props) {
             text={
               <>
                 <span>
-                  <Trans i18nKey="event.statistics.third.text" locale={locale}>
+                  <Trans i18nKey="event.statistics.third.text">
                     Organisations déjà mobilisées
                   </Trans>
 
@@ -62,9 +62,7 @@ export default async function EventStatistics({ hasStarted, values }: Props) {
                   <Link
                     href="/organisations"
                     className="hover:text-secondary-100 text-white transition-colors">
-                    <Trans
-                      i18nKey="event.statistics.third.link"
-                      locale={locale}>
+                    <Trans i18nKey="event.statistics.third.link">
                       Rejoignez-les !
                     </Trans>
                   </Link>

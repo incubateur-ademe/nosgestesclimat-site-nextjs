@@ -115,7 +115,6 @@ export default async function ActionCard({
             aria-hidden="true"
             className="text-primary-700 flex items-center text-sm/normal font-bold">
             <Trans
-              locale={locale}
               i18nKey="actions.components.actionCard.link"
               values={{ actionTitle: action.title }}>
               Voir l'action
@@ -133,7 +132,6 @@ export default async function ActionCard({
         )}>
         <span className="sr-only">
           <Trans
-            locale={locale}
             i18nKey="actions.components.actionCard.link"
             values={{ actionTitle: action.title }}>
             Voir l'action<span className="sr-only"> "{'{{actionTitle}}'}"</span>

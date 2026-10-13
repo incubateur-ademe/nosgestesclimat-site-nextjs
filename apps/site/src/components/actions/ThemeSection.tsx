@@ -1,5 +1,4 @@
 import Carousel from '@/design-system/carousel/Carousel'
-import type { Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
@@ -48,7 +47,6 @@ const classesByTheme: Record<
 export default function ThemeSection({
   theme,
   actions,
-  locale,
   assessmentStatus,
   from,
   trackingSource,
@@ -58,7 +56,6 @@ export default function ThemeSection({
 }: {
   theme: Pick<Theme, 'key' | 'title'>
   actions: MaybePersonalizedAction[]
-  locale: Locale
   assessmentStatus?: AssessmentStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
   trackingSource?: ActionEventSource
@@ -88,7 +85,6 @@ export default function ThemeSection({
             <p className="text-sm/normal font-normal">
               {description ?? (
                 <Trans
-                  locale={locale}
                   i18nKey="actions.components.themeSection.description"
                   values={{ count }}>
                   {'{{count}} actions recommandées'}

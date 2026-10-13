@@ -1,20 +1,17 @@
 import { DeleteButtonWithConfirmModal } from '@/components/interactions/DeleteButtonWithConfirmModal'
 import Trans from '@/components/translation/trans/TransServer'
 import type { Simulation } from '@/helpers/server/model/simulations'
-import type { Locale } from '@/i18nConfig'
 import dayjs from 'dayjs'
 import { ResultListItem } from './resultsList/ResultListItem'
 import SeeListItemDetailLink from './resultsList/SeeListItemDetailLink'
 
 interface Props {
-  locale: Locale
   simulations: Simulation[]
   onSimulationDelete: (id: string) => Promise<void>
   isNewAccount: boolean
 }
 
 export default function ResultsList({
-  locale,
   simulations,
   onSimulationDelete,
   isNewAccount,
@@ -22,7 +19,7 @@ export default function ResultsList({
   return (
     <div className="mb-8 md:mb-10">
       <h2 className="mb-6 text-2xl md:mb-8" data-testid="results-list-title">
-        <Trans locale={locale} i18nKey="mon-espace.resultsList.title">
+        <Trans i18nKey="mon-espace.resultsList.title">
           Tous mes résultats
         </Trans>
       </h2>
@@ -33,7 +30,6 @@ export default function ResultsList({
       }) && (
         <p className="mb-4">
           <Trans
-            locale={locale}
             i18nKey="mon-espace.resultsList.hasMigratedSimulations">
             Nous avons retrouvé des simulations sur ce navigateur et les avons
             ajoutées à votre espace. Vous pouvez les supprimer à tout moment.
@@ -61,7 +57,6 @@ export default function ResultsList({
                         }}>
                         <h2 className="mb-8 text-2xl font-normal">
                           <Trans
-                            locale={locale}
                             i18nKey="mySpace.resultList.item.delete.modal.title">
                             Êtes-vous sûr(e) de vouloir supprimer ce
                             résultat&nbsp;?

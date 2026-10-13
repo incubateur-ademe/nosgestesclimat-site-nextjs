@@ -11,7 +11,6 @@ import {
 } from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { twMerge } from "cn";
 
@@ -20,7 +19,6 @@ export default async function ProfileTab({
 }: {
   activePath: string
 }) {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   const tabsItems: TabItem[] = [
@@ -39,12 +37,12 @@ export default async function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans locale={locale} i18nKey="mon-espace.tabs.myResults">
+            <Trans i18nKey="mon-espace.tabs.myResults">
               Mes résultats
             </Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans locale={locale} i18nKey="mon-espace.tabs.results">
+            <Trans i18nKey="mon-espace.tabs.results">
               Résultats
             </Trans>
           </span>
@@ -67,12 +65,12 @@ export default async function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans locale={locale} i18nKey="mon-espace.tabs.myActions">
+            <Trans i18nKey="mon-espace.tabs.myActions">
               J'agis
             </Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans locale={locale} i18nKey="mon-espace.tabs.actions">
+            <Trans i18nKey="mon-espace.tabs.actions">
               J'agis
             </Trans>
           </span>
@@ -97,12 +95,12 @@ export default async function ProfileTab({
             )}
           />
           <span className="hidden text-sm sm:block md:text-lg">
-            <Trans locale={locale} i18nKey="mon-espace.tabs.myGroups">
+            <Trans i18nKey="mon-espace.tabs.myGroups">
               Tests collectifs
             </Trans>
           </span>
           <span className="block text-center text-sm sm:hidden">
-            <Trans locale={locale} i18nKey="mon-espace.tabs.groups">
+            <Trans i18nKey="mon-espace.tabs.groups">
               Groupes
             </Trans>
           </span>
@@ -125,7 +123,7 @@ export default async function ProfileTab({
             )}
           />
           <span className="text-sm md:text-base">
-            <Trans locale={locale} i18nKey="mon-espace.tabs.settings">
+            <Trans i18nKey="mon-espace.tabs.settings">
               Paramètres
             </Trans>
           </span>

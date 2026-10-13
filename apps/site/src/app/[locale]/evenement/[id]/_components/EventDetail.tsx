@@ -58,7 +58,7 @@ export default async function EventDetail({
         </p>
 
         <p className="font-medium sm:text-lg">
-          <Trans locale={locale} i18nKey="event.detail.title">
+          <Trans i18nKey="event.detail.title">
             Semaine Européenne du
             <br />
             Développement

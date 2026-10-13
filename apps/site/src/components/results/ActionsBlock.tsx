@@ -7,7 +7,6 @@ import {
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Link from '@/design-system/links/Link'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { twMerge } from 'cn'
 import CarIcon from '../icons/CarIcon'
@@ -23,7 +22,6 @@ interface Props {
 }
 
 export default async function ActionsBlock({ className }: Props) {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
   return (
     <Card
@@ -38,19 +36,17 @@ export default async function ActionsBlock({ className }: Props) {
             size="md"
             hasSeparator={false}
             className="text-secondary-700 mb-0 font-medium">
-            <Trans locale={locale} i18nKey="results.actions.title">
-              Votre plan d'action
-            </Trans>
+            <Trans i18nKey="results.actions.title">Votre plan d'action</Trans>
           </Title>
 
           <Title tag="h3" size="lg" hasSeparator={false} className="mb-8">
-            <Trans locale={locale} i18nKey="results.actions.subtitle">
+            <Trans i18nKey="results.actions.subtitle">
               Découvrez des gestes concrets pour y arriver
             </Trans>
           </Title>
 
           <p className="mb-8">
-            <Trans locale={locale} i18nKey="results.actions.text">
+            <Trans i18nKey="results.actions.text">
               Nous avons préparé des <strong>actions personnalisées</strong>{' '}
               pour vous aider à aller plus loin
             </Trans>
@@ -63,7 +59,7 @@ export default async function ActionsBlock({ className }: Props) {
               sizeClassNames.md,
               'group-hover/card:animate-button-lift pointer-events-none w-full text-base transition-[transform,box-shadow] duration-200 ease-out sm:w-auto'
             )}>
-            <Trans locale={locale} i18nKey="results.actions.linkLabel">
+            <Trans i18nKey="results.actions.linkLabel">
               Découvrir mes actions
             </Trans>
             <DownArrow className="ml-2 w-6 -rotate-90" />
@@ -77,9 +73,7 @@ export default async function ActionsBlock({ className }: Props) {
                 <CarIcon />
               </span>
 
-              <Trans locale={locale} i18nKey="common.transport">
-                Transport
-              </Trans>
+              <Trans i18nKey="common.transport">Transport</Trans>
             </div>
           </div>
 
@@ -89,9 +83,7 @@ export default async function ActionsBlock({ className }: Props) {
                 <FoodIcon />
               </span>
 
-              <Trans i18nKey="common.alimentation" locale={locale}>
-                Alimentation
-              </Trans>
+              <Trans i18nKey="common.alimentation">Alimentation</Trans>
             </div>
           </div>
 
@@ -101,9 +93,7 @@ export default async function ActionsBlock({ className }: Props) {
                 <HousingIcon />
               </span>
 
-              <Trans i18nKey="common.housing" locale={locale}>
-                Logement
-              </Trans>
+              <Trans i18nKey="common.housing">Logement</Trans>
             </div>
           </div>
         </div>

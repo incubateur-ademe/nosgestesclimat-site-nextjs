@@ -64,16 +64,15 @@ export default async function CarbonFootprintLandingPage({
       />
 
       <LandingPage
-        locale={locale}
         heroTitle={
-          <Trans i18nKey="empreinte-carbone.heroTitle" locale={locale}>
+          <Trans i18nKey="empreinte-carbone.heroTitle">
             L'empreinte carbone, une première étape pour passer à l'action
           </Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <Trans locale={locale}>
+              <Trans>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte carbone</strong>{' '}
                 en quelques minutes et découvrez les{' '}
@@ -114,7 +113,7 @@ export default async function CarbonFootprintLandingPage({
 
         <WhatDoWeMeasureCarbon />
 
-        <DidYouKnowCarbon locale={locale} />
+        <DidYouKnowCarbon />
 
         <DailyGestureCarbonFootprint />
 

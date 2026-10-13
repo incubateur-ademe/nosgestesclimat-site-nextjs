@@ -1,9 +1,9 @@
 import Trans from '@/components/translation/trans/TransServer'
 
-export default function HomePageDescription({ locale }: { locale: string }) {
+export default function HomePageDescription() {
   return (
     <p className="mb-0 text-base md:order-1 md:text-2xl">
-      <Trans locale={locale}>
+      <Trans>
         <strong className="text-primary-700">
           Obtenez votre estimation personnalisée
         </strong>{' '}

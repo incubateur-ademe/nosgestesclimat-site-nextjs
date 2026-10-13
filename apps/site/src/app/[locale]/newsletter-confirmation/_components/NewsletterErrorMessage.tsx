@@ -4,23 +4,22 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import MessageTemplate from '../../../../components/layout/MessageTemplate'
 
-export default function NewsletterErrorMessage({ locale }: { locale: string }) {
+export default function NewsletterErrorMessage() {
   return (
     <MessageTemplate
       title={
         <>
-          <Trans locale={locale}>Oups, une erreur est survenue</Trans>{' '}
-          <Emoji>😬</Emoji>
+          <Trans>Oups, une erreur est survenue</Trans> <Emoji>😬</Emoji>
         </>
       }
       description={
-        <Trans locale={locale}>
+        <Trans>
           Une erreur est survenue, merci de recommencer votre inscription.
         </Trans>
       }
       buttonElement={
         <ButtonLink href={MON_ESPACE_SETTINGS_PATH}>
-          <Trans locale={locale}>Recommencer mon inscription</Trans>
+          <Trans>Recommencer mon inscription</Trans>
         </ButtonLink>
       }
     />

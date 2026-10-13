@@ -113,7 +113,6 @@ export default async function ThematicLandingPage({
       />
 
       <LandingPage
-        locale={locale}
         heroTitle={block1?.title}
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
@@ -206,7 +205,6 @@ export default async function ThematicLandingPage({
 
         {block6 && (
           <UnderstandToAct
-            locale={locale}
             title={block6.title}
             description={block6.htmlDescription}
             posts={
@@ -248,7 +246,6 @@ export default async function ThematicLandingPage({
         )}
 
         <FAQ
-          locale={locale}
           questions={
             faq?.questions?.map(({ question, htmlAnswer }) => ({
               question,

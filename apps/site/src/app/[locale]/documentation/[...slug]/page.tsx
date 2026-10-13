@@ -81,7 +81,6 @@ export default async function DocumentationPage({
         slug={slug}
         serverComponent={
           <DocumentationServer
-            locale={locale}
             ruleName={ruleName}
             rule={rules[ruleName]!}
             rules={rules}

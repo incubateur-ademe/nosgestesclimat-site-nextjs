@@ -1,26 +1,24 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Trans from '@/components/translation/trans/TransServer'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function WhatItIsCarbon() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   return (
     <WhatItIs
-      title={<Trans locale={locale}>Qu'est-ce que l'empreinte carbone ?</Trans>}
+      title={<Trans>Qu'est-ce que l'empreinte carbone ?</Trans>}
       description={
         <div>
           <p>
-            <Trans locale={locale}>
+            <Trans>
               <strong className="text-primary-600">L'empreinte carbone</strong>{' '}
               mesure la quantité totale de gaz à effet de serre (GES) émis par
               nos activités sur une année.
             </Trans>
           </p>
           <p>
-            <Trans locale={locale}>
+            <Trans>
               Depuis le siècle dernier,{' '}
               <strong className="text-primary-600">
                 la concentration du carbone dans l'atmosphère augmente
@@ -31,7 +29,7 @@ export default async function WhatItIsCarbon() {
             </Trans>
           </p>
           <p className="mb-0">
-            <Trans locale={locale}>
+            <Trans>
               Le consensus scientifique est formel,{' '}
               <strong className="text-primary-600">
                 cette augmentation est directement liée aux activités humaines

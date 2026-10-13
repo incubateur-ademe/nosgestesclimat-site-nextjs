@@ -86,11 +86,6 @@ const meta: Meta<typeof ArticleList> = {
       control: 'number',
       description: 'Current page number',
     },
-    locale: {
-      control: 'select',
-      options: ['fr', 'en'],
-      description: 'Locale for translations',
-    },
   },
 }
 
@@ -102,7 +97,6 @@ export const Default: Story = {
     articles: mockArticles,
     pageCount: 1,
     currentPage: 1,
-    locale: 'fr',
   },
 }
 
@@ -111,7 +105,6 @@ export const WithPagination: Story = {
     articles: [...mockArticles, ...mockArticles, ...mockArticles],
     pageCount: 3,
     currentPage: 1,
-    locale: 'fr',
   },
 }
 
@@ -120,7 +113,6 @@ export const English: Story = {
     articles: mockArticles,
     pageCount: 1,
     currentPage: 1,
-    locale: 'en',
   },
 }
 
@@ -134,6 +126,5 @@ export const ManyArticles: Story = {
     ],
     pageCount: 4,
     currentPage: 2,
-    locale: 'fr',
   },
 }

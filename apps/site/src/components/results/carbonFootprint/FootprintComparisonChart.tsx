@@ -109,11 +109,7 @@ export default async function FootprintComparisonChart({
     {
       key: 'footprint',
       name: (
-        <Trans
-          locale={locale}
-          i18nKey="results.footprintBlock.carbone.chart.you">
-          Vous
-        </Trans>
+        <Trans i18nKey="results.footprintBlock.carbone.chart.you">Vous</Trans>
       ),
       nameClassName: 'font-bold',
       percent: percents.footprint,
@@ -128,9 +124,7 @@ export default async function FootprintComparisonChart({
     {
       key: 'average',
       name: (
-        <Trans
-          locale={locale}
-          i18nKey="results.footprintBlock.carbone.chart.average">
+        <Trans i18nKey="results.footprintBlock.carbone.chart.average">
           Moyenne*
         </Trans>
       ),
@@ -144,9 +138,7 @@ export default async function FootprintComparisonChart({
     {
       key: 'objective',
       name: (
-        <Trans
-          locale={locale}
-          i18nKey="results.footprintBlock.carbone.chart.objective">
+        <Trans i18nKey="results.footprintBlock.carbone.chart.objective">
           Objectif 2050
         </Trans>
       ),

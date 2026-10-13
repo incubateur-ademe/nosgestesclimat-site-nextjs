@@ -17,7 +17,7 @@ export default function LatestResults({
       <div className="mb-8">
         <div className="flex flex-col gap-2 md:flex-row md:justify-between">
           <h2 className="mb-0 text-2xl font-medium md:text-3xl">
-            <Trans locale={locale} i18nKey="mon-espace.latestResults.title">
+            <Trans i18nKey="mon-espace.latestResults.title">
               Derniers résultats d'empreinte
             </Trans>
           </h2>
@@ -30,13 +30,11 @@ export default function LatestResults({
         <p className="mb-0 font-bold">
           {/* Mobile */}
           <span className="inline md:hidden">
-            <Trans locale={locale} i18nKey="mon-espace.latestResults.date">
-              Réalisé le
-            </Trans>
+            <Trans i18nKey="mon-espace.latestResults.date">Réalisé le</Trans>
           </span>
           {/* Desktop */}
           <span className="hidden md:inline">
-            <Trans locale={locale} i18nKey="mon-espace.latestResults.date">
+            <Trans i18nKey="mon-espace.latestResults.date">
               Test effectué le
             </Trans>
           </span>{' '}

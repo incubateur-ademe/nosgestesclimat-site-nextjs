@@ -4,11 +4,9 @@ import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Separator from '@/design-system/layout/Separator'
 import Emoji from '@/design-system/utils/Emoji'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function WelcomeBanner() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   return (
@@ -19,7 +17,7 @@ export default async function WelcomeBanner() {
             <h1 className="mb-4">
               {' '}
               <span className="inline-block text-xl md:text-2xl">
-                <Trans i18nKey="mon-espace.welcome.title" locale={locale}>
+                <Trans i18nKey="mon-espace.welcome.title">
                   Bienvenue dans votre espace Nos Gestes climat !
                 </Trans>
                 <Emoji>👋</Emoji>
@@ -40,7 +38,7 @@ export default async function WelcomeBanner() {
         </div>
 
         <p>
-          <Trans locale={locale} i18nKey="mon-espace.welcome.description.part1">
+          <Trans i18nKey="mon-espace.welcome.description.part1">
             Ici, vous pourrez <strong>suivre vos résultats</strong>, passer à{' '}
             <strong>l’action</strong>, et{' '}
             <strong>embarquer d’autres personnes</strong> avec vous.

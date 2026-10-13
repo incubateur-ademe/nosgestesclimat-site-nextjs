@@ -2,7 +2,6 @@ import ChevronLeft from '@/components/icons/ChevronLeft'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { PodiumItem } from '@nosgestesclimat/core/features/events/types/event-info'
 import { twMerge } from 'cn'
@@ -43,7 +42,6 @@ export default async function PodiumVisual({
   const podiumItems = items.slice(0, 3)
   const remainingItems = items.slice(3, 15)
 
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   const organisationType = {
@@ -88,7 +86,6 @@ export default async function PodiumVisual({
                 )}>
                 <PodiumBlock
                   hasStarted={hasStarted}
-                  locale={locale}
                   {...item}
                   rank={getRank(index)}
                 />
@@ -136,7 +133,6 @@ export default async function PodiumVisual({
           )}>
           {remainingItems.map((item, index) => (
             <ListItem
-              locale={locale}
               key={item.name}
               rank={getRank(index + RANK_COMPENSATION_FOR_AFTER_PODIUM_ITEMS)}
               {...item}
@@ -153,14 +149,14 @@ export default async function PodiumVisual({
             'Voir le classement général, ouvrir dans une nouvelle fenêtre'
           )}
           className="font-medium!">
-          <Trans i18nKey="event.podium.generalRankingLink" locale={locale}>
+          <Trans i18nKey="event.podium.generalRankingLink">
             Voir le classement général
           </Trans>
         </Link>
       </div>
 
       <p className="text-primary-700 mt-4 text-right text-sm italic">
-        <Trans i18nKey="event.podium.updateNote" locale={locale}>
+        <Trans i18nKey="event.podium.updateNote">
           Le podium se met à jour environ toutes les 15 minutes
         </Trans>
       </p>

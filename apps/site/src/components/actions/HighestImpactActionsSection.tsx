@@ -1,5 +1,4 @@
 import Carousel from '@/design-system/carousel/Carousel'
-import type { Locale } from '@/i18nConfig'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { twMerge } from 'cn'
@@ -10,7 +9,6 @@ import ActionCardSwitchServer from './ActionCard/ActionCardSwitchServer'
 
 interface HighestImpactActionsSectionProps extends React.ComponentPropsWithoutRef<'section'> {
   actions: MaybePersonalizedAction[]
-  locale: Locale
   assessmentStatus?: AssessmentStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
   textOverrides?: { description?: React.ReactNode }
@@ -18,7 +16,6 @@ interface HighestImpactActionsSectionProps extends React.ComponentPropsWithoutRe
 
 export default function HighestImpactActionsSection({
   actions,
-  locale,
   className,
   assessmentStatus,
   from,
@@ -45,17 +42,13 @@ export default function HighestImpactActionsSection({
         </span>
         <div className="text-white">
           <h2 id={carouselLabelId} className="mb-0 text-lg/normal font-bold">
-            <Trans
-              locale={locale}
-              i18nKey="actions.components.highestImpactActionsSection.title">
+            <Trans i18nKey="actions.components.highestImpactActionsSection.title">
               Le trio gagnant
             </Trans>
           </h2>
           <p className="text-sm/normal font-normal md:text-base">
             {textOverrides?.description ?? (
-              <Trans
-                locale={locale}
-                i18nKey="actions.components.highestImpactActionsSection.description">
+              <Trans i18nKey="actions.components.highestImpactActionsSection.description">
                 Les actions qui auraient le plus d'impact sur votre empreinte
               </Trans>
             )}

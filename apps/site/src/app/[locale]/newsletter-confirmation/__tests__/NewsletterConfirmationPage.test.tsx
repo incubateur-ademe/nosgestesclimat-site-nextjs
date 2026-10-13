@@ -45,10 +45,7 @@ describe('NewsletterConfirmationPage', () => {
     })
 
     // Then
-    expect(NewsletterSuccessMessage).toHaveBeenCalledWith(
-      { locale: i18nConfig.defaultLocale },
-      undefined
-    )
+    expect(NewsletterSuccessMessage).toHaveBeenCalledWith({}, undefined)
     expect(NewsletterErrorMessage).not.toHaveBeenCalled()
     expect(NewsletterInvalidMessage).not.toHaveBeenCalled()
   })
@@ -71,10 +68,7 @@ describe('NewsletterConfirmationPage', () => {
     // Then
     expect(NewsletterSuccessMessage).not.toHaveBeenCalled()
     expect(NewsletterErrorMessage).not.toHaveBeenCalled()
-    expect(NewsletterInvalidMessage).toHaveBeenCalledWith(
-      { locale: i18nConfig.defaultLocale },
-      undefined
-    )
+    expect(NewsletterInvalidMessage).toHaveBeenCalledWith({}, undefined)
   })
 
   it('should render the invalid message when success=false and status=400', async () => {
@@ -95,10 +89,7 @@ describe('NewsletterConfirmationPage', () => {
     // Then
     expect(NewsletterSuccessMessage).not.toHaveBeenCalled()
     expect(NewsletterErrorMessage).not.toHaveBeenCalled()
-    expect(NewsletterInvalidMessage).toHaveBeenCalledWith(
-      { locale: i18nConfig.defaultLocale },
-      undefined
-    )
+    expect(NewsletterInvalidMessage).toHaveBeenCalledWith({}, undefined)
   })
 
   it('should render the error message when success=false and status=500', async () => {
@@ -118,10 +109,7 @@ describe('NewsletterConfirmationPage', () => {
 
     // Then
     expect(NewsletterSuccessMessage).not.toHaveBeenCalled()
-    expect(NewsletterErrorMessage).toHaveBeenCalledWith(
-      { locale: i18nConfig.defaultLocale },
-      undefined
-    )
+    expect(NewsletterErrorMessage).toHaveBeenCalledWith({}, undefined)
     expect(NewsletterInvalidMessage).not.toHaveBeenCalled()
   })
 

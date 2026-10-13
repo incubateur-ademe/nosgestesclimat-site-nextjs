@@ -39,13 +39,13 @@ export default function CarbonFootprintResults({
       tendency={tendency}
       value={computedResults.carbone.bilan}
       title={
-        <Trans locale={locale} i18nKey="simulation.carbone.title">
+        <Trans i18nKey="simulation.carbone.title">
           Vos émissions annuelles :
         </Trans>
       }
       metric="carbone"
       unitSuffix={
-        <Trans locale={locale} i18nKey="common.co2eAn.title">
+        <Trans i18nKey="common.co2eAn.title">
           CO₂e&nbsp;/&nbsp;an
         </Trans>
       }
@@ -75,7 +75,7 @@ export default function CarbonFootprintResults({
         metric="carbone"
       />
 
-      {group && <GroupThankYouBlock locale={locale} group={group} />}
+      {group && <GroupThankYouBlock group={group} />}
 
       {!hideSaveBlock && (
         <SaveResultsBlock
@@ -85,13 +85,12 @@ export default function CarbonFootprintResults({
 
       <HideInIframe>
         <Objective
-          locale={locale}
           carbonFootprint={computedResults.carbone.bilan}
         />
       </HideInIframe>
 
       <p className="text-primary-600 mx-auto mb-12 w-2xl max-w-full text-center">
-        <Trans locale={locale} i18nKey="carbonResults.objective.description">
+        <Trans i18nKey="carbonResults.objective.description">
           <strong className="md:block">Vous avez votre rôle à jouer.</strong>{' '}
           Nous sommes là pour vous aider.
         </Trans>

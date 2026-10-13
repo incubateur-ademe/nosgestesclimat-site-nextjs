@@ -9,7 +9,7 @@ export default async function Unauthorized() {
   const locale = await getLocaleFromHeaders()
   return (
     <ErrorPage locale={locale}>
-      <Trans i18nKey="pages.result.notfound" locale={locale}>
+      <Trans i18nKey="pages.result.notfound">
         <Title tag="h1">Impossible de retrouver ces résultats</Title>
         <p>
           Cela signifie qu'ils n'existent pas, ou qu'ils ne sont pas reliés à

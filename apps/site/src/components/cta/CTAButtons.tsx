@@ -3,7 +3,6 @@ import {
   START_SIMULATION_PATH,
 } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMainCTA } from '@/helpers/server/getLinkToSimulateur'
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -37,7 +36,6 @@ async function ServerCTAButtons({
   withRestart = false,
   className = '',
 }: Props) {
-  const locale = await getLocale()
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
   const { t } = await getServerTranslation()
@@ -98,7 +96,7 @@ async function ServerCTAButtons({
                 'leading-none',
                 'group-hover:bg-rainbow-dark group-hover:animate-rainbow-fast group-hover:bg-clip-text group-hover:text-transparent motion-reduce:animate-none'
               )}>
-              <Trans locale={locale} i18nKey="ctaButtons.collective.label">
+              <Trans i18nKey="ctaButtons.collective.label">
                 Créer un test collectif
               </Trans>
             </span>
@@ -113,9 +111,7 @@ async function ServerCTAButtons({
             href={START_SIMULATION_PATH}
             color="link"
             size="sm">
-            <Trans locale={locale} i18nKey="ctaButtons.retake.label">
-              Repasser le test
-            </Trans>
+            <Trans i18nKey="ctaButtons.retake.label">Repasser le test</Trans>
             <RotatingArrowIcon className="fill-primary-900 ml-3 w-4" />
           </ButtonLink>
         </li>

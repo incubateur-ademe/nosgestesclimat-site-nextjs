@@ -1,10 +1,8 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/trans/TransServer'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function MotivationSectionWaterFootprint() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   return (
@@ -15,7 +13,7 @@ export default async function MotivationSectionWaterFootprint() {
       )}
       description={
         <p className="mb-0">
-          <Trans locale={locale} i18nKey="landing.water.motivation.description">
+          <Trans i18nKey="landing.water.motivation.description">
             Avec les pressions croissantes exercées par les activités humaines
             et le changement climatique, la gestion durable de l'eau est devenue{' '}
             <strong className="text-primary-600">un défi planétaire</strong>.

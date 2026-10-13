@@ -4,7 +4,6 @@ import CategoriesChart from '@/components/results/CategoriesChart'
 import Trans from '@/components/translation/trans/TransServer'
 import { carboneMetric } from '@/constants/model/metric'
 import Separator from '@/design-system/layout/Separator'
-import type { Locale } from '@/i18nConfig'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { Group } from '@/types/groups'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
@@ -18,14 +17,12 @@ import ParticipantAdminSection from './groupResults/ParticipantAdminSection'
 import Ranking from './groupResults/Ranking'
 
 export default function GroupResults({
-  locale,
   group,
   user,
   metric,
   rules,
   computedResults,
 }: {
-  locale: Locale
   group: Group
   user: AppUser
   metric: Metric
@@ -40,7 +37,7 @@ export default function GroupResults({
     <>
       <div className="mt-4 flex items-center justify-between">
         <h2 className="m-0 text-base font-bold md:text-lg">
-          <Trans locale={locale}>Le classement</Trans>
+          <Trans>Le classement</Trans>
         </h2>
 
         <GroupFootprintSelector metric={metric} />
@@ -65,7 +62,7 @@ export default function GroupResults({
         isCarbonFootprintSelected && (
           <>
             <h2 data-testid="votre-empreinte-title" className="mt-8">
-              <Trans locale={locale}>Votre empreinte</Trans>
+              <Trans>Votre empreinte</Trans>
             </h2>
 
             <CategoriesChart />

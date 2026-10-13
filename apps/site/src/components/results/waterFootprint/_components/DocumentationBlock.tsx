@@ -1,25 +1,18 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
-import type { Locale } from '@/i18nConfig'
 
-interface Props {
-  locale: Locale
-}
-
-export default function DocumentationBlock({ locale }: Props) {
+export default function DocumentationBlock() {
   return (
     <div>
       <Title tag="h2" size="lg" hasSeparator={false}>
-        <Trans locale={locale} i18nKey="simulation.eau.documentation.title">
+        <Trans i18nKey="simulation.eau.documentation.title">
           Comment est calculée votre empreinte ?
         </Trans>
       </Title>
 
       <p>
-        <Trans
-          locale={locale}
-          i18nKey="simulation.eau.documentation.description">
+        <Trans i18nKey="simulation.eau.documentation.description">
           Notre calculateur repose sur un modèle de données, dont l'intégralité
           des calculs est documentée ; les données affichées sont directement
           associées à votre test.
@@ -27,7 +20,7 @@ export default function DocumentationBlock({ locale }: Props) {
       </p>
 
       <Link href="/documentation/bilan" className="flex items-center">
-        <Trans locale={locale} i18nKey="simulation.eau.documentation.link">
+        <Trans i18nKey="simulation.eau.documentation.link">
           Comprendre le calcul
         </Trans>
       </Link>

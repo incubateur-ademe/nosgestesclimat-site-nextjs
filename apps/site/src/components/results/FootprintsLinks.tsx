@@ -1,7 +1,6 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Switch from '@/design-system/inputs/Switch'
 import Emoji from '@/design-system/utils/Emoji'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 interface Props {
@@ -13,7 +12,6 @@ export default async function FootprintsLinks({
   currentPage,
   basePathname,
 }: Props) {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   return (
@@ -28,7 +26,7 @@ export default async function FootprintsLinks({
           {
             label: (
               <span className="whitespace-nowrap">
-                <Trans locale={locale} i18nKey="common.carbonFootprint">
+                <Trans i18nKey="common.carbonFootprint">
                   Empreinte carbone
                 </Trans>
               </span>
@@ -41,9 +39,7 @@ export default async function FootprintsLinks({
             'data-testid': 'water-footprint-link',
             label: (
               <span className="whitespace-nowrap">
-                <Trans locale={locale} i18nKey="common.waterFootprint">
-                  Empreinte eau
-                </Trans>
+                <Trans i18nKey="common.waterFootprint">Empreinte eau</Trans>
                 &nbsp;
                 <Emoji className="text-base">💧</Emoji>
               </span>

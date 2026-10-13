@@ -1,10 +1,8 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/trans/TransServer'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function DailyGestureCarbonFootprint() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   const gesturesKeysForTranslation = {
@@ -21,9 +19,7 @@ export default async function DailyGestureCarbonFootprint() {
       )}
       description={
         <p className="mb-0">
-          <Trans
-            locale={locale}
-            i18nKey="landing.carbon.dailyGestures.description">
+          <Trans i18nKey="landing.carbon.dailyGestures.description">
             Pour un mode de vie plus durable, certaines actions{' '}
             <strong className="text-primary-600">
               ont un impact plus fort que d'autres

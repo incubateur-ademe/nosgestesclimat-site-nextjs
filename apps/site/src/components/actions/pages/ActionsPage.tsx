@@ -1,5 +1,4 @@
 import Separator from '@/design-system/layout/Separator'
-import type { Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
@@ -23,7 +22,6 @@ interface ActionsPageProps extends Omit<
   topActions?: MaybePersonalizedAction[]
   themes: Theme[]
   actions: MaybePersonalizedAction[]
-  locale: Locale
   assessmentStatus?: AssessmentStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
   /**
@@ -40,7 +38,6 @@ export default function ActionsPage({
   topActions,
   actions,
   themes,
-  locale,
   className,
   assessmentStatus,
   from,
@@ -63,16 +60,12 @@ export default function ActionsPage({
       )}
 
       <h2 className="mb-0 text-2xl/normal font-bold md:text-3xl/normal">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.themeSections.testWhiteBackground.title">
+        <Trans i18nKey="actions.components.themeSections.testWhiteBackground.title">
           Voici d’autres actions qui vous aideront à réduire votre empreinte
         </Trans>
       </h2>
       <p className="mb-4 text-lg/normal md:mb-8">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.themeSections.testWhiteBackground.description">
+        <Trans i18nKey="actions.components.themeSections.testWhiteBackground.description">
           À impact variable : des gestes à fort impact aux petit pas.
         </Trans>
       </p>
@@ -105,7 +98,6 @@ export default function ActionsPage({
                 <HighestImpactActionsSection
                   actions={topActions}
                   className="mb-10"
-                  locale={locale}
                   assessmentStatus={assessmentStatus}
                   from={from}
                   textOverrides={
@@ -135,7 +127,6 @@ export default function ActionsPage({
                 <HighestImpactActionsSectionWhiteBackground
                   actions={topActions}
                   className={cta ? 'mb-10' : 'mb-8 md:mb-12'}
-                  locale={locale}
                   assessmentStatus={assessmentStatus}
                   from={from}
                   totalFootprint={totalFootprint}
@@ -148,7 +139,6 @@ export default function ActionsPage({
                 <HighestImpactActionsSectionDarkBackground
                   actions={topActions}
                   className={cta ? 'mb-10' : 'mb-8 md:mb-12'}
-                  locale={locale}
                   assessmentStatus={assessmentStatus}
                   from={from}
                   totalFootprint={totalFootprint}
@@ -170,7 +160,6 @@ export default function ActionsPage({
                 <ThemeSection
                   key={theme.id}
                   theme={theme}
-                  locale={locale}
                   assessmentStatus={assessmentStatus}
                   actions={actionsByTheme[theme.key] ?? []}
                   from={from}

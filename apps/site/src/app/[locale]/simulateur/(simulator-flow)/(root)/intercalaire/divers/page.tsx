@@ -41,41 +41,30 @@ export default async function Page({
       <TransitionInfoCard
         className="bg-divers-100"
         title={
-          <Trans
-            locale={locale}
-            i18nKey="simulator.transition.divers.info.title">
+          <Trans i18nKey="simulator.transition.divers.info.title">
             <strong>À retenir</strong> sur le numérique
           </Trans>
         }
-        locale={locale}
         funFactContent={
           <>
             <p className="text-primary-600 mb-0 text-center text-2xl font-bold font-medium">
-              <Trans
-                locale={locale}
-                i18nKey="simulator.transition.divers.funFact.line1">
+              <Trans i18nKey="simulator.transition.divers.funFact.line1">
                 85% de l'impact
               </Trans>
             </p>
             <p className="mb-0 text-center">
-              <Trans
-                locale={locale}
-                i18nKey="simulator.transition.divers.funFact.line2">
+              <Trans i18nKey="simulator.transition.divers.funFact.line2">
                 d'un appareil numérique
               </Trans>
             </p>
             <p className="mb-0 text-center">
               <strong className="text-yellow-700">
-                <Trans
-                  locale={locale}
-                  i18nKey="simulator.transition.divers.funFact.line3">
+                <Trans i18nKey="simulator.transition.divers.funFact.line3">
                   provient de sa
                 </Trans>
               </strong>{' '}
               <TiltedBadge color="yellow">
-                <Trans
-                  locale={locale}
-                  i18nKey="simulator.transition.divers.funFact.line4">
+                <Trans i18nKey="simulator.transition.divers.funFact.line4">
                   fabrication
                 </Trans>
               </TiltedBadge>
@@ -94,9 +83,7 @@ export default async function Page({
           />
         }
         arrowText={
-          <Trans
-            locale={locale}
-            i18nKey="simulator.transition.divers.graph.arrowText">
+          <Trans i18nKey="simulator.transition.divers.graph.arrowText">
             Ce graphique te permet d’observer l’empreinte carbone de tous tes
             appareils numériques
           </Trans>

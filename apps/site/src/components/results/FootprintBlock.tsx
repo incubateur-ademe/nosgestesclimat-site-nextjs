@@ -53,23 +53,19 @@ export default async function FootprintBlock({
             {unitSuffix}
           </span>
         </h1>
-        {tendency && <TendencyIndicator locale={locale} tendency={tendency} />}
+        {tendency && <TendencyIndicator tendency={tendency} />}
       </div>
 
       {metric === 'carbone' && (
         <div className="bg-secondary-100 animate-fade-in-slide-from-top flex w-full flex-col rounded-2xl p-5 [animation-delay:500ms] [animation-fill-mode:both] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100 md:w-[35%] md:p-8">
           <p className="font-bold">
-            <Trans
-              locale={locale}
-              i18nKey="results.footprintBlock.actionsBlock.title">
+            <Trans i18nKey="results.footprintBlock.actionsBlock.title">
               Comment réduire votre empreinte :
             </Trans>
           </p>
 
           <ButtonLink href={END_PAGE_ACTIONS_PATH}>
-            <Trans
-              locale={locale}
-              i18nKey="results.footprintBlock.actionsBlock.link">
+            <Trans i18nKey="results.footprintBlock.actionsBlock.link">
               Découvrir mes actions
             </Trans>
 

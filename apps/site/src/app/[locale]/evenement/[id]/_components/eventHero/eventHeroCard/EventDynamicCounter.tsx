@@ -34,9 +34,7 @@ export default async function EventDynamicCounter({
         />
 
         <span className="text-xs font-bold uppercase">
-          <Trans i18nKey="event.dynamicCounter.text" locale={locale}>
-            EN DIRECT
-          </Trans>
+          <Trans i18nKey="event.dynamicCounter.text">EN DIRECT</Trans>
         </span>
       </span>
 
@@ -52,26 +50,20 @@ export default async function EventDynamicCounter({
           <p className="mb-1! text-slate-600">
             {progressPercentage === 100 ? (
               <span>
-                <Trans
-                  i18nKey="event.dynamicCounter.target.title.topped"
-                  locale={locale}>
+                <Trans i18nKey="event.dynamicCounter.target.title.topped">
                   Objectif atteint
                 </Trans>{' '}
                 <Emoji>🚀</Emoji>
               </span>
             ) : progressPercentage > 100 ? (
               <span>
-                <Trans
-                  i18nKey="event.dynamicCounter.target.title.over"
-                  locale={locale}>
+                <Trans i18nKey="event.dynamicCounter.target.title.over">
                   Objectif dépassé
                 </Trans>{' '}
                 <Emoji>🚀</Emoji>
               </span>
             ) : (
-              <Trans
-                i18nKey="event.dynamicCounter.target.title.default"
-                locale={locale}>
+              <Trans i18nKey="event.dynamicCounter.target.title.default">
                 Objectif
               </Trans>
             )}
@@ -87,7 +79,7 @@ export default async function EventDynamicCounter({
             </span>
 
             <span className="inline-block text-sm text-slate-600 md:text-base">
-              <Trans i18nKey="event.dynamicCounter.target.text" locale={locale}>
+              <Trans i18nKey="event.dynamicCounter.target.text">
                 calculs d'empreinte carbone
               </Trans>
             </span>
@@ -105,7 +97,7 @@ export default async function EventDynamicCounter({
             'event.dynamicCounter.primaryCta.ariaLabel',
             'Je mobilise mon organisation, ouvrir dans une nouvelle fenêtre'
           )}>
-          <Trans i18nKey="event.dynamicCounter.primaryCta" locale={locale}>
+          <Trans i18nKey="event.dynamicCounter.primaryCta">
             Je mobilise mon organisation
           </Trans>
         </ButtonLink>
@@ -120,14 +112,14 @@ export default async function EventDynamicCounter({
             'event.dynamicCounter.secondaryCta.ariaLabel',
             'Je participe individuellement, ouvrir dans une nouvelle fenêtre'
           )}>
-          <Trans i18nKey="event.dynamicCounter.secondaryCta" locale={locale}>
+          <Trans i18nKey="event.dynamicCounter.secondaryCta">
             Je participe individuellement
           </Trans>
         </ButtonLink>
       </div>
 
       <p className="text-center text-sm text-slate-600">
-        <Trans i18nKey="event.dynamicCounter.promise" locale={locale}>
+        <Trans i18nKey="event.dynamicCounter.promise">
           Résultats en 10 minutes — sans inscription
         </Trans>
       </p>

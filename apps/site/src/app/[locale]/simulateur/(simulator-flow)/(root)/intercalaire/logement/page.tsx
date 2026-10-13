@@ -41,20 +41,15 @@ export default async function Page({
       <TransitionInfoCard
         className="bg-logement-100"
         title={
-          <Trans
-            locale={locale}
-            i18nKey="simulator.transition.logement.info.title">
+          <Trans i18nKey="simulator.transition.logement.info.title">
             <strong>À retenir</strong> sur le chauffage
           </Trans>
         }
-        locale={locale}
         funFactContent={
           <>
             <p className="mb-0 w-40 max-w-full text-center font-medium">
               <span>
-                <Trans
-                  locale={locale}
-                  i18nKey="simulator.transition.logement.funFact.line1">
+                <Trans i18nKey="simulator.transition.logement.funFact.line1">
                   Tous les modes de <strong>chauffage</strong>
                 </Trans>
               </span>
@@ -62,17 +57,13 @@ export default async function Page({
             </p>
 
             <TiltedBadge color="green">
-              <Trans
-                locale={locale}
-                i18nKey="simulator.transition.logement.funFact.line2">
+              <Trans i18nKey="simulator.transition.logement.funFact.line2">
                 n'ont pas
               </Trans>
             </TiltedBadge>
 
             <p className="text-primary-600">
-              <Trans
-                locale={locale}
-                i18nKey="simulator.transition.logement.funFact.line3">
+              <Trans i18nKey="simulator.transition.logement.funFact.line3">
                 <strong>le même impact</strong> sur le climat
               </Trans>
             </p>
@@ -82,9 +73,7 @@ export default async function Page({
           <ClientLogementImpactCO2Iframe locale={locale as Locale} />
         }
         arrowText={
-          <Trans
-            locale={locale}
-            i18nKey="simulator.transition.housing.graph.arrowText">
+          <Trans i18nKey="simulator.transition.housing.graph.arrowText">
             Ce graphique te permet de mieux comprendre l’impact carbone des
             différents modes de chauffage
           </Trans>

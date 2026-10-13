@@ -2,24 +2,24 @@ import Trans from '@/components/translation/trans/TransServer'
 import Image from 'next/image'
 import VisuelIframe from './VisuelIframe'
 
-export default function IllustratedPointsList({ locale }: { locale: string }) {
+export default function IllustratedPointsList() {
   return (
     <ul className="flex flex-col gap-28">
       <li>
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans locale={locale}>Test collectif personnalisé</Trans>
+              <Trans>Test collectif personnalisé</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans locale={locale}>
+              <Trans>
                 Lancez un test collectif Nos Gestes Climat personnalisé
               </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <Trans locale={locale}>
+              <Trans>
                 Créez un test collectif Nos Gestes Climat personnalisé au sein
                 de votre organisation et accédez à un kit clé en main pour
                 sensibiliser vos partenaires au sein de votre organisation.
@@ -44,17 +44,15 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-136 lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans locale={locale}>Tableau de bord</Trans>
+              <Trans>Tableau de bord</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans locale={locale}>
-                Explorez, comparez et analysez vos données
-              </Trans>
+              <Trans>Explorez, comparez et analysez vos données</Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <Trans locale={locale}>
+              <Trans>
                 Explorez, analysez et téléchargez des données anonymisées pour
                 faire des choix éclairés et améliorer continuellement votre
                 démarche écologique. Avec nos exports sur mesure, partagez vos
@@ -81,17 +79,17 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-136 lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans locale={locale}>Lien personnalisé & iframes</Trans>
+              <Trans>Lien personnalisé & iframes</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans locale={locale}>
+              <Trans>
                 Intégrez Nos Gestes Climat directement à vos services
               </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <Trans locale={locale}>
+              <Trans>
                 Permettez à vos cibles (clients, étudiants, participants,
                 habitants..) de calculer et réduire leur empreinte carbone
                 directement depuis vos plateformes web et mobile, avec un lien

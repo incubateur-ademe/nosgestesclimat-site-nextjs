@@ -1,18 +1,15 @@
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
 import Trans from '@/components/translation/trans/TransServer'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function UnderstandToActWaterFootprint() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   return (
     <UnderstandToAct
-      locale={locale}
       description={
         <p className="mb-0">
-          <Trans locale={locale} i18nKey="landing.water.understand.description">
+          <Trans i18nKey="landing.water.understand.description">
             Mieux comprendre{' '}
             <strong className="text-primary-600">
               notre impact sur les ressources en eau

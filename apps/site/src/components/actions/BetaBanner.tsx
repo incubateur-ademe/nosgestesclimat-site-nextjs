@@ -1,10 +1,8 @@
 import { BannerContent } from '@/design-system/cms/BannerContent'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Trans from '../translation/trans/TransServer'
 
 export default async function BetaBanner() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   return (
@@ -13,7 +11,7 @@ export default async function BetaBanner() {
         color="secondary"
         banner={{
           text: (
-            <Trans i18nKey={'actions.beta-banner.content'} locale={locale}>
+            <Trans i18nKey={'actions.beta-banner.content'}>
               Cette <strong>version bêta</strong> est en cours d'amélioration.
               Aidez-nous à l’améliorer en{' '}
               <a

@@ -35,9 +35,7 @@ export async function ResultListItem({ simulation, buttons = null }: Props) {
 
         <span className="mr-6 inline-block text-base font-bold md:text-lg">
           {formattedValue} {unit}{' '}
-          <Trans locale={locale} i18nKey="mon-espace.resultsList.result.unit">
-            CO₂e / an
-          </Trans>
+          <Trans i18nKey="mon-espace.resultsList.result.unit">CO₂e / an</Trans>
         </span>
       </div>
 

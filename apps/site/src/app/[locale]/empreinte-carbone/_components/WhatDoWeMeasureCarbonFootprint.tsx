@@ -1,17 +1,15 @@
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import Trans from '@/components/translation/trans/TransServer'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function WhatDoWeMeasureCarbon() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
   return (
     <WhatDoWeMeasure
-      title={<Trans locale={locale}>Calculer son empreinte carbone</Trans>}
+      title={<Trans>Calculer son empreinte carbone</Trans>}
       description={
         <p className="mb-0 text-center">
-          <Trans locale={locale}>
+          <Trans>
             Le calculateur carbone permet de comprendre quels sont nos usages
             qui contribuent le plus au changement climatique et de saisir{' '}
             <strong className="text-primary-600">

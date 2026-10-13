@@ -57,7 +57,7 @@ export default async function CategoryGuidePage({
     <div className="mx-auto my-4 flex flex-col items-start justify-center">
       <ButtonLink color="text" href="/guide">
         <span className="mr-2 inline-block">◀</span>
-        <Trans locale={locale}>Retour</Trans>
+        <Trans>Retour</Trans>
       </ButtonLink>
       <MDXContent locale={locale} contentFr={contentFr} />
     </div>

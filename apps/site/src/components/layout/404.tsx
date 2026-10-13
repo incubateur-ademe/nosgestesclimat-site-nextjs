@@ -1,16 +1,15 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import { cacheLife } from 'next/cache'
 import Image from 'next/image'
 import Wave from 'react-wavify'
 import Trans from '../translation/trans/TransServer'
 import LogoHeader from './headerServer/LogoHeader'
 
-// `'use cache'` impose une fonction async, même sans `await` à faire :
+// async is required when using `'use cache'`
 // eslint-disable-next-line @typescript-eslint/require-await
-export default async function Route404({ locale }: { locale: Locale }) {
+export default async function Route404() {
   'use cache'
   cacheLife('days')
   const { t } = await getServerTranslation()
@@ -48,7 +47,7 @@ export default async function Route404({ locale }: { locale: Locale }) {
               />
             </div>
             <p className="relative text-center font-bold text-white sm:text-lg md:-mt-[14rem] md:text-2xl">
-              <Trans locale={locale}>
+              <Trans>
                 Rien à l'horizon ! <br className="md:hidden" />
                 La page recherchée n'existe pas.
               </Trans>
@@ -57,7 +56,7 @@ export default async function Route404({ locale }: { locale: Locale }) {
               color="primary"
               href="/"
               className="text-primary-700! hover:text-primary-700 relative mt-8 justify-self-center border-2 border-white bg-white shadow-xs hover:bg-white">
-              <Trans locale={locale}>Revenir à l'accueil</Trans>
+              <Trans>Revenir à l'accueil</Trans>
             </ButtonLink>
           </div>
         </div>

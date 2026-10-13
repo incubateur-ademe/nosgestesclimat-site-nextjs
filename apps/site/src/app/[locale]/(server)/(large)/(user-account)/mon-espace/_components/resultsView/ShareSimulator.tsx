@@ -1,7 +1,6 @@
 import ShareSimulationButton from '@/components/sharing/ShareSimulationButton'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
   UTM_MEDIUM_KEY,
@@ -9,7 +8,6 @@ import {
 } from '@nosgestesclimat/core/features/tracking/utm'
 
 export default async function ShareSimulator() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   const shareLink = `https://nosgestesclimat.fr${SIMULATOR_PATH}?${UTM_MEDIUM_KEY}=sharelink&${UTM_SOURCE_KEY}=NGC`
@@ -17,7 +15,7 @@ export default async function ShareSimulator() {
   return (
     <div className="py-8 text-center md:py-10">
       <p>
-        <Trans locale={locale} i18nKey="mon-espace.shareSimulator.title">
+        <Trans i18nKey="mon-espace.shareSimulator.title">
           Vous avez aimé calculer votre empreinte ?
         </Trans>
       </p>

@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/trans/TransServer'
-import type { Locale } from '@/i18nConfig'
 import type { PodiumItem } from '@nosgestesclimat/core/features/events/types/event-info'
 import { twMerge } from 'cn'
 import AnimatedPodiumBlock from './AnimatedPodiumBlock'
@@ -12,7 +11,6 @@ const heightClasses = {
 } as const
 
 interface Props extends PodiumItem {
-  locale: Locale
   hasStarted: boolean
   rank: number
 }
@@ -21,7 +19,6 @@ export default function PodiumBlock({
   rank,
   name,
   simulationsCount,
-  locale,
   hasStarted,
 }: Props) {
   const isFirst = rank == 1
@@ -51,9 +48,7 @@ export default function PodiumBlock({
             !isFirst && 'text-primary-600 text-base'
           )}>
           {simulationsCount}{' '}
-          <Trans
-            locale={locale}
-            i18nKey="event.podium.list.item.participations">
+          <Trans i18nKey="event.podium.list.item.participations">
             participations
           </Trans>
         </span>
@@ -63,7 +58,7 @@ export default function PodiumBlock({
               'mt-1 block text-center text-sm',
               !isFirst && 'text-primary-600'
             )}>
-            <Trans locale={locale} i18nKey="event.podium.block.score.text2">
+            <Trans i18nKey="event.podium.block.score.text2">
               En attente du lancement
             </Trans>
           </span>

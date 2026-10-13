@@ -115,9 +115,7 @@ export default async function HighlightedActionCard({
             prefetch={true}
             size="sm"
             className="h-12 gap-2 px-6">
-            <Trans
-              locale={locale}
-              i18nKey="actions.components.actionCard.highlighted.link">
+            <Trans i18nKey="actions.components.actionCard.highlighted.link">
               Voir l'action
             </Trans>
             {/* The three cards share the same visible label, so name the
@@ -135,9 +133,7 @@ export default async function HighlightedActionCard({
             classes.panel
           )}>
           <p className="mb-0 text-sm/normal font-bold text-slate-600 uppercase">
-            <Trans
-              locale={locale}
-              i18nKey="actions.components.actionCard.highlighted.potentialImpact">
+            <Trans i18nKey="actions.components.actionCard.highlighted.potentialImpact">
               Impact potentiel
             </Trans>
           </p>
@@ -150,7 +146,6 @@ export default async function HighlightedActionCard({
           <FootprintShare
             impact={action.assessment?.impact}
             totalFootprint={totalFootprint}
-            locale={locale}
           />
         </div>
       ) : null}
@@ -160,8 +155,8 @@ export default async function HighlightedActionCard({
 
 interface ImpactValueProps {
   impact?: number
-  assessmentStatus: AssessmentStatus
   locale: Locale
+  assessmentStatus: AssessmentStatus
   valueClassName: string
 }
 
@@ -174,9 +169,7 @@ function ImpactValue({
   if (shouldDisplayComputationInProgressText(assessmentStatus)) {
     return (
       <p className="mb-0 text-base/normal font-bold text-slate-600">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.actionCard.impactAssessmentInProgress">
+        <Trans i18nKey="actions.components.actionCard.impactAssessmentInProgress">
           En cours de calcul
         </Trans>
       </p>
@@ -186,9 +179,7 @@ function ImpactValue({
   if (typeof impact !== 'number') {
     return (
       <p className="mb-0 text-base/normal font-bold text-slate-600">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.actionCard.noImpactTag">
+        <Trans i18nKey="actions.components.actionCard.noImpactTag">
           Impact non quantifiable
         </Trans>
       </p>
@@ -212,9 +203,7 @@ function ImpactValue({
         {formattedValue} {unit}
       </span>
       <span className="text-xs/none font-bold text-slate-600">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.actionCard.highlighted.impactUnit">
+        <Trans i18nKey="actions.components.actionCard.highlighted.impactUnit">
           CO<sub>2</sub>e / an
         </Trans>
       </span>
@@ -225,14 +214,9 @@ function ImpactValue({
 interface FootprintShareProps {
   impact?: number
   totalFootprint?: number
-  locale: Locale
 }
 
-function FootprintShare({
-  impact,
-  totalFootprint,
-  locale,
-}: FootprintShareProps) {
+function FootprintShare({ impact, totalFootprint }: FootprintShareProps) {
   if (
     typeof impact !== 'number' ||
     typeof totalFootprint !== 'number' ||
@@ -250,7 +234,6 @@ function FootprintShare({
   return (
     <p className="mb-0 text-sm/normal font-bold text-slate-600">
       <Trans
-        locale={locale}
         i18nKey="actions.components.actionCard.highlighted.footprintShare"
         values={{ percentage }}>
         soit {'{{percentage}}'} % de votre empreinte totale

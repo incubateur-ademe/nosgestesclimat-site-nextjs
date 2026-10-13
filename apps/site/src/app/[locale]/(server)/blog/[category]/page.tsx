@@ -142,7 +142,6 @@ export default async function CategoryPage({
               description={mainArticle.description}
               category={title}
               href={`/blog/${category}/${mainArticle.slug}`}
-              locale={locale}
             />
           )}
 
@@ -151,7 +150,6 @@ export default async function CategoryPage({
               articles={articles}
               pageCount={pageCount ?? 0}
               currentPage={page}
-              locale={locale}
             />
           )}
         </ContentLarge>
@@ -166,7 +164,6 @@ export default async function CategoryPage({
             subTitle={faqDescription}
             isBackgroundSkewed={false}
             shouldUseDangerouslySetInnerHTML={true}
-            locale={locale}
           />
         )}
 

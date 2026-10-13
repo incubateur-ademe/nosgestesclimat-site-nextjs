@@ -1,20 +1,18 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function WhatItIsWaterFootprint() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
 
   return (
     <WhatItIs
-      title={<Trans locale={locale}>Qu'est-ce que l'empreinte eau ?</Trans>}
+      title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
       description={
         <section>
           <p>
-            <Trans locale={locale}>
+            <Trans>
               <strong className="text-primary-600">L'empreinte eau</strong>{' '}
               correspond à l'ensemble de l'eau douce utilisée pour produire,
               distribuer et traiter en fin de vie des produits, biens ou
@@ -23,14 +21,14 @@ export default async function WhatItIsWaterFootprint() {
           </p>
 
           <p>
-            <Trans locale={locale}>
+            <Trans>
               Cette consommation d'eau, pourtant très importante, est{' '}
               <strong className="text-primary-600">invisible à l'œil nu</strong>{' '}
               mais son impact est bien réel.
             </Trans>
           </p>
           <p className="mb-0">
-            <Trans locale={locale}>
+            <Trans>
               Empreinte eau et{' '}
               <Link
                 className="text-primary-600 font-bold"

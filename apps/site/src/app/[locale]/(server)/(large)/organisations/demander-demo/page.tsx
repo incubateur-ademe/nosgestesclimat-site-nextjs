@@ -3,12 +3,7 @@ import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-/* global PageProps */
-
-export default async function DemanderDemoPage({
-  params,
-}: PageProps<'/[locale]/organisations/demander-demo'>) {
-  const { locale } = await params
+export default async function DemanderDemoPage() {
   const { t } = await getServerTranslation()
 
   return (
@@ -24,14 +19,12 @@ export default async function DemanderDemoPage({
         <div className="mx-auto max-w-5xl py-10">
           <Title
             title={
-              <Trans i18nKey="organisations.demanderDemo.title" locale={locale}>
+              <Trans i18nKey="organisations.demanderDemo.title">
                 Demander une démo
               </Trans>
             }
             subtitle={
-              <Trans
-                i18nKey="organisations.demanderDemo.subtitle"
-                locale={locale}>
+              <Trans i18nKey="organisations.demanderDemo.subtitle">
                 Réservez un créneau pour assister à une démonstration de notre
                 fonctionnalité dédiée aux organisations (entreprises,
                 associations, écoles…) et vous permettre de diffuser le test de

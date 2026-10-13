@@ -32,17 +32,12 @@ export default async function Homepage({ params }: DefaultPageProps) {
   return (
     <ClientLayout locale={locale} userSession={userSession}>
       <LandingPage
-        locale={locale}
         heroIllustration={<InteractiveIllustration />}
-        heroTitle={
-          <Trans locale={locale}>
-            Connaissez-vous votre empreinte écologique ?
-          </Trans>
-        }
+        heroTitle={<Trans>Connaissez-vous votre empreinte écologique ?</Trans>}
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
             <p className="mb-0 text-base md:order-1 md:text-2xl">
-              <Trans locale={locale}>
+              <Trans>
                 Calculez votre{' '}
                 <strong className="text-primary-700">empreinte carbone</strong>{' '}
                 et votre{' '}
@@ -64,7 +59,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
 
               {/* Displayed on desktop only */}
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   <strong className="text-primary-700">
                     2 millions de personnes
                   </strong>{' '}

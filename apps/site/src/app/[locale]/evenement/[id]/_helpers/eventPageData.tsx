@@ -4,7 +4,6 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import { ORGANISATION_HOME_PAGE } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import { getEventInfo } from '@nosgestesclimat/core/features/events/services/get-event-info.service'
 import type {
   PodiumCategory,
@@ -69,10 +68,8 @@ const ACTIONS_COUNT = 46
 
 export async function getEventPageData({
   eventId,
-  locale,
 }: {
   eventId: string
-  locale: Locale
 }): Promise<EventPageData | null> {
   'use cache'
   cacheLife('minutes')
@@ -162,7 +159,7 @@ export async function getEventPageData({
           number: 1,
           title: t('event.tutorial.org.1.title', 'Créez un test collectif'),
           description: (
-            <Trans i18nKey="event.tutorial.org.1.description" locale={locale}>
+            <Trans i18nKey="event.tutorial.org.1.description">
               <Link href={ORGANISATION_HOME_PAGE} target="_blank">
                 Configurez votre campagne
               </Link>{' '}
@@ -174,7 +171,7 @@ export async function getEventPageData({
           number: 2,
           title: t('event.tutorial.org.2.title', 'Partagez le lien'),
           description: (
-            <Trans locale={locale} i18nKey="event.tutorial.org.2.description">
+            <Trans i18nKey="event.tutorial.org.2.description">
               Diffusez un lien unique par email, réseau social ou QR code auprès
               de vos collaborateurs.
               <br />

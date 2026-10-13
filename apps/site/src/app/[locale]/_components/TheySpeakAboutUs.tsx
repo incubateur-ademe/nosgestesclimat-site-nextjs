@@ -7,11 +7,9 @@ import Image from 'next/image'
 import { twMerge } from "cn";
 
 export default async function TheySpeakAboutUs({
-  locale,
   className,
   ctaHref = '/nos-relais',
 }: {
-  locale: string
   className?: string
   ctaHref?: string
 }) {
@@ -40,7 +38,7 @@ export default async function TheySpeakAboutUs({
       {partners && !isError && (
         <div className="relative flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
           <p className="text-center text-xl md:text-2xl">
-            <Trans locale={locale}>
+            <Trans>
               Plusieurs milliers d’organisations nous font confiance pour
               sensibiliser efficacement
             </Trans>
@@ -62,7 +60,7 @@ export default async function TheySpeakAboutUs({
 
           <div className="flex justify-center">
             <ButtonLink color="secondary" size="xl" href={ctaHref}>
-              <Trans locale={locale}>Rejoignez-les</Trans>
+              <Trans>Rejoignez-les</Trans>
             </ButtonLink>
           </div>
         </div>

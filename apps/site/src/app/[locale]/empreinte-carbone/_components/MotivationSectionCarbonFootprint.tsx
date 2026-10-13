@@ -1,10 +1,8 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/trans/TransServer'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function MotivationSectionCarbonFootprint() {
-  const locale = await getLocale()
   const { t } = await getServerTranslation()
   return (
     <MotivationSection
@@ -14,9 +12,7 @@ export default async function MotivationSectionCarbonFootprint() {
       )}
       description={
         <p className="mb-0">
-          <Trans
-            locale={locale}
-            i18nKey="landing.carbon.motivation.description">
+          <Trans i18nKey="landing.carbon.motivation.description">
             Il est urgent de réduire nos émissions de gaz à effet de serre et
             d'opérer une transition vers des modes de vie bas-carbone. Individus
             et organisations, il est temps d'agir :{' '}

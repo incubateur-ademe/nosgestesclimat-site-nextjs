@@ -1,6 +1,5 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMainCTA } from '@/helpers/server/getLinkToSimulateur'
 import { getUserSession } from '@/services/auth/get-user-session'
@@ -18,7 +17,6 @@ export default function PasserTestBanner() {
 }
 
 async function PasserTestBannerServer() {
-  const locale = await getLocale()
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
   const { t } = await getServerTranslation()
@@ -27,7 +25,7 @@ async function PasserTestBannerServer() {
   return (
     <Card className="mb-4 flex-row flex-wrap items-baseline justify-between gap-4 border-none bg-gray-100 p-4 sm:flex-nowrap sm:p-6">
       <p className="mb-0">
-        <Trans locale={locale}>
+        <Trans>
           Calculez votre empreinte sur le climat
           <span className="text-secondary-800 font-bold"> en 10 minutes </span>
           top chrono.

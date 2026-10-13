@@ -11,10 +11,8 @@ import { getEmailPageData } from './_actions/getEmailPageData'
 import EmailConfirmation from './_components/EmailConfirmation'
 
 export default async function Email({
-  params,
   searchParams,
 }: PageProps<'/[locale]/simulateur/email'>) {
-  const { locale } = await params
   const { confirm } = await searchParams
   const { t } = await getServerTranslation()
 
@@ -39,24 +37,20 @@ export default async function Email({
         title={
           hasContest ? (
             isSchoolMode ? (
-              <Trans
-                i18nKey="tutorial.email.title.youthContest"
-                locale={locale}>
+              <Trans i18nKey="tutorial.email.title.youthContest">
                 Ton adresse e-mail pour le tirage au sort
               </Trans>
             ) : (
-              <Trans
-                i18nKey="tutorial.email.title.defaultContest"
-                locale={locale}>
+              <Trans i18nKey="tutorial.email.title.defaultContest">
                 Votre adresse e-mail pour le tirage au sort
               </Trans>
             )
           ) : isSchoolMode ? (
-            <Trans i18nKey="tutorial.email.title.youth" locale={locale}>
+            <Trans i18nKey="tutorial.email.title.youth">
               Ton adresse e-mail
             </Trans>
           ) : (
-            <Trans i18nKey="tutorial.email.title.default" locale={locale}>
+            <Trans i18nKey="tutorial.email.title.default">
               Votre adresse e-mail
             </Trans>
           )
@@ -68,8 +62,7 @@ export default async function Email({
                 {isSchoolMode ? (
                   <Trans
                     values={{ organisationName }}
-                    i18nKey="tutorial.email.contest.youth"
-                    locale={locale}>
+                    i18nKey="tutorial.email.contest.youth">
                     Vérifie ton e-mail pour le tirage au sort du jeu concours{' '}
                     <strong>{'{{organisationName}}'}</strong>. Tes résultats
                     d’empreinte carbone seront également conservés dans un
@@ -78,8 +71,7 @@ export default async function Email({
                 ) : (
                   <Trans
                     values={{ organisationName }}
-                    i18nKey="tutorial.email.contest.default"
-                    locale={locale}>
+                    i18nKey="tutorial.email.contest.default">
                     Veuillez vérifier votre adresse e-mail pour le tirage au
                     sort du jeu concours{' '}
                     <strong>{'{{organisationName}}'}</strong>. Vos résultats
@@ -89,21 +81,19 @@ export default async function Email({
                 )}
               </span>
             ) : isSchoolMode ? (
-              <Trans i18nKey="tutorial.email.subtitle.youth" locale={locale}>
+              <Trans i18nKey="tutorial.email.subtitle.youth">
                 Pour conserver tes résultats et les retrouver à l'avenir dans{' '}
                 <strong>ton espace personnel</strong>
               </Trans>
             ) : (
-              <Trans i18nKey="tutorial.email.subtitle.default" locale={locale}>
+              <Trans i18nKey="tutorial.email.subtitle.default">
                 Pour conserver vos résultats et les retrouver à l'avenir dans{' '}
                 <strong>votre espace personnel</strong>
               </Trans>
             )}
 
             <span className="text-secondary-700 ml-2 inline-block font-bold italic">
-              <Trans i18nKey="common.optional" locale={locale}>
-                facultatif
-              </Trans>
+              <Trans i18nKey="common.optional">facultatif</Trans>
             </span>
           </>
         }
@@ -114,11 +104,11 @@ export default async function Email({
             intent={hasPoll ? 'participate-to-poll' : 'save-simulation'}
             inputLabel={
               isSchoolMode ? (
-                <Trans i18nKey="tutorial.email.title.youth" locale={locale}>
+                <Trans i18nKey="tutorial.email.title.youth">
                   Ton adresse e-mail
                 </Trans>
               ) : (
-                <Trans i18nKey="tutorial.email.title.default" locale={locale}>
+                <Trans i18nKey="tutorial.email.title.default">
                   Votre adresse e-mail
                 </Trans>
               )
@@ -134,9 +124,7 @@ export default async function Email({
                 href={END_PAGE_PATH}
                 prefetch={true}
                 data-testid="skip-email-button">
-                <Trans i18nKey="common.skip" locale={locale}>
-                  Passer
-                </Trans>
+                <Trans i18nKey="common.skip">Passer</Trans>
               </ButtonLink>
             }
             redirectPathname={

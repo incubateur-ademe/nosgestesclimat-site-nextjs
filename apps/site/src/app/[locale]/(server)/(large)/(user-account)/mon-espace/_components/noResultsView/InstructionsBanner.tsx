@@ -9,10 +9,9 @@ import {
 import Separator from '@/design-system/layout/Separator'
 import Link from '@/design-system/links/Link'
 import Emoji from '@/design-system/utils/Emoji'
-import type { Locale } from '@/i18nConfig'
 import { twMerge } from "cn";
 
-export default function InstructionsBanner({ locale }: { locale: Locale }) {
+export default function InstructionsBanner() {
   return (
     <div className="relative mb-10 rounded-lg bg-blue-50 p-4 md:p-6">
       <article className="relative flex flex-col">
@@ -21,7 +20,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
             <h1 className="mb-4">
               {' '}
               <span className="inline-block text-xl md:text-2xl">
-                <Trans i18nKey="mon-espace.welcome.title" locale={locale}>
+                <Trans i18nKey="mon-espace.welcome.title">
                   Bienvenue dans votre espace Nos Gestes Climat !
                 </Trans>
                 <Emoji>👋</Emoji>
@@ -33,19 +32,16 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
 
         <p className="mb-4 md:mb-6">
           <Trans
-            locale={locale}
             i18nKey="mon-espace.instructions.description.part1">
             Avant toute chose, nous vous invitons à
           </Trans>{' '}
           <strong>
             <Trans
-              i18nKey="mon-espace.instructions.description.part2"
-              locale={locale}>
+              i18nKey="mon-espace.instructions.description.part2">
               passer le test
             </Trans>
           </strong>{' '}
           <Trans
-            locale={locale}
             i18nKey="mon-espace.instructions.description.part3">
             pour :
           </Trans>
@@ -55,13 +51,11 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
             <DownArrow className="fill-default h-6 w-6 min-w-6 -rotate-90" />
             <p className="mb-0">
               <Trans
-                locale={locale}
                 i18nKey="mon-espace.instructions.list.item1.part1">
                 Retrouver ici
               </Trans>{' '}
               <strong>
                 <Trans
-                  locale={locale}
                   i18nKey="mon-espace.instructions.list.item1.part2">
                   vos résultats d'empreinte
                 </Trans>
@@ -72,25 +66,21 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
             <DownArrow className="fill-default h-6 w-6 min-w-6 -rotate-90" />
             <p className="mb-0">
               <Trans
-                locale={locale}
                 i18nKey="mon-espace.instructions.list.item2.part1">
                 Découvrir
               </Trans>{' '}
               <strong>
                 <Trans
-                  locale={locale}
                   i18nKey="mon-espace.instructions.list.item2.part2">
                   vos actions climat personnalisées
                 </Trans>
               </strong>{' '}
               <Trans
-                locale={locale}
                 i18nKey="mon-espace.instructions.list.item2.part3">
                 et
               </Trans>{' '}
               <strong>
                 <Trans
-                  locale={locale}
                   i18nKey="mon-espace.instructions.list.item2.part4">
                   suivre vos progrès
                 </Trans>
@@ -103,25 +93,21 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
             <p className="mb-0">
               <strong>
                 <Trans
-                  locale={locale}
                   i18nKey="mon-espace.instructions.list.item3.part1">
                   Lancer
                 </Trans>{' '}
               </strong>
               <Trans
-                locale={locale}
                 i18nKey="mon-espace.instructions.list.item3.part2">
                 et
               </Trans>{' '}
               <strong>
                 <Trans
-                  locale={locale}
                   i18nKey="mon-espace.instructions.list.item3.part3">
                   retrouver vos tests collectifs
                 </Trans>
               </strong>{' '}
               <Trans
-                locale={locale}
                 i18nKey="mon-espace.instructions.list.item3.part4">
                 (organisations, famille, amis...)
               </Trans>
@@ -138,7 +124,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
               sizeClassNames.md
             )}
             scroll={false}>
-            <Trans locale={locale} i18nKey="mon-espace.instructions.link.text">
+            <Trans i18nKey="mon-espace.instructions.link.text">
               Passer le test
             </Trans>
           </Link>

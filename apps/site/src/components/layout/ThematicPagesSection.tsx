@@ -27,7 +27,7 @@ export default async function ThematicPagesSection() {
       <p
         id="thematic-pages-section"
         className="text-default mb-0 text-sm font-bold">
-        <Trans i18nKey="footer.thematicLandingPages.title" locale={locale}>
+        <Trans i18nKey="footer.thematicLandingPages.title">
           Pages thématiques
         </Trans>
       </p>
