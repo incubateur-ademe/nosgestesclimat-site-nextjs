@@ -1,5 +1,54 @@
 
 # ----------------------------------------------------------------------------
+# Traces OpenTelemetry
+# ----------------------------------------------------------------------------
+
+# Un span par requête, dont le contexte part vers l'app en `traceparent` : sans
+# cette racine, les traces de l'app arrivent orphelines et PostHog n'affiche
+# aucun span. Ces directives demandent le module `ngx_otel_module` : nginx ne
+# démarre pas sans lui, donc le provisioning l'installe avant le premier pull,
+# et la CI l'installe pour valider cette configuration (voir README).
+otel_exporter {
+  endpoint 127.0.0.1:4317;   # receiver gRPC du collecteur, en local
+}
+otel_service_name nginx;
+otel_trace_context propagate;
+otel_trace on;
+
+# Logs au format JSON (consommés par l'OpenTelemetry Collector → PostHog)
+# ----------------------------------------------------------------------------
+
+# JSON structuré : chaque champ devient un attribut filtrable dans PostHog.
+# Les champs `http.*`, `url.*` et `user_agent.*` suivent les conventions
+# sémantiques OTel (semconv) ; les autres restent nginx-spécifiques.
+# Sans IP (remote_addr) ni referer. La query string est conservée pour le
+# debugging : les emails qu'elle contient sont masqués par le collecteur, qui
+# normalise aussi `network.protocol.version` (brut ici) en semconv.
+# `escape=json` échappe l'user-agent (JSON valide).
+log_format json_combined escape=json
+  '{'
+    '"time_iso8601":"$time_iso8601",'
+    '"trace_id":"$otel_trace_id",'
+    '"connection":"$connection",'
+    '"server.address":"$host",'
+    '"network.protocol.version":"$server_protocol",'
+    '"http.request.method":"$request_method",'
+    '"url.path":"$uri",'
+    '"url.query":"$args",'
+    '"http.response.status_code":$status,'
+    '"http.request.body.size":"$content_length",'
+    '"http.response.body.size":$body_bytes_sent,'
+    '"request_time":$request_time,'
+    '"upstream_addr":"$upstream_addr",'
+    '"upstream_status":"$upstream_status",'
+    '"upstream_connect_time":"$upstream_connect_time",'
+    '"upstream_header_time":"$upstream_header_time",'
+    '"upstream_response_time":"$upstream_response_time",'
+    '"upstream_cache_status":"$upstream_cache_status",'
+    '"user_agent.original":"$http_user_agent"'
+  '}';
+
+# ----------------------------------------------------------------------------
 # Rate limiting
 # ----------------------------------------------------------------------------
 
@@ -92,38 +141,7 @@ map $http_upgrade $connection_upgrade {
 }
 
 # ----------------------------------------------------------------------------
-# Logs au format JSON (consommés par l'OpenTelemetry Collector → PostHog)
-# ----------------------------------------------------------------------------
 
-# JSON structuré : chaque champ devient un attribut filtrable dans PostHog.
-# Les champs `http.*`, `url.*` et `user_agent.*` suivent les conventions
-# sémantiques OTel (semconv) ; les autres restent nginx-spécifiques.
-# Sans IP (remote_addr) ni referer. La query string est conservée pour le
-# debugging : les emails qu'elle contient sont masqués par le collecteur, qui
-# normalise aussi `network.protocol.version` (brut ici) en semconv.
-# `escape=json` échappe l'user-agent (JSON valide).
-log_format json_combined escape=json
-  '{'
-    '"time_iso8601":"$time_iso8601",'
-    '"request_id":"$request_id",'
-    '"connection":"$connection",'
-    '"server.address":"$host",'
-    '"network.protocol.version":"$server_protocol",'
-    '"http.request.method":"$request_method",'
-    '"url.path":"$uri",'
-    '"url.query":"$args",'
-    '"http.response.status_code":$status,'
-    '"http.request.body.size":"$content_length",'
-    '"http.response.body.size":$body_bytes_sent,'
-    '"request_time":$request_time,'
-    '"upstream_addr":"$upstream_addr",'
-    '"upstream_status":"$upstream_status",'
-    '"upstream_connect_time":"$upstream_connect_time",'
-    '"upstream_header_time":"$upstream_header_time",'
-    '"upstream_response_time":"$upstream_response_time",'
-    '"upstream_cache_status":"$upstream_cache_status",'
-    '"user_agent.original":"$http_user_agent"'
-  '}';
 
 # ----------------------------------------------------------------------------
 # Logging conditionnel
@@ -175,12 +193,17 @@ map $http_user_agent $ngc_is_scanner {
 # Redirections (HTTP → HTTPS, www → apex)
 # ----------------------------------------------------------------------------
 
+# `access_log` doit être déclaré dans chaque `server` : au niveau `http`, nginx
+# ajoute le nôtre à celui de `nginx.conf` (format `main`), et chaque requête est
+# alors journalisée deux fois, dont une ligne illisible par le collecteur.
+
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
     server_name _;
 
     access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
+
 
     return 301 https://$host$request_uri;
 }
@@ -232,8 +255,6 @@ server {
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
-    # Corrélation : nginx → app → collecteur (mappé en trace_id du log).
-    proxy_set_header X-Request-ID $request_id;
     # Négo websocket transmise _uniquement_ si le client en initie une.
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
@@ -439,7 +460,7 @@ server {
     # Check LVAO config https://github.com/incubateur-ademe/quefairedemesobjets/blob/main/servers.conf.erb#L83-L98
     #
     # Chaque `location` repose son propre `proxy_set_header` : les en-têtes du
-    # niveau `server` (X-Forwarded-*, X-Request-ID, Upgrade) ne sont PAS hérités
+    # niveau `server` (X-Forwarded-*, Upgrade) ne sont PAS hérités
     # ici, tout ajout doit être répété dans les trois.
 
     # Un hostname littéral dans `proxy_pass` est résolu une seule fois, au
@@ -462,6 +483,8 @@ server {
     # Sert du JS exécuté par les navigateurs : un certificat non vérifié y laisse
     # passer du code tiers.
     location ~ ^/revp/static/(.*)$ {
+        # Trafic d'ingestion PostHog, sans intérêt à tracer.
+        access_log off;
         proxy_pass https://$ph_assets/static/$1$is_args$args;
         proxy_set_header Host $ph_assets;
         proxy_set_header Cookie "";
@@ -475,6 +498,7 @@ server {
     }
 
     location ~ ^/revp/array/(.*)$ {
+        access_log off;
         proxy_pass https://$ph_assets/array/$1$is_args$args;
         proxy_set_header Host $ph_assets;
         proxy_set_header Cookie "";
@@ -488,6 +512,7 @@ server {
     }
 
     location ~ ^/revp/(.*)$ {
+        access_log off;
         proxy_pass https://$ph_api/$1$is_args$args;
         proxy_set_header Host $ph_api;
         proxy_set_header Cookie "";
