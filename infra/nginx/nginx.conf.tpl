@@ -5,12 +5,10 @@
 
 # Un span par requête, dont le contexte part vers l'app en `traceparent` : sans
 # cette racine, les traces de l'app arrivent orphelines et PostHog n'affiche
-# aucun span. Demande le module `ngx_otel_module` (voir README).
-otel_exporter {
-  endpoint 127.0.0.1:4317;   # receiver gRPC du collecteur, en local
-}
-otel_service_name nginx;
-otel_trace_context propagate;
+# aucun span. Les directives `otel_*` vivent dans `/etc/nginx/otel-enabled/`,
+# écrit par le provisioning : ce fichier doit rester valide sans le module, donc
+# la CI peut le tester. Un glob sans correspondance n'est pas une erreur.
+include /etc/nginx/otel-enabled/*.conf;
 
 # ----------------------------------------------------------------------------
 # Rate limiting
@@ -205,7 +203,6 @@ server {
     server_name www.${DOMAIN};
 
     access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
-    otel_trace on;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
@@ -228,7 +225,6 @@ server {
     server_name ${DOMAIN};
 
     access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
-    otel_trace on;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;

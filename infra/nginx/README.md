@@ -156,9 +156,11 @@ Et l'installation garde le `nginx.conf` existant, donc le `sites-enabled` :
 apt install -o Dpkg::Options::="--force-confold" nginx nginx-module-otel
 ```
 
-Le conf et le module **partent ensemble** : `otel_exporter`, `otel_service_name`
-et `otel_trace` sont des directives inconnues sans le module, et nginx refuse
-alors de démarrer. Déployer le conf avant le module casserait le proxy.
+Le vhost ne porte aucune directive `otel_*` : il inclut
+`/etc/nginx/otel-enabled/*.conf`, que le provisioning écrit en même temps que le
+`load_module`. Un glob sans correspondance n'étant pas une erreur, le conf du
+dépôt reste valide sans le module — c'est ce que teste la CI, et c'est pourquoi
+il n'y a plus d'ordre à respecter entre le merge et l'installation.
 
 ```bash
 nginx -t                                # avant tout rechargement
