@@ -27,6 +27,10 @@ jobs:
       - name: Render template with dummy values
         run: |
           mkdir -p /tmp/nginx-test
+          # Le vhost inclut `/etc/nginx/otel-enabled/*.conf`, écrit par le
+          # provisioning : on crée le répertoire vide, comme sur la VM, pour que
+          # le glob se résolve sans le module OTel.
+          sudo mkdir -p /etc/nginx/otel-enabled
           DOMAIN=example.com UPSTREAM=example.com \
             envsubst '${DOMAIN} ${UPSTREAM}' \
             < infra/nginx/nginx.conf.tpl \
