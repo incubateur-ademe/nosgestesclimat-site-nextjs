@@ -146,6 +146,10 @@ cat /etc/apt/sources.list.d/nginx.list     # doit afficher une seule ligne
 sudo apt-get update && sudo apt-get install -y nginx nginx-module-otel
 ls -l /etc/nginx/modules/ngx_otel_module.so
 
+# Le nginx de nginx.org tourne en `nginx` (Ubuntu : `www-data`) : sans ce
+# chown, il ne peut pas écrire son cache et tronque chaque réponse.
+sudo chown -R nginx:nginx /var/cache/nginx
+
 # Le `nginx.conf` de nginx.org n'inclut pas `modules-enabled`, contrairement à
 # celui d'Ubuntu : le `load_module` va dans le contexte principal.
 grep -qs ngx_otel_module /etc/nginx/nginx.conf || \

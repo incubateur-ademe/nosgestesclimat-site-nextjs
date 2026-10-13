@@ -61,7 +61,10 @@ runcmd:
   # de rotations du fichier livré par Ubuntu (daily, compress, postrotate… sont
   # déjà corrects).
   - sed -i 's/rotate 14/rotate 2/' /etc/logrotate.d/nginx
-  - chown -R www-data:www-data /var/cache/nginx
+  # Le nginx de nginx.org (celui qui porte le module OTel) tourne en `nginx`,
+  # celui d'Ubuntu en `www-data` : le cache doit suivre, sinon nginx ne peut pas
+  # l'écrire et tronque chaque réponse en cours de lecture.
+  - chown -R nginx:nginx /var/cache/nginx
   # Le vhost vit dans `conf.d/` : la seule disposition incluse par le
   # `nginx.conf` de nginx.org, celui qui porte le module OTel. On retire le
   # serveur par défaut qu'il livre.
