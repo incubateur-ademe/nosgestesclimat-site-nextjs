@@ -2,8 +2,8 @@ import {
   RateLimitedError,
   UnknownCodeError,
 } from '@/components/authentication/errors'
+import { serverLoggerMock } from '@/helpers/tests/mockLogger'
 import { maskEmail } from '@nosgestesclimat/core/lib/pii'
-import { captureException } from '@sentry/nextjs'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createVerificationCode } from '../create-verification-code'
 
@@ -11,8 +11,6 @@ const mocks = vi.hoisted(() => ({
   createVerificationCode: vi.fn(),
   sendEmail: vi.fn(),
   after: vi.fn(),
-  loggerInfo: vi.fn(),
-  loggerError: vi.fn(),
 }))
 
 vi.mock('@/adapters/redis/client', async () => {
@@ -25,14 +23,7 @@ vi.mock('@/adapters/brevoClient', () => ({
   sendEmail: mocks.sendEmail,
 }))
 
-vi.mock('@/logger', () => ({
-  default: {
-    info: mocks.loggerInfo,
-    warn: vi.fn(),
-    error: mocks.loggerError,
-    debug: vi.fn(),
-  },
-}))
+vi.mock('@/logger/logger.server', () => ({ default: serverLoggerMock }))
 
 vi.mock(
   '@nosgestesclimat/core/features/auth/services/create-verification-code.service',
@@ -73,11 +64,14 @@ describe('createVerificationCode', () => {
       email: 'success@example.com',
       locale: 'fr',
     })
-    expect(mocks.loggerInfo).toHaveBeenCalledWith(
+    expect(serverLoggerMock.child).toHaveBeenCalledWith({
+      email: maskEmail('Success@Example.com'),
+      scope: 'site.action.createVerificationCode',
+    })
+    expect(serverLoggerMock.child).toHaveBeenCalledWith({ locale: 'fr' })
+    expect(serverLoggerMock.info).toHaveBeenCalledWith(
       'VerificationCode created',
       expect.objectContaining({
-        email: maskEmail('Success@Example.com'),
-        locale: 'fr',
         expirationDate: new Date('2026-01-02T03:04:05.678Z'),
         durationMs: expect.any(Number),
       })
@@ -159,7 +153,7 @@ describe('createVerificationCode', () => {
     expect(mocks.createVerificationCode).not.toHaveBeenCalled()
   })
 
-  it('maps a service failure to the unknown error and captures it', async () => {
+  it('maps a service failure to the unknown error and logs it', async () => {
     const failure = new Error('boom')
     mocks.createVerificationCode.mockRejectedValue(failure)
 
@@ -172,18 +166,9 @@ describe('createVerificationCode', () => {
       success: false,
       error: new UnknownCodeError(),
     })
-    expect(mocks.loggerError).toHaveBeenCalledWith(
-      'VerificationCode creation failed',
-      expect.objectContaining({
-        email: maskEmail('throwing@example.com'),
-        durationMs: expect.any(Number),
-        error: failure,
-      })
+    expect(serverLoggerMock.error).toHaveBeenCalledWith(
+      failure,
+      expect.objectContaining({ durationMs: expect.any(Number) })
     )
-    expect(captureException).toHaveBeenCalledWith(failure, {
-      extra: expect.objectContaining({
-        email: maskEmail('throwing@example.com'),
-      }),
-    })
   })
 })

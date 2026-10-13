@@ -1,19 +1,8 @@
-import { captureErrorForSentryAndPosthog } from '@/utils/analytics/captureErrorForSentryAndPosthog'
+import logger from '@/logger/logger.browser'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 
-/**
- * Send a message to the integrator (parent window and/or React Native WebView).
- *
- * - Sends to `window.parent.postMessage(message, '*')`
- * - Also sends to `window.ReactNativeWebView.postMessage(JSON.stringify(message))`
- *   if available (React Native WebView bridge).
- *
- * Guards:
- * - SSR safety: checks `typeof window !== 'undefined'`
- * - API existence: checks `ReactNativeWebView?.postMessage` is a function
- * - try/catch to avoid crashes
- *
- * @see https://stackoverflow.com/questions/68334181
- */
+/** Sends a message to the integrator (parent window and/or React Native
+ * WebView). SSR-safe, guards API existence, catches failures. */
 export function postMessageToIntegrator(message: unknown) {
   if (typeof window === 'undefined') {
     return
@@ -22,7 +11,9 @@ export function postMessageToIntegrator(message: unknown) {
   try {
     window.parent.postMessage(message, '*')
   } catch (error) {
-    captureErrorForSentryAndPosthog(error)
+    logger.error(toError(error), {
+      scope: 'site.interaction.postMessageToIntegrator',
+    })
   }
 
   try {
@@ -34,6 +25,8 @@ export function postMessageToIntegrator(message: unknown) {
       rnWebView.postMessage(JSON.stringify(message))
     }
   } catch (error) {
-    captureErrorForSentryAndPosthog(error)
+    logger.error(toError(error), {
+      scope: 'site.interaction.postMessageToIntegrator',
+    })
   }
 }

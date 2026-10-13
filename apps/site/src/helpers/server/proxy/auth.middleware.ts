@@ -3,25 +3,22 @@ import {
   deleteSessionCookies,
   REFRESH_COOKIE,
 } from '@/helpers/server/cookie/auth.cookie'
-import { TokenConsumedException } from '@nosgestesclimat/core/features/auth/exceptions/token-consumed.exception'
-import { TokenExpiredException } from '@nosgestesclimat/core/features/auth/exceptions/token-expired.exception'
+import logger from '@/logger/logger.server'
+import { TokenConsumedError } from '@nosgestesclimat/core/features/auth/errors/token-consumed.error'
+import { TokenExpiredError } from '@nosgestesclimat/core/features/auth/errors/token-expired.error'
 import { rotateSession } from '@nosgestesclimat/core/features/auth/services/rotate-session.service'
 import type { SessionTokens } from '@nosgestesclimat/core/features/auth/types/session'
-import { captureException } from '@sentry/nextjs'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { type NextRequest, NextResponse } from 'next/server'
 import { readSession, setSessionHeader } from './session-header'
 import type { MiddlewareResult } from './types'
 
-/**
- * Auth interceptor middleware.
- *
- * Decrypts the session cookie, validates it, and if expired attempts a
- * silent refresh-token rotation. Returns either a redirect (to retry rotation
- * or strip stale query params) or the cookies to set on the final response.
- */
+/** Auth middleware: decrypts session, validates, silently rotates expired
+ * tokens. Returns a redirect or cookies for the final response. */
 export async function middlewareAuth(
   request: NextRequest
 ): Promise<MiddlewareResult> {
+  const middlewareLogger = logger.child({ scope: 'site.middleware.auth' })
   const session = await readSession(request)
 
   // (A) No session cookie: anonymous user.
@@ -31,7 +28,7 @@ export async function middlewareAuth(
 
   // (B) Corrupted or tampered session cookie: log and treat as anonymous.
   if (session.status === 'invalid') {
-    captureException(session.error)
+    middlewareLogger.warn(toError(session.error))
     return { redirect: null, cookies: deleteSessionCookies() }
   }
 
@@ -49,10 +46,7 @@ export async function middlewareAuth(
   if (!refreshCookie) {
     // (D) Expired session without a refresh cookie.
     // The user must log in again; log the event and continue anonymously.
-    captureException(
-      new Error('Session expired but no refresh cookie present'),
-      { level: 'error' }
-    )
+    middlewareLogger.warn('Session expired but no refresh cookie present')
     return { redirect: null, cookies: deleteSessionCookies() }
   }
 
@@ -60,20 +54,15 @@ export async function middlewareAuth(
   try {
     tokens = await rotateSession(refreshCookie.value, payload.email)
   } catch (err) {
-    if (err instanceof TokenExpiredException) {
+    if (err instanceof TokenExpiredError) {
       // (E) Refresh token exists but is past its expiration.
       // The user must log in again; continue anonymously.
       return { redirect: null, cookies: deleteSessionCookies() }
     }
 
-    if (err instanceof TokenConsumedException) {
-      //
-      // (F) Replay-protection loop: the token was already consumed
-      // by a concurrent request that won the race.  `_rt` tracks
-      // how many times we've retried.  Up to 2 redirects before
-      // giving up — this gives the winner enough time to commit
-      // its new tokens.
-      //
+    if (err instanceof TokenConsumedError) {
+      // Replay protection: the token was consumed by a concurrent request.
+      // Retry up to 2 times with a short delay to let the winner commit.
       const url = request.nextUrl.clone()
       const rtCount = parseInt(url.searchParams.get('_rt') ?? '0', 10) + 1
 
@@ -85,11 +74,8 @@ export async function middlewareAuth(
 
       // Replay limit exceeded.  The rotation never completed;
       // log and continue anonymously.
-      captureException(
-        new Error(
-          `Session rotation replay limit exceeded after ${rtCount} attempts`
-        ),
-        { level: 'error' }
+      middlewareLogger.warn(
+        `Session rotation replay limit exceeded after ${rtCount} attempts`
       )
       return {
         redirect: null,
@@ -98,7 +84,7 @@ export async function middlewareAuth(
     }
 
     // (G) Unknown error during rotation — log and continue anonymously.
-    captureException(err, { level: 'error' })
+    middlewareLogger.error(toError(err))
     return { redirect: null, cookies: deleteSessionCookies() }
   }
 
@@ -111,14 +97,8 @@ export async function middlewareAuth(
   }
 }
 
-/**
- * Clean up the `_rt` replay-tracking parameter from the URL.
- *
- * When a URL still carries `_rt` but the session is now valid (rotation
- * completed successfully in a previous request), we redirect to the same
- * URL without the stale parameter to keep URLs clean and avoid
- * accumulating clutter in analytics / bookmarks.
- */
+/** Strips the `_rt` replay-tracking param from URLs where rotation already
+ * completed, keeping URLs clean. */
 function stripRt(request: NextRequest): MiddlewareResult {
   if (!request.nextUrl.searchParams.has('_rt')) {
     return { redirect: null, cookies: [] }

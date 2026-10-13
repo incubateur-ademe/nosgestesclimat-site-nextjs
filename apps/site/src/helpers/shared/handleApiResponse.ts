@@ -7,7 +7,6 @@ import {
   UnauthorizedError,
   UnknownError,
 } from '@/helpers/server/error'
-import * as Sentry from '@sentry/nextjs'
 
 export async function handleApiResponse<T>(response: Response): Promise<T> {
   if (response.status === 204) {
@@ -23,18 +22,9 @@ export async function handleApiResponse<T>(response: Response): Promise<T> {
       // use raw body
     }
 
-    const apiErrorContext: Record<string, unknown> = {
-      url: response.url,
-      status: response.status,
-    }
-    if (body) {
-      apiErrorContext.body = parsedBody
-    }
-    Sentry.setContext('apiError', apiErrorContext)
-
     switch (response.status) {
       case 404:
-        throw new NotFoundError()
+        throw new NotFoundError(body)
       case 401:
         throw new UnauthorizedError()
       case 403:

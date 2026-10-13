@@ -1,11 +1,11 @@
 import { GROUP_URL } from '@/constants/urls/main'
 import { parseModelString } from '@/helpers/server/model/models'
 import type { Simulation } from '@/helpers/server/model/simulations'
-import { buildNewSimulationPayload } from '@/services/simulations/build-new-simulation-payload'
 import { http, HttpResponse } from 'msw'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mswServer } from '../../../__tests__/server'
 import { mockAuthenticatedSession } from '../../../helpers/tests/mockAuthenticatedSession'
+import { simulationFactory } from '../../../helpers/tests/simulation.factory'
 import { createGroup } from '../../groups/create-group'
 import { updateGroupParticipant } from '../../groups/update-group-participant'
 import { uploadLocalSimulations } from '../upload-local-simulations'
@@ -55,10 +55,7 @@ vi.mock(
 
 /** A simulation as it comes out of long-lived client state: no model at all. */
 const modellessSimulation = (): Simulation => {
-  const simulation = buildNewSimulationPayload({
-    model: 'FR-fr-1.2.3',
-    progression: 1,
-  })
+  const simulation = simulationFactory.build()
   simulation.computedResults.carbone.bilan = 1000
   return { ...simulation, model: undefined } as unknown as Simulation
 }
@@ -142,10 +139,7 @@ describe('simulation write paths', () => {
 
   describe('given a simulation still in progress', () => {
     it('should join the group with it rather than stranding it behind a new one', async () => {
-      const inProgress = buildNewSimulationPayload({
-        model: 'FR-fr-1.2.3',
-        progression: 0.4,
-      })
+      const inProgress = simulationFactory.started().build()
       getCurrentSimulationMock.mockResolvedValue(inProgress)
       const captured = captureSimulationBody(
         'post',
@@ -156,7 +150,7 @@ describe('simulation write paths', () => {
       await updateGroupParticipant({ groupId: 'group-id', name: 'Alice' })
 
       expect(captured.value?.id).toBe(inProgress.id)
-      expect(captured.value?.progression).toBe(0.4)
+      expect(captured.value?.progression).toBe(inProgress.progression)
     })
   })
 
@@ -164,7 +158,7 @@ describe('simulation write paths', () => {
     it('should leave them without a model, on purpose', async () => {
       importLegacyLocalSimulationsMock.mockResolvedValue(undefined)
 
-      await uploadLocalSimulations([modellessSimulation()])
+      await uploadLocalSimulations({ simulations: [modellessSimulation()] })
 
       expect(importLegacyLocalSimulationsMock).toHaveBeenCalledTimes(1)
       const { simulations } = importLegacyLocalSimulationsMock.mock

@@ -1,10 +1,9 @@
 import { seedDemoData } from '@nosgestesclimat/core/seeds/seed-demo-data.service'
-import logger from '../logger.ts'
-
+import logger, { coreLogger } from '../logger.ts'
 const main = async () => {
   try {
     const { skipped, accounts, organisations, polls } = await seedDemoData({
-      logger,
+      logger: coreLogger,
     })
 
     logger.info(

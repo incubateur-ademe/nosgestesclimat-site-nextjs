@@ -1,16 +1,11 @@
 import { notFound, unauthorized } from 'next/navigation'
 export class APIError extends Error {}
 export class NotFoundError extends APIError {
-  constructor() {
+  /** What the server answered: the reason travels as a property, so the
+   * message stays the same sentence whatever broke. */
+  constructor(public reason = 'Not Found') {
     super('Not Found')
     this.name = 'NotFoundError'
-  }
-}
-
-export class NoSessionFoundError extends APIError {
-  constructor() {
-    super('No session found in cookies')
-    this.name = 'NoSessionFound'
   }
 }
 

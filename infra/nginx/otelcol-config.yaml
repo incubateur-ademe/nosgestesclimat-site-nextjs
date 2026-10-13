@@ -21,6 +21,12 @@ extensions:
     directory: /var/lib/otelcol-contrib
 
 receivers:
+  # Traces du module OTel d'nginx : OTLP/gRPC, en local uniquement.
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:4317
+
   # access.log : JSON (voir `log_format json_combined` dans nginx.conf.tpl).
   filelog/access:
     include: [/var/log/nginx/access.log]
@@ -43,11 +49,11 @@ receivers:
           layout_type: strptime
           # %j = offset ±HH:MM (deux-points), comme $time_iso8601.
           layout: '%Y-%m-%dT%H:%M:%S%j'
-        # request_id (32 hex, généré par nginx) → trace_id du log : convention
-        # OTel pour corréler avec les traces/logs partageant le X-Request-ID.
+        # `trace_id` est posé par le module `ngx_otel_module` : c'est l'id du
+        # span racine d'nginx, donc celui de la trace côté app.
         trace:
           trace_id:
-            parse_from: attributes.request_id
+            parse_from: attributes.trace_id
       # `$server_protocol` brut ("HTTP/1.1") → semconv ("1.1", "2", "3").
       - type: regex_replace
         field: attributes["network.protocol.version"]
@@ -60,9 +66,6 @@ receivers:
       # `time_iso8601` a posé le timestamp du record.
       - type: remove
         field: attributes.time_iso8601
-      # `request_id` a posé le trace_id du record.
-      - type: remove
-        field: attributes.request_id
 
   # error.log : format texte d'nginx OSS. Le JSON (`error_log json`) est
   # réservé à NGINX Plus. Le préfixe est stable :
@@ -132,7 +135,10 @@ processors:
       - key: service.name
         value: nginx
         action: upsert
-      - key: deployment.environment
+      # `deployment.environment.name` is the key behind PostHog Logs'
+      # Environment facet. The value matches the app's `APP_ENV`
+      # (`production`, `preprod`) so one filter covers the three runtimes.
+      - key: deployment.environment.name
         value: ${env:ENVIRONMENT}
         action: upsert
 
@@ -167,4 +173,9 @@ service:
     logs/nginx:
       receivers: [filelog/access, filelog/error]
       processors: [resource/nginx, transform/event-name, batch]
+      exporters: [otlphttp/posthog]
+    # Le mème exporter ajoute `/v1/traces` pour cette pipeline.
+    traces/nginx:
+      receivers: [otlp]
+      processors: [resource/nginx, batch]
       exporters: [otlphttp/posthog]

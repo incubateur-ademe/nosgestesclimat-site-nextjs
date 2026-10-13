@@ -51,7 +51,7 @@ Sur chaque instance, `/etc/nginx/deploy.env` contient :
 
     DOMAIN=preprod.nosgestesclimat.fr
     UPSTREAM=nosgestesclimat-site-preprod.osc-fr1.scalingo.io
-    ENVIRONMENT=preprod          # preprod ou prod
+    ENVIRONMENT=preprod          # preprod ou production
     REPO=incubateur-ademe/nosgestesclimat-app
     TEMPLATE_REF=main            # main ou chore/nginx-proxy-for-cache ou autre
 
@@ -106,17 +106,64 @@ par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
     avec les attributs) pour alléger le volume ;
   - pose `event_name=nginx.access|nginx.error` : attribut semconv promu en
     champ natif `EventName` (que stanza ne sait pas écrire) puis retiré ;
-  - ajoute `service.name=nginx` et `deployment.environment=preprod|prod` ;
+  - ajoute `service.name=nginx` et
+    `deployment.environment.name=preprod|production` ;
   - exporte vers `https://eu.i.posthog.com/i/v1/logs` (OTLP HTTP) avec
     `Authorization: Bearer <POSTHOG_PROJECT_TOKEN>`.
-- Corrélation : `$request_id` (généré par nginx) est propagé à l'app via
-  `X-Request-ID` et mappé en `trace_id` du log (convention OTel), pour relier
-  logs nginx et logs applicatifs partageant cet ID.
+- Corrélation : le `trace_id` du log est celui du span racine d'nginx
+  (`$otel_trace_id`, voir les traces ci-dessous). C'est le seul identifiant
+  citabie : il résout une trace dans PostHog, et relie les logs de l'app comme
+  ses spans. `$request_id` a été retiré — plus personne ne le lisait, et un
+  identifiant que rien ne résout ne sert à rien.
   `connection` (extrait des deux logs) permet de filtrer dans PostHog une ligne
   d'`access.log` et la ligne d'`error.log` correspondante ; `upstream_addr`
   distingue un 502 « upstream a répondu » d'un 502 « aucun serveur joignable ».
 - La clé est stockée dans `/etc/otelcol-contrib/otelcol-contrib.env` (0600),
   chargée par systemd (`EnvironmentFile`).
+
+### Traces
+
+Nginx émet un span par requête grâce au module **`ngx_otel_module`**, exporté en
+OTLP/gRPC vers le collecteur (pipeline `traces/nginx`, port 4317). Ce span est la
+**racine** des traces de l'application : sans lui, les spans de l'app arrivent
+sans parent, PostHog les marque orphelines, et la vue traces n'affiche rien.
+
+Le module ne vient que de nginx.org : ni Debian ni Ubuntu n'empaquettent de
+`libnginx-mod-http-otel`. On déclare donc leur dépôt, puis on installe `nginx`
+**et** `nginx-module-otel` ensemble — un module dynamique doit correspondre au
+binaire.
+
+```bash
+. /etc/os-release
+curl -fsSL https://nginx.org/keys/nginx_signing.key \
+  | sudo gpg --dearmor -o /usr/share/keyrings/nginx-archive-keyring.gpg
+# `printf` plutôt qu'un `echo` : la ligne doit tenir sur une seule, sinon apt
+# lit quatre champs au lieu de cinq (« Malformed entry ... (Component) »).
+printf 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu %s nginx\n' \
+  "$VERSION_CODENAME" | sudo tee /etc/apt/sources.list.d/nginx.list
+cat /etc/apt/sources.list.d/nginx.list     # doit afficher une seule ligne
+
+sudo apt-get update && sudo apt-get install -y nginx nginx-module-otel
+ls -l /etc/nginx/modules/ngx_otel_module.so
+
+# Le nginx de nginx.org tourne en `nginx` (Ubuntu : `www-data`) : sans ce
+# chown, il ne peut pas écrire son cache et tronque chaque réponse.
+sudo chown -R nginx:nginx /var/cache/nginx
+
+# Le `nginx.conf` de nginx.org n'inclut pas `modules-enabled`, contrairement à
+# celui d'Ubuntu : le `load_module` va dans le contexte principal.
+grep -qs ngx_otel_module /etc/nginx/nginx.conf || \
+  sudo sed -i '1i load_module modules/ngx_otel_module.so;' /etc/nginx/nginx.conf
+```
+
+Si `apt-cache policy nginx nginx-module-otel` ne montre rien après `apt-get
+update`, le nom de code n'est pas servi par le dépôt stable : remplacer
+`/packages/ubuntu` par `/packages/mainline/ubuntu` dans la ligne ci-dessus.
+
+Le module est un **prérequis** du vhost : `otel_exporter`, `otel_trace` et
+`$otel_trace_id` sont inconnus sans lui, et nginx refuse de démarrer. Le
+provisioning l'installe donc avant tout pull, et la CI l'installe pour valider la
+configuration.
 
 ### Résilience
 
@@ -153,8 +200,8 @@ Rétention sur disque : `/var/log/nginx/*.log` tournent sur 2 jours (logrotate
 ### Consulter les logs
 
 PostHog → Logs, filtrer sur `service.name = nginx` puis
-`deployment.environment = prod` (ou `preprod`). Exemples de recherche :
-`429`, `upstream_cache_status = MISS`, `status = 500`.
+`deployment.environment.name = production` (ou `preprod`). Exemples de
+recherche : `429`, `upstream_cache_status = MISS`, `status = 500`.
 
 ### Modifier la config du collecteur
 

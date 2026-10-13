@@ -12,7 +12,7 @@
 #
 # En-tetes .body autorises pour une cle "dot-path" :
 #   { eq = "v" }        egalite STRICTE (comparaison JSON)
-#   { glob = "p*" }     glob sur une valeur string     (ex. "postgresql://*")
+#   { glob = "p*" }     glob sur une valeur string     (ex. "postgres*")
 #   { regex = "…" }     regex ancree (pas d'^/$)         (SHA via [0-9a-f]{40})
 #   { present = true }  cle presente (n'importe quelle valeur)
 
@@ -139,12 +139,14 @@ route  = "/v1/apps/nosgestesclimat-site-preprod-pr*/deployments"
 method = "POST"
 route  = "/v1/apps/nosgestesclimat-site-preprod-pr*/variables"
 [env.postdeploy.scope.body]
+# L'addon Scalingo expose `postgresql://…`, mais la variable posée à la main
+# peut porter `postgres://…` : le glob couvre les deux graphies.
 "variable.name"  = { eq = "DATABASE_URL" }
-"variable.value" = { glob = "postgresql://*" }
+"variable.value" = { glob = "postgres*" }
 
 [[env.postdeploy.scope]]
 method = "POST"
 route  = "/v1/apps/nosgestesclimat-site-preprod-pr*/variables"
 [env.postdeploy.scope.body]
 "variable.name"  = { eq = "REDIS_URL" }
-"variable.value" = { regex = "rediss?://.*" }
+"variable.value" = { glob = "redis://*" }
