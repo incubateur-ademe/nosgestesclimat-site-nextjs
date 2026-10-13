@@ -139,6 +139,22 @@ correspondre exactement au binaire, celui d'Ubuntu ne peut pas le charger.
 apt-cache policy nginx-module-otel libnginx-mod-http-otel   # état des lieux
 ```
 
+Le dépôt se déclare sans `lsb_release`, absent de certaines images :
+
+```bash
+. /etc/os-release
+printf 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu %s nginx\n' \
+  "$VERSION_CODENAME" > /etc/apt/sources.list.d/nginx.list
+apt update && apt-cache policy nginx nginx-module-otel
+# stable absent pour ce nom de code ? remplacer /packages/ubuntu par /packages/mainline/ubuntu
+```
+
+Et l'installation garde le `nginx.conf` existant, donc le `sites-enabled` :
+
+```bash
+apt install -o Dpkg::Options::="--force-confold" nginx nginx-module-otel
+```
+
 Le conf et le module **partent ensemble** : `otel_exporter`, `otel_service_name`
 et `otel_trace` sont des directives inconnues sans le module, et nginx refuse
 alors de démarrer. Déployer le conf avant le module casserait le proxy.
