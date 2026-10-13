@@ -27,7 +27,7 @@ receivers:
       grpc:
         endpoint: 127.0.0.1:4317
 
-  # access.log : JSON (voir `log_format json_combined` dans nginx.conf.tpl).
+  # access.log : JSON (voir `log_format json_combined` dans otel.conf).
   filelog/access:
     include: [/var/log/nginx/access.log]
     start_at: end

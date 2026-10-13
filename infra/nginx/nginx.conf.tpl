@@ -5,9 +5,9 @@
 
 # Un span par requête, dont le contexte part vers l'app en `traceparent` : sans
 # cette racine, les traces de l'app arrivent orphelines et PostHog n'affiche
-# aucun span. Les directives `otel_*` vivent dans `/etc/nginx/otel-enabled/`,
-# écrit par le provisioning : ce fichier doit rester valide sans le module, donc
-# la CI peut le tester. Un glob sans correspondance n'est pas une erreur.
+# aucun span. Tout ce qui dépend du module — directives, format de log et
+# `access_log` — vit dans `/etc/nginx/otel-enabled/`, écrit par le provisioning.
+# Ce fichier-ci doit donc rester valide sans le module, et la CI le teste.
 include /etc/nginx/otel-enabled/*.conf;
 
 # ----------------------------------------------------------------------------
@@ -103,38 +103,7 @@ map $http_upgrade $connection_upgrade {
 }
 
 # ----------------------------------------------------------------------------
-# Logs au format JSON (consommés par l'OpenTelemetry Collector → PostHog)
-# ----------------------------------------------------------------------------
 
-# JSON structuré : chaque champ devient un attribut filtrable dans PostHog.
-# Les champs `http.*`, `url.*` et `user_agent.*` suivent les conventions
-# sémantiques OTel (semconv) ; les autres restent nginx-spécifiques.
-# Sans IP (remote_addr) ni referer. La query string est conservée pour le
-# debugging : les emails qu'elle contient sont masqués par le collecteur, qui
-# normalise aussi `network.protocol.version` (brut ici) en semconv.
-# `escape=json` échappe l'user-agent (JSON valide).
-log_format json_combined escape=json
-  '{'
-    '"time_iso8601":"$time_iso8601",'
-    '"trace_id":"$otel_trace_id",'
-    '"connection":"$connection",'
-    '"server.address":"$host",'
-    '"network.protocol.version":"$server_protocol",'
-    '"http.request.method":"$request_method",'
-    '"url.path":"$uri",'
-    '"url.query":"$args",'
-    '"http.response.status_code":$status,'
-    '"http.request.body.size":"$content_length",'
-    '"http.response.body.size":$body_bytes_sent,'
-    '"request_time":$request_time,'
-    '"upstream_addr":"$upstream_addr",'
-    '"upstream_status":"$upstream_status",'
-    '"upstream_connect_time":"$upstream_connect_time",'
-    '"upstream_header_time":"$upstream_header_time",'
-    '"upstream_response_time":"$upstream_response_time",'
-    '"upstream_cache_status":"$upstream_cache_status",'
-    '"user_agent.original":"$http_user_agent"'
-  '}';
 
 # ----------------------------------------------------------------------------
 # Logging conditionnel
@@ -191,7 +160,6 @@ server {
     listen [::]:80 default_server;
     server_name _;
 
-    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
     return 301 https://$host$request_uri;
 }
@@ -202,7 +170,6 @@ server {
     http2 on;
     server_name www.${DOMAIN};
 
-    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
@@ -224,7 +191,6 @@ server {
     http2 on;
     server_name ${DOMAIN};
 
-    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;

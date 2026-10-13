@@ -86,8 +86,9 @@ par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
 
 ### Fonctionnement
 
-- `nginx.conf.tpl` écrit `access.log` au format JSON (`log_format json_combined`),
-  chaque champ devenant un attribut filtrable dans PostHog — sans IP, sans
+- `otel.conf` (chargé avec le module OTel) écrit `access.log` au format JSON
+  (`log_format json_combined`), chaque champ devenant un attribut filtrable dans
+  PostHog — sans IP, sans
   referer. Les champs `http.*`, `url.*`, `network.*`, `server.*` et
   `user_agent.original` suivent les **conventions sémantiques OTel** (semconv) ;
   les champs upstream restent nginx-spécifiques (`upstream_cache_status`, …).
@@ -156,9 +157,10 @@ Et l'installation garde le `nginx.conf` existant, donc le `sites-enabled` :
 apt install -o Dpkg::Options::="--force-confold" nginx nginx-module-otel
 ```
 
-Le vhost ne porte aucune directive `otel_*` : il inclut
-`/etc/nginx/otel-enabled/*.conf`, que le provisioning écrit en même temps que le
-`load_module`. Un glob sans correspondance n'étant pas une erreur, le conf du
+Le vhost ne porte rien qui dépende du module : il inclut
+`/etc/nginx/otel-enabled/*.conf`, où `infra/nginx/otel.conf` est déposé par le
+provisioning en même temps que le `load_module`. Directives, format de log et
+`access_log` sont dans ce fichier. Un glob sans correspondance n'étant pas une erreur, le conf du
 dépôt reste valide sans le module — c'est ce que teste la CI, et c'est pourquoi
 il n'y a plus d'ordre à respecter entre le merge et l'installation.
 

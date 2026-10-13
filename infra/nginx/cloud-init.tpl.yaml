@@ -82,14 +82,9 @@ runcmd:
       echo 'load_module modules/ngx_otel_module.so;' \
         > /etc/nginx/modules-enabled/50-mod-otel.conf
     mkdir -p /etc/nginx/otel-enabled
-    printf '%s\n' \
-      'otel_exporter {' \
-      '  endpoint 127.0.0.1:4317;' \
-      '}' \
-      'otel_service_name nginx;' \
-      'otel_trace_context propagate;' \
-      'otel_trace on;' \
-      > /etc/nginx/otel-enabled/otel.conf
+    curl -fsSL \
+      "https://raw.githubusercontent.com/__REPO__/refs/heads/__TEMPLATE_REF__/infra/nginx/otel.conf" \
+      -o /etc/nginx/otel-enabled/otel.conf
 
   # ── OpenTelemetry Collector (nginx → PostHog Logs) ──────────────────────
   # install-otelcol.sh est idempotent : cloud-init l'utilise au first boot,
