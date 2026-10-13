@@ -193,14 +193,16 @@ map $http_user_agent $ngc_is_scanner {
 # Redirections (HTTP → HTTPS, www → apex)
 # ----------------------------------------------------------------------------
 
-# Un seul journal d'accès, au niveau `http` : les trois `server` journalisaient
-# à l'identique. `$ngc_loggable` est déclaré par les `map` ci-dessus.
-access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
+# `access_log` doit être déclaré dans chaque `server` : au niveau `http`, nginx
+# ajoute le nôtre à celui de `nginx.conf` (format `main`), et chaque requête est
+# alors journalisée deux fois, dont une ligne illisible par le collecteur.
 
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
     server_name _;
+
+    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
 
     return 301 https://$host$request_uri;
@@ -212,6 +214,7 @@ server {
     http2 on;
     server_name www.${DOMAIN};
 
+    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
@@ -233,6 +236,7 @@ server {
     http2 on;
     server_name ${DOMAIN};
 
+    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
@@ -479,6 +483,8 @@ server {
     # Sert du JS exécuté par les navigateurs : un certificat non vérifié y laisse
     # passer du code tiers.
     location ~ ^/revp/static/(.*)$ {
+        # Trafic d'ingestion PostHog, sans intérêt à tracer.
+        access_log off;
         proxy_pass https://$ph_assets/static/$1$is_args$args;
         proxy_set_header Host $ph_assets;
         proxy_set_header Cookie "";
@@ -492,6 +498,7 @@ server {
     }
 
     location ~ ^/revp/array/(.*)$ {
+        access_log off;
         proxy_pass https://$ph_assets/array/$1$is_args$args;
         proxy_set_header Host $ph_assets;
         proxy_set_header Cookie "";
@@ -505,6 +512,7 @@ server {
     }
 
     location ~ ^/revp/(.*)$ {
+        access_log off;
         proxy_pass https://$ph_api/$1$is_args$args;
         proxy_set_header Host $ph_api;
         proxy_set_header Cookie "";
