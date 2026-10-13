@@ -5,8 +5,20 @@
 package_update: true
 package_upgrade: true
 
+# Le module OTel n'existe dans aucune distribution : nginx **et** le module
+# viennent de chez nginx.org, la paire étant construite ensemble. `$RELEASE` est
+# substitué par cloud-init, pas par le templating.
+# Nom de code non servi par le dépôt stable ? Passer à /packages/mainline/ubuntu.
+apt:
+  sources:
+    nginx-org:
+      source: 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu $RELEASE nginx'
+      keyid: 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+      keyserver: keyserver.ubuntu.com
+
 packages:
   - nginx
+  - nginx-module-otel
   - certbot
   - python3-certbot-nginx
   - gettext-base
@@ -54,6 +66,18 @@ runcmd:
     ufw allow 80/tcp
     ufw allow 443/tcp
     ufw --force enable
+
+  # ── Module OTel d'nginx (traces) ────────────────────────────────────────
+  # Le paquet installe le `.so`, mais l'activation se fait une seule fois : un
+  # second `load_module` du même fichier ferait échouer nginx au démarrage.
+  # Sans ce module, les directives `otel_*` du vhost sont inconnues.
+  - |
+    set -euo pipefail
+    mod=/etc/nginx/modules/ngx_otel_module.so
+    [ -f "$mod" ] || { echo "$mod absent : paquet nginx-module-otel manquant ?" >&2; exit 1; }
+    grep -qs ngx_otel_module /etc/nginx/modules-enabled/ || \
+      echo 'load_module modules/ngx_otel_module.so;' \
+        > /etc/nginx/modules-enabled/50-mod-otel.conf
 
   # ── OpenTelemetry Collector (nginx → PostHog Logs) ──────────────────────
   # install-otelcol.sh est idempotent : cloud-init l'utilise au first boot,
