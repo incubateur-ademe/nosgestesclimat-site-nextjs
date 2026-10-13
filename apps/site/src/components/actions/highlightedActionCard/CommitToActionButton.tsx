@@ -43,7 +43,7 @@ export default function CommitToActionButton({
             onClick={abandonActionCommitment}
             disabled={isPending}
             className={twMerge(
-              'relative w-52.5',
+              'relative w-auto md:w-52.5',
               'bg-green-50 text-sm! text-green-600 opacity-100! hover:bg-green-100 hover:text-green-700',
               'before:absolute before:inset-0 before:rounded-[inherit]',
               'before:bg-[linear-gradient(45deg,transparent_25%,rgba(0,166,62,0.2)_50%,transparent_75%,transparent_100%)] before:bg-[length:250%_250%,100%_100%] before:bg-[position:200%_0,0_0] before:bg-no-repeat before:[transition:background-position_0s_ease]',
@@ -60,7 +60,7 @@ export default function CommitToActionButton({
             </Trans>
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="bottom" className="font-marianne">
+        <TooltipContent side="top" className="font-marianne">
           <Trans i18nKey="actions.components.actionCard.highlighted.addedButton.tooltip">
             Retirer de votre plan
           </Trans>
@@ -74,7 +74,7 @@ export default function CommitToActionButton({
       color={buttonColor}
       onClick={commitToAction}
       loading={isPending}
-      className={twMerge('w-52.5 text-sm!', className)}>
+      className={twMerge('w-auto px-7 text-sm! md:w-52.5', className)}>
       {!isPending && (
         <PlusIcon
           className={twMerge(
@@ -83,10 +83,16 @@ export default function CommitToActionButton({
           )}
         />
       )}
-
-      <Trans i18nKey="actions.components.actionCard.highlighted.addButton.add">
-        Ajouter à mon plan
-      </Trans>
+      <span className="inline md:hidden">
+        <Trans i18nKey="actions.components.actionCard.highlighted.addButton.add.short">
+          Ajouter
+        </Trans>
+      </span>
+      <span className="hidden md:inline">
+        <Trans i18nKey="actions.components.actionCard.highlighted.addButton.add.long">
+          Ajouter à mon plan
+        </Trans>
+      </span>
     </Button>
   )
 }

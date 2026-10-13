@@ -18,7 +18,7 @@ export default function ChosenAction({
 }: Props) {
   return (
     <article className="flex items-start gap-1 rounded-lg border border-slate-200 bg-slate-50 p-2">
-      <div>
+      <div className="flex-1">
         <h1 className="mb-2 text-sm/normal">{action.title}</h1>
 
         <div className="flex gap-1">

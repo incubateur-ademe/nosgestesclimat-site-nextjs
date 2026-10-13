@@ -16,12 +16,14 @@ interface Props {
   themeKey: ThemeKey
   assessment?: ActionAssessment | null
   actionCatalogueContext: ActionCatalogueContext
+  className?: string
 }
 
 export default function ImpactSection({
   themeKey,
   assessment,
   actionCatalogueContext,
+  className,
 }: Props) {
   const classes = classesByTheme[themeKey]
 
@@ -37,8 +39,9 @@ export default function ImpactSection({
   return (
     <div
       className={twMerge(
-        'flex flex-col justify-center gap-0.5 border-t border-slate-100 px-6 py-6 md:w-75 md:border-t-0 md:border-l',
-        classes.panel
+        'flex flex-col justify-center gap-0.5 rounded-lg border-slate-100 px-6 py-6 md:w-75 md:rounded-none md:border-l',
+        classes.panel,
+        className
       )}>
       <p className="mb-0 text-sm/normal font-bold text-slate-600 uppercase">
         <Trans

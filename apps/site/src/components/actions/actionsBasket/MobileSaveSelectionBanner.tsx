@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/trans/TransServer'
 import BottomBannerWithCTA from '@/design-system/layout/BottomBannerWithCTA'
+import CountBadge from '@/design-system/layout/CountBadge'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Locale } from '@/i18nConfig'
-import type { ReactNode } from 'react'
 import SavePlanLink from './SavePlanLink'
 
 interface Props {
@@ -35,35 +35,10 @@ export default function MobileSaveSelectionBanner({
               Voir mon plan d'action
             </Trans>
           </span>
-          <br />
-          <span className="inline-block text-sm/normal">
-            <Trans
-              locale={locale}
-              i18nKey="actions.seeActionPlanLink.mobile.label.secondLine"
-              values={{
-                actionChoicesLength: actionsLength,
-                pluralSuffix: actionsLength > 1 ? 's' : '',
-              }}>
-              {
-                {
-                  actionChoicesLength: actionsLength,
-                } as unknown as ReactNode
-              }{' '}
-              action
-              {
-                {
-                  pluralSuffix: actionsLength > 1 ? 's' : '',
-                } as unknown as ReactNode
-              }{' '}
-            </Trans>
-            {totalImpact > 0 && (
-              <>
-                {' '}
-                / -{formattedActionsImpactSum} {unit}{' '}
-                <Trans locale={locale}>CO₂e / an</Trans>
-              </>
-            )}
-          </span>
+          <CountBadge
+            className="text-primary-700 ml-2 inline-flex size-6 bg-white"
+            value={actionsLength}
+          />
         </span>
       </SavePlanLink>
     </BottomBannerWithCTA>
