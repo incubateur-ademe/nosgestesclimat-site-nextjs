@@ -123,51 +123,38 @@ par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
 
 ### Traces
 
-Nginx émet un span par requête via le module **`ngx_otel_module`**, exporté en
-OTLP/gRPC vers le collecteur (pipeline `traces/nginx`, port 4317), qui les
-pousse vers PostHog à côté des logs. Ce span **est la racine** des traces de
-l'application : sans lui, les spans de l'app arrivent sans parent, PostHog les
-marque orphelines, et la vue traces n'affiche rien — un log applicatif ne peut
-alors plus ouvrir sa trace.
+Nginx émet un span par requête grâce au module **`ngx_otel_module`**, exporté en
+OTLP/gRPC vers le collecteur (pipeline `traces/nginx`, port 4317). Ce span est la
+**racine** des traces de l'application : sans lui, les spans de l'app arrivent
+sans parent, PostHog les marque orphelines, et la vue traces n'affiche rien.
 
-Le module ne vient **que** de nginx.org : ni Debian ni Ubuntu ne fournissent de
-paquet `libnginx-mod-http-otel` (vérifié sur toutes les suites et architectures).
-Il faut donc installer `nginx` **et** `nginx-module-otel` depuis le dépôt
-nginx.org, la paire étant construite ensemble — un module dynamique doit
-correspondre exactement au binaire, celui d'Ubuntu ne peut pas le charger.
-
-```bash
-apt-cache policy nginx-module-otel libnginx-mod-http-otel   # état des lieux
-```
-
-Le dépôt se déclare sans `lsb_release`, absent de certaines images :
+Le module ne vient que de nginx.org : ni Debian ni Ubuntu n'empaquettent de
+`libnginx-mod-http-otel`. On déclare donc leur dépôt, puis on installe `nginx`
+**et** `nginx-module-otel` ensemble — un module dynamique doit correspondre au
+binaire.
 
 ```bash
 . /etc/os-release
-printf 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu %s nginx\n' \
-  "$VERSION_CODENAME" > /etc/apt/sources.list.d/nginx.list
-apt update && apt-cache policy nginx nginx-module-otel
-# stable absent pour ce nom de code ? remplacer /packages/ubuntu par /packages/mainline/ubuntu
+curl -fsSL https://nginx.org/keys/nginx_signing.key \
+  | sudo gpg --dearmor -o /usr/share/keyrings/nginx-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu $VERSION_CODENAME nginx" \
+  | sudo tee /etc/apt/sources.list.d/nginx.list
+sudo apt-get update && sudo apt-get install -y nginx nginx-module-otel
+
+# Le `nginx.conf` de nginx.org n'inclut pas `modules-enabled`, contrairement à
+# celui d'Ubuntu : le `load_module` va dans le contexte principal.
+grep -qs ngx_otel_module /etc/nginx/nginx.conf || \
+  sudo sed -i '1i load_module modules/ngx_otel_module.so;' /etc/nginx/nginx.conf
 ```
 
-L'installation ne demande aucune option : le `nginx.conf` livré par nginx.org
-inclut `conf.d/`, où vit le vhost.
+Si `apt-cache policy nginx nginx-module-otel` ne montre rien après `apt-get
+update`, le nom de code n'est pas servi par le dépôt stable : remplacer
+`/packages/ubuntu` par `/packages/mainline/ubuntu` dans la ligne ci-dessus.
 
-```bash
-sudo apt install nginx nginx-module-otel
-```
-
-Le module est un **prérequis** : `otel_exporter`, `otel_trace` et
+Le module est un **prérequis** du vhost : `otel_exporter`, `otel_trace` et
 `$otel_trace_id` sont inconnus sans lui, et nginx refuse de démarrer. Le
-provisioning l'installe donc avant tout pull — cloud-init installe ses paquets
-avant ses `runcmd` — et la CI l'installe pour valider la configuration complète.
-Sur une VM existante, l'installer **avant** que cette conf n'arrive : sans lui,
-nginx refuse de démarrer.
-
-```bash
-nginx -t                                # avant tout rechargement
-journalctl -u otelcol-contrib -n 50     # le collecteur démarre-t-il ?
-```
+provisioning l'installe donc avant tout pull, et la CI l'installe pour valider la
+configuration.
 
 ### Résilience
 
