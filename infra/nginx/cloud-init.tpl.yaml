@@ -13,7 +13,10 @@ apt:
   sources:
     nginx-org:
       source: 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu $RELEASE nginx'
-      keyid: 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+      # Empreinte de la clé de signature de nginx.org. À vérifier sur
+      # https://blog.nginx.org/blog/updating-pgp-key-for-nginx-software : la page
+      # linux_packages.html affiche encore l'ancienne, expirée en juin 2024.
+      keyid: 8540A6F18833A80E9C1653A42FD21310B49F6B46
       keyserver: keyserver.ubuntu.com
 
 packages:
