@@ -1,4 +1,4 @@
-import type { EventStatus } from '../_types/event'
+import type { EventStatus } from '../../types/status.ts'
 
 export function getEventStatus({
   startDate,
@@ -10,12 +10,12 @@ export function getEventStatus({
   const currentDate = new Date()
 
   if (currentDate < startDate) {
-    return 'notStarted'
+    return 'not_started'
   }
 
   if (currentDate > endDate) {
     return 'ended'
   }
 
-  return 'inProgress'
+  return 'in_progress'
 }

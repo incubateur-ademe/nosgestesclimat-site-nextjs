@@ -13,10 +13,9 @@ import type {
   PodiumCategory,
   PodiumItem,
 } from '@nosgestesclimat/core/features/events/types/event-info'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import { cacheLife } from 'next/cache'
 import type { ReactNode } from 'react'
-import type { EventStatus } from '../_types/event'
-import { getEventStatus } from './getEventStatus'
 
 export interface Testimony {
   text: string
@@ -92,14 +91,9 @@ export async function getEventPageData({
 
   const currentValue = eventInfo.totalSimulations
 
-  const status = getEventStatus({
-    startDate: eventInfo.startDate,
-    endDate: eventInfo.endDate,
-  })
-
   return {
     detailImageSrc: '/_static/cms/VIGNETTE_SEDD_f711b1d37b.svg',
-    status,
+    status: eventInfo.status,
     startDate: eventInfo.startDate,
     endDate: eventInfo.endDate,
     dynamicCounter: {

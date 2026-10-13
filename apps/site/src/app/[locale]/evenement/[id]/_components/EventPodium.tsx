@@ -5,7 +5,7 @@ import type {
   PodiumCategory,
   PodiumItem,
 } from '@nosgestesclimat/core/features/events/types/event-info'
-import type { EventStatus } from '../_types/event'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import EventTabs from './eventPodium/EventTabs'
 import PodiumVisual from './eventPodium/PodiumVisual'
 import { getActiveCategoryFilter } from './eventPodium/helpers/getActiveCategoryFilter'

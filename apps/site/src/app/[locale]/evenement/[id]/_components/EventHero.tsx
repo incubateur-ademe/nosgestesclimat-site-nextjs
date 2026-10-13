@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import type { Locale } from '@/i18nConfig'
-import type { EventStatus } from '../_types/event'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import EventHeroCard from './eventHero/EventHeroCard'
 
 interface Props {

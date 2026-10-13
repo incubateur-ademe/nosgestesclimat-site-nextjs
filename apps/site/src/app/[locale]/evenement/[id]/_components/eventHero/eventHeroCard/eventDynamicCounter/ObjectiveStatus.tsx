@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Locale } from '@/i18nConfig'
-import type { EventStatusWithoutNotStarted } from '../../../../_types/event'
+import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 
 interface Props {
   progressPercentage: number

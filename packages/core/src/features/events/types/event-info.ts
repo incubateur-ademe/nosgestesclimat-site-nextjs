@@ -1,3 +1,5 @@
+import type { EventStatus } from './status.ts'
+
 export type PodiumCategory =
   | 'all'
   | 'companies'
@@ -19,4 +21,5 @@ export interface EventInfo {
   organisationCount: number
   startDate: Date
   endDate: Date
+  status: EventStatus
 }

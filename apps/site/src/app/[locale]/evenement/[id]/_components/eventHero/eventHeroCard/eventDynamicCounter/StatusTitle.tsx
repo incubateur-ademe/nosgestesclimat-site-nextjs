@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/trans/TransServer'
 import type { Locale } from '@/i18nConfig'
+import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 import { cn } from 'cn'
-import type { EventStatusWithoutNotStarted } from '../../../../_types/event'
 
 interface Props {
   status: EventStatusWithoutNotStarted
@@ -12,7 +12,7 @@ const STATUS_CLASSES: Record<
   EventStatusWithoutNotStarted,
   { text: string; background: string }
 > = {
-  inProgress: {
+  in_progress: {
     text: 'text-green-700',
     background: 'bg-green-700',
   },
@@ -35,7 +35,7 @@ export default function StatusTitle({ status, locale }: Props) {
       />
 
       <span className="text-xs font-bold uppercase">
-        {status === 'inProgress' ? (
+        {status === 'in_progress' ? (
           <Trans i18nKey="event.dynamicCounter.text.running" locale={locale}>
             En direct
           </Trans>

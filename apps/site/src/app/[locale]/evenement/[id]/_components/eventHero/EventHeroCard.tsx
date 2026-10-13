@@ -1,5 +1,5 @@
 import type { Locale } from '@/i18nConfig'
-import type { EventStatus } from '../../_types/event'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import AnimatedCounterBlock from './eventHeroCard/AnimatedCounterBlock'
 import EventCountdown from './eventHeroCard/EventCountdown'
 import EventDynamicCounter from './eventHeroCard/EventDynamicCounter'
@@ -36,7 +36,7 @@ export default function EventHeroCard({
       />
 
       <div className="transition-transform duration-200 [&:has(.btn-group:hover)]:scale-[1.02]">
-        {status == 'notStarted' ? (
+        {status == 'not_started' ? (
           <EventCountdown
             targetDate={startDate}
             primaryCtaHref={primaryCtaHref}

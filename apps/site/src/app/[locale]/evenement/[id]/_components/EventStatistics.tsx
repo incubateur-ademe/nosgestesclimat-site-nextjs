@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
-import type { EventStatus } from '../_types/event'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import EventNumber from './eventStatistics/EventNumber'
 
 interface Props {
@@ -17,11 +17,11 @@ interface Props {
 
 export default function EventStatistics({ locale, status, values }: Props) {
   const { t } = getServerTranslation({ locale })
-  const isEventInProgress = status === 'inProgress'
+  const isEventInProgress = status === 'in_progress'
   return (
     <div className="bg-primary-700 py-12">
       <div className="mx-auto flex w-5xl max-w-full flex-col px-4 lg:p-0">
-        {status === 'notStarted' && (
+        {status === 'not_started' && (
           <p className="mb-6 text-center text-sm font-bold tracking-wide text-white uppercase">
             <Trans i18nKey="event.statistics.title" locale={locale}>
               Les données en direct apparaîtront au lancement

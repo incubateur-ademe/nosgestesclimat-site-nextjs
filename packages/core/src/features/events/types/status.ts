@@ -1,2 +1,2 @@
-export type EventStatus = 'notStarted' | 'inProgress' | 'ended'
+export type EventStatus = 'not_started' | 'in_progress' | 'ended'
 export type EventStatusWithoutNotStarted = Exclude<EventStatus, 'notStarted'>

@@ -2,7 +2,7 @@ import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
-import type { EventStatusWithoutNotStarted } from '../../../../_types/event'
+import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 
 interface Props {
   locale: Locale

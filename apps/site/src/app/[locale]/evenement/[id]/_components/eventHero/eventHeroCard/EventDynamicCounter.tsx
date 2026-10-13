@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/trans/TransServer'
 import type { Locale } from '@/i18nConfig'
-import type { EventStatusWithoutNotStarted } from '../../../_types/event'
+import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 import { COUNTER_BLOCK_ANIMATION_TOTAL } from './AnimatedCounterBlock'
 import ClientCircularProgressBar from './eventDynamicCounter/ClientCircularProgressBar'
 import EventLinks from './eventDynamicCounter/EventLinks'

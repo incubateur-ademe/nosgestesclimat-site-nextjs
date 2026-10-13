@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/trans/TransServer'
 import type { Locale } from '@/i18nConfig'
 import type { PodiumItem } from '@nosgestesclimat/core/features/events/types/event-info'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import { twMerge } from 'cn'
-import type { EventStatus } from '../../_types/event'
 import AnimatedPodiumBlock from './AnimatedPodiumBlock'
 import RankBadge from './RankBadge'
 
@@ -58,7 +58,7 @@ export default function PodiumBlock({
             participations
           </Trans>
         </span>
-        {status === 'notStarted' && (
+        {status === 'not_started' && (
           <span
             className={twMerge(
               'mt-1 block text-center text-sm',

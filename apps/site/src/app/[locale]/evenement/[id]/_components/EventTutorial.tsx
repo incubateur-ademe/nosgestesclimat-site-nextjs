@@ -3,10 +3,10 @@
 import Trans from '@/components/translation/trans/TransClient'
 import CarouselClient from '@/design-system/carousel/CarouselClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { useMemo, useRef, useState } from 'react'
 import type { TutorialStep } from '../_helpers/eventPageData'
-import type { EventStatus } from '../_types/event'
 import StepCard from './eventTutorial/StepCard'
 import Toggle, { type Mode } from './eventTutorial/Toggle'
 
