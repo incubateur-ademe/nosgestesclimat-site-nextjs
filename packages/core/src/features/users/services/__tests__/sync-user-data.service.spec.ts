@@ -1,10 +1,11 @@
 import { faker } from '@faker-js/faker'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import { userFactory } from '../../factories/user.factory.ts'
-import { syncUserData } from '../sync-user-data.service.ts'
+import { createSyncUserData } from '../sync-user-data.service.ts'
 
 const createGroup = async () =>
   prisma.group.create({
@@ -37,8 +38,11 @@ const createLegacyUserWithEmail = async (email: string) =>
     select: { id: true, name: true, email: true },
   })
 
+const logger = createTestLogger()
+
 describe('syncUserData', () => {
   afterEach(async () => {
+    vi.clearAllMocks()
     await Promise.all([
       prisma.simulationPoll.deleteMany(),
       prisma.groupParticipant.deleteMany(),
@@ -58,7 +62,7 @@ describe('syncUserData', () => {
       const user = await userFactory.verified().create()
       await simulationFactory.params({ userId: user.id }).create()
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: user.id, email: user.email },
         verified: true,
       })
@@ -71,6 +75,9 @@ describe('syncUserData', () => {
       expect(
         await prisma.simulation.findMany({ where: { userId: user.id } })
       ).toHaveLength(1)
+      // Nothing merged: no line, so the legacy path's line count stays a
+      // count of migrations.
+      expect(logger.info).not.toHaveBeenCalled()
     })
   })
 
@@ -82,7 +89,7 @@ describe('syncUserData', () => {
         .params({ userId: legacyUser.id })
         .create()
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -97,13 +104,16 @@ describe('syncUserData', () => {
       expect(
         await prisma.user.findUnique({ where: { id: legacyUser.id } })
       ).toBeNull()
+      expect(logger.info).toHaveBeenCalledWith('Legacy user data merged', {
+        mergedUserCount: 1,
+      })
     })
 
     it('adopts the legacy user profile on the user row', async () => {
       const verifiedUser = await userFactory.verified().create()
       const legacyUser = await createLegacyUserWithEmail(verifiedUser.email)
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -123,7 +133,7 @@ describe('syncUserData', () => {
       const verifiedUser = await userFactory.verified().create({ name: null })
       const legacyUser = await createLegacyUserWithEmail(verifiedUser.email)
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -142,7 +152,7 @@ describe('syncUserData', () => {
         .create({ name: faker.person.fullName() })
       await createLegacyUserWithEmail(verifiedUser.email)
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -178,7 +188,7 @@ describe('syncUserData', () => {
         }),
       ])
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -209,7 +219,7 @@ describe('syncUserData', () => {
         simulationId: legacySimulation.id,
       })
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -231,7 +241,7 @@ describe('syncUserData', () => {
         select: { userId: true },
       })
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -257,7 +267,7 @@ describe('syncUserData', () => {
         .withPollId(poll.id)
         .create()
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
         verified: true,
       })
@@ -278,7 +288,7 @@ describe('syncUserData', () => {
       const legacyUser = await createLegacyUserWithEmail(verifiedUser.email)
       await simulationFactory.params({ userId: legacyUser.id }).create()
 
-      await syncUserData({
+      await createSyncUserData({ logger })({
         user: { id: verifiedUser.id, email: verifiedUser.email },
       })
 

@@ -1,5 +1,6 @@
 import { middlewareAuth } from '@/helpers/server/proxy/auth.middleware'
 import { middlewareFeatureFlags } from '@/helpers/server/proxy/feature-flags.middleware'
+import { middlewareIdentity } from '@/helpers/server/proxy/identity.middleware'
 import { middlewareMigrateLegacySessions } from '@/helpers/server/proxy/migrate-legacy-sessions.middleware'
 import { middlewareRegion } from '@/helpers/server/proxy/region.middleware'
 import {
@@ -33,6 +34,8 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
   // included.
   if (request.headers.get('x-action-forwarded')) {
     await setSessionHeaderFromCookie(request)
+    // The trace this hop opens needs the identity of the session just derived.
+    middlewareIdentity(request)
     return NextResponse.next({ request: { headers: request.headers } })
   }
 
@@ -44,6 +47,10 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
 
   const auth = await middlewareAuth(request)
   if (auth.redirect) return auth.redirect
+
+  // Reads the `x-session` header auth just set. Reads only: no redirect,
+  // no cookies.
+  middlewareIdentity(request)
 
   const region = await middlewareRegion(request)
 
@@ -80,6 +87,10 @@ export const config = {
      * - sitemap.xml (root sitemap file)
      * - datashare (iframe datashare modal)
      * - app-crash (error page outside i18n, served by nginx on upstream outage)
+     *
+     * Restated in `observability/static-request.ts`; a computed matcher is
+     * ignored, and the proxy then runs on every path:
+     * https://github.com/vercel/next.js/issues/38461
      */
     {
       source:

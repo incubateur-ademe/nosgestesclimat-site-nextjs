@@ -3,8 +3,6 @@ import { generateRandomVerificationCode } from '@nosgestesclimat/core/features/a
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { VerificationCodeUsage } from '@nosgestesclimat/core/prisma/generated/client'
 import { emptyDatabase } from '@nosgestesclimat/core/test-utils/empty-database'
-import type * as SentryNode from '@sentry/node'
-import { captureException } from '@sentry/node'
 import { StatusCodes } from 'http-status-codes'
 import supertest from 'supertest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
@@ -18,11 +16,6 @@ import {
   createIntegrationEmailWhitelist,
   GENERATE_API_TOKEN_ROUTE,
 } from './fixtures/authentication.fixtures.ts'
-
-vi.mock('@sentry/node', async (importOriginal) => ({
-  ...(await importOriginal<typeof SentryNode>()),
-  captureException: vi.fn(),
-}))
 
 describe('Given a NGC integrations API user', () => {
   const agent = supertest(app)
@@ -111,7 +104,7 @@ describe('Given a NGC integrations API user', () => {
 
       describe('And the email delivery fails', () => {
         beforeEach(() => {
-          vi.mocked(captureException).mockClear()
+          vi.mocked(logger.error).mockClear()
         })
 
         test(`Then it still returns a ${StatusCodes.CREATED} response`, async () => {
@@ -128,13 +121,16 @@ describe('Given a NGC integrations API user', () => {
           // its retries to settle so they do not leak into the next tests.
           await vi.waitFor(
             () => {
-              expect(captureException).toHaveBeenCalledWith(expect.any(Error))
+              expect(logger.error).toHaveBeenCalledWith(
+                expect.any(String),
+                expect.objectContaining({ message: expect.any(String) })
+              )
             },
             { timeout: 4000 }
           )
         })
 
-        test('Then it captures the exception', async () => {
+        test('Then it logs the failure', async () => {
           mswServer.use(brevoSendEmail({ networkError: true }))
 
           await agent
@@ -145,10 +141,13 @@ describe('Given a NGC integrations API user', () => {
             .expect(StatusCodes.CREATED)
 
           // The email is fired after the response is sent: wait for the
-          // best-effort task to fail and report to Sentry.
+          // best-effort task to fail and report the failure.
           await vi.waitFor(
             () => {
-              expect(captureException).toHaveBeenCalledWith(expect.any(Error))
+              expect(logger.error).toHaveBeenCalledWith(
+                expect.any(String),
+                expect.objectContaining({ message: expect.any(String) })
+              )
             },
             { timeout: 4000 }
           )

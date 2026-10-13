@@ -1,6 +1,7 @@
 import type Engine from 'publicodes'
-import type { CaptureException, Logger } from '../../logger/index.ts'
-import { ActionAssessmentPublicodesException } from '../exceptions/action-assessment.exception.ts'
+import { toError } from '../../../lib/to-error.ts'
+import type { Logger } from '../../logger/index.ts'
+import { ActionAssessmentPublicodesError } from '../errors/action-assessment.error.ts'
 import {
   buildRuleIdToDottedName,
   evaluateAction,
@@ -12,7 +13,6 @@ import type { NewActionAssessment } from '../types/action.ts'
 
 interface AssessActionsDeps {
   logger: Logger
-  captureException: CaptureException
 }
 
 export function createAssessActions(deps: AssessActionsDeps) {
@@ -20,11 +20,14 @@ export function createAssessActions(deps: AssessActionsDeps) {
     engine: Engine,
     simulationId: string
   ): Promise<void> {
-    const { logger, captureException } = deps
+    const logger = deps.logger.child({
+      scope: 'core.service.assessActions',
+      simulationId: simulationId,
+    })
     const actions = await findActionRuleIds()
 
     if (actions.length === 0) {
-      throw new ActionAssessmentPublicodesException({
+      throw new ActionAssessmentPublicodesError({
         message: 'No actions found in database. Cannot assess actions.',
       })
     }
@@ -32,7 +35,7 @@ export function createAssessActions(deps: AssessActionsDeps) {
     const ruleIdToDottedName = buildRuleIdToDottedName(engine)
 
     if (ruleIdToDottedName.size === 0) {
-      throw new ActionAssessmentPublicodesException({
+      throw new ActionAssessmentPublicodesError({
         message:
           'No publicodes rules have meta.id, cannot link actions to dotted names. ' +
           'Ensure the model includes meta.id on action rules.',
@@ -43,15 +46,10 @@ export function createAssessActions(deps: AssessActionsDeps) {
       .map(({ id, ruleId }) => {
         const dottedName = ruleIdToDottedName.get(ruleId)
         if (!dottedName) {
-          const exception = new ActionAssessmentPublicodesException({
-            message: 'No rule found with this id',
-            action: { id, ruleId },
+          logger.warn('No rule found with this id', {
+            actionId: id,
+            ruleId: ruleId,
           })
-          logger.warn(
-            `[assess-actions] ${exception.message}`,
-            exception.payload
-          )
-          captureException(exception)
           return undefined
         }
 
@@ -59,16 +57,14 @@ export function createAssessActions(deps: AssessActionsDeps) {
           const evaluation = evaluateAction({ engine, dottedName })
 
           if (evaluation.outcome === 'unexpected_node_value') {
-            const exception = new ActionAssessmentPublicodesException({
-              message: `Unexpected nodeValue type: ${evaluation.nodeValueType}`,
-              action: { id, ruleId },
-              dottedName,
-            })
-            logger.error(
-              `[assess-actions] ${exception.message}`,
-              exception.payload
+            logger.warn(
+              `Unexpected nodeValue type: ${evaluation.nodeValueType}`,
+              {
+                actionId: id,
+                ruleId: ruleId,
+                dottedName: dottedName,
+              }
             )
-            captureException(exception)
             return undefined
           }
 
@@ -77,17 +73,13 @@ export function createAssessActions(deps: AssessActionsDeps) {
             evaluation.applicability
           )
         } catch (error) {
-          const exception = new ActionAssessmentPublicodesException({
-            message: 'Error calling publicodes `engine.evaluate`',
-            cause: error,
-            action: { id, ruleId },
-            dottedName,
+          // The action is skipped, never retried: the failure is captured, so
+          // a rule the engine chokes on does not vanish with its assessment.
+          logger.error(toError(error), {
+            actionId: id,
+            ruleId: ruleId,
+            dottedName: dottedName,
           })
-          logger.error(`[assess-actions] ${exception.message}`, {
-            ...exception.payload,
-            cause: error,
-          })
-          captureException(exception)
           return undefined
         }
       })

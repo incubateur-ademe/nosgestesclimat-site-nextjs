@@ -1,31 +1,26 @@
 import { parseModelString } from '@/helpers/server/model/models'
 import type { Simulation } from '@/helpers/server/model/simulations'
-import { captureException } from '@sentry/nextjs'
+import type { Logger } from '@nosgestesclimat/core/features/logger/index'
 import { resolveNewSimulationModelString } from './resolve-new-simulation-model'
 
-/**
- * Last line of defence before a simulation is persisted.
- *
- * A simulation without a valid model is stored with the `FR-fr-0.0.0` database
- * default and is then never computed. The type system prevents that at creation
- * time, but simulations also come from long-lived client state, so we repair —
- * and report — anything that slipped through.
- *
- * Server actions run current server code even for stale browser tabs, which is
- * what makes repairing here reliable.
- */
+/** Repairs simulations without a valid model before persisting. The database
+ * default (`FR-fr-0.0.0`) makes them uncomputable. Uses the caller's logger
+ * so the repair is part of the action's scope. */
 export async function ensureSimulationModel<
   Payload extends { id: Simulation['id']; model?: Simulation['model'] },
->(simulation: Payload): Promise<Payload & { model: Simulation['model'] }> {
+>(
+  simulation: Payload,
+  logger: Logger
+): Promise<Payload & { model: Simulation['model'] }> {
   if (hasValidModel(simulation)) {
     return simulation
   }
 
-  captureException(
+  logger.error(
     new Error('Simulation reached persistence without a valid model'),
     {
-      level: 'warning',
-      extra: { simulationId: simulation.id, model: simulation.model },
+      simulationId: simulation.id,
+      model: simulation.model,
     }
   )
 

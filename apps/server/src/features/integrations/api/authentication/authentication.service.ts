@@ -5,7 +5,6 @@ import type { BackgroundTaskRunner } from '@nosgestesclimat/core/lib/background-
 import { failure, success } from '@nosgestesclimat/core/lib/result'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { VerificationCodeUsage } from '@nosgestesclimat/core/prisma/generated/client'
-import { captureException } from '@sentry/node'
 import type { Request, RequestHandler } from 'express'
 import { StatusCodes } from 'http-status-codes'
 import type { JwtPayload } from 'jsonwebtoken'
@@ -17,7 +16,7 @@ import { config } from '../../../../config.ts'
 import { EntityNotFoundException } from '../../../../core/errors/EntityNotFoundException.ts'
 import { UnauthorizedException } from '../../../../core/errors/UnauthorizedException.ts'
 import { Locales } from '../../../../core/i18n/constant.ts'
-import logger from '../../../../logger.ts'
+import { coreLogger } from '../../../../logger.ts'
 import { fetchWhitelists } from '../email-whitelist/email-whitelist.repository.ts'
 import type {
   GenerateAPITokenRequestDto,
@@ -126,8 +125,7 @@ const fireAndForgetEmail: BackgroundTaskRunner = (task) => {
 }
 
 const createApiTokenVerificationCode = createCreateVerificationCodeService({
-  logger,
-  captureException,
+  logger: coreLogger,
   // The brevo adapter throws on failure: converted to the Result contract
   // the core service expects, so the failure is logged and captured there
   // instead of failing the request.

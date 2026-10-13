@@ -1,7 +1,8 @@
 import type { PartnerType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
-import { captureException } from '@sentry/nextjs'
+import _logger from '@/logger/logger.server'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { cacheLife } from 'next/cache'
 
 interface Props {
@@ -15,6 +16,12 @@ export async function fetchPartners(
   cacheLife('hours')
 
   const { displayOnLandingPage } = props || {}
+
+  const logger = _logger.child({
+    scope: 'site.action.fetchPartners',
+    locale: i18nConfig.defaultLocale,
+    displayOnLandingPage,
+  })
 
   try {
     const partnersSearchParams = new URLSearchParams({
@@ -33,7 +40,7 @@ export async function fetchPartners(
 
     return { data: partnersResponse.data }
   } catch (error) {
-    captureException(error)
+    logger.warn(toError(error))
 
     return { data: [], isError: true }
   }

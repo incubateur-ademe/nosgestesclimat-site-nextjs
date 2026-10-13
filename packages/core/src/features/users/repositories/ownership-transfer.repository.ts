@@ -60,6 +60,9 @@ const createOrUpdateUser = async (
  * This exists to fix a previous behaviour where unverified users could
  * have an email set. Now only verified users have emails, so this
  * function will eventually be removed once all legacy data is migrated.
+ *
+ * Returns the number of accounts it folded in: the caller's `info` line is
+ * what says the path is still alive.
  */
 export const transferOwnershipToUser = async (
   {
@@ -67,7 +70,7 @@ export const transferOwnershipToUser = async (
     verified,
   }: { user: { id: string; email: string }; verified?: boolean },
   { session }: { session: Transaction }
-) => {
+): Promise<number> => {
   const usersToMigrate = await session.user.findMany({
     where: {
       id: {
@@ -90,7 +93,7 @@ export const transferOwnershipToUser = async (
   const [existingUser] = usersToMigrate
 
   if (!existingUser) {
-    return
+    return 0
   }
 
   await createOrUpdateUser(
@@ -233,6 +236,8 @@ export const transferOwnershipToUser = async (
       },
     }),
   ])
+
+  return usersToMigrate.length
 }
 
 /**
