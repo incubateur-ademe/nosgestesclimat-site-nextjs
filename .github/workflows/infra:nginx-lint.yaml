@@ -33,6 +33,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y nginx nginx-module-otel
           ls /etc/nginx/modules/ngx_otel_module.so
+          # `modules-enabled` est un répertoire Ubuntu : le paquet nginx.org ne
+          # le fournit pas, et `tee` échouait dans le vide.
+          sudo mkdir -p /etc/nginx/modules-enabled
           grep -rqs ngx_otel_module /etc/nginx/modules-enabled/ || \
             echo 'load_module modules/ngx_otel_module.so;' \
               | sudo tee /etc/nginx/modules-enabled/50-mod-otel.conf
