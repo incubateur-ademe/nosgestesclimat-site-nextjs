@@ -137,9 +137,14 @@ binaire.
 . /etc/os-release
 curl -fsSL https://nginx.org/keys/nginx_signing.key \
   | sudo gpg --dearmor -o /usr/share/keyrings/nginx-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu $VERSION_CODENAME nginx" \
-  | sudo tee /etc/apt/sources.list.d/nginx.list
+# `printf` plutôt qu'un `echo` : la ligne doit tenir sur une seule, sinon apt
+# lit quatre champs au lieu de cinq (« Malformed entry ... (Component) »).
+printf 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu %s nginx\n' \
+  "$VERSION_CODENAME" | sudo tee /etc/apt/sources.list.d/nginx.list
+cat /etc/apt/sources.list.d/nginx.list     # doit afficher une seule ligne
+
 sudo apt-get update && sudo apt-get install -y nginx nginx-module-otel
+ls -l /etc/nginx/modules/ngx_otel_module.so
 
 # Le `nginx.conf` de nginx.org n'inclut pas `modules-enabled`, contrairement à
 # celui d'Ubuntu : le `load_module` va dans le contexte principal.
