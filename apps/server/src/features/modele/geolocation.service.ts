@@ -3,7 +3,9 @@ import { EntityNotFoundException } from '../../core/errors/EntityNotFoundExcepti
 import { findCountry } from './geolocation.repository.ts'
 
 export const getModeleCountry = (ip?: string) => {
-  if (!ip || !isIPv4(ip)) {
+  if (!isIPv4(ip)) {
+    // `request-ip` retombe sur l'adresse de la socket : `ip` n'est jamais vide,
+    // donc ce cas est un visiteur en IPv6 (ou une adresse non routable).
     throw new EntityNotFoundException('ip v4 required')
   }
 
