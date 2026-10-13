@@ -12,15 +12,6 @@ const resources = Object.fromEntries(
 
 const instances = new Map<string, i18n>()
 
-/**
- * Une seule instance par langue, initialisée de façon synchrone : les
- * traductions sont embarquées dans le bundle, il n'y a donc rien à attendre.
- *
- * L'`await` qui traînait ici rendait `async` chacun de ses appelants pour une
- * donnée disponible tout de suite. `getServerTranslation` reste async, mais
- * uniquement pour résoudre la locale (`getLocale`) ; l'initialisation i18next,
- * elle, est immédiate. On évite aussi une instance i18next par appel.
- */
 const initI18next = (language: string) => {
   const cachedInstance = instances.get(language)
 
