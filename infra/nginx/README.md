@@ -110,10 +110,11 @@ par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
     `deployment.environment.name=preprod|production` ;
   - exporte vers `https://eu.i.posthog.com/i/v1/logs` (OTLP HTTP) avec
     `Authorization: Bearer <POSTHOG_PROJECT_TOKEN>`.
-- Corrélation : le `trace_id` du log nginx est celui du span racine d'nginx
-  (`$otel_trace_id`, voir les traces ci-dessous) ; `$request_id` reste propagé à
-  l'app via `X-Request-ID` et conservé en attribut du log, pour retrouver une
-  requête par son id nginx même quand elle n'a pas été tracée.
+- Corrélation : le `trace_id` du log est celui du span racine d'nginx
+  (`$otel_trace_id`, voir les traces ci-dessous). C'est le seul identifiant
+  citabie : il résout une trace dans PostHog, et relie les logs de l'app comme
+  ses spans. `$request_id` a été retiré — plus personne ne le lisait, et un
+  identifiant que rien ne résout ne sert à rien.
   `connection` (extrait des deux logs) permet de filtrer dans PostHog une ligne
   d'`access.log` et la ligne d'`error.log` correspondante ; `upstream_addr`
   distingue un 502 « upstream a répondu » d'un 502 « aucun serveur joignable ».

@@ -118,7 +118,6 @@ map $http_upgrade $connection_upgrade {
 log_format json_combined escape=json
   '{'
     '"time_iso8601":"$time_iso8601",'
-    '"request_id":"$request_id",'
     '"trace_id":"$otel_trace_id",'
     '"connection":"$connection",'
     '"server.address":"$host",'
@@ -248,8 +247,6 @@ server {
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
-    # Corrélation : nginx → app → collecteur (mappé en trace_id du log).
-    proxy_set_header X-Request-ID $request_id;
     # Négo websocket transmise _uniquement_ si le client en initie une.
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
@@ -455,7 +452,7 @@ server {
     # Check LVAO config https://github.com/incubateur-ademe/quefairedemesobjets/blob/main/servers.conf.erb#L83-L98
     #
     # Chaque `location` repose son propre `proxy_set_header` : les en-têtes du
-    # niveau `server` (X-Forwarded-*, X-Request-ID, Upgrade) ne sont PAS hérités
+    # niveau `server` (X-Forwarded-*, Upgrade) ne sont PAS hérités
     # ici, tout ajout doit être répété dans les trois.
 
     # Un hostname littéral dans `proxy_pass` est résolu une seule fois, au
