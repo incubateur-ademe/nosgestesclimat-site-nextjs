@@ -150,7 +150,7 @@ apt update && apt-cache policy nginx nginx-module-otel
 # stable absent pour ce nom de code ? remplacer /packages/ubuntu par /packages/mainline/ubuntu
 ```
 
-Et l'installation garde le `nginx.conf` existant, donc le `sites-enabled` :
+Et l'installation garde le `nginx.conf` existant ; le vhost vit de toute façon dans `conf.d/`, que les deux dispositions incluent :
 
 ```bash
 apt install -o Dpkg::Options::="--force-confold" nginx nginx-module-otel

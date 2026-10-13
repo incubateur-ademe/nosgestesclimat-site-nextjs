@@ -62,8 +62,10 @@ runcmd:
   # déjà corrects).
   - sed -i 's/rotate 14/rotate 2/' /etc/logrotate.d/nginx
   - chown -R www-data:www-data /var/cache/nginx
-  - ln -sf /etc/nginx/sites-available/nosgestesclimat /etc/nginx/sites-enabled/
-  - rm -f /etc/nginx/sites-enabled/default
+  # Le vhost vit dans `conf.d/` : la seule disposition incluse par le
+  # `nginx.conf` de nginx.org, celui qui porte le module OTel. On retire le
+  # serveur par défaut qu'il livre.
+  - rm -f /etc/nginx/conf.d/default.conf
   - |
     ufw allow 22/tcp
     ufw allow 80/tcp
