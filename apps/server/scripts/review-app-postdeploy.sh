@@ -67,6 +67,17 @@ push_variable_to_site_review_app() {
   local name="$1"
   local value="$2"
 
+  # Sans cette garde, une valeur bricolée (`https://https://…`) part telle quelle et
+  # curl répond « Port number was not a decimal number », qui se lit comme un
+  # problème réseau alors que c'est la variable.
+  case "$FGP_PUSH_DB_URL_TO_SITE_URL" in
+    http://* | https://*) ;;
+    *)
+      echo "::error::FGP_PUSH_DB_URL_TO_SITE_URL is not a URL: [$FGP_PUSH_DB_URL_TO_SITE_URL]"
+      return 1
+      ;;
+  esac
+
   local body status
 
   echo "── Pushing $name to site review app ──────────────────────"
@@ -80,7 +91,7 @@ push_variable_to_site_review_app() {
     -H "Content-Type: application/json" \
     -H "X-FGP-Key: $FGP_PUSH_DB_URL_TO_SITE_TOKEN" \
     "${FGP_PUSH_DB_URL_TO_SITE_URL}/v1/apps/${SITE_REVIEW_APP}/variables" \
-    -d "{\"variable\": {\"name\": \"$name\", \"value\": \"$value\"}}" || echo "000")"
+    -d "{\"variable\": {\"name\": \"$name\", \"value\": \"$value\"}}" || true)"
 
   case "$status" in
     200 | 201) echo "  $name pushed." ;;
