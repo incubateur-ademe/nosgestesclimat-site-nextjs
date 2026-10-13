@@ -113,37 +113,6 @@ model GroupParticipant {
   @@schema("ngc")
 }
 
-enum ApiScopeName {
-  ngc
-  agir
-  two_tons
-
-  @@schema("ngc")
-}
-
-model IntegrationApiScope {
-  name        ApiScopeName           @id
-  description String
-  whitelists  IntegrationWhitelist[]
-  createdAt   DateTime               @default(now())
-  updatedAt   DateTime               @updatedAt
-
-  @@schema("ngc")
-}
-
-model IntegrationWhitelist {
-  id           String              @id @default(uuid()) @db.Uuid
-  emailPattern String
-  description  String
-  apiScopeName ApiScopeName
-  apiScope     IntegrationApiScope @relation(fields: [apiScopeName], references: [name])
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-
-  @@unique([emailPattern, apiScopeName])
-  @@schema("ngc")
-}
-
 enum JobStatus {
   pending
   running
@@ -463,7 +432,6 @@ model User {
 enum VerificationCodeUsage {
   login
   newsletter
-  apiToken
 
   @@schema("ngc")
 }

@@ -45,13 +45,7 @@ const AppSchema = v.strictObject({
 
 const SecuritySchema = v.strictObject({
   job: v.strictObject({ secret: v.string() }),
-  jwt: v.strictObject({ secret: v.string() }),
   internalApiKey: v.string(),
-})
-
-const AgirSchema = v.strictObject({
-  apiKey: v.string(),
-  url: v.pipe(v.string(), v.url()),
 })
 
 const BrevoSchema = v.strictObject({
@@ -78,11 +72,6 @@ const SentrySchema = v.strictObject({
   dsn: v.optional(v.string()),
 })
 
-const TwoTonsSchema = v.strictObject({
-  url: v.pipe(v.string(), v.url()),
-  bearerToken: v.string(),
-})
-
 const NotionSchema = v.strictObject({
   apiKey: v.string(),
   actionDatabaseId: v.string(),
@@ -95,14 +84,12 @@ const PosthogSchema = v.strictObject({
 })
 
 const ThirdPartySchema = v.strictObject({
-  agir: AgirSchema,
   brevo: BrevoSchema,
   connect: ConnectSchema,
   notion: NotionSchema,
   posthog: PosthogSchema,
   scaleway: ScalewaySchema,
   sentry: SentrySchema,
-  twoTons: TwoTonsSchema,
 })
 
 const ConfigSchema = v.pipe(
@@ -133,8 +120,6 @@ const ConfigSchema = v.pipe(
 
 const {
   env: {
-    AGIR_API_KEY,
-    AGIR_URL,
     APP_ENV,
     BREVO_API_KEY,
     BREVO_URL,
@@ -143,7 +128,6 @@ const {
     CONNECT_URL,
     INTERNAL_API_KEY,
     JOB_SECRET,
-    JWT_SECRET,
     NOTION_API_KEY,
     NOTION_ACTION_DATABASE_ID,
     NODE_ENV,
@@ -163,8 +147,6 @@ const {
     SCALEWAY_ROOT_PATH,
     SENTRY_DSN,
     SERVER_URL,
-    TWO_TONS_BEARER_TOKEN,
-    TWO_TONS_URL,
   },
 } = process
 
@@ -186,16 +168,9 @@ export const config = v.parse(ConfigSchema, {
     job: {
       secret: JOB_SECRET,
     },
-    jwt: {
-      secret: JWT_SECRET,
-    },
     internalApiKey: INTERNAL_API_KEY,
   },
   thirdParty: {
-    agir: {
-      apiKey: AGIR_API_KEY,
-      url: AGIR_URL,
-    },
     brevo: {
       apiKey: BREVO_API_KEY,
       url: BREVO_URL,
@@ -224,10 +199,6 @@ export const config = v.parse(ConfigSchema, {
     },
     sentry: {
       dsn: SENTRY_DSN,
-    },
-    twoTons: {
-      bearerToken: TWO_TONS_BEARER_TOKEN,
-      url: TWO_TONS_URL,
     },
   },
 })
