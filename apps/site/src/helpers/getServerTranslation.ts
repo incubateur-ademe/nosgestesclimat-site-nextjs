@@ -3,6 +3,7 @@ import initI18next from '@/locales/initServer'
 import { isLocale } from '@/utils/is-locale'
 import type { i18n } from 'i18next'
 import { getLocale } from './getLocale'
+
 interface Props {
   locale?: string
   namespace?: string

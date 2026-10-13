@@ -1,4 +1,5 @@
 import i18nConfig, { type Locale } from '@/i18nConfig'
+import { isLocale } from '@/utils/is-locale'
 import { locale } from 'next/root-params'
 
 /**
@@ -8,5 +9,6 @@ import { locale } from 'next/root-params'
  * so `locale()` is typed `string | undefined`. Falls back to the default locale.
  */
 export async function getLocale(): Promise<Locale> {
-  return ((await locale()) ?? i18nConfig.defaultLocale) as Locale
+  const _locale = await locale()
+  return isLocale(_locale) ? _locale : i18nConfig.defaultLocale
 }
