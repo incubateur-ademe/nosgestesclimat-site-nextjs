@@ -80,12 +80,10 @@ runcmd:
     set -euo pipefail
     mod=/etc/nginx/modules/ngx_otel_module.so
     [ -f "$mod" ] || { echo "$mod absent : paquet nginx-module-otel manquant ?" >&2; exit 1; }
-    # `modules-enabled` vient du paquet nginx d'Ubuntu : celui de nginx.org ne le
-    # crée pas, et l'écriture échouait silencieusement.
-    mkdir -p /etc/nginx/modules-enabled
-    grep -qs ngx_otel_module /etc/nginx/modules-enabled/ || \
-      echo 'load_module modules/ngx_otel_module.so;' \
-        > /etc/nginx/modules-enabled/50-mod-otel.conf
+    # Le `nginx.conf` de nginx.org n'inclut pas `modules-enabled`, contrairement à
+    # celui d'Ubuntu : `load_module` va donc dans le contexte principal.
+    grep -qs ngx_otel_module /etc/nginx/nginx.conf || \
+      sed -i '1i load_module modules/ngx_otel_module.so;' /etc/nginx/nginx.conf
     mkdir -p /etc/nginx/otel-enabled
     curl -fsSL \
       "https://raw.githubusercontent.com/__REPO__/refs/heads/__TEMPLATE_REF__/infra/nginx/otel.conf" \
