@@ -21,16 +21,25 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install nginx and gettext
-        run: sudo apt-get update && sudo apt-get install -y nginx gettext-base
+      - name: Install nginx with the OTel module, and gettext
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl gpg gettext-base
+          curl -fsSL https://nginx.org/keys/nginx_signing.key \
+            | sudo gpg --dearmor -o /usr/share/keyrings/nginx-archive-keyring.gpg
+          . /etc/os-release
+          echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu $VERSION_CODENAME nginx" \
+            | sudo tee /etc/apt/sources.list.d/nginx.list
+          sudo apt-get update
+          sudo apt-get install -y nginx nginx-module-otel
+          ls /etc/nginx/modules/ngx_otel_module.so
+          grep -rqs ngx_otel_module /etc/nginx/modules-enabled/ || \
+            echo 'load_module modules/ngx_otel_module.so;' \
+              | sudo tee /etc/nginx/modules-enabled/50-mod-otel.conf
 
       - name: Render template with dummy values
         run: |
           mkdir -p /tmp/nginx-test
-          # Le vhost inclut `/etc/nginx/otel-enabled/*.conf`, écrit par le
-          # provisioning : on crée le répertoire vide, comme sur la VM, pour que
-          # le glob se résolve sans le module OTel.
-          sudo mkdir -p /etc/nginx/otel-enabled
           DOMAIN=example.com UPSTREAM=example.com \
             envsubst '${DOMAIN} ${UPSTREAM}' \
             < infra/nginx/nginx.conf.tpl \
@@ -47,6 +56,7 @@ jobs:
       - name: Validate nginx config
         run: |
           cat > /tmp/nginx-test/nginx.conf <<'EOF'
+          include /etc/nginx/modules-enabled/*.conf;
           events {}
           http {
               include /tmp/nginx-test/site.conf;
