@@ -1,7 +1,8 @@
 import type { PartnerCampaignType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import { type Locale } from '@/i18nConfig'
-import { captureException } from '@sentry/nextjs'
+import _logger from '@/logger/logger.server'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { cacheLife } from 'next/cache'
 
 export async function fetchPartnerCampaign({
@@ -13,6 +14,12 @@ export async function fetchPartnerCampaign({
 }): Promise<PartnerCampaignType | null> {
   'use cache'
   cacheLife('hours')
+
+  const logger = _logger.child({
+    scope: 'site.action.fetchPartnerCampaign',
+    locale,
+    pollSlug,
+  })
 
   try {
     const partnerCampaignSearchParams = new URLSearchParams({
@@ -29,7 +36,7 @@ export async function fetchPartnerCampaign({
 
     return partnerCampaignsResponse.data[0]
   } catch (error) {
-    captureException(error)
+    logger.warn(toError(error))
 
     return null
   }

@@ -1,13 +1,16 @@
 import type { BannerType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import { type Locale } from '@/i18nConfig'
-import { captureException } from '@sentry/nextjs'
+import _logger from '@/logger/logger.server'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import dayjs from 'dayjs'
 import { cacheLife } from 'next/cache'
 
 export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
   'use cache'
   cacheLife('days')
+
+  const logger = _logger.child({ scope: 'site.action.fetchBanner', locale })
 
   try {
     const currentDate = dayjs()
@@ -30,7 +33,7 @@ export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
 
     return bannersResponse.data[0]
   } catch (error) {
-    captureException(error)
+    logger.warn(toError(error))
 
     return null
   }

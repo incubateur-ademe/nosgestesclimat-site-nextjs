@@ -3,8 +3,8 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
-import { TokenConsumedException } from '../../exceptions/token-consumed.exception.ts'
-import { TokenExpiredException } from '../../exceptions/token-expired.exception.ts'
+import { TokenConsumedError } from '../../errors/token-consumed.error.ts'
+import { TokenExpiredError } from '../../errors/token-expired.error.ts'
 import { refreshTokenFactory } from '../../factories/refresh-token.factory.ts'
 import { hashToken } from '../../helpers/hash-token.ts'
 import { findAllByUserId } from '../../repositories/refresh-token.repository.ts'
@@ -47,22 +47,22 @@ describe('rotateSession', () => {
     expect(payload.email).toBe(updatedEmail)
   })
 
-  it('throws TokenConsumedException when token is already used (replay)', async () => {
+  it('throws TokenConsumedError when token is already used (replay)', async () => {
     const { refreshToken } = await createSession(userId)
     await rotateSession(refreshToken)
     await expect(rotateSession(refreshToken)).rejects.toThrow(
-      TokenConsumedException
+      TokenConsumedError
     )
   })
 
-  it('throws TokenConsumedException for an unrecognised refresh token', async () => {
+  it('throws TokenConsumedError for an unrecognised refresh token', async () => {
     await expect(rotateSession('invalid-token')).rejects.toThrow(
-      TokenConsumedException
+      TokenConsumedError
     )
   })
 
-  it('throws TokenExpiredException for an expired refresh token', async () => {
+  it('throws TokenExpiredError for an expired refresh token', async () => {
     const { token } = await refreshTokenFactory.expired().create({ userId })
-    await expect(rotateSession(token)).rejects.toThrow(TokenExpiredException)
+    await expect(rotateSession(token)).rejects.toThrow(TokenExpiredError)
   })
 })

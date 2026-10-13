@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { SessionCryptoException } from '../../exceptions/session-crypto.exception.ts'
+import { SessionCryptoError } from '../../errors/session-crypto.error.ts'
 import { encryptSession } from '../../helpers/encrypt-session.ts'
 import type { SessionPayload } from '../../types/session.ts'
 import { decryptSession } from '../decrypt-session.service.ts'
@@ -16,14 +16,14 @@ describe('decryptSession', () => {
     expect(decrypted.email).toBe('test@example.com')
   })
 
-  it('throws SessionCryptoException for a corrupted token', async () => {
+  it('throws SessionCryptoError for a corrupted token', async () => {
     await expect(decryptSession('not-a-valid-token')).rejects.toThrow(
-      SessionCryptoException
+      SessionCryptoError
     )
   })
 
-  it('throws SessionCryptoException for an empty string', async () => {
-    await expect(decryptSession('')).rejects.toThrow(SessionCryptoException)
+  it('throws SessionCryptoError for an empty string', async () => {
+    await expect(decryptSession('')).rejects.toThrow(SessionCryptoError)
   })
 
   it('returns payload even when token is expired', async () => {

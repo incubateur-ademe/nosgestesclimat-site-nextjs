@@ -2,21 +2,37 @@ import type { NextConfig } from 'next'
 import { version } from './package.json'
 
 import createMDX from '@next/mdx'
+import { withPostHogConfig } from '@posthog/nextjs-config'
 import { SentryBuildOptions, withSentryConfig } from '@sentry/nextjs'
 
 import redirects from './config/redirects.js'
 
-import { APP_ENV } from './config/app-env'
 import { remoteImagesPatterns } from './config/remoteImagesPatterns'
+import { APP_ENV } from './src/env/app-env'
+// The build validates the server contract like the server does: the same
+// primitives (`requiredInProduction`, the one error shape), and a variable the
+// upload needs is missing exactly where the build runs.
+import { env } from './src/env/server'
 
 const withMDX = createMDX({
   extension: /\.mdx$/,
 })
 
+/** Build-time inlined values the browser cannot read from `process.env` at
+ * runtime. One source each — a twin left to hand drifts silently. */
+const browserEnv = {
+  ...(process.env.SOURCE_VERSION
+    ? { NEXT_PUBLIC_APP_VERSION: process.env.SOURCE_VERSION }
+    : {}),
+}
+
 const nextConfig = withMDX({
+  env: browserEnv,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   transpilePackages: ['@nosgestesclimat/core'],
+  // ioredis relies on native Node modules and must not be bundled.
+  serverExternalPackages: ['ioredis'],
   images: {
     remotePatterns: remoteImagesPatterns,
     minimumCacheTTL: 60 * 60 * 24 * 30,
@@ -40,16 +56,9 @@ const nextConfig = withMDX({
 
     return [...redirects, ...enRedirects]
   },
-  // Les assets du CMS sont référencés sous /_static/cms/.
-  //
-  // En prod/preprod, c'est nginx qui les sert depuis S3 (cache immutable) : les
-  // requêtes du navigateur n'atteignent jamais Next.js. Mais l'optimiseur
-  // d'images récupère les images locales par une requête interne vers l'app
-  // (`/_next/image?url=/_static/cms/…`), et nginx réécrit le `Host` vers l'app
-  // Scalingo : cette requête interne ne traverse donc pas nginx. Sans ce proxy,
-  // elle reçoit un 404 et l'optimiseur répond 400.
-  //
-  // On proxy donc /_static/cms/ vers S3 dans tous les environnements.
+  // CMS assets are served from S3 by nginx in prod, but Next's image optimizer
+  // fetches them via an internal request that bypasses nginx. Without this
+  // rewrite, that request gets a 404 and the optimizer returns 400.
   async rewrites() {
     return [
       {
@@ -95,7 +104,9 @@ const nextConfig = withMDX({
   },
 } satisfies NextConfig)
 
-const releaseName = `${process.env.SOURCE_VERSION ?? version}-${process.env.APP ?? APP_ENV}`
+// One release everywhere: the deployed commit SHA, the same string as
+// `service.version` — the deploy env already records the environment.
+const releaseName = process.env.SOURCE_VERSION ?? version
 const sentryConfig: SentryBuildOptions = {
   // Suppresses source map uploading logs during dev build
   silent: APP_ENV !== 'production',
@@ -117,6 +128,26 @@ const sentryConfig: SentryBuildOptions = {
   telemetry: false,
 }
 
+/** Source maps uploaded to PostHog at build time, then stripped from the
+ * output. Serving them live would break on rotating chunk names and publish
+ * sources. Skipped locally where there is nothing to symbolicate. */
+const configWithSourceMaps =
+  env.POSTHOG_PERSONAL_API_KEY && env.POSTHOG_PROJECT_ID
+    ? withPostHogConfig(nextConfig, {
+        personalApiKey: env.POSTHOG_PERSONAL_API_KEY,
+        projectId: env.POSTHOG_PROJECT_ID,
+        // The project is on the EU instance; the package defaults to the US one.
+        host: 'https://eu.posthog.com',
+        sourcemaps: {
+          // The CLI needs a name and a version, and the deploy environment has
+          // no git metadata to derive them from: the version is the commit, the
+          // name keeps one release timeline across the environments.
+          releaseName: 'nosgestesclimat-site',
+          releaseVersion: releaseName,
+        },
+      })
+    : nextConfig
+
 export default process.env.NODE_ENV === 'production'
-  ? withSentryConfig(nextConfig, sentryConfig)
-  : nextConfig
+  ? withSentryConfig(configWithSourceMaps, sentryConfig)
+  : configWithSourceMaps

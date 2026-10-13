@@ -54,6 +54,7 @@ export default async function Connexion({
         <QueryClientProviderWrapper>
           <UserProvider userSession={userSession}>
             <AuthenticateUserForm
+              intent="create-account"
               mode="signUp"
               buttonLabel={labels.buttonLabel}
               redirectPathname={redirectPathname}

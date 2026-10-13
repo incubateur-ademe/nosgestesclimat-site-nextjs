@@ -4,6 +4,8 @@ import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import type { Metadata } from 'next'
 
+import { APP_ENV } from '@/env/app-env'
+
 interface Props {
   locale: Locale
   title?: string
@@ -74,13 +76,9 @@ const buildURL = ({
 const buildAlternateUrl = (path: string, locale: Locale) =>
   `${BASE_URL}${getLocalizedPath(locale, path)}`
 
-/**
- * Absolute-URL `alternates` metadata: canonical + hreflang languages
- * (including x-default, derived from the default locale entry).
- *
- * Exported for pages that only need to declare alternates on top of
- * metadata inherited from a parent layout.
- */
+/** Absolute-URL `alternates` metadata: canonical + hreflang (including
+ * x-default). Exported for pages that only need alternates on top of inherited
+ * metadata. */
 export const buildAlternates = ({
   locale,
   canonical,
@@ -155,8 +153,6 @@ export function getMetadataObject({
     },
     alternates: definitiveAlternates,
     ...props,
-    ...(process.env.NEXT_PUBLIC_ENV !== 'production'
-      ? { robots: noIndexObject }
-      : {}),
+    ...(APP_ENV !== 'production' ? { robots: noIndexObject } : {}),
   }
 }

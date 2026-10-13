@@ -66,6 +66,8 @@ vi.mock('next/headers', () => ({
 // The real `redirect` throws to interrupt the action: the mock must do the same
 // or the code after it would keep running.
 vi.mock('next/navigation', () => ({
+  // No-op, like `redirect`: the test decides who throws.
+  unstable_rethrow: vi.fn(),
   unauthorized: () => {
     throw new Error('UNAUTHORIZED')
   },
@@ -104,30 +106,19 @@ describe('completeSimulation', () => {
     expect(nextMock.revalidatePath).not.toHaveBeenCalled()
   })
 
-  it('rejects an unfinished simulation without reaching the core service', async () => {
+  it('rejects a completion the client did not finish', async () => {
     vi.mocked(getUserSession).mockResolvedValue(aSession())
 
+    // The payload carries a finished simulation, so the schema settles it here;
+    // the core keeps its own check for the callers that do not come through an
+    // action.
     const result = await completeSimulation(aPayload({ progression: 0.5 }))
 
     expect(result).toMatchObject({
       success: false,
-      error: { code: 'simulation_incomplete' },
+      error: { code: 'invalid_payload' },
     })
     expect(serviceMock.completeSimulation).not.toHaveBeenCalled()
-    expect(nextMock.revalidatePath).not.toHaveBeenCalled()
-  })
-
-  it('passes the core `simulation_incomplete` failure through', async () => {
-    vi.mocked(getUserSession).mockResolvedValue(aSession())
-    const failure = {
-      success: false,
-      error: { code: 'simulation_incomplete' },
-    }
-    serviceMock.completeSimulation.mockResolvedValue(failure)
-
-    const result = await completeSimulation(aPayload())
-
-    expect(result).toEqual(failure)
     expect(nextMock.revalidatePath).not.toHaveBeenCalled()
   })
 

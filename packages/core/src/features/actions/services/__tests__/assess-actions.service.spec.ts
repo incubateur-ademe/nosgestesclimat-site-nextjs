@@ -2,22 +2,15 @@ import type { RawPublicodes } from 'publicodes'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { createTestEngine } from '../../../simulation-computation/factories/engine.factory.ts'
 import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
-import { ActionAssessmentPublicodesException } from '../../exceptions/action-assessment.exception.ts'
+import { ActionAssessmentPublicodesError } from '../../errors/action-assessment.error.ts'
 import { actionFactory } from '../../factories/action.factory.ts'
 import { createAssessActions } from '../assess-actions.service.ts'
 
-const noopLogger = {
-  error: () => {},
-  warn: () => {},
-  info: () => {},
-  debug: () => {},
-}
-const assessActions = createAssessActions({
-  logger: noopLogger,
-  captureException: () => {},
-})
+const logger = createTestLogger()
+const assessActions = createAssessActions({ logger })
 
 const APPLICABLE_RULE_ID = '00000000-0000-0000-0000-000000000001'
 const NOT_APPLICABLE_RULE_ID = '00000000-0000-0000-0000-000000000002'
@@ -118,6 +111,14 @@ describe('compute action assessments service', () => {
       where: { simulationId: simulation.id },
     })
     expect(assessments).toHaveLength(0)
+
+    // The assessment is dropped, not skipped and forgotten: the failure is
+    // reported.
+    expect(logger.error).toHaveBeenCalledWith(expect.any(Error), {
+      actionId: expect.any(String),
+      ruleId: APPLICABLE_RULE_ID,
+      dottedName: 'test . applicable',
+    })
   })
 
   it('skips actions whose nodeValue is an unexpected type', async () => {
@@ -129,12 +130,19 @@ describe('compute action assessments service', () => {
       where: { simulationId: simulation.id },
     })
     expect(assessments).toHaveLength(0)
+
+    // Detected, not thrown: no `Error` to report, so the line names the shape
+    // and the failure stays an anomaly to watch by rate.
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.stringContaining('Unexpected nodeValue type:'),
+      expect.objectContaining({ ruleId: BOOLEAN_RULE_ID })
+    )
   })
 
-  describe('throws ActionAssessmentPublicodesException', () => {
+  describe('throws ActionAssessmentPublicodesError', () => {
     it('when there are no actions in database', async () => {
       await expect(assessActions(engine, simulation.id)).rejects.toThrow(
-        ActionAssessmentPublicodesException
+        ActionAssessmentPublicodesError
       )
     })
 
@@ -150,7 +158,7 @@ describe('compute action assessments service', () => {
 
       await expect(
         assessActions(engineWithoutMeta, simulation.id)
-      ).rejects.toThrow(ActionAssessmentPublicodesException)
+      ).rejects.toThrow(ActionAssessmentPublicodesError)
     })
   })
 })

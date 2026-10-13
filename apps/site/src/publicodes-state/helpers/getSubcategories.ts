@@ -1,12 +1,14 @@
-import { captureMessageForSentryAndPosthog } from '@/utils/analytics/captureErrorForSentryAndPosthog'
+import _logger from '@/logger/logger.browser'
 import type {
   DottedName,
   NGCRule,
   NGCRuleNode,
   NGCRulesNodes,
 } from '@incubateur-ademe/nosgestesclimat'
+import { getSomme } from '@nosgestesclimat/core/features/simulations/helpers/get-somme'
 import { utils } from 'publicodes'
-import getSomme from './getSomme'
+
+const logger = _logger.child({ scope: 'site.engine.getSubcategories' })
 
 export function getSubcategories({
   categories,
@@ -19,31 +21,29 @@ export function getSubcategories({
   parsedRules: NGCRulesNodes | undefined
   safeGetRule?: (rule: DottedName) => NGCRuleNode | undefined
 }) {
+  // No parsed rules means no engine — the server builds none (`useEngine`), so
+  // every category would be reported as missing.
+  if (!parsedRules) {
+    return []
+  }
+
   return categories.reduce(
     (accumulator: DottedName[], currentValue: DottedName) => {
       const subCat: DottedName[] = []
 
       const rule = safeGetRule?.(currentValue)
       if (!rule) {
-        // eslint-disable-next-line no-console
-        console.error(
-          `[useCategories:subcategories] No rule found for ${currentValue}`
-        )
-        captureMessageForSentryAndPosthog(
-          `[useCategories:subcategories] No rule found for ${currentValue}`
-        )
+        logger.warn('No rule found for the category', {
+          dottedName: currentValue,
+        })
         return accumulator
       }
 
       const sum = getSomme(rule.rawNode as NGCRule)
       if (!sum) {
-        // eslint-disable-next-line no-console
-        console.error(
-          `[useCategories:subcategories] No [somme] found for ${currentValue}`
-        )
-        captureMessageForSentryAndPosthog(
-          `[useCategories:subcategories] No [somme] found for ${currentValue}`
-        )
+        logger.warn('No [somme] found for the category', {
+          dottedName: currentValue,
+        })
         return accumulator
       }
 
