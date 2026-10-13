@@ -1,5 +1,18 @@
 
 # ----------------------------------------------------------------------------
+# Traces OpenTelemetry
+# ----------------------------------------------------------------------------
+
+# Un span par requête, dont le contexte part vers l'app en `traceparent` : sans
+# cette racine, les traces de l'app arrivent orphelines et PostHog n'affiche
+# aucun span. Demande le module `ngx_otel_module` (voir README).
+otel_exporter {
+  endpoint 127.0.0.1:4317;   # receiver gRPC du collecteur, en local
+}
+otel_service_name nginx;
+otel_trace_context propagate;
+
+# ----------------------------------------------------------------------------
 # Rate limiting
 # ----------------------------------------------------------------------------
 
@@ -106,6 +119,7 @@ log_format json_combined escape=json
   '{'
     '"time_iso8601":"$time_iso8601",'
     '"request_id":"$request_id",'
+    '"trace_id":"$otel_trace_id",'
     '"connection":"$connection",'
     '"server.address":"$host",'
     '"network.protocol.version":"$server_protocol",'
@@ -192,6 +206,7 @@ server {
     server_name www.${DOMAIN};
 
     access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
+    otel_trace on;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
@@ -214,6 +229,7 @@ server {
     server_name ${DOMAIN};
 
     access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
+    otel_trace on;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;

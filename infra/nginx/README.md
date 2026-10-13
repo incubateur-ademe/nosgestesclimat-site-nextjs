@@ -110,14 +110,43 @@ par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
     `deployment.environment.name=preprod|production` ;
   - exporte vers `https://eu.i.posthog.com/i/v1/logs` (OTLP HTTP) avec
     `Authorization: Bearer <POSTHOG_PROJECT_TOKEN>`.
-- Corrélation : `$request_id` (généré par nginx) est propagé à l'app via
-  `X-Request-ID` et mappé en `trace_id` du log (convention OTel), pour relier
-  logs nginx et logs applicatifs partageant cet ID.
+- Corrélation : le `trace_id` du log nginx est celui du span racine d'nginx
+  (`$otel_trace_id`, voir les traces ci-dessous) ; `$request_id` reste propagé à
+  l'app via `X-Request-ID` et conservé en attribut du log, pour retrouver une
+  requête par son id nginx même quand elle n'a pas été tracée.
   `connection` (extrait des deux logs) permet de filtrer dans PostHog une ligne
   d'`access.log` et la ligne d'`error.log` correspondante ; `upstream_addr`
   distingue un 502 « upstream a répondu » d'un 502 « aucun serveur joignable ».
 - La clé est stockée dans `/etc/otelcol-contrib/otelcol-contrib.env` (0600),
   chargée par systemd (`EnvironmentFile`).
+
+### Traces
+
+Nginx émet un span par requête via le module **`ngx_otel_module`**, exporté en
+OTLP/gRPC vers le collecteur (pipeline `traces/nginx`, port 4317), qui les
+pousse vers PostHog à côté des logs. Ce span **est la racine** des traces de
+l'application : sans lui, les spans de l'app arrivent sans parent, PostHog les
+marque orphelines, et la vue traces n'affiche rien — un log applicatif ne peut
+alors plus ouvrir sa trace.
+
+Le module ne vient **que** de nginx.org : ni Debian ni Ubuntu ne fournissent de
+paquet `libnginx-mod-http-otel` (vérifié sur toutes les suites et architectures).
+Il faut donc installer `nginx` **et** `nginx-module-otel` depuis le dépôt
+nginx.org, la paire étant construite ensemble — un module dynamique doit
+correspondre exactement au binaire, celui d'Ubuntu ne peut pas le charger.
+
+```bash
+apt-cache policy nginx-module-otel libnginx-mod-http-otel   # état des lieux
+```
+
+Le conf et le module **partent ensemble** : `otel_exporter`, `otel_service_name`
+et `otel_trace` sont des directives inconnues sans le module, et nginx refuse
+alors de démarrer. Déployer le conf avant le module casserait le proxy.
+
+```bash
+nginx -t                                # avant tout rechargement
+journalctl -u otelcol-contrib -n 50     # le collecteur démarre-t-il ?
+```
 
 ### Résilience
 
