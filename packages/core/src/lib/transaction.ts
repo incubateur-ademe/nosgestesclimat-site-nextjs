@@ -54,7 +54,8 @@ class Rollback<Err extends ErrorWithCode = ErrorWithCode> extends Error {
 
   constructor(failure: Failure<Err>) {
     super('transaction rollback')
-    this.name = this.constructor.name
+    // A literal rather than the class name: a build renames the class to a letter.
+    this.name = 'Rollback'
     this.failure = failure
   }
 }

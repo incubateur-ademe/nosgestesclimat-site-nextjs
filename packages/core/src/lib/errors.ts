@@ -4,7 +4,10 @@ export class ErrorWithCode<Code extends string = string> extends Error {
   constructor(code: Code, message: string = code) {
     super(message)
     this.code = code
-    this.name = this.constructor.name
+    // The `code` rather than the class name: a build renames
+    // `ZeroFootprintError` to a letter, which is what Sentry and PostHog would
+    // then file the issue under.
+    this.name = code
   }
 
   toJSON() {
