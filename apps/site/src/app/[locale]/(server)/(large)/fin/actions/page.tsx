@@ -58,7 +58,9 @@ export default async function ResultatsActionsPage({
       topActions={actionsCatalogue.topActions}
       actions={actionsCatalogue.actions}
       assessmentStatus={actionsCatalogue.assessmentStatus}
-      plan={actionsCatalogue.plan}
+      plan={
+        actionsCatalogue.plan ?? { numberOfCommittedActions: 0, totalImpact: 0 }
+      }
       themes={themes}
       locale={locale}
       from="fin"
