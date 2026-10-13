@@ -59,6 +59,35 @@ export const findUserById = async (
   return row ? mapUser(row) : null
 }
 
+/** Stamps the account as active */
+export const recordUserActivity = async (
+  { userId }: { userId: string },
+  { session = prisma }: { session?: Transaction } = {}
+): Promise<void> => {
+  await session.user.update({
+    where: { id: userId },
+    data: { lastActivityAt: new Date() },
+    // `select` is narrowed to the id to reduce data transfer because Prisma
+    // always returns a row: nothing here reads it.
+    select: { id: true },
+  })
+}
+
+/**
+ * Reads the account's activity date. Null until a session is first issued.
+ */
+export const findUserLastActivityAt = async (
+  { userId }: { userId: string },
+  { session = prisma }: { session?: Transaction } = {}
+): Promise<Date | null> => {
+  const row = await session.user.findUnique({
+    where: { id: userId },
+    select: { lastActivityAt: true },
+  })
+
+  return row?.lastActivityAt ?? null
+}
+
 /**
  * Only a verified user has an email
  */
