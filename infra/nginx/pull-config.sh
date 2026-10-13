@@ -3,7 +3,13 @@ set -euo pipefail
 
 # ─── Configuration ──────────────────────────────────────────────
 DEPLOY_ENV="/etc/nginx/deploy.env"
-NGINX_CONF="/etc/nginx/sites-available/nosgestesclimat"
+# Le module OTel impose le nginx de nginx.org, dont le `nginx.conf` inclut
+# `conf.d/` et non `sites-enabled/`.
+NGINX_CONF="/etc/nginx/conf.d/nosgestesclimat.conf"
+
+# Un vhost resté dans `sites-enabled` serait chargé deux fois : le `nginx.conf`
+# d'Ubuntu, lui, inclut les deux répertoires.
+rm -f /etc/nginx/sites-enabled/nosgestesclimat
 BACKUP_CONF="${NGINX_CONF}.bak"
 STATE_DIR="/var/lib/nginx-config"
 LAST_SHA_FILE="${STATE_DIR}/last-sha"
@@ -204,7 +210,10 @@ systemctl reload nginx
 sleep 1
 
 # ─── Health check ───────────────────────────────────────────────
-if ! curl -fsS --max-time 10 \
+# `--http1.1` : en HTTP/2 le flux est parfois réinitialisé juste après les
+# en-têtes alors que la page répond 200, et curl sort en erreur 92 malgré le
+# succès — un faux négatif qui faisait annuler une configuration valide.
+if ! curl -fsS --http1.1 --retry 2 --max-time 10 \
     --resolve "${DOMAIN}:443:127.0.0.1" \
     "https://${DOMAIN}/" -o /dev/null; then
     echo "ERROR: health check failed after reload — rolling back"

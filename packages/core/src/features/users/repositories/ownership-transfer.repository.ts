@@ -162,11 +162,6 @@ export const transferOwnershipToUser = async (
       },
       data: {
         userId,
-        ...(verified
-          ? {
-              userEmail: email,
-            }
-          : {}),
       },
     }),
     session.groupParticipant.updateMany({
@@ -249,13 +244,7 @@ export const transferOwnershipToUser = async (
  * the signIn login path where the anonymous user may not have an email set.
  */
 export const transferSimulationsFromUser = async (
-  {
-    user: { id: userId, email },
-    previousUserId,
-  }: {
-    user: { id: string; email: string }
-    previousUserId: string
-  },
+  { userId, previousUserId }: { userId: string; previousUserId: string },
   { session }: { session: Transaction }
 ) => {
   if (previousUserId === userId) {
@@ -284,7 +273,6 @@ export const transferSimulationsFromUser = async (
       where: { userId: previousUserId },
       data: {
         userId,
-        userEmail: email,
       },
     }),
   ])

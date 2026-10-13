@@ -21,8 +21,24 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install nginx and gettext
-        run: sudo apt-get update && sudo apt-get install -y nginx gettext-base
+      - name: Install nginx with the OTel module, and gettext
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl gpg gettext-base
+          curl -fsSL https://nginx.org/keys/nginx_signing.key \
+            | sudo gpg --dearmor -o /usr/share/keyrings/nginx-archive-keyring.gpg
+          . /etc/os-release
+          echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu $VERSION_CODENAME nginx" \
+            | sudo tee /etc/apt/sources.list.d/nginx.list
+          sudo apt-get update
+          sudo apt-get install -y nginx nginx-module-otel
+          ls /etc/nginx/modules/ngx_otel_module.so
+          # `modules-enabled` est un répertoire Ubuntu : le paquet nginx.org ne
+          # le fournit pas, et `tee` échouait dans le vide.
+          sudo mkdir -p /etc/nginx/modules-enabled
+          grep -rqs ngx_otel_module /etc/nginx/modules-enabled/ || \
+            echo 'load_module modules/ngx_otel_module.so;' \
+              | sudo tee /etc/nginx/modules-enabled/50-mod-otel.conf
 
       - name: Render template with dummy values
         run: |
@@ -43,6 +59,7 @@ jobs:
       - name: Validate nginx config
         run: |
           cat > /tmp/nginx-test/nginx.conf <<'EOF'
+          include /etc/nginx/modules-enabled/*.conf;
           events {}
           http {
               include /tmp/nginx-test/site.conf;

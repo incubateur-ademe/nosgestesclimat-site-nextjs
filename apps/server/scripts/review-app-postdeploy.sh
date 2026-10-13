@@ -67,18 +67,43 @@ push_variable_to_site_review_app() {
   local name="$1"
   local value="$2"
 
+  # Sans cette garde, une valeur bricolée (`https://https://…`) part telle quelle et
+  # curl répond « Port number was not a decimal number », qui se lit comme un
+  # problème réseau alors que c'est la variable.
+  case "$FGP_PUSH_DB_URL_TO_SITE_URL" in
+    http://* | https://*) ;;
+    *)
+      echo "::error::FGP_PUSH_DB_URL_TO_SITE_URL is not a URL: [$FGP_PUSH_DB_URL_TO_SITE_URL]"
+      return 1
+      ;;
+  esac
+
+  local body status
+
   echo "── Pushing $name to site review app ──────────────────────"
   echo "  Server review app : $APP"
   echo "  Site review app   : $SITE_REVIEW_APP"
   echo "──────────────────────────────────────────────────────────"
 
-  curl -sSf -X POST \
+  body="$(mktemp)"
+  status="$(curl -sS -o "$body" -w '%{http_code}' -X POST \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
     -H "X-FGP-Key: $FGP_PUSH_DB_URL_TO_SITE_TOKEN" \
     "${FGP_PUSH_DB_URL_TO_SITE_URL}/v1/apps/${SITE_REVIEW_APP}/variables" \
-    -d "{\"variable\": {\"name\": \"$name\", \"value\": \"$value\"}}" \
-    || echo "$name may already exist, continuing."
+    -d "{\"variable\": {\"name\": \"$name\", \"value\": \"$value\"}}" || true)"
+
+  case "$status" in
+    200 | 201) echo "  $name pushed." ;;
+    # `POST` crée la variable : un second passage sur le même review app répond 409.
+    409) echo "  $name already set (409), continuing." ;;
+    *)
+      echo "::error::FGP refused $name (HTTP $status): $(cat "$body")"
+      rm -f "$body"
+      return 1
+      ;;
+  esac
+  rm -f "$body"
 }
 
 push_variable_to_site_review_app "DATABASE_URL" "$DATABASE_URL"
