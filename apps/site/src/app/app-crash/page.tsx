@@ -10,8 +10,8 @@ import Image from 'next/image'
 // default locale.
 const LOCALE: Locale = 'fr'
 
-export function generateMetadata() {
-  const { t } = getServerTranslation({ locale: LOCALE })
+export async function generateMetadata() {
+  const { t } = await getServerTranslation({ locale: LOCALE })
 
   return getMetadataObject({
     locale: LOCALE,

@@ -17,7 +17,7 @@ export default async function ParametresPage({
 }: PageProps<'/[locale]/organisations/[orgaSlug]/parametres'>) {
   const { orgaSlug, locale } = await params
   const { organisation } = await organisationAdminGuard(orgaSlug)
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
   const defaultValues = getFormDefaultValues(organisation)
 
   return (

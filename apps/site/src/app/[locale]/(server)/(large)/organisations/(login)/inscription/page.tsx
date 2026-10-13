@@ -45,7 +45,7 @@ export default async function Page({
     await redirectAfterLogin()
   }
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>

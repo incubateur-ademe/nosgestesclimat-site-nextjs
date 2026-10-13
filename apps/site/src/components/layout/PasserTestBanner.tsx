@@ -21,7 +21,7 @@ async function PasserTestBannerServer() {
   const locale = await getLocale()
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   if (hasCompletedCurrentSimulation(journey)) return null
   return (

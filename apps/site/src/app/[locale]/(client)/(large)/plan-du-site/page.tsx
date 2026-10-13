@@ -24,7 +24,7 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function PlanDuSitePage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
   const links = {
     'Nos outils': {
       bilan: {

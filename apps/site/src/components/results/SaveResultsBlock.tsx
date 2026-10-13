@@ -24,7 +24,7 @@ export default async function SaveResultsBlock({
   const locale = await getLocale()
   const user = await getUserSession()
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <HideInIframe hideIfNotFrenchRegion>
@@ -116,7 +116,7 @@ export default async function SaveResultsBlock({
               </ButtonLink>
             ) : (
               <QueryClientProviderWrapper>
-                <SaveResultsForm userSession={user} locale={locale} />
+                <SaveResultsForm userSession={user} />
               </QueryClientProviderWrapper>
             )}
           </div>

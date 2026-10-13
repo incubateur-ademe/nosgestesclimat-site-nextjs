@@ -5,7 +5,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function DailyGestureWaterFootprint() {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const gesturesKeysForTranslation = {
     alimentation: t('Alimentation'),

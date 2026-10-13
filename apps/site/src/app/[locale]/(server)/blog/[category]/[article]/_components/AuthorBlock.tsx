@@ -9,7 +9,7 @@ export default async function AuthorBlock({
   author?: AuthorType | null
 }) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   if (!author) return null
 

@@ -15,7 +15,7 @@ export default async function EventDetail({
   endDate,
 }: Props) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const dateLocale = locale === 'fr' ? 'fr-FR' : 'en-GB'
 

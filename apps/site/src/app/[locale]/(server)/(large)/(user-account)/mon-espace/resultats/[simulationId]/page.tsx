@@ -32,7 +32,7 @@ export default async function DetailledResultsPage({
 }: DefaultPageProps<{ params: { locale: string; simulationId: string } }>) {
   const { simulationId, locale } = await params
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const simulationResult = await getSimulationResult(simulationId)
 

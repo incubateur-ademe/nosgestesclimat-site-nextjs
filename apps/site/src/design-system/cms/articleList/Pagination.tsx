@@ -15,7 +15,7 @@ export default async function Pagination({
   totalPages: number
 }) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="text-center">

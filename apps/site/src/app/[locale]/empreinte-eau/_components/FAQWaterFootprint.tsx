@@ -5,7 +5,7 @@ import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 export default async function FAQWaterFootprint() {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <FAQ

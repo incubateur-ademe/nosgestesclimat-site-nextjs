@@ -8,7 +8,7 @@ import IllustratedPointsList from './_components/IllustratedPointsList'
 
 export default async function Page({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>

@@ -16,7 +16,7 @@ export default async function Email({
 }: PageProps<'/[locale]/simulateur/email'>) {
   const { locale } = await params
   const { confirm } = await searchParams
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const user = await getUserSession()
   const {

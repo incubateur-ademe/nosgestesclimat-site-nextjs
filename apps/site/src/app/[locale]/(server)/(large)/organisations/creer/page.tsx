@@ -18,7 +18,7 @@ export default async function CreationPage({
   }
 
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>

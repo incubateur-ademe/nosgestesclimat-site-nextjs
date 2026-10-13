@@ -5,7 +5,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function MotivationSectionCarbonFootprint() {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
   return (
     <MotivationSection
       title={t(

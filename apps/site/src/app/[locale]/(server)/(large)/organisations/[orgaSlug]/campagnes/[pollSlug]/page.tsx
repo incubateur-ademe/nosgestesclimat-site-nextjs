@@ -30,7 +30,7 @@ export default async function CampagnePage({
     pollIdOrSlug: pollSlug,
   })
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>

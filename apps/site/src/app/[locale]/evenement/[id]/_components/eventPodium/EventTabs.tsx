@@ -63,7 +63,7 @@ interface Props {
 
 export default async function EventTabs({ filter, params }: Props) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const rawFilter = Array.isArray(filter) ? filter[0] : filter
   const activeFilter: FilterValue =

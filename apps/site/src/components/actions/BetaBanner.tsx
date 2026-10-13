@@ -5,7 +5,7 @@ import Trans from '../translation/trans/TransServer'
 
 export default async function BetaBanner() {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="-mt-2 mb-8 md:-mt-4">

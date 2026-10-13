@@ -15,7 +15,7 @@ export default async function DocumentationLanding({
   rules: NGCRules
 }) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   // We want to be able to define an order for the cards and their summary here
   const fixedCardSummaries = {

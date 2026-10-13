@@ -12,7 +12,7 @@ import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,

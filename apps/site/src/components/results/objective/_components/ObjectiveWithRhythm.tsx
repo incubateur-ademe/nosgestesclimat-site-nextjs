@@ -147,7 +147,7 @@ export default async function ObjectiveWithRhythm({
   shouldDisplayBadge = true,
 }: Props) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
   const {
     displayValue,
     unit,

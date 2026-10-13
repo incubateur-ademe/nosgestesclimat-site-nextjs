@@ -20,7 +20,7 @@ export default async function Carousel({
   ...rest
 }: CarouselProps) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const translations = {
     prevSlideMessage: t(

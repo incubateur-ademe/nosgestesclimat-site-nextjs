@@ -15,7 +15,7 @@ export default async function InvitationPage({
   group: Group
 }) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="p-4 md:p-8">

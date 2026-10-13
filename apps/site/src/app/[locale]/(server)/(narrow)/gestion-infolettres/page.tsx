@@ -29,7 +29,7 @@ export default async function NewsletterManagementPage({
     redirect(`${MON_ESPACE_SETTINGS_PATH}#infolettres`)
   }
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
   const newsletters = await getNewsletters({ locale })
 
   return (

@@ -31,7 +31,7 @@ export default async function FooterServer({
   'use cache'
   cacheLife('days')
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <footer

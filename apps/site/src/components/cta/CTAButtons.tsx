@@ -40,7 +40,7 @@ async function ServerCTAButtons({
   const locale = await getLocale()
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const showRestart =
     withRestart &&

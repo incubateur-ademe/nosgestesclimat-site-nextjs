@@ -28,7 +28,7 @@ export default async function FootprintBlock({
   unitSuffix,
 }: Props) {
   const locale = await getLocale()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
   const { formattedValue, unit } = formatFootprint(value, {
     locale,
     t,

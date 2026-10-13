@@ -32,7 +32,7 @@ export default async function GroupNamePage({
   const lastSimulation = await throwNextError(() =>
     getLastCompletedSimulation()
   )
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="pb-8">
