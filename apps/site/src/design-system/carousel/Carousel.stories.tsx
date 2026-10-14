@@ -30,7 +30,6 @@ const SampleCard = ({ color, label }: { color: string; label: string }) => (
 
 export const Default: Story = {
   args: {
-    locale: 'fr',
     children: [
       <SampleCard key="1" color="#4F46E5" label="Slide 1" />,
       <SampleCard key="2" color="#7C3AED" label="Slide 2" />,
@@ -42,7 +41,6 @@ export const Default: Story = {
 
 export const TwoSlides: Story = {
   args: {
-    locale: 'fr',
     children: [
       <SampleCard key="1" color="#059669" label="Première" />,
       <SampleCard key="2" color="#0891B2" label="Deuxième" />,
@@ -52,7 +50,6 @@ export const TwoSlides: Story = {
 
 export const SingleSlide: Story = {
   args: {
-    locale: 'fr',
     children: [<SampleCard key="1" color="#D97706" label="Seule slide" />],
   },
 }

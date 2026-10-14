@@ -5,7 +5,6 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import Script from 'next/script'
 import { ContactIframe } from './_components/ContactIframe'
@@ -18,9 +17,7 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function Contact({ params }: DefaultPageProps) {
-  const { locale } = await params
-
+export default function Contact() {
   return (
     <div className="pb-4">
       <div className="flex flex-wrap gap-8 pb-8 md:flex-nowrap">
@@ -28,7 +25,7 @@ export default async function Contact({ params }: DefaultPageProps) {
           <Title
             title={
               <span className="flex items-center">
-                <Trans locale={locale}>Contact</Trans>
+                <Trans>Contact</Trans>
 
                 <MailIcon className="fill-primary-500 ml-3" />
               </span>
@@ -36,7 +33,7 @@ export default async function Contact({ params }: DefaultPageProps) {
           />
 
           <p>
-            <Trans locale={locale}>
+            <Trans>
               N'hésitez pas à consulter notre{' '}
               <Link href="/questions-frequentes">FAQ</Link> avant de nous
               écrire, vous y trouverez sans doute la réponse à votre question !
@@ -44,7 +41,7 @@ export default async function Contact({ params }: DefaultPageProps) {
           </p>
 
           <p>
-            <Trans locale={locale}>
+            <Trans>
               Pour toute autre remarque ou question, vous pouvez nous envoyer un
               message via le formulaire de contact ci-dessous.
             </Trans>

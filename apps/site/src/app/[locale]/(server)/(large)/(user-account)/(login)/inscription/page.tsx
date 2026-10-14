@@ -24,17 +24,12 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function Connexion({
-  params,
-  searchParams,
-}: DefaultPageProps) {
-  const { locale } = await params
+export default async function Connexion({ searchParams }: DefaultPageProps) {
   const resolvedSearchParams = await searchParams
   const validSearchParams = validateSearchParams(resolvedSearchParams)
-  const { labels, redirectPathname } = getSignupProps({
-    from: validSearchParams?.from,
-    locale,
-  })
+  const { labels, redirectPathname } = await getSignupProps(
+    validSearchParams?.from
+  )
 
   const userSession = await getUserSession()
 
@@ -68,68 +63,48 @@ export default async function Connexion({
         className="ml-7 hidden w-1/2 self-start bg-fuchsia-50 lg:flex"
         highlights={[
           <span key="highlight1">
-            <Trans
-              i18nKey="signup.colourBlock.highlight1.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="signup.colourBlock.highlight1.title.prefix">
               Retrouvez
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="signup.colourBlock.highlight1.title.strong"
-                locale={locale}>
+              <Trans i18nKey="signup.colourBlock.highlight1.title.strong">
                 vos résultats d’empreinte
               </Trans>
             </strong>
           </span>,
           <span key="highlight2">
-            <Trans
-              i18nKey="signup.colourBlock.highlight2.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="signup.colourBlock.highlight2.title.prefix">
               Découvrez
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="signup.colourBlock.highlight2.title.strong1"
-                locale={locale}>
+              <Trans i18nKey="signup.colourBlock.highlight2.title.strong1">
                 vos actions climat personnalisées
               </Trans>
             </strong>{' '}
-            <Trans
-              i18nKey="signup.colourBlock.highlight2.title.middle"
-              locale={locale}>
+            <Trans i18nKey="signup.colourBlock.highlight2.title.middle">
               et
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="signup.colourBlock.highlight2.title.strong2"
-                locale={locale}>
+              <Trans i18nKey="signup.colourBlock.highlight2.title.strong2">
                 suivez vos progrès
               </Trans>
             </strong>
           </span>,
           <span key="highlight3">
             <strong>
-              <Trans
-                i18nKey="signup.colourBlock.highlight3.title.strong1"
-                locale={locale}>
+              <Trans i18nKey="signup.colourBlock.highlight3.title.strong1">
                 Lancez
               </Trans>
             </strong>{' '}
-            <Trans
-              i18nKey="signup.colourBlock.highlight3.title.middle"
-              locale={locale}>
+            <Trans i18nKey="signup.colourBlock.highlight3.title.middle">
               et
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="login.colourBlock.login.highlight3.strong2"
-                locale={locale}>
+              <Trans i18nKey="login.colourBlock.login.highlight3.strong2">
                 retrouvez vos tests collectifs
               </Trans>
             </strong>{' '}
-            <Trans
-              i18nKey="login.colourBlock.login.highlight3.end"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.login.highlight3.end">
               (organisations, famille, amis...)
             </Trans>
           </span>,

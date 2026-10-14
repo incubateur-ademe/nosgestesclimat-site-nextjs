@@ -23,7 +23,7 @@ export default async function ResultatsActionsPage({
 }: DefaultPageProps) {
   const { locale } = await params
   const user = await getUserSession()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   if (!user) {
     redirect(ACTIONS_PATH)
@@ -37,7 +37,7 @@ export default async function ResultatsActionsPage({
 
   // No finished simulation: nothing to personalize from.
   if (actionsCatalogue.assessmentStatus === null) {
-    return <NoResultsBlock locale={locale} />
+    return <NoResultsBlock />
   }
 
   return (
@@ -62,7 +62,6 @@ export default async function ResultatsActionsPage({
         actionsCatalogue.plan ?? { numberOfCommittedActions: 0, totalImpact: 0 }
       }
       themes={themes}
-      locale={locale}
       from="fin"
       totalFootprint={currentSimulation?.computedResults.carbone.bilan}
     />

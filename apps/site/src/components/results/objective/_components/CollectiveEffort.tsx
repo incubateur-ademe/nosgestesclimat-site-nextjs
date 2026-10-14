@@ -1,20 +1,17 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
 import Card from '@/design-system/layout/Card'
-import type { Locale } from '@/i18nConfig'
 import { twMerge } from "cn";
 
 interface Props {
-  locale: Locale
   className?: string
 }
 
-export default function CollectiveEfforts({ locale, className }: Props) {
+export default function CollectiveEfforts({ className }: Props) {
   return (
     <div className={twMerge('mt-6', className)}>
       <Badge className="text-default border-none text-sm md:text-base">
         <Trans
-          locale={locale}
           i18nKey="results.objective.collectiveEffort.title">
           Important : c'est aussi un effort collectif
         </Trans>
@@ -26,7 +23,6 @@ export default function CollectiveEfforts({ locale, className }: Props) {
             <h3 className="mb-5">
               <Badge color="purple" border={false}>
                 <Trans
-                  locale={locale}
                   i18nKey="results.objective.collectiveEffort.state">
                   L'État français
                 </Trans>
@@ -34,7 +30,6 @@ export default function CollectiveEfforts({ locale, className }: Props) {
             </h3>
             <p>
               <Trans
-                locale={locale}
                 i18nKey="results.objective.collectiveEffort.stateDescription">
                 Il peut accélérer la <strong>décarbonation</strong> de la
                 société en <strong>votant des lois</strong> et des{' '}
@@ -48,7 +43,6 @@ export default function CollectiveEfforts({ locale, className }: Props) {
             <h3 className="mb-5">
               <Badge color="yellow" border={false}>
                 <Trans
-                  locale={locale}
                   i18nKey="results.objective.collectiveEffort.collectivities">
                   Les collectivités
                 </Trans>
@@ -56,7 +50,6 @@ export default function CollectiveEfforts({ locale, className }: Props) {
             </h3>
             <p>
               <Trans
-                locale={locale}
                 i18nKey="results.objective.collectiveEffort.collectivitiesDescription">
                 Par leurs choix d’aménagements du territoire, elles participent
                 à{' '}
@@ -70,7 +63,6 @@ export default function CollectiveEfforts({ locale, className }: Props) {
             <h3 className="mb-5">
               <Badge color="red" border={false}>
                 <Trans
-                  locale={locale}
                   i18nKey="results.objective.collectiveEffort.companies">
                   Les entreprises
                 </Trans>
@@ -78,7 +70,6 @@ export default function CollectiveEfforts({ locale, className }: Props) {
             </h3>
             <p>
               <Trans
-                locale={locale}
                 i18nKey="results.objective.collectiveEffort.companiesDescription">
                 Sous l'impulsion de l'État et des citoyens, les entreprises
                 travaillent à la{' '}

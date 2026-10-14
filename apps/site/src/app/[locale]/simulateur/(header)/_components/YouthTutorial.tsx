@@ -5,7 +5,6 @@ import Emoji from '@/design-system/utils/Emoji'
 import Image from 'next/image'
 
 interface Props {
-  locale: string
   buttonNext: React.ReactNode
 }
 
@@ -34,13 +33,13 @@ const MiniCard = ({
 }
 
 // Version displayed for pupils and students
-export default function YouthTutorial({ locale, buttonNext }: Props) {
+export default function YouthTutorial({ buttonNext }: Props) {
   return (
     <div className="mb-16 flex flex-col" data-testid="youth-tutorial">
       <section className="order-0 mt-8 mb-8 w-xl max-w-full md:mx-auto md:mb-10">
         <div className="mb-2 flex items-center md:gap-4">
           <Title hasSeparator={false} size="lg">
-            <Trans locale={locale} i18nKey="youthTutorial.title">
+            <Trans i18nKey="youthTutorial.title">
               Découvre ton impact{' '}
               <span className="text-primary-600">sur la planète</span>
             </Trans>
@@ -57,7 +56,7 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
         </div>
 
         <p className="mb-6 text-center">
-          <Trans locale={locale} i18nKey="youthTutorial.subtitle">
+          <Trans i18nKey="youthTutorial.subtitle">
             Un test rapide pour comprendre ton empreinte carbone et agir !
           </Trans>
         </p>
@@ -67,9 +66,7 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
             <div className="bg-primary-100 text-primary-900 rounded-xl px-4 py-2 font-medium whitespace-nowrap">
               <Emoji className="mr-1">⏱️</Emoji>
 
-              <Trans locale={locale} i18nKey="youthTutorial.list.time">
-                Rapide
-              </Trans>
+              <Trans i18nKey="youthTutorial.list.time">Rapide</Trans>
             </div>
           </li>
 
@@ -77,9 +74,7 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
             <div className="bg-primary-100 text-primary-900 rounded-xl px-4 py-2 font-medium whitespace-nowrap">
               <Emoji className="mr-1">🎯</Emoji>
 
-              <Trans locale={locale} i18nKey="youthTutorial.list.custom">
-                Résultat perso
-              </Trans>
+              <Trans i18nKey="youthTutorial.list.custom">Résultat perso</Trans>
             </div>
           </li>
 
@@ -87,7 +82,7 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
             <div className="bg-primary-100 text-primary-900 rounded-xl px-4 py-2 font-medium whitespace-nowrap">
               <Emoji className="mr-1">💡</Emoji>
 
-              <Trans locale={locale} i18nKey="youthTutorial.list.advice">
+              <Trans i18nKey="youthTutorial.list.advice">
                 Conseils concrets
               </Trans>
             </div>
@@ -99,16 +94,12 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
         <MiniCard
           emoji={'🙋‍♀️'}
           title={
-            <Trans
-              locale={locale}
-              i18nKey="youthTutorial.secondlist.forYou.title">
+            <Trans i18nKey="youthTutorial.secondlist.forYou.title">
               Réponds pour toi
             </Trans>
           }
           subtitle={
-            <Trans
-              locale={locale}
-              i18nKey="youthTutorial.secondlist.forYou.body">
+            <Trans i18nKey="youthTutorial.secondlist.forYou.body">
               C'est ton empreinte, pas celle de ta famille
             </Trans>
           }
@@ -117,16 +108,12 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
         <MiniCard
           emoji={'🤷‍♂️'}
           title={
-            <Trans
-              locale={locale}
-              i18nKey="youthTutorial.secondlist.dontKnow.title">
+            <Trans i18nKey="youthTutorial.secondlist.dontKnow.title">
               Pas grave si tu ne sais pas
             </Trans>
           }
           subtitle={
-            <Trans
-              locale={locale}
-              i18nKey="youthTutorial.secondlist.dontKnow.body">
+            <Trans i18nKey="youthTutorial.secondlist.dontKnow.body">
               Choisis "je ne sais pas", on gère la suite
             </Trans>
           }
@@ -135,14 +122,12 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
         <MiniCard
           emoji={'⚡️'}
           title={
-            <Trans
-              locale={locale}
-              i18nKey="youthTutorial.secondlist.fast.title">
+            <Trans i18nKey="youthTutorial.secondlist.fast.title">
               Rapide et utile
             </Trans>
           }
           subtitle={
-            <Trans locale={locale} i18nKey="youthTutorial.secondlist.fast.body">
+            <Trans i18nKey="youthTutorial.secondlist.fast.body">
               Quelques minutes pour tout comprendre
             </Trans>
           }
@@ -151,16 +136,12 @@ export default function YouthTutorial({ locale, buttonNext }: Props) {
         <MiniCard
           emoji={'🏆'}
           title={
-            <Trans
-              locale={locale}
-              i18nKey="youthTutorial.secondlist.result.title">
+            <Trans i18nKey="youthTutorial.secondlist.result.title">
               Résultat + actions
             </Trans>
           }
           subtitle={
-            <Trans
-              locale={locale}
-              i18nKey="youthTutorial.secondlist.result.body">
+            <Trans i18nKey="youthTutorial.secondlist.result.body">
               Ton score et des idées pour agir
             </Trans>
           }

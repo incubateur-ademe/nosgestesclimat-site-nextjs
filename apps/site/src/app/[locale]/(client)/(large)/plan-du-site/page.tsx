@@ -9,7 +9,6 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import type { DefaultPageProps } from '@/types'
 import LinkList from './_components/LinkList'
 
 export const generateMetadata = getCommonMetadata({
@@ -22,9 +21,8 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function PlanDuSitePage({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+export default async function PlanDuSitePage() {
+  const { t } = await getServerTranslation()
   const links = {
     'Nos outils': {
       bilan: {
@@ -118,36 +116,34 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
     <div data-testid="plan-links" className="mb-12">
       <Title
         title={
-          <Trans locale={locale} i18nKey="publicodes.planDuSite.title">
-            Plan du site
-          </Trans>
+          <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
         }
       />
 
       <section className="mb-2">
         <h2 data-testid="plan-outils-title">
-          <Trans locale={locale}>Nos outils</Trans>
+          <Trans>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans locale={locale}>Mobilisez votre entourage</Trans>
+          <Trans>Mobilisez votre entourage</Trans>
         </h2>
         <LinkList entries={links['Mobilisez votre entourage']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans locale={locale}>Informations</Trans>
+          <Trans>Informations</Trans>
         </h2>
         <LinkList entries={links.Informations} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans locale={locale}>Documentations</Trans>
+          <Trans>Documentations</Trans>
         </h2>
         <LinkList entries={links.Documentations} />
       </section>

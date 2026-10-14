@@ -9,7 +9,7 @@ export default async function Unauthorized() {
   const locale = await getLocaleFromHeaders()
   return (
     <ErrorPage locale={locale}>
-      <Trans i18nKey="pages.result.unauthorized" locale={locale}>
+      <Trans i18nKey="pages.result.unauthorized">
         <Title tag="h1">Ces résultats sont protégés</Title>
         <p>
           Pour y accéder, vous devez vous connecter avec le même e-mail que

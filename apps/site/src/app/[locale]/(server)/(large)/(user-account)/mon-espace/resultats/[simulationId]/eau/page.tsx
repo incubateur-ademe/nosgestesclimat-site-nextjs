@@ -31,7 +31,7 @@ export default async function DetailledResultsWaterPage({
 }: DefaultPageProps<{ params: { locale: string; simulationId: string } }>) {
   const { simulationId, locale } = await params
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const simulationResult = await getSimulationResult(simulationId)
 
@@ -68,7 +68,6 @@ export default async function DetailledResultsWaterPage({
       />
 
       <FootprintsLinks
-        locale={locale}
         currentPage="eau"
         basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />

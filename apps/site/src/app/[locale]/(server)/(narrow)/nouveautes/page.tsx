@@ -24,7 +24,7 @@ export default async function Releases({ params }: DefaultPageProps) {
   const { locale } = await params
   const releases = await getPosts(locale)
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <>
@@ -34,14 +34,14 @@ export default async function Releases({ params }: DefaultPageProps) {
             data-testid="news-title"
             title={
               <span className="flex items-center">
-                <Trans locale={locale}>Les nouveautés</Trans>
+                <Trans>Les nouveautés</Trans>
                 <SparklesIcon className="fill-divers-300 ml-2" />
               </span>
             }
           />
 
           <p className="mb-0 max-w-74">
-            <Trans locale={locale}>
+            <Trans>
               Nous améliorons le site en continu à partir de{' '}
               <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la
               tambouille interne de Nos Gestes Climat.

@@ -10,7 +10,6 @@ interface Props {
   heroIllustration: ReactNode
   heroPartners: ReactNode
   children: ReactNode
-  locale: string
   withHeader?: boolean
 }
 
@@ -20,7 +19,6 @@ export default function LandingPage({
   heroIllustration,
   heroPartners,
   children,
-  locale,
   withHeader = true,
 }: Props) {
   return (
@@ -35,7 +33,7 @@ export default function LandingPage({
           partners={heroPartners}
         />
 
-        <DynamicCounter locale={locale} />
+        <DynamicCounter />
 
         {children}
       </Main>

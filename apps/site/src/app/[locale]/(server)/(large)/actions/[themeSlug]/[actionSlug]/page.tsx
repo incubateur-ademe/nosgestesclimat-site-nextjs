@@ -51,7 +51,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale, actionSlug } = await params
 
   const user = await getUserSession()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   const [actionDetails, alternateLocales] = await Promise.all([
     getPersonalizedActionDetails(actionSlug, locale, user?.id),
     getActionAlternateLocales(actionSlug),
@@ -133,7 +133,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
 
   return (
     <div className="pt-2">
-      <BetaBanner locale={locale} />
+      <BetaBanner />
       <ActionTracker eventName="consulted" action={action} />
       <GoBackLink
         href={
@@ -167,9 +167,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
               className={`rounded-xl border px-5 py-2 ${themeClasses.impactBorder}`}>
               <p
                 className={`mb-0 text-sm/normal font-bold ${themeClasses.impactColor}`}>
-                <Trans
-                  locale={locale}
-                  i18nKey="actions.detailPage.impact.title">
+                <Trans i18nKey="actions.detailPage.impact.title">
                   Réduction max sur votre empreinte
                 </Trans>
               </p>
@@ -193,9 +191,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
           className="flex scroll-mt-24 flex-col gap-5 md:col-span-full md:flex-row">
           <div className={action.media ? 'flex-1/2' : ''}>
             <SectionTitle color="primary">
-              <Trans
-                locale={locale}
-                i18nKey="actions.detailPage.sections.understand">
+              <Trans i18nKey="actions.detailPage.sections.understand">
                 Je comprends l'enjeu
               </Trans>
             </SectionTitle>
@@ -216,9 +212,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
             id={SECTION_ID_I_ACT}
             className={twMerge('scroll-mt-24', halfWidthSectionClassName)}>
             <SectionTitle color="yellow">
-              <Trans locale={locale} i18nKey="actions.detailPage.sections.act">
-                J'agis
-              </Trans>
+              <Trans i18nKey="actions.detailPage.sections.act">J'agis</Trans>
             </SectionTitle>
             <Markdown omitMarginTopOnFirstElement>{action.tips}</Markdown>
           </Section>
@@ -228,9 +222,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
             id={SECTION_ID_I_BENEFIT}
             className={twMerge('scroll-mt-24', halfWidthSectionClassName)}>
             <SectionTitle color="green">
-              <Trans
-                locale={locale}
-                i18nKey="actions.detailPage.sections.incentives">
+              <Trans i18nKey="actions.detailPage.sections.incentives">
                 J'y gagne
               </Trans>
             </SectionTitle>
@@ -243,14 +235,11 @@ export default async function ActionPage({ params, searchParams }: Props) {
           <ThemeSection
             theme={action.theme}
             actions={otherThemeActions}
-            locale={locale}
             from={from}
             trackingSource="cross-sell"
             className="md:col-span-full"
             title={
-              <Trans
-                locale={locale}
-                i18nKey="actions.detailPage.sections.otherThemeActions.title">
+              <Trans i18nKey="actions.detailPage.sections.otherThemeActions.title">
                 Découvrez d’autres actions pour réduire votre empreinte
               </Trans>
             }
@@ -264,9 +253,7 @@ export default async function ActionPage({ params, searchParams }: Props) {
               isThemeSectionDisplayed && 'md:col-span-full'
             )}>
             <SectionTitle color="blue">
-              <Trans
-                locale={locale}
-                i18nKey="actions.detailPage.sections.furtherReading">
+              <Trans i18nKey="actions.detailPage.sections.furtherReading">
                 À découvrir aussi
               </Trans>
             </SectionTitle>
@@ -333,7 +320,6 @@ function Impact({
 
   const text = (
     <Trans
-      locale={locale}
       i18nKey="actions.detailPage.impact.value"
       values={{
         formattedValue,

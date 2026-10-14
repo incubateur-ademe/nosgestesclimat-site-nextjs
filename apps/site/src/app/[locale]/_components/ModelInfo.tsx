@@ -1,28 +1,24 @@
 import TitleDescLinkBlock from '@/components/landing-pages/TitleDescLinkBlock'
 import Trans from '@/components/translation/trans/TransServer'
 
-export default function ModelInfo({ locale }: { locale: string }) {
+export default function ModelInfo() {
   return (
     <div className="bg-heroLightBackground px-4 py-12 md:py-20">
       <div className="flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-2xl md:text-3xl">
-          <Trans locale={locale}>Un modèle de calcul fiable</Trans>
+          <Trans>Un modèle de calcul fiable</Trans>
         </h2>
 
         <div className="flex flex-col gap-16 md:flex-row md:gap-10">
           <TitleDescLinkBlock
-            title={
-              <Trans locale={locale}>Basé sur les données de l’ADEME</Trans>
-            }
+            title={<Trans>Basé sur les données de l’ADEME</Trans>}
             description={
               <>
-                <Trans locale={locale}>Retrouvez toute l’expertise de</Trans>{' '}
+                <Trans>Retrouvez toute l’expertise de</Trans>{' '}
                 <strong className="text-primary-600">
-                  <Trans locale={locale}>
-                    l’Agence de la Transition Écologique
-                  </Trans>
+                  <Trans>l’Agence de la Transition Écologique</Trans>
                 </strong>{' '}
-                <Trans locale={locale}>
+                <Trans>
                   dans le calculateur de Nos Gestes Climat : données,
                   perspectives, leviers d'action.
                 </Trans>
@@ -30,14 +26,14 @@ export default function ModelInfo({ locale }: { locale: string }) {
             }
             link={{
               href: '/documentation',
-              text: <Trans locale={locale}>Découvrir la documentation</Trans>,
+              text: <Trans>Découvrir la documentation</Trans>,
             }}
           />
 
           <TitleDescLinkBlock
-            title={<Trans locale={locale}>Libre et documenté</Trans>}
+            title={<Trans>Libre et documenté</Trans>}
             description={
-              <Trans locale={locale}>
+              <Trans>
                 Les lignes de code, les données et même une grande partie des
                 réflexions méthodologiques derrière le calculateur sont toutes{' '}
                 <strong className="text-primary-600">accessibles</strong>, ce
@@ -50,7 +46,7 @@ export default function ModelInfo({ locale }: { locale: string }) {
             }
             link={{
               href: '/nouveautes',
-              text: <Trans locale={locale}>Voir les nouveautés</Trans>,
+              text: <Trans>Voir les nouveautés</Trans>,
             }}
           />
         </div>

@@ -3,8 +3,8 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { PodiumItem } from '@nosgestesclimat/core/features/events/types/event-info'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import { twMerge } from 'cn'
 import type { FilterValue } from './EventTabs'
 import ListItem from './ListItem'
@@ -16,10 +16,9 @@ const GENERAL_RANKING_URL =
 interface Props {
   items: PodiumItem[]
   className?: string
-  locale: Locale
   prevHref: string | null
   nextHref: string | null
-  hasStarted: boolean
+  status: EventStatus
   activeCategoryFilter: FilterValue
 }
 
@@ -33,19 +32,18 @@ const ZERO_BASED_INDEX_COMPENSATION_FACTOR = 1
 const RANK_COMPENSATION_FOR_AFTER_PODIUM_ITEMS = 3
 const getRank = (index: number) => index + ZERO_BASED_INDEX_COMPENSATION_FACTOR
 
-export default function PodiumVisual({
+export default async function PodiumVisual({
   items,
   className,
-  locale,
   prevHref,
   nextHref,
-  hasStarted,
+  status,
   activeCategoryFilter,
 }: Props) {
   const podiumItems = items.slice(0, 3)
   const remainingItems = items.slice(3, 15)
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const organisationType = {
     all: t('event.podium.empty.type.all', 'organisation'),
@@ -87,12 +85,7 @@ export default function PodiumVisual({
                   'w-full md:flex-1',
                   orderClasses[getRank(index)]
                 )}>
-                <PodiumBlock
-                  hasStarted={hasStarted}
-                  locale={locale}
-                  {...item}
-                  rank={getRank(index)}
-                />
+                <PodiumBlock status={status} {...item} rank={getRank(index)} />
               </li>
             ))}
           </ol>
@@ -137,7 +130,6 @@ export default function PodiumVisual({
           )}>
           {remainingItems.map((item, index) => (
             <ListItem
-              locale={locale}
               key={item.name}
               rank={getRank(index + RANK_COMPENSATION_FOR_AFTER_PODIUM_ITEMS)}
               {...item}
@@ -154,17 +146,19 @@ export default function PodiumVisual({
             'Voir le classement général, ouvrir dans une nouvelle fenêtre'
           )}
           className="font-medium!">
-          <Trans i18nKey="event.podium.generalRankingLink" locale={locale}>
+          <Trans i18nKey="event.podium.generalRankingLink">
             Voir le classement général
           </Trans>
         </Link>
       </div>
 
-      <p className="text-primary-700 mt-4 text-right text-sm italic">
-        <Trans i18nKey="event.podium.updateNote" locale={locale}>
-          Le podium se met à jour environ toutes les 15 minutes
-        </Trans>
-      </p>
+      {status === 'in_progress' && (
+        <p className="text-primary-700 mt-4 text-right text-sm italic">
+          <Trans i18nKey="event.podium.updateNote">
+            Le podium se met à jour environ toutes les 15 minutes
+          </Trans>
+        </p>
+      )}
     </>
   )
 }

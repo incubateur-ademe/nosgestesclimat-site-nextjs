@@ -24,7 +24,7 @@ export default async function AllBlogCategories({
       <div className="bg-heroLightBackground relative left-1/2 w-[140vw] -translate-x-1/2 -rotate-2 skew-x-[10deg] transform overflow-hidden px-[calc(20vw+16px)] pt-28 pb-24">
         <div className="relative flex max-w-[100vw] rotate-2 -skew-x-[10deg] flex-col gap-8 md:mx-auto md:max-w-5xl">
           <h2 className="mb-0 text-2xl md:text-3xl">
-            <Trans locale={locale}>Toutes les catégories du blog</Trans>
+            <Trans>Toutes les catégories du blog</Trans>
           </h2>
 
           <ul className="flex w-full flex-row flex-wrap items-center gap-4 md:max-w-[50%]">

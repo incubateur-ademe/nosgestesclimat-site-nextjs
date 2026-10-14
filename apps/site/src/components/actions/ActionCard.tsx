@@ -1,7 +1,6 @@
 import ArrowNarrowRightIcon from '@/components/icons/ArrowNarrowRightIcon'
 import Link from '@/components/Link'
 import { getActionHref } from '@/helpers/actions/getActionHref'
-import type { Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
@@ -30,7 +29,6 @@ const classesByTheme: Record<Theme['key'], string> = {
 
 export interface ActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
   action: MaybePersonalizedAction
-  locale: Locale
   withThemeBadge?: boolean
   assessmentStatus?: AssessmentStatus | null
   rank?: number
@@ -43,10 +41,9 @@ export interface ActionCardWithABTestProps extends ActionCardProps {
   withDescription?: boolean
 }
 
-export default function ActionCard({
+export default async function ActionCard({
   action,
   className,
-  locale,
   withThemeBadge = true,
   assessmentStatus,
   rank,
@@ -58,10 +55,9 @@ export default function ActionCard({
 }: ActionCardWithABTestProps) {
   const rankEmoji = rankToEmoji(rank)
 
-  const href = getActionHref({
+  const href = await getActionHref({
     from,
     action,
-    locale,
   })
 
   const description = withDescription
@@ -109,7 +105,6 @@ export default function ActionCard({
           {action.assessment ? (
             <ImpactTag
               impact={action.assessment.impact}
-              locale={locale}
               assessmentStatus={assessmentStatus}
             />
           ) : null}
@@ -122,7 +117,6 @@ export default function ActionCard({
             aria-hidden="true"
             className="text-primary-700 flex items-center text-sm/normal font-bold">
             <Trans
-              locale={locale}
               i18nKey="actions.components.actionCard.link"
               values={{ actionTitle: action.title }}>
               Voir l'action
@@ -141,7 +135,6 @@ export default function ActionCard({
         )}>
         <span className="sr-only">
           <Trans
-            locale={locale}
             i18nKey="actions.components.actionCard.link"
             values={{ actionTitle: action.title }}>
             Voir l'action

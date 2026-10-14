@@ -4,18 +4,17 @@ import {
   colorClassNames,
   sizeClassNames,
 } from '@/design-system/buttons/buttonStyles'
-import type { Locale } from '@/i18nConfig'
 import { twMerge } from 'cn'
 import LockIcon from '../icons/LockIcon'
 import Link from '../Link'
 import Trans from '../translation/trans/TransServer'
 
-export default function NoResultsBlock({ locale }: { locale: Locale }) {
+export default function NoResultsBlock() {
   return (
     <div className="mt-2 mb-16 flex flex-col rounded-lg bg-slate-50 p-8">
       <p className="mb-6 flex items-center justify-center text-lg font-bold">
         <LockIcon className="fill-default mr-4 inline-block h-6 w-6 min-w-6" />
-        <Trans locale={locale} i18nKey="mon-espace.noResults.description">
+        <Trans i18nKey="mon-espace.noResults.description">
           Passez le test pour débloquer le contenu ici
         </Trans>
       </p>
@@ -28,7 +27,7 @@ export default function NoResultsBlock({ locale }: { locale: Locale }) {
             colorClassNames.secondary,
             sizeClassNames.md
           )}>
-          <Trans locale={locale} i18nKey="mon-espace.noResults.link.text">
+          <Trans i18nKey="mon-espace.noResults.link.text">
             Je calcule mon empreinte
           </Trans>
         </Link>

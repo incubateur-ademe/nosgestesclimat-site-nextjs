@@ -1,22 +1,21 @@
 import Trans from '@/components/translation/trans/TransServer'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
 
 interface Props {
-  locale: Locale
   imageSrc: string
   startDate: Date
   endDate: Date
 }
 
-export default function EventDetail({
-  locale,
+export default async function EventDetail({
   imageSrc,
   startDate,
   endDate,
 }: Props) {
-  const { t } = getServerTranslation({ locale })
+  const locale = await getLocale()
+  const { t } = await getServerTranslation()
 
   const dateLocale = locale === 'fr' ? 'fr-FR' : 'en-GB'
 
@@ -59,7 +58,7 @@ export default function EventDetail({
         </p>
 
         <p className="font-medium sm:text-lg">
-          <Trans locale={locale} i18nKey="event.detail.title">
+          <Trans i18nKey="event.detail.title">
             Semaine Européenne du
             <br />
             Développement

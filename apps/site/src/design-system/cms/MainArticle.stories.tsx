@@ -30,11 +30,6 @@ const meta: Meta<typeof MainArticle> = {
       control: 'text',
       description: 'Link URL for the article',
     },
-    locale: {
-      control: 'select',
-      options: ['fr', 'en'],
-      description: 'Locale for translations',
-    },
   },
 }
 
@@ -50,7 +45,6 @@ export const Default: Story = {
       "<p>Découvrez des gestes simples et efficaces pour réduire votre impact environnemental. Cet article vous guide à travers les actions les plus impactantes que vous pouvez mettre en place dès aujourd'hui.</p>",
     category: 'Écologie',
     href: '/blog/ecologie/reduire-empreinte-carbone',
-    locale: 'fr',
   },
 }
 
@@ -64,7 +58,6 @@ export const LongTitle: Story = {
       '<p>Description courte pour un article avec un titre très long.</p>',
     category: 'Développement durable',
     href: '/blog/developpement-durable/titre-long',
-    locale: 'fr',
   },
 }
 
@@ -77,7 +70,6 @@ export const LongDescription: Story = {
       "<p>La France fait face à un défi majeur : la transition énergétique. Cet article explore les différentes sources d'énergies renouvelables disponibles dans notre pays, leur potentiel de développement et les défis à relever pour atteindre nos objectifs climatiques.</p><p>Nous analysons également les politiques publiques mises en place et les investissements nécessaires pour accélérer cette transition.</p>",
     category: 'Énergie',
     href: '/blog/energie/energies-renouvelables-france',
-    locale: 'fr',
   },
 }
 
@@ -90,7 +82,6 @@ export const English: Story = {
       '<p>Discover simple and effective gestures to reduce your environmental impact. This article guides you through the most impactful actions you can implement starting today.</p>',
     category: 'Ecology',
     href: '/blog/ecology/reduce-carbon-footprint',
-    locale: 'en',
   },
 }
 
@@ -102,6 +93,5 @@ export const ShortContent: Story = {
     description: '<p>Description courte.</p>',
     category: 'Innovation',
     href: '/blog/innovation/titre-court',
-    locale: 'fr',
   },
 }

@@ -8,7 +8,7 @@ export async function generateMetadata({
   params,
 }: DefaultPageProps<{ params: { orgaSlug: string; pollSlug: string } }>) {
   const { orgaSlug, pollSlug, locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return getMetadataObject({
     locale,

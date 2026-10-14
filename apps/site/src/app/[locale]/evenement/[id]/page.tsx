@@ -21,7 +21,7 @@ export async function generateMetadata({
 }: PageProps<'/[locale]/evenement/[id]'>) {
   const { locale: localeParam, id } = await params
   const locale = localeParam as Locale
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   const event = await findEvent(id)
 
   return getMetadataObject({
@@ -51,12 +51,13 @@ export default async function EvenementPage({
 
   const locale = localeParam as Locale
 
-  const data = await getEventPageData({ eventId, locale })
+  const data = await getEventPageData({ eventId })
 
   if (!data) notFound()
 
   const {
     detailImageSrc,
+    status,
     startDate,
     endDate,
     dynamicCounter,
@@ -70,8 +71,6 @@ export default async function EvenementPage({
     ctaCards,
   } = data
 
-  const hasStarted = new Date() >= startDate
-
   return (
     <>
       <Header />
@@ -79,45 +78,43 @@ export default async function EvenementPage({
       <Main>
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
           <EventDetail
-            locale={locale}
             imageSrc={detailImageSrc}
             startDate={startDate}
             endDate={endDate}
           />
 
           <EventHero
-            locale={locale}
             startDate={startDate}
+            status={status}
             currentValue={dynamicCounter.currentValue}
             targetValue={dynamicCounter.targetValue}
             progressPercentage={dynamicCounter.progressPercentage}
             primaryCtaHref={dynamicCounter.primaryCtaHref}
             secondaryCtaHref={dynamicCounter.secondaryCtaHref}
+            endedCtaHref={dynamicCounter.endedCtaHref}
           />
         </div>
 
         <EventStatistics
-          locale={locale}
           values={statisticsValues}
-          hasStarted={hasStarted}
+          status={status}
         />
 
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
           <EventPodium
-            locale={locale}
             searchParams={searchParams}
             podiumItemsByCategory={podiumItemsByCategory}
-            hasStarted={hasStarted}
+            status={status}
           />
         </div>
 
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
-          <EventTestimonies locale={locale} testimonies={testimonies} />
+          <EventTestimonies testimonies={testimonies} />
         </div>
 
         <div className="bg-primary-100">
           <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
-            <EventTutorial stepsByMode={tutorialStepsByMode} />
+            <EventTutorial status={status} stepsByMode={tutorialStepsByMode} />
           </div>
         </div>
 

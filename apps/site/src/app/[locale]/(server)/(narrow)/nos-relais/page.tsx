@@ -41,15 +41,13 @@ const getPartnersByCategory = (partners: PartnerType[]) => {
 }
 
 export default async function OurPartners({
-  params,
   searchParams,
 }: DefaultPageProps & {
   searchParams: Promise<{ [FILTER_SEARCH_PARAM_KEY]?: string }>
 }) {
-  const { locale } = await params
   const { [FILTER_SEARCH_PARAM_KEY]: categoryFilter } = await searchParams
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const { data: partners, isError } = await fetchPartners()
 
@@ -58,7 +56,7 @@ export default async function OurPartners({
   return (
     <div>
       <Title>
-        <Trans i18nKey="nos-relais.title" locale={locale}>
+        <Trans i18nKey="nos-relais.title">
           Ils relaient{' '}
           <span className="text-primary-700">Nos Gestes Climat</span>
         </Trans>
@@ -68,9 +66,9 @@ export default async function OurPartners({
         <div className="flex-1">
           <p>
             <strong className="text-primary-700">
-              <Trans locale={locale}>Plusieurs milliers d’organisations</Trans>
+              <Trans>Plusieurs milliers d’organisations</Trans>
             </strong>{' '}
-            <Trans locale={locale}>
+            <Trans>
               partagent Nos Gestes Climat via leur site ou des campagnes (mails,
               réseaux sociaux, affichage), nous permettant de sensibiliser près
               de 2 000 personnes chaque jour. Un grand merci à eux !
@@ -78,20 +76,18 @@ export default async function OurPartners({
           </p>
 
           <p>
-            <Trans locale={locale}>
+            <Trans>
               Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre
               galerie ?
             </Trans>{' '}
             <InlineLink className="inline" href="/contact">
-              <Trans locale={locale}>
-                Envoyez-nous votre logo via notre page de contact
-              </Trans>
+              <Trans>Envoyez-nous votre logo via notre page de contact</Trans>
             </InlineLink>
           </p>
 
           <p className="mb-8 italic">
-            <Emoji>ℹ️</Emoji> <Trans locale={locale}>N.B.</Trans>{' '}
-            <Trans locale={locale}>
+            <Emoji>ℹ️</Emoji> <Trans>N.B.</Trans>{' '}
+            <Trans>
               : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui
               est et restera un service public, indépendant et gratuit de
               l'ADEME.

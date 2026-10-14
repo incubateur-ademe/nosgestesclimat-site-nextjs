@@ -113,7 +113,6 @@ export default async function ThematicLandingPage({
       />
 
       <LandingPage
-        locale={locale}
         heroTitle={block1?.title}
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
@@ -122,7 +121,7 @@ export default async function ThematicLandingPage({
                 __html: block1?.htmlDescription ?? '',
               }}></p>
             <div className="flex w-full justify-center md:justify-start">
-              <CTAButtons locale={locale} />
+              <CTAButtons />
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
@@ -145,7 +144,7 @@ export default async function ThematicLandingPage({
             />
           </div>
         }
-        heroPartners={<Partners locale={locale} />}>
+        heroPartners={<Partners />}>
         {block2 && (
           <WhatItIs
             title={block2?.title}
@@ -175,7 +174,7 @@ export default async function ThematicLandingPage({
 
         {block4 && (
           <DidYouKnowSlider
-            ctaButtons={<CTAButtons locale={locale} />}
+            ctaButtons={<CTAButtons />}
             slides={block4?.map(({ text, image, pinkText }) => ({
               content: <div dangerouslySetInnerHTML={{ __html: text }} />,
               illustration: image?.url ?? '',
@@ -186,7 +185,6 @@ export default async function ThematicLandingPage({
 
         {block5 && (
           <DailyGestures
-            locale={locale}
             title={block5.title}
             description={
               <div
@@ -207,7 +205,6 @@ export default async function ThematicLandingPage({
 
         {block6 && (
           <UnderstandToAct
-            locale={locale}
             title={block6.title}
             description={block6.htmlDescription}
             posts={
@@ -249,7 +246,6 @@ export default async function ThematicLandingPage({
         )}
 
         <FAQ
-          locale={locale}
           questions={
             faq?.questions?.map(({ question, htmlAnswer }) => ({
               question,

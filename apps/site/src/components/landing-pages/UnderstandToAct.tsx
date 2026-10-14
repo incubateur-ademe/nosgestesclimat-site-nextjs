@@ -9,13 +9,11 @@ export default function UnderstandToAct({
   title,
   description,
   posts,
-  locale,
   ctaLink,
 }: {
   title?: JSX.Element | string
   description?: JSX.Element | string
   posts: Omit<LandingPagePostType, 'trackingEvent'>[]
-  locale: string
   ctaLink?: ReactNode
 }) {
   return (
@@ -26,7 +24,7 @@ export default function UnderstandToAct({
             'mb-0 text-center text-2xl md:text-3xl',
             !description ? 'mb-10' : ''
           )}>
-          {title ?? <Trans locale={locale}>Comprendre pour agir</Trans>}
+          {title ?? <Trans>Comprendre pour agir</Trans>}
         </h2>
 
         {description && (

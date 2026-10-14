@@ -1,4 +1,3 @@
-import type { Locale } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type {
@@ -26,7 +25,6 @@ interface ActionsPageProps extends Omit<
   topActions?: MaybePersonalizedAction[]
   themes: Theme[]
   actions: MaybePersonalizedAction[]
-  locale: Locale
   assessmentStatus?: AssessmentStatus | null
   from?: ActionFrom
   /**
@@ -44,7 +42,6 @@ export default function ActionsPage({
   topActions,
   actions,
   themes,
-  locale,
   className,
   assessmentStatus,
   from,
@@ -56,9 +53,9 @@ export default function ActionsPage({
 
   return (
     <>
-      <BetaBanner locale={locale} />
+      <BetaBanner />
 
-      {plan && <ActionPlanLinks plan={plan} locale={locale} />}
+      {plan && <ActionPlanLinks plan={plan} />}
 
       <div>
         <h1 className="mb-0 text-2xl/normal font-medium md:text-4xl/normal">
@@ -81,7 +78,6 @@ export default function ActionsPage({
             <HighestImpactActionsSection
               actions={topActions}
               className="mb-8 md:mb-12"
-              locale={locale}
               from={from}
               actionCatalogueContext={{
                 totalFootprint,
@@ -92,9 +88,7 @@ export default function ActionsPage({
 
           <h2 className="mb-0 text-2xl/normal font-bold md:text-3xl/normal">
             {otherActionsTitle ?? (
-              <Trans
-                locale={locale}
-                i18nKey="actions.components.themeSections.testWhiteBackground.title">
+              <Trans i18nKey="actions.components.themeSections.testWhiteBackground.title">
                 Voici d’autres actions qui vous aideront à réduire votre
                 empreinte
               </Trans>
@@ -102,9 +96,7 @@ export default function ActionsPage({
           </h2>
           <p className="mb-4 text-lg/normal md:mb-8">
             {otherActionsDescription ?? (
-              <Trans
-                locale={locale}
-                i18nKey="actions.components.themeSections.testWhiteBackground.description">
+              <Trans i18nKey="actions.components.themeSections.testWhiteBackground.description">
                 À impact variable : des gestes à fort impact aux petit pas.
               </Trans>
             )}
@@ -121,7 +113,6 @@ export default function ActionsPage({
                   <ThemeSection
                     key={theme.id}
                     theme={theme}
-                    locale={locale}
                     actions={actionsByTheme[theme.key] ?? []}
                     from={from}
                   />
@@ -133,7 +124,6 @@ export default function ActionsPage({
           <ActionsBasket
             actions={actions}
             plan={plan}
-            locale={locale}
             assessmentStatus={assessmentStatus}
           />
         )}

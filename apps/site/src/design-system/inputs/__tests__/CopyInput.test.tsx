@@ -52,15 +52,14 @@ describe('CopyInput', () => {
     })
 
     it('should generate unique IDs when not provided', () => {
-      const { rerender } = render(<CopyInput {...defaultProps} />)
-      const firstInput = screen.getByRole('textbox')
-      const firstId = firstInput.id
-
-      rerender(<CopyInput {...defaultProps} />)
-      const secondInput = screen.getByRole('textbox')
-      const secondId = secondInput.id
-
-      expect(firstId).not.toBe(secondId)
+      render(
+        <>
+          <CopyInput {...defaultProps} />
+          <CopyInput {...defaultProps} />
+        </>
+      )
+      const inputs = screen.getAllByRole('textbox')
+      expect(inputs[0].id).not.toBe(inputs[1].id)
     })
 
     it('should use provided IDs when available', () => {

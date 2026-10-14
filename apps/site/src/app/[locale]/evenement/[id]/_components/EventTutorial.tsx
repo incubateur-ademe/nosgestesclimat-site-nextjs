@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import CarouselClient from '@/design-system/carousel/CarouselClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { useMemo, useRef, useState } from 'react'
 import type { TutorialStep } from '../_helpers/eventPageData'
@@ -37,9 +38,10 @@ const CONTAINER_VARIANTS = {
 
 interface Props {
   stepsByMode: Record<string, TutorialStep[]>
+  status: EventStatus
 }
 
-export default function EventTutorial({ stepsByMode }: Props) {
+export default function EventTutorial({ stepsByMode, status }: Props) {
   const [mode, setMode] = useState<Mode>('organisation')
   const { t } = useClientTranslation()
   const ref = useRef<HTMLDivElement>(null)
@@ -81,7 +83,15 @@ export default function EventTutorial({ stepsByMode }: Props) {
     <div ref={ref}>
       <section className="my-12 md:my-16">
         <h2 className="mb-8 text-center text-5xl leading-12 font-bold text-gray-900">
-          <Trans i18nKey="event.tutorial.title">Comment participer ?</Trans>
+          {status === 'ended' ? (
+            <Trans i18nKey="event.tutorial.title.ended">
+              Comment participer la prochaine fois ?
+            </Trans>
+          ) : (
+            <Trans i18nKey="event.tutorial.title.default">
+              Comment participer ?
+            </Trans>
+          )}
         </h2>
 
         <div className="mb-8 text-center">

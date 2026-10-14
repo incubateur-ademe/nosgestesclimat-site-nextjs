@@ -1,4 +1,3 @@
-import type { Locale } from '@/i18nConfig'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { twMerge } from 'cn'
 import { useId } from 'react'
@@ -8,14 +7,12 @@ import type { ActionCatalogueContext, ActionFrom } from './types/actions'
 
 interface HighestImpactActionsSectionProps extends React.ComponentPropsWithoutRef<'section'> {
   actions: MaybePersonalizedAction[]
-  locale: Locale
   from?: ActionFrom
   actionCatalogueContext: ActionCatalogueContext
 }
 
 export default function HighestImpactActionsSection({
   actions,
-  locale,
   className,
   from,
   actionCatalogueContext,
@@ -30,9 +27,7 @@ export default function HighestImpactActionsSection({
       <h2
         id={headingId}
         className="mb-0 text-xl/normal font-medium md:text-2xl/normal">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.highestImpactActionsSection.testWhiteBackground.title">
+        <Trans i18nKey="actions.components.highestImpactActionsSection.testWhiteBackground.title">
           Voici vos 3 actions qui auront le plus d'impact
         </Trans>
       </h2>
@@ -41,7 +36,6 @@ export default function HighestImpactActionsSection({
         {actions.map((action, index) => (
           <li key={action.id}>
             <HighlightedActionCard
-              locale={locale}
               action={action}
               rank={index + 1}
               from={from}

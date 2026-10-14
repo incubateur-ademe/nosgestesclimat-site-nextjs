@@ -37,15 +37,12 @@ async function redirectAfterLogin() {
 }
 
 /* global PageProps */
-export default async function Page({
-  params,
-}: PageProps<'/[locale]/organisations/connexion'>) {
-  const { locale } = await params
+export default async function Page() {
   if ((await getUserSession())?.isAuth) {
     await redirectAfterLogin()
   }
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <>
@@ -60,12 +57,12 @@ export default async function Page({
       <section className="w-full bg-white">
         <div className="max-w-5xl lg:px-0">
           <h1>
-            <Trans i18nKey="organisations.inscription.title" locale={locale}>
+            <Trans i18nKey="organisations.inscription.title">
               Créez votre compte pour diffuser un lien collectif
             </Trans>
           </h1>
           <p className="max-w-full md:w-160">
-            <Trans i18nKey="organisations.inscription.subtitle" locale={locale}>
+            <Trans i18nKey="organisations.inscription.subtitle">
               Pour diffuser un test collectif à vos élèves, vos étudiants, vos
               collègues ou encore vos clients, il vous suffit de créer votre
               espace personnel.

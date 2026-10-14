@@ -44,9 +44,9 @@ export default async function CampagnePage({
     <div className="relative pl-8">
       <Emoji className="absolute left-0">🏢</Emoji>
       <p>
-        <Trans locale={locale}>Ce test vous est proposé par</Trans>{' '}
+        <Trans>Ce test vous est proposé par</Trans>{' '}
         <strong>{poll.organisation.name}</strong>.{' '}
-        <Trans locale={locale}>
+        <Trans>
           En participant vous acceptez que vos résultats soient partagés
           anonymement avec cette organisation.
         </Trans>
@@ -77,7 +77,6 @@ export default async function CampagnePage({
           createNewSimulation={createNewSimulation}
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
           reuseSimulation={reuseSimulation}
-          locale={locale}
           disclaimer={disclaimer}
           simulation={data.reusableSimulation}
           polls={data.reusableSimulationPolls}
@@ -92,7 +91,6 @@ export default async function CampagnePage({
         !!data.currentPollSimulation &&
         isSimulationCompleted(data.currentPollSimulation)
       }
-      locale={locale}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       createSimulation={createNewSimulation}
     />
@@ -103,15 +101,9 @@ export default async function CampagnePage({
       <PollTracker poll={poll} />
 
       {match(poll.mode)
-        .with('scolaire', () => (
-          <YouthTutorial locale={locale} buttonNext={buttonNext} />
-        ))
+        .with('scolaire', () => <YouthTutorial buttonNext={buttonNext} />)
         .with('standard', () => (
-          <Tutorial
-            locale={locale}
-            disclaimer={disclaimer}
-            buttonNext={buttonNext}
-          />
+          <Tutorial disclaimer={disclaimer} buttonNext={buttonNext} />
         ))
         .exhaustive()}
     </>

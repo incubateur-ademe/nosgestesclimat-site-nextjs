@@ -106,13 +106,12 @@ export default async function ArticlePage({
             <div className="flex flex-col flex-wrap gap-1">
               <p className="mb-0">
                 <span className="text-primary-600">
-                  <Trans locale={locale}>Temps de lecture :</Trans>
+                  <Trans>Temps de lecture :</Trans>
                 </span>{' '}
-                {Math.round(article.duration / 60)}{' '}
-                <Trans locale={locale}>minutes</Trans>
+                {Math.round(article.duration / 60)} <Trans>minutes</Trans>
               </p>
 
-              <ArticleDate article={article} locale={locale} />
+              <ArticleDate article={article} />
             </div>
           </div>
 
@@ -143,9 +142,9 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      <AuthorBlock locale={locale} author={article.author} />
+      <AuthorBlock author={article.author} />
 
-      <OtherArticles articles={otherArticles} locale={locale} />
+      <OtherArticles articles={otherArticles} />
 
       <Footer backgroundColor="white" locale={locale} />
     </>

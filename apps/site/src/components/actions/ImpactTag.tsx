@@ -25,9 +25,7 @@ export function ImpactTag({
     shouldDisplayComputationInProgressText(assessmentStatus)
   ) {
     text = (
-      <Trans
-        locale={locale}
-        i18nKey="actions.components.actionCard.impactAssessmentInProgress">
+      <Trans i18nKey="actions.components.actionCard.impactAssessmentInProgress">
         En cours de calcul
       </Trans>
     )
@@ -40,7 +38,6 @@ export function ImpactTag({
     })
     text = (
       <Trans
-        locale={locale}
         i18nKey="actions.components.actionCard.lowImpactTag"
         values={{ formattedValue, unit }}>
         Moins de {'{{formattedValue}}'} {'{{unit}}'} CO<sub>2</sub>e / an
@@ -55,7 +52,6 @@ export function ImpactTag({
     })
     text = (
       <Trans
-        locale={locale}
         i18nKey="actions.components.actionCard.impactTag"
         values={{ formattedValue, unit }}>
         Jusqu'à {'{{formattedValue}}'} {'{{unit}}'} CO<sub>2</sub>e / an
@@ -63,9 +59,7 @@ export function ImpactTag({
     )
   } else {
     text = (
-      <Trans
-        locale={locale}
-        i18nKey="actions.components.actionCard.noImpactTag">
+      <Trans i18nKey="actions.components.actionCard.noImpactTag">
         Impact non quantifiable
       </Trans>
     )

@@ -24,17 +24,12 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function Connexion({
-  params,
-  searchParams,
-}: DefaultPageProps) {
-  const { locale } = await params
+export default async function Connexion({ searchParams }: DefaultPageProps) {
   const resolvedSearchParams = await searchParams
   const validSearchParams = validateSearchParams(resolvedSearchParams)
-  const { labels, redirectPathname } = getLoginProps({
-    from: validSearchParams?.from,
-    locale,
-  })
+  const { labels, redirectPathname } = await getLoginProps(
+    validSearchParams?.from
+  )
 
   const userSession = await getUserSession()
 
@@ -68,49 +63,35 @@ export default async function Connexion({
         className="ml-7 hidden w-1/2 self-start lg:flex"
         highlights={[
           <span key="highlight1">
-            <Trans
-              i18nKey="login.colourBlock.highlight1.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight1.title.prefix">
               Visualisez
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="login.colourBlock.highlight1.title.strong"
-                locale={locale}>
+              <Trans i18nKey="login.colourBlock.highlight1.title.strong">
                 vos derniers résultats
               </Trans>
             </strong>
           </span>,
           <span key="highlight2">
-            <Trans
-              i18nKey="login.colourBlock.highlight2.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight2.title.prefix">
               Continuez à
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="login.colourBlock.highlight2.title.strong"
-                locale={locale}>
+              <Trans i18nKey="login.colourBlock.highlight2.title.strong">
                 progresser dans vos actions climat
               </Trans>
             </strong>
           </span>,
           <span key="highlight3">
-            <Trans
-              i18nKey="login.colourBlock.highlight3.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight3.title.prefix">
               Accédez à
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="login.colourBlock.highlight3.title.strong"
-                locale={locale}>
+              <Trans i18nKey="login.colourBlock.highlight3.title.strong">
                 vos défis collectifs
               </Trans>
             </strong>{' '}
-            <Trans
-              i18nKey="login.colourBlock.highlight3.title.end"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight3.title.end">
               en cours
             </Trans>
           </span>,

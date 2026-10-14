@@ -1,7 +1,6 @@
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import Link from '@/design-system/links/Link'
 import { getActionHref } from '@/helpers/actions/getActionHref'
-import { type Locale } from '@/i18nConfig'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { twMerge } from 'cn'
 import ArrowNarrowRightIcon from '../icons/ArrowNarrowRightIcon'
@@ -15,16 +14,15 @@ import type { ActionCatalogueContext } from './types/actions'
 
 export interface HighlightedActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
   action: MaybePersonalizedAction
-  locale: Locale
   rank?: number
   from?: 'fin' | 'mon-espace' | 'index'
   actionCatalogueContext: ActionCatalogueContext
 }
 
-export default function HighlightedActionCard({
+export default async function HighlightedActionCard({
   action,
   className,
-  locale,
+
   rank,
   from,
   actionCatalogueContext,
@@ -32,10 +30,9 @@ export default function HighlightedActionCard({
 }: HighlightedActionCardProps) {
   const classes = classesByTheme[action.theme.key]
 
-  const href = getActionHref({
+  const href = await getActionHref({
     from,
     action,
-    locale,
   })
 
   const description = action.metadata.description
@@ -86,9 +83,7 @@ export default function HighlightedActionCard({
             prefetch={true}
             size="sm"
             className="h-12 gap-2 px-6 md:w-52.5">
-            <Trans
-              locale={locale}
-              i18nKey="actions.components.actionCard.highlighted.link">
+            <Trans i18nKey="actions.components.actionCard.highlighted.link">
               Voir l'action
             </Trans>
             {/* The three cards share the same visible label, so name the
