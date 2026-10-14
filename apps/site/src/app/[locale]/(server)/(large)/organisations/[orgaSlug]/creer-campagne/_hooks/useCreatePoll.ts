@@ -39,7 +39,7 @@ export function useCreatePoll({ organisationSlug }: UseCreatePollProps) {
         }
         setUnknownError(error)
         logger.error(toError(error), {
-          scope: 'site.interaction.createOrganisation',
+          scope: 'site.interaction.createPoll',
         })
       }
     })
