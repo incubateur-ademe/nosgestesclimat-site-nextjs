@@ -143,6 +143,18 @@ processors:
           # par les spans.
           - 'delete_key(span.attributes, "net.sock.peer.addr")'
           - 'delete_key(span.attributes, "net.sock.peer.port")'
+          # nginx n'a pas de routes : `http.route` vaut le nom de la location, soit
+          # `/` partout. La spec OTel demande de ne pas le renseigner dans ce cas.
+          - 'delete_key(span.attributes, "http.route")'
+
+  # Le proxy PostHog répond 200 à un quart des requêtes du site, toujours les
+  # mêmes ; ses échecs, eux, n'existent nulle part ailleurs — un 4xx n'entre pas
+  # dans `error.log`. On ne garde donc que ceux-là.
+  filter/revp-ok:
+    error_mode: ignore
+    traces:
+      span:
+        - 'attributes["url.path"] != nil and IsMatch(attributes["url.path"], "^/revp/") and attributes["http.response.status_code"] == "200"'
 
   batch:
     send_batch_size: 1000
@@ -179,5 +191,7 @@ service:
     # Le mème exporter ajoute `/v1/traces` pour cette pipeline.
     traces/nginx:
       receivers: [otlp]
-      processors: [resource/nginx, transform/nginx-spans, batch]
+      # Le filtre passe après le transform : c'est lui qui découpe `http.target`
+      # en `url.path`, sur lequel le filtre décide.
+      processors: [resource/nginx, transform/nginx-spans, filter/revp-ok, batch]
       exporters: [otlphttp/posthog]
