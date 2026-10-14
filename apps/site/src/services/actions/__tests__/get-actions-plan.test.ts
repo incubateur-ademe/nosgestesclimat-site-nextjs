@@ -1,9 +1,10 @@
 import { faker } from '@faker-js/faker/locale/th'
 import { afterEach, describe, vi } from 'vitest'
 import {
-  getActionsPlan,
-  getActionsPlanCacheTagWithUserId,
-} from '../get-actions-plan'
+  getPersonalizedActionCacheTag,
+  getPersonalizedActionsPlanCacheTag,
+} from '../cache-tags'
+import { getActionsPlan } from '../get-actions-plan'
 
 const { getActionsPlan: getActionsPlanCoreServiceMock } = vi.hoisted(() => ({
   getActionsPlan: vi.fn(),
@@ -57,11 +58,19 @@ describe('getActionsPlan service', () => {
     expect(cacheTagMock).not.toHaveBeenCalled()
   })
 
-  it('should load the plan of the session user and tag the cache', async () => {
+  it('should load the plan of the session user and tag the cache with each committed action', async () => {
     sessionMock.getUserSession.mockResolvedValue(mockUser)
+    const actionIds = [faker.string.uuid(), faker.string.uuid()]
     const actionsPlan = {
-      plan: { numberOfCommittedActions: 1, totalImpact: 1000 },
-      themes: [],
+      plan: { numberOfCommittedActions: 2, totalImpact: 1000 },
+      themes: [
+        {
+          id: faker.string.uuid(),
+          key: 'transport',
+          title: 'Transport',
+          actions: actionIds.map((id) => ({ id })),
+        },
+      ],
     }
     getActionsPlanCoreServiceMock.mockResolvedValue(actionsPlan)
 
@@ -73,8 +82,14 @@ describe('getActionsPlan service', () => {
       'fr'
     )
     expect(cacheLifeMock).toHaveBeenCalledWith('minutes')
+    expect(cacheTagMock).toHaveBeenCalledTimes(actionIds.length + 1)
     expect(cacheTagMock).toHaveBeenCalledWith(
-      getActionsPlanCacheTagWithUserId(mockUser.id)
+      getPersonalizedActionsPlanCacheTag(mockUser.id)
+    )
+    actionIds.forEach((actionId) =>
+      expect(cacheTagMock).toHaveBeenCalledWith(
+        getPersonalizedActionCacheTag(mockUser.id, actionId)
+      )
     )
   })
 
@@ -88,6 +103,12 @@ describe('getActionsPlan service', () => {
     expect(getActionsPlanCoreServiceMock).toHaveBeenCalledWith(
       anonUser.id,
       'en'
+    )
+    // The plan tag is set even without a plan so that committing to a first
+    // action revalidates the cached null plan
+    expect(cacheTagMock).toHaveBeenCalledTimes(1)
+    expect(cacheTagMock).toHaveBeenCalledWith(
+      getPersonalizedActionsPlanCacheTag(anonUser.id)
     )
   })
 })

@@ -1,9 +1,7 @@
 import { faker } from '@faker-js/faker/locale/th'
 import { afterEach, describe, vi } from 'vitest'
-import {
-  getPersonalizedActionsCacheTagWithUserId,
-  getPersonalizedActionsCatalogue,
-} from '../get-personalized-actions-catalogue'
+import { getPersonalizedActionCacheTag } from '../cache-tags'
+import { getPersonalizedActionsCatalogue } from '../get-personalized-actions-catalogue'
 
 const {
   getPersonalizedActionsCatalogue:
@@ -67,12 +65,13 @@ describe('getPersonalizedActionsCatalogue service', () => {
     expect(cacheTagMock).not.toHaveBeenCalled()
   })
 
-  it('should load the catalogue of the session user and tag the cache', async () => {
+  it('should load the catalogue of the session user and tag the cache with each action', async () => {
     sessionMock.getUserSession.mockResolvedValue(mockUser)
+    const actionIds = [faker.string.uuid(), faker.string.uuid()]
     const catalogue = {
       assessmentStatus: 'completed',
-      actions: [],
-      topActions: [],
+      actions: actionIds.map((id) => ({ id })),
+      topActions: [{ id: actionIds[0] }],
       plan: null,
     }
     getPersonalizedActionsCatalogueCoreServiceMock.mockResolvedValue(catalogue)
@@ -85,8 +84,11 @@ describe('getPersonalizedActionsCatalogue service', () => {
       'fr'
     )
     expect(cacheLifeMock).toHaveBeenCalledWith('minutes')
-    expect(cacheTagMock).toHaveBeenCalledWith(
-      getPersonalizedActionsCacheTagWithUserId(mockUser.id)
+    expect(cacheTagMock).toHaveBeenCalledTimes(actionIds.length)
+    actionIds.forEach((actionId) =>
+      expect(cacheTagMock).toHaveBeenCalledWith(
+        getPersonalizedActionCacheTag(mockUser.id, actionId)
+      )
     )
   })
 

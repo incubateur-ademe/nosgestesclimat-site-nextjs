@@ -4,9 +4,10 @@ import { commitToAction as _commitToAction } from '@nosgestesclimat/core/feature
 import { updateTag } from 'next/cache'
 import { unauthorized } from 'next/navigation'
 import { getUserSession } from '../auth/get-user-session'
-import { getActionsPlanCacheTagWithUserId } from './get-actions-plan'
-import { getPersonalizedActionDetailsCacheTagWithIds } from './get-personalized-action-details'
-import { getPersonalizedActionsCacheTagWithUserId } from './get-personalized-actions-catalogue'
+import {
+  getPersonalizedActionCacheTag,
+  getPersonalizedActionsPlanCacheTag,
+} from './cache-tags'
 
 export async function commitToAction(actionId: string) {
   const session = await getUserSession()
@@ -17,14 +18,10 @@ export async function commitToAction(actionId: string) {
     userId: session.id,
   })
 
-  // Reset actions list, action plan AND specific action cache to avoid
-  // missmatch between pages, for the current user only
-  updateTag(getPersonalizedActionsCacheTagWithUserId(session.id))
-  updateTag(getActionsPlanCacheTagWithUserId(session.id))
-  updateTag(
-    getPersonalizedActionDetailsCacheTagWithIds({
-      userId: session.id,
-      actionId,
-    })
-  )
+  // Reset the caches of the current user listing this action (catalogue,
+  // plan, action details) to avoid mismatch between pages
+  updateTag(getPersonalizedActionCacheTag(session.id, actionId))
+  // The cached plan doesn't list the newly committed action yet: reset it
+  // too so that the plan page shows the new action immediately
+  updateTag(getPersonalizedActionsPlanCacheTag(session.id))
 }

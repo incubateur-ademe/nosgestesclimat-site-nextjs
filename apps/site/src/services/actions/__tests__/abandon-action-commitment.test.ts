@@ -1,9 +1,7 @@
 import { faker } from '@faker-js/faker/locale/th'
 import { afterEach, describe, vi } from 'vitest'
 import { abandonActionCommitment } from '../abandon-action-commitment'
-import { getActionsPlanCacheTagWithUserId } from '../get-actions-plan'
-import { getPersonalizedActionDetailsCacheTagWithIds } from '../get-personalized-action-details'
-import { getPersonalizedActionsCacheTagWithUserId } from '../get-personalized-actions-catalogue'
+import { getPersonalizedActionCacheTag } from '../cache-tags'
 
 const { abandonActionCommitment: abandonActionCommitmentCoreServiceMock } =
   vi.hoisted(() => ({
@@ -75,24 +73,15 @@ describe('abandonActionCommitment service', () => {
     expect(updateTagMock).not.toHaveBeenCalled()
   })
 
-  it('should update the actions list, action plan and action detail caches if the service call result is a success', async () => {
+  it('should update the caches of the action for the current user if the service call result is a success', async () => {
     sessionMock.getUserSession.mockResolvedValue(mockUser)
 
     const actionId = faker.string.uuid()
     await expect(abandonActionCommitment({ actionId })).resolves.toBeUndefined()
 
-    expect(updateTagMock).toHaveBeenCalledTimes(3)
+    expect(updateTagMock).toHaveBeenCalledTimes(1)
     expect(updateTagMock).toHaveBeenCalledWith(
-      getPersonalizedActionsCacheTagWithUserId(mockUser.id)
-    )
-    expect(updateTagMock).toHaveBeenCalledWith(
-      getActionsPlanCacheTagWithUserId(mockUser.id)
-    )
-    expect(updateTagMock).toHaveBeenCalledWith(
-      getPersonalizedActionDetailsCacheTagWithIds({
-        userId: mockUser.id,
-        actionId,
-      })
+      getPersonalizedActionCacheTag(mockUser.id, actionId)
     )
   })
 })

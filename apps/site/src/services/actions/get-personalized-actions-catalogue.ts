@@ -3,14 +3,7 @@ import { getPersonalizedActionsCatalogue as _getPersonalizedActionsCatalogue } f
 import { cacheLife, cacheTag } from 'next/cache'
 import { unauthorized } from 'next/navigation'
 import { getUserSession } from '../auth/get-user-session'
-
-export const GET_PERSONALIZED_ACTIONS_CACHE_TAG_PREFIX =
-  'get_personalized_actions'
-
-// Tagging by user id scopes revalidation to the catalogue of a single user,
-// across every locale.
-export const getPersonalizedActionsCacheTagWithUserId = (userId: string) =>
-  `${GET_PERSONALIZED_ACTIONS_CACHE_TAG_PREFIX}-${userId}`
+import { getPersonalizedActionCacheTag } from './cache-tags'
 
 export async function getPersonalizedActionsCatalogue(locale: Locale) {
   const session = await getUserSession()
@@ -28,7 +21,15 @@ async function getCachedPersonalizedActionsCatalogue(
 ) {
   'use cache'
   cacheLife('minutes')
-  cacheTag(getPersonalizedActionsCacheTagWithUserId(userId))
 
-  return await _getPersonalizedActionsCatalogue(userId, locale)
+  const catalogue = await _getPersonalizedActionsCatalogue(userId, locale)
+
+  // The catalogue lists the actions: tagging each of them revalidates the
+  // cache entry of every locale when one of them is committed to or
+  // abandoned. topActions is a subset of actions, so it needs no extra tag.
+  catalogue.actions.forEach((action) =>
+    cacheTag(getPersonalizedActionCacheTag(userId, action.id))
+  )
+
+  return catalogue
 }

@@ -1,10 +1,7 @@
 import { faker } from '@faker-js/faker/locale/th'
 import { afterEach, describe, expect, vi } from 'vitest'
-import {
-  GET_PERSONALIZED_ACTION_DETAILS_CACHE_TAG_PREFIX,
-  getPersonalizedActionDetails,
-  getPersonalizedActionDetailsCacheTagWithIds,
-} from '../get-personalized-action-details'
+import { getPersonalizedActionCacheTag } from '../cache-tags'
+import { getPersonalizedActionDetails } from '../get-personalized-action-details'
 
 const {
   getPersonalizedActionDetails: getPersonalizedActionDetailsCoreServiceMock,
@@ -76,13 +73,10 @@ describe('getPersonalizedActionDetails service', () => {
 
     expect(cacheTagMock).toHaveBeenCalledTimes(1)
     expect(cacheTagMock).toHaveBeenCalledWith(
-      getPersonalizedActionDetailsCacheTagWithIds({
-        userId: mockUser.id,
-        actionId,
-      })
+      getPersonalizedActionCacheTag(mockUser.id, actionId)
     )
     expect(cacheTagMock).toHaveBeenCalledWith(
-      `${GET_PERSONALIZED_ACTION_DETAILS_CACHE_TAG_PREFIX}-${mockUser.id}-${actionId}`
+      `user:${mockUser.id}::action:${actionId}`
     )
   })
 

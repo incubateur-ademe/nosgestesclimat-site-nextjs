@@ -2,18 +2,7 @@ import type { Locale } from '@/i18nConfig'
 import { getPersonalizedActionDetails as _getPersonalizedActionDetails } from '@nosgestesclimat/core/features/actions/services/get-personalized-action-details.service'
 import { cacheLife, cacheTag } from 'next/cache'
 import { getUserSession } from '../auth/get-user-session'
-
-export const GET_PERSONALIZED_ACTION_DETAILS_CACHE_TAG_PREFIX =
-  'get_personalized_action_details'
-
-export const getPersonalizedActionDetailsCacheTagWithIds = ({
-  userId,
-  actionId,
-}: {
-  userId: string
-  actionId: string
-}) =>
-  `${GET_PERSONALIZED_ACTION_DETAILS_CACHE_TAG_PREFIX}-${userId}-${actionId}`
+import { getPersonalizedActionCacheTag } from './cache-tags'
 
 // The action page is public: without a session, the details are not
 // personalized and share a single cache entry per slug and locale.
@@ -45,17 +34,12 @@ async function getCachedPersonalizedActionDetails(
 
   // The action id is only known once the action is loaded: tagging by id
   // rather than by the locale-specific slug revalidates the cache entry of
-  // every locale when the action is committed to or abandoned. Tagging by user
-  // id scopes that revalidation to the user who committed or abandoned it.
-  // Without a session the user cannot commit, so the shared entry never needs
-  // to be revalidated.
+  // every locale when the action is committed to or abandoned. Tagging by
+  // user id scopes that revalidation to the entry of the user who committed
+  // or abandoned it. Without a session the user cannot commit, so the
+  // shared entry never needs to be revalidated.
   if (actionDetails && userId) {
-    cacheTag(
-      getPersonalizedActionDetailsCacheTagWithIds({
-        userId,
-        actionId: actionDetails.action.id,
-      })
-    )
+    cacheTag(getPersonalizedActionCacheTag(userId, actionDetails.action.id))
   }
 
   return actionDetails
