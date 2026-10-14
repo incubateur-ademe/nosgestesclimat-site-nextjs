@@ -113,37 +113,6 @@ model GroupParticipant {
   @@schema("ngc")
 }
 
-enum ApiScopeName {
-  ngc
-  agir
-  two_tons
-
-  @@schema("ngc")
-}
-
-model IntegrationApiScope {
-  name        ApiScopeName           @id
-  description String
-  whitelists  IntegrationWhitelist[]
-  createdAt   DateTime               @default(now())
-  updatedAt   DateTime               @updatedAt
-
-  @@schema("ngc")
-}
-
-model IntegrationWhitelist {
-  id           String              @id @default(uuid()) @db.Uuid
-  emailPattern String
-  description  String
-  apiScopeName ApiScopeName
-  apiScope     IntegrationApiScope @relation(fields: [apiScopeName], references: [name])
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-
-  @@unique([emailPattern, apiScopeName])
-  @@schema("ngc")
-}
-
 enum JobStatus {
   pending
   running
@@ -444,16 +413,18 @@ model Survey {
 }
 
 model User {
-  id            String               @id @db.Uuid
-  name          String?
-  email         String?
-  administrator GroupAdministrator[]
-  member        GroupParticipant[]
-  simulations   Simulation[]
-  refreshTokens RefreshToken[]
-  createdAt     DateTime             @default(now())
-  updatedAt     DateTime             @updatedAt
-  verifiedUsers VerifiedUser[]
+  id             String               @id @db.Uuid
+  name           String?
+  email          String?
+  administrator  GroupAdministrator[]
+  member         GroupParticipant[]
+  simulations    Simulation[]
+  refreshTokens  RefreshToken[]
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  /// Set when a session is issued to a verified account.
+  lastActivityAt DateTime?            @db.Timestamptz(3)
+  verifiedUsers  VerifiedUser[]
 
   @@schema("ngc")
 }
@@ -461,7 +432,6 @@ model User {
 enum VerificationCodeUsage {
   login
   newsletter
-  apiToken
 
   @@schema("ngc")
 }

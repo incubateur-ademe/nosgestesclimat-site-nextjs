@@ -3,7 +3,6 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
-import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Simulation } from '@/helpers/server/model/simulations'
@@ -44,17 +43,15 @@ export const ClientLayout = ({
         key={simulation?.id}
         userSession={userSession}
         simulation={simulation}>
-        <PartnerProvider>
-          <Suspense>
-            <MainHooks />
-          </Suspense>
-          <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
+        <Suspense>
+          <MainHooks />
+        </Suspense>
+        <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
 
-          <Banner locale={locale as Locale} />
-          {children}
-          <GoogleTagScript />
-          <GoogleTagIframe />
-        </PartnerProvider>
+        <Banner locale={locale as Locale} />
+        {children}
+        <GoogleTagScript />
+        <GoogleTagIframe />
       </UserProvider>
     </QueryClientProviderWrapper>
   </ErrorBoundary>
