@@ -164,6 +164,12 @@ Le span porte aussi les champs propres au proxy — `upstream_*`, `request_time`
 une fois l'amont connu. Ils portent **les mêmes noms** que dans `log_format` :
 une requête PostHog écrite sur l'un vaut sur l'autre.
 
+Le **nom** du span vaut par défaut celui de la location. Deux endroits l'écrasent
+pour prendre `$request_method $uri` : la fourre-tout `/`, qui sinon nommerait `/`
+toutes les pages du site, et la location des pages de contenu, dont le défaut
+serait le motif regex. Les assets gardent le défaut, qui les nomme déjà par leur
+location.
+
 Le module les émet en revanche dans la sémantique HTTP d'avant 1.23
 (`http.method`, `http.status_code`, `http.flavor`…) : le collecteur les renomme
 vers les noms actuels. Renommer en amont casserait ce collecteur.
@@ -230,6 +236,9 @@ du collecteur et n'atteignent pas PostHog.
 - **access.log** : plus écrit du tout. Le span porte le même contenu —
   `url.path`, `url.query`, `upstream_*`, `request_time`.
 - **error.log** : livré, et c'est désormais le seul flux de logs nginx.
+- **Traces `/revp/`** : le filtre du collecteur écarte les 200 — un quart du
+  volume pour un contenu toujours identique. Les échecs (4xx, 5xx) restent, et
+  un 4xx n'existant nulle part ailleurs, c'est leur seule trace.
 
 ## Créer une instance
 
