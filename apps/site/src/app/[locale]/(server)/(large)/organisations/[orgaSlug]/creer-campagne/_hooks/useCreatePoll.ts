@@ -15,13 +15,10 @@ interface FormValues {
 }
 
 export function useCreatePoll({ organisationSlug }: UseCreatePollProps) {
-  const [isPending, startTransition] = useTransition()
-  const [unknownError, setUnknownError] = useState<unknown>(undefined)
-
   const form = useForm<Pick<Poll, 'name' | 'expectedNumberOfParticipants'>>()
 
-  const { handleSubmit, register, formState } = form
-
+  const [isPending, startTransition] = useTransition()
+  const [unknownError, setUnknownError] = useState<unknown>(undefined)
   function onSubmit({ name, expectedNumberOfParticipants }: FormValues) {
     setUnknownError(undefined)
 
@@ -48,9 +45,9 @@ export function useCreatePoll({ organisationSlug }: UseCreatePollProps) {
   }
 
   return {
-    register,
-    handleSubmit: handleSubmit(onSubmit),
-    errors: formState.errors,
+    register: form.register,
+    handleSubmit: form.handleSubmit(onSubmit),
+    errors: form.formState.errors,
     isPending,
     unknownError,
   }
