@@ -89,6 +89,9 @@ export type ActionChoice = {
   type: ActionChoiceType
 }
 
+// Currently only supports committed or not commited (null).
+// Rejected may be implemented later if we want to allow users to explicitely
+// state that they won't commit to a given action.
 export type ActionChoiceType = 'committed' // | 'rejected'
 
 export type ActionEvaluation =

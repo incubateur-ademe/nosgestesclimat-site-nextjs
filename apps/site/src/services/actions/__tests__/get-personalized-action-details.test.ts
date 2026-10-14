@@ -61,7 +61,7 @@ describe('getPersonalizedActionDetails service', () => {
     expect(cacheLifeMock).toHaveBeenCalledWith('minutes')
   })
 
-  it('tags the cache with the user id and the id of the returned action, not the requested slug', async () => {
+  it('tags the cache with the user id and the id of the returned action', async () => {
     sessionMock.getUserSession.mockResolvedValue(mockUser)
     const actionId = faker.string.uuid()
     getPersonalizedActionDetailsCoreServiceMock.mockResolvedValue({

@@ -35,7 +35,7 @@ describe('getActionsPlan', () => {
     expect(result).toBeNull()
   })
 
-  it('returns null when the only committed action is deleted', async () => {
+  it('returns null after the user abandonned their only committed action', async () => {
     const action = await actionFactory.published().deleted().create()
     const user = await userFactory.create()
     await actionFactory.chosen({ actionId: action.id, userId: user.id })

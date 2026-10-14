@@ -2301,8 +2301,8 @@ entries:
   actions.myPlanPage.description_many.lock: Vous avez ajouté <1>{{count}} actions</1> à votre plan.
   actions.myPlanPage.description_other: You have added <1>{{count}} actions</1> to your plan.
   actions.myPlanPage.description_other.lock: Vous avez ajouté <1>{{count}} actions</1> à votre plan.
-  actions.myPlanPage.metaTitle: My action plan – Nos Gestes Climat
-  actions.myPlanPage.metaTitle.lock: Mon plan d’action - Nos Gestes Climat
+  Mon plan d’action - Nos Gestes Climat: My action plan – Nos Gestes Climat
+  Mon plan d’action - Nos Gestes Climat.lock: Mon plan d’action - Nos Gestes Climat
   actions.myPlanPage.removeButton.tooltip: Remove
   actions.myPlanPage.removeButton.tooltip.lock: Retirer
   actions.myPlanPage.removeButton.ariaLabel: Remove the "{{actionTitle}}" action from your plan

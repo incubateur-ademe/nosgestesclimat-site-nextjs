@@ -20,7 +20,7 @@ import { redirect } from 'next/navigation'
 import PlannedActionCard from './_components/PlannedActionCard'
 
 export const generateMetadata = getCommonMetadata({
-  title: t('actions.myPlanPage.metaTitle'),
+  title: t('Mon plan d’action - Nos Gestes Climat'),
   alternates: {
     canonical: ACTIONS_MY_PLAN_PATH,
   },

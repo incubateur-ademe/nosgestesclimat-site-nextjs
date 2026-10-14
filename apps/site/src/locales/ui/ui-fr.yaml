@@ -1499,7 +1499,7 @@ entries:
   login.default.title: Accédez à votre espace Nos Gestes Climat
   signUp.button.label: M'inscrire
   actions.myPlanPage.exploreOtherActions: Explorer d’autres actions
-  actions.myPlanPage.metaTitle: Mon plan d’action - Nos Gestes Climat
+  Mon plan d’action - Nos Gestes Climat: Mon plan d’action - Nos Gestes Climat
   actions.myPlanPage.title: Mon plan d’action
   actions.myPlanPage.description_one: Vous avez ajouté <1>{{count}} action</1> à votre plan.
   actions.myPlanPage.description_many: Vous avez ajouté <1>{{count}} actions</1> à votre plan.
