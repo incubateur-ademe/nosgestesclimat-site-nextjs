@@ -23,46 +23,6 @@ export const mswServer = setupServer(
     })
   }),
 
-  // Handler pour les endpoints d'intégration (partners)
-  http.get('https://localhost:3001/integrations/v1/:partner', () => {
-    return HttpResponse.json(true)
-  }),
-
-  http.post(
-    'https://localhost:3001/integrations/v1/:partner/export-situation',
-    () => {
-      return HttpResponse.json({
-        redirectUrl: '/partner-site',
-      })
-    }
-  ),
-
-  // Handler pour les requêtes OPTIONS sur les endpoints d'intégration
-  http.options('https://localhost:3001/integrations/v1/:partner', () => {
-    return new HttpResponse(null, {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      },
-    })
-  }),
-
-  http.options(
-    'https://localhost:3001/integrations/v1/:partner/export-situation',
-    () => {
-      return new HttpResponse(null, {
-        status: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        },
-      })
-    }
-  ),
-
   // Handler pour l'endpoint CMS des partenaires
   http.get('*/api/partners*', () => {
     return HttpResponse.json({

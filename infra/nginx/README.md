@@ -80,44 +80,93 @@ Ces fichiers sont téléchargés au first boot (via cloud-init `runcmd`) et ne s
 
 ## Logs Nginx → PostHog (OpenTelemetry)
 
-Les logs d'accès et d'erreur de Nginx sont envoyés vers PostHog Logs via
-l'OpenTelemetry Collector (`otelcol-contrib`), installé sur la même instance
-par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
+Les erreurs de Nginx sont envoyées vers PostHog Logs via l'OpenTelemetry
+Collector (`otelcol-contrib`), installé sur la même instance par cloud-init — et
+ses accès par le span du module OTel, voir « Traces ». Aucun SDK PostHog :
+PostHog est nativement OTLP.
 
 ### Fonctionnement
 
-- `nginx.conf.tpl` écrit `access.log` au format JSON (`log_format json_combined`),
-  chaque champ devenant un attribut filtrable dans PostHog — sans IP, sans
-  referer. Les champs `http.*`, `url.*`, `network.*`, `server.*` et
-  `user_agent.original` suivent les **conventions sémantiques OTel** (semconv) ;
-  les champs upstream restent nginx-spécifiques (`upstream_cache_status`, …).
-- Logging conditionnel : les routes bavardes (assets `/_next/`, `/_static/cms/`,
-  `/(images|misc|fonts)/` et proxy PostHog `/revp/`) ne sont écrites dans
-  `access.log` qu'en cas d'erreur (4xx/5xx) → moins de volume et de bruit.
+- Aucun `access.log` n'est écrit : `access_log off;` au niveau `http`, sans quoi
+  nginx hérite de celui de `nginx.conf`. Le span porte tout ce que le log
+  portait — `url.path`, `url.query`, `upstream_*`, `request_time` — et ses champs
+  suivent les **conventions sémantiques OTel** (semconv) ; les champs upstream
+  restent nginx-spécifiques (`upstream_cache_status`, …).
 - `otelcol-contrib` (service systemd, user `otelcol-contrib`) :
-  - lit `/var/log/nginx/access.log` (JSON) et `error.log` (texte parsé par
-    regex : préfixe `time [level] pid#tid: *connection` + contexte `server`,
-    `request`, `upstream`, `host` — `client` et `referrer` ne sont pas extraits,
-    et le `error_log json` est Plus-only) ;
+  - lit `/var/log/nginx/error.log` (texte parsé par regex : préfixe
+    `time [level] pid#tid: *connection` + contexte `server`, `request`,
+    `upstream`, `host` — `client` et `referrer` ne sont pas extraits, et le
+    `error_log json` est Plus-only) ;
   - masque sur la ligne brute, **avant parsing** : emails, IP client (IPv4 et
     IPv6) et query du `referrer` — donc dans tous les champs d'un coup ;
-  - normalise `network.protocol.version` en semconv (`HTTP/1.1` → `1.1`,
-    `HTTP/2.0` → `2`) et retire le `body` de l'access log (JSON brut redondant
-    avec les attributs) pour alléger le volume ;
-  - pose `event_name=nginx.access|nginx.error` : attribut semconv promu en
-    champ natif `EventName` (que stanza ne sait pas écrire) puis retiré ;
+  - normalise les attributs du span d'nginx vers la sémantique actuelle, et en
+    retire l'IP du visiteur (voir « Traces ») ;
+  - pose `event_name=nginx.error` : attribut semconv promu en champ natif
+    `EventName` (que stanza ne sait pas écrire) puis retiré ;
   - ajoute `service.name=nginx` et
     `deployment.environment.name=preprod|production` ;
   - exporte vers `https://eu.i.posthog.com/i/v1/logs` (OTLP HTTP) avec
     `Authorization: Bearer <POSTHOG_PROJECT_TOKEN>`.
-- Corrélation : `$request_id` (généré par nginx) est propagé à l'app via
-  `X-Request-ID` et mappé en `trace_id` du log (convention OTel), pour relier
-  logs nginx et logs applicatifs partageant cet ID.
-  `connection` (extrait des deux logs) permet de filtrer dans PostHog une ligne
-  d'`access.log` et la ligne d'`error.log` correspondante ; `upstream_addr`
-  distingue un 502 « upstream a répondu » d'un 502 « aucun serveur joignable ».
+- Corrélation : le span d'nginx ouvre la trace (`$otel_trace_id`), et c'est lui
+  qui porte le contexte de la requête — `connection`, `upstream_addr`,
+  `upstream_cache_status`. `connection` rapproche la requête de la ligne
+  d'`error.log` correspondante ; `upstream_addr` distingue un 502 « l'upstream a
+  répondu » d'un 502 « aucun serveur joignable ».
 - La clé est stockée dans `/etc/otelcol-contrib/otelcol-contrib.env` (0600),
   chargée par systemd (`EnvironmentFile`).
+
+### Traces
+
+Nginx émet un span par requête grâce au module **`ngx_otel_module`**, exporté en
+OTLP/gRPC vers le collecteur (pipeline `traces/nginx`, port 4317). Ce span est la
+**racine** des traces de l'application : sans lui, les spans de l'app arrivent
+sans parent, PostHog les marque orphelines, et la vue traces n'affiche rien.
+
+Le module ne vient que de nginx.org : ni Debian ni Ubuntu n'empaquettent de
+`libnginx-mod-http-otel`. On déclare donc leur dépôt, puis on installe `nginx`
+**et** `nginx-module-otel` ensemble — un module dynamique doit correspondre au
+binaire.
+
+```bash
+. /etc/os-release
+curl -fsSL https://nginx.org/keys/nginx_signing.key \
+  | sudo gpg --dearmor -o /usr/share/keyrings/nginx-archive-keyring.gpg
+# `printf` plutôt qu'un `echo` : la ligne doit tenir sur une seule, sinon apt
+# lit quatre champs au lieu de cinq (« Malformed entry ... (Component) »).
+printf 'deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu %s nginx\n' \
+  "$VERSION_CODENAME" | sudo tee /etc/apt/sources.list.d/nginx.list
+cat /etc/apt/sources.list.d/nginx.list     # doit afficher une seule ligne
+
+sudo apt-get update && sudo apt-get install -y nginx nginx-module-otel
+ls -l /etc/nginx/modules/ngx_otel_module.so
+
+# Le nginx de nginx.org tourne en `nginx` (Ubuntu : `www-data`) : sans ce
+# chown, il ne peut pas écrire son cache et tronque chaque réponse.
+sudo chown -R nginx:nginx /var/cache/nginx
+
+# Le `nginx.conf` de nginx.org n'inclut pas `modules-enabled`, contrairement à
+# celui d'Ubuntu : le `load_module` va dans le contexte principal.
+grep -qs ngx_otel_module /etc/nginx/nginx.conf || \
+  sudo sed -i '1i load_module modules/ngx_otel_module.so;' /etc/nginx/nginx.conf
+```
+
+Si `apt-cache policy nginx nginx-module-otel` ne montre rien après `apt-get
+update`, le nom de code n'est pas servi par le dépôt stable : remplacer
+`/packages/ubuntu` par `/packages/mainline/ubuntu` dans la ligne ci-dessus.
+
+Le module est un **prérequis** du vhost : `otel_exporter`, `otel_trace` et
+`$otel_trace_id` sont inconnus sans lui, et nginx refuse de démarrer. Le
+provisioning l'installe donc avant tout pull, et la CI l'installe pour valider la
+configuration.
+
+Le span porte aussi les champs propres au proxy — `upstream_*`, `request_time`,
+`connection` — posés par `otel_span_attr`, donc évalués à la fin de la requête,
+une fois l'amont connu. Ils portent **les mêmes noms** que dans `log_format` :
+une requête PostHog écrite sur l'un vaut sur l'autre.
+
+Le module les émet en revanche dans la sémantique HTTP d'avant 1.23
+(`http.method`, `http.status_code`, `http.flavor`…) : le collecteur les renomme
+vers les noms actuels. Renommer en amont casserait ce collecteur.
 
 ### Résilience
 
@@ -132,15 +181,16 @@ par cloud-init. Aucun SDK PostHog : PostHog Logs est nativement OTLP.
 
 Aucune donnée directement identifiante n'est envoyée à PostHog :
 
-- **IP** : retirée de `access.log` (pas de `remote_addr`). Dans `error.log`
-  (format nginx figé, qui inclut `client: <ip>`), elles sont masquées par le
-  collecteur — **IPv4 et IPv6**.
-- **Query strings** : conservées (attribut `url.query`, séparé du chemin
-  `url.path`) pour le debugging, mais les emails qu'elles contiennent sont
-  masqués côté collecteur.
+- **IP** : absente de tout ce qui sort. Plus d'`access.log` du tout, et les
+  `net.sock.peer.addr` et `net.sock.peer.port` que le module ajoute au span sont
+  supprimés par le collecteur. Dans `error.log` (format nginx figé, qui inclut
+  `client: <ip>`), elles sont masquées par le collecteur — **IPv4 et IPv6**.
+- **Query strings** : conservées dans l'attribut `url.query` du span, séparé du
+  chemin `url.path`, pour le debugging — les emails qu'elles contiennent sont
+  masqués par le collecteur.
 - **Bodies POST** : jamais loggés par nginx (pas de `$request_body`). Attention
   en revanche aux logs applicatifs Next.js, qui sont hors de ce pipeline.
-- **Referer** : retiré de `access.log`. Dans `error.log` (où nginx l'ajoute au
+- **Referer** : jamais journalisé. Dans `error.log` (où nginx l'ajoute au
   message), on ne garde que le **chemin** : la **query** — où vit la PII — est
   supprimée (`referrer: "https://host/path"`).
 
@@ -154,8 +204,10 @@ Rétention sur disque : `/var/log/nginx/*.log` tournent sur 2 jours (logrotate
 ### Consulter les logs
 
 PostHog → Logs, filtrer sur `service.name = nginx` puis
-`deployment.environment.name = production` (ou `preprod`). Exemples de
-recherche : `429`, `upstream_cache_status = MISS`, `status = 500`.
+`deployment.environment.name = production` (ou `preprod`) : il n'y reste que les
+erreurs d'nginx. Les accès sont dans **Tracing**, avec les mêmes filtres — le
+span porte les mêmes attributs que l'ancien log (`url.path`,
+`upstream_cache_status`, `http.response.status_code`, …).
 
 ### Modifier la config du collecteur
 
@@ -175,8 +227,9 @@ du collecteur et n'atteignent pas PostHog.
   `/revp/`) : seules les réponses en **erreur (4xx/5xx)** sont écrites (cf.
   « Logging conditionnel » plus haut). Pour ne garder que les 5xx, ajuster le
   `map $status $ngc_is_error` dans `nginx.conf.tpl`.
-- **body** de l'access log : supprimé côté collecteur (JSON brut redondant avec
-  les attributs) — cf. « Fonctionnement ».
+- **access.log** : plus écrit du tout. Le span porte le même contenu —
+  `url.path`, `url.query`, `upstream_*`, `request_time`.
+- **error.log** : livré, et c'est désormais le seul flux de logs nginx.
 
 ## Créer une instance
 
@@ -318,8 +371,7 @@ La page est en `noindex` et interdite dans `robots.txt`.
 
 ## Vérifier le cache
 
-    # Hit ratio sur l'instance
-    tail -100 /var/log/nginx/access.log | grep -c HIT
+    # Hit ratio : dans PostHog → Tracing, filtrer sur `upstream_cache_status`
 
     # Ce qui est réellement mis en cache, et où (une entrée = un fichier)
     grep -c "" /var/cache/nginx/*/*/* 2>/dev/null | head

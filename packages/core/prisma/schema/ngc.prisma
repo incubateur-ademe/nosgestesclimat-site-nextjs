@@ -113,37 +113,6 @@ model GroupParticipant {
   @@schema("ngc")
 }
 
-enum ApiScopeName {
-  ngc
-  agir
-  two_tons
-
-  @@schema("ngc")
-}
-
-model IntegrationApiScope {
-  name        ApiScopeName           @id
-  description String
-  whitelists  IntegrationWhitelist[]
-  createdAt   DateTime               @default(now())
-  updatedAt   DateTime               @updatedAt
-
-  @@schema("ngc")
-}
-
-model IntegrationWhitelist {
-  id           String              @id @default(uuid()) @db.Uuid
-  emailPattern String
-  description  String
-  apiScopeName ApiScopeName
-  apiScope     IntegrationApiScope @relation(fields: [apiScopeName], references: [name])
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-
-  @@unique([emailPattern, apiScopeName])
-  @@schema("ngc")
-}
-
 enum JobStatus {
   pending
   running
@@ -372,15 +341,12 @@ model Simulation {
   groups                     GroupParticipant[]
   userId                     String?                              @db.Uuid
   user                       User?                                @relation(fields: [userId], references: [id], onDelete: SetNull)
-  userEmail                  String?
-  verifiedUser               VerifiedUser?                        @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   createdAt                  DateTime                             @default(now())
   updatedAt                  DateTime                             @updatedAt
   actionAssessments          ActionAssessment[]
   computations               SimulationComputation[]
 
   @@index([userId])
-  @@index([userEmail])
   @@index([createdAt])
   // Created partial (progression = 1) by the migration: Prisma cannot express
   // the predicate, so a schema edit would rebuild it whole.
@@ -447,18 +413,19 @@ model Survey {
 }
 
 model User {
-  id            String               @id @db.Uuid
-  name          String?
-  email         String?
-  ageRange      AgeRange?
-  administrator GroupAdministrator[]
-  member        GroupParticipant[]
-  simulations   Simulation[]
-  refreshTokens RefreshToken[]
-  createdAt     DateTime             @default(now())
-  updatedAt     DateTime             @updatedAt
-  verifiedUsers VerifiedUser[]
-  actionChoices ActionChoice[]
+  id             String               @id @db.Uuid
+  name           String?
+  email          String?
+  administrator  GroupAdministrator[]
+  member         GroupParticipant[]
+  simulations    Simulation[]
+  refreshTokens  RefreshToken[]
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  /// Set when a session is issued to a verified account.
+  lastActivityAt DateTime?
+  verifiedUsers  VerifiedUser[]
+  actionChoices  ActionChoice[]
 
   @@schema("ngc")
 }
@@ -478,19 +445,18 @@ enum AgeRange {
 enum VerificationCodeUsage {
   login
   newsletter
-  apiToken
 
   @@schema("ngc")
 }
 
 model VerificationCode {
-  id             String                  @id @default(uuid()) @db.Uuid
+  id             String                @id @default(uuid()) @db.Uuid
   email          String
-  usage          VerificationCodeUsage  @default(login)
-  code           String                  @db.VarChar(6)
+  usage          VerificationCodeUsage @default(login)
+  code           String                @db.VarChar(6)
   expirationDate DateTime
-  createdAt      DateTime                @default(now())
-  updatedAt      DateTime                @updatedAt
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
 
   @@index([email, usage, expirationDate])
   @@schema("ngc")
@@ -505,7 +471,6 @@ model VerifiedUser {
   position                 String?
   optedInForCommunications Boolean                     @default(false)
   administrator            OrganisationAdministrator[]
-  simulations              Simulation[]
   createdAt                DateTime                    @default(now())
   updatedAt                DateTime                    @updatedAt
 

@@ -1,5 +1,37 @@
 
 # ----------------------------------------------------------------------------
+# Traces OpenTelemetry
+# ----------------------------------------------------------------------------
+
+# Un span par requête, dont le contexte part vers l'app en `traceparent` : sans
+# cette racine, les traces de l'app arrivent orphelines et PostHog n'affiche
+# aucun span. Ces directives demandent le module `ngx_otel_module` : nginx ne
+# démarre pas sans lui, donc le provisioning l'installe avant le premier pull,
+# et la CI l'installe pour valider cette configuration (voir README).
+otel_exporter {
+  endpoint 127.0.0.1:4317;   # receiver gRPC du collecteur, en local
+  # Défaut = 5 s. L'intervalle borne la file d'export comme le délai de
+  # livraison d'un span : à 1 s, le module vide cinq fois plus vite.
+  interval 1s;
+}
+otel_service_name nginx;
+otel_trace_context propagate;
+otel_trace on;
+
+# `otel_span_attr` est évalué à la fin du span : les `$upstream_*`, connus
+# seulement après la réponse de l'amont, sont donc renseignés. C'est ce span qui
+# porte désormais les attributs de la requête, à la place du log d'accès.
+otel_span_attr upstream_cache_status  $upstream_cache_status;
+otel_span_attr upstream_addr          $upstream_addr;
+otel_span_attr upstream_status        $upstream_status;
+otel_span_attr upstream_connect_time  $upstream_connect_time;
+otel_span_attr upstream_header_time   $upstream_header_time;
+otel_span_attr upstream_response_time $upstream_response_time;
+otel_span_attr request_time           $request_time;
+otel_span_attr connection             $connection;
+
+
+# ----------------------------------------------------------------------------
 # Rate limiting
 # ----------------------------------------------------------------------------
 
@@ -92,38 +124,7 @@ map $http_upgrade $connection_upgrade {
 }
 
 # ----------------------------------------------------------------------------
-# Logs au format JSON (consommés par l'OpenTelemetry Collector → PostHog)
-# ----------------------------------------------------------------------------
 
-# JSON structuré : chaque champ devient un attribut filtrable dans PostHog.
-# Les champs `http.*`, `url.*` et `user_agent.*` suivent les conventions
-# sémantiques OTel (semconv) ; les autres restent nginx-spécifiques.
-# Sans IP (remote_addr) ni referer. La query string est conservée pour le
-# debugging : les emails qu'elle contient sont masqués par le collecteur, qui
-# normalise aussi `network.protocol.version` (brut ici) en semconv.
-# `escape=json` échappe l'user-agent (JSON valide).
-log_format json_combined escape=json
-  '{'
-    '"time_iso8601":"$time_iso8601",'
-    '"request_id":"$request_id",'
-    '"connection":"$connection",'
-    '"server.address":"$host",'
-    '"network.protocol.version":"$server_protocol",'
-    '"http.request.method":"$request_method",'
-    '"url.path":"$uri",'
-    '"url.query":"$args",'
-    '"http.response.status_code":$status,'
-    '"http.request.body.size":"$content_length",'
-    '"http.response.body.size":$body_bytes_sent,'
-    '"request_time":$request_time,'
-    '"upstream_addr":"$upstream_addr",'
-    '"upstream_status":"$upstream_status",'
-    '"upstream_connect_time":"$upstream_connect_time",'
-    '"upstream_header_time":"$upstream_header_time",'
-    '"upstream_response_time":"$upstream_response_time",'
-    '"upstream_cache_status":"$upstream_cache_status",'
-    '"user_agent.original":"$http_user_agent"'
-  '}';
 
 # ----------------------------------------------------------------------------
 # Logging conditionnel
@@ -131,33 +132,6 @@ log_format json_combined escape=json
 
 # 1 si la route est "bavarde" (assets statiques Next.js/CMS, proxy PostHog).
 # `~^/_next/` couvre aussi `/_next/image?…` ($uri = /_next/image, sans query).
-map $uri $ngc_noisy {
-    default                  0;
-    ~^/_next/                 1;
-    ~^/_static/cms/           1;
-    ~^/(images|misc|fonts)/   1;
-    ~^/revp/                  1;
-}
-
-# 1 si la réponse est une erreur (4xx/5xx).
-map $status $ngc_is_error {
-    default  0;
-    ~^[45]   1;
-}
-
-# On loggue tout, sauf une route bavarde SANS erreur (combinaison "10").
-map "$ngc_noisy$ngc_is_error" $ngc_loggable {
-    "10"     0;
-    default  1;
-}
-
-# ----------------------------------------------------------------------------
-# Blocage des scanners
-# ----------------------------------------------------------------------------
-
-# 1 si le User-Agent s'annonce comme un scanner de vulnérabilités connu.
-# `~*` = insensible à la casse. Motifs non ancrés : `nuclei/3.2.1` doit matcher.
-# Falsifiable en une ligne : coupe le bruit, ne protège de rien.
 map $http_user_agent $ngc_is_scanner {
     default          0;
     ~*nuclei         1;
@@ -175,12 +149,16 @@ map $http_user_agent $ngc_is_scanner {
 # Redirections (HTTP → HTTPS, www → apex)
 # ----------------------------------------------------------------------------
 
+# Les accès ne sont plus écrits : le span les porte. `off` est nécessaire, et
+# pas le silence : sans lui nginx hérite de l'access_log `main` de nginx.conf,
+# dans le même fichier et au même niveau.
+access_log off;
+
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
     server_name _;
 
-    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
     return 301 https://$host$request_uri;
 }
@@ -190,8 +168,6 @@ server {
     listen [::]:443 ssl;
     http2 on;
     server_name www.${DOMAIN};
-
-    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
 
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
@@ -213,13 +189,10 @@ server {
     http2 on;
     server_name ${DOMAIN};
 
-    access_log /var/log/nginx/access.log json_combined if=$ngc_loggable;
-
     ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
 
-    # `444` ferme la connexion sans répondre : pas de `$status`, donc pas de
-    # ligne dans access.log.
+    # `444` ferme la connexion sans répondre : pas de `$status`.
     if ($ngc_is_scanner) { return 444; }
 
     # HSTS 2 ans sur tous les sous-domaines, y compris sur les réponses d'erreur (`always`).
@@ -232,8 +205,6 @@ server {
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
-    # Corrélation : nginx → app → collecteur (mappé en trace_id du log).
-    proxy_set_header X-Request-ID $request_id;
     # Négo websocket transmise _uniquement_ si le client en initie une.
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
@@ -439,7 +410,7 @@ server {
     # Check LVAO config https://github.com/incubateur-ademe/quefairedemesobjets/blob/main/servers.conf.erb#L83-L98
     #
     # Chaque `location` repose son propre `proxy_set_header` : les en-têtes du
-    # niveau `server` (X-Forwarded-*, X-Request-ID, Upgrade) ne sont PAS hérités
+    # niveau `server` (X-Forwarded-*, Upgrade) ne sont PAS hérités
     # ici, tout ajout doit être répété dans les trois.
 
     # Un hostname littéral dans `proxy_pass` est résolu une seule fois, au
@@ -462,6 +433,8 @@ server {
     # Sert du JS exécuté par les navigateurs : un certificat non vérifié y laisse
     # passer du code tiers.
     location ~ ^/revp/static/(.*)$ {
+        # Trafic d'ingestion PostHog, sans intérêt à tracer.
+        access_log off;
         proxy_pass https://$ph_assets/static/$1$is_args$args;
         proxy_set_header Host $ph_assets;
         proxy_set_header Cookie "";
@@ -475,6 +448,7 @@ server {
     }
 
     location ~ ^/revp/array/(.*)$ {
+        access_log off;
         proxy_pass https://$ph_assets/array/$1$is_args$args;
         proxy_set_header Host $ph_assets;
         proxy_set_header Cookie "";
@@ -488,6 +462,7 @@ server {
     }
 
     location ~ ^/revp/(.*)$ {
+        access_log off;
         proxy_pass https://$ph_api/$1$is_args$args;
         proxy_set_header Host $ph_api;
         proxy_set_header Cookie "";

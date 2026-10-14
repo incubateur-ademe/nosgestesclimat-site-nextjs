@@ -194,7 +194,7 @@ export function createLogin({
       if (mode === 'signIn' && reconcileUserId) {
         // transfer the unverified user's data to the verified user.
         await createReconcileSimulationsAfterLogin({ logger: userLogger })({
-          user,
+          userId: user.id,
           previousUserId: reconcileUserId,
         })
       }

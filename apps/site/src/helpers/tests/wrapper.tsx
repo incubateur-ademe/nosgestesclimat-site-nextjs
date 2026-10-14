@@ -4,7 +4,6 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import { CookieConsentProvider } from '@/components/cookies/useCookieManagement'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
-import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import { EngineProvider } from '@/publicodes-state'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
@@ -88,7 +87,6 @@ interface ProviderConfig {
   errorBoundary?: boolean
   queryClient?: boolean
   user?: boolean
-  partner?: boolean
   iframeOptions?: boolean
   mainHooks?: boolean
   engine?: boolean
@@ -126,10 +124,6 @@ const TestWrapper = ({
 
   if (providers.iframeOptions) {
     wrapped = <IframeOptionsProvider>{wrapped}</IframeOptionsProvider>
-  }
-
-  if (providers.partner) {
-    wrapped = <PartnerProvider>{wrapped}</PartnerProvider>
   }
 
   if (providers.user) {
