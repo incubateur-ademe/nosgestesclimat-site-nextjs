@@ -4,15 +4,13 @@ import { abandonActionCommitment as _abandonActionCommitment } from '@nosgestesc
 import { updateTag } from 'next/cache'
 import { unauthorized } from 'next/navigation'
 import { getUserSession } from '../auth/get-user-session'
-import { getPersonalizedActionDetailsCacheTagWithSlug } from './get-personalized-action-details'
-import { GET_PERSONALIZED_ACTIONS_CACHE_TAG } from './get-personalized-actions-catalogue'
+import { getPersonalizedActionCacheTag } from './cache-tags'
 
 interface Props {
   actionId: string
-  actionSlug: string
 }
 
-export async function abandonActionCommitment({ actionId, actionSlug }: Props) {
+export async function abandonActionCommitment({ actionId }: Props) {
   const session = await getUserSession()
   if (!session) unauthorized()
 
@@ -21,7 +19,7 @@ export async function abandonActionCommitment({ actionId, actionSlug }: Props) {
     userId: session.id,
   })
 
-  // Reset actions list AND specific action cache to avoid missmatch between pages
-  updateTag(GET_PERSONALIZED_ACTIONS_CACHE_TAG)
-  updateTag(getPersonalizedActionDetailsCacheTagWithSlug(actionSlug))
+  // Reset the caches of the current user listing this action (catalogue,
+  // plan, action details) to avoid mismatch between pages
+  updateTag(getPersonalizedActionCacheTag(session.id, actionId))
 }

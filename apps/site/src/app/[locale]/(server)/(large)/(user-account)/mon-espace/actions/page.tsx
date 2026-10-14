@@ -22,11 +22,11 @@ export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
-  const user = await requireAuthUser()
+  await requireAuthUser()
 
   const [personalizedActionsCatalogue, themes, currentSimulation] =
     await Promise.all([
-      getPersonalizedActionsCatalogue(user.id, locale),
+      getPersonalizedActionsCatalogue(locale),
       getThemes(locale),
       getCurrentSimulation(),
     ])

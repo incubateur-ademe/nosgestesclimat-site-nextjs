@@ -1,10 +1,12 @@
 import ActionTracker from '@/components/actions/ActionTracker'
 import BetaBanner from '@/components/actions/BetaBanner'
 import ThemeSection from '@/components/actions/ThemeSection'
+import type { ActionFrom } from '@/components/actions/types/actions'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import {
   ACTION_DETAIL_PATH,
+  ACTIONS_MY_PLAN_PATH,
   ACTIONS_PATH,
   END_PAGE_ACTIONS_PATH,
   MON_ESPACE_ACTIONS_PATH,
@@ -19,7 +21,6 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
 import { getActionAlternateLocales } from '@/services/actions/get-action-alternate-locales'
 import { getPersonalizedActionDetails } from '@/services/actions/get-personalized-action-details'
-import { getUserSession } from '@/services/auth/get-user-session'
 import type { DefaultPageProps } from '@/types'
 import type { Theme } from '@/types/themes'
 import { toSearchParams } from '@/utils/nextjs/toSearchParams'
@@ -35,25 +36,25 @@ const SECTION_ID_I_ACT = 'j-agis'
 const SECTION_ID_I_BENEFIT = 'j-y-gagne'
 const SECTION_ID_FURTHER_READING = 'a-decouvrir-aussi'
 
-const FROM_PATH_MAP: Record<'fin' | 'mon-espace' | 'index', string> = {
+const FROM_PATH_MAP: Record<ActionFrom, string> = {
   fin: END_PAGE_ACTIONS_PATH,
   'mon-espace': MON_ESPACE_ACTIONS_PATH,
   index: ACTIONS_PATH,
+  'mon-plan': ACTIONS_MY_PLAN_PATH,
 }
 
 type Props = DefaultPageProps<{
   params: { themeSlug: string; actionSlug: string }
-  searchParams: { from?: 'fin' | 'mon-espace' | 'index' }
+  searchParams: { from?: ActionFrom }
 }>
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props
   const { locale, actionSlug } = await params
 
-  const user = await getUserSession()
   const { t } = await getServerTranslation()
   const [actionDetails, alternateLocales] = await Promise.all([
-    getPersonalizedActionDetails(actionSlug, locale, user?.id),
+    getPersonalizedActionDetails(actionSlug, locale),
     getActionAlternateLocales(actionSlug),
   ])
 
@@ -91,9 +92,8 @@ export default async function ActionPage({ params, searchParams }: Props) {
   const { locale, themeSlug, actionSlug } = await params
   const resolvedSearchParams = await searchParams
   const from = resolvedSearchParams?.from
-  const user = await getUserSession()
   const [actionDetails, alternateLocales] = await Promise.all([
-    getPersonalizedActionDetails(actionSlug, locale, user?.id),
+    getPersonalizedActionDetails(actionSlug, locale),
     getActionAlternateLocales(actionSlug),
   ])
 

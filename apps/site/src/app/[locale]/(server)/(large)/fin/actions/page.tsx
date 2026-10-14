@@ -30,7 +30,7 @@ export default async function ResultatsActionsPage({
   }
 
   const [actionsCatalogue, themes, currentSimulation] = await Promise.all([
-    getPersonalizedActionsCatalogue(user.id, locale),
+    getPersonalizedActionsCatalogue(locale),
     getThemes(locale),
     getCurrentSimulation(),
   ])

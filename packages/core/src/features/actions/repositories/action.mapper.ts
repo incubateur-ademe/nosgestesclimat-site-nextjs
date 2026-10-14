@@ -3,6 +3,8 @@ import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
 import type {
   Action,
   ActionAssessment,
+  ActionChoice,
+  ActionChoiceType,
   NewAction,
   PersonalizedAction,
   UpdatedAction,
@@ -119,7 +121,10 @@ const mapAssessment = (
   }
 }
 
-const mapActionChoice = (dbActionChoice: Prisma.ActionChoiceModel) => ({
-  type: dbActionChoice.type,
+const mapActionChoice = (
+  dbActionChoice: Prisma.ActionChoiceModel
+): Pick<ActionChoice, 'type' | 'chosenAt'> => ({
+  // The database enum still holds 'rejected', not implemented in the domain yet
+  type: dbActionChoice.type as ActionChoiceType,
   chosenAt: dbActionChoice.chosenAt,
 })

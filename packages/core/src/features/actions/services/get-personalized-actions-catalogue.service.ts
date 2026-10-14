@@ -1,6 +1,7 @@
 import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
 import { findLastFinishedSimulationByUserId } from '../../simulation-computation/repositories/simulation-computations.repository.ts'
 import type { SimulationComputationStatus } from '../../simulation-computation/types/computation.ts'
+import { buildActionPlan } from '../helpers/action-plan.ts'
 import { findAllVisiblePersonalizedActions } from '../repositories/actions.repository.ts'
 import type { ActionPlan, PersonalizedAction } from '../types/action.ts'
 
@@ -48,7 +49,9 @@ export const getPersonalizedActionsCatalogue = async (
           )
       : personalizedActions
 
-  const actionsCommittedTo = actions.filter((action) => !!action?.choice)
+  const committedActions = actions.filter(
+    (action) => action.choice?.type === 'committed'
+  )
 
   return {
     assessmentStatus:
@@ -59,14 +62,6 @@ export const getPersonalizedActionsCatalogue = async (
     topActions: actions
       .filter((action) => typeof action.assessment?.impact === 'number')
       .slice(0, 3),
-    plan:
-      actionsCommittedTo.length > 0
-        ? {
-            numberOfCommittedActions: actionsCommittedTo.length,
-            totalImpact: actionsCommittedTo.reduce((acc, action) => {
-              return acc + (action.assessment?.impact ?? 0)
-            }, 0),
-          }
-        : null,
+    plan: buildActionPlan(committedActions),
   }
 }

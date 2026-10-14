@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker/locale/th'
 import { afterEach, describe, vi } from 'vitest'
+import {
+  getPersonalizedActionCacheTag,
+  getPersonalizedActionsPlanCacheTag,
+} from '../cache-tags'
 import { commitToAction } from '../commit-to-action'
 
 const { commitToAction: commitToActionCoreServiceMock } = vi.hoisted(() => ({
@@ -51,9 +55,9 @@ describe('commitToAction service', () => {
   it('should call unauthorized() if no user session is found', async () => {
     sessionMock.getUserSession.mockResolvedValue(null)
 
-    await expect(
-      commitToAction(faker.string.uuid(), faker.string.uuid())
-    ).rejects.toThrow('NEXT_UNAUTHORIZED')
+    await expect(commitToAction(faker.string.uuid())).rejects.toThrow(
+      'NEXT_UNAUTHORIZED'
+    )
 
     expect(unauthorizedMock).toHaveBeenCalledTimes(1)
     expect(commitToActionCoreServiceMock).not.toHaveBeenCalled()
@@ -64,20 +68,23 @@ describe('commitToAction service', () => {
 
     commitToActionCoreServiceMock.mockRejectedValue('db error')
 
-    await expect(
-      commitToAction(faker.string.uuid(), faker.string.uuid())
-    ).rejects.toThrow()
+    await expect(commitToAction(faker.string.uuid())).rejects.toThrow()
 
     expect(updateTagMock).not.toHaveBeenCalled()
   })
 
-  it('should update the actions list and the action detail caches if the service call result is a success', async () => {
+  it('should update the caches of the action for the current user if the service call result is a success', async () => {
     sessionMock.getUserSession.mockResolvedValue(mockUser)
 
-    await expect(
-      commitToAction(faker.string.uuid(), faker.string.uuid())
-    ).resolves.toBeUndefined()
+    const actionId = faker.string.uuid()
+    await expect(commitToAction(actionId)).resolves.toBeUndefined()
 
     expect(updateTagMock).toHaveBeenCalledTimes(2)
+    expect(updateTagMock).toHaveBeenCalledWith(
+      getPersonalizedActionCacheTag(mockUser.id, actionId)
+    )
+    expect(updateTagMock).toHaveBeenCalledWith(
+      getPersonalizedActionsPlanCacheTag(mockUser.id)
+    )
   })
 })
