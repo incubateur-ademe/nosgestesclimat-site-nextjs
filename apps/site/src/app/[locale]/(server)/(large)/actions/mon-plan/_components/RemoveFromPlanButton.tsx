@@ -48,7 +48,7 @@ export default function RemoveFromPlanButton({ action }: Props) {
           )}
         </button>
       </TooltipTrigger>
-      <TooltipContent side="bottom" className="font-marianne">
+      <TooltipContent side="top" className="font-marianne">
         <Trans i18nKey="actions.myPlanPage.removeButton.tooltip">Retirer</Trans>
       </TooltipContent>
     </Tooltip>
