@@ -2311,3 +2311,7 @@ entries:
   actions.myPlanPage.removeButton.tooltip.lock: Retirer
   actions.myPlanPage.removeButton.ariaLabel: Remove the "{{actionTitle}}" action from your plan
   actions.myPlanPage.removeButton.ariaLabel.lock: Retirer l’action "{{actionTitle}}" de votre plan
+  actions.abandonCommitment.success: Action removed from your plan
+  actions.abandonCommitment.success.lock: Action retirée de votre plan
+  actions.abandonCommitment.undo: Undo
+  actions.abandonCommitment.undo.lock: Annuler
