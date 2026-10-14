@@ -2,7 +2,6 @@
 
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useLocale } from '@/hooks/useLocale'
-import type { Locale } from '@/i18nConfig'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type { ActionAssessment } from '@nosgestesclimat/core/features/actions/types/action'
 import type { ThemeKey } from '@nosgestesclimat/core/features/actions/types/theme'
@@ -27,8 +26,6 @@ export default function ImpactSection({
 }: Props) {
   const classes = classesByTheme[themeKey]
 
-  const locale = useLocale()
-
   if (
     !actionCatalogueContext.assessmentStatus ||
     !actionCatalogueContext.totalFootprint ||
@@ -44,22 +41,18 @@ export default function ImpactSection({
         className
       )}>
       <p className="mb-0 text-sm/normal font-bold text-slate-600 uppercase">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.actionCard.highlighted.potentialImpact">
+        <Trans i18nKey="actions.components.actionCard.highlighted.potentialImpact">
           Impact potentiel
         </Trans>
       </p>
       <ImpactValue
         impact={assessment.impact}
-        locale={locale}
         valueClassName={classes.value}
         assessmentStatus={actionCatalogueContext.assessmentStatus}
       />
       <FootprintShare
         impact={assessment.impact}
         totalFootprint={actionCatalogueContext.totalFootprint}
-        locale={locale}
       />
     </div>
   )
@@ -68,22 +61,19 @@ export default function ImpactSection({
 interface ImpactValueProps {
   impact?: number
   assessmentStatus: AssessmentStatus
-  locale: Locale
   valueClassName: string
 }
 
 function ImpactValue({
   impact,
-  locale,
   assessmentStatus,
   valueClassName,
 }: ImpactValueProps) {
+  const locale = useLocale()
   if (shouldDisplayComputationInProgressText(assessmentStatus)) {
     return (
       <p className="mb-0 text-base/normal font-bold text-slate-600">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.actionCard.impactAssessmentInProgress">
+        <Trans i18nKey="actions.components.actionCard.impactAssessmentInProgress">
           En cours de calcul
         </Trans>
       </p>
@@ -93,9 +83,7 @@ function ImpactValue({
   if (typeof impact !== 'number') {
     return (
       <p className="mb-0 text-base/normal font-bold text-slate-600">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.actionCard.noImpactTag">
+        <Trans i18nKey="actions.components.actionCard.noImpactTag">
           Impact non quantifiable
         </Trans>
       </p>
@@ -119,9 +107,7 @@ function ImpactValue({
         {formattedValue} {unit}
       </span>
       <span className="text-xs/none font-bold text-slate-600">
-        <Trans
-          locale={locale}
-          i18nKey="actions.components.actionCard.highlighted.impactUnit">
+        <Trans i18nKey="actions.components.actionCard.highlighted.impactUnit">
           CO<sub>2</sub>e / an
         </Trans>
       </span>
@@ -132,14 +118,9 @@ function ImpactValue({
 interface FootprintShareProps {
   impact?: number
   totalFootprint?: number
-  locale: Locale
 }
 
-function FootprintShare({
-  impact,
-  totalFootprint,
-  locale,
-}: FootprintShareProps) {
+function FootprintShare({ impact, totalFootprint }: FootprintShareProps) {
   if (
     typeof impact !== 'number' ||
     typeof totalFootprint !== 'number' ||
@@ -157,7 +138,6 @@ function FootprintShare({
   return (
     <p className="mb-0 text-sm/normal font-bold text-slate-600">
       <Trans
-        locale={locale}
         i18nKey="actions.components.actionCard.highlighted.footprintShare"
         values={{ percentage }}>
         soit {'{{percentage}}'} % de votre empreinte totale
