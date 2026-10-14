@@ -29,7 +29,7 @@ export default async function FAQPage({
   params,
 }: DefaultPageProps<{ params: { locale: Locale } }>) {
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const faqCategories =
     (await fetchFaq({
@@ -70,12 +70,10 @@ export default async function FAQPage({
           <Scroller />
 
           <p>
-            <Trans locale={locale}>
-              Levez la main, on répond à vos questions !
-            </Trans>
+            <Trans>Levez la main, on répond à vos questions !</Trans>
           </p>
           <p>
-            <Trans locale={locale}>
+            <Trans>
               Vous trouverez ici les réponses aux questions les plus fréquentes.
               S'il vous reste des interrogations ou si vous souhaitez nous
               proposer des améliorations, rendez-vous tout en bas. Bonne lecture
@@ -83,7 +81,7 @@ export default async function FAQPage({
             </Trans>
           </p>
 
-          <DoTheTest locale={locale} />
+          <DoTheTest />
         </div>
 
         <Image
@@ -110,7 +108,6 @@ export default async function FAQPage({
                         key={id}
                         question={question}
                         answer={htmlAnswer}
-                        locale={locale}
                       />
                     )
                   })}
@@ -122,12 +119,12 @@ export default async function FAQPage({
 
       <Card className="bg-gray-100">
         <h3 className="text-yellow-dark flex items-center">
-          <Trans locale={locale}>Je ne trouve pas réponse à ma question </Trans>
+          <Trans>Je ne trouve pas réponse à ma question </Trans>
 
           <Emoji className="ml-2 inline-block">🙋‍♀️</Emoji>
         </h3>
         <p className="mb-0">
-          <Trans locale={locale}>
+          <Trans>
             Vous pouvez nous contacter via notre page de contact :{' '}
             <ContactUsLink />.
           </Trans>

@@ -22,19 +22,18 @@ export default function ResultsView({
   onSimulationDelete,
 }: Props) {
   if (simulations.length === 0) {
-    return <NoResultsView locale={locale} />
+    return <NoResultsView />
   }
 
   return (
     <>
-      <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
+      <ProfileTab activePath={MON_ESPACE_PATH} />
 
       <LatestResults locale={locale} simulation={simulations[0]} />
 
-      <ShareSimulator locale={locale} />
+      <ShareSimulator />
 
       <ResultsList
-        locale={locale}
         simulations={simulations}
         isNewAccount={isNewAccount}
         onSimulationDelete={onSimulationDelete}

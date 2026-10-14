@@ -1,12 +1,10 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import EventNumber from './eventStatistics/EventNumber'
 
 interface Props {
-  locale: Locale
   status: EventStatus
   values: {
     simulations: number
@@ -15,15 +13,15 @@ interface Props {
   }
 }
 
-export default function EventStatistics({ locale, status, values }: Props) {
-  const { t } = getServerTranslation({ locale })
+export default async function EventStatistics({ status, values }: Props) {
+  const { t } = await getServerTranslation()
   const isEventInProgress = status === 'in_progress'
   return (
     <div className="bg-primary-700 py-12">
       <div className="mx-auto flex w-5xl max-w-full flex-col px-4 lg:p-0">
         {status === 'not_started' && (
           <p className="mb-6 text-center text-sm font-bold tracking-wide text-white uppercase">
-            <Trans i18nKey="event.statistics.title" locale={locale}>
+            <Trans i18nKey="event.statistics.title">
               Les données en direct apparaîtront au lancement
             </Trans>
           </p>
@@ -32,7 +30,6 @@ export default function EventStatistics({ locale, status, values }: Props) {
         <div className="flex flex-col gap-4 md:flex-row md:gap-10">
           <EventNumber
             value={values.simulations}
-            locale={locale}
             text={
               isEventInProgress
                 ? t(
@@ -48,7 +45,6 @@ export default function EventStatistics({ locale, status, values }: Props) {
 
           <EventNumber
             value={values.actions}
-            locale={locale}
             text={t(
               'event.statistics.second',
               'actions disponibles pour réduire son empreinte'
@@ -57,20 +53,15 @@ export default function EventStatistics({ locale, status, values }: Props) {
 
           <EventNumber
             value={values.organisations}
-            locale={locale}
             text={
               <>
                 <span>
                   {isEventInProgress ? (
-                    <Trans
-                      i18nKey="event.statistics.third.text.inProgress"
-                      locale={locale}>
+                    <Trans i18nKey="event.statistics.third.text.inProgress">
                       Organisations déjà mobilisées
                     </Trans>
                   ) : (
-                    <Trans
-                      i18nKey="event.statistics.third.text.ended"
-                      locale={locale}>
+                    <Trans i18nKey="event.statistics.third.text.ended">
                       Organisations mobilisées
                     </Trans>
                   )}
@@ -81,9 +72,7 @@ export default function EventStatistics({ locale, status, values }: Props) {
                     <Link
                       href="/organisations"
                       className="hover:text-secondary-100 text-white transition-colors">
-                      <Trans
-                        i18nKey="event.statistics.third.link"
-                        locale={locale}>
+                      <Trans i18nKey="event.statistics.third.link">
                         Rejoignez-les !
                       </Trans>
                     </Link>

@@ -11,7 +11,7 @@ export async function generateMetadata({
   params,
 }: PageProps<'/[locale]/simulateur/intercalaire/transport'>) {
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return getMetadataObject({
     locale: locale as Locale,
@@ -34,24 +34,19 @@ export default async function Page({
   params,
 }: PageProps<'/[locale]/simulateur/intercalaire/transport'>) {
   const { locale } = (await params) as { locale: Locale }
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <>
       <TransitionInfoCard
         className="bg-transport-100"
         title={
-          <Trans
-            locale={locale}
-            i18nKey="simulator.transition.transport.info.title">
+          <Trans i18nKey="simulator.transition.transport.info.title">
             <strong>À retenir</strong> sur les transports
           </Trans>
         }
-        locale={locale}
         arrowText={
-          <Trans
-            locale={locale}
-            i18nKey="simulator.transition.transport.funFact.graphDescription">
+          <Trans i18nKey="simulator.transition.transport.funFact.graphDescription">
             Ce graphique te permet de comparer l'impact de différents moyens de
             transport
           </Trans>
@@ -59,16 +54,12 @@ export default async function Page({
         funFactContent={
           <>
             <span className="mb-0 block text-center font-medium">
-              <Trans
-                locale={locale}
-                i18nKey="simulator.transition.transport.funFact.line1">
+              <Trans i18nKey="simulator.transition.transport.funFact.line1">
                 Privilégie
               </Trans>
             </span>
             <span className="text-primary-600 mb-0 block text-center text-xl font-bold">
-              <Trans
-                locale={locale}
-                i18nKey="simulator.transition.transport.funFact.line2">
+              <Trans i18nKey="simulator.transition.transport.funFact.line2">
                 la marche, le vélo ou la trottinette
               </Trans>
             </span>

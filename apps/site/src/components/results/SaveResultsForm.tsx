@@ -4,20 +4,17 @@ import AuthenticateUserForm from '@/components/authentication/AuthenticateUserFo
 import Trans from '@/components/translation/trans/TransClient'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 
 import { UserProvider } from '@/publicodes-state'
 import type { UserSession } from '@nosgestesclimat/core/features/auth/types/user-session'
 
 export default function SaveResultsForm({
   userSession,
-  locale,
 }: {
   userSession: UserSession
-  locale: Locale
 }) {
-  const { t } = getServerTranslation({ locale })
+  const { t } = useClientTranslation()
   return (
     <UserProvider userSession={userSession}>
       <div className="dark">

@@ -6,6 +6,7 @@ import {
 import Trans from '@/components/translation/trans/TransServer'
 import Badge from '@/design-system/layout/Badge'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { ReactNode } from 'react'
@@ -13,7 +14,6 @@ import { twMerge } from "cn";
 
 interface Props {
   carbonFootprint: number
-  locale: Locale
   className?: string
   shouldDisplayBadge?: boolean
 }
@@ -46,14 +46,13 @@ const getObjectiveData = ({
         titleClassName: 'text-red-900',
         bgClassName: 'bg-red-50',
         description: (
-          <Trans locale={locale} i18nKey="results.objective.over7.description">
+          <Trans i18nKey="results.objective.over7.description">
             Aujourd’hui, <strong>vous êtes au-dessus des 7 tonnes</strong>,
             l’objectif intermédiaire que nous proposons pour 2030.
           </Trans>
         ),
         reductionDescription: (
           <Trans
-            locale={locale}
             i18nKey="results.objective.reduction.over7.description"
             values={{ year, firstObjectiveNumber }}>
             Votre rythme indicatif pour parvenir à{' '}
@@ -77,7 +76,6 @@ const getObjectiveData = ({
         bgClassName: 'bg-orange-50',
         description: (
           <Trans
-            locale={locale}
             i18nKey="results.objective.over4.description"
             values={{ year, secondObjectiveNumber }}>
             Bravo, aujourd'hui vous êtes déjà{' '}
@@ -90,7 +88,6 @@ const getObjectiveData = ({
         ),
         reductionDescription: (
           <Trans
-            locale={locale}
             i18nKey="results.objective.reduction.over4.description"
             values={{ year, secondObjectiveNumber }}>
             Votre rythme indicatif pour parvenir à{' '}
@@ -111,7 +108,6 @@ const getObjectiveData = ({
         <>
           <strong className="block">
             <Trans
-              locale={locale}
               i18nKey="results.objective.under4.description.title"
               values={{ secondObjectiveNumber }}>
               Vous êtes déjà sous les{' '}
@@ -121,7 +117,6 @@ const getObjectiveData = ({
           </strong>
           <span className="block w-lg max-w-full">
             <Trans
-              locale={locale}
               i18nKey="results.objective.under4.description.body">
               Avec le travail de l’État et toute la société dans les années à
               venir, votre empreinte devrait naturellement diminuer pour se
@@ -141,13 +136,13 @@ const getObjectiveData = ({
   }
 }
 
-export default function ObjectiveWithRhythm({
-  locale,
+export default async function ObjectiveWithRhythm({
   carbonFootprint,
   className,
   shouldDisplayBadge = true,
 }: Props) {
-  const { t } = getServerTranslation({ locale })
+  const locale = await getLocale()
+  const { t } = await getServerTranslation()
   const {
     displayValue,
     unit,
@@ -176,7 +171,7 @@ export default function ObjectiveWithRhythm({
       {shouldDisplayBadge && (
         <div className="mb-2">
           <Badge className="border-none text-base" color="secondary">
-            <Trans locale={locale} i18nKey="common.vous">
+            <Trans i18nKey="common.vous">
               Vous
             </Trans>
           </Badge>
@@ -187,7 +182,7 @@ export default function ObjectiveWithRhythm({
         <div className={twMerge('flex-1 rounded-lg px-6 py-4', bgClassName)}>
           <h3 className={twMerge('mb-2 text-2xl font-bold', titleClassName)}>
             {displayValue} {unit}{' '}
-            <Trans locale={locale} i18nKey="common.co2eAn">
+            <Trans i18nKey="common.co2eAn">
               CO₂e / an
             </Trans>
           </h3>
@@ -204,7 +199,7 @@ export default function ObjectiveWithRhythm({
 
               <p className="text-2xl font-bold">
                 {reductionDisplayValue} {reductionUnit}{' '}
-                <Trans locale={locale} i18nKey="common.parAn">
+                <Trans i18nKey="common.parAn">
                   par an
                 </Trans>
               </p>

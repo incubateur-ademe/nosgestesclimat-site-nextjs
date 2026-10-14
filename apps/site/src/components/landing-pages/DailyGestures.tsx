@@ -9,12 +9,10 @@ export default function DailyGestures({
   title,
   description,
   gestures,
-  locale,
 }: {
   title: string
   description: string | JSX.Element
   gestures: GesturesType
-  locale: string
 }) {
   return (
     <div className="mx-auto mt-16 mb-20 w-full max-w-full px-4 text-center md:my-20 md:max-w-[850px] md:px-0">
@@ -29,7 +27,7 @@ export default function DailyGestures({
       </div>
 
       <div className="mt-10 text-center">
-        <CTAButtons locale={locale} />
+        <CTAButtons />
       </div>
     </div>
   )

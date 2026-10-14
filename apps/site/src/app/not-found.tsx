@@ -21,7 +21,7 @@ export default function NotFound() {
     <html lang="fr">
       <body className={`${marianne.className} text-default bg-white`}>
         <Suspense fallback={null}>
-          <Route404 locale={i18nConfig.defaultLocale} />
+          <Route404 />
         </Suspense>
       </body>
     </html>

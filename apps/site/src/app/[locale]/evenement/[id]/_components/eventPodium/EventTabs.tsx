@@ -1,7 +1,6 @@
 import Tabs from '@/design-system/layout/Tabs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
-import type { Locale } from '@/i18nConfig'
 
 export const FILTER_KEY = 'filter'
 
@@ -58,12 +57,11 @@ const FILTER_TRANSLATIONS: Record<
 
 interface Props {
   filter?: string | string[]
-  locale: Locale
   params: Record<string, string | string[] | undefined>
 }
 
-export default function EventTabs({ filter, locale, params }: Props) {
-  const { t } = getServerTranslation({ locale })
+export default async function EventTabs({ filter, params }: Props) {
+  const { t } = await getServerTranslation()
 
   const rawFilter = Array.isArray(filter) ? filter[0] : filter
   const activeFilter: FilterValue =

@@ -11,17 +11,15 @@ export default function CalculDetail({
   rule,
   ruleName,
   rules,
-  locale,
 }: {
   rule: NGCRule
   ruleName: DottedName
   rules: NGCRules
-  locale: string
 }) {
   return (
     <>
       <h2>
-        <Trans locale={locale}>Comment cette donnée est-elle calculée ?</Trans>
+        <Trans>Comment cette donnée est-elle calculée ?</Trans>
       </h2>
 
       <Card className="p-8">

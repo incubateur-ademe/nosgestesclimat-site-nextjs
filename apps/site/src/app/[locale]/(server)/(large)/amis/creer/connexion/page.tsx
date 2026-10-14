@@ -10,7 +10,6 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { UserProvider } from '@/publicodes-state'
 import { getUserSession } from '@/services/auth/get-user-session'
-import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 
 export const generateMetadata = getCommonMetadata({
@@ -23,14 +22,14 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function GroupConnexionPage({ params }: DefaultPageProps) {
+export default async function GroupConnexionPage() {
   const userSession = await getUserSession()
 
   if (userSession?.isAuth) {
     redirect('/amis/creer/votre-groupe')
   }
 
-  const { t } = getServerTranslation(await params)
+  const { t } = await getServerTranslation()
 
   return (
     <div className="pb-8">

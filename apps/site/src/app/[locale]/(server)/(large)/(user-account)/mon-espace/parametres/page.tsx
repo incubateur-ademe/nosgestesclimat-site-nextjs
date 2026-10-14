@@ -50,15 +50,13 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
   return (
     <div className="flex flex-col">
-      <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} locale={locale} />
+      <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} />
 
       <div className="mb-6 flex w-full items-start justify-between">
         <Title
           title={
             <span>
-              <Trans locale={locale} i18nKey="mon-espace.settings.title">
-                Paramètres
-              </Trans>
+              <Trans i18nKey="mon-espace.settings.title">Paramètres</Trans>
             </span>
           }
           className="mb-0"
@@ -67,7 +65,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
       <section aria-labelledby="user-info-title" className="mb-10">
         <h2 id="user-info-title" className="mb-4">
-          <Trans i18nKey="mon-espace.settings.userInfos.title" locale={locale}>
+          <Trans i18nKey="mon-espace.settings.userInfos.title">
             Mes informations
           </Trans>
         </h2>
@@ -78,7 +76,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
           </QueryClientProviderWrapper>
 
           <h2 className="mt-8">
-            <Trans i18nKey="settings.newsletters.title" locale={locale}>
+            <Trans i18nKey="settings.newsletters.title">
               Inscription à nos contenus
             </Trans>
           </h2>

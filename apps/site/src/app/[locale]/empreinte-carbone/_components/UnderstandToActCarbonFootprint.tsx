@@ -2,21 +2,14 @@ import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function UnderstandToActCarbonFootprint({
-  locale,
-}: {
-  locale: string
-}) {
-  const { t } = getServerTranslation({ locale })
+export default async function UnderstandToActCarbonFootprint() {
+  const { t } = await getServerTranslation()
 
   return (
     <UnderstandToAct
-      locale={locale}
       description={
         <p className="mb-0">
-          <Trans
-            locale={locale}
-            i18nKey="landing.carbon.understand.description">
+          <Trans i18nKey="landing.carbon.understand.description">
             Réduire efficacement son empreinte sur l'environnement nécessite de{' '}
             <strong className="text-primary-600">
               s'informer sur les enjeux du réchauffement climatique

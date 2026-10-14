@@ -149,7 +149,6 @@ const meta: Meta<typeof CategoriesAccordion> = {
   ],
   args: {
     metric: 'carbone',
-    locale: 'fr',
   },
   render: (args) => (
     <CategoriesAccordion {...args} rules={rules as Partial<NGCRules>} />

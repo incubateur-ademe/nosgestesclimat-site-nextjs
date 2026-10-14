@@ -65,7 +65,7 @@ export default async function PartnerCampaignPage({
         pollSlug={pollSlug}
         organisationSlug={poll.organisation.slug}
         partnerCampaign={partnerCampaign}
-        partnersComponent={<Partners locale={locale} />}
+        partnersComponent={<Partners />}
         faqComponent={
           !!partnerCampaign.faq?.questions.length && (
             <FAQ
@@ -77,7 +77,6 @@ export default async function PartnerCampaignPage({
                   answer: <Markdown>{questionObject.answer}</Markdown>,
                 })
               )}
-              locale={locale}
             />
           )
         }

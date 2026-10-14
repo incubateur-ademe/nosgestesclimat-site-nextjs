@@ -1,8 +1,8 @@
 import ArrowNarrowRightIcon from '@/components/icons/ArrowNarrowRightIcon'
 import Link from '@/components/Link'
 import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
+import { getLocale } from '@/helpers/getLocale'
 import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
-import type { Locale } from '@/i18nConfig'
 import { LOCALE_EN_KEY, LOCALE_FR_KEY } from '@/i18nConfig'
 import type { Theme } from '@/types/themes'
 import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
@@ -30,7 +30,6 @@ const classesByTheme: Record<Theme['key'], string> = {
 
 export interface ActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
   action: MaybePersonalizedAction
-  locale: Locale
   withThemeBadge?: boolean
   assessmentStatus?: AssessmentStatus | null
   rank?: number
@@ -38,10 +37,9 @@ export interface ActionCardProps extends React.ComponentPropsWithoutRef<'article
   source?: ActionEventSource
 }
 
-export default function ActionCard({
+export default async function ActionCard({
   action,
   className,
-  locale,
   withThemeBadge = true,
   assessmentStatus,
   rank,
@@ -51,6 +49,7 @@ export default function ActionCard({
   withDescription,
   ...props
 }: ActionCardProps & { withCta?: boolean; withDescription?: boolean }) {
+  const locale = await getLocale()
   const rankEmoji = rankToEmoji(rank)
   const actionDetailPath = ACTION_DETAIL_PATH(action.theme.slug, action.slug)
   // On an /en page, an unprefixed (fr) path would be redirected to /en by the
@@ -116,7 +115,6 @@ export default function ActionCard({
             aria-hidden="true"
             className="text-primary-700 flex items-center text-sm/normal font-bold">
             <Trans
-              locale={locale}
               i18nKey="actions.components.actionCard.link"
               values={{ actionTitle: action.title }}>
               Voir l'action
@@ -134,7 +132,6 @@ export default function ActionCard({
         )}>
         <span className="sr-only">
           <Trans
-            locale={locale}
             i18nKey="actions.components.actionCard.link"
             values={{ actionTitle: action.title }}>
             Voir l'action<span className="sr-only"> "{'{{actionTitle}}'}"</span>

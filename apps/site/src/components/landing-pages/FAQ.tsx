@@ -1,5 +1,4 @@
 import Separator from '@/design-system/layout/Separator'
-import type { Locale } from '@/i18nConfig'
 import { twMerge } from 'cn'
 import type { ReactNode } from 'react'
 import PlusIcon from '../icons/PlusIcon'
@@ -12,7 +11,6 @@ export default function FAQ({
   isBackgroundSkewed = true,
   className,
   shouldUseDangerouslySetInnerHTML = false,
-  locale,
 }: {
   className?: string
   subTitle?: ReactNode
@@ -22,7 +20,6 @@ export default function FAQ({
   }[]
   isBackgroundSkewed?: boolean
   shouldUseDangerouslySetInnerHTML?: boolean
-  locale: Locale
 }) {
   return (
     <div
@@ -41,7 +38,7 @@ export default function FAQ({
       <div className="relative mx-auto flex w-full max-w-full flex-col gap-8 px-4 md:max-w-5xl md:flex-row md:gap-16 md:px-0">
         <div className="flex flex-col gap-4 pl-4 md:w-[240px] md:max-w-[240px] md:pl-0 md:text-left">
           <h2 className="mb-0 text-2xl md:text-3xl">
-            <Trans locale={locale}>FAQ</Trans>
+            <Trans>FAQ</Trans>
           </h2>
           <Separator className="my-0" />
           <p className="text-sm font-bold md:text-xl">{subTitle}</p>
@@ -58,9 +55,7 @@ export default function FAQ({
 
                   <PlusIcon className="stroke-primary-700 inline-block h-4 w-4 min-w-4 origin-center transform transition-transform duration-300 group-open:rotate-45" />
                   <span className="sr-only">
-                    <Trans locale={locale}>
-                      Cliquez pour afficher la réponse
-                    </Trans>
+                    <Trans>Cliquez pour afficher la réponse</Trans>
                   </span>
                 </summary>
 

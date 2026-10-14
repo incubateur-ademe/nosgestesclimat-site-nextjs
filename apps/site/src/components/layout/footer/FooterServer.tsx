@@ -1,16 +1,16 @@
 import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
 import ThematicPagesSection from '@/components/layout/ThematicPagesSection'
-import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/trans/TransServer'
 
+import LogoLink from '@/components/misc/LogoLink'
 import { ACTIONS_PATH } from '@/constants/urls/paths'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
-import { twMerge } from 'cn'
 import { cacheLife } from 'next/cache'
 import Link from 'next/link'
+import { twMerge } from 'cn'
 import HideInIframe from '../HideInIframe'
 import CookieButton from './CookieButton'
 import WantToActBlock from './WantToActBlock'
@@ -31,7 +31,7 @@ export default async function FooterServer({
   'use cache'
   cacheLife('days')
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <footer
@@ -45,16 +45,11 @@ export default async function FooterServer({
       )}>
       <div className="md:mx-auto md:max-w-5xl">
         <div className="mb-8 flex items-center justify-between">
-          <Link
-            href="/"
-            data-testid="home-logo-link"
-            className="flex items-center justify-center no-underline">
-            <Logo size="md" />
-          </Link>
+          <LogoLink />
         </div>
         {locale === 'fr' ? (
           <div className="my-4 block md:hidden">
-            <WantToActBlock locale={locale} />
+            <WantToActBlock />
           </div>
         ) : null}
 
@@ -64,7 +59,7 @@ export default async function FooterServer({
               <p
                 id="about-section"
                 className="text-default mb-0 text-sm font-bold">
-                <Trans locale={locale}>À propos</Trans>
+                <Trans>À propos</Trans>
               </p>
               <ul aria-labelledby="about-section">
                 <li>
@@ -74,35 +69,35 @@ export default async function FooterServer({
                     aria-label={t('Qui sommes-nous - Nouvelle fenêtre')}
                     rel="noopener noreferrer"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Qui sommes-nous</Trans>
+                    <Trans>Qui sommes-nous</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href="/plan-du-site"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Plan du site</Trans>
+                    <Trans>Plan du site</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href="/contact"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Contact</Trans>
+                    <Trans>Contact</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href="/international"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>International</Trans>
+                    <Trans>International</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href="/stats"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Statistiques</Trans>
+                    <Trans>Statistiques</Trans>
                   </InlineLink>
                 </li>
               </ul>
@@ -112,14 +107,14 @@ export default async function FooterServer({
               <p
                 id="diffusion-section"
                 className="text-default mb-0 text-sm font-bold">
-                <Trans locale={locale}>Diffusion</Trans>
+                <Trans>Diffusion</Trans>
               </p>
               <ul aria-labelledby="diffusion-section">
                 <li>
                   <InlineLink
                     href="/diffuser"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Diffuser Nos Gestes Climat</Trans>
+                    <Trans>Diffuser Nos Gestes Climat</Trans>
                   </InlineLink>
                 </li>
                 <li>
@@ -127,14 +122,14 @@ export default async function FooterServer({
                     href="/organisations"
                     data-testid="organisations-link"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Organisations</Trans>
+                    <Trans>Organisations</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href="/nos-relais"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Relais et partenaires</Trans>
+                    <Trans>Relais et partenaires</Trans>
                   </InlineLink>
                 </li>
               </ul>
@@ -144,21 +139,21 @@ export default async function FooterServer({
               <p
                 id="resources-section"
                 className="text-default mb-0 text-sm font-bold">
-                <Trans locale={locale}>Ressources</Trans>
+                <Trans>Ressources</Trans>
               </p>
               <ul aria-labelledby="resources-section">
                 <li>
                   <InlineLink
                     href="/blog"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Blog</Trans>
+                    <Trans>Blog</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href={ACTIONS_PATH}
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale} i18nKey="footer.resources.actions">
+                    <Trans i18nKey="footer.resources.actions">
                       J’agis
                     </Trans>
                   </InlineLink>
@@ -167,21 +162,21 @@ export default async function FooterServer({
                   <InlineLink
                     href="/documentation"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Documentation</Trans>
+                    <Trans>Documentation</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href="/questions-frequentes"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>FAQ</Trans>
+                    <Trans>FAQ</Trans>
                   </InlineLink>
                 </li>
                 <li>
                   <InlineLink
                     href="/nouveautes"
                     className="text-default text-sm no-underline hover:underline">
-                    <Trans locale={locale}>Nouveautés</Trans>
+                    <Trans>Nouveautés</Trans>
                   </InlineLink>
                 </li>
                 <li>
@@ -195,16 +190,16 @@ export default async function FooterServer({
               </ul>
             </div>
             <div className="flex flex-col gap-y-2">
-              <ThematicPagesSection locale={locale} />
+              <ThematicPagesSection />
             </div>
           </div>
-          {locale === 'fr' ? (
+          {locale === 'fr' && (
             <div className="hidden md:block">
               <HideInIframe hideIfNotFrenchRegion>
-                <WantToActBlock locale={locale} />
+                <WantToActBlock />
               </HideInIframe>
             </div>
-          ) : null}
+          )}
         </div>
 
         <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
@@ -213,7 +208,7 @@ export default async function FooterServer({
               <ul>
                 <li className="block md:inline">
                   <InlineLink href="/accessibilite">
-                    <Trans locale={locale}>
+                    <Trans>
                       Accessibilité : partiellement conforme
                     </Trans>
                   </InlineLink>
@@ -223,7 +218,7 @@ export default async function FooterServer({
                 </li>
                 <li className="block md:inline">
                   <InlineLink href="/mentions-legales">
-                    <Trans locale={locale}>Mentions légales</Trans>
+                    <Trans>Mentions légales</Trans>
                   </InlineLink>
                   <span aria-hidden="true" className="mx-1 hidden sm:inline">
                     |
@@ -231,7 +226,7 @@ export default async function FooterServer({
                 </li>
                 <li className="block md:inline">
                   <InlineLink href="/politique-de-confidentialite">
-                    <Trans locale={locale}>Politique de confidentialité</Trans>
+                    <Trans>Politique de confidentialité</Trans>
                   </InlineLink>
                   <span aria-hidden="true" className="mx-1 hidden sm:inline">
                     |

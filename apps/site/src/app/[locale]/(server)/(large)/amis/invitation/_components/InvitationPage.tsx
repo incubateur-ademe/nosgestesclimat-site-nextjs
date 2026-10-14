@@ -6,22 +6,20 @@ import type { Group } from '@/types/groups'
 import InvitationForm from './InvitationForm'
 import LaconicRanking from './LaconicRanking'
 
-export default function InvitationPage({
+export default async function InvitationPage({
   currentSimulation,
   group,
-  locale,
 }: {
   currentSimulation?: Simulation
   group: Group
-  locale: string
 }) {
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="p-4 md:p-8">
       <Title
         title={
-          <Trans locale={locale}>
+          <Trans>
             {group.administrator.name} vous a invité à rejoindre le groupe{' '}
             <span className="text-violet-900">{group.name}</span>
           </Trans>

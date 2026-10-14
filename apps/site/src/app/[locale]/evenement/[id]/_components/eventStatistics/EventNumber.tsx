@@ -1,19 +1,19 @@
 'use client'
 
-import type { Locale } from '@/i18nConfig'
+import { useLocale } from '@/hooks/useLocale'
 import { animate, useInView } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   value: number
   text: React.ReactNode
-  locale: Locale
 }
 
-export default function EventNumber({ value, text, locale }: Props) {
+export default function EventNumber({ value, text }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.3 })
   const [displayedValue, setDisplayedValue] = useState(value)
+  const locale = useLocale()
   const numberFormatter = useRef(new Intl.NumberFormat(locale))
 
   useEffect(() => {

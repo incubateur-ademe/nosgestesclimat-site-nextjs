@@ -1,11 +1,9 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
-import type { Locale } from '@/i18nConfig'
 import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import EventHeroCard from './eventHero/EventHeroCard'
 
 interface Props {
-  locale: Locale
   startDate: Date
   status: EventStatus
   currentValue: number
@@ -17,7 +15,6 @@ interface Props {
 }
 
 export default function EventHero({
-  locale,
   startDate,
   status,
   currentValue,
@@ -33,18 +30,16 @@ export default function EventHero({
         <Title
           hasSeparator={false}
           className="mb-6 text-5xl leading-10 font-bold tracking-tight md:text-6xl! md:leading-16">
-          <Trans locale={locale} i18nKey="event.hero.title.part1">
-            L'impact est plus fort
-          </Trans>
+          <Trans i18nKey="event.hero.title.part1">L'impact est plus fort</Trans>
           <br />
           <span className="text-primary-600 leading-10! md:leading-16!">
-            <Trans locale={locale} i18nKey="event.hero.title.part2">
+            <Trans i18nKey="event.hero.title.part2">
               quand il est collectif
             </Trans>
           </span>
         </Title>
         <p>
-          <Trans locale={locale} i18nKey="event.hero.title.description">
+          <Trans i18nKey="event.hero.title.description">
             A l'occasion de la Semaine européenne du développement durable,
             relevez le défi avec votre organisation :{' '}
             <strong>
@@ -56,7 +51,6 @@ export default function EventHero({
       </div>
 
       <EventHeroCard
-        locale={locale}
         startDate={startDate}
         status={status}
         currentValue={currentValue}

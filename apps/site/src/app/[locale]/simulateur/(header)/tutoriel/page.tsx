@@ -11,10 +11,8 @@ import Tutorial from '../_components/Tutorial'
 import ButtonNext from './_components/ButtonNext'
 
 export default async function TutorielPage({
-  params,
   searchParams,
 }: PageProps<'/[locale]/simulateur/tutoriel'>) {
-  const { locale } = await params
   const resolvedSearchParams = await searchParams
 
   const journey = await getUserSimulationJourney()
@@ -33,7 +31,6 @@ export default async function TutorielPage({
       )}
 
       <Tutorial
-        locale={locale}
         buttonNext={<ButtonNext searchParams={resolvedSearchParams} />}
       />
     </>

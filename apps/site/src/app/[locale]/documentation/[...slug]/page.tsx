@@ -19,7 +19,7 @@ export async function generateMetadata({
   params: { slug: string[] }
 }>) {
   const { locale, slug } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const rules = await getRules({
     isOptim: false,
@@ -74,14 +74,13 @@ export default async function DocumentationPage({
 
   return (
     <div className="mt-4 mb-16 w-full px-2">
-      <PasserTestBanner locale={locale} />
+      <PasserTestBanner />
       <DocumentationRouter
         rules={rules}
         currentSimulation={currentSimulation}
         slug={slug}
         serverComponent={
           <DocumentationServer
-            locale={locale}
             ruleName={ruleName}
             rule={rules[ruleName]!}
             rules={rules}

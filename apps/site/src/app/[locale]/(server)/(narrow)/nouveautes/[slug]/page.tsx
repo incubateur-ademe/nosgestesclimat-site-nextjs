@@ -12,7 +12,7 @@ export async function generateMetadata({
   params,
 }: DefaultPageProps<{ params: { slug: string } }>) {
   const { slug, locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return getMetadataObject({
     locale,
@@ -37,17 +37,15 @@ export default async function Release({
   return (
     <div>
       <Link href="/nouveautes" className="mb-8 block text-sm">
-        ← <Trans locale={locale}>Retour à la liste des nouveautes</Trans>
+        ← <Trans>Retour à la liste des nouveautes</Trans>
       </Link>
 
-      <PasserTestBanner locale={locale} />
+      <PasserTestBanner />
 
       {nouveaute ? (
         <Markdown>{nouveaute.content}</Markdown>
       ) : (
-        <Trans locale={locale}>
-          Oups, nous n'avons pas d'article correspondant
-        </Trans>
+        <Trans>Oups, nous n'avons pas d'article correspondant</Trans>
       )}
     </div>
   )

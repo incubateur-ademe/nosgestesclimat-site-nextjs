@@ -23,7 +23,7 @@ export default async function Page({ params, searchParams }: DefaultPageProps) {
   return (
     <div>
       {showWelcomeBanner && simulations.length > 0 && (
-        <WelcomeBanner locale={locale} />
+        <WelcomeBanner />
       )}
 
       <ResultsView

@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
-import type { Locale } from '@/i18nConfig'
+import { getLocale } from '@/helpers/getLocale'
 import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 import { COUNTER_BLOCK_ANIMATION_TOTAL } from './AnimatedCounterBlock'
 import ClientCircularProgressBar from './eventDynamicCounter/ClientCircularProgressBar'
@@ -8,7 +8,6 @@ import ObjectiveStatus from './eventDynamicCounter/ObjectiveStatus'
 import StatusTitle from './eventDynamicCounter/StatusTitle'
 
 interface Props {
-  locale: Locale
   currentValue: number
   targetValue: number
   progressPercentage: number
@@ -18,8 +17,7 @@ interface Props {
   status: EventStatusWithoutNotStarted
 }
 
-export default function EventDynamicCounter({
-  locale,
+export default async function EventDynamicCounter({
   currentValue,
   targetValue,
   progressPercentage,
@@ -28,11 +26,12 @@ export default function EventDynamicCounter({
   endedCtaHref,
   status,
 }: Props) {
+  const locale = await getLocale()
   const numberFormatter = new Intl.NumberFormat(locale)
 
   return (
     <div className="relative rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
-      <StatusTitle locale={locale} status={status} />
+      <StatusTitle status={status} />
 
       <div className="mb-6 flex gap-4 md:gap-6">
         <div className="max-w-full min-w-16 md:min-w-28 lg:min-w-36">
@@ -46,7 +45,6 @@ export default function EventDynamicCounter({
           <p className="mb-1! text-slate-600">
             <ObjectiveStatus
               progressPercentage={progressPercentage}
-              locale={locale}
               status={status}
             />
           </p>
@@ -61,7 +59,7 @@ export default function EventDynamicCounter({
             </span>
 
             <span className="inline-block text-sm text-slate-600 md:text-base">
-              <Trans i18nKey="event.dynamicCounter.target.text" locale={locale}>
+              <Trans i18nKey="event.dynamicCounter.target.text">
                 calculs d'empreinte carbone
               </Trans>
             </span>
@@ -70,7 +68,6 @@ export default function EventDynamicCounter({
       </div>
 
       <EventLinks
-        locale={locale}
         primaryCtaHref={primaryCtaHref}
         secondaryCtaHref={secondaryCtaHref}
         endedCtaHref={endedCtaHref}
@@ -78,7 +75,7 @@ export default function EventDynamicCounter({
       />
 
       <p className="text-center text-sm text-slate-600">
-        <Trans i18nKey="event.dynamicCounter.promise" locale={locale}>
+        <Trans i18nKey="event.dynamicCounter.promise">
           Résultats en 10 minutes — sans inscription
         </Trans>
       </p>

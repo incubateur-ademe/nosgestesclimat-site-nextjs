@@ -32,7 +32,7 @@ export default async function DetailledResultsPage({
 }: DefaultPageProps<{ params: { locale: string; simulationId: string } }>) {
   const { simulationId, locale } = await params
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const simulationResult = await getSimulationResult(simulationId)
 
@@ -62,7 +62,6 @@ export default async function DetailledResultsPage({
       />
 
       <FootprintsLinks
-        locale={locale}
         currentPage="carbone"
         basePathname={`${MON_ESPACE_RESULTS_PATH}/resultats/${simulationId}`}
       />

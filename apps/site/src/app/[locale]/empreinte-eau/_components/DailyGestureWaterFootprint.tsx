@@ -2,12 +2,8 @@ import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function DailyGestureWaterFootprint({
-  locale,
-}: {
-  locale: string
-}) {
-  const { t } = getServerTranslation({ locale })
+export default async function DailyGestureWaterFootprint() {
+  const { t } = await getServerTranslation()
 
   const gesturesKeysForTranslation = {
     alimentation: t('Alimentation'),
@@ -23,9 +19,7 @@ export default function DailyGestureWaterFootprint({
       description={
         <>
           <p>
-            <Trans
-              locale={locale}
-              i18nKey="landing.water.dailyGestures.description.1">
+            <Trans i18nKey="landing.water.dailyGestures.description.1">
               L'eau est{' '}
               <strong className="text-primary-600">au cœur de nos vies</strong>{' '}
               et de notre consommation quotidienne, bien{' '}
@@ -38,16 +32,13 @@ export default function DailyGestureWaterFootprint({
             </Trans>
           </p>
           <p className="mb-0">
-            <Trans
-              locale={locale}
-              i18nKey="landing.water.dailyGestures.description.2">
+            <Trans i18nKey="landing.water.dailyGestures.description.2">
               Voici quelques exemples de gestes qui auront un impact important
               sur votre consommation eau indirecte :
             </Trans>
           </p>
         </>
       }
-      locale={locale}
       gestures={{
         [gesturesKeysForTranslation.alimentation]: {
           imageSrc: '/_static/cms/empreinte_alimentation_8dce62c4e4.svg',

@@ -34,26 +34,24 @@ export default async function MonEspaceActionsPage({
   return (
     <div className="flex flex-col">
       <h1 className="sr-only text-2xl font-bold">
-        <Trans i18nKey="mon-espace.actions.title" locale={locale}>
-          Mes actions
-        </Trans>
+        <Trans i18nKey="mon-espace.actions.title">Mes actions</Trans>
       </h1>
 
-      <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
+      <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />
 
       {/* No finished simulation: nothing to personalize from. */}
       {personalizedActionsCatalogue.assessmentStatus === null ? (
-        <NoResultsBlock locale={locale} />
+        <NoResultsBlock />
       ) : (
         <div>
           <ActionsPage
             title={
-              <Trans locale={locale} i18nKey="actions.listPage.title">
+              <Trans i18nKey="actions.listPage.title">
                 Vos actions personnalisées pour diminuer votre empreinte
               </Trans>
             }
             description={
-              <Trans locale={locale} i18nKey="actions.listPage.description">
+              <Trans i18nKey="actions.listPage.description">
                 Ces actions sont personnalisées selon vos réponses au test.
                 Choisissez celles qui vous semblent atteignables et lancez-vous
                 !
@@ -63,7 +61,6 @@ export default async function MonEspaceActionsPage({
             actions={personalizedActionsCatalogue.actions}
             assessmentStatus={personalizedActionsCatalogue.assessmentStatus}
             themes={themes}
-            locale={locale}
             from="mon-espace"
             totalFootprint={currentSimulation?.computedResults.carbone.bilan}
           />
