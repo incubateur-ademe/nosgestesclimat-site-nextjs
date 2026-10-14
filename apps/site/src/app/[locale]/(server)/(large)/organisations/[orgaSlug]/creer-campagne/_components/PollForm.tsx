@@ -1,22 +1,23 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation } from '@/types/organisations'
-import { useCreatePollStep1 } from '../_hooks/useCreatePollStep1'
+import { useCreatePoll } from '../_hooks/useCreatePoll'
 
 interface Props {
   organisation: Organisation
 }
 
-export default function PollNameForm({ organisation }: Props) {
+export default function PollForm({ organisation }: Props) {
   const { t } = useClientTranslation()
-  const { register, errors, onSubmit, isPending } = useCreatePollStep1({
-    organisationSlug: organisation.slug,
-  })
-
+  const { register, unknownError, errors, handleSubmit, isPending } =
+    useCreatePoll({
+      organisationSlug: organisation.slug,
+    })
   return (
     <form
       className="flex flex-col gap-8"
@@ -26,7 +27,7 @@ export default function PollNameForm({ organisation }: Props) {
           e.preventDefault()
           return
         }
-        void onSubmit(e)
+        void handleSubmit(e)
       }}
       id="poll-form">
       <TextInput
@@ -46,7 +47,7 @@ export default function PollNameForm({ organisation }: Props) {
           ),
         })}
         error={errors.name?.message}
-        data-testid="poll-name-input"
+        data-testid="poll-input"
       />
 
       <TextInput
@@ -87,13 +88,25 @@ export default function PollNameForm({ organisation }: Props) {
         data-testid="poll-expected-number-of-participants-input"
       />
 
+      {!!unknownError && (
+        <Alert
+          description={
+            <Trans i18nKey="errors.unexpected">
+              Une erreur innattendue s'est produite. Veuillez réessayer.
+            </Trans>
+          }
+          type="error"
+        />
+      )}
+
       <Button
         type="submit"
         loading={isPending}
-        data-testid="poll-form-name-button"
+        data-testid="poll-form-type-button"
         form="poll-form"
-        className="self-start">
-        <Trans i18nKey="common.suivant">Suivant</Trans>
+        className="mt-22 w-full sm:mt-18 sm:w-auto md:self-start">
+        <Trans>Créer mon lien de test</Trans>
+
         <span aria-hidden className="ml-2 inline-block">
           →
         </span>

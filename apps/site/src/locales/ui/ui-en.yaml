@@ -2243,3 +2243,5 @@ entries:
   results.footprintBlock.carbone.unitSuffix.lock: de CO₂e / an
   results.footprintBlock.carbone.comparison.equal: Equal to the average*
   results.footprintBlock.carbone.comparison.equal.lock: Égal à la moyenne*
+  errors.unexpected: An unexpected error has occurred. Please try again.
+  errors.unexpected.lock: Une erreur innattendue s'est produite. Veuillez réessayer.
