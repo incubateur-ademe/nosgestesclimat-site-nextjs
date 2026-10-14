@@ -4,7 +4,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import logger from '@/logger/logger.browser'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
 import isMobile from 'is-mobile'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import Button from '../buttons/Button'
 
 interface Props {
@@ -32,18 +32,16 @@ export default function CopyInput({
   const [isCopied, setIsCopied] = useState(false)
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [randomNumber] = useState(() => Math.random())
+  const randomId = useId()
 
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
   const inputRef = useRef<HTMLInputElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const statusRef = useRef<HTMLDivElement>(null)
 
-  // Auto-generate IDs if not provided
-  const generatedInputId =
-    inputId || `copy-input-${randomNumber.toString(36).substr(2, 9)}`
+  const generatedInputId = inputId ?? `copy-input-${randomId}`
   const generatedLabel =
-    inputLabel || t('copyInput.defaultLabel', 'Lien à copier')
+    inputLabel ?? t('copyInput.defaultLabel', 'Lien à copier')
 
   useEffect(() => {
     return () => {
