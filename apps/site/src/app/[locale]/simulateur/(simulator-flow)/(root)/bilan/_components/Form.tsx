@@ -8,6 +8,7 @@ import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useIframe } from '@/hooks/useIframe'
 
 import CategoryIllustration from '@/app/[locale]/simulateur/(simulator-flow)/(root)/bilan/_components/summary/CategoryIllustration'
+import { useIsClient } from '@/hooks/useIsClient'
 import { useFormState } from '@/publicodes-state'
 import { twMerge } from 'cn'
 import { useEffect } from 'react'
@@ -24,12 +25,18 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
+  // The current question comes from the engine, which only exists on the client
+  // (see `useEngine`): the server has none, so it would render nothing where
+  // the client renders the question. `SimulateurLayout` shows the skeleton until
+  // the mount, so waiting here costs no visible frame.
+  const isClient = useIsClient()
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [currentQuestion])
 
-  if (!currentQuestion) {
-    return
+  if (!isClient || !currentQuestion) {
+    return null
   }
 
   const QuestionComponent = questions[currentQuestion] || Question

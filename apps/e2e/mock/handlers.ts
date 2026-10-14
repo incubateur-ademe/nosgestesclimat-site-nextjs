@@ -50,7 +50,4 @@ export const handlers = [
   ),
   http.post('/v3/contacts/lists/:id/contacts/remove', () => noContent()),
   http.get('/v3/contacts/lists/:id', () => json({ id: 1, name: 'e2e' })),
-
-  // Connect (Agir) — side-effect sink.
-  http.post('/api/v1/personnes', () => json({}, 201)),
 ]
