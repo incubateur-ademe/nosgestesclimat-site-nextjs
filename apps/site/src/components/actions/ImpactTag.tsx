@@ -1,5 +1,5 @@
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import type { Locale } from '@/i18nConfig'
+import { getLocale } from '@/helpers/getLocale'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import { twMerge } from 'cn'
 import Trans from '../translation/trans/TransServer'
@@ -8,16 +8,16 @@ import { shouldDisplayComputationInProgressText } from './utils/shouldDisplayCom
 export interface ImpactTagProps extends React.ComponentPropsWithoutRef<'span'> {
   impact?: number
   assessmentStatus?: AssessmentStatus | null
-  locale: Locale
 }
 
-export function ImpactTag({
+export async function ImpactTag({
   impact,
-  locale,
   className,
   assessmentStatus,
   ...rest
 }: ImpactTagProps) {
+  const locale = await getLocale()
+
   let text
 
   if (

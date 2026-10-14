@@ -1,15 +1,16 @@
 import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
 import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
-import { LOCALE_EN_KEY, LOCALE_FR_KEY, type Locale } from '@/i18nConfig'
+import { LOCALE_EN_KEY, LOCALE_FR_KEY } from '@/i18nConfig'
 import type { Action } from '@nosgestesclimat/core/features/actions/types/action'
+import { getLocale } from '../getLocale'
 
 interface Props {
   from?: 'fin' | 'mon-espace' | 'index'
   action: Action
-  locale: Locale
 }
 
-export function getActionHref({ from, action, locale }: Props) {
+export async function getActionHref({ from, action }: Props) {
+  const locale = await getLocale()
   const actionDetailPath = ACTION_DETAIL_PATH(action.theme.slug, action.slug)
 
   // On an /en page, an unprefixed (fr) path would be redirected to /en by the

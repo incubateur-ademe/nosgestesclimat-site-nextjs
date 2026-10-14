@@ -1,4 +1,3 @@
-import type { Locale } from '@/i18nConfig'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type {
   ActionPlan,
@@ -13,14 +12,12 @@ import MobileSaveSelectionBanner from './actionsBasket/MobileSaveSelectionBanner
 interface Props {
   actions: MaybePersonalizedAction[]
   plan: ActionPlan
-  locale: Locale
   assessmentStatus: AssessmentStatus
 }
 
 export default function ActionsBasket({
   actions,
   plan,
-  locale,
   assessmentStatus,
 }: Props) {
   const titleId = useId()
@@ -31,18 +28,13 @@ export default function ActionsBasket({
 
   return (
     <>
-      <MobileSaveSelectionBanner
-        actionsLength={numberOfCommittedActions}
-        locale={locale}
-      />
+      <MobileSaveSelectionBanner actionsLength={numberOfCommittedActions} />
       <section
         aria-labelledby={titleId}
         className="sticky top-20.5 mt-21 mb-12 hidden w-80 rounded-xl border border-slate-200 p-4 lg:block">
         <div className="flex items-center gap-2.5">
           <h2 className="mb-0 text-lg/normal font-bold">
-            <Trans
-              i18nKey="actions.basket.title.withActionChoices"
-              locale={locale}>
+            <Trans i18nKey="actions.basket.title.withActionChoices">
               Ma sélection d'actions
             </Trans>
           </h2>
@@ -59,7 +51,6 @@ export default function ActionsBasket({
           {hasCommittedToActions ? (
             <Trans
               i18nKey="actions.basket.subtitle.choices"
-              locale={locale}
               count={numberOfCommittedActions}
               values={{
                 numberOfCommittedActions,
@@ -72,21 +63,19 @@ export default function ActionsBasket({
               actions dans votre sélection
             </Trans>
           ) : (
-            <Trans i18nKey="actions.basket.subtitle.empty" locale={locale}>
+            <Trans i18nKey="actions.basket.subtitle.empty">
               Ajoutez des actions à votre sélection.
             </Trans>
           )}
         </p>
 
         <ChosenActionsList
-          locale={locale}
           actions={actions}
           hasCommittedToActions={hasCommittedToActions}
           assessmentStatus={assessmentStatus}
         />
 
         <DesktopSaveSelectionButtonSection
-          locale={locale}
           hasCommittedToActions={hasCommittedToActions}
         />
       </section>

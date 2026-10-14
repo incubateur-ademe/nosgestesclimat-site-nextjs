@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/trans/TransServer'
-import type { Locale } from '@/i18nConfig'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type {
   MaybePersonalizedAction,
@@ -9,7 +8,6 @@ import ChosenAction from './chosenActionsList/ChosenAction'
 interface Props {
   actions: MaybePersonalizedAction[]
   hasCommittedToActions: boolean
-  locale: Locale
   assessmentStatus: AssessmentStatus
 }
 
@@ -22,7 +20,6 @@ function hasChoice(
 export default function ChosenActionsList({
   actions,
   hasCommittedToActions,
-  locale,
   assessmentStatus,
 }: Props) {
   if (hasCommittedToActions) {
@@ -34,7 +31,6 @@ export default function ChosenActionsList({
           <ChosenAction
             key={action.id}
             action={action}
-            locale={locale}
             assessmentStatus={assessmentStatus}
           />
         ))}
@@ -44,7 +40,7 @@ export default function ChosenActionsList({
 
   return (
     <p className="bg-secondary-50 mb-20 rounded-lg p-5 text-sm text-slate-600">
-      <Trans i18nKey="actions.basket.informativeBlock.content" locale={locale}>
+      <Trans i18nKey="actions.basket.informativeBlock.content">
         Votre sélection est vide. Parcourez les catégories pour ajouter des
         actions que vous pourrez mettre en place.
       </Trans>

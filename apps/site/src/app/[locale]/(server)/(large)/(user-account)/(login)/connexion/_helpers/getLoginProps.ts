@@ -1,22 +1,18 @@
 import { ACTIONS_MY_PLAN_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import { match } from 'ts-pattern'
 import type { AuthorizedFromSearchParamsValues } from '../../_constants/search-params'
 
-interface Props {
+export async function getLoginProps(
   from?: AuthorizedFromSearchParamsValues
-  locale: Locale
-}
-
-export function getLoginProps({ from, locale }: Props): {
+): Promise<{
   labels: {
     title: string
     buttonLabel: string
   }
   redirectPathname: string
-} {
-  const { t } = getServerTranslation({ locale })
+}> {
+  const { t } = await getServerTranslation()
 
   return match(from)
     .with('build-action-plan', () => ({

@@ -1,24 +1,21 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Button from '@/design-system/buttons/Button'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import SavePlanLink from './SavePlanLink'
 
 interface Props {
-  locale: Locale
   hasCommittedToActions: boolean
 }
 
-export default function DesktopSaveSelectionButtonSection({
-  locale,
+export default async function DesktopSaveSelectionButtonSection({
   hasCommittedToActions,
 }: Props) {
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   return (
     <div className="-mx-4 flex justify-center border-t border-slate-300 pt-5">
       {hasCommittedToActions ? (
         <SavePlanLink>
-          <Trans i18nKey="actions.basket.saveButton.label" locale={locale}>
+          <Trans i18nKey="actions.basket.saveButton.label">
             Sauvegarder mon plan d'action
           </Trans>
         </SavePlanLink>
@@ -30,7 +27,7 @@ export default function DesktopSaveSelectionButtonSection({
             "Sauvegarder mon plan d'actions et accéder à ma page plan d'actions"
           )}
           className="text-sm!">
-          <Trans i18nKey="actions.basket.saveButton.label" locale={locale}>
+          <Trans i18nKey="actions.basket.saveButton.label">
             Sauvegarder mon plan d'action
           </Trans>
         </Button>
