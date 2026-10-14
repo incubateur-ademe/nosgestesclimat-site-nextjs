@@ -20,7 +20,7 @@ interface ActionsPageProps extends Omit<
   title: React.ReactNode
   description: React.ReactNode
   otherActionsTitle?: React.ReactNode
-  otherActionsDescription?: React.ReactNode
+  withOtherActionsDescription?: boolean
   cta?: React.ReactNode
   topActions?: MaybePersonalizedAction[]
   themes: Theme[]
@@ -38,7 +38,7 @@ export default function ActionsPage({
   title,
   description,
   otherActionsTitle,
-  otherActionsDescription,
+  withOtherActionsDescription = true,
   topActions,
   actions,
   themes,
@@ -95,7 +95,7 @@ export default function ActionsPage({
             )}
           </h2>
           <p className="mb-4 text-lg/normal md:mb-8">
-            {otherActionsDescription ?? (
+            {withOtherActionsDescription && (
               <Trans i18nKey="actions.components.themeSections.testWhiteBackground.description">
                 À impact variable : des gestes à fort impact aux petit pas.
               </Trans>

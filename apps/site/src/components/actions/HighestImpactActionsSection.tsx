@@ -28,7 +28,7 @@ export default function HighestImpactActionsSection({
         id={headingId}
         className="mb-0 text-xl/normal font-medium md:text-2xl/normal">
         <Trans i18nKey="actions.components.highestImpactActionsSection.testWhiteBackground.title">
-          Voici vos 3 actions qui auront le plus d'impact
+          Vos 3 actions clés
         </Trans>
       </h2>
 
