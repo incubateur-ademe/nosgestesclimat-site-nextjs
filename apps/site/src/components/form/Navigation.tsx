@@ -23,6 +23,7 @@ import {
 import { useGotoNextQuestion } from '@/publicodes-state/hooks/useGotoNextQuestion/useGotoNextQuestion'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { ErrorWithCode } from '@nosgestesclimat/core/lib/errors'
 import { twMerge } from 'cn'
 import { useRouter } from 'next/navigation'
 import type { MouseEvent } from 'react'
@@ -113,15 +114,20 @@ export default function Navigation({
   const hasForgottenQuestionsOnLastQuestion =
     isLastQuestion && forgottenQuestions.length > 0
 
-  // Just for logging in case of forgottenQuestions
   const { situation } = useCurrentSimulation()
   useEffect(() => {
     if (hasForgottenQuestionsOnLastQuestion) {
-      logger.warn('Forgotten questions detected', {
-        scope: 'site.interaction.testNavigation',
-        forgottenQuestions,
-        situation,
-      })
+      logger.error(
+        new ErrorWithCode(
+          'forgotten_questions',
+          'Forgotten questions at the end of the test'
+        ),
+        {
+          scope: 'site.interaction.testNavigation',
+          forgottenQuestions,
+          situation,
+        }
+      )
     }
     // One line per detection: the rest changes on every answer.
     // eslint-disable-next-line react-hooks/exhaustive-deps

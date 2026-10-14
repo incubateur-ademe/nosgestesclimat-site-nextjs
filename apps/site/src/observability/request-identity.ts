@@ -17,7 +17,7 @@ export interface RequestIdentity {
 
 /**
  * The identity of requests in flight, keyed by trace id. One trace = one
- * request (nginx's X-Request-ID is the trace root). A mutable store because no
+ * request, opened by nginx's span (see `infra/nginx`). A mutable store because no
  * frame wraps the whole request and neither OTel Baggage nor a late-entered
  * AsyncLocalStorage reaches frames already running. Lives on the process:
  * each Next entry gets its own copy of this module ({@link processStore}).

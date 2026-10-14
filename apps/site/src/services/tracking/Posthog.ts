@@ -111,6 +111,10 @@ export class PostHog {
         url_ignorelist: ['/simulateur/bilan'],
       },
       rageclick: false,
+
+      // `logger.error` is the only capture path: the SDK's own would file the
+      // same error twice, without its scope.
+      capture_exceptions: false,
       logs: {
         // `browser` completes `web-server` and `worker`: the third runtime, named
         // for where it runs. Same namespace as the back end, so the whole

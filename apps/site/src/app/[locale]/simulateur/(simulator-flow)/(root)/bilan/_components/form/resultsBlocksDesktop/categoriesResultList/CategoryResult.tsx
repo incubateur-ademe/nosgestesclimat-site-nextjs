@@ -4,10 +4,11 @@ import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getTextDarkColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIsClient } from '@/hooks/useIsClient'
 import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName, Metrics } from '@incubateur-ademe/nosgestesclimat'
-import { twMerge } from "cn";
+import { twMerge } from 'cn'
 
 export default function CategoryResult({
   category,
@@ -27,14 +28,20 @@ export default function CategoryResult({
 
   const { title, icons, numericValue } = useRule(category, metric)
 
+  // The engine only exists on the client (see `useEngine`), so the title, the
+  // icons and the completion are unknown on the server: rendered there, `Emoji`
+  // falls back to text where the client renders an image. Waiting for the mount
+  // keeps both renders identical.
+  const isClient = useIsClient()
+
   const completion =
     (questionsByCategories[category].length -
       remainingQuestionsByCategories[category].length) /
     questionsByCategories[category].length
 
-  const isCompleted = completion === 1
-  const isStarted = completion > 0
-  const isCurrent = currentCategory === category
+  const isCompleted = isClient && completion === 1
+  const isStarted = isClient && completion > 0
+  const isCurrent = isClient && currentCategory === category
 
   const { formattedValue, unit } = formatFootprint(numericValue, {
     t,
@@ -60,9 +67,9 @@ export default function CategoryResult({
             isStarted || isCurrent ? 'opacity-100' : 'opacity-50',
             'mr-2 transition-opacity'
           )}>
-          {icons}
+          {isClient ? icons : undefined}
         </Emoji>
-        <span>{title}</span>{' '}
+        <span>{isClient ? title : null}</span>{' '}
       </div>
       <span
         className={twMerge(

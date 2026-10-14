@@ -1,9 +1,6 @@
 import { trace, type Tracer } from '@opentelemetry/api'
 import { logs } from '@opentelemetry/api-logs'
-import {
-  CompositePropagator,
-  W3CTraceContextPropagator,
-} from '@opentelemetry/core'
+import { W3CTraceContextPropagator } from '@opentelemetry/core'
 import { OTLPLogExporter } from '@opentelemetry/exporter-logs-otlp-proto'
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-proto'
 import { registerInstrumentations } from '@opentelemetry/instrumentation'
@@ -24,7 +21,6 @@ import { APP_ENV } from '../env/app-env.ts'
 import { IdentitySpanProcessor } from './request-identity.ts'
 import { FilteringSpanExporter } from './span-filter.ts'
 import { isStaticRequest } from './static-request.ts'
-import { XRequestIdPropagator } from './x-request-id-propagator.ts'
 
 let tracerProvider: NodeTracerProvider | undefined
 let loggerProvider: LoggerProvider | undefined
@@ -107,14 +103,10 @@ export function initObservability(
     spanProcessors,
   })
 
-  tracerProvider.register({
-    propagator: new CompositePropagator({
-      propagators: [
-        new W3CTraceContextPropagator(),
-        new XRequestIdPropagator(),
-      ],
-    }),
-  })
+  // W3C seul : nginx ouvre la trace et la propage en `traceparent`. Adopter un
+  // `X-Request-ID` comme trace id fabriquait un parent inexistant, donc une
+  // trace orpheline que PostHog n'affiche pas.
+  tracerProvider.register({ propagator: new W3CTraceContextPropagator() })
 
   registerInstrumentations({
     instrumentations: [
