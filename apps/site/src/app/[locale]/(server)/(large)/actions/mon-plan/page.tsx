@@ -1,11 +1,13 @@
+import { AUTHORIZED_FROM_SEARCH_PARAMS_VALUES } from '@/app/[locale]/(server)/(large)/(user-account)/(login)/_constants/search-params'
 import ProfileTab from '@/app/[locale]/(server)/(large)/(user-account)/mon-espace/_components/ProfileTabs'
 import ActionPlanLinks from '@/components/actions/ActionPlanLinks'
 import { classesByTheme } from '@/components/actions/theme/constants/classesByTheme'
+import NoResultsBlock from '@/components/dashboard/NoResultsBlock'
 import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/trans/TransServer'
 import {
   ACTIONS_MY_PLAN_PATH,
-  ACTIONS_PATH,
+  CONNEXION_PATH,
   END_PAGE_ACTIONS_PATH,
   MON_ESPACE_ACTIONS_PATH,
 } from '@/constants/urls/paths'
@@ -31,7 +33,9 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
   const user = await getUserSession()
 
   if (!user) {
-    redirect(ACTIONS_PATH)
+    redirect(
+      `${CONNEXION_PATH}?from=${AUTHORIZED_FROM_SEARCH_PARAMS_VALUES['build-action-plan']}`
+    )
   }
 
   // Unverified users can't access "mon espace"
@@ -41,8 +45,21 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
 
   const actionsPlan = await getActionsPlan(locale)
 
+  // No finished simulation: no plan to build.
   if (!actionsPlan) {
-    redirect(exploreHref)
+    return (
+      <div className="flex flex-col pb-24">
+        {user.isAuth && <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />}
+
+        <ActionPlanLinks
+          plan={{ numberOfCommittedActions: 0, totalImpact: 0 }}
+          activeLink="plan"
+          exploreHref={exploreHref}
+        />
+
+        <NoResultsBlock />
+      </div>
+    )
   }
 
   return (
@@ -55,54 +72,74 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
         exploreHref={exploreHref}
       />
 
-      <div className="flex w-171 max-w-full flex-col gap-8">
-        <div>
-          <h1 className="mb-0 text-2xl/normal font-medium md:text-4xl/normal">
-            <Trans i18nKey="actions.myPlanPage.title">Mon plan d’action</Trans>
-          </h1>
-          <p className="mb-0 text-base/normal">
-            <Trans
-              i18nKey="actions.myPlanPage.description"
-              count={actionsPlan.plan.numberOfCommittedActions}
-              defaultValue_one="Vous avez ajouté <1>{{count}} action</1> à votre plan.">
-              Vous avez ajouté <strong>{'{{count}}'} actions</strong> à votre
-              plan.
+      {actionsPlan.plan.numberOfCommittedActions === 0 ? (
+        <NoResultsBlock
+          title={
+            <Trans i18nKey="actions.myPlanPage.empty.title">
+              Ajoutez des actions à votre sélection
             </Trans>
-          </p>
+          }
+          link={{
+            href: exploreHref,
+            label: (
+              <Trans i18nKey="actions.myPlanPage.empty.exploreActions">
+                Explorer mes actions
+              </Trans>
+            ),
+          }}
+        />
+      ) : (
+        <div className="flex w-171 max-w-full flex-col gap-8">
+          <div>
+            <h1 className="mb-0 text-2xl/normal font-medium md:text-4xl/normal">
+              <Trans i18nKey="actions.myPlanPage.title">
+                Mon plan d’action
+              </Trans>
+            </h1>
+            <p className="mb-0 text-base/normal">
+              <Trans
+                i18nKey="actions.myPlanPage.description"
+                count={actionsPlan.plan.numberOfCommittedActions}
+                defaultValue_one="Vous avez ajouté <1>{{count}} action</1> à votre plan.">
+                Vous avez ajouté <strong>{'{{count}}'} actions</strong> à votre
+                plan.
+              </Trans>
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-8">
+            {actionsPlan.themes.map((theme) => (
+              <section key={theme.id} className="flex flex-col gap-6">
+                <h2
+                  className={twMerge(
+                    'mb-0 text-sm/normal font-bold uppercase',
+                    classesByTheme[theme.key].header
+                  )}>
+                  {theme.title}
+                </h2>
+
+                <ul className="flex flex-col gap-2">
+                  {theme.actions.map((action) => (
+                    <li key={action.id}>
+                      <PlannedActionCard action={action} locale={locale} />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+
+          <ButtonLinkServer
+            color="secondary"
+            className="w-full text-sm!"
+            href={exploreHref}>
+            <PlusIcon className="stroke-primary-700 mr-2 size-3" />
+            <Trans i18nKey="actions.myPlanPage.exploreOtherActions">
+              Explorer d’autres actions
+            </Trans>
+          </ButtonLinkServer>
         </div>
-
-        <div className="flex flex-col gap-8">
-          {actionsPlan.themes.map((theme) => (
-            <section key={theme.id} className="flex flex-col gap-6">
-              <h2
-                className={twMerge(
-                  'mb-0 text-sm/normal font-bold uppercase',
-                  classesByTheme[theme.key].header
-                )}>
-                {theme.title}
-              </h2>
-
-              <ul className="flex flex-col gap-2">
-                {theme.actions.map((action) => (
-                  <li key={action.id}>
-                    <PlannedActionCard action={action} locale={locale} />
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
-
-        <ButtonLinkServer
-          color="secondary"
-          className="w-full text-sm!"
-          href={exploreHref}>
-          <PlusIcon className="stroke-primary-700 mr-2 size-3" />
-          <Trans i18nKey="actions.myPlanPage.exploreOtherActions">
-            Explorer d’autres actions
-          </Trans>
-        </ButtonLinkServer>
-      </div>
+      )}
     </div>
   )
 }

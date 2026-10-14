@@ -12,9 +12,6 @@ import Trans from '../translation/trans/TransServer'
 
 const ACTIVE_LINK_CLASSES = 'bg-primary-100 border-primary-300'
 const INACTIVE_LINK_CLASSES = 'text-default border-slate-300'
-// Pins the inactive look so the button's hover colors do not apply
-const DISABLED_LINK_CLASSES =
-  'hover:bg-transparent hover:border-slate-300 hover:text-default'
 
 interface Props {
   plan: ActionPlan
@@ -29,7 +26,6 @@ export default function ActionPlanLinks({
 }: Props) {
   const isExploreActive = activeLink === 'explore'
   const isPlanActive = activeLink === 'plan'
-  const isPlanDisabled = plan.numberOfCommittedActions === 0
 
   return (
     <div className="mb-8 flex gap-4 overflow-auto">
@@ -55,14 +51,10 @@ export default function ActionPlanLinks({
         color="secondary"
         className={cn(
           'relative pr-13!',
-          isPlanActive && !isPlanDisabled
-            ? ACTIVE_LINK_CLASSES
-            : INACTIVE_LINK_CLASSES,
-          isPlanDisabled && DISABLED_LINK_CLASSES
+          isPlanActive ? ACTIVE_LINK_CLASSES : INACTIVE_LINK_CLASSES
         )}
         aria-current={isPlanActive ? 'page' : undefined}
-        href={ACTIONS_MY_PLAN_PATH}
-        disabled={isPlanDisabled}>
+        href={ACTIONS_MY_PLAN_PATH}>
         <Star
           className={cn(
             'mr-2.5 h-4',

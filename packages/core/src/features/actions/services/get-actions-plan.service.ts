@@ -25,8 +25,8 @@ export interface ActionsPlan {
  * inapplicable, they still belong to the plan.
  *
  * The user id is mandatory: callers must authenticate the user first.
- * Returns null when the user has no finished simulation or no committed
- * action: they have no plan yet.
+ * Returns null when the user has no finished simulation: they cannot build a
+ * plan yet. Without committed action, the plan is empty.
  */
 export const getActionsPlan = async (
   userId: string,
@@ -48,8 +48,10 @@ export const getActionsPlan = async (
     findThemes(locale),
   ])
 
-  const plan = buildActionPlan(committedActions)
-  if (!plan) return null
+  const plan = buildActionPlan(committedActions) ?? {
+    numberOfCommittedActions: 0,
+    totalImpact: 0,
+  }
 
   // Within a theme, actions are ordered by descending impact, actions with
   // unknown impact last

@@ -2295,6 +2295,10 @@ entries:
   actions.myPlanPage.title.lock: Mon plan d’action
   actions.myPlanPage.exploreOtherActions: Explore other actions
   actions.myPlanPage.exploreOtherActions.lock: Explorer d’autres actions
+  actions.myPlanPage.empty.title: Add actions to your selection
+  actions.myPlanPage.empty.title.lock: Ajoutez des actions à votre sélection
+  actions.myPlanPage.empty.exploreActions: Explore my actions
+  actions.myPlanPage.empty.exploreActions.lock: Explorer mes actions
   actions.myPlanPage.description_one: You have added <1>{{count}} action</1> to your plan.
   actions.myPlanPage.description_one.lock: Vous avez ajouté <1>{{count}} action</1> à votre plan.
   actions.myPlanPage.description_many: You have added <1>{{count}} actions</1> to your plan.

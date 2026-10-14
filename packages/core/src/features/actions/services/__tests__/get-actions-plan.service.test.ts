@@ -17,7 +17,7 @@ describe('getActionsPlan', () => {
     await emptyDatabase(prisma)
   })
 
-  it('returns null when the user has no committed action', async () => {
+  it('returns an empty plan when the user has no committed action', async () => {
     const action = await actionFactory.published().create()
     const user = await userFactory.create()
     const simulation = await simulationFactory
@@ -32,17 +32,24 @@ describe('getActionsPlan', () => {
 
     const result = await getActionsPlan(user.id, 'fr')
 
-    expect(result).toBeNull()
+    expect(result).toEqual({
+      plan: { numberOfCommittedActions: 0, totalImpact: 0 },
+      themes: [],
+    })
   })
 
-  it('returns null after the user abandonned their only committed action', async () => {
+  it('returns an empty plan after the user abandonned their only committed action', async () => {
     const action = await actionFactory.published().deleted().create()
     const user = await userFactory.create()
+    await simulationFactory.completed().params({ userId: user.id }).create()
     await actionFactory.chosen({ actionId: action.id, userId: user.id })
 
     const result = await getActionsPlan(user.id, 'fr')
 
-    expect(result).toBeNull()
+    expect(result).toEqual({
+      plan: { numberOfCommittedActions: 0, totalImpact: 0 },
+      themes: [],
+    })
   })
 
   it('returns null when the user has no finished simulation', async () => {
