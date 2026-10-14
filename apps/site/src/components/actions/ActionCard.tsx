@@ -6,7 +6,6 @@ import type { ActionEventSource } from '@/utils/analytics/trackUniqueEvent'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { twMerge } from 'cn'
-import removeMarkdown from 'remove-markdown'
 import Trans from '../translation/trans/TransServer'
 import styles from './actionCard/ActionCard.module.css'
 import { rankToEmoji } from './actionCard/rankToEmoji'
@@ -36,11 +35,6 @@ export interface ActionCardProps extends React.ComponentPropsWithoutRef<'article
   source?: ActionEventSource
 }
 
-export interface ActionCardWithABTestProps extends ActionCardProps {
-  withCta?: boolean
-  withDescription?: boolean
-}
-
 export default async function ActionCard({
   action,
   className,
@@ -49,22 +43,14 @@ export default async function ActionCard({
   rank,
   from,
   source,
-  withCta,
-  withDescription,
   ...props
-}: ActionCardWithABTestProps) {
+}: ActionCardProps) {
   const rankEmoji = rankToEmoji(rank)
 
   const href = await getActionHref({
     from,
     action,
   })
-
-  const description = withDescription
-    ? // slice to avoid sending more data than we display in the excerpt
-      (action.description ??
-      removeMarkdown(action.longDescription).slice(0, 100))
-    : null
 
   return (
     <article
@@ -74,7 +60,6 @@ export default async function ActionCard({
         'translate-y-0 transition-[box-shadow_border-color_transform] duration-300 ease-out',
         'hover:-translate-y-0.5 hover:shadow-sm',
         'focus-within:-translate-y-0.5 focus-within:shadow-sm',
-        withCta ? 'min-h-50 focus-within:shadow-md hover:shadow-md' : null,
         classesByTheme[action.theme.key],
         className
       )}>
@@ -82,11 +67,7 @@ export default async function ActionCard({
         <ActionTracker eventName="displayed" action={action} />
       ) : null}
 
-      <div
-        className={twMerge(
-          'flex grow flex-col gap-2 p-2',
-          withCta ? 'px-4 pt-2 pb-0' : null
-        )}>
+      <div className="flex grow flex-col gap-2 p-2">
         {rankEmoji || withThemeBadge ? (
           <div className="flex items-center">
             {rankEmoji ? <span className="">{rankEmoji}</span> : null}
@@ -95,12 +76,6 @@ export default async function ActionCard({
         ) : null}
         <div className="grow">
           <h3 className="mb-2 text-base/normal font-bold">{action.title}</h3>
-
-          {description ? (
-            <p className="mb-2 line-clamp-2 text-sm/normal text-slate-600 md:line-clamp-3 md:text-base/normal">
-              {description}
-            </p>
-          ) : null}
 
           {action.assessment ? (
             <ImpactTag
@@ -111,7 +86,7 @@ export default async function ActionCard({
         </div>
       </div>
 
-      {withCta && !action.assessment && (
+      {!action.assessment && (
         <div className="border-t border-slate-100 p-4">
           <span
             aria-hidden="true"

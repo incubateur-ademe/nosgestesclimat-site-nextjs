@@ -6,7 +6,7 @@ import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/act
 import { twMerge } from 'cn'
 import { useId } from 'react'
 import Trans from '../translation/trans/TransServer'
-import ActionCardSwitchServer from './actionCard/ActionCardSwitchServer'
+import ActionCard from './ActionCard'
 import { classesByTheme } from './theme/constants/classesByTheme'
 import ThemeIcon from './ThemeIcon'
 
@@ -66,7 +66,7 @@ export default function ThemeSection({
         className="-mx-2 md:mx-0"
         innerClassName="py-1 px-2 md:px-0">
         {actions.map((action) => (
-          <ActionCardSwitchServer
+          <ActionCard
             key={action.id}
             action={action}
             withThemeBadge={false}
