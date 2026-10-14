@@ -1,23 +1,28 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import EventHeroCard from './eventHero/EventHeroCard'
 
 interface Props {
   startDate: Date
+  status: EventStatus
   currentValue: number
   targetValue: number
   progressPercentage: number
   primaryCtaHref: string
   secondaryCtaHref: string
+  endedCtaHref: string
 }
 
 export default function EventHero({
   startDate,
+  status,
   currentValue,
   targetValue,
   progressPercentage,
   primaryCtaHref,
   secondaryCtaHref,
+  endedCtaHref,
 }: Props) {
   return (
     <div className="mb-16 flex flex-col gap-6 md:flex-row md:gap-16">
@@ -47,11 +52,13 @@ export default function EventHero({
 
       <EventHeroCard
         startDate={startDate}
+        status={status}
         currentValue={currentValue}
         targetValue={targetValue}
         progressPercentage={progressPercentage}
         primaryCtaHref={primaryCtaHref}
         secondaryCtaHref={secondaryCtaHref}
+        endedCtaHref={endedCtaHref}
       />
     </div>
   )

@@ -1,57 +1,29 @@
-import { getLocale } from '@/helpers/getLocale'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import AnimatedCounterBlock from './eventHeroCard/AnimatedCounterBlock'
 import EventCountdown from './eventHeroCard/EventCountdown'
 import EventDynamicCounter from './eventHeroCard/EventDynamicCounter'
 
 interface Props {
   startDate: Date
+  status: EventStatus
   currentValue: number
   targetValue: number
   progressPercentage: number
   primaryCtaHref: string
   secondaryCtaHref: string
+  endedCtaHref: string
 }
 
-export default async function EventHeroCard({
+export default function EventHeroCard({
   startDate,
+  status,
   currentValue,
   targetValue,
   progressPercentage,
   primaryCtaHref,
   secondaryCtaHref,
+  endedCtaHref,
 }: Props) {
-  const locale = await getLocale()
-  const hasEventStarted = new Date() >= startDate
-
-  const launchDateLabel = startDate.toLocaleDateString(
-    locale === 'fr' ? 'fr-FR' : 'en-GB',
-    {
-      timeZone: 'Europe/Paris',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    }
-  )
-
-  const content = hasEventStarted ? (
-    <AnimatedCounterBlock>
-      <EventDynamicCounter
-        currentValue={currentValue}
-        targetValue={targetValue}
-        progressPercentage={progressPercentage}
-        primaryCtaHref={primaryCtaHref}
-        secondaryCtaHref={secondaryCtaHref}
-      />
-    </AnimatedCounterBlock>
-  ) : (
-    <EventCountdown
-      targetDate={startDate}
-      launchDateLabel={launchDateLabel}
-      primaryCtaHref={primaryCtaHref}
-      secondaryCtaHref={secondaryCtaHref}
-    />
-  )
-
   return (
     <div className="relative flex-1 [&:has(.btn-group:hover)>div:first-child]:opacity-80">
       {/* Rainbow animated shadow — shared across counter and countdown */}
@@ -61,7 +33,25 @@ export default async function EventHeroCard({
       />
 
       <div className="transition-transform duration-200 [&:has(.btn-group:hover)]:scale-[1.02]">
-        {content}
+        {status == 'not_started' ? (
+          <EventCountdown
+            targetDate={startDate}
+            primaryCtaHref={primaryCtaHref}
+            secondaryCtaHref={secondaryCtaHref}
+          />
+        ) : (
+          <AnimatedCounterBlock>
+            <EventDynamicCounter
+              currentValue={currentValue}
+              targetValue={targetValue}
+              progressPercentage={progressPercentage}
+              primaryCtaHref={primaryCtaHref}
+              secondaryCtaHref={secondaryCtaHref}
+              endedCtaHref={endedCtaHref}
+              status={status}
+            />
+          </AnimatedCounterBlock>
+        )}
       </div>
     </div>
   )

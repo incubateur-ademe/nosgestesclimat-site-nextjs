@@ -57,6 +57,7 @@ export default async function EvenementPage({
 
   const {
     detailImageSrc,
+    status,
     startDate,
     endDate,
     dynamicCounter,
@@ -69,8 +70,6 @@ export default async function EvenementPage({
     ctaDescription,
     ctaCards,
   } = data
-
-  const hasStarted = new Date() >= startDate
 
   return (
     <>
@@ -86,24 +85,26 @@ export default async function EvenementPage({
 
           <EventHero
             startDate={startDate}
+            status={status}
             currentValue={dynamicCounter.currentValue}
             targetValue={dynamicCounter.targetValue}
             progressPercentage={dynamicCounter.progressPercentage}
             primaryCtaHref={dynamicCounter.primaryCtaHref}
             secondaryCtaHref={dynamicCounter.secondaryCtaHref}
+            endedCtaHref={dynamicCounter.endedCtaHref}
           />
         </div>
 
         <EventStatistics
           values={statisticsValues}
-          hasStarted={hasStarted}
+          status={status}
         />
 
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
           <EventPodium
             searchParams={searchParams}
             podiumItemsByCategory={podiumItemsByCategory}
-            hasStarted={hasStarted}
+            status={status}
           />
         </div>
 
@@ -113,7 +114,7 @@ export default async function EvenementPage({
 
         <div className="bg-primary-100">
           <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
-            <EventTutorial stepsByMode={tutorialStepsByMode} />
+            <EventTutorial status={status} stepsByMode={tutorialStepsByMode} />
           </div>
         </div>
 

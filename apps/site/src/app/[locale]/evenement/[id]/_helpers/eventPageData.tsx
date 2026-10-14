@@ -2,13 +2,17 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
-import { ORGANISATION_HOME_PAGE } from '@/constants/urls/paths'
+import {
+  ORGANISATION_HOME_PAGE,
+  START_SIMULATION_PATH,
+} from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getEventInfo } from '@nosgestesclimat/core/features/events/services/get-event-info.service'
 import type {
   PodiumCategory,
   PodiumItem,
 } from '@nosgestesclimat/core/features/events/types/event-info'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import { cacheLife } from 'next/cache'
 import type { ReactNode } from 'react'
 
@@ -39,6 +43,7 @@ export interface CtaCard {
 
 export interface EventPageData {
   detailImageSrc: string
+  status: EventStatus
   startDate: Date
   endDate: Date
   dynamicCounter: {
@@ -47,6 +52,7 @@ export interface EventPageData {
     progressPercentage: number
     primaryCtaHref: string
     secondaryCtaHref: string
+    endedCtaHref: string
   }
   statisticsValues: {
     simulations: number
@@ -82,8 +88,11 @@ export async function getEventPageData({
 
   const currentValue = eventInfo.totalSimulations
 
+  const status = eventInfo.status
+
   return {
     detailImageSrc: '/_static/cms/VIGNETTE_SEDD_f711b1d37b.svg',
+    status,
     startDate: eventInfo.startDate,
     endDate: eventInfo.endDate,
     dynamicCounter: {
@@ -93,6 +102,7 @@ export async function getEventPageData({
       primaryCtaHref: ORGANISATION_HOME_PAGE,
       secondaryCtaHref:
         'https://nosgestesclimat.fr/o/ademe-sedd/sedd-2026-1?utm_medium=sharelink&utm_source=NGC',
+      endedCtaHref: START_SIMULATION_PATH,
     },
     statisticsValues: {
       simulations: eventInfo.totalSimulations,
@@ -226,11 +236,23 @@ export async function getEventPageData({
       ],
     },
     ctaImageSrc: '/_static/cms/ILLUSTRATION_SEDD_e1a82fa2e2.svg',
-    ctaHeading: t('event.ctas.heading', "Prêt·e à rejoindre l'aventure ?"),
-    ctaDescription: t(
-      'event.ctas.description',
-      'Deux façons de participer au challenge.'
-    ),
+    ctaHeading:
+      status === 'ended'
+        ? t(
+            'event.ctas.heading.ended',
+            "L'aventure est terminée, la mobilisation continue !"
+          )
+        : t('event.ctas.heading.default', "Prêt·e à rejoindre l'aventure ?"),
+    ctaDescription:
+      status === 'ended'
+        ? t(
+            'event.ctas.description.ended',
+            'Le challenge est terminé, mais vous pouvez toujours vous mobiliser :'
+          )
+        : t(
+            'event.ctas.description.default',
+            'Deux façons de participer au challenge.'
+          ),
     ctaCards: [
       {
         emoji: '👤',
@@ -242,7 +264,9 @@ export async function getEventPageData({
         ),
         buttonLabel: t('event.ctas.card1.buttonLabel', 'Je participe'),
         buttonHref:
-          'https://nosgestesclimat.fr/o/ademe-sedd/sedd-2026-1?utm_medium=sharelink&utm_source=NGC',
+          status === 'ended'
+            ? 'https://nosgestesclimat.fr/simulateur/commencer'
+            : 'https://nosgestesclimat.fr/o/ademe-sedd/sedd-2026-1?utm_medium=sharelink&utm_source=NGC',
         buttonAriaLabel: t(
           'event.ctas.card1.buttonAriaLabel',
           'Je participe, ouvrir dans une nouvelle fenêtre'

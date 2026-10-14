@@ -97,6 +97,73 @@ describe('getEventInfo', () => {
       organisationCount: 0,
       startDate: event.startDate,
       endDate: event.endDate,
+      status: 'ended',
+    })
+  })
+
+  it('returns an "ended" status when endDate is in the past', async () => {
+    const endDate = new Date()
+    endDate.setTime(endDate.getTime() - 60 * 60 * 3600)
+    const event = await eventFactory
+      .params({
+        endDate,
+      })
+      .create()
+    const result = expectEventInfo(await getEventInfo(event.id))
+
+    expect(result).toEqual({
+      podiumItemsByCategory: EMPTY_PODIUM_ITEMS_BY_CATEGORY,
+      totalSimulations: 0,
+      organisationCount: 0,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      status: 'ended',
+    })
+  })
+
+  it('returns an "in_progress" status when endDate is in the future', async () => {
+    const startDate = new Date()
+    const endDate = new Date()
+    endDate.setTime(startDate.getTime() + 60 * 60 * 3600)
+    const event = await eventFactory
+      .params({
+        endDate,
+      })
+      .create()
+
+    const result = expectEventInfo(await getEventInfo(event.id))
+
+    expect(result).toEqual({
+      podiumItemsByCategory: EMPTY_PODIUM_ITEMS_BY_CATEGORY,
+      totalSimulations: 0,
+      organisationCount: 0,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      status: 'in_progress',
+    })
+  })
+
+  it('returns an "not_started" status when startDate is in the future', async () => {
+    const startDate = new Date()
+    startDate.setTime(startDate.getTime() + 2 * 60 * 60 * 3600)
+    const endDate = new Date()
+    endDate.setTime(startDate.getTime() + 60 * 60 * 3600)
+    const event = await eventFactory
+      .params({
+        startDate,
+        endDate,
+      })
+      .create()
+
+    const result = expectEventInfo(await getEventInfo(event.id))
+
+    expect(result).toEqual({
+      podiumItemsByCategory: EMPTY_PODIUM_ITEMS_BY_CATEGORY,
+      totalSimulations: 0,
+      organisationCount: 0,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      status: 'not_started',
     })
   })
 
