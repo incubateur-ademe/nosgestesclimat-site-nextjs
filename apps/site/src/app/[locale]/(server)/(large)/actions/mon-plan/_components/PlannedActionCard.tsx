@@ -14,11 +14,10 @@ interface PlannedActionCardProps {
   locale: Locale
 }
 
-export default function PlannedActionCard({
+export default async function PlannedActionCard({
   action,
-  locale,
 }: PlannedActionCardProps) {
-  const href = getActionHref({ from: 'mon-plan', action, locale })
+  const href = await getActionHref({ from: 'mon-plan', action })
 
   return (
     <article
@@ -32,7 +31,7 @@ export default function PlannedActionCard({
 
         {action.assessment ? (
           <div>
-            <ImpactTag impact={action.assessment.impact} locale={locale} />
+            <ImpactTag impact={action.assessment.impact} />
           </div>
         ) : null}
       </div>
@@ -48,7 +47,6 @@ export default function PlannedActionCard({
         className="focus-visible:inset-ring-primary-700 absolute -inset-px -left-2 z-10 rounded-lg">
         <span className="sr-only">
           <Trans
-            locale={locale}
             i18nKey="actions.components.actionCard.link"
             values={{ actionTitle: action.title }}>
             Voir l'action
