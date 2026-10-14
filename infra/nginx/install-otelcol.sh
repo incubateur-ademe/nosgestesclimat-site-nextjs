@@ -16,8 +16,11 @@ curl -fsSL -o /tmp/otelcol-contrib.deb \
   "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v${VER}/otelcol-contrib_${VER}_linux_amd64.deb"
 dpkg -i /tmp/otelcol-contrib.deb
 
-# Config : on écrase celle du paquet.
-curl -fsSL "$RAW/otelcol-config.yaml" -o /etc/otelcol-contrib/config.yaml
+# Config : on écrase celle du paquet, après validation — une conf invalide
+# ferait échouer le démarrage du collecteur, donc perdre aussi les traces.
+curl -fsSL "$RAW/otelcol-config.yaml" -o /tmp/otelcol-config.yaml
+otelcol-contrib validate --config /tmp/otelcol-config.yaml
+cp /tmp/otelcol-config.yaml /etc/otelcol-contrib/config.yaml
 
 # L'unit ne charge que /etc/otelcol-contrib/otelcol-contrib.conf ; le token est
 # dans otelcol-contrib.env → on l'ajoute via un drop-in.

@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/nextjs'
 import { APP_ENV } from './env/app-env'
 import { publicEnv } from './env/public'
+import { registerUncaughtErrorHandlers } from './observability/uncaught-errors'
 import { PostHog } from './services/tracking/Posthog'
 
 Sentry.init({
@@ -10,17 +11,21 @@ Sentry.init({
   // issues. Inlined at build time — the browser cannot read `SOURCE_VERSION`.
   release: process.env.NEXT_PUBLIC_APP_VERSION,
   sampleRate: 1,
-  beforeSend(event, hint) {
-    // Always send Server Component errors — they carry a digest
-    // for server-side log correlation but lose their stack trace
-    const error = hint.originalException
-    if (error && typeof error === 'object' && 'digest' in error) {
-      return event
-    }
-    return Math.random() < 0.1 ? event : null
-  },
+  // `GlobalHandlers` and `BrowserApiErrors` capture on their own, and without a
+  // scope: our window listeners are the only capture path, as on the server.
+  integrations: (integrations) =>
+    integrations.filter(
+      (integration) =>
+        !['GlobalHandlers', 'BrowserApiErrors', 'TryCatch'].includes(
+          integration.name
+        )
+    ),
+  // A tenth of the survivors is enough to see a trend.
+  beforeSend: (event) => (Math.random() < 0.1 ? event : null),
   enabled: process.env.NODE_ENV !== 'development',
 })
+
+registerUncaughtErrorHandlers()
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart
 

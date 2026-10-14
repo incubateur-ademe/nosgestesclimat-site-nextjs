@@ -27,46 +27,6 @@ receivers:
       grpc:
         endpoint: 127.0.0.1:4317
 
-  # access.log : JSON (voir `log_format json_combined` dans nginx.conf.tpl).
-  filelog/access:
-    include: [/var/log/nginx/access.log]
-    start_at: end
-    include_file_path: true
-    storage: file_storage
-    attributes:
-      'event.name': nginx.access
-    operators:
-      # Emails masqués avant parsing : la règle couvre alors toute la ligne,
-      # donc tous les champs.
-      - type: regex_replace
-        field: body
-        regex: '[\w.+-]+@[\w.-]+'
-        replace_with: '[email]'
-      - type: json_parser
-        parse_to: attributes
-        timestamp:
-          parse_from: attributes.time_iso8601
-          layout_type: strptime
-          # %j = offset ±HH:MM (deux-points), comme $time_iso8601.
-          layout: '%Y-%m-%dT%H:%M:%S%j'
-        # `trace_id` est posé par le module `ngx_otel_module` : c'est l'id du
-        # span racine d'nginx, donc celui de la trace côté app.
-        trace:
-          trace_id:
-            parse_from: attributes.trace_id
-      # `$server_protocol` brut ("HTTP/1.1") → semconv ("1.1", "2", "3").
-      - type: regex_replace
-        field: attributes["network.protocol.version"]
-        regex: '^HTTP/(1\.[01]|[23]).*'
-        # Sans `$$`, le collecteur lit `${1}` comme une variable d'env.
-        replace_with: '$${1}'
-      # Champs déjà exploités ailleurs : retirés pour alléger le volume.
-      - type: remove
-        field: body
-      # `time_iso8601` a posé le timestamp du record.
-      - type: remove
-        field: attributes.time_iso8601
-
   # error.log : format texte d'nginx OSS. Le JSON (`error_log json`) est
   # réservé à NGINX Plus. Le préfixe est stable :
   #   YYYY/MM/DD HH:MM:SS [level] pid#tid: message
@@ -142,6 +102,48 @@ processors:
         value: ${env:ENVIRONMENT}
         action: upsert
 
+  # Le module émet la sémantique HTTP d'avant 1.23 ; on la ramène aux noms
+  # actuels, ceux du `log_format`, pour qu'une requête vaille sur les deux
+  # pipelines. `where != nil` : une source absente supprimerait la cible.
+  transform/nginx-spans:
+    error_mode: ignore
+    trace_statements:
+      - context: span
+        statements:
+          - 'set(span.attributes["http.request.method"], span.attributes["http.method"]) where span.attributes["http.method"] != nil'
+          - 'delete_key(span.attributes, "http.method")'
+          - 'set(span.attributes["http.response.status_code"], span.attributes["http.status_code"]) where span.attributes["http.status_code"] != nil'
+          - 'delete_key(span.attributes, "http.status_code")'
+          - 'set(span.attributes["url.scheme"], span.attributes["http.scheme"]) where span.attributes["http.scheme"] != nil'
+          - 'delete_key(span.attributes, "http.scheme")'
+          - 'set(span.attributes["user_agent.original"], span.attributes["http.user_agent"]) where span.attributes["http.user_agent"] != nil'
+          - 'delete_key(span.attributes, "http.user_agent")'
+          - 'set(span.attributes["http.request.body.size"], span.attributes["http.request_content_length"]) where span.attributes["http.request_content_length"] != nil'
+          - 'delete_key(span.attributes, "http.request_content_length")'
+          - 'set(span.attributes["http.response.body.size"], span.attributes["http.response_content_length"]) where span.attributes["http.response_content_length"] != nil'
+          - 'delete_key(span.attributes, "http.response_content_length")'
+          - 'set(span.attributes["server.address"], span.attributes["net.host.name"]) where span.attributes["net.host.name"] != nil'
+          - 'delete_key(span.attributes, "net.host.name")'
+          - 'set(span.attributes["server.port"], span.attributes["net.host.port"]) where span.attributes["net.host.port"] != nil'
+          - 'delete_key(span.attributes, "net.host.port")'
+          - 'set(span.attributes["network.protocol.version"], span.attributes["http.flavor"]) where span.attributes["http.flavor"] != nil'
+          - 'delete_key(span.attributes, "http.flavor")'
+          # "2.0" → "2" : la valeur de `log_format`, pas celle du module.
+          - 'replace_pattern(span.attributes["network.protocol.version"], "[.]0$", "")'
+          - 'set(span.attributes["url.path"], span.attributes["http.target"]) where span.attributes["http.target"] != nil'
+          - 'replace_pattern(span.attributes["url.path"], "[?].*$", "")'
+          - 'set(span.attributes["url.query"], span.attributes["http.target"]) where IsMatch(span.attributes["http.target"], "[?]")'
+          - 'replace_pattern(span.attributes["url.query"], "^[^?]*[?]", "")'
+          # Les emails ne doivent pas sortir : même masque que l'ancienne chaîne
+          # d'access log, sur les deux champs qui peuvent en porter.
+          - 'replace_pattern(span.attributes["url.query"], "[\\w.+-]+@[\\w.-]+", "[email]")'
+          - 'replace_pattern(span.attributes["url.path"], "[\\w.+-]+@[\\w.-]+", "[email]")'
+          - 'delete_key(span.attributes, "http.target")'
+          # IP du visiteur : absente du format de log, elle ne doit pas entrer
+          # par les spans.
+          - 'delete_key(span.attributes, "net.sock.peer.addr")'
+          - 'delete_key(span.attributes, "net.sock.peer.port")'
+
   batch:
     send_batch_size: 1000
     timeout: 5s
@@ -171,11 +173,11 @@ service:
   extensions: [health_check, file_storage]
   pipelines:
     logs/nginx:
-      receivers: [filelog/access, filelog/error]
+      receivers: [filelog/error]
       processors: [resource/nginx, transform/event-name, batch]
       exporters: [otlphttp/posthog]
     # Le mème exporter ajoute `/v1/traces` pour cette pipeline.
     traces/nginx:
       receivers: [otlp]
-      processors: [resource/nginx, batch]
+      processors: [resource/nginx, transform/nginx-spans, batch]
       exporters: [otlphttp/posthog]
