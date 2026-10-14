@@ -23,13 +23,12 @@ export default async function FootprintDetail({
       <div className="flex flex-col gap-12 md:flex-row md:justify-between">
         <div className="md:w-xl">
           <Title tag="h2" hasSeparator={false} size="md" className="mb-6">
-            <Trans locale={locale} i18nKey="results.where.title">
+            <Trans i18nKey="results.where.title">
               Répartition de votre empreinte :
             </Trans>
           </Title>
 
           <CategoriesAccordion
-            locale={locale}
             rules={rules}
             computedResults={computedResults}
             metric={metric}

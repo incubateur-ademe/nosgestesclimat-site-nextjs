@@ -47,22 +47,19 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
         ]}
       />
       <LandingPage
-        locale={locale}
         withHeader={false}
         heroIllustration={<InteractiveIllustration />}
-        heroTitle={
-          <Trans locale={locale}>Découvrez votre empreinte carbone</Trans>
-        }
+        heroTitle={<Trans>Découvrez votre empreinte carbone</Trans>}
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
-            <HomePageDescription locale={locale} />
+            <HomePageDescription />
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
-              <CTAButtons locale={locale} withCollectiveTest withRestart />
+              <CTAButtons withCollectiveTest withRestart />
 
               {/* Displayed on mobile only */}
               <div className="mb-8 md:hidden">
-                <HomepageSubtitle locale={locale} />
+                <HomepageSubtitle />
                 <div className="mx-auto mt-4 max-w-80 md:mt-0">
                   <InteractiveIllustration />
                 </div>
@@ -70,25 +67,25 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
 
               {/* Displayed on desktop only */}
               <div className="hidden md:block">
-                <HomepageSubtitle locale={locale} />
+                <HomepageSubtitle />
               </div>
             </div>
           </div>
         }
-        heroPartners={<Partners locale={locale} />}>
-        <TwoFootprints locale={locale} />
+        heroPartners={<Partners />}>
+        <TwoFootprints />
 
-        <DidYouKnowMainLanding locale={locale} />
+        <DidYouKnowMainLanding />
 
-        <Mobilise locale={locale} />
+        <Mobilise />
 
         <DecryptChallenges locale={locale} />
 
-        <CollectivelyCommit locale={locale} />
+        <CollectivelyCommit />
 
-        <ModelInfo locale={locale} />
+        <ModelInfo />
 
-        <TheySpeakAboutUs locale={locale} />
+        <TheySpeakAboutUs />
       </LandingPage>
 
       <Footer backgroundColor="white" locale={locale} />

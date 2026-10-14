@@ -6,7 +6,6 @@ import FunFactCard from './transitionInfoCard/FunFactCard'
 interface Props {
   className: string
   title: React.ReactNode
-  locale: string
   funFactContent: React.ReactNode
   rightContent: React.ReactNode
   arrowText?: React.ReactNode
@@ -15,7 +14,6 @@ interface Props {
 export default function TransitionInfoCard({
   className,
   title,
-  locale,
   funFactContent,
   rightContent,
   arrowText,
@@ -35,9 +33,7 @@ export default function TransitionInfoCard({
           <div className="relative w-80 max-w-full md:ml-16">
             <p className="text-primary-600 mt-10 mb-8 text-center font-medium md:mt-16 md:text-left">
               {arrowText ?? (
-                <Trans
-                  locale={locale}
-                  i18nKey="simulator.intercalaire.graphDefault">
+                <Trans i18nKey="simulator.intercalaire.graphDefault">
                   Ce graphique te permet de mieux comprendre les différents
                   impacts
                 </Trans>

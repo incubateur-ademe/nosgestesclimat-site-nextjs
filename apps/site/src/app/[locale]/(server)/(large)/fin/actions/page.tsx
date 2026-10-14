@@ -36,18 +36,18 @@ export default async function ResultatsActionsPage({
 
   // No finished simulation: nothing to personalize from.
   if (actionsCatalogue.assessmentStatus === null) {
-    return <NoResultsBlock locale={locale} />
+    return <NoResultsBlock />
   }
 
   return (
     <ActionsPage
       title={
-        <Trans locale={locale} i18nKey="actions.listPage.title">
+        <Trans i18nKey="actions.listPage.title">
           Vos actions personnalisées pour diminuer votre empreinte
         </Trans>
       }
       description={
-        <Trans locale={locale} i18nKey="actions.listPage.description">
+        <Trans i18nKey="actions.listPage.description">
           Ces actions sont personnalisées selon vos réponses au test. Choisissez
           celles qui vous semblent atteignables et lancez-vous !
         </Trans>
@@ -56,7 +56,6 @@ export default async function ResultatsActionsPage({
       actions={actionsCatalogue.actions}
       assessmentStatus={actionsCatalogue.assessmentStatus}
       themes={themes}
-      locale={locale}
       from="fin"
       totalFootprint={currentSimulation?.computedResults.carbone.bilan}
     />

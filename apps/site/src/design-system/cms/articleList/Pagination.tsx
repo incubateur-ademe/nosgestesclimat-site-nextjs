@@ -6,16 +6,14 @@ import Link from '@/components/Link'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { twMerge } from "cn";
 
-export default function Pagination({
+export default async function Pagination({
   currentPage,
   totalPages,
-  locale,
 }: {
   currentPage: number
   totalPages: number
-  locale: string
 }) {
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <div className="text-center">

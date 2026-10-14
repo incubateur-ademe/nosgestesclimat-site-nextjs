@@ -7,18 +7,14 @@ import { requireAuthUser } from '@/services/auth/require-auth-user'
 import { redirect } from 'next/navigation'
 import CreationForm from './_components/CreationForm'
 
-/* global PageProps */
-export default async function CreationPage({
-  params,
-}: PageProps<'/[locale]/organisations/creer'>) {
+export default async function CreationPage() {
   await requireAuthUser({ redirect: '/organisations/connexion' })
   const userOrganisation = await getUserOrganisation()
   if (userOrganisation) {
     redirect(`/organisations/${userOrganisation.slug}`)
   }
 
-  const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <>
@@ -35,14 +31,12 @@ export default async function CreationPage({
           <Title
             size="lg"
             title={
-              <Trans locale={locale}>
+              <Trans>
                 Créez une organisation afin de diffuser un ou plusieurs liens de
                 test collectif
               </Trans>
             }
-            subtitle={
-              <Trans locale={locale}>Plus que quelques petites questions</Trans>
-            }
+            subtitle={<Trans>Plus que quelques petites questions</Trans>}
             hasSeparator={false}
           />
 

@@ -2,12 +2,8 @@ import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function DailyGestureCarbonFootprint({
-  locale,
-}: {
-  locale: string
-}) {
-  const { t } = getServerTranslation({ locale })
+export default async function DailyGestureCarbonFootprint() {
+  const { t } = await getServerTranslation()
 
   const gesturesKeysForTranslation = {
     transport: t('Transport'),
@@ -23,9 +19,7 @@ export default function DailyGestureCarbonFootprint({
       )}
       description={
         <p className="mb-0">
-          <Trans
-            locale={locale}
-            i18nKey="landing.carbon.dailyGestures.description">
+          <Trans i18nKey="landing.carbon.dailyGestures.description">
             Pour un mode de vie plus durable, certaines actions{' '}
             <strong className="text-primary-600">
               ont un impact plus fort que d'autres
@@ -39,7 +33,6 @@ export default function DailyGestureCarbonFootprint({
           </Trans>
         </p>
       }
-      locale={locale}
       gestures={{
         [gesturesKeysForTranslation.transport]: {
           imageSrc: '/_static/cms/empreinte_carbone_velo_a7262d1e2e.svg',

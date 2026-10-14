@@ -1,13 +1,11 @@
 import type { ArticleType } from '@/adapters/cmsClient'
 import Trans from '@/components/translation/trans/TransServer'
-import type { Locale } from '@/i18nConfig'
 
 interface Props {
   article: ArticleType
-  locale: Locale
 }
 
-export default function ArticleDate({ article, locale }: Props) {
+export default function ArticleDate({ article }: Props) {
   const createdAt = article.createdAt
     ? new Date(article.createdAt).toLocaleDateString('fr')
     : null
@@ -19,14 +17,14 @@ export default function ArticleDate({ article, locale }: Props) {
     <>
       <p className="mb-0">
         <span className="text-primary-600">
-          <Trans locale={locale}>Publié le :</Trans>
+          <Trans>Publié le :</Trans>
         </span>{' '}
         {createdAt}
       </p>
       {updatedAt && updatedAt !== createdAt && (
         <p className="mb-0">
           <span className="text-primary-600">
-            <Trans locale={locale}>Dernière mise à jour :</Trans>
+            <Trans>Dernière mise à jour :</Trans>
           </span>{' '}
           {updatedAt}
         </p>

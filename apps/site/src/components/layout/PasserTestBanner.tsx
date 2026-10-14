@@ -8,24 +8,24 @@ import { hasCompletedCurrentSimulation } from '@nosgestesclimat/core/features/si
 import { Suspense } from 'react'
 import Trans from '../translation/trans/TransServer'
 
-export default function PasserTestBanner({ locale }: { locale: string }) {
+export default function PasserTestBanner() {
   return (
     <Suspense>
-      <PasserTestBannerServer locale={locale} />
+      <PasserTestBannerServer />
     </Suspense>
   )
 }
 
-async function PasserTestBannerServer({ locale }: { locale: string }) {
+async function PasserTestBannerServer() {
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   if (hasCompletedCurrentSimulation(journey)) return null
   return (
     <Card className="mb-4 flex-row flex-wrap items-baseline justify-between gap-4 border-none bg-gray-100 p-4 sm:flex-nowrap sm:p-6">
       <p className="mb-0">
-        <Trans locale={locale}>
+        <Trans>
           Calculez votre empreinte sur le climat
           <span className="text-secondary-800 font-bold"> en 10 minutes </span>
           top chrono.

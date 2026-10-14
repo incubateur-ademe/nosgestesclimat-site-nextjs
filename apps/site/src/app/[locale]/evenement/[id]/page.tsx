@@ -21,7 +21,7 @@ export async function generateMetadata({
 }: PageProps<'/[locale]/evenement/[id]'>) {
   const { locale: localeParam, id } = await params
   const locale = localeParam as Locale
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   const event = await findEvent(id)
 
   return getMetadataObject({
@@ -51,7 +51,7 @@ export default async function EvenementPage({
 
   const locale = localeParam as Locale
 
-  const data = await getEventPageData({ eventId, locale })
+  const data = await getEventPageData({ eventId })
 
   if (!data) notFound()
 
@@ -78,14 +78,12 @@ export default async function EvenementPage({
       <Main>
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
           <EventDetail
-            locale={locale}
             imageSrc={detailImageSrc}
             startDate={startDate}
             endDate={endDate}
           />
 
           <EventHero
-            locale={locale}
             startDate={startDate}
             status={status}
             currentValue={dynamicCounter.currentValue}
@@ -98,14 +96,12 @@ export default async function EvenementPage({
         </div>
 
         <EventStatistics
-          locale={locale}
           values={statisticsValues}
           status={status}
         />
 
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
           <EventPodium
-            locale={locale}
             searchParams={searchParams}
             podiumItemsByCategory={podiumItemsByCategory}
             status={status}
@@ -113,7 +109,7 @@ export default async function EvenementPage({
         </div>
 
         <div className="mx-auto w-5xl max-w-full px-4 lg:p-0">
-          <EventTestimonies locale={locale} testimonies={testimonies} />
+          <EventTestimonies testimonies={testimonies} />
         </div>
 
         <div className="bg-primary-100">

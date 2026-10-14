@@ -17,15 +17,9 @@ import QuestionSection from './documentationServer/QuestionSection'
 interface Props {
   rule: NonNullable<NGCRule>
   rules: NGCRules
-  locale: string
   ruleName: DottedName
 }
-export default function DocumentationServer({
-  rule,
-  rules,
-  locale,
-  ruleName,
-}: Props) {
+export default function DocumentationServer({ rule, rules, ruleName }: Props) {
   return (
     <>
       <Title
@@ -35,7 +29,7 @@ export default function DocumentationServer({
         data-testid="documentation-title"
       />
 
-      {rule.question && <QuestionSection rule={rule} locale={locale} />}
+      {rule.question && <QuestionSection rule={rule} />}
 
       {!rule.question && rule.description && (
         <section className="mt-4">
@@ -46,22 +40,17 @@ export default function DocumentationServer({
       {rule.note && (
         <section className="mt-4">
           <h2>
-            <Trans locale={locale}>Notes</Trans>
+            <Trans>Notes</Trans>
           </h2>
           <Markdown>{rule.note}</Markdown>
         </section>
       )}
 
-      <CalculDetail
-        rule={rule}
-        ruleName={ruleName}
-        rules={rules}
-        locale={locale}
-      />
+      <CalculDetail rule={rule} ruleName={ruleName} rules={rules} />
 
       <Card className="bg-primary-100 mt-4 mb-4 border-none">
         <p className="mb-0">
-          <Trans locale={locale}>
+          <Trans>
             Pour en savoir plus sur cette règle de notre modèle, lancer le
             calcul en cliquant sur le bouton ci-dessous.
           </Trans>

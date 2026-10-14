@@ -6,11 +6,9 @@ import AvantDeCommencer from './AvantDeCommencer'
 import ButtonBack from './ButtonBack'
 
 export default function Tutorial({
-  locale,
   disclaimer,
   buttonNext,
 }: {
-  locale: string
   disclaimer?: React.ReactNode
   buttonNext: React.ReactNode
 }) {
@@ -21,7 +19,7 @@ export default function Tutorial({
           data-testid="tutoriel-title"
           className="text-lg md:text-2xl"
           title={
-            <Trans locale={locale} i18nKey="tutoriel.title">
+            <Trans i18nKey="tutoriel.title">
               <span className="text-secondary-700 inline">10 minutes</span>{' '}
               chrono pour calculer votre empreinte carbone et eau
             </Trans>

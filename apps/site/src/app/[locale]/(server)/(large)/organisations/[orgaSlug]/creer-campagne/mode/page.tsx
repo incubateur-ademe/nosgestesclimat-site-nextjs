@@ -26,7 +26,7 @@ export async function generateMetadata({
 export default async function CreerCampagneTypePage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]/creer-campagne/mode'>) {
-  const { orgaSlug, locale } = await params
+  const { orgaSlug } = await params
 
   const { organisation } = await organisationAdminGuard(orgaSlug)
 
@@ -44,7 +44,7 @@ export default async function CreerCampagneTypePage({
         <StepsDisplay currentStep={2} />
         <Title
           title={
-            <Trans i18nKey="collectiveTest.mode.title" locale={locale}>
+            <Trans i18nKey="collectiveTest.mode.title">
               Choisissez le mode du test
             </Trans>
           }

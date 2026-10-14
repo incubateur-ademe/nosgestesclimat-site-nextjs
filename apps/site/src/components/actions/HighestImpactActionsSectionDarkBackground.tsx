@@ -1,4 +1,3 @@
-import type { Locale } from '@/i18nConfig'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { twMerge } from 'cn'
@@ -15,7 +14,6 @@ const DARK_BACKGROUND =
 
 interface HighestImpactActionsSectionDarkBackgroundProps extends React.ComponentPropsWithoutRef<'section'> {
   actions: MaybePersonalizedAction[]
-  locale: Locale
   assessmentStatus?: AssessmentStatus | null
   from?: 'fin' | 'mon-espace' | 'index'
   /** Total carbon footprint in kg, used to express each impact as a share of it */
@@ -24,7 +22,6 @@ interface HighestImpactActionsSectionDarkBackgroundProps extends React.Component
 
 export default function HighestImpactActionsSectionDarkBackground({
   actions,
-  locale,
   className,
   assessmentStatus,
   from,
@@ -45,16 +42,12 @@ export default function HighestImpactActionsSectionDarkBackground({
         <h2
           id={headingId}
           className="mb-0 text-2xl/normal font-bold md:text-3xl/normal">
-          <Trans
-            locale={locale}
-            i18nKey="actions.components.highestImpactActionsSection.testWhiteBackground.title">
+          <Trans i18nKey="actions.components.highestImpactActionsSection.testWhiteBackground.title">
             Voici vos 3 actions qui auront le plus d'impact
           </Trans>
         </h2>
         <p className="mb-0 text-lg/normal">
-          <Trans
-            locale={locale}
-            i18nKey="actions.components.highestImpactActionsSection.testWhiteBackground.description">
+          <Trans i18nKey="actions.components.highestImpactActionsSection.testWhiteBackground.description">
             C'est ici que se joue l'essentiel de votre empreinte.
           </Trans>
         </p>
@@ -65,7 +58,6 @@ export default function HighestImpactActionsSectionDarkBackground({
           <li key={action.id}>
             <HighlightedActionCard
               action={action}
-              locale={locale}
               assessmentStatus={assessmentStatus}
               rank={index + 1}
               from={from}

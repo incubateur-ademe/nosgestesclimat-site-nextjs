@@ -56,14 +56,14 @@ export default async function NewsletterConfirmationPage({
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">
-            {success === 'true' && <NewsletterSuccessMessage locale={locale} />}
+            {success === 'true' && <NewsletterSuccessMessage />}
 
             {success === 'false' && (status === '400' || status === '404') && (
-              <NewsletterInvalidMessage locale={locale} />
+              <NewsletterInvalidMessage />
             )}
 
             {success === 'false' && status === '500' && (
-              <NewsletterErrorMessage locale={locale} />
+              <NewsletterErrorMessage />
             )}
           </div>
         </div>

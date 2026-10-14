@@ -1,11 +1,9 @@
 import Trans from '@/components/translation/trans/TransServer'
-import type { Locale } from '@/i18nConfig'
 import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 import { cn } from 'cn'
 
 interface Props {
   status: EventStatusWithoutNotStarted
-  locale: Locale
 }
 
 const STATUS_CLASSES: Record<
@@ -22,7 +20,7 @@ const STATUS_CLASSES: Record<
   },
 }
 
-export default function StatusTitle({ status, locale }: Props) {
+export default function StatusTitle({ status }: Props) {
   return (
     <span className={cn('mb-4 flex items-center', STATUS_CLASSES[status].text)}>
       <span
@@ -36,11 +34,9 @@ export default function StatusTitle({ status, locale }: Props) {
 
       <span className="text-xs font-bold uppercase">
         {status === 'in_progress' ? (
-          <Trans i18nKey="event.dynamicCounter.text.running" locale={locale}>
-            En direct
-          </Trans>
+          <Trans i18nKey="event.dynamicCounter.text.running">En direct</Trans>
         ) : (
-          <Trans i18nKey="event.dynamicCounter.text.ended" locale={locale}>
+          <Trans i18nKey="event.dynamicCounter.text.ended">
             Le défi est terminé, mais la mobilisation continue !
           </Trans>
         )}

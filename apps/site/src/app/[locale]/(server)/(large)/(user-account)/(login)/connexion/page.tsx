@@ -10,7 +10,6 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { UserProvider } from '@/publicodes-state'
 import { getUserSession } from '@/services/auth/get-user-session'
-import type { DefaultPageProps } from '@/types'
 import ColourBlock from '../_components/ColourBlocks'
 
 export const generateMetadata = getCommonMetadata({
@@ -23,8 +22,7 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function Connexion({ params }: DefaultPageProps) {
-  const { locale } = await params
+export default async function Connexion() {
   const userSession = await getUserSession()
 
   return (
@@ -38,7 +36,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
         <Title
           containerClassName="order-0 max-w-[430px] mb-4"
           title={
-            <Trans i18nKey="login.login.title" locale={locale}>
+            <Trans i18nKey="login.login.title">
               Accédez à votre espace Nos Gestes Climat
             </Trans>
           }
@@ -60,49 +58,35 @@ export default async function Connexion({ params }: DefaultPageProps) {
         className="ml-7 hidden w-1/2 self-start lg:flex"
         highlights={[
           <span key="highlight1">
-            <Trans
-              i18nKey="login.colourBlock.highlight1.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight1.title.prefix">
               Visualisez
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="login.colourBlock.highlight1.title.strong"
-                locale={locale}>
+              <Trans i18nKey="login.colourBlock.highlight1.title.strong">
                 vos derniers résultats
               </Trans>
             </strong>
           </span>,
           <span key="highlight2">
-            <Trans
-              i18nKey="login.colourBlock.highlight2.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight2.title.prefix">
               Continuez à
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="login.colourBlock.highlight2.title.strong"
-                locale={locale}>
+              <Trans i18nKey="login.colourBlock.highlight2.title.strong">
                 progresser dans vos actions climat
               </Trans>
             </strong>
           </span>,
           <span key="highlight3">
-            <Trans
-              i18nKey="login.colourBlock.highlight3.title.prefix"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight3.title.prefix">
               Accédez à
             </Trans>{' '}
             <strong>
-              <Trans
-                i18nKey="login.colourBlock.highlight3.title.strong"
-                locale={locale}>
+              <Trans i18nKey="login.colourBlock.highlight3.title.strong">
                 vos défis collectifs
               </Trans>
             </strong>{' '}
-            <Trans
-              i18nKey="login.colourBlock.highlight3.title.end"
-              locale={locale}>
+            <Trans i18nKey="login.colourBlock.highlight3.title.end">
               en cours
             </Trans>
           </span>,

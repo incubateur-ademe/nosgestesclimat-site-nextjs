@@ -9,7 +9,6 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
 export const generateMetadata = getCommonMetadata({
@@ -22,10 +21,8 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function International({ params }: DefaultPageProps) {
-  const { locale } = await params
-
-  const { t } = getServerTranslation({ locale })
+export default async function International() {
+  const { t } = await getServerTranslation()
 
   // TODO: add back full width somehow
   return (
@@ -58,7 +55,7 @@ export default async function International({ params }: DefaultPageProps) {
                 size="lg"
                 className="px-20">
                 <span>
-                  <Trans locale={locale}>Faire le test</Trans>
+                  <Trans>Faire le test</Trans>
                 </span>
               </ButtonLink>
             </div>
@@ -77,26 +74,26 @@ export default async function International({ params }: DefaultPageProps) {
       <div className="rounded-xl bg-gray-100">
         <Container maxWidth="3xl" className="px-4 pt-8 pb-12">
           <h2>
-            <Trans locale={locale} i18nKey="international.pourquoi.titre">
+            <Trans i18nKey="international.pourquoi.titre">
               Adapté à votre pays
             </Trans>
           </h2>
           <p>
-            <Trans locale={locale} i18nKey="international.pourquoi.1">
+            <Trans i18nKey="international.pourquoi.1">
               Les modes de vie varient fortement d’un pays à l’autre : réseau
               ferroviaire plus ou moins développé, dépendance au ferry ou à
               l’avion, organisation du transport, types de logements, etc.
             </Trans>
           </p>
           <p>
-            <Trans locale={locale} i18nKey="international.pourquoi.2">
+            <Trans i18nKey="international.pourquoi.2">
               Avec la transition énergétique, la place croissante de
               l’électricité rend le mix électrique particulièrement déterminant
               dans le calcul.
             </Trans>
           </p>
           <p>
-            <Trans locale={locale} i18nKey="international.pourquoi.3">
+            <Trans i18nKey="international.pourquoi.3">
               Lorsque c’est possible, nous utilisons les données de{' '}
               <Link
                 className="inline-block"
@@ -124,24 +121,24 @@ export default async function International({ params }: DefaultPageProps) {
 
       <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
-          <Trans locale={locale} i18nKey="international.comment.titre">
+          <Trans i18nKey="international.comment.titre">
             Quels régions / pays sont disponibles ?
           </Trans>
         </h2>
         <p>
-          <Trans locale={locale} i18nKey="international.comment.1">
+          <Trans i18nKey="international.comment.1">
             Pour chaque pays, nous ajoutons les données locales nécessaires afin
             de proposer un calcul adapté aux modes de vie et au mix énergétique
             du territoire.
           </Trans>
         </p>
         <p>
-          <Trans locale={locale} i18nKey="international.comment.2">
+          <Trans i18nKey="international.comment.2">
             La liste ci-dessous présente les pays déjà intégrés.
           </Trans>
         </p>
         <p>
-          <Trans locale={locale} i18nKey="international.comment.3">
+          <Trans i18nKey="international.comment.3">
             Nous l’enrichissons progressivement pour élargir la couverture
             internationale.
           </Trans>
@@ -158,18 +155,18 @@ export default async function International({ params }: DefaultPageProps) {
 
       <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
-          <Trans locale={locale} i18nKey="international.ensuite.titre">
+          <Trans i18nKey="international.ensuite.titre">
             Vous ne trouvez pas votre pays ?
           </Trans>
         </h2>
         <p>
-          <Trans locale={locale} i18nKey="international.ensuite.2">
+          <Trans i18nKey="international.ensuite.2">
             Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand
             soin pour refléter leurs spécificités.
           </Trans>
         </p>
         <p>
-          <Trans locale={locale} i18nKey="international.ensuite.1">
+          <Trans i18nKey="international.ensuite.1">
             Si le vôtre n’est pas encore dans la liste, dites-le-nous : nous
             serons ravis d’en tenir compte.{' '}
             <InlineLink href="/contact">Écrivez-nous !</InlineLink>

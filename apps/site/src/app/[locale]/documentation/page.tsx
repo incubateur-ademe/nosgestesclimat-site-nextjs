@@ -24,9 +24,9 @@ export default async function Documentation({
   const rules = await getCachedRules({ locale, isOptim: false })
   return (
     <div className="w-full max-w-4xl p-4 md:mx-auto md:py-8">
-      <PasserTestBanner locale={locale} />
+      <PasserTestBanner />
 
-      <DocumentationLanding locale={locale} rules={rules} />
+      <DocumentationLanding rules={rules} />
     </div>
   )
 }

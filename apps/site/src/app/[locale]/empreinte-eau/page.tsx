@@ -37,7 +37,7 @@ export const generateMetadata = getCommonMetadata({
 export default async function WaterFootprintLandingPage(
   props: DefaultPageProps
 ) {
-  const { t } = getServerTranslation(await props.params)
+  const { t } = await getServerTranslation()
   const { locale } = await props.params
 
   const userSession = await getUserSession()
@@ -69,16 +69,13 @@ export default async function WaterFootprintLandingPage(
       />
 
       <LandingPage
-        locale={locale}
         heroTitle={
-          <Trans locale={locale}>
-            Chaque goutte compte : découvrez votre empreinte eau !
-          </Trans>
+          <Trans>Chaque goutte compte : découvrez votre empreinte eau !</Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <Trans locale={locale}>
+              <Trans>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte eau</strong> et
                 découvrez{' '}
@@ -89,7 +86,7 @@ export default async function WaterFootprintLandingPage(
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <CTAButtons locale={locale} />
+              <CTAButtons />
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
@@ -115,19 +112,19 @@ export default async function WaterFootprintLandingPage(
           />
         }
         heroPartners={<WaterFootprintPartners />}>
-        <WhatItIsWaterFootprint locale={locale} />
+        <WhatItIsWaterFootprint />
 
-        <WhatDoWeMeasureWaterFootprint locale={locale} />
+        <WhatDoWeMeasureWaterFootprint />
 
-        <DidYouKnowWaterFootprint locale={locale} />
+        <DidYouKnowWaterFootprint />
 
-        <DailyGestureWaterFootprint locale={locale} />
+        <DailyGestureWaterFootprint />
 
-        <UnderstandToActWaterFootprint locale={locale} />
+        <UnderstandToActWaterFootprint />
 
-        <MotivationSectionWaterFootprint locale={locale} />
+        <MotivationSectionWaterFootprint />
 
-        <FAQWaterFootprint locale={locale} />
+        <FAQWaterFootprint />
       </LandingPage>
       <Footer backgroundColor="white" locale={locale} />
     </ClientLayout>

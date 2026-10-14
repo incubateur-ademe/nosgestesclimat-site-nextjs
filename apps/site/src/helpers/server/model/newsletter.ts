@@ -1,7 +1,10 @@
 'use server'
 
 import { NEWSLETTER_URL, USER_URL } from '@/constants/urls/main'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getT } from '@/helpers/getServerTranslation'
+import i18nConfig from '@/i18nConfig'
+import initI18next from '@/locales/initServer'
+import { isLocale } from '@/utils/is-locale'
 import { fetchServer } from '../fetchServer'
 
 export async function updateNewsletterSubscription({
@@ -40,7 +43,11 @@ export type ListIds = NEWSLETTER_IDS[]
 // à faire :
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function getNewsletters({ locale }: { locale: string }) {
-  const { t } = getServerTranslation({ locale })
+  const resolvedLocale = isLocale(locale) ? locale : i18nConfig.defaultLocale
+  const t = getT({
+    locale: resolvedLocale,
+    i18nextInstance: initI18next(resolvedLocale),
+  })
   return [
     {
       brevoId: NEWSLETTER_IDS.ACTU,

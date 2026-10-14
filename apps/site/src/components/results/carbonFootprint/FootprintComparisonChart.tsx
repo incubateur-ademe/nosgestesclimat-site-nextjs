@@ -1,4 +1,5 @@
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import { twMerge } from 'cn'
@@ -13,7 +14,6 @@ import {
 } from './footprintComparison'
 
 interface Props {
-  locale: Locale
   value: number
   /** Vertical bars next to the text on desktop, horizontal ones on mobile */
   orientation: 'vertical' | 'horizontal'
@@ -74,14 +74,14 @@ function targetStyle(percent: number, delayMs: number) {
   } as CSSProperties
 }
 
-export default function FootprintComparisonChart({
-  locale,
+export default async function FootprintComparisonChart({
   value,
   orientation,
   className,
   describedById,
 }: Props) {
-  const { t } = getServerTranslation({ locale })
+  const locale = await getLocale()
+  const { t } = await getServerTranslation()
 
   const { level, deltaKg } = getFootprintComparison(value)
   const percents = getComparisonBarPercents(value)
@@ -109,11 +109,7 @@ export default function FootprintComparisonChart({
     {
       key: 'footprint',
       name: (
-        <Trans
-          locale={locale}
-          i18nKey="results.footprintBlock.carbone.chart.you">
-          Vous
-        </Trans>
+        <Trans i18nKey="results.footprintBlock.carbone.chart.you">Vous</Trans>
       ),
       nameClassName: 'font-bold',
       percent: percents.footprint,
@@ -128,9 +124,7 @@ export default function FootprintComparisonChart({
     {
       key: 'average',
       name: (
-        <Trans
-          locale={locale}
-          i18nKey="results.footprintBlock.carbone.chart.average">
+        <Trans i18nKey="results.footprintBlock.carbone.chart.average">
           Moyenne*
         </Trans>
       ),
@@ -144,9 +138,7 @@ export default function FootprintComparisonChart({
     {
       key: 'objective',
       name: (
-        <Trans
-          locale={locale}
-          i18nKey="results.footprintBlock.carbone.chart.objective">
+        <Trans i18nKey="results.footprintBlock.carbone.chart.objective">
           Objectif 2050
         </Trans>
       ),
