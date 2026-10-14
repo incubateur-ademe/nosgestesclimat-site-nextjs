@@ -89,7 +89,7 @@ export type ActionChoice = {
   type: ActionChoiceType
 }
 
-export type ActionChoiceType = 'committed' | 'rejected'
+export type ActionChoiceType = 'committed' // | 'rejected'
 
 export type ActionEvaluation =
   // Case 1. The action is applicable and the impact is either a number or not evaluable

@@ -35,25 +35,6 @@ describe('getActionsPlan', () => {
     expect(result).toBeNull()
   })
 
-  it('returns null when the user only rejected actions', async () => {
-    const action = await actionFactory.published().create()
-    const user = await userFactory.create()
-    await simulationFactory.completed().params({ userId: user.id }).create()
-    await prisma.actionChoice.create({
-      data: {
-        id: faker.string.uuid(),
-        userId: user.id,
-        actionId: action.id,
-        type: 'rejected',
-        chosenAt: new Date(),
-      },
-    })
-
-    const result = await getActionsPlan(user.id, 'fr')
-
-    expect(result).toBeNull()
-  })
-
   it('returns null when the only committed action is deleted', async () => {
     const action = await actionFactory.published().deleted().create()
     const user = await userFactory.create()
