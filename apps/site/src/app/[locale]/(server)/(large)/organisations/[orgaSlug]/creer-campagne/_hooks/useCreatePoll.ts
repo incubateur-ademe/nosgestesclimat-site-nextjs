@@ -33,6 +33,7 @@ export function useCreatePoll({ organisationSlug }: UseCreatePollProps) {
           },
         })
       } catch (error) {
+        // Throw in case of redirect to complete redirection
         if (error instanceof Error && error.message.includes('NEXT_REDIRECT')) {
           throw error
         }
