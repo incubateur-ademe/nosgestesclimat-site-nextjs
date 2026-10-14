@@ -1297,8 +1297,6 @@ entries:
   event.ctas.card2.buttonLabel: Je crée un test collectif
   event.ctas.card2.description: Créez un espace dédié pour mobiliser vos collègues, élèves / étudiants, ou parties prenantes.
   event.ctas.card2.title: Avec votre organisation
-  event.ctas.description: Deux façons de participer au challenge.
-  event.ctas.heading: Prêt·e à rejoindre l'aventure ?
   event.detail.alt: Du {{startDate}} au {{endDate}}, Semaine européenne du Développement Durable sur nosgestesclimat.fr
   event.detail.dates: Du {{startDate}} au {{endDate}}
   event.detail.title: Semaine Européenne du<1></1>Développement<3></3>Durable
@@ -1306,14 +1304,11 @@ entries:
   event.dynamicCounter.promise: Résultats en 10 minutes — sans inscription
   event.dynamicCounter.secondaryCta: Je participe individuellement
   event.dynamicCounter.target.text: calculs d'empreinte carbone
-  event.dynamicCounter.text: EN DIRECT
   event.hero.title.description: "A l'occasion de la Semaine européenne du développement durable, relevez le défi avec votre organisation : <2>mesurez votre empreinte carbone et passez à l'action pour la réduire collectivement</2>"
   event.hero.title.part1: L'impact est plus fort
   event.hero.title.part2: quand il est collectif
   event.podium.subtitle: Le podium de la mobilisation
-  event.statistics.first: calculs d'empreinte carbone déjà réalisés
   event.statistics.third.link: Rejoignez-les !
-  event.statistics.third.text: Organisations déjà mobilisées
   event.testimonies.1.author.job: Impact Officer chez HomeExchange
   event.testimonies.1.text: "Nous avons proposé à notre communauté de voyageurs d'utiliser Nos Gestes Climat pour calculer leur empreinte écologique. C'était une manière simple et accessible de sensibiliser sans culpabiliser. Résultat : près de 4 700 participations. Un vrai levier pour initier le dialogue sur un tourisme plus responsable."
   event.testimonies.2.author.job: Responsable des relations avec les publics du Pass Culture
@@ -1339,7 +1334,6 @@ entries:
   event.tutorial.org.2.title: Partagez le lien
   event.tutorial.org.3.description: Visualisez en temps réel les participations et l’empreinte carbone collective.
   event.tutorial.org.3.title: Suivez les résultats
-  event.tutorial.title: Comment participer ?
   event.podium.title: Classement des organisations en direct
   event.meta.description: "Relevez le défi avec votre organisation : mesurez votre empreinte carbone et passez à l'action pour la réduire collectivement."
   event.meta.title: Événement collectif d'empreinte carbone - Nos Gestes Climat
@@ -1481,3 +1475,17 @@ entries:
   results.footprintBlock.carbone.chart.objective: Objectif 2050
   results.footprintBlock.carbone.chart.you: Vous
   errors.unexpected: Une erreur innattendue s'est produite. Veuillez réessayer.
+  event.ctas.description.default: Deux façons de participer au challenge.
+  event.ctas.description.ended: 'Le challenge est terminé, mais vous pouvez toujours vous mobiliser :'
+  event.ctas.heading.default: Prêt·e à rejoindre l'aventure ?
+  event.ctas.heading.ended: L'aventure est terminée, la mobilisation continue !
+  event.dynamicCounter.endedCta.ariaLabel: Je continue la mobilisation, ouvrir dans une nouvelle fenêtre
+  event.dynamicCounter.endedCta.buttonLabel: Je continue la mobilisation
+  event.dynamicCounter.text.ended: Le défi est terminé, mais la mobilisation continue !
+  event.dynamicCounter.text.running: En direct
+  event.statistics.first.ended: calculs d'empreinte carbone réalisés
+  event.statistics.first.inProgress: calculs d'empreinte carbone déjà réalisés
+  event.statistics.third.text.ended: Organisations mobilisées
+  event.statistics.third.text.inProgress: Organisations déjà mobilisées
+  event.tutorial.title.default: Comment participer ?
+  event.tutorial.title.ended: Comment participer la prochaine fois ?
