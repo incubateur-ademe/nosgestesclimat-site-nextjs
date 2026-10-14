@@ -91,9 +91,11 @@ export async function getEventPageData({
 
   const currentValue = eventInfo.totalSimulations
 
+  const status = eventInfo.status
+
   return {
     detailImageSrc: '/_static/cms/VIGNETTE_SEDD_f711b1d37b.svg',
-    status: eventInfo.status,
+    status,
     startDate: eventInfo.startDate,
     endDate: eventInfo.endDate,
     dynamicCounter: {
