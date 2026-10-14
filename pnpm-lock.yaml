@@ -76,7 +76,7 @@ importers:
     dependencies:
       '@incubateur-ademe/nosgestesclimat':
         specifier: 4.17.3
-        version: 4.17.3(publicodes@1.10.1)
+        version: 4.17.3(publicodes@1.10.4)
       '@mswjs/http-middleware':
         specifier: ^0.10.3
         version: 0.10.3(msw@2.12.14(@types/node@24.12.2)(typescript@5.9.3))
@@ -113,7 +113,7 @@ importers:
         version: 3.1028.0
       '@incubateur-ademe/nosgestesclimat':
         specifier: 4.17.3
-        version: 4.17.3(publicodes@1.10.1)
+        version: 4.17.3(publicodes@1.10.4)
       '@nosgestesclimat/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -184,8 +184,8 @@ importers:
         specifier: ^5.5.3
         version: 5.5.3
       publicodes:
-        specifier: ^1.10.1
-        version: 1.10.1
+        specifier: ^1.10.4
+        version: 1.10.4
       request-ip:
         specifier: ^3.3.0
         version: 3.3.0
@@ -282,7 +282,7 @@ importers:
     dependencies:
       '@incubateur-ademe/nosgestesclimat':
         specifier: 4.17.3
-        version: 4.17.3(publicodes@1.10.1)
+        version: 4.17.3(publicodes@1.10.4)
       '@next/mdx':
         specifier: ^16.2.2
         version: 16.2.2(@mdx-js/loader@3.1.1(webpack@5.105.4(esbuild@0.27.7)))(@mdx-js/react@3.1.1(@types/react@19.2.2)(react@19.2.4))
@@ -330,7 +330,7 @@ importers:
         version: 7.10.0(@opentelemetry/api@1.9.1)
       '@publicodes/react-ui':
         specifier: ^1.10.0
-        version: 1.10.0(publicodes@1.10.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 1.10.0(publicodes@1.10.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@radix-ui/themes':
         specifier: ^3.3.0
         version: 3.3.0(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -413,8 +413,8 @@ importers:
         specifier: ^5.30.6
         version: 5.30.6
       publicodes:
-        specifier: ^1.10.1
-        version: 1.10.1
+        specifier: ^1.10.4
+        version: 1.10.4
       radix-ui:
         specifier: ^1.6.7
         version: 1.6.7(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -610,10 +610,10 @@ importers:
         version: 10.4.0
       '@incubateur-ademe/nosgestesclimat':
         specifier: 4.17.3
-        version: 4.17.3(publicodes@1.10.1)
+        version: 4.17.3(publicodes@1.10.4)
       '@incubateur-ademe/nosgestesclimat-previous':
         specifier: npm:@incubateur-ademe/nosgestesclimat@4.17.2
-        version: '@incubateur-ademe/nosgestesclimat@4.17.2(publicodes@1.10.1)'
+        version: '@incubateur-ademe/nosgestesclimat@4.17.2(publicodes@1.10.4)'
       '@prisma/adapter-pg':
         specifier: ^7.8.0
         version: 7.8.0
@@ -642,8 +642,8 @@ importers:
         specifier: ^7.8.0
         version: 7.8.0(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
       publicodes:
-        specifier: ^1.10.1
-        version: 1.10.1
+        specifier: ^1.10.4
+        version: 1.10.4
       schema-dts:
         specifier: ^2.0.0
         version: 2.0.0(typescript@5.9.3)
@@ -9538,8 +9538,8 @@ packages:
   public-encrypt@4.0.3:
     resolution: {integrity: sha512-zVpa8oKZSz5bTMTFClc1fQOnyyEzpl5ozpi1B5YcvBrdohMjH2rfsBtyXcuNuwjsDIXmBYlF2N5FlJYhR29t8Q==}
 
-  publicodes@1.10.1:
-    resolution: {integrity: sha512-NCEZgB5YfNyw5km71mYtpNdedeyt0EmB73X1h2k7bewwTLAlM/C6dsgRbw2R/si/nuob3Oh1wTswjM3A8Qjfrw==}
+  publicodes@1.10.4:
+    resolution: {integrity: sha512-twj6iKNSYY4a03RqkYJ7q0TKOWZQVUraF715FTLLadgmX/nboPzB4Rdn2IuT3b5tFJnCrhQdh5rKYyS3lWp+vQ==}
 
   pump@3.0.4:
     resolution: {integrity: sha512-VS7sjc6KR7e1ukRFhQSY5LM2uBWAUPiOPa/A3mkKmiMwSmRFUITt0xuj+/lesgnCv+dPIEYlkzrcyXgquIHMcA==}
@@ -13263,13 +13263,13 @@ snapshots:
       - debug
       - encoding
 
-  '@incubateur-ademe/nosgestesclimat@4.17.2(publicodes@1.10.1)':
+  '@incubateur-ademe/nosgestesclimat@4.17.2(publicodes@1.10.4)':
     dependencies:
-      publicodes: 1.10.1
+      publicodes: 1.10.4
 
-  '@incubateur-ademe/nosgestesclimat@4.17.3(publicodes@1.10.1)':
+  '@incubateur-ademe/nosgestesclimat@4.17.3(publicodes@1.10.4)':
     dependencies:
-      publicodes: 1.10.1
+      publicodes: 1.10.4
 
   '@inquirer/ansi@1.0.2': {}
 
@@ -14473,18 +14473,18 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react-dom'
 
-  '@publicodes/react-ui@1.10.0(publicodes@1.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@publicodes/react-ui@1.10.0(publicodes@1.10.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       fuse.js: 7.1.0
-      publicodes: 1.10.1
+      publicodes: 1.10.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       styled-components: 6.3.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
-  '@publicodes/react-ui@1.10.0(publicodes@1.10.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@publicodes/react-ui@1.10.0(publicodes@1.10.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       fuse.js: 7.1.0
-      publicodes: 1.10.1
+      publicodes: 1.10.4
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
       styled-components: 6.3.12(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -14493,7 +14493,7 @@ snapshots:
     dependencies:
       '@clack/prompts': 0.7.0
       '@oclif/core': 4.10.4
-      '@publicodes/react-ui': 1.10.0(publicodes@1.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@publicodes/react-ui': 1.10.0(publicodes@1.10.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tailwindcss/typography': 0.5.19(tailwindcss@4.2.2)
       '@tailwindcss/vite': 4.2.2(vite@6.4.1(@types/node@18.19.130)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
       '@types/node': 18.19.130
@@ -14501,7 +14501,7 @@ snapshots:
       chokidar: 4.0.3
       glob: 10.5.0
       path: 0.12.7
-      publicodes: 1.10.1
+      publicodes: 1.10.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-router-dom: 7.14.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -21937,7 +21937,7 @@ snapshots:
       randombytes: 2.1.0
       safe-buffer: 5.2.1
 
-  publicodes@1.10.1: {}
+  publicodes@1.10.4: {}
 
   pump@3.0.4:
     dependencies:
