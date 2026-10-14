@@ -55,7 +55,7 @@ export default function ActionsPage({
     <>
       <BetaBanner />
 
-      {plan && <ActionPlanLinks plan={plan} />}
+      {plan && <ActionPlanLinks plan={plan} className="mb-8" />}
 
       <div>
         <h1 className="mb-0 text-2xl/normal font-medium md:text-4xl/normal">

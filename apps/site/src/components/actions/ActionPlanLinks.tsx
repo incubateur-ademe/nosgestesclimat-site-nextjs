@@ -17,10 +17,12 @@ interface Props {
   plan: ActionPlan
   activeLink?: 'explore' | 'plan'
   exploreHref?: string
+  className?: string
 }
 
 export default function ActionPlanLinks({
   plan,
+  className,
   activeLink = 'explore',
   exploreHref = END_PAGE_ACTIONS_PATH,
 }: Props) {
@@ -28,7 +30,7 @@ export default function ActionPlanLinks({
   const isPlanActive = activeLink === 'plan'
 
   return (
-    <div className="mb-8 flex gap-4 overflow-auto">
+    <div className={cn("flex gap-4 overflow-auto", className)}>
       <ButtonLinkServer
         color="secondary"
         className={

@@ -6,30 +6,28 @@ export default async function BetaBanner() {
   const { t } = await getServerTranslation()
 
   return (
-    <div className="-mt-2 mb-8 md:-mt-4">
-      <BannerContent
-        color="secondary"
-        className="items-center"
-        banner={{
-          text: (
-            <Trans i18nKey={'actions.beta-banner.content'}>
-              Cette <strong>version bêta</strong> est en cours d'amélioration.
-              Aidez-nous à l’améliorer en{' '}
-              <a
-                href="https://tally.so/r/rjvbvR"
-                target="_blank"
-                className="font-bold underline"
-                aria-label={t(
-                  'actions.beta-banner.link.aria-label',
-                  'Laisser votre avis, nouvelle fenêtre'
-                )}>
-                laissant votre avis.
-              </a>
-            </Trans>
-          ),
-          id: 'beta-banner',
-        }}
-      />
-    </div>
+    <BannerContent
+      color="secondary"
+      className="-mt-2 mb-8 items-center md:-mt-4"
+      banner={{
+        text: (
+          <Trans i18nKey={'actions.beta-banner.content'}>
+            Cette <strong>version bêta</strong> est en cours d'amélioration.
+            Aidez-nous à l’améliorer en{' '}
+            <a
+              href="https://tally.so/r/rjvbvR"
+              target="_blank"
+              className="font-bold underline"
+              aria-label={t(
+                'actions.beta-banner.link.aria-label',
+                'Laisser votre avis, nouvelle fenêtre'
+              )}>
+              laissant votre avis.
+            </a>
+          </Trans>
+        ),
+        id: 'beta-banner',
+      }}
+    />
   )
 }

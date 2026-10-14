@@ -63,6 +63,7 @@ export default async function MonEspaceActionsPage({
             themes={themes}
             from="mon-espace"
             totalFootprint={currentSimulation?.computedResults.carbone.bilan}
+            plan={personalizedActionsCatalogue.plan}
           />
         </div>
       )}

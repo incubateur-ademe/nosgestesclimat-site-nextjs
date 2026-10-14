@@ -8,7 +8,6 @@ import Trans from '@/components/translation/trans/TransServer'
 import {
   ACTIONS_MY_PLAN_PATH,
   CONNEXION_PATH,
-  END_PAGE_ACTIONS_PATH,
   MON_ESPACE_ACTIONS_PATH,
 } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
@@ -32,16 +31,11 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
   const { locale } = await params
   const user = await getUserSession()
 
-  if (!user) {
+  if (!user?.isAuth) {
     redirect(
       `${CONNEXION_PATH}?from=${AUTHORIZED_FROM_SEARCH_PARAMS_VALUES['build-action-plan']}`
     )
   }
-
-  // Unverified users can't access "mon espace"
-  const exploreHref = user.isAuth
-    ? MON_ESPACE_ACTIONS_PATH
-    : END_PAGE_ACTIONS_PATH
 
   const actionsPlan = await getActionsPlan(locale)
 
@@ -49,12 +43,13 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
   if (!actionsPlan) {
     return (
       <div className="flex flex-col pb-24">
-        {user.isAuth && <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />}
+        <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />
 
         <ActionPlanLinks
           plan={{ numberOfCommittedActions: 0, totalImpact: 0 }}
           activeLink="plan"
-          exploreHref={exploreHref}
+          exploreHref={MON_ESPACE_ACTIONS_PATH}
+          className="mb-8"
         />
 
         <NoResultsBlock />
@@ -64,12 +59,13 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
 
   return (
     <div className="flex flex-col pb-24">
-      {user.isAuth && <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />}
+      <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />
 
       <ActionPlanLinks
         plan={actionsPlan.plan}
         activeLink="plan"
-        exploreHref={exploreHref}
+        exploreHref={MON_ESPACE_ACTIONS_PATH}
+        className="mb-8"
       />
 
       {actionsPlan.plan.numberOfCommittedActions === 0 ? (
@@ -80,7 +76,7 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
             </Trans>
           }
           link={{
-            href: exploreHref,
+            href: MON_ESPACE_ACTIONS_PATH,
             label: (
               <Trans i18nKey="actions.myPlanPage.empty.exploreActions">
                 Explorer mes actions
@@ -132,7 +128,7 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
           <ButtonLinkServer
             color="secondary"
             className="w-full text-sm!"
-            href={exploreHref}>
+            href={MON_ESPACE_ACTIONS_PATH}>
             <PlusIcon className="stroke-primary-700 mr-2 size-3" />
             <Trans i18nKey="actions.myPlanPage.exploreOtherActions">
               Explorer d’autres actions
