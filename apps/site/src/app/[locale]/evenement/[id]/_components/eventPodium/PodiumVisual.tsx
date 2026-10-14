@@ -5,6 +5,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { PodiumItem } from '@nosgestesclimat/core/features/events/types/event-info'
+import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import { twMerge } from 'cn'
 import type { FilterValue } from './EventTabs'
 import ListItem from './ListItem'
@@ -19,7 +20,7 @@ interface Props {
   locale: Locale
   prevHref: string | null
   nextHref: string | null
-  hasStarted: boolean
+  status: EventStatus
   activeCategoryFilter: FilterValue
 }
 
@@ -39,7 +40,7 @@ export default function PodiumVisual({
   locale,
   prevHref,
   nextHref,
-  hasStarted,
+  status,
   activeCategoryFilter,
 }: Props) {
   const podiumItems = items.slice(0, 3)
@@ -88,7 +89,7 @@ export default function PodiumVisual({
                   orderClasses[getRank(index)]
                 )}>
                 <PodiumBlock
-                  hasStarted={hasStarted}
+                  status={status}
                   locale={locale}
                   {...item}
                   rank={getRank(index)}
@@ -160,11 +161,13 @@ export default function PodiumVisual({
         </Link>
       </div>
 
-      <p className="text-primary-700 mt-4 text-right text-sm italic">
-        <Trans i18nKey="event.podium.updateNote" locale={locale}>
-          Le podium se met à jour environ toutes les 15 minutes
-        </Trans>
-      </p>
+      {status === 'in_progress' && (
+        <p className="text-primary-700 mt-4 text-right text-sm italic">
+          <Trans i18nKey="event.podium.updateNote" locale={locale}>
+            Le podium se met à jour environ toutes les 15 minutes
+          </Trans>
+        </p>
+      )}
     </>
   )
 }
