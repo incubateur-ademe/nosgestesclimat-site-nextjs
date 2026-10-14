@@ -5,6 +5,7 @@ import {
   findPodiumOrganisations,
 } from '../repositories/event.repository.ts'
 import type { EventInfo } from '../types/event-info.ts'
+import { getEventStatus } from './_helpers/get-event-status.ts'
 
 export const getEventInfo = async (
   eventIdOrSlug: string
@@ -26,5 +27,9 @@ export const getEventInfo = async (
     organisationCount,
     startDate: event.startDate,
     endDate: event.endDate,
+    status: getEventStatus({
+      startDate: event.startDate,
+      endDate: event.endDate,
+    }),
   }
 }
