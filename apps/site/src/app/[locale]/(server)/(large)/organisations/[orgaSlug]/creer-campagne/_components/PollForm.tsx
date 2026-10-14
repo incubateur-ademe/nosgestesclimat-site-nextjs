@@ -106,10 +106,6 @@ export default function PollForm({ organisation }: Props) {
         form="poll-form"
         className="mt-22 w-full sm:mt-18 sm:w-auto md:self-start">
         <Trans>Créer mon lien de test</Trans>
-
-        <span aria-hidden className="ml-2 inline-block">
-          →
-        </span>
       </Button>
     </form>
   )
