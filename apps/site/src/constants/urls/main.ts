@@ -10,8 +10,6 @@ export const SIMULATION_URL = `${SERVER_URL}/simulations/v1`
 
 export const MODELE_URL = `${SERVER_URL}/modele/v1`
 
-export const INTEGRATION_URL = `${SERVER_URL}/integrations/v1`
-
 export const USER_URL = `${SERVER_URL}/users/v1`
 
 export const NEWSLETTER_URL = `${SERVER_URL}/newsletters/v1`
