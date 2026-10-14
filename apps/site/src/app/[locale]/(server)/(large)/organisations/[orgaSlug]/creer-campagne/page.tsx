@@ -1,4 +1,3 @@
-import StepsDisplay from '@/components/groups/StepsDisplay'
 import Trans from '@/components/translation/trans/TransServer'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
@@ -23,7 +22,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function CreerCampagneInformationsPage({
+export default async function CreatePollPage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]/creer-campagne'>) {
   const { orgaSlug, locale } = await params
@@ -37,8 +36,6 @@ export default async function CreerCampagneInformationsPage({
       </div>
 
       <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
-        <StepsDisplay currentStep={1} />
-
         <Title
           title={
             <Trans i18nKey="collectiveTest.title" locale={locale}>
