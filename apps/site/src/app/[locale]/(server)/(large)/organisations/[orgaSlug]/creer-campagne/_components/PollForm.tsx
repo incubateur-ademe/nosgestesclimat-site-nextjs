@@ -102,7 +102,7 @@ export default function PollForm({ organisation }: Props) {
       <Button
         type="submit"
         loading={isPending}
-        data-testid="poll-form-type-button"
+        data-testid="poll-form-button"
         form="poll-form"
         className="mt-22 w-full sm:mt-18 sm:w-auto md:self-start">
         <Trans>Créer mon lien de test</Trans>
