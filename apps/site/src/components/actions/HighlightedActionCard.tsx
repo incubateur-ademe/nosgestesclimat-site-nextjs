@@ -72,12 +72,20 @@ export default function HighlightedActionCard({
           ) : null}
         </div>
 
-        <div className="flex flex-col gap-4 md:flex-row">
+        <ImpactSection
+          key="mobile"
+          themeKey={action.theme.key}
+          assessment={action.assessment}
+          actionCatalogueContext={actionCatalogueContext}
+          className="flex md:hidden"
+        />
+
+        <div className="flex flex-row flex-wrap items-stretch gap-4">
           <ButtonLinkServer
             href={href}
             prefetch={true}
             size="sm"
-            className="h-12 gap-2 px-6">
+            className="h-12 gap-2 px-6 md:w-52.5">
             <Trans
               locale={locale}
               i18nKey="actions.components.actionCard.highlighted.link">
@@ -94,9 +102,11 @@ export default function HighlightedActionCard({
       </div>
 
       <ImpactSection
+        key="desktop"
         themeKey={action.theme.key}
         assessment={action.assessment}
         actionCatalogueContext={actionCatalogueContext}
+        className="hidden md:flex"
       />
     </article>
   )
