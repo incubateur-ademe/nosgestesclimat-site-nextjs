@@ -25,7 +25,7 @@ export default function ActionsBasket({
 }: Props) {
   const titleId = useId()
 
-  const { numberOfCommittedActions, totalImpact } = plan
+  const { numberOfCommittedActions } = plan
 
   const hasCommittedToActions = numberOfCommittedActions > 0
 
@@ -33,7 +33,6 @@ export default function ActionsBasket({
     <>
       <MobileSaveSelectionBanner
         actionsLength={numberOfCommittedActions}
-        totalImpact={totalImpact}
         locale={locale}
       />
       <section
