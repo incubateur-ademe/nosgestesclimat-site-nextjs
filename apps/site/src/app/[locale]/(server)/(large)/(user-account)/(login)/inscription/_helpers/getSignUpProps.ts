@@ -19,11 +19,11 @@ export async function getSignupProps(
     .with('build-action-plan', () => ({
       labels: {
         title: t(
-          'login.actionPlan.title',
+          'login.actionPlan.signUp.title',
           'Créez votre espace pour accéder à votre plan d’action'
         ),
         buttonLabel: t(
-          'login.actionPlan.buttonLabel',
+          'login.actionPlan.signUp.buttonLabel',
           'M’inscrire et voir mon plan d’action'
         ),
       },
@@ -32,10 +32,10 @@ export async function getSignupProps(
     .otherwise(() => ({
       labels: {
         title: t(
-          'login.login.title',
+          'login.default.title',
           'Accédez à votre espace Nos Gestes Climat'
         ),
-        buttonLabel: t('signup.button.label', "M'inscrire"),
+        buttonLabel: t('signUp.button.label', "M'inscrire"),
       },
       redirectPathname: `${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`,
     }))

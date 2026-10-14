@@ -1,7 +1,4 @@
 import Trans from '@/components/translation/trans/TransClient'
-import { ACTIONS_MY_PLAN_PATH } from '@/constants/urls/paths'
-import InlineLink from '@/design-system/inputs/InlineLink'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { abandonActionCommitment } from '@/services/actions/abandon-action-commitment'
 import { commitToAction } from '@/services/actions/commit-to-action'
 import { captureUniqueSessionActionEvent } from '@/utils/analytics/trackUniqueEvent'
@@ -13,8 +10,6 @@ import { useTriggerShineAnimation } from './useTriggerShineAnimation'
 const TOAST_DISPLAY_DURATION = 5_000
 
 export function useActionCommitment(action: PersonalizedAction) {
-  const { t } = useClientTranslation()
-
   const [isPending, startTransition] = useTransition()
   const handleCommitToAction = () => {
     startTransition(async () => {
@@ -30,10 +25,7 @@ export function useActionCommitment(action: PersonalizedAction) {
 
         toast.success(
           <Trans i18nKey="actions.commitToActionButton.success1">
-            Ajouté à{' '}
-            <InlineLink href={ACTIONS_MY_PLAN_PATH}>
-              votre plan d'action
-            </InlineLink>
+            Ajouté à votre plan d'action
           </Trans>,
           {
             duration: TOAST_DISPLAY_DURATION,
@@ -42,10 +34,9 @@ export function useActionCommitment(action: PersonalizedAction) {
         )
       } catch {
         toast.error(
-          t(
-            'actions.commitToActionButton.error',
-            "Une erreur s'est produite, veuillez réessayer."
-          )
+          <Trans i18nKey="actions.commitToActionButton.error">
+            Une erreur s'est produite, veuillez réessayer.
+          </Trans>
         )
       }
     })
@@ -67,10 +58,9 @@ export function useActionCommitment(action: PersonalizedAction) {
         })
       } catch {
         toast.error(
-          t(
-            'actions.commitToActionButton.error',
-            "Une erreur s'est produite, veuillez réessayer."
-          )
+          <Trans i18nKey="actions.commitToActionButton.error">
+            Une erreur s'est produite, veuillez réessayer.
+          </Trans>
         )
       }
     })

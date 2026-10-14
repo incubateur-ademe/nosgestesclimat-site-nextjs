@@ -18,11 +18,11 @@ export async function getLoginProps(
     .with('build-action-plan', () => ({
       labels: {
         title: t(
-          'login.actionPlan.title',
+          'login.actionPlan.login.title',
           'Connectez-vous pour accéder à votre plan d’action'
         ),
         buttonLabel: t(
-          'login.actionPlan.buttonLabel',
+          'login.actionPlan.login.buttonLabel',
           'Me connecter et voir mon plan d’action'
         ),
       },
@@ -31,7 +31,7 @@ export async function getLoginProps(
     .otherwise(() => ({
       labels: {
         title: t(
-          'login.login.title',
+          'login.default.login.title',
           'Accédez à votre espace Nos Gestes Climat'
         ),
         buttonLabel: t('signIn.emailForm.buttonLabel', 'Accéder à mon espace'),

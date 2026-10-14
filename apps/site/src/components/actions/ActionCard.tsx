@@ -120,7 +120,7 @@ export default async function ActionCard({
 
       {action.assessment && (
         <div className="z-20 border-t border-slate-100 p-2">
-          <CommitToActionButton className="w-full" action={action} />
+          <CommitToActionButton className="w-full md:w-full" action={action} />
         </div>
       )}
     </article>

@@ -563,21 +563,9 @@ entries:
   Votre participation a bien été mise à jour avec vos résultats de test les plus récents.: Votre participation a bien été mise à jour avec vos résultats de test les plus récents.
   Vous devez recommencer votre inscription et valider votre e-mail.: Vous devez recommencer votre inscription et valider votre e-mail.
   Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du: Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du
-  Aller sur le site partenaire maintenant: Aller sur le site partenaire maintenant
-  C'est chose faite !: C'est chose faite !
-  Commencer le test maintenant: Commencer le test maintenant
   seconde: seconde
-  'Vous allez être redirigé vers notre calculateur dans :': 'Vous allez être redirigé vers notre calculateur dans :'
-  Oups ! Une erreur s'est produite au moment d'envoyer vos résultats à notre partenaire. Veuillez recommencer le parcours depuis l'interface du site partenaire.: Oups ! Une erreur s'est produite au moment d'envoyer vos résultats à notre partenaire. Veuillez recommencer le parcours depuis l'interface du site partenaire.
-  'Vous allez être redirigé vers le site de notre partenaire dans :': 'Vous allez être redirigé vers le site de notre partenaire dans :'
-  Merci d'avoir complété votre test.: Merci d'avoir complété votre test.
-  'Nous vous redirigerons vers le site de notre partenaire dans :': 'Nous vous redirigerons vers le site de notre partenaire dans :'
-  Vous avez terminé le test !: Vous avez terminé le test !
   Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.: Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.
   Vous débutez votre test avec un score de départ.: Vous débutez votre test avec un score de départ.
-  Partagez vos résultats avec notre partenaire - Nos Gestes Climat: Partagez vos résultats avec notre partenaire - Nos Gestes Climat
-  Notre partenaire: Notre partenaire
-  vous a invité à lui transmettre vos empreintes carbone et eau.: vous a invité à lui transmettre vos empreintes carbone et eau.
   Courses: Courses
   Domicile-Travail: Domicile-Travail
   Mobilité académique: Mobilité académique
@@ -784,7 +772,7 @@ entries:
   actions.detailPage.sections.furtherReading: À découvrir aussi
   actions.detailPage.impact.title: Réduction max sur votre empreinte
   actions.detailPage.impact.value: <0>{{formattedValue}}</0> {{unit}} CO<4>2</4>e / an
-  actions.components.highestImpactActionsSection.testWhiteBackground.title: Voici vos 3 actions qui auront le plus d'impact
+  actions.components.highestImpactActionsSection.testWhiteBackground.title: Vos 3 actions clés
   actions.components.actionCard.highlighted.link: Voir l'action
   actions.components.actionCard.highlighted.potentialImpact: Impact potentiel
   actions.components.actionCard.highlighted.footprintShare: soit {{percentage}} % de votre empreinte totale
@@ -822,8 +810,6 @@ entries:
   login.colourBlock.login.highlight3.strong2: retrouvez vos tests collectifs
   login.list.login.label: Se connecter
   login.list.signin.label: Créer un compte
-  login.login.title: Accédez à votre espace Nos Gestes Climat
-  signup.button.label: M'inscrire
   signup.colourBlock.highlight1.title.prefix: Retrouvez
   signup.colourBlock.highlight1.title.strong: vos résultats d’empreinte
   signup.colourBlock.highlight2.title.middle: et
@@ -1451,26 +1437,20 @@ entries:
   Statistiques publiques du site Nos Gestes Climat.: Statistiques publiques du site Nos Gestes Climat.
   switchLang.linkTitle: '{{languageAbbreviation}} - Définir le {{completeLanguageString}} comme langue du site'
   actions.commitToActionButton.error: Une erreur s'est produite, veuillez réessayer.
-  actions.commitToActionButton.success: Ajouté à votre plan d'action
-  actions.plan.header.description: C'est ici que se joue l'essentiel de votre empreinte. Découvrez vos actions personnalisées et ajoutez celles que vous pouvez mettre en place dans votre plan d’action.
+  actions.plan.header.description: Ces actions sont personnalisées selon vos réponses au test. Choisissez celles qui vous semblent atteignables et ajoutez-les à votre plan d’action !
   actions.plan.header.title: Construisez votre plan d'action
-  actions.plan.otherActions.description: Ces actions sont personnalisées selon vos réponses au test. Choisissez celles qui vous semblent atteignables et ajoutez-les à votre plan d’action !
-  actions.plan.otherActions.title: Toutes vos actions, classées par catégorie
+  actions.plan.otherActions.title: Toutes vos actions, par catégorie
   actions.basket.informativeBlock.content: Votre sélection est vide. Parcourez les catégories pour ajouter des actions que vous pourrez mettre en place.
   actions.basket.saveButton.ariaLabel: Sauvegarder mon plan d'actions et accéder à ma page plan d'actions
   actions.basket.saveButton.label: Sauvegarder mon plan d'action
   actions.basket.subtitle.empty: Ajoutez des actions à votre sélection.
   actions.basket.title.withActionChoices: Ma sélection d'actions
-  actions.components.actionCard.highlighted.addButton.add: Ajouter à mon plan
   actions.components.actionCard.highlighted.addedButton.ariaLabel: Ajouté, cliquer à nouveau pour retirer l'action de votre plan
   actions.components.actionCard.highlighted.addedButton.label: Ajouté
   actions.components.actionCard.highlighted.addedButton.tooltip: Retirer de votre plan
   actions.plan.links.exploreActions: Explorer les actions
   actions.plan.links.myActionPlan: Mon plan d'action
   actions.seeActionPlanLink.mobile.label.firstLine: Voir mon plan d'action
-  actions.seeActionPlanLink.mobile.label.secondLine: '{{actionChoicesLength}} action{{pluralSuffix}} '
-  login.actionPlan.buttonLabel: M’inscrire et voir mon plan d’action
-  login.actionPlan.title: Créez votre espace pour accéder à votre plan d’action
   actions.plan.abandonCommitment.button.ariaLabel: Retirer l'action de votre sélection
   actions.basket.subtitle.choices_one: '{{numberOfCommittedActions}} actions dans votre sélection'
   actions.basket.subtitle.choices_many: '{{numberOfCommittedActions}} actions dans votre sélection'
@@ -1508,3 +1488,13 @@ entries:
   event.statistics.third.text.inProgress: Organisations déjà mobilisées
   event.tutorial.title.default: Comment participer ?
   event.tutorial.title.ended: Comment participer la prochaine fois ?
+  actions.commitToActionButton.success1: Ajouté à votre plan d'action
+  actions.components.actionCard.highlighted.addButton.add.long: Ajouter à mon plan
+  actions.components.actionCard.highlighted.addButton.add.short: Ajouter
+  login.actionPlan.login.buttonLabel: Me connecter et voir mon plan d’action
+  login.actionPlan.login.title: Connectez-vous pour accéder à votre plan d’action
+  login.actionPlan.signUp.buttonLabel: M’inscrire et voir mon plan d’action
+  login.actionPlan.signUp.title: Créez votre espace pour accéder à votre plan d’action
+  login.default.login.title: Accédez à votre espace Nos Gestes Climat
+  login.default.title: Accédez à votre espace Nos Gestes Climat
+  signUp.button.label: M'inscrire

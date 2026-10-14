@@ -9,7 +9,7 @@ interface Props {
 
 export default function MobileSaveSelectionBanner({ actionsLength }: Props) {
   return (
-    <BottomBannerWithCTA className="lg:hidden">
+    <BottomBannerWithCTA className="z-1000000000 lg:hidden">
       <SavePlanLink className="w-full max-w-[320px]">
         <span className="text-center">
           <span className="inline-block text-base/normal font-bold">
