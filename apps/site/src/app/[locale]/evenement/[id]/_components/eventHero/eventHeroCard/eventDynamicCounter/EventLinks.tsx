@@ -1,25 +1,22 @@
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 
 interface Props {
-  locale: Locale
   primaryCtaHref: string
   secondaryCtaHref: string
   endedCtaHref: string
   status: EventStatusWithoutNotStarted
 }
 
-export default function EventLinks({
-  locale,
+export default async function EventLinks({
   primaryCtaHref,
   secondaryCtaHref,
   endedCtaHref,
   status,
 }: Props) {
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   if (status === 'ended') {
     return (
@@ -33,9 +30,7 @@ export default function EventLinks({
             'event.dynamicCounter.endedCta.ariaLabel',
             'Je continue la mobilisation, ouvrir dans une nouvelle fenêtre'
           )}>
-          <Trans
-            i18nKey="event.dynamicCounter.endedCta.buttonLabel"
-            locale={locale}>
+          <Trans i18nKey="event.dynamicCounter.endedCta.buttonLabel">
             Je continue la mobilisation
           </Trans>
         </ButtonLink>
@@ -54,7 +49,7 @@ export default function EventLinks({
           'event.dynamicCounter.primaryCta.ariaLabel',
           'Je mobilise mon organisation, ouvrir dans une nouvelle fenêtre'
         )}>
-        <Trans i18nKey="event.dynamicCounter.primaryCta" locale={locale}>
+        <Trans i18nKey="event.dynamicCounter.primaryCta">
           Je mobilise mon organisation
         </Trans>
       </ButtonLink>
@@ -69,7 +64,7 @@ export default function EventLinks({
           'event.dynamicCounter.secondaryCta.ariaLabel',
           'Je participe individuellement, ouvrir dans une nouvelle fenêtre'
         )}>
-        <Trans i18nKey="event.dynamicCounter.secondaryCta" locale={locale}>
+        <Trans i18nKey="event.dynamicCounter.secondaryCta">
           Je participe individuellement
         </Trans>
       </ButtonLink>
