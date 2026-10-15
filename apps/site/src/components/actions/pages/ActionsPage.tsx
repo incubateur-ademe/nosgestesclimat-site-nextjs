@@ -8,7 +8,6 @@ import { twMerge } from 'cn'
 import Trans from '../../translation/trans/TransServer'
 import ActionPlanLinks from '../ActionPlanLinks'
 import ActionsBasket from '../ActionsBasket'
-import BetaBanner from '../BetaBanner'
 import HighestImpactActionsSection from '../HighestImpactActionsSection'
 import ThemeSection from '../ThemeSection'
 import type { ActionFrom } from '../types/actions'
@@ -53,8 +52,6 @@ export default function ActionsPage({
 
   return (
     <>
-      <BetaBanner />
-
       {plan && <ActionPlanLinks plan={plan} className="mb-8" />}
 
       <div>
