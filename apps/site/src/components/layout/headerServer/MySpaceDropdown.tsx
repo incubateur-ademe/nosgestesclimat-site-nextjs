@@ -16,9 +16,9 @@ import { resetLocalState } from '@/helpers/user/resetLocalState'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { PostHog } from '@/services/tracking/Posthog'
+import { twMerge } from 'cn'
 import Link from 'next/link'
 import { useState } from 'react'
-import { twMerge } from "cn";
 
 const MAX_EMAIL_LENGTH = 20
 
@@ -77,7 +77,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
       <DropdownMenuTrigger asChild>
         <Button
           size="sm"
-          color="secondary"
+          variant="outlined"
           className="max-tiny:px-2 max-tiny:py-2 inline-flex gap-1 align-baseline"
           data-testid="my-space-button"
           aria-label={ariaLabelTitle}

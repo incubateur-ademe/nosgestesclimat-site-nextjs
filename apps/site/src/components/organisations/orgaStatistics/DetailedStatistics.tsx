@@ -56,7 +56,7 @@ export default function DetailedStatistics({ funFacts, className }: Props) {
     <div className={twMerge('flex flex-col', className)}>
       <Button
         className="my-4 w-auto self-center px-4! no-underline md:self-end"
-        color="link"
+        variant="link"
         onClick={() => {
           trackEvent(captureClickFunFactsPlus)
           setIsSectionVisible(!isSectionVisible)

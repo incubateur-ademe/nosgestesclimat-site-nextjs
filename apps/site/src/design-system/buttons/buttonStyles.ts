@@ -57,6 +57,8 @@ export const loaderColorMap: Partial<Record<ButtonVariant, 'light' | 'dark'>> =
   {
     filled: 'light',
     outlined: 'dark',
+    text: 'dark',
+    link: 'dark',
   }
 
 export const baseClassNames = cn(

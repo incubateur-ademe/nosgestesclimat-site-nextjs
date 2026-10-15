@@ -12,9 +12,9 @@ import { MUST_SHOW_DESCRIPTION } from '@/publicodes-state/constants/questions'
 import type { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { twMerge } from 'cn'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { twMerge } from "cn";
 
 interface Props {
   question: DottedName
@@ -113,7 +113,7 @@ export default function Label({
               }
               setIsOpen((previsOpen) => !previsOpen)
             }}
-            color="secondary"
+            variant="outlined"
             size="xs"
             aria-expanded={isOpen ? true : false}
             aria-controls={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
@@ -163,7 +163,7 @@ export default function Label({
             <div className="mt-1 flex justify-end">
               <Button
                 size="xs"
-                color="secondary"
+                variant="outlined"
                 onClick={() => {
                   setIsOpen(false)
                 }}

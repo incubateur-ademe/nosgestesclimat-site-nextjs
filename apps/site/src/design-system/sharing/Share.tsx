@@ -10,6 +10,7 @@ import getIsMobile from 'is-mobile'
 import { type ReactNode, useState } from 'react'
 import Button from '../buttons/Button'
 import ButtonLink from '../buttons/ButtonLink'
+import type { ButtonVariant } from '../buttons/buttonStyles'
 import CopyButton from '../buttons/CopyButton'
 import Modal from '../modals/Modal'
 
@@ -22,7 +23,7 @@ interface ShareItem {
 
 export default function Share({
   onClick,
-  buttonColor,
+  variant,
   className,
   buttonLabel,
   shareItems,
@@ -33,7 +34,7 @@ export default function Share({
   ...props
 }: {
   onClick?: () => void
-  buttonColor?: 'primary' | 'secondary' | 'text' | 'borderless'
+  variant?: ButtonVariant
   className?: string
   buttonLabel: string
   shareItems: ShareItem[]
@@ -51,7 +52,7 @@ export default function Share({
   return (
     <>
       <Button
-        color={buttonColor ?? 'text'}
+        variant={variant ?? 'text'}
         size="sm"
         className={twMerge(
           shouldHideTextOnMobile
@@ -97,7 +98,7 @@ export default function Share({
             <li>
               <CopyButton
                 className="max-h-10"
-                color="secondary"
+                variant="outlined"
                 copiedStateText={
                   <span className="flex items-center gap-4 text-sm text-green-700">
                     <CheckIcon className="fill-green-700" />
@@ -118,7 +119,7 @@ export default function Share({
                   <ButtonLink
                     data-testid={`share-button-link-${index}`}
                     className="max-h-10 w-full text-sm!"
-                    color="secondary"
+                    variant="outlined"
                     target="_blank"
                     rel="noopener noreferrer"
                     href={link}>

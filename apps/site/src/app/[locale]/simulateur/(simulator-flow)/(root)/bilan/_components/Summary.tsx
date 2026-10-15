@@ -40,7 +40,7 @@ export default function Summary({
           <Button
             size="xs"
             className="gap-2"
-            color="text"
+            variant="text"
             aria-label={t('Ferme')}
             onClick={() => toggleQuestionList()}>
             <CloseIcon className="fill-primary-700 w-5" />{' '}

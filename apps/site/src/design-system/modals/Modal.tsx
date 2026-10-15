@@ -109,7 +109,7 @@ export default function Modal({
         <div className="mt-12 flex flex-col-reverse justify-start gap-2 sm:flex-row md:gap-4">
           {hasAbortButton && (
             <Button
-              color="secondary"
+              variant="outlined"
               disabled={isLoading}
               onClick={!isLoading ? closeDelayed : () => {}}>
               <Trans>Annuler</Trans>

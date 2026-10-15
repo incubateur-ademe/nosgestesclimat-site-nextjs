@@ -204,7 +204,7 @@ export default function DidYouKnowSlider({
 
           <Button
             tabIndex={0}
-            color="secondary"
+            variant="outlined"
             title={
               isPlaying ? t('Arrêter le défilement') : t('Lancer le défilement')
             }

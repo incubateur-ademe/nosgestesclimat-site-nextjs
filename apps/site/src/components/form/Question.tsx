@@ -114,7 +114,7 @@ export default function Question({
         />
         {showInputsLabel ? (
           <Button
-            color="link"
+            variant="link"
             size="xs"
             onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
             className="mb-2">

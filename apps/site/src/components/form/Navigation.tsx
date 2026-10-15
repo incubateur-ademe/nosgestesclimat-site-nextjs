@@ -378,7 +378,7 @@ export default function Navigation({
           size="md"
           onClick={handleGoToPrevQuestion}
           disabled={isPending}
-          color="text"
+          variant="text"
           className="px-3"
           title={t(
             'common.navigation.previousButton.label',

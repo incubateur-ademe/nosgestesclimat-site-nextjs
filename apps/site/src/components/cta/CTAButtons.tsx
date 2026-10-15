@@ -87,7 +87,7 @@ async function ServerCTAButtons({
         <li className="h-full lg:col-span-1 lg:w-auto">
           <ButtonLink
             size="xl"
-            color="secondary"
+            variant="outlined"
             className="group h-16 px-6"
             data-testid="organisation-link"
             href={ORGANISATION_CREATE_PATH}>
@@ -109,7 +109,7 @@ async function ServerCTAButtons({
             data-testid="restart-link"
             className="mt-1 w-full text-base"
             href={START_SIMULATION_PATH}
-            color="link"
+            variant="link"
             size="sm">
             <Trans i18nKey="ctaButtons.retake.label">Repasser le test</Trans>
             <RotatingArrowIcon className="fill-primary-900 ml-3 w-4" />

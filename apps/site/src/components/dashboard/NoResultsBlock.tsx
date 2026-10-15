@@ -1,8 +1,8 @@
 import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
-  colorClassNames,
   sizeClassNames,
+  variantClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import { twMerge } from 'cn'
 import LockIcon from '../icons/LockIcon'
@@ -24,7 +24,7 @@ export default function NoResultsBlock() {
           href={TUTORIAL_PATH}
           className={twMerge(
             baseClassNames,
-            colorClassNames.secondary,
+            variantClassNames.outlined.primary,
             sizeClassNames.md
           )}>
           <Trans i18nKey="mon-espace.noResults.link.text">

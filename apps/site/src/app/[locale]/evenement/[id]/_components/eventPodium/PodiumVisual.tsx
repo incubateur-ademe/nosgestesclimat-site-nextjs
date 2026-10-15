@@ -63,7 +63,7 @@ export default async function PodiumVisual({
           <ButtonLink
             href={prevHref}
             scroll={false}
-            color="secondary"
+            variant="outlined"
             className="absolute top-1/2 left-0 z-10 hidden h-11 w-11 -translate-y-1/2 p-0! md:flex"
             aria-label={t(
               'event.podium.previousButton.label',
@@ -106,7 +106,7 @@ export default async function PodiumVisual({
           <ButtonLink
             href={nextHref}
             scroll={false}
-            color="secondary"
+            variant="outlined"
             className="absolute top-1/2 right-0 z-10 hidden h-11 w-11 -translate-y-1/2 p-0! md:flex"
             aria-label={t(
               'event.podium.nextButton.label',

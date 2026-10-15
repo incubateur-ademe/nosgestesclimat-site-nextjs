@@ -81,7 +81,7 @@ export default function Textile({ question, ...props }: Props) {
         <span>{t('Pour plus de précision:')}</span>
         <div>
           <Button
-            color="link"
+            variant="link"
             size="xs"
             onClick={() => {
               trackEvent(

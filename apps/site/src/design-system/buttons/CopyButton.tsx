@@ -14,6 +14,7 @@ import Button, { type ButtonProps } from './Button'
 
 interface Props {
   color?: ButtonProps['color']
+  variant?: ButtonProps['variant']
   textToCopy: string
   className?: string
   copiedStateText?: ReactNode
@@ -25,7 +26,8 @@ interface Props {
 
 export default function CopyButton({
   children,
-  color = 'text',
+  color,
+  variant = 'text',
   textToCopy,
   className = '',
   copiedStateText,
@@ -133,6 +135,7 @@ export default function CopyButton({
       <Button
         ref={buttonRef}
         color={color}
+        variant={variant}
         className={twMerge('w-full', className)}
         onClick={handleShareOrCopy}
         aria-label={getButtonAriaLabel()}

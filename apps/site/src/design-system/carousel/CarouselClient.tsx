@@ -8,8 +8,8 @@ import type { Swiper as SwiperInstance } from 'swiper/types'
 import ChevronLeft from '@/components/icons/ChevronLeft'
 import ChevronRight from '@/components/icons/ChevronRight'
 import Button from '@/design-system/buttons/Button'
+import { twMerge } from 'cn'
 import './Carousel.css'
-import { twMerge } from "cn";
 
 export interface CarouselTranslations {
   prevSlideMessage: string
@@ -112,14 +112,14 @@ export default function CarouselClient({
       <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
         <Button
           onClick={() => swiper?.slidePrev()}
-          color="secondary"
+          variant="outlined"
           className="h-11 w-11 p-0!"
           aria-label={translations.prevSlideMessage}>
           <ChevronLeft />
         </Button>
         <Button
           onClick={() => swiper?.slideNext()}
-          color="secondary"
+          variant="outlined"
           className="h-11 w-11 p-0!"
           aria-label={translations.nextSlideMessage}>
           <ChevronLeft className="rotate-180" />

@@ -91,7 +91,7 @@ export default function Button({
       )}
       {...props}>
       {showLoader && (
-        <Loader size="sm" color={loaderColorMap[color]} className="mr-2" />
+        <Loader size="sm" color={loaderColorMap[variant]} className="mr-2" />
       )}
       {children}
     </button>

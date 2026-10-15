@@ -64,7 +64,7 @@ export const BannerContent = ({
           safeLocalStorage.setItem(`${STORAGE_KEY_PREFIX}-${banner.id}`, 'true')
           setShouldHideBanner(true)
         }}
-        color="secondary"
+        variant="outlined"
         aria-label={closeButtonString}
         title={closeButtonString}
         className="bg-primary-700 hover:bg-primary-700 -m-2.5 ml-1 border-none p-2.5! md:absolute md:top-2.5 md:right-4">

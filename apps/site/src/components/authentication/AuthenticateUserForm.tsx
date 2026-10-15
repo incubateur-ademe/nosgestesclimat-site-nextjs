@@ -121,7 +121,7 @@ function AuthenticateUserFormContent({
           {state.phase !== 'authenticated' && (
             <Button
               onClick={goBack}
-              color="link"
+              variant="link"
               className="dark:text-primary-50 dark:hover:text-primary-100 mt-2 -ml-2 flex items-center font-normal">
               <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
                 Retour à la connexion

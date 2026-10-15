@@ -1,8 +1,8 @@
 import { END_PAGE_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
-  colorClassNames,
   sizeClassNames,
+  variantClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -55,7 +55,7 @@ export default async function ActionsBlock({ className }: Props) {
           <span
             className={twMerge(
               baseClassNames,
-              colorClassNames.primary,
+              variantClassNames.filled.primary,
               sizeClassNames.md,
               'group-hover/card:animate-button-lift pointer-events-none w-full text-base transition-[transform,box-shadow] duration-200 ease-out sm:w-auto'
             )}>

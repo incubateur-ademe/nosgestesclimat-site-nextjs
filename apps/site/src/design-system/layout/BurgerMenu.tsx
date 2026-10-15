@@ -122,7 +122,7 @@ export default function BurgerMenu({
   return (
     <div id="burger-menu">
       <Button
-        color="text"
+        variant="text"
         aria-label={isOpen ? t('Fermer le menu') : t('Ouvrir le menu')}
         aria-expanded={isOpen}
         aria-controls="burger-menu-panel"
@@ -167,7 +167,7 @@ export default function BurgerMenu({
                   {t('common.burgerMenu.title', 'Menu de navigation')}
                 </h2>
                 <Button
-                  color="text"
+                  variant="text"
                   aria-label={t(
                     'common.burgerMenu.title',
                     'Fermer le menu de navigation'

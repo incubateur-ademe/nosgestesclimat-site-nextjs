@@ -5,10 +5,10 @@ import Trans from '@/components/translation/trans/TransClient'
 import { captureDownloadPollQRCode } from '@/constants/tracking/trackers'
 import Button from '@/design-system/buttons/Button'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import { twMerge } from 'cn'
 import JSZip from 'jszip'
 import { useRef } from 'react'
 import QRCodeLib from 'react-qr-code'
-import { twMerge } from "cn";
 
 interface QRCodeProps {
   value: string
@@ -109,7 +109,7 @@ export default function QRCode({ value, className }: QRCodeProps) {
       </div>
       <Button
         data-testid="qrcode-download-button"
-        color="secondary"
+        variant="outlined"
         className="px-3"
         size="sm"
         onClick={downloadQRCodeZip}>

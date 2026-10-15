@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import type { ButtonSize } from '@/types/values'
 import { twMerge } from 'cn'
 import type { LinkProps } from 'next/link'
 import {
@@ -18,7 +17,7 @@ import {
   sizeClassNames,
   variantClassNames,
 } from './Button'
-import type { ButtonVariant } from './buttonStyles'
+import type { ButtonSize, ButtonVariant } from './buttonStyles'
 import { useButtonState } from './useButtonState'
 
 interface Props {
@@ -96,7 +95,7 @@ export default function ButtonLink({
       target={target}
       {...props}>
       {showLoader && (
-        <Loader size="sm" color={loaderColorMap[color]} className="mr-2" />
+        <Loader size="sm" color={loaderColorMap[variant]} className="mr-2" />
       )}
       {children}
     </Link>

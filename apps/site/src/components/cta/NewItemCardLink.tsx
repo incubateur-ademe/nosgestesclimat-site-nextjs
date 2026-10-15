@@ -6,16 +6,17 @@ import Image from 'next/image'
 import type { ElementType, PropsWithChildren, ReactNode } from 'react'
 import {
   baseClassNames,
-  colorClassNames,
   sizeClassNames,
+  variantClassNames,
 } from '../../design-system/buttons/Button'
+import type { ButtonVariant } from '../../design-system/buttons/buttonStyles'
 import Card from '../../design-system/layout/Card'
 
 interface Props {
   href: string
   label: ReactNode
   icon?: ReactNode
-  color?: 'primary' | 'secondary'
+  variant?: ButtonVariant
   highlight?: boolean
   className?: string
   imageSrc: string
@@ -32,7 +33,7 @@ export default function NewItemCardLink({
   href,
   label,
   icon,
-  color = 'primary',
+  variant = 'filled',
   highlight = false,
   className,
   imageSrc,
@@ -71,7 +72,7 @@ export default function NewItemCardLink({
           'w-full! text-sm',
           baseClassNames,
           sizeClassNames.md,
-          colorClassNames[color],
+          variantClassNames[variant].primary,
           ctaClassName
         )}>
         {icon}
