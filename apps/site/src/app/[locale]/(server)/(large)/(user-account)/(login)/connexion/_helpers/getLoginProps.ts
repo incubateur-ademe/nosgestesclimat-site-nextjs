@@ -26,7 +26,7 @@ export async function getLoginProps(
           'Me connecter et voir mon plan d’action'
         ),
       },
-      redirectPathname: `${ACTIONS_MY_PLAN_PATH}?from=${from}`,
+      redirectPathname: ACTIONS_MY_PLAN_PATH,
     }))
     .otherwise(() => ({
       labels: {

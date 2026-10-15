@@ -10,6 +10,7 @@ import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { UserProvider } from '@/publicodes-state'
 import { getUserSession } from '@/services/auth/get-user-session'
 import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 import ColourBlock from '../_components/ColourBlocks'
 import { validateSearchParams } from '../_helpers/validateSearchParams'
 import { getSignupProps } from './_helpers/getSignUpProps'
@@ -32,6 +33,12 @@ export default async function Connexion({ searchParams }: DefaultPageProps) {
   )
 
   const userSession = await getUserSession()
+
+  // Also reached right after login: the login action revalidates this page,
+  // so the redirect must agree with the one the form performs client-side.
+  if (userSession?.isAuth) {
+    redirect(redirectPathname)
+  }
 
   return (
     <div className="flex justify-center pb-32 lg:justify-start">
