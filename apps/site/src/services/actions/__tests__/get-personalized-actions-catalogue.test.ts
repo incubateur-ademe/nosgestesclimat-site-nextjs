@@ -92,6 +92,40 @@ describe('getPersonalizedActionsCatalogue service', () => {
     )
   })
 
+  it.each(['completed', 'failed', 'never-assessed'])(
+    'should cache a %s assessment status for minutes',
+    async (assessmentStatus) => {
+      sessionMock.getUserSession.mockResolvedValue(mockUser)
+      getPersonalizedActionsCatalogueCoreServiceMock.mockResolvedValue({
+        assessmentStatus,
+        actions: [],
+        topActions: [],
+        plan: null,
+      })
+
+      await getPersonalizedActionsCatalogue('fr')
+
+      expect(cacheLifeMock).toHaveBeenCalledExactlyOnceWith('minutes')
+    }
+  )
+
+  it.each(['pending', 'processing', null])(
+    'should cache a %s assessment status for seconds',
+    async (assessmentStatus) => {
+      sessionMock.getUserSession.mockResolvedValue(mockUser)
+      getPersonalizedActionsCatalogueCoreServiceMock.mockResolvedValue({
+        assessmentStatus,
+        actions: [],
+        topActions: [],
+        plan: null,
+      })
+
+      await getPersonalizedActionsCatalogue('fr')
+
+      expect(cacheLifeMock).toHaveBeenCalledExactlyOnceWith('seconds')
+    }
+  )
+
   it('should load the catalogue of an anonymous session user', async () => {
     const unverifiedUser = { id: faker.string.uuid(), isAuth: false }
     sessionMock.getUserSession.mockResolvedValue(unverifiedUser)
