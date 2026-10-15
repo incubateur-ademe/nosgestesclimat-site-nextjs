@@ -1,18 +1,20 @@
-import type { SearchParams } from 'next/dist/server/request/search-params'
 import type { ReadonlyURLSearchParams } from 'next/navigation'
 
 export function appendSearchParams(
   urlOrPathname: string,
-  searchParams: ReadonlyURLSearchParams | SearchParams | undefined
+  searchParams: ReadonlyURLSearchParams | URLSearchParams | undefined
 ): string {
-  if (!searchParams) return urlOrPathname
+  if (typeof searchParams === 'undefined') return urlOrPathname
 
   const urlSearchParams = new URLSearchParams()
 
-  for (const [key, value] of Object.entries(searchParams)) {
+  for (const [key, value] of searchParams.entries()) {
     if (Array.isArray(value)) {
-      value.forEach((singleValue) => urlSearchParams.append(key, singleValue))
-    } else if (value !== undefined) {
+      value.forEach((singleValue: string) => {
+        if (!singleValue) return
+        urlSearchParams.append(key, singleValue)
+      })
+    } else if (typeof value !== 'undefined') {
       urlSearchParams.append(key, value)
     }
   }

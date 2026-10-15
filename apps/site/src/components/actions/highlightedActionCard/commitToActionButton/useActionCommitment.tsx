@@ -12,9 +12,9 @@ const TOAST_CLASSNAME = '-translate-y-18 lg:translate-none'
 
 export function useActionCommitment(action: PersonalizedAction) {
   const [isPending, startTransition] = useTransition()
-  const commitAndNotify = async () => {
+  const commitAndNotify = () => {
     try {
-      await commitToAction(action.id)
+      startTransition(async () => await commitToAction(action.id))
 
       captureUniqueSessionActionEvent({
         actionThemeTrackingId: action.theme.trackingId,
@@ -42,48 +42,48 @@ export function useActionCommitment(action: PersonalizedAction) {
   }
 
   const handleCommitToAction = () => {
-    startTransition(commitAndNotify)
+    commitAndNotify()
   }
 
   const handleAbandonCommitment = () => {
-    startTransition(async () => {
-      try {
+    try {
+      startTransition(async () => {
         await abandonActionCommitment({
           actionId: action.id,
         })
+      })
 
-        captureUniqueSessionActionEvent({
-          actionThemeTrackingId: action.theme.trackingId,
-          actionTrackingId: action.trackingId,
-          co2PotentialInKg: action.assessment?.impact,
-          eventName: 'action abandonned',
-        })
+      captureUniqueSessionActionEvent({
+        actionThemeTrackingId: action.theme.trackingId,
+        actionTrackingId: action.trackingId,
+        co2PotentialInKg: action.assessment?.impact,
+        eventName: 'action abandonned',
+      })
 
-        toast(
-          <Trans i18nKey="actions.abandonCommitment.success">
-            Action retirée de votre plan
-          </Trans>,
-          {
-            duration: TOAST_DISPLAY_DURATION,
-            className: TOAST_CLASSNAME,
-            action: {
-              label: (
-                <Trans i18nKey="actions.abandonCommitment.undo">Annuler</Trans>
-              ),
-              // The component may be unmounted by then (e.g. removed from the
-              // plan page), so don't rely on its transition
-              onClick: () => void commitAndNotify(),
-            },
-          }
-        )
-      } catch {
-        toast.error(
-          <Trans i18nKey="actions.commitToActionButton.error">
-            Une erreur s'est produite, veuillez réessayer.
-          </Trans>
-        )
-      }
-    })
+      toast(
+        <Trans i18nKey="actions.abandonCommitment.success">
+          Action retirée de votre plan
+        </Trans>,
+        {
+          duration: TOAST_DISPLAY_DURATION,
+          className: TOAST_CLASSNAME,
+          action: {
+            label: (
+              <Trans i18nKey="actions.abandonCommitment.undo">Annuler</Trans>
+            ),
+            // The component may be unmounted by then (e.g. removed from the
+            // plan page), so don't rely on its transition
+            onClick: () => void commitAndNotify(),
+          },
+        }
+      )
+    } catch {
+      toast.error(
+        <Trans i18nKey="actions.commitToActionButton.error">
+          Une erreur s'est produite, veuillez réessayer.
+        </Trans>
+      )
+    }
   }
 
   const shouldDisplayAnimation = useTriggerShineAnimation(action.choice?.type)
