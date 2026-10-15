@@ -3,14 +3,13 @@ import { SIGNIN_MODE, SIGNUP_MODE } from '@/constants/authentication/modes'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import { appendSearchParams } from '@/helpers/navigation/appendSearchParams'
 import type { AuthenticationMode } from '@/types/authentication'
-import type { SearchParams } from 'next/dist/server/request/search-params'
 import type { ReadonlyURLSearchParams } from 'next/navigation'
 
 export function getTabs({
   searchParams,
   mode,
 }: {
-  searchParams: ReadonlyURLSearchParams | SearchParams | undefined
+  searchParams: ReadonlyURLSearchParams | URLSearchParams | undefined
   mode: AuthenticationMode
 }): TabItem[] {
   return [
