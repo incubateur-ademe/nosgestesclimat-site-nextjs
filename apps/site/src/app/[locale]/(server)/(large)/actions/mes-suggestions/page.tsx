@@ -38,7 +38,7 @@ export default async function SuggestedActionsPage({
 
   return (
     <div className="flex flex-col">
-      <UserSpaceTabs isAuth={user.isAuth} />
+      <UserSpaceTabs isAuth={user.isAuth} activeTabId="actions" />
 
       {/* No finished simulation: nothing to personalize from. */}
       {actionsCatalogue.assessmentStatus === null ? (

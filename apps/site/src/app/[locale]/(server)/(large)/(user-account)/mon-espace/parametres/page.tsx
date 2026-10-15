@@ -49,7 +49,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
   return (
     <div className="flex flex-col">
-      <UserSpaceTabs isAuth />
+      <UserSpaceTabs isAuth activeTabId="settings" />
 
       <div className="mb-6 flex w-full items-start justify-between">
         <Title

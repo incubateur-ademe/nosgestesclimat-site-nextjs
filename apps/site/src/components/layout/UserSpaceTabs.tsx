@@ -6,7 +6,6 @@ import BilanIcon from '@/components/icons/BilanIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
-  ACTIONS_PATH,
   ACTIONS_SUGGESTED_PATH,
   END_PAGE_GROUPS_PATH,
   END_PAGE_PATH,
@@ -19,31 +18,21 @@ import Tabs from '@/design-system/layout/Tabs'
 import { useShouldHideIfIframe } from '@/hooks/iframe/useShouldHideIfIframe'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'cn'
-import { usePathname } from 'next/navigation'
 
-type TabId = 'results' | 'actions' | 'groups' | 'settings'
-
-// The pathname may be prefixed by the locale, hence the loose matching.
-function getActiveTab(pathname: string): TabId {
-  if (pathname.includes(`${ACTIONS_PATH}/`)) return 'actions'
-  if (pathname.endsWith('/groupes')) return 'groups'
-  if (pathname.endsWith('/parametres')) return 'settings'
-  return 'results'
-}
+export type UserSpaceTabId = 'results' | 'actions' | 'groups' | 'settings'
 
 interface Props {
   isAuth: boolean
+  activeTabId: UserSpaceTabId
 }
 
-export default function UserSpaceTabs({ isAuth }: Props) {
-  const pathname = usePathname()
+export default function UserSpaceTabs({ isAuth, activeTabId }: Props) {
   const { t } = useClientTranslation()
 
   const shouldHideGroupTabInIframe = useShouldHideIfIframe({
     hideIfNotFrenchRegion: true,
   })
 
-  const activeTab = getActiveTab(pathname)
   const shouldHideGroupTab = !isAuth && shouldHideGroupTabInIframe
 
   const tabsItems: TabItem[] = [
@@ -56,7 +45,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
           <BilanIcon
             className={twMerge(
               'h-6 w-6',
-              activeTab === 'results' ? 'fill-primary-600' : 'fill-default'
+              activeTabId === 'results' ? 'fill-primary-600' : 'fill-default'
             )}
           />
           <span className="hidden md:block">
@@ -68,7 +57,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
         </span>
       ),
       href: isAuth ? MON_ESPACE_PATH : END_PAGE_PATH,
-      isActive: activeTab === 'results',
+      isActive: activeTabId === 'results',
       prefetch: false,
     },
     {
@@ -78,7 +67,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
           <ActionsIcon
             className={twMerge(
               'h-6 w-6',
-              activeTab === 'actions' ? 'fill-primary-600' : 'fill-default'
+              activeTabId === 'actions' ? 'fill-primary-600' : 'fill-default'
             )}
           />
           <span className="hidden md:block">
@@ -90,7 +79,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
         </span>
       ),
       href: ACTIONS_SUGGESTED_PATH,
-      isActive: activeTab === 'actions',
+      isActive: activeTabId === 'actions',
       prefetch: false,
     },
     ...(shouldHideGroupTab
@@ -105,7 +94,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
                 <AmisIcon
                   className={twMerge(
                     'h-6 w-6',
-                    activeTab === 'groups'
+                    activeTabId === 'groups'
                       ? 'stroke-primary-600 fill-primary-600'
                       : 'stroke-default'
                   )}
@@ -138,7 +127,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
               </span>
             ),
             href: isAuth ? MON_ESPACE_GROUPS_PATH : END_PAGE_GROUPS_PATH,
-            isActive: activeTab === 'groups',
+            isActive: activeTabId === 'groups',
             prefetch: false,
           },
         ]),
@@ -151,7 +140,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
                 <SettingsIcon
                   className={twMerge(
                     'h-6 w-6',
-                    activeTab === 'settings'
+                    activeTabId === 'settings'
                       ? 'fill-primary-600'
                       : 'fill-default'
                   )}
@@ -162,7 +151,7 @@ export default function UserSpaceTabs({ isAuth }: Props) {
               </span>
             ),
             href: MON_ESPACE_SETTINGS_PATH,
-            isActive: activeTab === 'settings',
+            isActive: activeTabId === 'settings',
             containerClassName: 'md:ml-auto',
             prefetch: false,
           },

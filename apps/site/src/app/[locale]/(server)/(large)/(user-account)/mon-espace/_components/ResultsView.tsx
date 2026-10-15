@@ -26,7 +26,7 @@ export default function ResultsView({
 
   return (
     <>
-      <UserSpaceTabs isAuth />
+      <UserSpaceTabs isAuth activeTabId="results" />
 
       <LatestResults locale={locale} simulation={simulations[0]} />
 

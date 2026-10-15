@@ -12,7 +12,7 @@ export default function MonEspaceGroupesPage({
         <Trans i18nKey="mon-espace.groups.title">Tests collections</Trans>
       </h1>
 
-      <UserSpaceTabs isAuth />
+      <UserSpaceTabs isAuth activeTabId="groups" />
       {children}
     </div>
   )

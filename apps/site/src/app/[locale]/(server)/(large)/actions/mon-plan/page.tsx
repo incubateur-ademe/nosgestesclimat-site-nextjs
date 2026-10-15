@@ -43,7 +43,7 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
   if (!actionsPlan) {
     return (
       <div className="flex flex-col pb-24">
-        <UserSpaceTabs isAuth />
+        <UserSpaceTabs isAuth activeTabId="actions" />
 
         <ActionPlanLinks
           plan={{ numberOfCommittedActions: 0, totalImpact: 0 }}
@@ -58,7 +58,7 @@ export default async function ActionsPlanPage({ params }: DefaultPageProps) {
 
   return (
     <div className="flex flex-col pb-24">
-      <UserSpaceTabs isAuth />
+      <UserSpaceTabs isAuth activeTabId="actions" />
 
       <ActionPlanLinks
         plan={actionsPlan.plan}

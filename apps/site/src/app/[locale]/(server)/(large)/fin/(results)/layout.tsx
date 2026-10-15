@@ -8,7 +8,7 @@ export default async function Layout({
 
   return (
     <div>
-      <UserSpaceTabs isAuth={user?.isAuth ?? false} />
+      <UserSpaceTabs isAuth={user?.isAuth ?? false} activeTabId="results" />
       {children}
     </div>
   )

@@ -7,7 +7,7 @@ export default function NoResultsView() {
     <>
       <InstructionsBanner />
 
-      <UserSpaceTabs isAuth />
+      <UserSpaceTabs isAuth activeTabId="results" />
 
       <NoResultsBlock />
     </>
