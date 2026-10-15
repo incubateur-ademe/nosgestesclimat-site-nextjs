@@ -1,6 +1,5 @@
 import { faker } from '@faker-js/faker'
 import { TemplateIds } from '@nosgestesclimat/core/features/emails/email.constant'
-import type { Poll as PollEntity } from '@nosgestesclimat/core/features/polls/types/poll'
 import type { Page } from '@playwright/test'
 import { copyAndReadClipboard } from '../helpers/clipboard'
 import {
@@ -40,30 +39,21 @@ export class Poll {
   }
 
   get createUrl() {
-    return `${this.organisation.url}/creer-campagne/informations`
+    return `${this.organisation.url}/creer-campagne`
   }
 
   async goto() {
     await this.page.goto(this.url)
   }
 
-  async create(mode: PollEntity['mode'] = 'standard') {
-    // Step 1: Fill poll name and go to step 2
+  async create() {
+    // Fill poll name and submit
     await expect(this.page).toHaveURL(this.createUrl)
     // Clear first to avoid any default value from a previous poll's draft
     // (the input is pre-filled from a previous draft via react-hook-form)
-    await this.page.getByTestId('poll-name-input').clear()
-    await this.page.getByTestId('poll-name-input').fill(this.name)
-    await this.page.getByTestId('poll-form-name-button').click()
-
-    // Step 2: Select mode and create the poll
-    await expect(this.page).toHaveURL(/\/creer-campagne\/mode/)
-    const modeLabel = this.page.getByTestId(`poll-mode-${mode}`)
-    await modeLabel.click()
-
-    await this.page.waitForTimeout(100)
-    const submitButton = this.page.getByTestId('poll-form-type-button')
-    await submitButton.click()
+    await this.page.getByTestId('poll-input').clear()
+    await this.page.getByTestId('poll-input').fill(this.name)
+    await this.page.getByTestId('poll-form-button').click()
 
     // Retrieve the poll slug (allow more time for the API call)
     const pollUrl = /\/campagnes\/([a-z0-9-]+)/
