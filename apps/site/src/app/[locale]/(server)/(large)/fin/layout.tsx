@@ -1,9 +1,14 @@
-import FinTabs from '@/app/[locale]/(server)/(large)/fin/_components/FinTabs'
+import UserSpaceTabs from '@/components/layout/UserSpaceTabs'
+import { getUserSession } from '@/services/auth/get-user-session'
 
-export default function Layout({ children }: LayoutProps<'/[locale]/fin'>) {
+export default async function Layout({
+  children,
+}: LayoutProps<'/[locale]/fin'>) {
+  const user = await getUserSession()
+
   return (
     <div className="-mt-4">
-      <FinTabs />
+      <UserSpaceTabs isAuth={user?.isAuth ?? false} />
       {children}
     </div>
   )

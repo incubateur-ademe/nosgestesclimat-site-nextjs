@@ -755,8 +755,6 @@ entries:
   L'empreinte carbone du transport: L'empreinte carbone du transport
   pollResults.footprintBarChart.targetLabelUnit: tonnes
   (page actuelle): (page actuelle)
-  actions.listPage.title: Vos actions personnalisées pour diminuer votre empreinte
-  actions.listPage.description: Ces actions sont personnalisées selon vos réponses au test. Choisissez celles qui vous semblent atteignables et lancez-vous !
   actions.listPage.metaTitle: Mes actions - Nos Gestes Climat
   actions.publicListPage.title: J’agis pour le climat
   actions.publicListPage.description: Retrouvez ci-dessous toutes les actions, individuelles ou collectives, qui comptent pour le climat. Pour personnaliser ces actions à votre situation, il suffit de <2>faire le test</2> !
@@ -834,7 +832,6 @@ entries:
   signIn.verificationForm.notReceived.text: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
   signIn.verificationForm.notReceived.title: Vous n'avez pas reçu de code ?
   Vérifiez vos e-mails: Vérifiez vos e-mails
-  mon-espace.actions.title: Mes actions
   mon-espace.groups.title: Mes tests collectifs "Amis" et "Famille"
   mon-espace.instructions.description.part1: Avant toute chose, nous vous invitons à
   mon-espace.instructions.description.part2: passer le test

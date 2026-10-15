@@ -1,6 +1,6 @@
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
 
-export type ActionFrom = 'fin' | 'mon-espace' | 'index' | 'mon-plan'
+export type ActionFrom = 'mes-suggestions' | 'index' | 'mon-plan'
 
 export interface ActionCatalogueContext {
   totalFootprint: number | null | undefined

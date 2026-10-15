@@ -1019,8 +1019,6 @@ entries:
   mon-espace.instructions.list.item1.part1.lock: Retrouver ici
   mon-espace.instructions.list.item3.part2: and
   mon-espace.instructions.list.item3.part2.lock: et
-  mon-espace.actions.title: My actions
-  mon-espace.actions.title.lock: Mes actions
   mon-espace.instructions.list.item3.part4: (organisations, family, friends...)
   mon-espace.instructions.list.item3.part4.lock: (organisations, famille, amis...)
   mon-espace.instructions.list.item2.part3: and
@@ -1793,10 +1791,6 @@ entries:
   actions.detailPage.sections.understand.lock: Je comprends l'enjeu
   actions.detailPage.sections.incentives: What's in it for me?
   actions.detailPage.sections.incentives.lock: J'y gagne
-  actions.listPage.title: Your personalised actions to reduce your footprint
-  actions.listPage.title.lock: Vos actions personnalisées pour diminuer votre empreinte
-  actions.listPage.description: These actions are personalised according to your answers to the test. Choose the ones you think are achievable and get started!
-  actions.listPage.description.lock: Ces actions sont personnalisées selon vos réponses au test. Choisissez celles qui vous semblent atteignables et lancez-vous !
   actions.components.actionCard.impactTag: Up to {{formattedValue}} {{unit}} CO<5>2</5>e / year
   actions.components.actionCard.impactTag.lock: Jusqu'à {{formattedValue}} {{unit}} CO<5>2</5>e / an
   actions.components.actionCard.noImpactTag: Non-quantifiable impact

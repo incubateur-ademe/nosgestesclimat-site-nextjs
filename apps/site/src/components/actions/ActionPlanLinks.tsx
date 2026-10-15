@@ -1,6 +1,6 @@
 import {
   ACTIONS_MY_PLAN_PATH,
-  END_PAGE_ACTIONS_PATH,
+  ACTIONS_SUGGESTED_PATH,
 } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import CountBadge from '@/design-system/layout/CountBadge'
@@ -16,7 +16,6 @@ const INACTIVE_LINK_CLASSES = 'text-default border-slate-300'
 interface Props {
   plan: ActionPlan
   activeLink?: 'explore' | 'plan'
-  exploreHref?: string
   className?: string
 }
 
@@ -24,20 +23,19 @@ export default function ActionPlanLinks({
   plan,
   className,
   activeLink = 'explore',
-  exploreHref = END_PAGE_ACTIONS_PATH,
 }: Props) {
   const isExploreActive = activeLink === 'explore'
   const isPlanActive = activeLink === 'plan'
 
   return (
-    <div className={cn("flex gap-4 overflow-auto", className)}>
+    <div className={cn('flex gap-4 overflow-auto', className)}>
       <ButtonLinkServer
         color="secondary"
         className={
           isExploreActive ? ACTIVE_LINK_CLASSES : INACTIVE_LINK_CLASSES
         }
         aria-current={isExploreActive ? 'page' : undefined}
-        href={exploreHref}>
+        href={ACTIONS_SUGGESTED_PATH}>
         <FileWithMagnifierIcon
           className={cn(
             'mr-2.5',

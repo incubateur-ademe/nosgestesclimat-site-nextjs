@@ -8,8 +8,7 @@ import {
   ACTION_DETAIL_PATH,
   ACTIONS_MY_PLAN_PATH,
   ACTIONS_PATH,
-  END_PAGE_ACTIONS_PATH,
-  MON_ESPACE_ACTIONS_PATH,
+  ACTIONS_SUGGESTED_PATH,
 } from '@/constants/urls/paths'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Emoji from '@/design-system/utils/Emoji'
@@ -37,8 +36,7 @@ const SECTION_ID_I_BENEFIT = 'j-y-gagne'
 const SECTION_ID_FURTHER_READING = 'a-decouvrir-aussi'
 
 const FROM_PATH_MAP: Record<ActionFrom, string> = {
-  fin: END_PAGE_ACTIONS_PATH,
-  'mon-espace': MON_ESPACE_ACTIONS_PATH,
+  'mes-suggestions': ACTIONS_SUGGESTED_PATH,
   index: ACTIONS_PATH,
   'mon-plan': ACTIONS_MY_PLAN_PATH,
 }

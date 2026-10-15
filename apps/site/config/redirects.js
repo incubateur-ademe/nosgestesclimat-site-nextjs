@@ -34,6 +34,16 @@ const redirects = [
     destination: '/documentation',
     permanent: true,
   },
+  {
+    source: '/fin/actions',
+    destination: '/actions/mes-suggestions',
+    permanent: true,
+  },
+  {
+    source: '/mon-espace/actions',
+    destination: '/actions/mes-suggestions',
+    permanent: true,
+  },
   // Compte U
   {
     source: '/profil/:path*',
