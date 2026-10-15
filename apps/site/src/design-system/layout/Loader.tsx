@@ -1,4 +1,4 @@
-import { twMerge } from "cn";
+import { twMerge } from 'cn'
 
 export type LoaderSizes = 'sm' | 'md' | 'lg'
 
@@ -17,8 +17,8 @@ const sizesClassNames = {
 }
 
 const colorsClassNames = {
-  light: 'border-white border-b-transparent',
-  dark: 'border-primary-700 border-b-transparent',
+  light: 'border-white border-b-transparent dark:border-primary-700',
+  dark: 'border-primary-700 border-b-transparent dark:border-white',
 }
 
 export default function Loader({

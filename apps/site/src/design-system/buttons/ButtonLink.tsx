@@ -14,10 +14,11 @@ import Loader from '../layout/Loader'
 import type { ButtonColor } from './Button'
 import {
   baseClassNames,
-  colorClassNames,
   loaderColorMap,
   sizeClassNames,
+  variantClassNames,
 } from './Button'
+import type { ButtonVariant } from './buttonStyles'
 import { useButtonState } from './useButtonState'
 
 interface Props {
@@ -25,6 +26,7 @@ interface Props {
   className?: string
   color?: ButtonColor
   size?: ButtonSize
+  variant?: ButtonVariant
   title?: string
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
   onKeyDown?: (e: KeyboardEvent<HTMLAnchorElement>) => void
@@ -42,6 +44,7 @@ export default function ButtonLink({
   className = '',
   color = 'primary',
   size = 'md',
+  variant = 'filled',
   title,
   onClick,
   onKeyDown,
@@ -86,7 +89,7 @@ export default function ButtonLink({
       title={title}
       aria-disabled={isDisabled}
       className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+        `${baseClassNames} ${sizeClassNames[size]} ${variantClassNames[variant][color]}`,
         isDisabled && 'cursor-not-allowed opacity-50!',
         className
       )}
