@@ -7,7 +7,14 @@ export default async function TransServer({
   children,
   i18nKey,
   values,
-}: TransPropsWithInterpolation): Promise<ReactElement> {
+  count,
+}: TransPropsWithInterpolation & {
+  /**
+   * Only read by i18next-parser (`pnpm ui:parse`) to generate the `_one`
+   * plural form, which otherwise defaults to the children (plural) text.
+   */
+  defaultValue_one?: string
+}): Promise<ReactElement> {
   const { t } = await getServerTranslation()
 
   return (
@@ -15,6 +22,7 @@ export default async function TransServer({
       i18nKey={i18nKey}
       t={t}
       values={values}
+      count={count}
       tOptions={{ interpolation: { escapeValue: false } }}>
       {children}
     </TransReactI18n>

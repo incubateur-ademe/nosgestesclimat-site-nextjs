@@ -4,13 +4,16 @@ import SigninSignupTabs from '@/components/signIn/SignInSignUpTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNIN_MODE } from '@/constants/authentication/modes'
 import { captureLoginComplete } from '@/constants/tracking/trackers'
-import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { UserProvider } from '@/publicodes-state'
 import { getUserSession } from '@/services/auth/get-user-session'
+import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 import ColourBlock from '../_components/ColourBlocks'
+import { validateSearchParams } from '../_helpers/validateSearchParams'
+import { getLoginProps } from './_helpers/getLoginProps'
 
 export const generateMetadata = getCommonMetadata({
   title: t('Connexion à votre espace - Nos Gestes Climat'),
@@ -22,8 +25,20 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function Connexion() {
+export default async function Connexion({ searchParams }: DefaultPageProps) {
+  const resolvedSearchParams = await searchParams
+  const validSearchParams = validateSearchParams(resolvedSearchParams)
+  const { labels, redirectPathname } = await getLoginProps(
+    validSearchParams?.from
+  )
+
   const userSession = await getUserSession()
+
+  // Also reached right after login: the login action revalidates this page,
+  // so the redirect must agree with the one the form performs client-side.
+  if (userSession?.isAuth) {
+    redirect(redirectPathname)
+  }
 
   return (
     <div className="flex justify-center pb-32 lg:justify-start">
@@ -35,11 +50,7 @@ export default async function Connexion() {
 
         <Title
           containerClassName="order-0 max-w-[430px] mb-4"
-          title={
-            <Trans i18nKey="login.login.title">
-              Accédez à votre espace Nos Gestes Climat
-            </Trans>
-          }
+          title={labels.title}
         />
 
         <QueryClientProviderWrapper>
@@ -47,8 +58,9 @@ export default async function Connexion() {
             <AuthenticateUserForm
               intent="create-account"
               mode="signIn"
-              redirectPathname={MON_ESPACE_PATH}
+              redirectPathname={redirectPathname}
               tracker={captureLoginComplete}
+              buttonLabel={labels.buttonLabel}
             />
           </UserProvider>
         </QueryClientProviderWrapper>

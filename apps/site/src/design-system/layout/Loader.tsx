@@ -1,4 +1,4 @@
-import { twMerge } from "cn";
+import { twMerge } from 'cn'
 
 export type LoaderSizes = 'sm' | 'md' | 'lg'
 
@@ -38,7 +38,7 @@ export default function Loader({
           className
         )}
       />
-      <span className="hidden motion-reduce:block">{ariaLabel}</span>
+      <span className="sr-only">{ariaLabel}</span>
     </>
   )
 }

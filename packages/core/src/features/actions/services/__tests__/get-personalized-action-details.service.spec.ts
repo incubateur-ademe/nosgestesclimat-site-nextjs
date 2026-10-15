@@ -222,6 +222,45 @@ describe('getPersonalizedActionDetails', () => {
     })
   })
 
+  describe('with choice', () => {
+    it('returns a PersonalizedAction with the choice', async () => {
+      const user = await userFactory.create()
+      const action = await actionFactory.published().create()
+      await simulationFactory.completed().withCompletedComputation().create({
+        userId: user.id,
+      })
+
+      await actionFactory.chosen({
+        actionId: action.id,
+        userId: user.id,
+      })
+      const choice = await prisma.actionChoice.findFirst({
+        where: {
+          actionId: action.id,
+          userId: user.id,
+        },
+      })
+
+      const result = await getPersonalizedActionDetails(
+        action.slug,
+        'fr',
+        user.id
+      )
+
+      expect(result).toEqual({
+        action: {
+          ...action,
+          assessment: null,
+          choice: {
+            type: choice?.type,
+            chosenAt: choice?.chosenAt,
+          },
+        },
+        otherThemeActions: [],
+      })
+    })
+  })
+
   describe('when locale is "en"', () => {
     it('returns null when the action has no English translation', async () => {
       const action = await actionFactory.published().create()

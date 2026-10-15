@@ -92,7 +92,6 @@ function useCompletionEffect(
 
         if (options.redirectPathname) {
           router.push(options.redirectPathname)
-          router.refresh()
         }
       } catch (error) {
         logger.error(toError(error))
