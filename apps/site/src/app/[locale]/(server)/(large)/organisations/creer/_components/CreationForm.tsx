@@ -68,11 +68,11 @@ export default function CreationForm() {
         ],
       })
 
-      router.push(
-        `/organisations/${organisationUpdated.slug}/creer-campagne/informations`
-      )
+      router.push(`/organisations/${organisationUpdated.slug}/creer-campagne`)
     } catch (error: unknown) {
-      logger.error(toError(error), { scope: 'site.interaction.createOrganisation' })
+      logger.error(toError(error), {
+        scope: 'site.interaction.createOrganisation',
+      })
     }
   }
 
