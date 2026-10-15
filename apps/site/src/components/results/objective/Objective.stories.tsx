@@ -9,11 +9,6 @@ const meta: Meta<typeof Objective> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    locale: {
-      control: 'select',
-      options: ['fr', 'en'],
-      description: 'Langue de rendu (fr ou en)',
-    },
   },
 }
 
@@ -22,28 +17,24 @@ type Story = StoryObj<typeof Objective>
 
 export const Over7Tons: Story = {
   args: {
-    locale: 'fr',
     carbonFootprint: 12000,
   },
 }
 
 export const Is7Tons: Story = {
   args: {
-    locale: 'fr',
     carbonFootprint: 7000,
   },
 }
 
 export const Under7Tons: Story = {
   args: {
-    locale: 'fr',
     carbonFootprint: 6000,
   },
 }
 
 export const Under4Tons: Story = {
   args: {
-    locale: 'fr',
     carbonFootprint: 4000,
   },
 }

@@ -25,7 +25,7 @@ export default async function Page({
   return (
     <>
       <Title>
-        <Trans locale={locale}>Questions</Trans>
+        <Trans>Questions</Trans>
       </Title>
       <EngineProvider rules={rules}>
         <Questions />

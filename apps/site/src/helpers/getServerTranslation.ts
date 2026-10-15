@@ -1,26 +1,40 @@
+import type { Locale } from '@/i18nConfig'
 import initI18next from '@/locales/initServer'
+import type { i18n } from 'i18next'
+import { getLocale } from './getLocale'
 
-/**
- * Synchrone à dessein : les traductions sont embarquées dans le bundle.
- * En faire un `await` transformait chaque composant qui affiche du texte en
- * composant asynchrone, donc en boundary Suspense (et en trou dynamique du
- * pré-rendu), pour une donnée immédiatement disponible.
- */
-export function getServerTranslation(
-  params: { locale: string },
-  namespace?: string,
+interface Props {
+  namespace?: string
   options?: { keyPrefix: string }
-) {
-  const { locale } = params
+}
+export async function getServerTranslation(props?: Props) {
+  const { namespace, options } = props ?? {}
 
+  const locale = await getLocale()
   const i18nextInstance = initI18next(locale)
 
   return {
-    t: i18nextInstance.getFixedT(
+    t: getT({
       locale,
-      Array.isArray(namespace) ? namespace[0] : namespace,
-      options?.keyPrefix ?? ''
-    ),
+      i18nextInstance,
+      namespace,
+      options,
+    }),
     i18n: i18nextInstance,
   }
+}
+
+// Allows to use t function in server actions
+export function getT({
+  locale,
+  i18nextInstance,
+  namespace,
+  options,
+}: {
+  locale: Locale
+  i18nextInstance: i18n
+  namespace?: string
+  options?: { keyPrefix: string }
+}) {
+  return i18nextInstance.getFixedT(locale, namespace, options?.keyPrefix ?? '')
 }

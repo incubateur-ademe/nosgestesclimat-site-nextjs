@@ -65,11 +65,7 @@ describe('TheySpeakAboutUs component', () => {
 
   it('should display partners correctly', async () => {
     // When
-    render(
-      await TheySpeakAboutUs({
-        locale: 'fr',
-      })
-    )
+    render(await TheySpeakAboutUs({}))
 
     // Then
     // The categories are displayed

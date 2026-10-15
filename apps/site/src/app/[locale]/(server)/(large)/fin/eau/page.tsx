@@ -12,7 +12,7 @@ import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return getMetadataObject({
     locale,
@@ -42,7 +42,6 @@ export default async function SimulationPage({
   return (
     <>
       <FootprintsLinks
-        locale={locale as Locale}
         currentPage="eau"
         basePathname={END_PAGE_PATH}
       />

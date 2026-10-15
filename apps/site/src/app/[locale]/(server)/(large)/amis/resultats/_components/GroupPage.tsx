@@ -49,7 +49,6 @@ export default async function GroupPage({
       />
 
       <GroupResults
-        locale={locale}
         group={group}
         user={user}
         metric={metric}

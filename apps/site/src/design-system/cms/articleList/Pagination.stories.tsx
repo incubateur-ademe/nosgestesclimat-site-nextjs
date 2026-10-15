@@ -18,11 +18,6 @@ const meta: Meta<typeof Pagination> = {
       control: 'number',
       description: 'Total number of pages',
     },
-    locale: {
-      control: 'select',
-      options: ['fr', 'en'],
-      description: 'Locale for translations',
-    },
   },
 }
 
@@ -44,7 +39,6 @@ export const Default: Story = {
   args: {
     currentPage: 1,
     totalPages: 5,
-    locale: 'fr',
   },
 }
 
@@ -53,7 +47,6 @@ export const MiddlePage: Story = {
   args: {
     currentPage: 3,
     totalPages: 5,
-    locale: 'fr',
   },
 }
 
@@ -62,7 +55,6 @@ export const LastPage: Story = {
   args: {
     currentPage: 5,
     totalPages: 5,
-    locale: 'fr',
   },
 }
 
@@ -71,7 +63,6 @@ export const ManyPages: Story = {
   args: {
     currentPage: 7,
     totalPages: 15,
-    locale: 'fr',
   },
 }
 
@@ -80,7 +71,6 @@ export const English: Story = {
   args: {
     currentPage: 2,
     totalPages: 4,
-    locale: 'en',
   },
 }
 
@@ -89,6 +79,5 @@ export const SinglePage: Story = {
   args: {
     currentPage: 1,
     totalPages: 1,
-    locale: 'fr',
   },
 }

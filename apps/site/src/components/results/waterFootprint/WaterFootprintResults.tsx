@@ -26,22 +26,17 @@ export default function WaterFootprintResults({
     <>
       <FootprintBlock
         className="mb-12"
-        locale={locale}
         value={computedResults.eau.bilan}
         title={
-          <Trans locale={locale} i18nKey="simulation.eau.title">
+          <Trans i18nKey="simulation.eau.title">
             L'empreinte eau qui sert à produire ce que vous consommez
           </Trans>
         }
         metric={eauMetric}
-        unitSuffix={
-          <Trans locale={locale} i18nKey="common.byDay">
-            / jour
-          </Trans>
-        }
+        unitSuffix={<Trans i18nKey="common.byDay">/ jour</Trans>}
       />
 
-      <IsItALot locale={locale} />
+      <IsItALot />
 
       <FootprintDetail
         computedResults={computedResults}
@@ -49,16 +44,16 @@ export default function WaterFootprintResults({
         metric={eauMetric}
       />
 
-      <WhatIsWaterFootprint locale={locale} />
+      <WhatIsWaterFootprint />
 
-      {!hideSaveBlock && <SaveResultsBlock locale={locale} />}
+      {!hideSaveBlock && <SaveResultsBlock />}
 
       <div className="mb-16 w-full md:w-2xl">
         <ClimateAndWater />
 
-        <WaterActions locale={locale} />
+        <WaterActions />
 
-        <DocumentationBlock locale={locale} />
+        <DocumentationBlock />
       </div>
     </>
   )

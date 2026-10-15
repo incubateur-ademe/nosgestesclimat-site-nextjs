@@ -21,7 +21,6 @@ interface Props {
   withCollectiveTest?: boolean
   withRestart?: boolean
   className?: string
-  locale: string
 }
 
 export default function CTAButtons(props: Props) {
@@ -36,11 +35,10 @@ async function ServerCTAButtons({
   withCollectiveTest = false,
   withRestart = false,
   className = '',
-  locale,
 }: Props) {
   const user = await getUserSession()
   const journey = await getUserSimulationJourney()
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const showRestart =
     withRestart &&
@@ -98,7 +96,7 @@ async function ServerCTAButtons({
                 'leading-none',
                 'group-hover:bg-rainbow-dark group-hover:animate-rainbow-fast group-hover:bg-clip-text group-hover:text-transparent motion-reduce:animate-none'
               )}>
-              <Trans locale={locale} i18nKey="ctaButtons.collective.label">
+              <Trans i18nKey="ctaButtons.collective.label">
                 Créer un test collectif
               </Trans>
             </span>
@@ -113,9 +111,7 @@ async function ServerCTAButtons({
             href={START_SIMULATION_PATH}
             color="link"
             size="sm">
-            <Trans locale={locale} i18nKey="ctaButtons.retake.label">
-              Repasser le test
-            </Trans>
+            <Trans i18nKey="ctaButtons.retake.label">Repasser le test</Trans>
             <RotatingArrowIcon className="fill-primary-900 ml-3 w-4" />
           </ButtonLink>
         </li>

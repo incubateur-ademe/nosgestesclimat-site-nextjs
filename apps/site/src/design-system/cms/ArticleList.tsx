@@ -9,17 +9,15 @@ export default function ArticleList({
   articles,
   pageCount,
   currentPage,
-  locale,
 }: {
   articles: ArticleItemType[]
   pageCount: number
   currentPage: number
-  locale: string
 }) {
   return (
     <section className="mb-20 scroll-mt-40" id="articles">
       <h2 className="mb-8 font-medium">
-        <Trans locale={locale}>Nos derniers articles</Trans>
+        <Trans>Nos derniers articles</Trans>
       </h2>
       <ul
         className="grid grid-cols-1 gap-8 md:grid-cols-3"
@@ -40,7 +38,6 @@ export default function ArticleList({
 
       <QueryClientProviderWrapper>
         <DidYouKnowMainLanding
-          locale={locale}
           className="mt-20 overflow-hidden rounded-lg px-10"
           titleTag="h3"
         />
@@ -66,7 +63,6 @@ export default function ArticleList({
         <Pagination
           currentPage={currentPage}
           totalPages={pageCount}
-          locale={locale}
         />
       )}
     </section>

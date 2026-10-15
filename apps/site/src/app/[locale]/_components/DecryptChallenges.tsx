@@ -23,10 +23,7 @@ export default async function DecryptChallenges({
 
   return (
     <UnderstandToAct
-      locale={locale}
-      title={
-        <Trans locale={locale}>Décryptez les défis environnementaux</Trans>
-      }
+      title={<Trans>Décryptez les défis environnementaux</Trans>}
       posts={articles.map(({ title, blogCategory, image, slug }) => ({
         title,
         category: blogCategory?.title ?? '',

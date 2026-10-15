@@ -2,8 +2,8 @@ import { END_PAGE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import type { Tendency } from '@nosgestesclimat/core/features/simulations/services/get-simulation-result.service'
 import { twMerge } from 'cn'
 import { ThermometerSun } from 'lucide-react'
@@ -18,7 +18,6 @@ import {
 } from './footprintComparison'
 
 interface Props {
-  locale: Locale
   value: number
   tendency?: Tendency
   className?: string
@@ -30,13 +29,13 @@ const pillClassNames: Record<FootprintComparisonLevel, string> = {
   below: 'bg-logement-100 text-logement-800',
 }
 
-export default function CarbonFootprintHero({
-  locale,
+export default async function CarbonFootprintHero({
   value,
   tendency,
   className,
 }: Props) {
-  const { t } = getServerTranslation({ locale })
+  const locale = await getLocale()
+  const { t } = await getServerTranslation()
 
   const { formattedValue, unit } = formatFootprint(value, {
     locale,
@@ -86,7 +85,7 @@ export default function CarbonFootprintHero({
       )}>
       <div className="flex w-full flex-col items-start">
         <h1 className="-mb-2 text-lg leading-tight font-bold">
-          <Trans locale={locale} i18nKey="results.footprintBlock.carbone.title">
+          <Trans i18nKey="results.footprintBlock.carbone.title">
             Votre empreinte carbone
           </Trans>
         </h1>
@@ -99,9 +98,7 @@ export default function CarbonFootprintHero({
           <div className="flex items-start gap-1.5 whitespace-nowrap">
             <p className="text-primary-700 mb-0 text-[1.1rem]">
               {unit}&nbsp;
-              <Trans
-                locale={locale}
-                i18nKey="results.footprintBlock.carbone.unitSuffix">
+              <Trans i18nKey="results.footprintBlock.carbone.unitSuffix">
                 de CO₂e&nbsp;/&nbsp;an
               </Trans>
             </p>
@@ -111,9 +108,7 @@ export default function CarbonFootprintHero({
               label={infoTitle}
               title={infoTitle}>
               <p className="mb-0">
-                <Trans
-                  locale={locale}
-                  i18nKey="results.footprintBlock.carbone.info.definition">
+                <Trans i18nKey="results.footprintBlock.carbone.info.definition">
                   Le CO₂e (équivalent CO₂) regroupe tous les gaz à effet de
                   serre que vous émettez, notamment via vos déplacements, votre
                   alimentation, votre logement et votre consommation.
@@ -127,9 +122,7 @@ export default function CarbonFootprintHero({
                 />
 
                 <p className="mb-0">
-                  <Trans
-                    locale={locale}
-                    i18nKey="results.footprintBlock.carbone.info.impact">
+                  <Trans i18nKey="results.footprintBlock.carbone.info.impact">
                     Ces gaz retiennent la chaleur dans l’atmosphère : plus ils
                     s’accumulent, plus le climat se dérègle, avec des canicules,
                     sécheresses et inondations plus fréquentes.
@@ -149,13 +142,10 @@ export default function CarbonFootprintHero({
             {comparisonLabel}
           </p>
 
-          {tendency && (
-            <TendencyIndicator locale={locale} tendency={tendency} />
-          )}
+          {tendency && <TendencyIndicator tendency={tendency} />}
         </div>
 
         <FootprintComparisonChart
-          locale={locale}
           value={value}
           orientation="horizontal"
           className="mb-6 lg:hidden"
@@ -165,9 +155,7 @@ export default function CarbonFootprintHero({
         <p className="mb-6 max-w-[46ch] leading-normal text-slate-600">
           {match(level)
             .with('above', () => (
-              <Trans
-                locale={locale}
-                i18nKey="results.footprintBlock.carbone.message.above">
+              <Trans i18nKey="results.footprintBlock.carbone.message.above">
                 <strong className="text-default">
                   Il est toujours temps de réduire votre impact !
                 </strong>{' '}
@@ -176,9 +164,7 @@ export default function CarbonFootprintHero({
               </Trans>
             ))
             .with('close', () => (
-              <Trans
-                locale={locale}
-                i18nKey="results.footprintBlock.carbone.message.close">
+              <Trans i18nKey="results.footprintBlock.carbone.message.close">
                 <strong className="text-default">
                   Votre empreinte ressemble à celle de millions de Français.
                 </strong>{' '}
@@ -187,9 +173,7 @@ export default function CarbonFootprintHero({
               </Trans>
             ))
             .with('below', () => (
-              <Trans
-                locale={locale}
-                i18nKey="results.footprintBlock.carbone.message.below">
+              <Trans i18nKey="results.footprintBlock.carbone.message.below">
                 <strong className="text-default">
                   Bravo, vous montrez la voie !
                 </strong>{' '}
@@ -202,9 +186,7 @@ export default function CarbonFootprintHero({
         </p>
 
         <ButtonLink href={END_PAGE_ACTIONS_PATH} color="primary" size="md">
-          <Trans
-            locale={locale}
-            i18nKey="results.footprintBlock.actionsBlock.link">
+          <Trans i18nKey="results.footprintBlock.actionsBlock.link">
             Découvrir mes actions
           </Trans>
 
@@ -216,16 +198,13 @@ export default function CarbonFootprintHero({
         <p
           id="footprint-average-legend"
           className="mt-3 mb-0 text-sm text-slate-600">
-          <Trans
-            locale={locale}
-            i18nKey="results.footprintBlock.carbone.legend">
+          <Trans i18nKey="results.footprintBlock.carbone.legend">
             * Moyenne de nos utilisateurs (plus de 600 000 simulations par an).
           </Trans>
         </p>
       </div>
 
       <FootprintComparisonChart
-        locale={locale}
         value={value}
         orientation="vertical"
         className="hidden lg:block"

@@ -2,12 +2,8 @@ import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function WhatDoWeMeasureWaterFootprint({
-  locale,
-}: {
-  locale: string
-}) {
-  const { t } = getServerTranslation({ locale })
+export default async function WhatDoWeMeasureWaterFootprint() {
+  const { t } = await getServerTranslation()
 
   return (
     <WhatDoWeMeasure
@@ -78,7 +74,7 @@ export default function WhatDoWeMeasureWaterFootprint({
       description={
         <>
           <p className="mb-10 text-center">
-            <Trans locale={locale}>
+            <Trans>
               L'empreinte eau,{' '}
               <strong className="text-primary-600">
                 calculée en milliers de litres par jour
@@ -97,7 +93,7 @@ export default function WhatDoWeMeasureWaterFootprint({
           </p>
 
           <p className="text-secondary-700 mb-0 text-center font-bold">
-            <Trans locale={locale}>
+            <Trans>
               Attention : l'empreinte eau ne tient pas compte de la consommation
               d'eau domestique (douche, toilettes, cuisine, arrosage) !
             </Trans>

@@ -3,26 +3,19 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
 
-interface Props {
-  locale: Locale
-}
-
-export default function WaterActions({ locale }: Props) {
-  const { t } = getServerTranslation({ locale })
+export default async function WaterActions() {
+  const { t } = await getServerTranslation()
 
   return (
     <div className="mb-12">
       <Title hasSeparator={false} tag="h2" size="lg">
-        <Trans locale={locale} i18nKey="endPage.waterActions.title">
-          Comment agir ?
-        </Trans>
+        <Trans i18nKey="endPage.waterActions.title">Comment agir ?</Trans>
       </Title>
 
       <p>
-        <Trans locale={locale} i18nKey="endPage.waterActions.description1">
+        <Trans i18nKey="endPage.waterActions.description1">
           <strong>
             La majeure partie de l'empreinte eau concerne la pousse des
             végétaux,
@@ -33,7 +26,7 @@ export default function WaterActions({ locale }: Props) {
       </p>
 
       <p className="mb-6">
-        <Trans locale={locale} i18nKey="endPage.waterActions.description2">
+        <Trans i18nKey="endPage.waterActions.description2">
           Retrouvez nos conseils dans ces articles :
         </Trans>
       </p>
@@ -57,15 +50,13 @@ export default function WaterActions({ locale }: Props) {
                 alt=""
               />
               <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-                <Trans
-                  locale={locale}
-                  i18nKey="endPage.waterActions.article1Title">
+                <Trans i18nKey="endPage.waterActions.article1Title">
                   Les 4 réflexes à adopter pour une garde-robe économe en eau
                 </Trans>
               </p>
             </div>
             <div className="text-primary-700 text-center text-sm underline">
-              <Trans locale={locale} i18nKey="endPage.waterActions.readArticle">
+              <Trans i18nKey="endPage.waterActions.readArticle">
                 Lire l'article
               </Trans>{' '}
               <ExternalLinkIcon className="stroke-primary-700 ml-2" />
@@ -93,15 +84,13 @@ export default function WaterActions({ locale }: Props) {
                 alt=""
               />
               <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-                <Trans
-                  locale={locale}
-                  i18nKey="endPage.waterActions.article2Title">
+                <Trans i18nKey="endPage.waterActions.article2Title">
                   Les 9 manières d'améliorer l'empreinte eau de mon assiette
                 </Trans>
               </p>
             </div>
             <div className="text-primary-700 text-center text-sm underline">
-              <Trans locale={locale} i18nKey="endPage.waterActions.readArticle">
+              <Trans i18nKey="endPage.waterActions.readArticle">
                 Lire l'article
               </Trans>{' '}
               <ExternalLinkIcon className="stroke-primary-700 ml-2" />

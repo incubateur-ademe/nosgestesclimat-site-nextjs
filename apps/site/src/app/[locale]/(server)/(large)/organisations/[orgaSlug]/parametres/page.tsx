@@ -15,9 +15,9 @@ import OrganisationForm from './_components/OrganisationForm'
 export default async function ParametresPage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]/parametres'>) {
-  const { orgaSlug, locale } = await params
+  const { orgaSlug } = await params
   const { organisation } = await organisationAdminGuard(orgaSlug)
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
   const defaultValues = getFormDefaultValues(organisation)
 
   return (

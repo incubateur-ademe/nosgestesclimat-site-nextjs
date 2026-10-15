@@ -1,10 +1,8 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import { twMerge } from 'cn'
 import CarouselClient from './CarouselClient'
 
 export interface CarouselProps extends React.ComponentPropsWithoutRef<'div'> {
-  locale: Locale
   /** className applied to the inner carousel that has `overflow: hidden` for padding tricks */
   innerClassName?: string
   /** className applied to each SwiperSlide */
@@ -12,16 +10,15 @@ export interface CarouselProps extends React.ComponentPropsWithoutRef<'div'> {
   slidesPerGroup?: { mobile?: number; desktop?: number }
 }
 
-export default function Carousel({
+export default async function Carousel({
   className,
   innerClassName,
   slideClassName,
   children,
-  locale,
   slidesPerGroup,
   ...rest
 }: CarouselProps) {
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const translations = {
     prevSlideMessage: t(

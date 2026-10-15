@@ -31,7 +31,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1023.0",
     "@aws-sdk/s3-request-presigner": "^3.1023.0",
-    "@incubateur-ademe/nosgestesclimat": "4.17.2",
+    "@incubateur-ademe/nosgestesclimat": "4.17.3",
     "@nosgestesclimat/core": "workspace:*",
     "@notionhq/client": "^2.3.0",
     "@prisma/adapter-pg": "^7.8.0",
@@ -49,7 +49,7 @@
     "ioredis": "^5.10.1",
     "morgan": "^1.10.1",
     "papaparse": "^5.5.3",
-    "publicodes": "^1.10.1",
+    "publicodes": "^1.10.4",
     "request-ip": "^3.3.0",
     "slugify": "^1.6.9",
     "valibot": "^1.4.0",

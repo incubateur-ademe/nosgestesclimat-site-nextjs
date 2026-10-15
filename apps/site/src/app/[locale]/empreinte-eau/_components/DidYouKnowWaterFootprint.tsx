@@ -2,41 +2,33 @@ import CTAButtons from '@/components/cta/CTAButtons'
 import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
 import Trans from '@/components/translation/trans/TransServer'
 
-export default function DidYouKnowWaterFootprint({
-  locale,
-}: {
-  locale: string
-}) {
+export default function DidYouKnowWaterFootprint() {
   return (
     <DidYouKnowSlider
-      ctaButtons={<CTAButtons locale={locale} />}
+      ctaButtons={<CTAButtons />}
       slides={[
         {
           illustration: '/_static/cms/icone_ordinateur_392d915ff0.svg',
           content: (
-            <Trans locale={locale}>
+            <Trans>
               La production d’un ordinateur nécessite 195 000 litres d’eau.
             </Trans>
           ),
-          highlight: <Trans locale={locale}>Considérable, non ?</Trans>,
+          highlight: <Trans>Considérable, non ?</Trans>,
         },
         {
           illustration: '/_static/cms/icone_jeans_7373ebf3c3.svg',
           content: (
-            <Trans locale={locale}>
-              L’empreinte eau d'un jean est de 30 000 litres d'eau.
-            </Trans>
+            <Trans>L’empreinte eau d'un jean est de 30 000 litres d'eau.</Trans>
           ),
-          highlight: <Trans locale={locale}>Impressionnant, non ?</Trans>,
+          highlight: <Trans>Impressionnant, non ?</Trans>,
         },
         {
           illustration: '/_static/cms/icone_oeuf_035042441c.svg',
           content: (
-            <Trans locale={locale}>
-              Il faut 75 litres d’eau pour produire un oeuf.
-            </Trans>
+            <Trans>Il faut 75 litres d’eau pour produire un oeuf.</Trans>
           ),
-          highlight: <Trans locale={locale}>Considérable, non ?</Trans>,
+          highlight: <Trans>Considérable, non ?</Trans>,
         },
       ]}
     />

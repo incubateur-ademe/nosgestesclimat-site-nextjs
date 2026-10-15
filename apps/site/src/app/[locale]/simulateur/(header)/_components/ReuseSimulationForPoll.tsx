@@ -3,6 +3,7 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { getLocale } from '@/helpers/getLocale'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import type { PollSummary } from '@nosgestesclimat/core/features/polls/types/poll'
@@ -12,20 +13,19 @@ import ReuseButtons from './reuseSimulationForPoll/ReuseButtons'
 interface ReuseSimulationForPollProps {
   reuseSimulation: () => void
   createNewSimulation: () => void
-  locale: string
   disclaimer: React.ReactNode
   simulation: Simulation
   polls: PollSummary[]
 }
-export default function ReuseSimulationForPoll({
+export default async function ReuseSimulationForPoll({
   reuseSimulation,
   createNewSimulation,
-  locale,
   disclaimer,
   simulation,
   polls,
 }: ReuseSimulationForPollProps) {
-  const { t } = getServerTranslation({ locale })
+  const locale = await getLocale()
+  const { t } = await getServerTranslation()
 
   const { formattedValue, unit } = formatFootprint(
     simulation.computedResults.carbone.bilan,
@@ -41,7 +41,7 @@ export default function ReuseSimulationForPoll({
         className="text-lg font-bold md:text-xl"
         title={
           <span className="flex items-center">
-            <Trans locale={locale} i18nKey="reuseSimulationForPoll.title">
+            <Trans i18nKey="reuseSimulationForPoll.title">
               Vous avez déjà réalisé un calcul d’empreinte sur notre site
             </Trans>{' '}
             <Emoji className="ml-1">👏</Emoji>
@@ -51,9 +51,7 @@ export default function ReuseSimulationForPoll({
 
       <div className="border-primary-100 bg-primary-100 mb-8 w-lg max-w-full rounded-lg border px-5 py-4">
         <p className="mb-2 text-sm">
-          <Trans
-            locale={locale}
-            i18nKey="reuseSimulationForPoll.testDate.testDone">
+          <Trans i18nKey="reuseSimulationForPoll.testDate.testDone">
             Test réalisé le
           </Trans>{' '}
           {dayjs(simulation.updatedAt)
@@ -63,9 +61,7 @@ export default function ReuseSimulationForPoll({
               month: '2-digit',
               year: 'numeric',
             })}{' '}
-          <Trans locale={locale} i18nKey="reuseSimulationForPoll.testDate.at">
-            à
-          </Trans>{' '}
+          <Trans i18nKey="reuseSimulationForPoll.testDate.at">à</Trans>{' '}
           {dayjs(simulation.updatedAt)
             .toDate()
             .toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-GB', {
@@ -75,14 +71,12 @@ export default function ReuseSimulationForPoll({
         </p>
 
         <p className="text-primary-800 mb-2 text-base">
-          <Trans locale={locale} i18nKey="reuseSimulationForPoll.yourFootprint">
+          <Trans i18nKey="reuseSimulationForPoll.yourFootprint">
             Votre empreinte :
           </Trans>{' '}
           <span className="text-primary-800 mb-0! text-xl leading-8 font-bold">
             {formattedValue}&nbsp;{unit}&nbsp;
-            <Trans locale={locale} i18nKey="common.co2eAn.title">
-              CO₂e / an
-            </Trans>
+            <Trans i18nKey="common.co2eAn.title">CO₂e / an</Trans>
           </span>
         </p>
 
@@ -90,9 +84,7 @@ export default function ReuseSimulationForPoll({
           <p className="mt-6 w-full text-sm">
             <span>
               <Emoji>📊</Emoji>{' '}
-              <Trans
-                locale={locale}
-                i18nKey="reuseSimulationForPoll.attachedToPoll">
+              <Trans i18nKey="reuseSimulationForPoll.attachedToPoll">
                 Rattachée au test collectif :
               </Trans>
             </span>{' '}
@@ -104,7 +96,7 @@ export default function ReuseSimulationForPoll({
       </div>
 
       <p className="mb-6">
-        <Trans locale={locale} i18nKey="reuseSimulationForPoll.description">
+        <Trans i18nKey="reuseSimulationForPoll.description">
           Vous pouvez utiliser vos données existantes, ou recommencer le test.
         </Trans>
       </p>

@@ -1,23 +1,17 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Emoji from '@/design-system/utils/Emoji'
-import type { Locale } from '@/i18nConfig'
 import type { EventStatusWithoutNotStarted } from '@nosgestesclimat/core/features/events/types/status'
 
 interface Props {
   progressPercentage: number
   status: EventStatusWithoutNotStarted
-  locale: Locale
 }
 
-export default function ObjectiveStatus({
-  progressPercentage,
-  status,
-  locale,
-}: Props) {
+export default function ObjectiveStatus({ progressPercentage, status }: Props) {
   if (progressPercentage > 100) {
     return (
       <span>
-        <Trans i18nKey="event.dynamicCounter.target.title.over" locale={locale}>
+        <Trans i18nKey="event.dynamicCounter.target.title.over">
           Objectif dépassé
         </Trans>{' '}
         <Emoji>{status === 'ended' ? '✅' : '🚀'}</Emoji>
@@ -28,9 +22,7 @@ export default function ObjectiveStatus({
   if (progressPercentage === 100) {
     return (
       <span>
-        <Trans
-          i18nKey="event.dynamicCounter.target.title.topped"
-          locale={locale}>
+        <Trans i18nKey="event.dynamicCounter.target.title.topped">
           Objectif atteint
         </Trans>{' '}
         <Emoji>🚀</Emoji>
@@ -39,8 +31,6 @@ export default function ObjectiveStatus({
   }
 
   return (
-    <Trans i18nKey="event.dynamicCounter.target.title.default" locale={locale}>
-      Objectif
-    </Trans>
+    <Trans i18nKey="event.dynamicCounter.target.title.default">Objectif</Trans>
   )
 }

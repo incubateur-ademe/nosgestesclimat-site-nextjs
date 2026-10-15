@@ -390,6 +390,10 @@ server {
     # anglaises (trafic minime) tombent dans le catch-all, le middleware Next
     # gère la langue côté app.
     location ~ ^/($|simulateur/tutoriel|empreinte-carbone|empreinte-eau|cgu|mentions-legales|mentions-legales-base-empreinte|politique-de-confidentialite|accessibilite|contact|diffuser|nos-relais|plan-du-site|budget|international|gestion-infolettres|newsletter-confirmation|partenaire|questions-frequentes|stats|blog($|/.*)|documentation($|/.*)|nouveautes($|/.*)|guide($|/.*)|themes($|/.*)|campagne-partenaire($|/.*)|evenement($|/.*))$ {
+        # Le défaut du module est le nom de la location, soit ce motif : le chemin
+        # demandé est plus court et plus parlant.
+        otel_span_name "$request_method $uri";
+
         proxy_pass https://scalingo;
 
         # Dimension d'auth dans la clé : aucune réponse authentifiée n'est stockée.
@@ -485,6 +489,10 @@ server {
 
     # Catch-all : rate-limit + cache générique, bypass sur websocket.
     location / {
+        # Le défaut du module est le nom de la location, soit `/` pour toutes les
+        # pages : le chemin demandé, lui, les distingue.
+        otel_span_name "$request_method $uri";
+
         proxy_pass https://scalingo;
         # The burst absorbs the batch of prefetch requests a listing page
         # produces — Next.js asks for every visible link at once — which is not

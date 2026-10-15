@@ -2,29 +2,25 @@ import FAQ from '@/components/landing-pages/FAQ'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 
-export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
-  const { t } = getServerTranslation({ locale })
+export default async function FAQCarbonFootprint() {
+  const { t } = await getServerTranslation()
 
   return (
     <FAQ
-      locale={locale}
       className="mb-16"
-      subTitle={
-        <Trans locale={locale}>Vos questions sur l'empreinte carbone</Trans>
-      }
+      subTitle={<Trans>Vos questions sur l'empreinte carbone</Trans>}
       questions={[
         {
           question: (
-            <Trans locale={locale}>
+            <Trans>
               Qu’est-ce que le carbone et pourquoi est-il important ?
             </Trans>
           ),
           answer: (
             <>
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Le carbone est un élément chimique nécessaire à la vie sur
                   Terre. Il se trouve dans les végétaux, dans le sol, dans les
                   océans et dans l’atmosphère principalement sous forme de
@@ -32,14 +28,14 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
                 </Trans>
               </p>
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Le carbone, CO2e, est le principal gaz à effet de serre, mais
                   il y en a d’autres : méthane, protoxyde d’azote par exemple.
                   C’est pourquoi on parle “d’équivalent carbone”.
                 </Trans>
               </p>
               <p className="mb-0">
-                <Trans locale={locale}>
+                <Trans>
                   Ces émissions bouleversent le climat, contribuant au
                   réchauffement global et à ses conséquences dévastatrices :
                   montée du niveau des océans, multiplication des catastrophes
@@ -50,13 +46,11 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
           ),
         },
         {
-          question: (
-            <Trans locale={locale}>Comment définir l'empreinte carbone ?</Trans>
-          ),
+          question: <Trans>Comment définir l'empreinte carbone ?</Trans>,
           answer: (
             <>
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   L’empreinte carbone désigne la quantité totale de gaz à effet
                   de serre (GES) émis directement et indirectement par une
                   personne par ses activités sur une année.
@@ -64,7 +58,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Le dioxyde de carbone, CO2, est le principal gaz à effet de
                   serre, mais il y en a d’autres : méthane, protoxyde d’azote
                   par exemple. C’est pourquoi on parle “d’équivalent carbone”.
@@ -72,7 +66,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Ces émissions proviennent de diverses activités humaines dont
                   les moyens de transport, l’alimentation, le logement, la
                   consommation courante de produits et de services, la
@@ -81,7 +75,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p className="mb-0">
-                <Trans locale={locale}>
+                <Trans>
                   En quantifiant l’ensemble de ces émissions, l’empreinte
                   carbone permet de mesurer l’impact sur le climat et de mettre
                   en place des stratégies pour réduire ces émissions.
@@ -91,15 +85,11 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
           ),
         },
         {
-          question: (
-            <Trans locale={locale}>
-              Comment calculer son empreinte carbone ?
-            </Trans>
-          ),
+          question: <Trans>Comment calculer son empreinte carbone ?</Trans>,
           answer: (
             <>
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Calculer son empreinte carbone consiste à additionner
                   l’ensemble des gaz à effet de serre émis par ses activités
                   quotidiennes, en tenant compte de plusieurs facteurs comme les
@@ -109,7 +99,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Le simulateur en ligne Nos Gestes Climat permet d’estimer
                   votre empreinte écologique, la fois votre empreinte carbone et{' '}
                   <Link href="/empreinte-eau">votre empreinte eau</Link> en
@@ -118,7 +108,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Ces deux indicateurs permettent de mieux comprendre l’impact
                   environnemental de vos choix pour agir de manière plus
                   responsable.
@@ -126,7 +116,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   L’empreinte carbone n’est pas un bilan carbone. Même s’ils
                   mesurent tous deux les émissions de gaz à effet de serre
                   (GES), ils ne se calculent pas de la même manière et n’ont pas
@@ -135,7 +125,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   L’empreinte carbone englobe les émissions directes et
                   indirectes d’un individu sur une année. Le bilan carbone, en
                   revanche, est un outil de comptabilité utilisé par les
@@ -146,7 +136,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p className="mb-0">
-                <Trans locale={locale}>
+                <Trans>
                   La méthodologie du bilan carbone a été développée
                   par l’ADEME (Agence de la transition écologique).
                 </Trans>
@@ -156,14 +146,14 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
         },
         {
           question: (
-            <Trans locale={locale}>
+            <Trans>
               Quelles sont les principales sources d’émissions de CO2e ?{' '}
             </Trans>
           ),
           answer: (
             <>
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   Les émissions de gaz à effet de serre proviennent de
                   différents secteurs de l’activité humaine. Les principales
                   sources sont :
@@ -173,11 +163,9 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
                   <strong>
-                    <Trans locale={locale}>
-                      énergie et production industrielle
-                    </Trans>{' '}
+                    <Trans>énergie et production industrielle</Trans>{' '}
                   </strong>
-                  <Trans locale={locale}>
+                  <Trans>
                     : la combustion d’énergies fossiles (charbon, pétrole, gaz
                     naturel) pour produire de l’électricité mais aussi pour
                     alimenter les industries est la première cause d’émissions
@@ -186,9 +174,9 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
                 </li>
                 <li>
                   <strong>
-                    <Trans locale={locale}>transports</Trans>
+                    <Trans>transports</Trans>
                   </strong>{' '}
-                  <Trans locale={locale}>
+                  <Trans>
                     : voitures, camions, avions et navires rejettent massivement
                     du CO2 en brûlant des carburants fossiles. La demande
                     carburants fossiles. La demande croissante de mobilité
@@ -198,9 +186,9 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
                 </li>
                 <li>
                   <strong>
-                    <Trans locale={locale}>agriculture et élevage</Trans>
+                    <Trans>agriculture et élevage</Trans>
                   </strong>{' '}
-                  <Trans locale={locale}>
+                  <Trans>
                     : les pratiques agricoles intensives et l’élevage, en
                     particulier la production de viande et les rejets de méthane
                     des ruminants, contribuent fortement aux gaz à effet de
@@ -212,11 +200,9 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
                 </li>
                 <li>
                   <strong>
-                    <Trans locale={locale}>
-                      logement et consommation énergétique{' '}
-                    </Trans>
+                    <Trans>logement et consommation énergétique </Trans>
                   </strong>{' '}
-                  <Trans locale={locale}>
+                  <Trans>
                     : le chauffage (et dans une moindre mesure, la
                     climatisation) est le poste le plus important de
                     consommation énergétique du logement, donc d’émission de
@@ -226,11 +212,11 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
                 </li>
                 <li>
                   <strong>
-                    <Trans locale={locale}>
+                    <Trans>
                       production de biens et consommation croissante
                     </Trans>
                   </strong>{' '}
-                  <Trans locale={locale}>
+                  <Trans>
                     : la fabrication de biens (électronique, vêtements,
                     équipements, loisirs) à travers le monde génère des
                     émissions à chaque étape : extraction des matières
@@ -246,7 +232,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
         },
         {
           question: (
-            <Trans locale={locale}>
+            <Trans>
               Quelle est l’empreinte carbone moyenne d’un Français et celle de
               la France ?{' '}
             </Trans>
@@ -254,7 +240,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
           answer: (
             <>
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   L’empreinte carbone moyenne d’un Français est d’environ 9
                   tonnes de CO2e par an bien au-dessus de l’objectif de 2 tonnes
                   en 2050 par personne par an recommandé par les Nations Unies
@@ -263,7 +249,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   L’empreinte carbone de la France s’élève 623 millions de
                   tonnes équivalent CO2e par an, selon{' '}
                   <Link
@@ -280,7 +266,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p className="mb-0">
-                <Trans locale={locale}>
+                <Trans>
                   À l’échelle nationale, la France s’est fixée pour objectif
                   d’atteindre la neutralité carbone d’ici 2050, ce qui implique
                   de réduire drastiquement les émissions dans tous les secteurs.
@@ -291,14 +277,12 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
         },
         {
           question: (
-            <Trans locale={locale}>
-              Quels pays émettent le plus de gaz à effet de serre ?
-            </Trans>
+            <Trans>Quels pays émettent le plus de gaz à effet de serre ?</Trans>
           ),
           answer: (
             <>
               <p>
-                <Trans locale={locale}>
+                <Trans>
                   La Chine et les États-Unis sont les deux plus grands émetteurs
                   de gaz à effet de serre en raison de leur forte dépendance aux
                   énergies fossiles (charbon, pétrole, gaz), de leurs industries
@@ -308,7 +292,7 @@ export default function FAQCarbonFootprint({ locale }: { locale: Locale }) {
               </p>
 
               <p className="mb-0">
-                <Trans locale={locale}>
+                <Trans>
                   La France représente environ 1% des émissions globales mais
                   une partie majeure de son impact est indirecte et liée aux
                   importations de produits fabriqués massivement à l’étranger.

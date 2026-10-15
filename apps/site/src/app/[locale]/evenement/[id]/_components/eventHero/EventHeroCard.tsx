@@ -1,11 +1,9 @@
-import type { Locale } from '@/i18nConfig'
 import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
 import AnimatedCounterBlock from './eventHeroCard/AnimatedCounterBlock'
 import EventCountdown from './eventHeroCard/EventCountdown'
 import EventDynamicCounter from './eventHeroCard/EventDynamicCounter'
 
 interface Props {
-  locale: Locale
   startDate: Date
   status: EventStatus
   currentValue: number
@@ -17,7 +15,6 @@ interface Props {
 }
 
 export default function EventHeroCard({
-  locale,
   startDate,
   status,
   currentValue,
@@ -45,7 +42,6 @@ export default function EventHeroCard({
         ) : (
           <AnimatedCounterBlock>
             <EventDynamicCounter
-              locale={locale}
               currentValue={currentValue}
               targetValue={targetValue}
               progressPercentage={progressPercentage}

@@ -15,12 +15,17 @@ minimumReleaseAge: 10080 # 7 days
 
 minimumReleaseAgeExclude:
   - '@incubateur-ademe/nosgestesclimat'
+  - 'publicodes'
   # We explicitely need a new feature introduced in 1.379.0. Those 3 lines can be remove safely on 10/06/2026
   # @TODO
   - 'posthog-js'
   - '@posthog/core'
   - '@posthog/types'
   - '@posthog/browser-common'
+  # Latest Next, without waiting out the 7-day release delay.
+  - 'next'
+  - '@next/*'
+  - 'eslint-config-next'
 
 onlyBuiltDependencies:
   - '@incubateur-ademe/nosgestesclimat'

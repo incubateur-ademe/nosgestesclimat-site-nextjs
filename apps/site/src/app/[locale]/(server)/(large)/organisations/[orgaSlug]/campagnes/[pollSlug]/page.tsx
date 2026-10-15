@@ -15,7 +15,7 @@ import WaterFootprintSection from './_components/waterFootprint/WaterFootprintSe
 export default async function CampagnePage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]/campagnes/[pollSlug]'>) {
-  const { locale, orgaSlug, pollSlug } = await params
+  const { orgaSlug, pollSlug } = await params
 
   const {
     poll,
@@ -30,7 +30,7 @@ export default async function CampagnePage({
     pollIdOrSlug: pollSlug,
   })
 
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   return (
     <>
@@ -46,12 +46,11 @@ export default async function CampagnePage({
             title={<span className="text-primary-700">{poll.name}</span>}
             subtitle={
               <span>
-                <Trans locale={locale}>Test collectif créé par</Trans>{' '}
+                <Trans>Test collectif créé par</Trans>{' '}
                 <strong className="text-primary-700">
                   {poll.organisation.name}
                 </strong>
-                <Trans locale={locale}>, le</Trans>{' '}
-                {dayjs(poll.createdAt).format('DD/MM/YYYY')}
+                <Trans>, le</Trans> {dayjs(poll.createdAt).format('DD/MM/YYYY')}
               </span>
             }
           />
@@ -66,7 +65,7 @@ export default async function CampagnePage({
                 className="flex items-center">
                 <SettingsIcon className="fill-primary-700 mr-2" />
 
-                <Trans locale={locale}>Voir les paramètres</Trans>
+                <Trans>Voir les paramètres</Trans>
               </ButtonLinkServer>
             </div>
           )}
@@ -77,11 +76,7 @@ export default async function CampagnePage({
             <ShareSection
               className="mt-0"
               poll={poll}
-              title={
-                <Trans locale={locale}>
-                  C'est prêt ! Voici votre lien à partager
-                </Trans>
-              }
+              title={<Trans>C'est prêt ! Voici votre lien à partager</Trans>}
             />
           )}
 
@@ -93,9 +88,7 @@ export default async function CampagnePage({
             cooldownSeconds={cooldownSeconds}
             computedResults={stats?.computedResults ?? null}
             funFacts={stats?.funFacts ?? null}
-            title={
-              <Trans locale={locale}>Résultats de votre test collectif</Trans>
-            }
+            title={<Trans>Résultats de votre test collectif</Trans>}
             poll={poll}
             isAdmin={isAdmin}
           />

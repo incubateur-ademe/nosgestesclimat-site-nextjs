@@ -64,16 +64,15 @@ export default async function CarbonFootprintLandingPage({
       />
 
       <LandingPage
-        locale={locale}
         heroTitle={
-          <Trans i18nKey="empreinte-carbone.heroTitle" locale={locale}>
+          <Trans i18nKey="empreinte-carbone.heroTitle">
             L'empreinte carbone, une première étape pour passer à l'action
           </Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <Trans locale={locale}>
+              <Trans>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte carbone</strong>{' '}
                 en quelques minutes et découvrez les{' '}
@@ -86,7 +85,7 @@ export default async function CarbonFootprintLandingPage({
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <CTAButtons locale={locale} />
+              <CTAButtons />
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
@@ -109,20 +108,20 @@ export default async function CarbonFootprintLandingPage({
             />
           </div>
         }
-        heroPartners={<Partners locale={locale} />}>
-        <WhatItIsCarbon locale={locale} />
+        heroPartners={<Partners />}>
+        <WhatItIsCarbon />
 
-        <WhatDoWeMeasureCarbon locale={locale} />
+        <WhatDoWeMeasureCarbon />
 
-        <DidYouKnowCarbon locale={locale} />
+        <DidYouKnowCarbon />
 
-        <DailyGestureCarbonFootprint locale={locale} />
+        <DailyGestureCarbonFootprint />
 
-        <UnderstandToActCarbonFootprint locale={locale} />
+        <UnderstandToActCarbonFootprint />
 
-        <MotivationSectionCarbonFootprint locale={locale} />
+        <MotivationSectionCarbonFootprint />
 
-        <FAQCarbonFootprint locale={locale} />
+        <FAQCarbonFootprint />
       </LandingPage>
 
       <Footer backgroundColor="white" locale={locale} />

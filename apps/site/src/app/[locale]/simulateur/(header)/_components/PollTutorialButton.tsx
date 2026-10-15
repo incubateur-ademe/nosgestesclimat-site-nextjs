@@ -2,20 +2,17 @@ import Trans from '@/components/translation/trans/TransServer'
 import Button from '@/design-system/buttons/Button'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
-import type { Locale } from '@/i18nConfig'
 import type { PollSummary } from '@nosgestesclimat/core/features/polls/types/poll'
 
 interface Props {
   poll: PollSummary
   hasCompletedPollSimulation: boolean
   createSimulation: () => void
-  locale: Locale
 }
 
 export default function PollTutorialButton({
   poll,
   hasCompletedPollSimulation,
-  locale,
   createSimulation,
 }: Props) {
   if (hasCompletedPollSimulation) {
@@ -25,16 +22,12 @@ export default function PollTutorialButton({
           className="mb-4 text-sm text-gray-500"
           data-testid="youth-tutorial-already-participated">
           {poll.mode === 'scolaire' ? (
-            <Trans
-              locale={locale}
-              i18nKey="poll.tutorial.alreadyTookTest.youth">
+            <Trans i18nKey="poll.tutorial.alreadyTookTest.youth">
               Tu as déja participé à ce test.
             </Trans>
           ) : // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
           poll.mode === 'standard' ? (
-            <Trans
-              locale={locale}
-              i18nKey="poll.tutorial.alreadyTookTest.default">
+            <Trans i18nKey="poll.tutorial.alreadyTookTest.default">
               Vous avez déjà participé à ce sondage.
             </Trans>
           ) : (
@@ -45,9 +38,7 @@ export default function PollTutorialButton({
         <ButtonLink
           showLoadingOnClick
           href={`/organisations/${poll.organisation.slug}/campagnes/${poll.slug}`}>
-          <Trans locale={locale} i18nKey="common.seeResults">
-            Voir les résultats
-          </Trans>
+          <Trans i18nKey="common.seeResults">Voir les résultats</Trans>
         </ButtonLink>
       </div>
     )
@@ -62,13 +53,11 @@ export default function PollTutorialButton({
           aria-describedby="subtitle-cta"
           data-testid="youth-tutorial-start-button"
           onClick={createSimulation}>
-          <Trans locale={locale} i18nKey="youthTutorial.cta.label">
-            Allez, c'est parti
-          </Trans>
+          <Trans i18nKey="youthTutorial.cta.label">Allez, c'est parti</Trans>
         </Button>
 
         <p id="subtitle-cta" className="mt-2 text-sm text-slate-700">
-          <Trans locale={locale} i18nKey="youthTutorial.cta.helper">
+          <Trans i18nKey="youthTutorial.cta.helper">
             Ça prend seulement quelques minutes
           </Trans>{' '}
           <Emoji>⏱️</Emoji>
@@ -83,9 +72,7 @@ export default function PollTutorialButton({
       onClick={createSimulation}
       data-testid="skip-tutorial-button"
       className="min-w-42!">
-      <Trans locale={locale} i18nKey="common.letsGo">
-        C'est parti !
-      </Trans>{' '}
+      <Trans i18nKey="common.letsGo">C'est parti !</Trans>{' '}
       <span aria-hidden="true" className="ml-1">
         →
       </span>

@@ -9,11 +9,6 @@ const meta: Meta<typeof FootprintBlock> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    locale: {
-      control: 'radio',
-      options: ['fr', 'en'],
-      description: 'Locale pour le formatage',
-    },
     metric: {
       control: 'radio',
       options: ['carbone', 'eau'],
@@ -39,7 +34,6 @@ type Story = StoryObj<typeof FootprintBlock>
 export const CarboneEnBaisse: Story = {
   name: 'Carbone - En baisse',
   args: {
-    locale: 'fr',
     value: 6500,
     title: 'Votre empreinte carbone',
     metric: 'carbone',
@@ -51,7 +45,6 @@ export const CarboneEnBaisse: Story = {
 export const CarboneEnHausse: Story = {
   name: 'Carbone - En hausse',
   args: {
-    locale: 'fr',
     value: 9800,
     title: 'Votre empreinte carbone',
     metric: 'carbone',
@@ -63,7 +56,6 @@ export const CarboneEnHausse: Story = {
 export const CarboneSansTendance: Story = {
   name: 'Carbone - Sans tendance',
   args: {
-    locale: 'fr',
     value: 8200,
     title: 'Votre empreinte carbone',
     metric: 'carbone',
@@ -77,7 +69,6 @@ export const CarboneSansTendance: Story = {
 export const EauEnBaisse: Story = {
   name: 'Eau - En baisse',
   args: {
-    locale: 'fr',
     value: 3500,
     title: 'Votre empreinte eau',
     metric: 'eau',
@@ -89,7 +80,6 @@ export const EauEnBaisse: Story = {
 export const EauEnHausse: Story = {
   name: 'Eau - En hausse',
   args: {
-    locale: 'fr',
     value: 5200,
     title: 'Votre empreinte eau',
     metric: 'eau',
@@ -101,7 +91,6 @@ export const EauEnHausse: Story = {
 export const EauSansTendance: Story = {
   name: 'Eau - Sans tendance',
   args: {
-    locale: 'fr',
     value: 4100,
     title: 'Votre empreinte eau',
     metric: 'eau',

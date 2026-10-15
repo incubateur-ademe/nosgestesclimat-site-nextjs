@@ -1,14 +1,9 @@
 import Trans from '@/components/translation/trans/TransServer'
-import type { Locale } from '@/i18nConfig'
 import { type ReactNode } from 'react'
-
-interface Props {
-  locale: Locale
-}
 
 const AVERAGE_CONSUMPTION_IN_LITERS = 149
 
-export default function DomesticWaterBlock({ locale }: Props) {
+export default function DomesticWaterBlock() {
   return (
     <div className="mb-6 self-center">
       <div className="bg-water flex gap-4 rounded-xl p-4 lg:pr-8">
@@ -24,7 +19,6 @@ export default function DomesticWaterBlock({ locale }: Props) {
 
         <p className="mb-0 text-lg text-white">
           <Trans
-            locale={locale}
             i18nKey="simulation.eau.whatIsWaterFootprint.showerWater.average"
             values={{ average: AVERAGE_CONSUMPTION_IN_LITERS }}>
             La moyenne française est de{' '}

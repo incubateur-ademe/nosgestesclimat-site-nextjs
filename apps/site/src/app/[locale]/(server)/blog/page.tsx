@@ -48,7 +48,7 @@ export async function generateMetadata({
   searchParams: { page: string }
 }>) {
   const { locale } = await params
-  const { t } = getServerTranslation({ locale })
+  const { t } = await getServerTranslation()
 
   const pageNumber = await getPageNumber(searchParams)
 
@@ -139,7 +139,6 @@ export default async function BlogHomePage({
 
         {mainArticle && (
           <MainArticle
-            locale={locale}
             title={mainArticle.title}
             description={mainArticle.description}
             imageSrc={mainArticle.image?.url ?? ''}
@@ -150,7 +149,6 @@ export default async function BlogHomePage({
 
         {articles && (
           <ArticleList
-            locale={locale}
             articles={articles}
             pageCount={pageCount ?? 0}
             currentPage={pageNumber}
