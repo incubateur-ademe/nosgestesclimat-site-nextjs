@@ -3,7 +3,6 @@
 import CloseIcon from '@/components/icons/Close'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { clearDraft } from '../_hooks/createPollDraft'
 
 interface Props {
   organisationSlug: string
@@ -14,7 +13,6 @@ export default function CloseButton({ organisationSlug }: Props) {
   return (
     <ButtonLink
       href={`/organisations/${organisationSlug}`}
-      onClick={() => clearDraft()}
       variant="outlined"
       aria-label={t(
         'organisations.createPoll.type.closeButton.aria',

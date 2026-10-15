@@ -1474,6 +1474,7 @@ entries:
   results.footprintBlock.carbone.chart.label: 'Votre empreinte : {{footprint}}. Moyenne de nos utilisateurs : {{average}}. Objectif 2050 : {{objective}}.'
   results.footprintBlock.carbone.chart.objective: Objectif 2050
   results.footprintBlock.carbone.chart.you: Vous
+  errors.unexpected: Une erreur innattendue s'est produite. Veuillez réessayer.
   event.ctas.description.default: Deux façons de participer au challenge.
   event.ctas.description.ended: 'Le challenge est terminé, mais vous pouvez toujours vous mobiliser :'
   event.ctas.heading.default: Prêt·e à rejoindre l'aventure ?

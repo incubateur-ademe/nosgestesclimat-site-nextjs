@@ -4,7 +4,6 @@ import {
   PutObjectCommand,
 } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-import { resolveCooldownSeconds } from '@nosgestesclimat/core/features/polls/stats/helpers/cooldown-policy'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import {
   isPrismaErrorNotFound,
@@ -230,7 +229,6 @@ export const fetchOrganisation = async ({
 }
 
 type PollData = Awaited<ReturnType<typeof fetchOrganisationPoll>>
-type PollSimulationsInfos = PollData['simulationsInfos']
 type PollOrganisation = PollData['organisation']
 type PollPopulated = PollData['poll']
 
@@ -246,12 +244,10 @@ const isOrganisationAdmin = (
 
 const pollToDto = ({
   poll: { organisationId: _1, ...poll },
-  simulationsInfos: { count, finished },
   organisation,
   user,
 }: {
   poll: PollPopulated
-  simulationsInfos: PollSimulationsInfos
   organisation: PollOrganisation
   user?: PartialUser
 }) => ({
@@ -271,12 +267,8 @@ const pollToDto = ({
     ({ type }) => type
   ),
   simulations: {
-    count,
-    finished,
-    cooldownSeconds: resolveCooldownSeconds(
-      config.app.pollStatsCooldownTiers,
-      count
-    ),
+    // The finished participations, as the stats recomputation counted them.
+    finished: poll.participantsCount,
   },
 })
 
@@ -292,8 +284,8 @@ export const createPoll = async ({
   locale: Locales
 }) => {
   try {
-    const { poll, organisation, simulationsInfos } = await transaction(
-      (session) => createOrganisationPoll(params, pollDto, user, { session })
+    const { poll, organisation } = await transaction((session) =>
+      createOrganisationPoll(params, pollDto, user, { session })
     )
 
     const pollCreatedEvent = new PollCreatedEvent({
@@ -306,7 +298,7 @@ export const createPoll = async ({
 
     await EventBus.once(pollCreatedEvent)
 
-    return pollToDto({ poll, organisation, simulationsInfos, user })
+    return pollToDto({ poll, organisation, user })
   } catch (e) {
     if (isPrismaErrorNotFound(e)) {
       throw new EntityNotFoundException('Organisation not found')
@@ -325,8 +317,8 @@ export const updatePoll = async ({
   user: PartialVerifiedUser
 }) => {
   try {
-    const { poll, organisation, simulationsInfos } = await transaction(
-      (session) => updateOrganisationPoll(params, pollDto, user, { session })
+    const { poll, organisation } = await transaction((session) =>
+      updateOrganisationPoll(params, pollDto, user, { session })
     )
 
     const pollUpdatedEvent = new PollUpdatedEvent({ poll, organisation })
@@ -335,7 +327,7 @@ export const updatePoll = async ({
 
     await EventBus.once(pollUpdatedEvent)
 
-    return pollToDto({ poll, organisation, simulationsInfos, user })
+    return pollToDto({ poll, organisation, user })
   } catch (e) {
     if (isPrismaErrorNotFound(e)) {
       throw new EntityNotFoundException('Poll not found')
@@ -382,9 +374,7 @@ export const fetchPolls = async ({
       prisma
     )
 
-    return polls.map(({ poll, simulationsInfos }) =>
-      pollToDto({ poll, user, simulationsInfos, organisation })
-    )
+    return polls.map(({ poll }) => pollToDto({ poll, user, organisation }))
   } catch (e) {
     if (isPrismaErrorNotFound(e)) {
       throw new EntityNotFoundException('Organisation not found')
@@ -401,12 +391,12 @@ export const fetchPoll = async ({
   user: PartialVerifiedUser
 }) => {
   try {
-    const { poll, organisation, simulationsInfos } = await transaction(
+    const { poll, organisation } = await transaction(
       (session) => fetchOrganisationPoll(params, user, { session }),
       prisma
     )
 
-    return pollToDto({ poll, organisation, simulationsInfos, user })
+    return pollToDto({ poll, organisation, user })
   } catch (e) {
     if (isPrismaErrorNotFound(e)) {
       throw new EntityNotFoundException('Poll not found')
