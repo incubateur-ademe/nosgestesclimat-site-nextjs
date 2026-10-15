@@ -7,7 +7,7 @@ export default async function Layout({
   const user = await getUserSession()
 
   return (
-    <div className="-mt-4">
+    <div>
       <UserSpaceTabs isAuth={user?.isAuth ?? false} />
       {children}
     </div>
