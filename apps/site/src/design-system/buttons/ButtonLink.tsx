@@ -13,9 +13,9 @@ import Loader from '../layout/Loader'
 import type { ButtonColor } from './Button'
 import {
   baseClassNames,
+  getVariantClassNames,
   loaderColorMap,
   sizeClassNames,
-  variantClassNames,
 } from './Button'
 import type { ButtonSize, ButtonVariant } from './buttonStyles'
 import { useButtonState } from './useButtonState'
@@ -88,7 +88,7 @@ export default function ButtonLink({
       title={title}
       aria-disabled={isDisabled}
       className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${variantClassNames[variant][color]}`,
+        `${baseClassNames} ${sizeClassNames[size]} ${getVariantClassNames(variant, color)}`,
         isDisabled && 'cursor-not-allowed opacity-50!',
         className
       )}

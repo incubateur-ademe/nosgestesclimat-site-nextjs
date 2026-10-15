@@ -6,8 +6,8 @@ import Image from 'next/image'
 import type { ElementType, PropsWithChildren, ReactNode } from 'react'
 import {
   baseClassNames,
+  getVariantClassNames,
   sizeClassNames,
-  variantClassNames,
 } from '../../design-system/buttons/Button'
 import type { ButtonVariant } from '../../design-system/buttons/buttonStyles'
 import Card from '../../design-system/layout/Card'
@@ -72,7 +72,7 @@ export default function NewItemCardLink({
           'w-full! text-sm',
           baseClassNames,
           sizeClassNames.md,
-          variantClassNames[variant].primary,
+          getVariantClassNames(variant, 'primary'),
           ctaClassName
         )}>
         {icon}

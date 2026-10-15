@@ -3,8 +3,8 @@ import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   baseClassNames,
+  getVariantClassNames,
   sizeClassNames,
-  variantClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Title from '@/design-system/layout/Title'
 import Link from '@/design-system/links/Link'
@@ -58,7 +58,7 @@ export default function Groups({ groups }: Props) {
                 'block md:hidden',
                 baseClassNames,
                 sizeClassNames.md,
-                variantClassNames.outlined.primary
+                getVariantClassNames('outlined', 'primary')
               )}>
               <PlusIcon className="stroke-primary-700 min-w-8" />
               <Trans i18nKey="mon-espace.groups.create">Créer un groupe</Trans>

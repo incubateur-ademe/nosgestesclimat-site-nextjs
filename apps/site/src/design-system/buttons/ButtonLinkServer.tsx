@@ -4,8 +4,8 @@ import type { LinkProps } from 'next/link'
 import type { HtmlHTMLAttributes, PropsWithChildren } from 'react'
 import {
   baseClassNames,
+  getVariantClassNames,
   sizeClassNames,
-  variantClassNames,
   type ButtonColor,
   type ButtonSize,
   type ButtonVariant,
@@ -38,7 +38,7 @@ export default function ButtonLinkServer({
       href={href}
       title={title}
       className={twMerge(
-        `${baseClassNames} ${sizeClassNames[size]} ${variantClassNames[variant][color]}`,
+        `${baseClassNames} ${sizeClassNames[size]} ${getVariantClassNames(variant, color)}`,
         className
       )}
       target={target}

@@ -6,10 +6,9 @@ export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ButtonColor = 'primary' | 'green' | 'red'
 
-export const variantClassNames: Record<
-  ButtonVariant,
-  Partial<Record<ButtonColor, string>>
-> = {
+type VariantStyles = { primary: string } & Partial<Record<ButtonColor, string>>
+
+const variantClassNames: Record<ButtonVariant, VariantStyles> = {
   filled: {
     primary: cn(
       'text-white bg-primary-700 border-2 border-primary-700 shadow-xs',
@@ -43,6 +42,13 @@ export const variantClassNames: Record<
       'hover:text-primary-700 underline px-1!'
     ),
   },
+}
+
+export function getVariantClassNames(
+  variant: ButtonVariant,
+  color: ButtonColor
+) {
+  return variantClassNames[variant][color] ?? variantClassNames[variant].primary
 }
 
 export const sizeClassNames: Record<ButtonSize, string> = {

@@ -1,6 +1,6 @@
 import {
   baseClassNames,
-  variantClassNames,
+  getVariantClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Loader from '@/design-system/layout/Loader'
 import { twMerge } from 'cn'
@@ -16,7 +16,7 @@ export default function CTAButtonsPlaceholder({
         'my-0 h-14 w-65',
         className,
         baseClassNames,
-        variantClassNames.filled.primary
+        getVariantClassNames('filled', 'primary')
       )}>
       <Loader color="light" />
     </div>

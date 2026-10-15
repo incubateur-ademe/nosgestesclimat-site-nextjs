@@ -3,8 +3,8 @@ import Trans from '@/components/translation/trans/TransServer'
 import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
+  getVariantClassNames,
   sizeClassNames,
-  variantClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Separator from '@/design-system/layout/Separator'
 import Link from '@/design-system/links/Link'
@@ -107,7 +107,7 @@ export default function InstructionsBanner() {
             href={TUTORIAL_PATH}
             className={twMerge(
               baseClassNames,
-              variantClassNames.filled.primary,
+              getVariantClassNames('filled', 'primary'),
               sizeClassNames.md
             )}
             scroll={false}>

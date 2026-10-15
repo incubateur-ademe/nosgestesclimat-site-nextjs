@@ -2,8 +2,8 @@ import Trans from '@/components/translation/trans/TransClient'
 import { END_PAGE_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
+  getVariantClassNames,
   sizeClassNames,
-  variantClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Link from '@/design-system/links/Link'
 import { twMerge } from 'cn'
@@ -13,7 +13,7 @@ export default function SeeDetailLink({ className }: { className?: string }) {
     <Link
       className={twMerge(
         baseClassNames,
-        variantClassNames.outlined.primary,
+        getVariantClassNames('outlined', 'primary'),
         sizeClassNames.md,
         'mt-24 flex gap-2 md:mt-0',
         className

@@ -10,9 +10,9 @@ import {
 import Loader from '../layout/Loader'
 import {
   baseClassNames,
+  getVariantClassNames,
   loaderColorMap,
   sizeClassNames,
-  variantClassNames,
   type ButtonColor,
   type ButtonSize,
   type ButtonVariant,
@@ -35,7 +35,7 @@ export type ButtonProps = {
   showLoadingOnClickWhilePending?: boolean
 } & PropsWithChildren
 
-export { baseClassNames, loaderColorMap, sizeClassNames, variantClassNames }
+export { baseClassNames, getVariantClassNames, loaderColorMap, sizeClassNames }
 export type { ButtonColor }
 
 export default function Button({
@@ -85,7 +85,7 @@ export default function Button({
       className={twMerge(
         baseClassNames,
         sizeClassNames[size],
-        variantClassNames[variant][color],
+        getVariantClassNames(variant, color),
         isDisabled && 'cursor-not-allowed opacity-50!',
         className
       )}
