@@ -6,12 +6,12 @@ import {
   sizeClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Link from '@/design-system/links/Link'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 
 export default function SeeDetailLink({ className }: { className?: string }) {
   return (
     <Link
-      className={twMerge(
+      className={cn(
         baseClassNames,
         getVariantClassNames('outlined', 'primary'),
         sizeClassNames.md,

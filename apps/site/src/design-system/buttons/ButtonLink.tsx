@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import type { LinkProps } from 'next/link'
 import {
   type HtmlHTMLAttributes,
@@ -87,7 +87,7 @@ export default function ButtonLink({
       }}
       title={title}
       aria-disabled={isDisabled}
-      className={twMerge(
+      className={cn(
         `${baseClassNames} ${sizeClassNames[size]} ${getVariantClassNames(variant, color)}`,
         isDisabled && 'cursor-not-allowed opacity-50!',
         className

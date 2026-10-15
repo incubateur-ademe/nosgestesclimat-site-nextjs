@@ -5,7 +5,7 @@ import ShareIcon from '@/components/icons/ShareIcon'
 import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import getIsMobile from 'is-mobile'
 import { type ReactNode, useState } from 'react'
 import Button from '../buttons/Button'
@@ -54,7 +54,7 @@ export default function Share({
       <Button
         variant={variant ?? 'text'}
         size="sm"
-        className={twMerge(
+        className={cn(
           shouldHideTextOnMobile
             ? 'h-10 w-10 p-0! font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!'
             : 'h-10 w-auto min-w-32 gap-1 px-4! py-2! font-medium',
@@ -67,11 +67,11 @@ export default function Share({
         }}
         aria-label={buttonLabel}>
         <ShareIcon
-          className={twMerge('fill-primary-700 mr-[1px] h-[28px] w-[28px]')}
+          className={cn('fill-primary-700 mr-[1px] h-[28px] w-[28px]')}
         />
 
         <span
-          className={twMerge(
+          className={cn(
             shouldHideTextOnMobile ? 'sr-only lg:not-sr-only!' : 'not-sr-only!'
           )}>
           {buttonLabel}

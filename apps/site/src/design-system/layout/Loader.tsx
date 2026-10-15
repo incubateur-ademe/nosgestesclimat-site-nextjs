@@ -1,4 +1,4 @@
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 
 export type LoaderSizes = 'sm' | 'md' | 'lg'
 
@@ -33,7 +33,7 @@ export default function Loader({
         role="status"
         aria-label={ariaLabel}
         aria-live="polite"
-        className={twMerge(
+        className={cn(
           `inline-block animate-spin rounded-[50%] border-solid ${sizesClassNames[size]} ${colorsClassNames[color]} motion-reduce:hidden motion-reduce:animate-none`,
           className
         )}

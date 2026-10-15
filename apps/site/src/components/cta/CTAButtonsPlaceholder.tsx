@@ -3,7 +3,7 @@ import {
   getVariantClassNames,
 } from '@/design-system/buttons/buttonStyles'
 import Loader from '@/design-system/layout/Loader'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 
 export default function CTAButtonsPlaceholder({
   className,
@@ -12,7 +12,7 @@ export default function CTAButtonsPlaceholder({
 }) {
   return (
     <div
-      className={twMerge(
+      className={cn(
         'my-0 h-14 w-65',
         className,
         baseClassNames,

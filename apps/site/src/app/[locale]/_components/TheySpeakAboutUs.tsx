@@ -3,7 +3,7 @@ import Background from '@/components/landing-pages/Background'
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { fetchPartners } from '@/services/cms/fetchPartners'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import Image from 'next/image'
 
 export default async function TheySpeakAboutUs({
@@ -19,7 +19,7 @@ export default async function TheySpeakAboutUs({
 
   return (
     <div
-      className={twMerge(
+      className={cn(
         'relative mb-10 px-4 py-16 md:mb-20 md:py-28 xl:mb-32',
         className
       )}>

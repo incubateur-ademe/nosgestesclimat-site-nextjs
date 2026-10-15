@@ -9,7 +9,7 @@ import {
 import Title from '@/design-system/layout/Title'
 import Link from '@/design-system/links/Link'
 import type { Group } from '@/types/groups'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import GroupContent from './groups/GroupContent'
 
 interface Props {
@@ -54,7 +54,7 @@ export default function Groups({ groups }: Props) {
             {/* Mobile */}
             <Link
               href="/amis/creer"
-              className={twMerge(
+              className={cn(
                 'block md:hidden',
                 baseClassNames,
                 sizeClassNames.md,

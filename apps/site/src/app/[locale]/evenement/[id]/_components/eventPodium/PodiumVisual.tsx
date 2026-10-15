@@ -5,7 +5,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { PodiumItem } from '@nosgestesclimat/core/features/events/types/event-info'
 import type { EventStatus } from '@nosgestesclimat/core/features/events/types/status'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import type { FilterValue } from './EventTabs'
 import ListItem from './ListItem'
 import PodiumBlock from './PodiumBlock'
@@ -74,14 +74,14 @@ export default async function PodiumVisual({
         ) : null}
         {podiumItems.length > 0 && (
           <ol
-            className={twMerge(
+            className={cn(
               'mt-8 mb-12 flex w-full max-w-80 list-none flex-col items-stretch gap-3 md:mx-14 md:min-h-80 md:max-w-none md:flex-1 md:flex-row md:items-end md:justify-center md:gap-0 lg:mx-20',
               className
             )}>
             {podiumItems.map((item, index) => (
               <li
                 key={item.name}
-                className={twMerge(
+                className={cn(
                   'w-full md:flex-1',
                   orderClasses[getRank(index)]
                 )}>
@@ -124,7 +124,7 @@ export default async function PodiumVisual({
             'event.podium.remainingList.ariaLabel',
             'Suite du classement'
           )}
-          className={twMerge(
+          className={cn(
             'border-primary-600 mt-6 list-none overflow-hidden rounded-xl border',
             className
           )}>

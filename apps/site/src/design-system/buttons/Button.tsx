@@ -1,6 +1,6 @@
 'use client'
 
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import {
   type HtmlHTMLAttributes,
   type MouseEventHandler,
@@ -82,7 +82,7 @@ export default function Button({
       title={title}
       form={form}
       id={id}
-      className={twMerge(
+      className={cn(
         baseClassNames,
         sizeClassNames[size],
         getVariantClassNames(variant, color),

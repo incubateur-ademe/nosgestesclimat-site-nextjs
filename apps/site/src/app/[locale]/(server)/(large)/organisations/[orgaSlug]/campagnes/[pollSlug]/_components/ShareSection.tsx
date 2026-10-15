@@ -14,7 +14,7 @@ import {
   UTM_MEDIUM_KEY,
   UTM_SOURCE_KEY,
 } from '@nosgestesclimat/core/features/tracking/utm'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 
@@ -53,7 +53,7 @@ export default function ShareSection({ poll, className, title }: Props) {
   })
 
   return (
-    <section className={twMerge('mt-8', className)}>
+    <section className={cn('mt-8', className)}>
       <div className="flex flex-col items-start">
         <h2 className="mb-4">
           {title ?? (

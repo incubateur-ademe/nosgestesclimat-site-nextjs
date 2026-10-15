@@ -9,7 +9,7 @@ import {
 import Separator from '@/design-system/layout/Separator'
 import Link from '@/design-system/links/Link'
 import Emoji from '@/design-system/utils/Emoji'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 
 export default function InstructionsBanner() {
   return (
@@ -105,7 +105,7 @@ export default function InstructionsBanner() {
         <div>
           <Link
             href={TUTORIAL_PATH}
-            className={twMerge(
+            className={cn(
               baseClassNames,
               getVariantClassNames('filled', 'primary'),
               sizeClassNames.md

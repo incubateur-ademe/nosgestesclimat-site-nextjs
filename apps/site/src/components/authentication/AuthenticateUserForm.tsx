@@ -3,7 +3,7 @@
 import Button from '@/design-system/buttons/Button'
 import type { AuthenticationMode } from '@/types/authentication'
 import type { Intent } from '@nosgestesclimat/core/features/auth/schemas/auth.schema'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import { type ReactNode, useCallback } from 'react'
 import type { ButtonColor } from '../../design-system/buttons/Button'
 import Trans from '../translation/trans/TransClient'
@@ -112,7 +112,7 @@ function AuthenticateUserFormContent({
     case 'authenticated':
       return (
         <div
-          className={twMerge(
+          className={cn(
             'dark:bg-primary-700 mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8 dark:text-white',
             verificationClassName
           )}>

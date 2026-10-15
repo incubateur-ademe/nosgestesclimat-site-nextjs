@@ -12,7 +12,7 @@ import { MUST_SHOW_DESCRIPTION } from '@/publicodes-state/constants/questions'
 import type { QuestionSize } from '@/types/values'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
@@ -55,7 +55,7 @@ export default function Label({
     <>
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
       <label
-        className={twMerge(
+        className={cn(
           `flex ${sizeClassNames[size]} gap-2 font-semibold`,
           className
         )}
@@ -67,7 +67,7 @@ export default function Label({
         onClick={(e) => e.preventDefault()}>
         {headingLevel === 1 ? (
           <h1
-            className={twMerge(
+            className={cn(
               'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
               titleClassName
             )}
@@ -79,7 +79,7 @@ export default function Label({
           </h1>
         ) : headingLevel === 2 ? (
           <h2
-            className={twMerge(
+            className={cn(
               'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
               titleClassName
             )}
@@ -91,7 +91,7 @@ export default function Label({
           </h2>
         ) : (
           <h3
-            className={twMerge(
+            className={cn(
               'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
               titleClassName
             )}

@@ -5,7 +5,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIsClient } from '@/hooks/useIsClient'
 import logger from '@/logger/logger.browser'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import isMobile from 'is-mobile'
 import type { PropsWithChildren, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -136,7 +136,7 @@ export default function CopyButton({
         ref={buttonRef}
         color={color}
         variant={variant}
-        className={twMerge('w-full', className)}
+        className={cn('w-full', className)}
         onClick={handleShareOrCopy}
         aria-label={getButtonAriaLabel()}
         aria-live="polite"

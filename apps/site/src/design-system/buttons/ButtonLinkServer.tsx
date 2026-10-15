@@ -1,5 +1,5 @@
 import Link from '@/design-system/links/Link'
-import { twMerge } from 'cn'
+import { cn } from 'cn'
 import type { LinkProps } from 'next/link'
 import type { HtmlHTMLAttributes, PropsWithChildren } from 'react'
 import {
@@ -37,7 +37,7 @@ export default function ButtonLinkServer({
     <Link
       href={href}
       title={title}
-      className={twMerge(
+      className={cn(
         `${baseClassNames} ${sizeClassNames[size]} ${getVariantClassNames(variant, color)}`,
         className
       )}
