@@ -432,7 +432,7 @@ importers:
         version: 4.19.0(babel-plugin-macros@3.1.0)(typescript@5.9.3)
       sonner:
         specifier: ^2.0.8
-        version: 2.0.8(@types/react@19.2.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 2.0.8(@types/react@19.2.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       swiper:
         specifier: ^12.1.4
         version: 12.1.4
@@ -22767,10 +22767,10 @@ snapshots:
     dependencies:
       atomic-sleep: 1.0.0
 
-  sonner@2.0.8(@types/react@19.2.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  sonner@2.0.8(@types/react@19.2.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
     optionalDependencies:
       '@types/react': 19.2.2
 
