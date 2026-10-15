@@ -56,9 +56,7 @@ interface BaseOrganisationPoll {
   mode: SimulationMode
   organisation: Omit<Organisation, 'polls'> | PublicOrganisation
   simulations: {
-    count: number
     finished: number
-    cooldownSeconds: number
   }
   /**
    * computedResults de toutes les simulations (somme)

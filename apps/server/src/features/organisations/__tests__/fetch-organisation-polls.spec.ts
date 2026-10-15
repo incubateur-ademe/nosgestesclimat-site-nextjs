@@ -137,6 +137,22 @@ describe('Given a NGC user', () => {
               expect(response.body).toEqual([poll])
             })
           })
+
+          describe('And the poll carries a stored participation count', () => {
+            test(`Then it returns the stored count without counting the participations itself`, async () => {
+              await prisma.poll.update({
+                where: { id: poll.id },
+                data: { participantsCount: 42 },
+              })
+
+              const response = await agent
+                .get(url.replace(':organisationIdOrSlug', organisationId))
+                .set(authHeaders({ userId, email }))
+                .expect(StatusCodes.OK)
+
+              expect(response.body[0].simulations).toEqual({ finished: 42 })
+            })
+          })
         })
       })
 
