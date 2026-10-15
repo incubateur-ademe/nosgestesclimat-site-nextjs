@@ -1,5 +1,4 @@
 import ActionTracker from '@/components/actions/ActionTracker'
-import BetaBanner from '@/components/actions/BetaBanner'
 import ThemeSection from '@/components/actions/ThemeSection'
 import type { ActionFrom } from '@/components/actions/types/actions'
 import Trans from '@/components/translation/trans/TransServer'
@@ -131,7 +130,6 @@ export default async function ActionPage({ params, searchParams }: Props) {
 
   return (
     <div className="pt-2">
-      <BetaBanner />
       <ActionTracker eventName="consulted" action={action} />
       <GoBackLink
         href={
