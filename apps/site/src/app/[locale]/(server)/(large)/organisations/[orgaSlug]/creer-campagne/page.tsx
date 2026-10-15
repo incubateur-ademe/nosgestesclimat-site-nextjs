@@ -25,7 +25,7 @@ export async function generateMetadata({
 export default async function CreatePollPage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]/creer-campagne'>) {
-  const { orgaSlug, locale } = await params
+  const { orgaSlug } = await params
   const { organisation } = await organisationAdminGuard(orgaSlug)
   return (
     <div className="mt-4 mb-16 md:mt-8">
@@ -38,7 +38,7 @@ export default async function CreatePollPage({
       <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
         <Title
           title={
-            <Trans i18nKey="collectiveTest.title" locale={locale}>
+            <Trans i18nKey="collectiveTest.title">
               Choisissez un nom pour votre test collectif
             </Trans>
           }
@@ -46,14 +46,14 @@ export default async function CreatePollPage({
         />
 
         <p className="mb-2">
-          <Trans locale={locale} i18nKey="collectiveTest.text1">
+          <Trans i18nKey="collectiveTest.text1">
             Créez un lien personnalisé{' '}
             <strong>à partager dans votre organisation</strong>.
           </Trans>
         </p>
 
         <p className="mb-8">
-          <Trans locale={locale} i18nKey="collectiveTest.text2">
+          <Trans i18nKey="collectiveTest.text2">
             Les participants passent le test <strong>anonymement</strong> et
             vous accédez à une <strong>synthèse des résultats</strong>.
           </Trans>
