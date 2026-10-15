@@ -311,34 +311,6 @@ export const fetchUserOrganisation = (
 
 const findUniquePollSlug = findModelUniqueSlug('poll')
 
-type SimulationsInfo = {
-  count: number
-  finished: number
-}
-
-const fetchPollSimulationsInfo = async (
-  { poll: { id } }: { poll: { id: string } },
-  { session }: { session: Session }
-): Promise<SimulationsInfo> => {
-  const [count, finished] = await Promise.all([
-    session.simulationPoll.count({
-      where: {
-        pollId: id,
-      },
-    }),
-    session.simulationPoll.count({
-      where: {
-        pollId: id,
-        simulation: {
-          progression: 1,
-        },
-      },
-    }),
-  ])
-
-  return { count, finished }
-}
-
 const sanitizePollComputedResults = <T extends { computedResults: JsonValue }>({
   computedResults: rawComputedResults,
   ...poll
@@ -406,11 +378,8 @@ export const createOrganisationPoll = async (
     },
   })
 
-  const simulationsInfos = await fetchPollSimulationsInfo({ poll }, { session })
-
   return {
     poll: sanitizePollComputedResults(poll),
-    simulationsInfos,
     organisation,
   }
 }
@@ -493,11 +462,8 @@ export const updateOrganisationPoll = async (
     },
   })
 
-  const simulationsInfos = await fetchPollSimulationsInfo({ poll }, { session })
-
   return {
     poll: sanitizePollComputedResults(poll),
-    simulationsInfos,
     organisation,
   }
 }
@@ -539,12 +505,7 @@ export const fetchOrganisationPolls = async (
 
   return {
     organisation,
-    polls: await Promise.all(
-      polls.map(async (poll) => ({
-        poll: sanitizePollComputedResults(poll),
-        simulationsInfos: await fetchPollSimulationsInfo({ poll }, { session }),
-      }))
-    ),
+    polls: polls.map((poll) => ({ poll: sanitizePollComputedResults(poll) })),
   }
 }
 
@@ -567,10 +528,7 @@ export const fetchOrganisationPoll = async (
     { session }
   )
 
-  const simulationsInfos = await fetchPollSimulationsInfo({ poll }, { session })
-
   return {
-    simulationsInfos,
     organisation,
     poll: sanitizePollComputedResults(poll),
   }
