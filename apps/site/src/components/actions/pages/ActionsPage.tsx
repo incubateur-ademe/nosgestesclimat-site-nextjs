@@ -1,16 +1,15 @@
-import Separator from '@/design-system/layout/Separator'
 import type { Theme } from '@/types/themes'
 import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
-import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
-import { cn } from 'cn'
+import type {
+  ActionPlan,
+  MaybePersonalizedAction,
+} from '@nosgestesclimat/core/features/actions/types/action'
 import Trans from '../../translation/trans/TransServer'
-import ActionsPageHeaderSwitch from '../ActionsPageHeaderSwitch'
-import BetaBanner from '../BetaBanner'
+import ActionPlanLinks from '../ActionPlanLinks'
+import ActionsBasket from '../ActionsBasket'
 import HighestImpactActionsSection from '../HighestImpactActionsSection'
-import HighestImpactActionsSectionDarkBackground from '../HighestImpactActionsSectionDarkBackground'
-import HighestImpactActionsSectionSwitch from '../HighestImpactActionsSectionSwitch'
-import HighestImpactActionsSectionWhiteBackground from '../HighestImpactActionsSectionWhiteBackground'
 import ThemeSection from '../ThemeSection'
+import type { ActionFrom } from '../types/actions'
 
 interface ActionsPageProps extends Omit<
   React.ComponentPropsWithoutRef<'div'>,
@@ -18,23 +17,26 @@ interface ActionsPageProps extends Omit<
 > {
   title: React.ReactNode
   description: React.ReactNode
+  otherActionsTitle?: React.ReactNode
+  withOtherActionsDescription?: boolean
   cta?: React.ReactNode
   topActions?: MaybePersonalizedAction[]
   themes: Theme[]
   actions: MaybePersonalizedAction[]
   assessmentStatus?: AssessmentStatus | null
-  from?: 'fin' | 'mon-espace' | 'index'
+  from?: ActionFrom
   /**
    * Total carbon footprint in kg of the user's latest simulation.
    */
   totalFootprint?: number
-  textOverrides?: { highestImpactSectionDescription?: React.ReactNode }
+  plan?: ActionPlan | null
 }
 
 export default function ActionsPage({
   title,
   description,
-  cta,
+  otherActionsTitle,
+  withOtherActionsDescription = true,
   topActions,
   actions,
   themes,
@@ -42,131 +44,85 @@ export default function ActionsPage({
   assessmentStatus,
   from,
   totalFootprint,
-  textOverrides,
+  plan,
   ...props
 }: ActionsPageProps) {
   const actionsByTheme = Object.groupBy(actions, (action) => action.theme.key)
 
-  // Both test layouts share everything that sits between the highlighted
-  // actions and the per-theme sections.
-  const testVariantsTrailingContent = (
-    <>
-      {cta && (
-        <>
-          <Separator variant="full" className="my-10 hidden md:block" />
-          {cta}
-          <Separator variant="full" className="my-10 hidden md:block" />
-        </>
-      )}
-
-      <h2 className="mb-0 text-2xl/normal font-bold md:text-3xl/normal">
-        <Trans i18nKey="actions.components.themeSections.testWhiteBackground.title">
-          Voici d’autres actions qui vous aideront à réduire votre empreinte
-        </Trans>
-      </h2>
-      <p className="mb-4 text-lg/normal md:mb-8">
-        <Trans i18nKey="actions.components.themeSections.testWhiteBackground.description">
-          À impact variable : des gestes à fort impact aux petit pas.
-        </Trans>
-      </p>
-    </>
-  )
-
   return (
     <>
-      <BetaBanner />
+      {plan && <ActionPlanLinks plan={plan} className="mb-8" />}
 
-      <div {...props} className={cn('pb-24', className)}>
-        <ActionsPageHeaderSwitch
-          title={title}
-          control={
-            <div className="mb-10">
-              <h1 className="mb-2 text-2xl/normal md:text-4xl/normal">
-                {title}
-              </h1>
-              <p className="text-base/normal text-slate-500 md:text-lg/normal">
-                {description}
-              </p>
-            </div>
-          }
-        />
+      <div>
+        <h1 className="mb-0 text-2xl/normal font-medium md:text-4xl/normal">
+          {title}
+        </h1>
+        <p className="w-190 max-w-full text-base/normal md:text-lg/normal">
+          {description}
+        </p>
+      </div>
 
-        {topActions && topActions.length > 0 && (
-          <HighestImpactActionsSectionSwitch
-            control={
-              <>
-                <HighestImpactActionsSection
-                  actions={topActions}
-                  className="mb-10"
-                  assessmentStatus={assessmentStatus}
-                  from={from}
-                  textOverrides={
-                    textOverrides?.highestImpactSectionDescription
-                      ? {
-                          description:
-                            textOverrides.highestImpactSectionDescription,
-                        }
-                      : undefined
-                  }
-                />
-                <Separator variant="full" className="my-10 hidden md:block" />
+      <div className="relative flex items-start gap-10">
+        <div
+          {...props}
+          className={twMerge(
+            'mt-8 w-full pb-24',
+            plan && 'lg:w-[calc(100%-(320px+40px))]',
+            className
+          )}>
+          {topActions && topActions.length > 0 && (
+            <HighestImpactActionsSection
+              actions={topActions}
+              className="mb-8 md:mb-12"
+              from={from}
+              actionCatalogueContext={{
+                totalFootprint,
+                assessmentStatus,
+              }}
+            />
+          )}
 
-                {cta && (
-                  <>
-                    {cta}
-                    <Separator
-                      variant="full"
-                      className="my-10 hidden md:block"
-                    />
-                  </>
-                )}
-              </>
-            }
-            testWhiteBackground={
-              <>
-                <HighestImpactActionsSectionWhiteBackground
-                  actions={topActions}
-                  className={cta ? 'mb-10' : 'mb-8 md:mb-12'}
-                  assessmentStatus={assessmentStatus}
-                  from={from}
-                  totalFootprint={totalFootprint}
-                />
-                {testVariantsTrailingContent}
-              </>
-            }
-            testDarkBackground={
-              <>
-                <HighestImpactActionsSectionDarkBackground
-                  actions={topActions}
-                  className={cta ? 'mb-10' : 'mb-8 md:mb-12'}
-                  assessmentStatus={assessmentStatus}
-                  from={from}
-                  totalFootprint={totalFootprint}
-                />
-                {testVariantsTrailingContent}
-              </>
-            }
+          <h2 className="mb-0 text-2xl/normal font-bold md:text-3xl/normal">
+            {otherActionsTitle ?? (
+              <Trans i18nKey="actions.components.themeSections.testWhiteBackground.title">
+                Voici d’autres actions qui vous aideront à réduire votre
+                empreinte
+              </Trans>
+            )}
+          </h2>
+          <p className="mb-4 text-lg/normal md:mb-8">
+            {withOtherActionsDescription && (
+              <Trans i18nKey="actions.components.themeSections.testWhiteBackground.description">
+                À impact variable : des gestes à fort impact aux petit pas.
+              </Trans>
+            )}
+          </p>
+
+          <div className="relative flex max-w-full flex-col gap-5 md:gap-10">
+            {themes
+              .filter((theme) => {
+                const actions = actionsByTheme[theme.key]
+                return actions && actions.length > 0
+              })
+              .map((theme) => {
+                return (
+                  <ThemeSection
+                    key={theme.id}
+                    theme={theme}
+                    actions={actionsByTheme[theme.key] ?? []}
+                    from={from}
+                  />
+                )
+              })}
+          </div>
+        </div>
+        {plan && assessmentStatus && (
+          <ActionsBasket
+            actions={actions}
+            plan={plan}
+            assessmentStatus={assessmentStatus}
           />
         )}
-
-        <div className="relative flex flex-col gap-5 md:gap-10">
-          {themes
-            .filter((theme) => {
-              const actions = actionsByTheme[theme.key]
-              return actions && actions.length > 0
-            })
-            .map((theme) => {
-              return (
-                <ThemeSection
-                  key={theme.id}
-                  theme={theme}
-                  assessmentStatus={assessmentStatus}
-                  actions={actionsByTheme[theme.key] ?? []}
-                  from={from}
-                />
-              )
-            })}
-        </div>
       </div>
     </>
   )

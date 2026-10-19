@@ -1,4 +1,4 @@
-import { END_PAGE_ACTIONS_PATH } from '@/constants/urls/paths'
+import { ACTIONS_SUGGESTED_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { titleSizesClassNames } from '@/design-system/layout/Title'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
@@ -64,7 +64,7 @@ export default async function FootprintBlock({
             </Trans>
           </p>
 
-          <ButtonLink href={END_PAGE_ACTIONS_PATH}>
+          <ButtonLink href={ACTIONS_SUGGESTED_PATH}>
             <Trans i18nKey="results.footprintBlock.actionsBlock.link">
               Découvrir mes actions
             </Trans>

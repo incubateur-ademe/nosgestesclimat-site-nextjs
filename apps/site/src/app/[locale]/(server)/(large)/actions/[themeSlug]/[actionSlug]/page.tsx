@@ -1,13 +1,13 @@
 import ActionTracker from '@/components/actions/ActionTracker'
-import BetaBanner from '@/components/actions/BetaBanner'
 import ThemeSection from '@/components/actions/ThemeSection'
+import type { ActionFrom } from '@/components/actions/types/actions'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import {
   ACTION_DETAIL_PATH,
+  ACTIONS_MY_PLAN_PATH,
   ACTIONS_PATH,
-  END_PAGE_ACTIONS_PATH,
-  MON_ESPACE_ACTIONS_PATH,
+  ACTIONS_SUGGESTED_PATH,
 } from '@/constants/urls/paths'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Emoji from '@/design-system/utils/Emoji'
@@ -19,13 +19,13 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
 import { getActionAlternateLocales } from '@/services/actions/get-action-alternate-locales'
 import { getPersonalizedActionDetails } from '@/services/actions/get-personalized-action-details'
-import { getUserSession } from '@/services/auth/get-user-session'
 import type { DefaultPageProps } from '@/types'
 import type { Theme } from '@/types/themes'
 import { toSearchParams } from '@/utils/nextjs/toSearchParams'
 import { cn } from 'cn'
 import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
+import { ActionCommitmentBanner } from './_components/ActionCommitmentBanner'
 import { ActionMedia } from './_components/ActionMedia'
 import { Section, SectionTitle } from './_components/Section'
 
@@ -34,25 +34,24 @@ const SECTION_ID_I_ACT = 'j-agis'
 const SECTION_ID_I_BENEFIT = 'j-y-gagne'
 const SECTION_ID_FURTHER_READING = 'a-decouvrir-aussi'
 
-const FROM_PATH_MAP: Record<'fin' | 'mon-espace' | 'index', string> = {
-  fin: END_PAGE_ACTIONS_PATH,
-  'mon-espace': MON_ESPACE_ACTIONS_PATH,
+const FROM_PATH_MAP: Record<ActionFrom, string> = {
+  'mes-suggestions': ACTIONS_SUGGESTED_PATH,
   index: ACTIONS_PATH,
+  'mon-plan': ACTIONS_MY_PLAN_PATH,
 }
 
 type Props = DefaultPageProps<{
   params: { themeSlug: string; actionSlug: string }
-  searchParams: { from?: 'fin' | 'mon-espace' | 'index' }
+  searchParams: { from?: ActionFrom }
 }>
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props
   const { locale, actionSlug } = await params
 
-  const user = await getUserSession()
   const { t } = await getServerTranslation()
   const [actionDetails, alternateLocales] = await Promise.all([
-    getPersonalizedActionDetails(actionSlug, locale, user?.id),
+    getPersonalizedActionDetails(actionSlug, locale),
     getActionAlternateLocales(actionSlug),
   ])
 
@@ -90,9 +89,8 @@ export default async function ActionPage({ params, searchParams }: Props) {
   const { locale, themeSlug, actionSlug } = await params
   const resolvedSearchParams = await searchParams
   const from = resolvedSearchParams?.from
-  const user = await getUserSession()
   const [actionDetails, alternateLocales] = await Promise.all([
-    getPersonalizedActionDetails(actionSlug, locale, user?.id),
+    getPersonalizedActionDetails(actionSlug, locale),
     getActionAlternateLocales(actionSlug),
   ])
 
@@ -132,7 +130,6 @@ export default async function ActionPage({ params, searchParams }: Props) {
 
   return (
     <div className="pt-2">
-      <BetaBanner />
       <ActionTracker eventName="consulted" action={action} />
       <GoBackLink
         href={
@@ -181,6 +178,8 @@ export default async function ActionPage({ params, searchParams }: Props) {
           </div>
         ) : null}
       </header>
+
+      <ActionCommitmentBanner action={action} />
 
       <div className="mb-10 grid gap-10 md:grid-cols-2 [&>*:last-child:nth-child(even)]:col-span-full">
         <Section

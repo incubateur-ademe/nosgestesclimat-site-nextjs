@@ -48,19 +48,8 @@ export default async function PublicActionsCatalogue({
         actions={actionsCatalogue.actions}
         themes={themes}
         from="index"
-        textOverrides={{
-          highestImpactSectionDescription: (
-            <Trans
-              i18nKey="actions.components.highestImpactActionsSection.publicDescription">
-              Le top 3 des actions qui permettent de limiter ou réduire ses
-              émissions de CO<sub>2</sub>
-            </Trans>
-          ),
-        }}
       />
-      <CallToAction
-        className="-mt-10 mb-20 border-slate-200 md:border-t md:border-b md:py-10"
-      />
+      <CallToAction className="-mt-10 mb-20 border-slate-200 md:border-t md:border-b md:py-10" />
     </>
   )
 }

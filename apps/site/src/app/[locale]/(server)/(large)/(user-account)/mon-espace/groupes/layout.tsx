@@ -1,6 +1,5 @@
+import UserSpaceTabs from '@/components/layout/UserSpaceTabs'
 import Trans from '@/components/translation/trans/TransServer'
-import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
-import ProfileTab from '../_components/ProfileTabs'
 
 /*global LayoutProps*/
 
@@ -13,7 +12,7 @@ export default function MonEspaceGroupesPage({
         <Trans i18nKey="mon-espace.groups.title">Tests collections</Trans>
       </h1>
 
-      <ProfileTab activePath={MON_ESPACE_GROUPS_PATH} />
+      <UserSpaceTabs isAuth activeTabId="groups" />
       {children}
     </div>
   )

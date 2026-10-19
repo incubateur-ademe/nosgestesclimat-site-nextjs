@@ -20,6 +20,7 @@ interface Props {
   title?: string
   target?: string
   prefetch?: LinkProps['prefetch']
+  disabled?: boolean
 }
 
 export default function ButtonLinkServer({
@@ -31,8 +32,24 @@ export default function ButtonLinkServer({
   variant = 'filled',
   title,
   target = '_self',
+  disabled,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
+  const classNames = twMerge(
+    `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+    disabled && 'cursor-not-allowed opacity-50!',
+    className
+  )
+
+  // An anchor without href is neither focusable nor clickable
+  if (disabled) {
+    return (
+      <a aria-disabled title={title} className={classNames} {...props}>
+        {children}
+      </a>
+    )
+  }
+
   return (
     <Link
       href={href}

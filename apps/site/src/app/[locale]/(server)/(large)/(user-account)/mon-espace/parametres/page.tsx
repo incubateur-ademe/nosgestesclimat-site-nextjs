@@ -1,6 +1,6 @@
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
+import UserSpaceTabs from '@/components/layout/UserSpaceTabs'
 import Trans from '@/components/translation/trans/TransServer'
-import { MON_ESPACE_SETTINGS_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { buildAlternates } from '@/helpers/metadata/getMetadataObject'
 import { throwNextError } from '@/helpers/server/error'
@@ -13,7 +13,6 @@ import { requireAuthUser } from '@/services/auth/require-auth-user'
 import { getRegion, setRegion } from '@/services/users/region'
 import type { DefaultPageProps } from '@/types'
 import type { Metadata } from 'next'
-import ProfileTab from '../_components/ProfileTabs'
 import Localisation from './_components/Localisation'
 import NewsletterSettings from './_components/NewsletterSettings'
 import UserEmail from './_components/UserEmail'
@@ -50,7 +49,7 @@ export default async function SettingsPage({ params }: DefaultPageProps) {
 
   return (
     <div className="flex flex-col">
-      <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} />
+      <UserSpaceTabs isAuth activeTabId="settings" />
 
       <div className="mb-6 flex w-full items-start justify-between">
         <Title

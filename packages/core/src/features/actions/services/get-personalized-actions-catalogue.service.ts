@@ -1,8 +1,9 @@
 import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
 import { findLastFinishedSimulationByUserId } from '../../simulation-computation/repositories/simulation-computations.repository.ts'
 import type { SimulationComputationStatus } from '../../simulation-computation/types/computation.ts'
+import { buildActionPlan } from '../helpers/action-plan.ts'
 import { findAllVisiblePersonalizedActions } from '../repositories/actions.repository.ts'
-import type { PersonalizedAction } from '../types/action.ts'
+import type { ActionPlan, PersonalizedAction } from '../types/action.ts'
 
 /**
  * Assessment state of the user's latest finished simulation:
@@ -11,9 +12,7 @@ import type { PersonalizedAction } from '../types/action.ts'
  *   predating the computation feature) — it will never be computed
  * - `null` when the user has no finished simulation
  */
-export type AssessmentStatus =
-  | SimulationComputationStatus
-  | 'never-assessed'
+export type AssessmentStatus = SimulationComputationStatus | 'never-assessed'
 
 export const getPersonalizedActionsCatalogue = async (
   userId: string | undefined,
@@ -22,20 +21,18 @@ export const getPersonalizedActionsCatalogue = async (
   assessmentStatus: AssessmentStatus | null
   actions: PersonalizedAction[]
   topActions: PersonalizedAction[]
+  plan: ActionPlan | null
 }> => {
   // Status and assessments must come from the same simulation, otherwise a
   // completed computation from an older simulation filters actions assessed
   // for another one, emptying the catalogue.
-  const lastFinished = await findLastFinishedSimulationByUserId(
-    userId
-  )
-  const personalizedActions = await findAllVisiblePersonalizedActions(
-    lastFinished?.simulationId,
+  const lastFinished = await findLastFinishedSimulationByUserId(userId)
+  const personalizedActions = await findAllVisiblePersonalizedActions({
+    simulationId: lastFinished?.simulationId,
+    userId,
     locale,
-    {
-      fallbackToDefaultLocale: true,
-    }
-  )
+    fallbackToDefaultLocale: true,
+  })
 
   // No finished simulation -> all actions without assessments
   // Simulation whose model was never computed -> all actions without assessments
@@ -52,6 +49,10 @@ export const getPersonalizedActionsCatalogue = async (
           )
       : personalizedActions
 
+  const committedActions = actions.filter(
+    (action) => action.choice?.type === 'committed'
+  )
+
   return {
     assessmentStatus:
       lastFinished === undefined
@@ -61,5 +62,6 @@ export const getPersonalizedActionsCatalogue = async (
     topActions: actions
       .filter((action) => typeof action.assessment?.impact === 'number')
       .slice(0, 3),
+    plan: buildActionPlan(committedActions),
   }
 }
