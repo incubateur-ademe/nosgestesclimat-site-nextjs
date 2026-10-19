@@ -13,6 +13,10 @@ import type { ISOSupportedLanguage } from '../../geo/types/language.ts'
 import { findManyGroupsBySimulationId } from '../../groups/repositories/group.repository.ts'
 import type { Group } from '../../groups/types/group.ts'
 import type { Logger } from '../../logger/index.ts'
+import {
+  parseModelString,
+  serializeModelString,
+} from '../../models/helpers/model-versions.ts'
 import { findManyPollSummariesBySimulationId } from '../../polls/repositories/poll.repository.ts'
 import { enqueuePollStatsComputation } from '../../polls/stats/services/enqueue-poll-stats-computation.ts'
 import type { PollSummary } from '../../polls/types/poll.ts'
@@ -34,7 +38,6 @@ import {
   ZeroFootprintError,
 } from '../errors/simulations.error.ts'
 import { isSimulationCompleted } from '../helpers/simulation-guards.ts'
-import { parseModelString, serializeModelString } from '../../models/model-versions.ts'
 import {
   findSimulationById,
   updateSimulation,

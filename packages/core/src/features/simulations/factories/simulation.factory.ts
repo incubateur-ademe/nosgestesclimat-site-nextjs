@@ -3,20 +3,18 @@ import pkg from '@incubateur-ademe/nosgestesclimat/package.json' with { type: 'j
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' with { type: 'json' }
 import { Factory } from 'fishery'
 import { prisma } from '../../../prisma/client.ts'
+import type { Prisma } from '../../../prisma/generated/client.ts'
 import { serializeModelString } from '../../models/helpers/model-versions.ts'
 import type {
   Model,
   ModelLocale,
   ModelRegion,
 } from '../../models/types/model.ts'
-
-interface SimulationFixture {
-  id: string
-  userId: string | null
-  progression: number
-  createdAt: Date
-  model: Model
-}
+import type { Simulation } from '../types/simulation.ts'
+import {
+  computedResultsFactory,
+  deprecatedComputedResults,
+} from './computed-results.factory.ts'
 
 interface SimulationTransientParams {
   progression?: number
@@ -26,9 +24,9 @@ interface SimulationTransientParams {
 }
 
 class SimulationFactory extends Factory<
-  SimulationFixture,
+  Simulation,
   SimulationTransientParams,
-  SimulationFixture
+  Simulation
 > {
   withProgression(progression: number) {
     return this.params({ progression })
@@ -41,6 +39,23 @@ class SimulationFactory extends Factory<
   }
   withModelLocale(lang: ModelLocale) {
     return this.transient({ modelLocale: lang })
+  }
+  withDeprecatedComputedResults() {
+    return this.params({ computedResults: deprecatedComputedResults })
+  }
+  withValidComputedResults() {
+    return this.params({
+      computedResults: computedResultsFactory.valid().build(),
+    })
+  }
+
+  withPollId(pollId: string, { createdAt }: { createdAt?: Date } = {}) {
+    return this.afterCreate(async (data) => {
+      await prisma.simulationPoll.create({
+        data: { pollId, simulationId: data.id, createdAt },
+      })
+      return data
+    })
   }
 
   started() {
@@ -100,14 +115,16 @@ export const simulationFactory = SimulationFactory.define(
       await prisma.simulation.create({
         data: {
           id: data.id,
-          date: new Date(),
+          date: data.date,
           progression: data.progression,
           model: serializeModelString(data.model),
-          computedResults: {},
-          situation: {},
-          actionChoices: {},
+          computedResults:
+            data.computedResults as unknown as Prisma.InputJsonValue,
+          situation: data.situation as unknown as Prisma.InputJsonValue,
+          foldedSteps: data.foldedSteps as unknown as Prisma.InputJsonValue[],
           userId: data.userId,
           createdAt: data.createdAt,
+          updatedAt: data.updatedAt,
         },
       })
       return data
@@ -117,7 +134,9 @@ export const simulationFactory = SimulationFactory.define(
       id: faker.string.uuid(),
       userId: null,
       progression: faker.number.float({ min: 0, max: 1 }),
+      date: new Date(),
       createdAt: new Date(),
+      updatedAt: new Date(),
       model: {
         region:
           transientParams.modelRegion ??
@@ -129,6 +148,9 @@ export const simulationFactory = SimulationFactory.define(
           publishedTag: pkg.version,
         },
       },
+      situation: {},
+      foldedSteps: [],
+      computedResults: computedResultsFactory.build(),
     }
   }
 )

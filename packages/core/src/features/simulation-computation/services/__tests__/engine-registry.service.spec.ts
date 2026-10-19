@@ -1,15 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { failure, success } from '../../../../lib/result.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
 import { ModelFileFetchFailedError } from '../../../models/exceptions/errors.ts'
 import { CURRENT_MODEL_VERSION } from '../../../models/helpers/model-versions.ts'
 import type { Model, ModelRegion } from '../../../models/types/model.ts'
 
-const noopLogger = {
-  error: () => {},
-  warn: () => {},
-  info: () => {},
-  debug: () => {},
-}
+const noopLogger = createTestLogger()
 
 // A rule set small enough to keep the tests instant - the point of these is
 // the cache behaviour, not what publicodes makes of the rules.
@@ -176,12 +172,7 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_CACHE_MAX_SIZE = '2'
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const logger = {
-      error: vi.fn(),
-      warn: vi.fn(),
-      info: vi.fn(),
-      debug: vi.fn(),
-    }
+    const logger = createTestLogger()
     const getEngine = createGetEngineForModel({
       logger,
       getModelRules: stubGetModelRules,
@@ -286,12 +277,7 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_HOT_KEYS = 'FR:current'
     const { createWarmUpHotEngines } =
       await import('../engine-registry.service.ts')
-    const logger = {
-      error: vi.fn(),
-      warn: vi.fn(),
-      info: vi.fn(),
-      debug: vi.fn(),
-    }
+    const logger = createTestLogger()
 
     await createWarmUpHotEngines({ logger, getModelRules: stubGetModelRules })()
 
@@ -310,12 +296,7 @@ describe('engine-registry.service', () => {
     process.env.ENGINE_CACHE_MAX_SIZE = '5'
     const { createWarmUpHotEngines, createGetEngineForModel } =
       await import('../engine-registry.service.ts')
-    const logger = {
-      error: vi.fn(),
-      warn: vi.fn(),
-      info: vi.fn(),
-      debug: vi.fn(),
-    }
+    const logger = createTestLogger()
 
     await createWarmUpHotEngines({ logger, getModelRules: stubGetModelRules })()
     const getEngine = createGetEngineForModel({

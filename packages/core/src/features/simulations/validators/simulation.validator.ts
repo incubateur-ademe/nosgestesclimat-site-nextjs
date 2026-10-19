@@ -1,4 +1,4 @@
-import { parseModelString } from '../../models/model-versions.ts'
+import { parseModelString } from '../../models/helpers/model-versions.ts'
 import {
   hasValidComputedResults,
   type ComputedResults,

@@ -32,11 +32,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 const getModelRules = createGetModelRules({})
 const warmUpHotEngines = createWarmUpHotEngines({ logger, getModelRules })
 const getEngineForModel = createGetEngineForModel({ logger, getModelRules })
-const assessActions = createAssessActions({
-  logger,
-  // TODO: Setup Sentry in worker
-  captureException() {},
-})
+const assessActions = createAssessActions({ logger })
 const processNextPendingComputation = createProcessNextPendingComputation({
   assessActions,
 })

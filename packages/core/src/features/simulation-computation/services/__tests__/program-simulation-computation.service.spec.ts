@@ -1,11 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
-import { SimulationNotFound } from '../../../simulations/exceptions/simulations.exception.ts'
+import { createTestLogger } from '../../../../test-utils/logger.ts'
+import { SimulationNotFoundError } from '../../../simulations/errors/simulations.error.ts'
+import { simulationFactory } from '../../../simulations/factories/simulation.factory.ts'
 import {
-  ComputationAlreadyExistsException,
-  SimulationNotFinishedException,
-} from '../../exceptions/simulation-computation.exception.ts'
-import { simulationFactory } from '../../factories/simulation.factory.ts'
+  ComputationAlreadyExistsError,
+  SimulationNotFinishedError,
+} from '../../errors/simulation-computation.error.ts'
 import type * as SimulationComputationRepository from '../../repositories/simulation-computations.repository.ts'
 import {
   createSimulationComputation,
@@ -31,7 +32,7 @@ vi.mock(
   }
 )
 
-const logger = { error: vi.fn(), warn: vi.fn(), info: vi.fn(), debug: vi.fn() }
+const logger = createTestLogger()
 const programSimulationComputation = createProgramSimulationComputation({
   logger,
 })
@@ -44,20 +45,20 @@ describe('programSimulationComputation', () => {
   })
 
   it.each([0.5, 0])(
-    'throws SimulationNotFinished when progression is %s',
+    'throws SimulationNotFinishedError when progression is %s',
     async (progression) => {
       const { id } = await simulationFactory.params({ progression }).create()
 
       await expect(programSimulationComputation(id)).rejects.toThrow(
-        SimulationNotFinishedException
+        SimulationNotFinishedError
       )
     }
   )
 
-  it('throws SimulationNotFound when the simulation does not exist', async () => {
+  it('throws SimulationNotFoundError when the simulation does not exist', async () => {
     await expect(
       programSimulationComputation(crypto.randomUUID())
-    ).rejects.toThrow(SimulationNotFound)
+    ).rejects.toThrow(SimulationNotFoundError)
   })
 
   it.each([
@@ -99,12 +100,14 @@ describe('programSimulationComputation', () => {
     }
   )
 
-  it('rejects with ComputationAlreadyExistsException when called twice for the same finished simulation', async () => {
+  it('logs a warning when a computation already exists for the same finished simulation', async () => {
     const { id } = await simulationFactory.completed().create()
 
     await programSimulationComputation(id)
-    await expect(programSimulationComputation(id)).rejects.toThrow(
-      ComputationAlreadyExistsException
+    await programSimulationComputation(id)
+
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.any(ComputationAlreadyExistsError)
     )
   })
 

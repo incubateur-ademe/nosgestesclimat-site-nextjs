@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Situation } from 'publicodes'
-import { parseModelString } from '../../models/model-versions.ts'
+import { parseModelString } from '../../models/helpers/model-versions.ts'
 import { createManySimulations } from '../repository/simulation.repository.ts'
 import type { ComputedResults } from '../validators/computed-results.schema.ts'
 

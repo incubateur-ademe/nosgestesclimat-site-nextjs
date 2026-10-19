@@ -1,5 +1,5 @@
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' with { type: 'json' }
-import type { Model, ModelRegion } from '../../models/model.ts'
+import type { Model, ModelRegion } from '../../models/types/model.ts'
 
 const SUPPORTED_REGIONS = new Set(
   Object.keys(supportedRegions) as ModelRegion[]
