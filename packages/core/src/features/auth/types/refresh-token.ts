@@ -6,7 +6,9 @@ export interface CreateRefreshTokenData {
   createdAt?: Date
 }
 
-export interface DeletedToken {
+/** The row a rotation rewrote. */
+export interface RotatedToken {
   id: string
   userId: string
+  rotatedAt: Date
 }
