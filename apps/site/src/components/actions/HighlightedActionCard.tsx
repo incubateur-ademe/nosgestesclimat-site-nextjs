@@ -1,80 +1,40 @@
-import { ACTION_DETAIL_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import Link from '@/design-system/links/Link'
-import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import { getLocale } from '@/helpers/getLocale'
-import { getLocalizedPath } from '@/helpers/language/getLocalizedPath'
-import { LOCALE_EN_KEY, LOCALE_FR_KEY, type Locale } from '@/i18nConfig'
-import type { Theme } from '@/types/themes'
-import type { AssessmentStatus } from '@nosgestesclimat/core/features/actions/services/get-personalized-actions-catalogue.service'
+import { getActionHref } from '@/helpers/actions/getActionHref'
 import type { MaybePersonalizedAction } from '@nosgestesclimat/core/features/actions/types/action'
 import { twMerge } from 'cn'
 import ArrowNarrowRightIcon from '../icons/ArrowNarrowRightIcon'
 import Trans from '../translation/trans/TransServer'
 import ActionTracker from './ActionTracker'
+import CommitToActionButton from './highlightedActionCard/CommitToActionButton'
+import ImpactSection from './highlightedActionCard/ImpactSection'
+import { classesByTheme } from './highlightedActionCard/impactSection/classes-by-theme'
 import { ThemeBadge } from './ThemeBadge'
-import { shouldDisplayComputationInProgressText } from './utils/shouldDisplayComputationInProgressText'
+import type { ActionCatalogueContext, ActionFrom } from './types/actions'
 
-const classesByTheme: Record<
-  Theme['key'],
-  Record<'card' | 'panel' | 'value', string>
-> = {
-  transport: {
-    card: 'border-transport-200 border-t-transport-400 md:border-t-transport-200 md:border-l-transport-400',
-    panel: 'bg-transport-50',
-    value: 'text-transport-900',
-  },
-  food: {
-    card: 'border-alimentation-200 border-t-alimentation-400 md:border-t-alimentation-200 md:border-l-alimentation-400',
-    panel: 'bg-alimentation-50',
-    value: 'text-alimentation-900',
-  },
-  housing: {
-    card: 'border-logement-200 border-t-logement-400 md:border-t-logement-200 md:border-l-logement-400',
-    panel: 'bg-logement-50',
-    value: 'text-logement-900',
-  },
-  misc: {
-    card: 'border-divers-200 border-t-divers-400 md:border-t-divers-200 md:border-l-divers-400',
-    panel: 'bg-divers-50',
-    value: 'text-divers-900',
-  },
-  societal_services: {
-    card: 'border-servicessocietaux-200 border-t-servicessocietaux-400 md:border-t-servicessocietaux-200 md:border-l-servicessocietaux-400',
-    panel: 'bg-servicessocietaux-50',
-    value: 'text-servicessocietaux-900',
-  },
-}
-
-interface HighlightedActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
+export interface HighlightedActionCardProps extends React.ComponentPropsWithoutRef<'article'> {
   action: MaybePersonalizedAction
-  assessmentStatus?: AssessmentStatus | null
   rank?: number
-  from?: 'fin' | 'mon-espace' | 'index'
-  /** Total carbon footprint in kg, used to express the impact as a share of it */
-  totalFootprint?: number
+  from?: ActionFrom
+  actionCatalogueContext: ActionCatalogueContext
 }
 
 export default async function HighlightedActionCard({
   action,
   className,
-  assessmentStatus,
+
   rank,
   from,
-  totalFootprint,
+  actionCatalogueContext,
   ...props
 }: HighlightedActionCardProps) {
-  const locale = await getLocale()
   const classes = classesByTheme[action.theme.key]
-  const actionDetailPath = ACTION_DETAIL_PATH(action.theme.slug, action.slug)
-  // On an /en page, an unprefixed (fr) path would be redirected to /en by the
-  // locale middleware, so force the /fr prefix instead of relying on
-  // getLocalizedPath's "no prefix for the default locale" behavior.
-  const actionPath =
-    locale === LOCALE_EN_KEY && action.language === LOCALE_FR_KEY
-      ? `/${LOCALE_FR_KEY}${actionDetailPath}`
-      : getLocalizedPath(action.language, actionDetailPath)
-  const href = from ? `${actionPath}?from=${from}` : actionPath
+
+  const href = await getActionHref({
+    from,
+    action,
+  })
+
   const description = action.metadata.description
 
   return (
@@ -109,12 +69,20 @@ export default async function HighlightedActionCard({
           ) : null}
         </div>
 
-        <div className="flex">
+        <ImpactSection
+          key="mobile"
+          themeKey={action.theme.key}
+          assessment={action.assessment}
+          actionCatalogueContext={actionCatalogueContext}
+          className="flex md:hidden"
+        />
+
+        <div className="flex flex-row flex-wrap items-stretch gap-4">
           <ButtonLinkServer
             href={href}
             prefetch={true}
             size="sm"
-            className="h-12 gap-2 px-6">
+            className="h-12 gap-2 px-6 md:w-52.5">
             <Trans i18nKey="actions.components.actionCard.highlighted.link">
               Voir l'action
             </Trans>
@@ -123,122 +91,19 @@ export default async function HighlightedActionCard({
             <span className="sr-only">{` "${action.title}"`}</span>
             <ArrowNarrowRightIcon />
           </ButtonLinkServer>
+
+          {action.assessment && <CommitToActionButton action={action} />}
         </div>
       </div>
 
-      {assessmentStatus ? (
-        <div
-          className={twMerge(
-            'flex flex-col justify-center gap-0.5 border-t border-slate-100 px-6 py-6 md:w-75 md:border-t-0 md:border-l',
-            classes.panel
-          )}>
-          <p className="mb-0 text-sm/normal font-bold text-slate-600 uppercase">
-            <Trans i18nKey="actions.components.actionCard.highlighted.potentialImpact">
-              Impact potentiel
-            </Trans>
-          </p>
-          <ImpactValue
-            impact={action.assessment?.impact}
-            locale={locale}
-            assessmentStatus={assessmentStatus}
-            valueClassName={classes.value}
-          />
-          <FootprintShare
-            impact={action.assessment?.impact}
-            totalFootprint={totalFootprint}
-          />
-        </div>
-      ) : null}
+      <ImpactSection
+        key="desktop"
+        themeKey={action.theme.key}
+        assessment={action.assessment}
+        actionCatalogueContext={actionCatalogueContext}
+        className="hidden md:flex"
+      />
     </article>
-  )
-}
-
-interface ImpactValueProps {
-  impact?: number
-  locale: Locale
-  assessmentStatus: AssessmentStatus
-  valueClassName: string
-}
-
-function ImpactValue({
-  impact,
-  locale,
-  assessmentStatus,
-  valueClassName,
-}: ImpactValueProps) {
-  if (shouldDisplayComputationInProgressText(assessmentStatus)) {
-    return (
-      <p className="mb-0 text-base/normal font-bold text-slate-600">
-        <Trans i18nKey="actions.components.actionCard.impactAssessmentInProgress">
-          En cours de calcul
-        </Trans>
-      </p>
-    )
-  }
-
-  if (typeof impact !== 'number') {
-    return (
-      <p className="mb-0 text-base/normal font-bold text-slate-600">
-        <Trans i18nKey="actions.components.actionCard.noImpactTag">
-          Impact non quantifiable
-        </Trans>
-      </p>
-    )
-  }
-
-  const { formattedValue, unit } = formatFootprint(impact, {
-    locale,
-    shouldUseAbbreviation: true,
-    metric: 'carbone',
-    unit: 't',
-  })
-
-  return (
-    <p className="mb-0 flex items-baseline gap-1.5 whitespace-nowrap">
-      <span
-        className={twMerge(
-          'text-[2rem]/none font-extrabold tracking-[-0.9px] md:text-5xl/none',
-          valueClassName
-        )}>
-        {formattedValue} {unit}
-      </span>
-      <span className="text-xs/none font-bold text-slate-600">
-        <Trans i18nKey="actions.components.actionCard.highlighted.impactUnit">
-          CO<sub>2</sub>e / an
-        </Trans>
-      </span>
-    </p>
-  )
-}
-
-interface FootprintShareProps {
-  impact?: number
-  totalFootprint?: number
-}
-
-function FootprintShare({ impact, totalFootprint }: FootprintShareProps) {
-  if (
-    typeof impact !== 'number' ||
-    typeof totalFootprint !== 'number' ||
-    totalFootprint <= 0
-  ) {
-    return null
-  }
-
-  const percentage = Math.round((impact / totalFootprint) * 100)
-
-  if (percentage <= 0) {
-    return null
-  }
-
-  return (
-    <p className="mb-0 text-sm/normal font-bold text-slate-600">
-      <Trans
-        i18nKey="actions.components.actionCard.highlighted.footprintShare"
-        values={{ percentage }}>
-        soit {'{{percentage}}'} % de votre empreinte totale
-      </Trans>
-    </p>
   )
 }
 

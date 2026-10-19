@@ -4,15 +4,16 @@ import SigninSignupTabs from '@/components/signIn/SignInSignUpTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
 import { captureSignupComplete } from '@/constants/tracking/trackers'
-import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
-import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { UserProvider } from '@/publicodes-state'
 import { getUserSession } from '@/services/auth/get-user-session'
+import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 import ColourBlock from '../_components/ColourBlocks'
+import { validateSearchParams } from '../_helpers/validateSearchParams'
+import { getSignupProps } from './_helpers/getSignUpProps'
 
 export const generateMetadata = getCommonMetadata({
   title: t('Création de compte - Nos Gestes Climat'),
@@ -24,10 +25,20 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function Connexion() {
-  const { t } = await getServerTranslation()
+export default async function Connexion({ searchParams }: DefaultPageProps) {
+  const resolvedSearchParams = await searchParams
+  const validSearchParams = validateSearchParams(resolvedSearchParams)
+  const { labels, redirectPathname } = await getSignupProps(
+    validSearchParams?.from
+  )
 
   const userSession = await getUserSession()
+
+  // Also reached right after login: the login action revalidates this page,
+  // so the redirect must agree with the one the form performs client-side.
+  if (userSession?.isAuth) {
+    redirect(redirectPathname)
+  }
 
   return (
     <div className="flex justify-center pb-32 lg:justify-start">
@@ -39,11 +50,7 @@ export default async function Connexion() {
 
         <Title
           containerClassName="order-0 max-w-[430px] mb-4"
-          title={
-            <Trans i18nKey="signup.title">
-              Créez votre espace Nos Gestes Climat
-            </Trans>
-          }
+          title={labels.title}
         />
 
         <QueryClientProviderWrapper>
@@ -51,8 +58,8 @@ export default async function Connexion() {
             <AuthenticateUserForm
               intent="create-account"
               mode="signUp"
-              buttonLabel={t('signup.button.label', "M'inscrire")}
-              redirectPathname={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
+              buttonLabel={labels.buttonLabel}
+              redirectPathname={redirectPathname}
               tracker={captureSignupComplete}
             />
           </UserProvider>

@@ -423,8 +423,21 @@ model User {
   createdAt      DateTime             @default(now())
   updatedAt      DateTime             @updatedAt
   /// Set when a session is issued to a verified account.
-  lastActivityAt DateTime?            @db.Timestamptz(3)
+  lastActivityAt DateTime?
   verifiedUsers  VerifiedUser[]
+  actionChoices  ActionChoice[]
+
+  @@schema("ngc")
+}
+
+enum AgeRange {
+  under_18
+  age_18_24
+  age_25_34
+  age_35_49
+  age_50_64
+  over_65
+  undisclosed
 
   @@schema("ngc")
 }
@@ -437,13 +450,13 @@ enum VerificationCodeUsage {
 }
 
 model VerificationCode {
-  id             String                  @id @default(uuid()) @db.Uuid
+  id             String                @id @default(uuid()) @db.Uuid
   email          String
-  usage          VerificationCodeUsage  @default(login)
-  code           String                  @db.VarChar(6)
+  usage          VerificationCodeUsage @default(login)
+  code           String                @db.VarChar(6)
   expirationDate DateTime
-  createdAt      DateTime                @default(now())
-  updatedAt      DateTime                @updatedAt
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
 
   @@index([email, usage, expirationDate])
   @@schema("ngc")

@@ -1,4 +1,4 @@
-import { END_PAGE_ACTIONS_PATH } from '@/constants/urls/paths'
+import { ACTIONS_SUGGESTED_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
@@ -185,7 +185,7 @@ export default async function CarbonFootprintHero({
             .exhaustive()}
         </p>
 
-        <ButtonLink href={END_PAGE_ACTIONS_PATH} color="primary" size="md">
+        <ButtonLink href={ACTIONS_SUGGESTED_PATH} color="primary" size="md">
           <Trans i18nKey="results.footprintBlock.actionsBlock.link">
             Découvrir mes actions
           </Trans>

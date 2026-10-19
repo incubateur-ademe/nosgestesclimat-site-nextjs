@@ -7,7 +7,6 @@ export const EMAIL_SIMULATOR_PATH = '/simulateur/email'
 export const MON_ESPACE_PATH = '/mon-espace'
 
 export const END_PAGE_PATH = '/fin'
-export const END_PAGE_ACTIONS_PATH = '/fin/actions'
 export const END_PAGE_GROUPS_PATH = '/fin/groupes'
 
 export const EMAIL_PAGE_PATH = '/simulateur/email'
@@ -15,7 +14,6 @@ export const DOCUMENTATION_PATH = '/documentation'
 export const CONNEXION_PATH = '/connexion'
 export const INSCRIPTION_PATH = '/inscription'
 export const MON_ESPACE_RESULTS_PATH = '/mon-espace'
-export const MON_ESPACE_ACTIONS_PATH = '/mon-espace/actions'
 export const MON_ESPACE_GROUPS_PATH = '/mon-espace/groupes'
 export const MON_ESPACE_SETTINGS_PATH = '/mon-espace/parametres'
 export const MON_ESPACE_RESULTS_DETAIL_PATH =
@@ -31,3 +29,5 @@ export const GROUP_RESULTS_ROUTE_PATTERN = '/[locale]/amis/resultats'
 export const ACTIONS_PATH = '/actions'
 export const ACTION_DETAIL_PATH = (themeSlug: string, actionSlug: string) =>
   `/actions/${themeSlug}/${actionSlug}`
+export const ACTIONS_SUGGESTED_PATH = '/actions/mes-suggestions'
+export const ACTIONS_MY_PLAN_PATH = '/actions/mon-plan'

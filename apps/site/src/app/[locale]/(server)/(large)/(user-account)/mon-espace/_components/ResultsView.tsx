@@ -1,9 +1,8 @@
-import { MON_ESPACE_PATH } from '@/constants/urls/paths'
+import UserSpaceTabs from '@/components/layout/UserSpaceTabs'
 import type { Simulation } from '@/helpers/server/model/simulations'
 import type { Locale } from '@/i18nConfig'
 import LatestResults from './LatestResults'
 import NoResultsView from './NoResultsView'
-import ProfileTab from './ProfileTabs'
 import EvolutionGraph from './resultsView/EvolutionGraph'
 import ResultsList from './resultsView/ResultsList'
 import ShareSimulator from './resultsView/ShareSimulator'
@@ -27,7 +26,7 @@ export default function ResultsView({
 
   return (
     <>
-      <ProfileTab activePath={MON_ESPACE_PATH} />
+      <UserSpaceTabs isAuth activeTabId="results" />
 
       <LatestResults locale={locale} simulation={simulations[0]} />
 
