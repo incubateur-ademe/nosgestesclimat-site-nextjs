@@ -35,8 +35,10 @@ export default function ButtonLinkServer({
   disabled,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
-  const classNames = twMerge(
-    `${baseClassNames} ${sizeClassNames[size]} ${colorClassNames[color]}`,
+  const classNames = cn(
+    baseClassNames,
+    sizeClassNames[size],
+    getVariantClassNames(variant, color),
     disabled && 'cursor-not-allowed opacity-50!',
     className
   )
@@ -55,7 +57,9 @@ export default function ButtonLinkServer({
       href={href}
       title={title}
       className={cn(
-        `${baseClassNames} ${sizeClassNames[size]} ${getVariantClassNames(variant, color)}`,
+        baseClassNames,
+        sizeClassNames[size],
+        getVariantClassNames(variant, color),
         className
       )}
       target={target}

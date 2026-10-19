@@ -4,6 +4,7 @@ import type {
   ActionPlan,
   MaybePersonalizedAction,
 } from '@nosgestesclimat/core/features/actions/types/action'
+import { cn } from 'cn'
 import Trans from '../../translation/trans/TransServer'
 import ActionPlanLinks from '../ActionPlanLinks'
 import ActionsBasket from '../ActionsBasket'
@@ -65,7 +66,7 @@ export default function ActionsPage({
       <div className="relative flex items-start gap-10">
         <div
           {...props}
-          className={twMerge(
+          className={cn(
             'mt-8 w-full pb-24',
             plan && 'lg:w-[calc(100%-(320px+40px))]',
             className
