@@ -7,6 +7,7 @@ import { simulationFactory } from '@nosgestesclimat/core/features/simulations/fa
 import { userFactory } from '@nosgestesclimat/core/features/users/factories/user.factory'
 import type { User } from '@nosgestesclimat/core/features/users/types/user'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
+import { VerificationCodeUsage } from '@nosgestesclimat/core/prisma/generated/client'
 import { emptyDatabase } from '@nosgestesclimat/core/test-utils/empty-database'
 import { afterEach, describe, expect, it } from 'vitest'
 import { addLastActivityAtToUser } from '../add-last-activity-at-to-user.ts'
@@ -56,7 +57,7 @@ describe('addLastActivityAt', () => {
       })
       .create()
 
-    await addLastActivityAtToUser(false)
+    await addLastActivityAtToUser({ dry: false })
 
     const userFromDB = await prisma.user.findFirst({
       where: {
@@ -81,7 +82,7 @@ describe('addLastActivityAt', () => {
       })
       .create()
 
-    await addLastActivityAtToUser(false)
+    await addLastActivityAtToUser({ dry: false })
 
     const userFromDB = await prisma.user.findFirst({
       where: {
@@ -106,7 +107,7 @@ describe('addLastActivityAt', () => {
 
       await setupFactoryForTest(user, targetDate)
 
-      await addLastActivityAtToUser(false)
+      await addLastActivityAtToUser({ dry: false })
 
       const userFromDB = await prisma.user.findFirst({
         where: {
@@ -144,7 +145,7 @@ describe('addLastActivityAt', () => {
       .params({ email: user.email, updatedAt: targetDate })
       .create()
 
-    await addLastActivityAtToUser(false)
+    await addLastActivityAtToUser({ dry: false })
 
     const userFromDB = await prisma.user.findFirst({
       where: {
@@ -153,6 +154,78 @@ describe('addLastActivityAt', () => {
     })
 
     expect(userFromDB?.lastActivityAt).toEqual(targetDate)
+  })
+
+  it('should ignore newsletter verification codes', async () => {
+    const userUpdatedAt = faker.date.recent()
+    const newsletterDate = faker.date.future()
+
+    const user = await userFactory
+      .verified()
+      .params({
+        updatedAt: userUpdatedAt,
+      })
+      .create()
+
+    await verificationCodeFactory
+      .params({
+        email: user.email,
+        usage: VerificationCodeUsage.newsletter,
+        updatedAt: newsletterDate,
+      })
+      .create()
+
+    await addLastActivityAtToUser({ dry: false })
+
+    const userFromDB = await prisma.user.findFirst({
+      where: {
+        id: user.id,
+      },
+    })
+
+    expect(userFromDB?.lastActivityAt).toEqual(userUpdatedAt)
+  })
+
+  it('should process every candidate across multiple batches', async () => {
+    const targetDate = faker.date.future()
+
+    const users = [
+      await userFactory
+        .verified()
+        .params({ updatedAt: faker.date.past() })
+        .create(),
+      await userFactory
+        .verified()
+        .params({ updatedAt: faker.date.past() })
+        .create(),
+      await userFactory
+        .verified()
+        .params({ updatedAt: faker.date.past() })
+        .create(),
+    ]
+
+    for (const user of users) {
+      await simulationFactory
+        .params({
+          updatedAt: targetDate,
+          userId: user.id,
+        })
+        .create()
+    }
+
+    await addLastActivityAtToUser({ dry: false, batchSize: 1 })
+
+    const usersFromDB = await prisma.user.findMany({
+      where: {
+        id: { in: users.map((user) => user.id) },
+      },
+    })
+
+    expect(usersFromDB).toHaveLength(users.length)
+
+    for (const userFromDB of usersFromDB) {
+      expect(userFromDB.lastActivityAt).toEqual(targetDate)
+    }
   })
 })
 
