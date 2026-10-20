@@ -5,7 +5,7 @@ import logger from '@/logger/logger.server'
 import { getModelFileName } from '@nosgestesclimat/core/features/models/helpers/get-model-file-name'
 import { importCurrentModel } from '@nosgestesclimat/core/features/models/helpers/import-current-model'
 import { createGetModelRules } from '@nosgestesclimat/core/features/models/services/get-model-rules.service'
-import { captureException } from '@sentry/nextjs'
+import { toError } from '@nosgestesclimat/core/lib/to-error'
 import { CURRENT_MODEL_VERSION, type Model } from '../server/model/models'
 
 const getModelRules = createGetModelRules({
@@ -57,7 +57,7 @@ async function findCurrentModel(fileName: string): Promise<NGCRules> {
   try {
     return await importCurrentModel(fileName)
   } catch (e) {
-    captureException(e)
+    logger.error(toError(e), { scope: 'site.action.getRules' })
     return {} as NGCRules
   }
 }
