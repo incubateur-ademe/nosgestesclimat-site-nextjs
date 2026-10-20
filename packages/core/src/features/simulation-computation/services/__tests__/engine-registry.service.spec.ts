@@ -193,7 +193,7 @@ describe('engine-registry.service', () => {
     expect(second).toBe(first)
     expect(stubGetModelRules).toHaveBeenCalledOnce()
     expect(logger.debug).toHaveBeenCalledWith(
-      '[engine-registry] lru cache hit',
+      'lru cache hit',
       expect.objectContaining({ key: 'FR-fr-4.14.2' })
     )
   })
@@ -281,12 +281,12 @@ describe('engine-registry.service', () => {
 
     await createWarmUpHotEngines({ logger, getModelRules: stubGetModelRules })()
 
-    expect(logger.info).toHaveBeenCalledWith(
-      '[engine-registry] warming hot engine',
+    expect(logger.debug).toHaveBeenCalledWith(
+      'warming hot engine',
       expect.objectContaining({ key: `FR-fr-${CURRENT_MODEL_VERSION}` })
     )
     expect(logger.info).toHaveBeenCalledWith(
-      '[engine-registry] hot engines warmed',
+      'hot engines warmed',
       expect.objectContaining({ count: 1 })
     )
   })
@@ -306,27 +306,27 @@ describe('engine-registry.service', () => {
 
     await getEngine(model('FR'))
     expect(logger.debug).toHaveBeenCalledWith(
-      '[engine-registry] hot engine hit',
+      'hot engine hit',
       expect.objectContaining({ key: `FR-fr-${CURRENT_MODEL_VERSION}` })
     )
 
     await getEngine(model('UK'))
     expect(logger.debug).toHaveBeenCalledWith(
-      '[engine-registry] cache miss, building engine',
+      'cache miss, building engine',
       expect.objectContaining({ key: `UK-fr-${CURRENT_MODEL_VERSION}` })
     )
     expect(logger.debug).toHaveBeenCalledWith(
-      '[engine-registry] engine built',
+      'engine built',
       expect.objectContaining({ key: `UK-fr-${CURRENT_MODEL_VERSION}` })
     )
     expect(logger.debug).toHaveBeenCalledWith(
-      '[engine-registry] lru cache size',
+      'lru cache size',
       expect.objectContaining({ lruSize: 1 })
     )
 
     await getEngine(model('UK'))
     expect(logger.debug).toHaveBeenCalledWith(
-      '[engine-registry] lru cache hit',
+      'lru cache hit',
       expect.objectContaining({
         key: `UK-fr-${CURRENT_MODEL_VERSION}`,
         lruSize: 1,

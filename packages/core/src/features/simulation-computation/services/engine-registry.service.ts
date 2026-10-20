@@ -1,7 +1,7 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
 import * as v from 'valibot'
-import { currentMemoryMB } from '../../../lib/memory.ts'
+import { memoryAttributes } from '../../../lib/memory.ts'
 import type { Result } from '../../../lib/result.ts'
 import type { Logger } from '../../logger/index.ts'
 import type { ModelFileFetchFailedError } from '../../models/exceptions/errors.ts'
@@ -95,26 +95,25 @@ const buildEngine =
  */
 export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
   return async function warmUpHotEngines(): Promise<void> {
-    const { logger, getModelRules } = deps
-    logger.debug('[engine-registry] warming all hot engines', {
-      ...currentMemoryMB(),
+    const { getModelRules } = deps
+    const logger = deps.logger.child({
+      scope: 'core.service.engineRegistry',
     })
+    logger.debug('warming all hot engines', { ...memoryAttributes() })
     for (const [key, { region, version }] of HOT_KEYS) {
-      logger.info('[engine-registry] warming hot engine', {
-        key,
-        region,
-        version,
-      })
+      // Per-engine steps are diagnostic; the summary line after the loop is the
+      // one worth reading.
+      logger.debug('warming hot engine', { key, region, version })
       hotEngines.set(key, await buildEngine(getModelRules)(region, version))
-      logger.debug('[engine-registry] hot engine warmed', {
+      logger.debug('hot engine warmed', {
         region,
         version,
-        ...currentMemoryMB(),
+        ...memoryAttributes(),
       })
     }
-    logger.info('[engine-registry] hot engines warmed', {
+    logger.info('hot engines warmed', {
       count: hotEngines.size,
-      ...currentMemoryMB(),
+      ...memoryAttributes(),
     })
   }
 }
@@ -125,21 +124,21 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
  */
 export function createGetEngineForModel(deps: EngineRegistryDeps) {
   return async function getEngineForModel(model: Model): Promise<Engine> {
-    const { logger, getModelRules } = deps
+    const { getModelRules } = deps
+    const logger = deps.logger.child({
+      scope: 'core.service.engineRegistry',
+    })
     const key = engineKey(model.region, model.version)
 
     const hotEngine = hotEngines.get(key)
     if (hotEngine) {
-      logger.debug('[engine-registry] hot engine hit', { key })
+      logger.debug('hot engine hit', { key })
       return hotEngine
     }
 
     const cachedEngine = lruCache.get(key)
     if (cachedEngine) {
-      logger.debug('[engine-registry] lru cache hit', {
-        key,
-        lruSize: lruCache.size,
-      })
+      logger.debug('lru cache hit', { key, lruSize: lruCache.size })
       // Refresh recency by moving the entry to the end.
       lruCache.delete(key)
       lruCache.set(key, cachedEngine)
@@ -151,25 +150,22 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
       const leastRecentlyUsedKey = lruCache.keys().next().value
       if (leastRecentlyUsedKey) {
         lruCache.delete(leastRecentlyUsedKey)
-        logger.debug('[engine-registry] lru cache evicted', {
+        logger.debug('lru cache evicted', {
           evictedKey: leastRecentlyUsedKey,
-          ...currentMemoryMB(),
+          ...memoryAttributes(),
         })
       }
     }
 
-    logger.debug('[engine-registry] cache miss, building engine', { key })
+    logger.debug('cache miss, building engine', { key })
     const engine = await buildEngine(getModelRules)(model.region, model.version)
-    logger.debug('[engine-registry] engine built', {
-      key,
-      ...currentMemoryMB(),
-    })
+    logger.debug('engine built', { key, ...memoryAttributes() })
 
     // if MAX_CACHE_SIZE is 0 it still means lruSize of 1
     // since the current lazy loaded model needs to be cached in order for it to be accessed later
     lruCache.set(key, engine)
 
-    logger.debug('[engine-registry] lru cache size', { lruSize: lruCache.size })
+    logger.debug('lru cache size', { lruSize: lruCache.size })
 
     return engine
   }
