@@ -1,122 +1,246 @@
+import { faker } from '@faker-js/faker'
+import { refreshTokenFactory } from '@nosgestesclimat/core/features/auth/factories/refresh-token.factory'
+import { verificationCodeFactory } from '@nosgestesclimat/core/features/auth/factories/verification-code.factory'
+import { groupFactory } from '@nosgestesclimat/core/features/groups/factories/group.factory'
+import { organisationFactory } from '@nosgestesclimat/core/features/organisations/factories/organisation.factory'
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
 import { userFactory } from '@nosgestesclimat/core/features/users/factories/user.factory'
+import type { User } from '@nosgestesclimat/core/features/users/types/user'
 import { prisma } from '@nosgestesclimat/core/prisma/client'
 import { emptyDatabase } from '@nosgestesclimat/core/test-utils/empty-database'
 import { afterEach, describe, expect, it } from 'vitest'
 import { addLastActivityAtToUser } from '../add-last-activity-at-to-user.ts'
+
+interface UserFactorySetup {
+  entity: string
+  setupFactoryForTest: (user: User, updatedAt: Date) => Promise<void>
+}
 
 describe('addLastActivityAt', () => {
   afterEach(async () => {
     await emptyDatabase(prisma)
   })
 
-  it('should not update the lastActivityAt user prop if dry mode is enabled', async () => {
-    const user1 = await userFactory.verified().create()
-    const user2 = await userFactory.verified().create()
+  it("shouldn't update the lastActivityAt user prop if dry mode is enabled", async () => {
+    const user = await userFactory.verified().create()
+
+    await simulationFactory
+      .params({
+        updatedAt: faker.date.future(),
+        userId: user.id,
+      })
+      .create()
 
     await addLastActivityAtToUser()
 
-    const user1FromDB = await prisma.user.findFirst({
+    const userFromDB = await prisma.user.findFirst({
       where: {
-        id: user1.id,
-      },
-    })
-    const user2FromDB = await prisma.user.findFirst({
-      where: {
-        id: user2.id,
+        id: user.id,
       },
     })
 
-    expect(user1FromDB?.lastActivityAt).toBeNull()
-    expect(user2FromDB?.lastActivityAt).toBeNull()
+    expect(userFromDB?.lastActivityAt).toBeNull()
   })
 
-  it("should set the lastActivityAt to the most recent update date among a user's linked documents", async () => {
-    const anteriorDate = new Date('1979-10-10')
-    const lessAnteriorDate = new Date('1979-10-10')
-
-    const user1 = await userFactory
-      .verified()
+  it("shouldn't modify an unverified user's lastActivityAt property", async () => {
+    const user = await userFactory
       .params({
-        updatedAt: anteriorDate,
-      })
-      .create()
-    const user2 = await userFactory
-      .verified()
-      .params({
-        updatedAt: anteriorDate,
+        updatedAt: faker.date.past(),
       })
       .create()
 
     await simulationFactory
       .params({
-        updatedAt: lessAnteriorDate,
-        userId: user1.id,
-      })
-      .create()
-
-    await simulationFactory
-      .params({
-        updatedAt: lessAnteriorDate,
-        userId: user2.id,
+        updatedAt: new Date(),
+        userId: user.id,
       })
       .create()
 
     await addLastActivityAtToUser(false)
 
-    const user1FromDB = await prisma.user.findFirst({
+    const userFromDB = await prisma.user.findFirst({
       where: {
-        id: user1.id,
-      },
-    })
-    const user2FromDB = await prisma.user.findFirst({
-      where: {
-        id: user2.id,
+        id: user.id,
       },
     })
 
-    expect(user1FromDB?.lastActivityAt).toEqual(lessAnteriorDate)
-    expect(user2FromDB?.lastActivityAt).toEqual(lessAnteriorDate)
+    expect(userFromDB?.lastActivityAt).toBeNull()
   })
 
-  it('should not update the lastActivityAt date of a user that already has one', async () => {
-    const alreadyDefinedDate = new Date('1979-10-10')
+  it('should not update the lastActivityAt date of a verified user that already has one', async () => {
+    const alreadyDefinedDate = faker.date.recent()
 
-    const user1 = await userFactory
-      .verified()
-      .params({ lastActivityAt: alreadyDefinedDate })
-      .create()
-    const user2 = await userFactory
+    const user = await userFactory
       .verified()
       .params({ lastActivityAt: alreadyDefinedDate })
       .create()
 
     await simulationFactory
       .params({
-        userId: user1.id,
-      })
-      .create()
-
-    await simulationFactory
-      .params({
-        userId: user2.id,
+        userId: user.id,
       })
       .create()
 
     await addLastActivityAtToUser(false)
 
-    const user1FromDB = await prisma.user.findFirst({
+    const userFromDB = await prisma.user.findFirst({
       where: {
-        id: user1.id,
-      },
-    })
-    const user2FromDB = await prisma.user.findFirst({
-      where: {
-        id: user2.id,
+        id: user.id,
       },
     })
 
-    expect(user1FromDB?.lastActivityAt).toEqual(alreadyDefinedDate)
-    expect(user2FromDB?.lastActivityAt).toEqual(alreadyDefinedDate)
+    expect(userFromDB?.lastActivityAt).toEqual(alreadyDefinedDate)
+  })
+
+  it.each(entitiesRelatedToVerifiedUserTestFactoriesSetup)(
+    "should set a verified user's lastActivityAt property to the most recent linked $entity update date",
+    async ({ setupFactoryForTest }) => {
+      const targetDate = faker.date.future()
+
+      const user = await userFactory
+        .verified()
+        .params({
+          updatedAt: faker.date.past(),
+        })
+        .create()
+
+      await setupFactoryForTest(user, targetDate)
+
+      await addLastActivityAtToUser(false)
+
+      const userFromDB = await prisma.user.findFirst({
+        where: {
+          id: user.id,
+        },
+      })
+
+      expect(userFromDB?.lastActivityAt).toEqual(targetDate)
+    }
+  )
+
+  it("should set a verified user's lastActivityAt property to the most recent linked entity update date", async () => {
+    const targetDate = faker.date.future()
+
+    const user = await userFactory
+      .verified()
+      .params({
+        updatedAt: faker.date.past(),
+      })
+      .create()
+    await simulationFactory
+      .params({
+        userId: user.id,
+      })
+      .create()
+    await refreshTokenFactory.params({ userId: user.id }).create()
+    await groupFactory.withAdministrator(user.id).create()
+
+    await groupFactory.withParticipant({ userId: user.id }).create()
+
+    await organisationFactory
+      .withAdministrator({ userEmail: user.email })
+      .create()
+    await verificationCodeFactory
+      .params({ email: user.email, updatedAt: targetDate })
+      .create()
+
+    await addLastActivityAtToUser(false)
+
+    const userFromDB = await prisma.user.findFirst({
+      where: {
+        id: user.id,
+      },
+    })
+
+    expect(userFromDB?.lastActivityAt).toEqual(targetDate)
   })
 })
+
+const entitiesRelatedToVerifiedUserTestFactoriesSetup: UserFactorySetup[] = [
+  {
+    entity: 'simulation',
+    setupFactoryForTest: async (user, updatedAt) => {
+      await simulationFactory
+        .params({
+          updatedAt: faker.date.recent(),
+          userId: user.id,
+        })
+        .create()
+
+      await simulationFactory
+        .params({
+          updatedAt,
+          userId: user.id,
+        })
+        .create()
+    },
+  },
+  {
+    entity: 'refreshToken',
+    setupFactoryForTest: async (user, createdAt) => {
+      await refreshTokenFactory
+        .params({ userId: user.id, createdAt: faker.date.recent() })
+        .create()
+      await refreshTokenFactory.params({ userId: user.id, createdAt }).create()
+    },
+  },
+  {
+    entity: 'group',
+    setupFactoryForTest: async (user, updatedAt) => {
+      await groupFactory
+        .params({
+          updatedAt: faker.date.recent(),
+        })
+        .withAdministrator(user.id)
+        .create()
+
+      await groupFactory
+        .withAdministrator(user.id)
+        .params({
+          updatedAt,
+        })
+        .create()
+    },
+  },
+  {
+    entity: 'groupParticipant',
+    setupFactoryForTest: async (user, updatedAt) => {
+      await groupFactory
+        .withParticipant({ userId: user.id, updatedAt: faker.date.recent() })
+        .create()
+
+      await groupFactory
+        .withParticipant({ userId: user.id, updatedAt })
+        .create()
+    },
+  },
+  {
+    entity: 'organisation',
+    setupFactoryForTest: async (user, updatedAt) => {
+      if (!user.email) {
+        throw Error(
+          'User needs be verified and have an e-mail to create a verification code'
+        )
+      }
+      await organisationFactory
+        .withAdministrator({ userEmail: user.email, updatedAt })
+        .create()
+    },
+  },
+  {
+    entity: 'verificationCode',
+    setupFactoryForTest: async (user, updatedAt) => {
+      if (!user.email) {
+        throw Error(
+          'User needs have a valid e-mail to create a verification code'
+        )
+      }
+      await verificationCodeFactory
+        .params({ email: user.email, updatedAt: faker.date.recent() })
+        .create()
+      await verificationCodeFactory
+        .params({ email: user.email, updatedAt })
+        .create()
+    },
+  },
+]

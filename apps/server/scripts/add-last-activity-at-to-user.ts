@@ -72,7 +72,7 @@ export async function addLastActivityAtToUser(dry: boolean | undefined = true) {
     ),
     updated AS (
       UPDATE ngc."User" u
-         SET "lastActivityAt" = l.latest
+         SET "lastActivityAt" = l.latest AT TIME ZONE 'UTC'
         FROM latest l
        WHERE u.id = l.user_id
         -- Prevent update if dry mode is enabled
