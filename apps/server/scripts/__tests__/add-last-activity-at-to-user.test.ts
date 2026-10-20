@@ -288,7 +288,7 @@ const entitiesRelatedToVerifiedUserTestFactoriesSetup: UserFactorySetup[] = [
     },
   },
   {
-    entity: 'organisation',
+    entity: 'organisationAdministrator',
     setupFactoryForTest: async (user, updatedAt) => {
       if (!user.email) {
         throw Error(

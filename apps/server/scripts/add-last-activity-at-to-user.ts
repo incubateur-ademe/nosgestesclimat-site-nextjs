@@ -39,6 +39,7 @@ export async function addLastActivityAtToUser(props?: Props) {
       WITH targeted_users AS (
         SELECT u.id FROM ngc."User" u
          WHERE u."lastActivityAt" IS NULL
+            -- Arbitrary comparison in order to allow pagination to take place
            AND ($1::uuid IS NULL OR u.id > $1::uuid)
            AND EXISTS (
              SELECT 1 FROM ngc."VerifiedUser" v_u WHERE v_u.id = u.id
@@ -85,7 +86,7 @@ export async function addLastActivityAtToUser(props?: Props) {
          -- Newsletter subscriptions do not issue a session
          WHERE v_c.usage = 'login'
       ),
-      most_recent AS (
+      most_recent_update_date AS (
         SELECT user_id, MAX(dates) AS date
           FROM linked_entities
          GROUP BY user_id
@@ -93,7 +94,7 @@ export async function addLastActivityAtToUser(props?: Props) {
       updated_users AS (
         UPDATE ngc."User" u
            SET "lastActivityAt" = m_r.date
-          FROM most_recent m_r
+          FROM most_recent_update_date m_r
          WHERE u.id = m_r.user_id
           -- Prevent update if dry mode is enabled
           AND NOT $3::boolean
