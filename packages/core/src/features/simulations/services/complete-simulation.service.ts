@@ -14,8 +14,8 @@ import { findManyGroupsBySimulationId } from '../../groups/repositories/group.re
 import type { Group } from '../../groups/types/group.ts'
 import type { Logger } from '../../logger/index.ts'
 import {
-  parseModelString,
-  serializeModelString,
+  parseModel,
+  serializeModel,
 } from '../../models/helpers/model-versions.ts'
 import { findManyPollSummariesBySimulationId } from '../../polls/repositories/poll.repository.ts'
 import { enqueuePollStatsComputation } from '../../polls/stats/services/enqueue-poll-stats-computation.ts'
@@ -97,7 +97,7 @@ export function createCompleteSimulation({
 
       // The client's model is the one its answers were given against — never
       // substituted by the persisted one, which can be stale.
-      const clientModel = parseModelString(model)
+      const clientModel = parseModel(model)
       if (!clientModel)
         return failure(new SimulationInvalidModelStringError(model))
 
@@ -130,7 +130,7 @@ export function createCompleteSimulation({
             foldedSteps,
             progression,
             computedResults,
-            model: serializeModelString(clientModel),
+            model: serializeModel(clientModel),
           },
           tx
         )

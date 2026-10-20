@@ -1,4 +1,4 @@
-import { parseModelString } from '../../models/helpers/model-versions.ts'
+import { parseModel } from '../../models/helpers/model-versions.ts'
 import {
   hasValidComputedResults,
   type ComputedResults,
@@ -15,4 +15,4 @@ export const isValidSimulation = <
 >(
   row: Row
 ): row is Row & { computedResults: ComputedResults } =>
-  parseModelString(row.model) !== null && hasValidComputedResults(row)
+  parseModel(row.model) !== null && hasValidComputedResults(row)

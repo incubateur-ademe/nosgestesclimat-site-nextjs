@@ -28,7 +28,7 @@ export const CURRENT_MODEL_VERSION = currentPkg.version as ModelVersionString
 const PUBLISHED_TAG_RE = /^\d+\.\d+\.\d+(-[\w.]+)?$/
 const PR_VERSION_RE = /^pr-(.+)$/
 
-export const parseModelVersionString = (
+export const parseModelVersion = (
   modelVersionString: string
 ): ModelVersion | null => {
   if (PUBLISHED_TAG_RE.test(modelVersionString)) {
@@ -39,7 +39,7 @@ export const parseModelVersionString = (
   return prMatch ? { PRNumber: prMatch[1] } : null
 }
 
-export const serializeModelVersionString = (
+export const serializeModelVersion = (
   version: ModelVersion
 ): ModelVersionString =>
   ('publishedTag' in version
@@ -48,13 +48,13 @@ export const serializeModelVersionString = (
 
 const MODEL_STRING_RE = /^([A-Z]+)-(fr|en)-(.+)$/
 
-export const parseModelString = (modelString: string): Model | null => {
+export const parseModel = (modelString: string): Model | null => {
   const match = modelString.match(MODEL_STRING_RE)
   if (!match) return null
 
   const [, region, locale, versionRef] = match
 
-  const version = parseModelVersionString(versionRef)
+  const version = parseModelVersion(versionRef)
   if (!version) return null
 
   return {
@@ -64,5 +64,5 @@ export const parseModelString = (modelString: string): Model | null => {
   }
 }
 
-export const serializeModelString = (model: Model): ModelString =>
-  `${model.region}-${model.locale}-${serializeModelVersionString(model.version)}` as ModelString
+export const serializeModel = (model: Model): ModelString =>
+  `${model.region}-${model.locale}-${serializeModelVersion(model.version)}` as ModelString

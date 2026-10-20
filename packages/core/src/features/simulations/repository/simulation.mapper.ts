@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Situation } from 'publicodes'
-import { parseModelString } from '../../models/helpers/model-versions.ts'
+import { parseModel } from '../../models/helpers/model-versions.ts'
 import type { Model } from '../../models/types/model.ts'
 import type { Simulation } from '../types/simulation.ts'
 import { isValidSimulation } from '../validators/simulation.validator.ts'
@@ -29,7 +29,7 @@ export const mapSimulation = (row: SimulationRow): Simulation | null => {
     return null
   }
 
-  const model = parseModelString(row.model) as Model
+  const model = parseModel(row.model) as Model
 
   return {
     id: row.id,

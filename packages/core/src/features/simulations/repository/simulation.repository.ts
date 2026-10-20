@@ -7,7 +7,7 @@ import type { Transaction } from '../../../lib/transaction.ts'
 import { prisma } from '../../../prisma/client.ts'
 import type { Prisma } from '../../../prisma/generated/client.ts'
 import { isPrismaErrorNotFound } from '../../../prisma/utils.ts'
-import { serializeModelString } from '../../models/helpers/model-versions.ts'
+import { serializeModel } from '../../models/helpers/model-versions.ts'
 import type { Model } from '../../models/types/model.ts'
 import { SimulationNotFoundError } from '../errors/simulations.error.ts'
 import { type NewSimulation } from '../helpers/new-simulation.ts'
@@ -50,7 +50,7 @@ export const createSimulation = async (
     data: {
       id,
       userId,
-      model: serializeModelString(model),
+      model: serializeModel(model),
       date,
       progression,
       situation: situation as unknown as Prisma.InputJsonValue,
@@ -78,7 +78,7 @@ export const createManySimulations = async (
   await tx.simulation.createMany({
     data: simulations.map(({ model, ...rest }) => ({
       ...rest,
-      ...(model ? { model: serializeModelString(model) } : {}),
+      ...(model ? { model: serializeModel(model) } : {}),
       situation: rest.situation as unknown as Prisma.InputJsonValue,
       foldedSteps: rest.foldedSteps as unknown as Prisma.InputJsonValue[],
       computedResults: rest.computedResults as unknown as Prisma.InputJsonValue,

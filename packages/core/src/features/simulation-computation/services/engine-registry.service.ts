@@ -5,7 +5,7 @@ import { memoryAttributes } from '../../../lib/memory.ts'
 import type { Result } from '../../../lib/result.ts'
 import type { Logger } from '../../logger/index.ts'
 import type { ModelFileFetchFailedError } from '../../models/errors.ts'
-import { serializeModelString } from '../../models/helpers/model-versions.ts'
+import { serializeModel } from '../../models/helpers/model-versions.ts'
 import type {
   Model,
   ModelRegion,
@@ -176,5 +176,5 @@ export function createGetEngineForModel(deps: EngineRegistryDeps) {
  * values), so the cache key ignores the simulation's locale.
  */
 function engineKey(region: ModelRegion, version: ModelVersion): string {
-  return serializeModelString({ region, locale: 'fr', version })
+  return serializeModel({ region, locale: 'fr', version })
 }

@@ -4,7 +4,7 @@ import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supported
 import { Factory } from 'fishery'
 import { prisma } from '../../../prisma/client.ts'
 import type { Prisma } from '../../../prisma/generated/client.ts'
-import { serializeModelString } from '../../models/helpers/model-versions.ts'
+import { serializeModel } from '../../models/helpers/model-versions.ts'
 import type {
   Model,
   ModelLocale,
@@ -117,7 +117,7 @@ export const simulationFactory = SimulationFactory.define(
           id: data.id,
           date: data.date,
           progression: data.progression,
-          model: serializeModelString(data.model),
+          model: serializeModel(data.model),
           computedResults:
             data.computedResults as unknown as Prisma.InputJsonValue,
           situation: data.situation as unknown as Prisma.InputJsonValue,

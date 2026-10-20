@@ -10,7 +10,7 @@ import { EmailRequestError } from '../../../emails/errors.ts'
 import { groupFactory } from '../../../groups/factories/group.factory.ts'
 import {
   CURRENT_MODEL_VERSION,
-  serializeModelString,
+  serializeModel,
 } from '../../../models/helpers/model-versions.ts'
 import type { ModelRegion } from '../../../models/types/model.ts'
 import { pollFactory } from '../../../polls/factories/poll.factory.ts'
@@ -148,7 +148,7 @@ describe('completeSimulation', () => {
       userId: user.id,
     })
     if (!persisted) throw new Error('simulation should exist')
-    expect(serializeModelString(persisted.model)).toBe('FR-fr-9.9.9')
+    expect(serializeModel(persisted.model)).toBe('FR-fr-9.9.9')
   })
 
   it.each([
@@ -333,8 +333,8 @@ describe('completeSimulation', () => {
       userId: user.id,
     })
     if (!persisted) throw new Error('simulation should exist')
-    expect(serializeModelString(persisted.model)).toBe(
-      serializeModelString(simulation.model)
+    expect(serializeModel(persisted.model)).toBe(
+      serializeModel(simulation.model)
     )
   })
 

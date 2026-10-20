@@ -1,5 +1,5 @@
+import { serializeModel } from '@nosgestesclimat/core/features/models/helpers/model-versions'
 import { simulationFactory } from '@nosgestesclimat/core/features/simulations/factories/simulation.factory'
-import { serializeModelString } from '@nosgestesclimat/core/features/models/helpers/model-versions'
 import { v4 as randomUUID } from 'uuid'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -77,7 +77,7 @@ describe('getPollParticipation', () => {
       foldedSteps: entity.foldedSteps,
       computedResults: entity.computedResults,
       progression: entity.progression,
-      model: serializeModelString(entity.model),
+      model: serializeModel(entity.model),
       updatedAt: entity.updatedAt.toISOString(),
     })
   })

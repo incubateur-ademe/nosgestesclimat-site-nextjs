@@ -2,7 +2,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { afterEach, describe, expect, it } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
-import { parseModelString } from '../../../models/helpers/model-versions.ts'
+import { parseModel } from '../../../models/helpers/model-versions.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import {
   SimulationCompletedError,
@@ -133,7 +133,7 @@ describe('updateSimulationSituation', () => {
     })
 
     expect(updated).toEqual(
-      expect.objectContaining({ model: parseModelString('FR-fr-4.15.0') })
+      expect.objectContaining({ model: parseModel('FR-fr-4.15.0') })
     )
   })
 

@@ -2,7 +2,7 @@ import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supported
 import * as v from 'valibot'
 import {
   CURRENT_MODEL_VERSION,
-  parseModelVersionString,
+  parseModelVersion,
 } from '../../models/helpers/model-versions.ts'
 import type { ModelRegion, ModelVersion } from '../../models/types/model.ts'
 
@@ -18,7 +18,7 @@ const VersionSchema = v.pipe(
     const version =
       dataset.value === 'current'
         ? { publishedTag: CURRENT_MODEL_VERSION }
-        : parseModelVersionString(dataset.value)
+        : parseModelVersion(dataset.value)
 
     if (!version) {
       addIssue({
