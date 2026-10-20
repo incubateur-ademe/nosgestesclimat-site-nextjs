@@ -2,7 +2,10 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { afterEach, describe, expect, it } from 'vitest'
 import { prisma } from '../../../../prisma/client.ts'
 import { emptyDatabase } from '../../../../test-utils/empty-database.ts'
-import { parseModel } from '../../../models/helpers/model-versions.ts'
+import {
+  parseModel,
+  type ModelString,
+} from '../../../models/helpers/model-versions.ts'
 import { userFactory } from '../../../users/factories/user.factory.ts'
 import {
   SimulationCompletedError,
@@ -124,7 +127,7 @@ describe('updateSimulationSituation', () => {
       userId: user.id,
       simulationId: simulation.id,
       ...payload,
-      model: 'FR-fr-4.15.0',
+      model: 'FR-fr-4.15.0' as ModelString,
     })
 
     const updated = await findSimulationById({

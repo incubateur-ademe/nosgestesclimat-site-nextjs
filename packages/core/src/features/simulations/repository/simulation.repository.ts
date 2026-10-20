@@ -7,6 +7,7 @@ import type { Transaction } from '../../../lib/transaction.ts'
 import { prisma } from '../../../prisma/client.ts'
 import type { Prisma } from '../../../prisma/generated/client.ts'
 import { isPrismaErrorNotFound } from '../../../prisma/utils.ts'
+import type { ModelString } from '../../models/helpers/model-versions.ts'
 import { serializeModel } from '../../models/helpers/model-versions.ts'
 import type { Model } from '../../models/types/model.ts'
 import { SimulationNotFoundError } from '../errors/simulations.error.ts'
@@ -216,7 +217,7 @@ export const updateSimulation = async (
     foldedSteps: DottedName[]
     progression: number
     computedResults: ComputedResults
-    model?: string
+    model?: ModelString
   },
   tx: Transaction = prisma
 ): Promise<Result<void, SimulationNotFoundError>> => {
