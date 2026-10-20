@@ -29,7 +29,7 @@ const logger = createLogger({
 const POLL_INTERVAL_MS = 2000
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-const getModelRules = createGetModelRules({})
+const getModelRules = createGetModelRules({ logger })
 const warmUpHotEngines = createWarmUpHotEngines({ logger, getModelRules })
 const getEngineForModel = createGetEngineForModel({ logger, getModelRules })
 const assessActions = createAssessActions({ logger })

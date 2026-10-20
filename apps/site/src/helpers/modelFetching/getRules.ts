@@ -1,6 +1,7 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import rulesOpti from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 
+import logger from '@/logger/logger.server'
 import { getModelFileName } from '@nosgestesclimat/core/features/models/helpers/get-model-file-name'
 import { importCurrentModel } from '@nosgestesclimat/core/features/models/helpers/import-current-model'
 import { createGetModelRules } from '@nosgestesclimat/core/features/models/services/get-model-rules.service'
@@ -9,7 +10,7 @@ import { CURRENT_MODEL_VERSION, type Model } from '../server/model/models'
 
 const getModelRules = createGetModelRules({
   findCurrentModel,
-  captureException,
+  logger,
   // The site migrates outdated situations forward to the current model
   // (see migrateSimulationIfNeeded), so it keeps rendering the installed rules
   // and only reports the mismatch. The worker is the one fetching old versions.

@@ -1,4 +1,4 @@
-import { DomainError } from '../../../lib/errors.ts'
+import { DomainError } from '../../lib/errors.ts'
 
 export class ModelFileFetchFailedError extends DomainError<'model_file_fetch_failed'> {
   public readonly url: string

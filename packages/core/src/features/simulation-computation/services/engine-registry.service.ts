@@ -4,7 +4,7 @@ import * as v from 'valibot'
 import { memoryAttributes } from '../../../lib/memory.ts'
 import type { Result } from '../../../lib/result.ts'
 import type { Logger } from '../../logger/index.ts'
-import type { ModelFileFetchFailedError } from '../../models/exceptions/errors.ts'
+import type { ModelFileFetchFailedError } from '../../models/errors.ts'
 import { serializeModelString } from '../../models/helpers/model-versions.ts'
 import type {
   Model,

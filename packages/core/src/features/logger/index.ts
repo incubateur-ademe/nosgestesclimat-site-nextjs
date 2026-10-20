@@ -1,7 +1,5 @@
 import { spanDecorator } from './with-span.ts'
 
-export type CaptureException = (exception: unknown) => void
-
 /** The levels a logger writes, quietest first. `LogLevel` derives from the list,
  * so a level cannot be added to one without the other. */
 export const LOG_LEVELS = ['debug', 'info', 'warn', 'error', 'fatal'] as const

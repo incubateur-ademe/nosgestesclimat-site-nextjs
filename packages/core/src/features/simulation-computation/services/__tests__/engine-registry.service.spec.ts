@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { failure, success } from '../../../../lib/result.ts'
 import { createTestLogger } from '../../../../test-utils/logger.ts'
-import { ModelFileFetchFailedError } from '../../../models/exceptions/errors.ts'
+import { ModelFileFetchFailedError } from '../../../models/errors.ts'
 import { CURRENT_MODEL_VERSION } from '../../../models/helpers/model-versions.ts'
 import type { Model, ModelRegion } from '../../../models/types/model.ts'
 

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { ModelFileFetchFailedError } from '../../exceptions/errors.ts'
+import { ModelFileFetchFailedError } from '../../errors.ts'
 import { fetchModelFile } from '../fetch-model-file.ts'
 
 const REMOTE_RULES = { bilan: { formule: 0 } }
@@ -21,8 +21,7 @@ describe('fetchModelFile', () => {
     const result = await fetchModelFile('https://example.com/model.json')
 
     expect(fetchMock).toHaveBeenCalledOnce()
-    expect(result.success).toBe(true)
-    if (!result.success) throw new Error('expected success')
+    expect.assert(result.success)
     expect(result.data).toEqual(REMOTE_RULES)
   })
 
@@ -34,8 +33,7 @@ describe('fetchModelFile', () => {
 
     const result = await fetchModelFile('https://example.com/model.json')
 
-    expect(result.success).toBe(false)
-    if (result.success) throw new Error('expected failure')
+    expect.assert(!result.success)
     expect(result.error).toBeInstanceOf(ModelFileFetchFailedError)
     expect(result.error.status).toBe(404)
   })
@@ -46,8 +44,7 @@ describe('fetchModelFile', () => {
 
     const result = await fetchModelFile('https://example.com/model.json')
 
-    expect(result.success).toBe(false)
-    if (result.success) throw new Error('expected failure')
+    expect.assert(!result.success)
     expect(result.error).toBeInstanceOf(ModelFileFetchFailedError)
     expect(fetchMock).toHaveBeenCalledOnce()
   })
@@ -62,8 +59,7 @@ describe('fetchModelFile', () => {
     const result = await fetchModelFile('https://example.com/model.json')
 
     expect(fetchMock).toHaveBeenCalledTimes(2)
-    expect(result.success).toBe(true)
-    if (!result.success) throw new Error('expected success')
+    expect.assert(result.success)
     expect(result.data).toEqual(REMOTE_RULES)
   })
 
@@ -73,8 +69,7 @@ describe('fetchModelFile', () => {
 
     const result = await fetchModelFile('https://example.com/model.json')
 
-    expect(result.success).toBe(false)
-    if (result.success) throw new Error('expected failure')
+    expect.assert(!result.success)
     expect(result.error).toBeInstanceOf(ModelFileFetchFailedError)
     expect(fetchMock).toHaveBeenCalledTimes(2)
   })

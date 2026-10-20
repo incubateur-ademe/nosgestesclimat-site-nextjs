@@ -1,5 +1,5 @@
 import { failure, success, type Result } from '../../../lib/result.ts'
-import { ModelFileFetchFailedError } from '../exceptions/errors.ts'
+import { ModelFileFetchFailedError } from '../errors.ts'
 
 const REQUEST_TIMEOUT_MS = 5_000
 const MAX_ATTEMPTS = 2

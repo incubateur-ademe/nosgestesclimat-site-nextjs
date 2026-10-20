@@ -1,8 +1,8 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { success, type Result } from '../../../lib/result.ts'
-import type { CaptureException } from '../../logger/index.ts'
-import type { ModelFileFetchFailedError } from '../exceptions/errors.ts'
-import { OutdatedModelVersionError } from '../exceptions/errors.ts'
+import type { Logger } from '../../logger/index.ts'
+import type { ModelFileFetchFailedError } from '../errors.ts'
+import { OutdatedModelVersionError } from '../errors.ts'
 import { fetchModelFile as defaultFetchModelFile } from '../helpers/fetch-model-file.ts'
 import { getModelFileName } from '../helpers/get-model-file-name.ts'
 import { importCurrentModel as defaultFindCurrentModel } from '../helpers/import-current-model.ts'
@@ -26,7 +26,7 @@ interface GetModelRulesDeps {
    * override it to avoid hitting the network.
    */
   fetchModelFile?: typeof defaultFetchModelFile
-  captureException?: CaptureException
+  logger: Logger
   /**
    * What to do with a published tag other than the installed one.
    * `fetch` (worker) computes against the version the simulation was made
@@ -45,9 +45,9 @@ export function createGetModelRules(deps: GetModelRulesDeps) {
   const {
     findCurrentModel = defaultFindCurrentModel,
     fetchModelFile = defaultFetchModelFile,
-    captureException,
     outdatedPublishedTagStrategy = 'fetch',
   } = deps
+  const logger = deps.logger.child({ scope: 'core.service.getModelRules' })
 
   return async function getModelRules(
     model: Partial<Model> = {},
@@ -72,7 +72,7 @@ export function createGetModelRules(deps: GetModelRulesDeps) {
     }
 
     if (outdatedPublishedTagStrategy === 'fallback_to_current') {
-      captureException?.(
+      logger.error(
         new OutdatedModelVersionError({
           message: `Model version mismatch: ${version.publishedTag} !== ${CURRENT_MODEL_VERSION}`,
           publishedTag: version.publishedTag,
