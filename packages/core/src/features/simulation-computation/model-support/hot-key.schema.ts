@@ -1,12 +1,12 @@
-import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' with { type: 'json' }
 import * as v from 'valibot'
 import {
   CURRENT_MODEL_VERSION,
   parseModelVersion,
 } from '../../models/helpers/model-versions.ts'
-import type { ModelRegion, ModelVersion } from '../../models/types/model.ts'
-
-const RegionSchema = v.picklist(Object.keys(supportedRegions) as ModelRegion[])
+import {
+  ModelRegionSchema,
+  type ModelVersion,
+} from '../../models/types/model.ts'
 
 /**
  * `current` resolves to the model version installed in node_modules, so a
@@ -38,7 +38,7 @@ const VersionSchema = v.pipe(
 export const HotKeySchema = v.pipe(
   v.string(),
   v.transform((rawKey) => rawKey.split(':')),
-  v.strictTuple([RegionSchema, VersionSchema]),
+  v.strictTuple([ModelRegionSchema, VersionSchema]),
   v.transform(([region, version]) => ({ region, version }))
 )
 

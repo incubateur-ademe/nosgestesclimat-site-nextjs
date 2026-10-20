@@ -1,9 +1,6 @@
-import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json' with { type: 'json' }
-import type { Model, ModelRegion } from '../../models/types/model.ts'
+import { ModelRegionSchema, type Model } from '../../models/types/model.ts'
 
-const SUPPORTED_REGIONS = new Set(
-  Object.keys(supportedRegions) as ModelRegion[]
-)
+const SUPPORTED_REGIONS = new Set(ModelRegionSchema.options)
 
 /**
  * Only the region is check because it would not be ideal to load all possible
