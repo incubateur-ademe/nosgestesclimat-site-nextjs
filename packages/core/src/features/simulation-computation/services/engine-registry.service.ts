@@ -6,6 +6,7 @@ import type { Result } from '../../../lib/result.ts'
 import type { Logger } from '../../logger/index.ts'
 import type { ModelFileFetchFailedError } from '../../models/errors.ts'
 import { serializeModel } from '../../models/helpers/model-versions.ts'
+import { createGetModelRules } from '../../models/services/get-model-rules.service.ts'
 import type {
   Model,
   ModelRegion,
@@ -24,8 +25,7 @@ const ENGINE_OPTIONS = {
 } as const
 
 /**
- * Loads the rules for a model, whatever version it points at. The registry
- * owns this abstraction so it doesn't depend on how rules are resolved.
+ * Loads the rules for a model, whatever version it points at.
  */
 interface GetModelRules {
   (model: Partial<Model>): Promise<Result<NGCRules, ModelFileFetchFailedError>>
@@ -33,7 +33,6 @@ interface GetModelRules {
 
 interface EngineRegistryDeps {
   logger: Logger
-  getModelRules: GetModelRules
 }
 
 /**
@@ -94,8 +93,8 @@ const buildEngine =
  * combinations never pay the cold-build cost. Call once at worker startup.
  */
 export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
+  const getModelRules = createGetModelRules({ logger: deps.logger })
   return async function warmUpHotEngines(): Promise<void> {
-    const { getModelRules } = deps
     const logger = deps.logger.child({
       scope: 'core.service.engineRegistry',
     })
@@ -123,8 +122,8 @@ export function createWarmUpHotEngines(deps: EngineRegistryDeps) {
  * then the LRU cache, then lazily building (and caching) a new one.
  */
 export function createGetEngineForModel(deps: EngineRegistryDeps) {
+  const getModelRules = createGetModelRules({ logger: deps.logger })
   return async function getEngineForModel(model: Model): Promise<Engine> {
-    const { getModelRules } = deps
     const logger = deps.logger.child({
       scope: 'core.service.engineRegistry',
     })

@@ -9,12 +9,21 @@ const REMOTE_RULES = { bilan: { formule: 0 } }
 
 describe('createGetModelRules', () => {
   const findCurrentModel = vi.fn()
-  const fetchModelFile = vi.fn()
+  const findPublishedModel = vi.fn()
+  const findPreviewModel = vi.fn()
   const logger = createTestLogger()
+
+  const deps = {
+    findCurrentModel,
+    findPublishedModel,
+    findPreviewModel,
+    logger,
+  }
 
   beforeEach(() => {
     findCurrentModel.mockResolvedValue({ bilan: { formule: 1 } })
-    fetchModelFile.mockResolvedValue(success(REMOTE_RULES))
+    findPublishedModel.mockResolvedValue(success(REMOTE_RULES))
+    findPreviewModel.mockResolvedValue(success(REMOTE_RULES))
   })
 
   afterEach(() => {
@@ -28,11 +37,7 @@ describe('createGetModelRules', () => {
   ] as const)(
     'reads the current version from the installed package, without any request: %s',
     async (_label, region, locale, fileName) => {
-      const getModelRules = createGetModelRules({
-        findCurrentModel,
-        fetchModelFile,
-        logger,
-      })
+      const getModelRules = createGetModelRules(deps)
 
       const result = await getModelRules({
         region,
@@ -41,18 +46,15 @@ describe('createGetModelRules', () => {
       })
 
       expect(findCurrentModel).toHaveBeenCalledWith(fileName)
-      expect(fetchModelFile).not.toHaveBeenCalled()
+      expect(findPublishedModel).not.toHaveBeenCalled()
+      expect(findPreviewModel).not.toHaveBeenCalled()
       expect.assert(result.success)
       expect(result.data).toEqual({ bilan: { formule: 1 } })
     }
   )
 
   it('defaults to FR/fr on the current version', async () => {
-    const getModelRules = createGetModelRules({
-      findCurrentModel,
-      fetchModelFile,
-      logger,
-    })
+    const getModelRules = createGetModelRules(deps)
 
     await getModelRules()
 
@@ -60,11 +62,7 @@ describe('createGetModelRules', () => {
   })
 
   it('asks for the optimized file when requested', async () => {
-    const getModelRules = createGetModelRules({
-      findCurrentModel,
-      fetchModelFile,
-      logger,
-    })
+    const getModelRules = createGetModelRules(deps)
 
     await getModelRules({ region: 'FR', locale: 'fr' }, { isOptim: true })
 
@@ -77,22 +75,17 @@ describe('createGetModelRules', () => {
     ['UK/en', 'UK', 'en', false, 'co2-model.UK-lang.en.json'],
     ['FR/fr optimized', 'FR', 'fr', true, 'co2-model.FR-lang.fr-opti.json'],
   ] as const)(
-    'fetches a PR version from the preview bucket: %s',
+    'loads a PR version through findPreviewModel: %s',
     async (_label, region, locale, isOptim, fileName) => {
-      const getModelRules = createGetModelRules({
-        findCurrentModel,
-        fetchModelFile,
-        logger,
-      })
+      const getModelRules = createGetModelRules(deps)
 
       const result = await getModelRules(
         { region, locale, version: { PRNumber: '1234' } },
         { isOptim }
       )
 
-      expect(fetchModelFile).toHaveBeenCalledWith(
-        `https://nosgestesclimat-dev.s3.fr-par.scw.cloud/model/1234/${fileName}`
-      )
+      expect(findPreviewModel).toHaveBeenCalledWith('1234', fileName)
+      expect(findPublishedModel).not.toHaveBeenCalled()
       expect.assert(result.success)
       expect(result.data).toEqual(REMOTE_RULES)
       expect(findCurrentModel).not.toHaveBeenCalled()
@@ -141,23 +134,17 @@ describe('createGetModelRules', () => {
       {},
     ],
   ] as const)(
-    'fetches an outdated published version from the registry CDN: %s',
-    async (_label, region, locale, isOptim, fileName, deps) => {
-      const getModelRules = createGetModelRules({
-        findCurrentModel,
-        fetchModelFile,
-        logger,
-        ...deps,
-      })
+    'loads an outdated published version through findPublishedModel: %s',
+    async (_label, region, locale, isOptim, fileName, options) => {
+      const getModelRules = createGetModelRules(deps)
 
       const result = await getModelRules(
         { region, locale, version: { publishedTag: '4.14.2' } },
-        { isOptim }
+        { isOptim, ...options }
       )
 
-      expect(fetchModelFile).toHaveBeenCalledWith(
-        `https://cdn.jsdelivr.net/npm/@incubateur-ademe/nosgestesclimat@4.14.2/public/${fileName}`
-      )
+      expect(findPublishedModel).toHaveBeenCalledWith('4.14.2', fileName)
+      expect(findPreviewModel).not.toHaveBeenCalled()
       expect.assert(result.success)
       expect(result.data).toEqual(REMOTE_RULES)
       expect(findCurrentModel).not.toHaveBeenCalled()
@@ -172,19 +159,15 @@ describe('createGetModelRules', () => {
   ] as const)(
     'reports the mismatch and serves the installed rules under fallback-to-current: %s',
     async (_label, isOptim, fileName) => {
-      const getModelRules = createGetModelRules({
-        findCurrentModel,
-        fetchModelFile,
-        logger,
-        outdatedPublishedTagStrategy: 'fallback_to_current',
-      })
+      const getModelRules = createGetModelRules(deps)
 
       const result = await getModelRules(
         { region: 'FR', locale: 'fr', version: { publishedTag: '4.14.2' } },
-        { isOptim }
+        { isOptim, outdatedPublishedTagStrategy: 'fallback_to_current' }
       )
 
-      expect(fetchModelFile).not.toHaveBeenCalled()
+      expect(findPublishedModel).not.toHaveBeenCalled()
+      expect(findPreviewModel).not.toHaveBeenCalled()
       expect(findCurrentModel).toHaveBeenCalledWith(fileName)
       expect.assert(result.success)
       expect(result.data).toEqual({ bilan: { formule: 1 } })
@@ -198,11 +181,7 @@ describe('createGetModelRules', () => {
 
   it('propagates a failure from findCurrentModel on the current-version path', async () => {
     findCurrentModel.mockRejectedValue(new Error('import failed'))
-    const getModelRules = createGetModelRules({
-      findCurrentModel,
-      fetchModelFile,
-      logger,
-    })
+    const getModelRules = createGetModelRules(deps)
 
     await expect(
       getModelRules({
@@ -213,8 +192,8 @@ describe('createGetModelRules', () => {
     ).rejects.toThrow('import failed')
   })
 
-  it('propagates a failure from the remote fetch', async () => {
-    fetchModelFile.mockResolvedValue(
+  it('propagates a failure from findPreviewModel', async () => {
+    findPreviewModel.mockResolvedValue(
       failure(
         new ModelFileFetchFailedError({
           message: 'Model file request failed with status 404',
@@ -223,11 +202,7 @@ describe('createGetModelRules', () => {
         })
       )
     )
-    const getModelRules = createGetModelRules({
-      findCurrentModel,
-      fetchModelFile,
-      logger,
-    })
+    const getModelRules = createGetModelRules(deps)
 
     const result = await getModelRules({
       region: 'FR',

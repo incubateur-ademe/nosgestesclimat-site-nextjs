@@ -3,7 +3,7 @@ import { success, type Result } from '../../../lib/result.ts'
 import type { Logger } from '../../logger/index.ts'
 import type { ModelFileFetchFailedError } from '../errors.ts'
 import { OutdatedModelVersionError } from '../errors.ts'
-import { fetchModelFile as defaultFetchModelFile } from '../helpers/fetch-model-file.ts'
+import { fetchModelFile } from '../helpers/fetch-model-file.ts'
 import { getModelFileName } from '../helpers/get-model-file-name.ts'
 import { importCurrentModel as defaultFindCurrentModel } from '../helpers/import-current-model.ts'
 import {
@@ -16,17 +16,31 @@ import type { Model } from '../types/model.ts'
 interface GetModelRulesDeps {
   /**
    * Loads the rules for the currently installed model. Defaults to a dynamic
-   * import from the `@incubateur-ademe/nosgestesclimat` package; the site
-   * overrides it to statically ship the optimized FR rule set in the bundle.
+   * import from the `@incubateur-ademe/nosgestesclimat` package, with the
+   * optimized FR rule set statically imported so it ships in the bundle.
    */
   findCurrentModel?: (fileName: string) => Promise<NGCRules>
   /**
-   * Fetches a model file that is not installed locally (a PR preview or an
-   * older published version). Defaults to the real implementation; tests
-   * override it to avoid hitting the network.
+   * Loads an older published version from the registry CDN. Defaults to the
+   * real implementation; tests override it to avoid hitting the network.
    */
-  fetchModelFile?: typeof defaultFetchModelFile
+  findPublishedModel?: (
+    publishedTag: string,
+    fileName: string
+  ) => Promise<Result<NGCRules, ModelFileFetchFailedError>>
+  /**
+   * Loads a PR preview build from the preview bucket. Defaults to the real
+   * implementation; tests override it to avoid hitting the network.
+   */
+  findPreviewModel?: (
+    PRNumber: string | number,
+    fileName: string
+  ) => Promise<Result<NGCRules, ModelFileFetchFailedError>>
   logger: Logger
+}
+
+interface GetModelRulesOptions {
+  isOptim?: boolean
   /**
    * What to do with a published tag other than the installed one.
    * `fetch` (worker) computes against the version the simulation was made
@@ -44,14 +58,17 @@ interface GetModelRulesDeps {
 export function createGetModelRules(deps: GetModelRulesDeps) {
   const {
     findCurrentModel = defaultFindCurrentModel,
-    fetchModelFile = defaultFetchModelFile,
-    outdatedPublishedTagStrategy = 'fetch',
+    findPublishedModel = defaultFindPublishedModel,
+    findPreviewModel = defaultFindPreviewModel,
   } = deps
   const logger = deps.logger.child({ scope: 'core.service.getModelRules' })
 
   return async function getModelRules(
     model: Partial<Model> = {},
-    { isOptim = false }: { isOptim?: boolean } = {}
+    {
+      isOptim = false,
+      outdatedPublishedTagStrategy = 'fetch',
+    }: GetModelRulesOptions = {}
   ): Promise<Result<NGCRules, ModelFileFetchFailedError>> {
     const {
       region = 'FR',
@@ -62,9 +79,7 @@ export function createGetModelRules(deps: GetModelRulesDeps) {
     const fileName = getModelFileName({ region, locale, isOptim })
 
     if ('PRNumber' in version) {
-      return await fetchModelFile<NGCRules>(
-        getPreviewModelUrl(version.PRNumber, fileName)
-      )
+      return await findPreviewModel(version.PRNumber, fileName)
     }
 
     if (version.publishedTag === CURRENT_MODEL_VERSION) {
@@ -82,8 +97,18 @@ export function createGetModelRules(deps: GetModelRulesDeps) {
       return success(await findCurrentModel(fileName))
     }
 
-    return await fetchModelFile<NGCRules>(
-      getPublishedModelUrl(version.publishedTag, fileName)
-    )
+    return await findPublishedModel(version.publishedTag, fileName)
   }
 }
+
+const defaultFindPublishedModel = (
+  publishedTag: string,
+  fileName: string
+): Promise<Result<NGCRules, ModelFileFetchFailedError>> =>
+  fetchModelFile<NGCRules>(getPublishedModelUrl(publishedTag, fileName))
+
+const defaultFindPreviewModel = (
+  PRNumber: string | number,
+  fileName: string
+): Promise<Result<NGCRules, ModelFileFetchFailedError>> =>
+  fetchModelFile<NGCRules>(getPreviewModelUrl(PRNumber, fileName))

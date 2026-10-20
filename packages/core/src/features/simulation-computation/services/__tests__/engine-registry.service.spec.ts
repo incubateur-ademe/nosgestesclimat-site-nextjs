@@ -13,6 +13,12 @@ const STUB_RULES = { bilan: { formule: 0 } }
 
 const stubGetModelRules = vi.fn().mockResolvedValue(success(STUB_RULES))
 
+// The registry instantiates createGetModelRules itself; stub the module so
+// the tests never load the model package or hit the network.
+vi.mock('../../../models/services/get-model-rules.service.ts', () => ({
+  createGetModelRules: () => stubGetModelRules,
+}))
+
 describe('engine-registry.service', () => {
   const ORIGINAL_ENV = { ...process.env }
 
@@ -32,12 +38,10 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     await createWarmUpHotEngines({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })()
 
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
     const engineA = await getEngine(model('FR'))
     const engineB = await getEngine(model('FR'))
@@ -50,7 +54,6 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     const frEngine = await getEngine(model('FR'))
@@ -68,7 +71,6 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     const fr = await getEngine(model('FR'))
@@ -88,7 +90,6 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     const fr = await getEngine(model('FR'))
@@ -113,7 +114,6 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     const first = await getEngine(model('FR'))
@@ -122,13 +122,12 @@ describe('engine-registry.service', () => {
     expect(stubGetModelRules).toHaveBeenCalledOnce()
   })
 
-  it('builds an engine for an older published version via the injected getModelRules', async () => {
+  it('builds an engine for an older published version', async () => {
     process.env.ENGINE_HOT_KEYS = ''
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     const engine = await getEngine({
@@ -145,13 +144,12 @@ describe('engine-registry.service', () => {
     })
   })
 
-  it('builds an engine for a PR version via the injected getModelRules', async () => {
+  it('builds an engine for a PR version', async () => {
     process.env.ENGINE_HOT_KEYS = ''
     const { createGetEngineForModel } =
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     await getEngine({
@@ -175,7 +173,6 @@ describe('engine-registry.service', () => {
     const logger = createTestLogger()
     const getEngine = createGetEngineForModel({
       logger,
-      getModelRules: stubGetModelRules,
     })
 
     const outdated = { publishedTag: '4.14.2' } as const
@@ -213,7 +210,6 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     await expect(
@@ -231,13 +227,11 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     await createWarmUpHotEngines({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })()
     expect(stubGetModelRules).toHaveBeenCalledTimes(2)
 
     const getEngine = createGetEngineForModel({
       logger: noopLogger,
-      getModelRules: stubGetModelRules,
     })
 
     const frEngine = await getEngine(model('FR'))
@@ -263,7 +257,6 @@ describe('engine-registry.service', () => {
     await expect(
       createWarmUpHotEngines({
         logger: noopLogger,
-        getModelRules: stubGetModelRules,
       })()
     ).rejects.toThrow('boom')
   })
@@ -279,7 +272,7 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     const logger = createTestLogger()
 
-    await createWarmUpHotEngines({ logger, getModelRules: stubGetModelRules })()
+    await createWarmUpHotEngines({ logger })()
 
     expect(logger.debug).toHaveBeenCalledWith(
       'warming hot engine',
@@ -298,10 +291,9 @@ describe('engine-registry.service', () => {
       await import('../engine-registry.service.ts')
     const logger = createTestLogger()
 
-    await createWarmUpHotEngines({ logger, getModelRules: stubGetModelRules })()
+    await createWarmUpHotEngines({ logger })()
     const getEngine = createGetEngineForModel({
       logger,
-      getModelRules: stubGetModelRules,
     })
 
     await getEngine(model('FR'))

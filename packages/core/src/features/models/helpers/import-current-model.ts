@@ -1,15 +1,29 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import rulesOpti from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json' with { type: 'json' }
+
+import { getModelFileName } from './get-model-file-name.ts'
+
+const OPTIMIZED_FR_FILENAME = getModelFileName({
+  region: 'FR',
+  locale: 'fr',
+  isOptim: true,
+})
 
 /**
- * Dynamically imports a model file from the `@incubateur-ademe/nosgestesclimat`
- * package installed in node_modules.
+ * Imports a model file of the currently installed model from the
+ * `@incubateur-ademe/nosgestesclimat` package installed in node_modules.
  *
- * This is the shared base for loading the current (installed) model. Callers
- * that need bundler-specific behavior - for instance statically importing an
- * optimized rule set so it ships in the bundle - wrap this and only delegate
- * the non-specialized cases to it.
+ * The optimized FR rule set is statically imported so it ships in the
+ * bundle instead of being fetched at runtime; it is a subset of the model -
+ * some rules are voluntarily removed - so we accept to lose some type
+ * soundness here for increased bundle clarity. Every other file is
+ * dynamically imported.
  */
 export async function importCurrentModel(fileName: string): Promise<NGCRules> {
+  if (fileName === OPTIMIZED_FR_FILENAME) {
+    return rulesOpti as unknown as NGCRules
+  }
+
   const model = await import(
     `@incubateur-ademe/nosgestesclimat/public/${fileName}`,
     { with: { type: 'json' } }
