@@ -1,4 +1,5 @@
 import currentPkg from '@incubateur-ademe/nosgestesclimat/package.json' with { type: 'json' }
+import * as v from 'valibot'
 import type {
   Model,
   ModelLocale,
@@ -11,13 +12,18 @@ import type {
  * `pr-1234`. The same notation keys the worker engine cache and the
  * `ENGINE_HOT_KEYS` entries.
  */
-export type ModelVersionString = string & { __brand: 'ModelVersionString' }
+export const modelVersionStringSchema = v.pipe(
+  v.string(),
+  v.brand('ModelVersionString')
+)
+export type ModelVersionString = v.InferOutput<typeof modelVersionStringSchema>
 
 /**
  * The full serialized model, e.g. `FR-fr-4.14.5` or `FR-fr-pr-1234`. Stored in
  * the `Simulation.model` database column.
  */
-export type ModelString = string & { __brand: 'ModelString' }
+export const modelStringSchema = v.pipe(v.string(), v.brand('ModelString'))
+export type ModelString = v.InferOutput<typeof modelStringSchema>
 
 /**
  * Version of the model package installed in node_modules. Every other version
