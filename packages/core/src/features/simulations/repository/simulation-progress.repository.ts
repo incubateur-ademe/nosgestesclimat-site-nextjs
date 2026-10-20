@@ -44,11 +44,7 @@ const findLatestValid = async (where: {
     select: latestSimulationSelect,
   })
 
-  // `isValidSimulation` has checked the model string parses, so it is a
-  // validated model string even though the validator does not narrow the type.
-  return row && isValidSimulation(row)
-    ? { ...row, model: row.model as ModelString }
-    : null
+  return row && isValidSimulation(row) ? row : null
 }
 
 export const findLatestSimulationProgress = async ({

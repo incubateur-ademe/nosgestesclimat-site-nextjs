@@ -1,6 +1,5 @@
+import * as v from 'valibot'
 import { ModelRegionSchema, type Model } from '../../models/types/model.ts'
-
-const SUPPORTED_REGIONS = new Set(ModelRegionSchema.options)
 
 /**
  * Only the region is check because it would not be ideal to load all possible
@@ -8,5 +7,5 @@ const SUPPORTED_REGIONS = new Set(ModelRegionSchema.options)
  * are fetched.
  */
 export function isModelSupported(model: Model): boolean {
-  return SUPPORTED_REGIONS.has(model.region)
+  return v.is(ModelRegionSchema, model.region)
 }
