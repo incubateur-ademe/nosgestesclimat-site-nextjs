@@ -17,7 +17,7 @@ const meta: Meta<typeof ButtonLink> = {
     },
     color: {
       control: 'select',
-      options: ['primary', 'green', 'red'],
+      options: ['primary', 'red'],
       description: 'The color of the button link',
     },
     size: {
@@ -68,11 +68,11 @@ export const Secondary: Story = {
   },
 }
 
-export const Success: Story = {
+export const Red: Story = {
   args: {
-    children: 'Success Link',
+    children: 'Red Link',
     href: '#',
-    color: 'green',
+    color: 'red',
     size: 'md',
   },
 }

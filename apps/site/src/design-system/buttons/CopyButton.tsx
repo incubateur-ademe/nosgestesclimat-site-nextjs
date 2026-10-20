@@ -9,7 +9,7 @@ import { cn } from 'cn'
 import isMobile from 'is-mobile'
 import type { PropsWithChildren, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import Alert from '../alerts/alert/Alert'
+import Alert from '../alert/Alert'
 import Button, { type ButtonProps } from './Button'
 
 interface Props {

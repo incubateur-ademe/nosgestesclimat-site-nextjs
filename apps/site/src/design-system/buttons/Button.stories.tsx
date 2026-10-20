@@ -1,6 +1,11 @@
 // eslint-disable-next-line storybook/no-renderer-packages
 import type { Meta, StoryObj } from '@storybook/nextjs'
 import Button from './Button'
+import type { ButtonColor, ButtonSize, ButtonVariant } from './buttonStyles'
+
+const variants: ButtonVariant[] = ['filled', 'outlined', 'text', 'link']
+const colors: ButtonColor[] = ['primary', 'red']
+const sizes: ButtonSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
 
 const meta: Meta<typeof Button> = {
   title: 'Design System/Buttons/Button',
@@ -12,17 +17,17 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['filled', 'outlined', 'text', 'link'],
+      options: variants,
       description: 'The variant of the button',
     },
     color: {
       control: 'select',
-      options: ['primary', 'green', 'red'],
+      options: colors,
       description: 'The color of the button',
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: sizes,
       description: 'The size variant of the button',
     },
     disabled: {
@@ -65,10 +70,10 @@ export const Secondary: Story = {
   },
 }
 
-export const Success: Story = {
+export const Red: Story = {
   args: {
-    children: 'Success Button',
-    color: 'green',
+    children: 'Red Button',
+    color: 'red',
     size: 'md',
   },
 }
@@ -122,6 +127,45 @@ export const LoadingSecondary: Story = {
     children: 'Loading Secondary',
     variant: 'outlined',
     loading: true,
+  },
+}
+
+export const AllVariants: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-10 p-4">
+      {colors.map((color) => (
+        <section key={color}>
+          <h2 className="mb-4 text-xl font-bold capitalize">{color}</h2>
+          <div className="flex flex-col gap-4">
+            {variants.map((variant) => (
+              <div key={variant} className="flex flex-wrap items-center gap-3">
+                <span className="w-20 text-sm font-bold capitalize">
+                  {variant}
+                </span>
+                {sizes.map((size) => (
+                  <Button
+                    {...args}
+                    key={size}
+                    variant={variant}
+                    color={color}
+                    size={size}>
+                    {size}
+                  </Button>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Every combination of variant, color and size. The disabled and loading controls apply to all buttons.',
+      },
+    },
   },
 }
 

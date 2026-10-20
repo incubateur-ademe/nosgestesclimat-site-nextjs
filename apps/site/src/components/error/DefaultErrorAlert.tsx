@@ -1,6 +1,6 @@
 'use client'
 
-import Alert from '@/design-system/alerts/alert/Alert'
+import Alert from '@/design-system/alert/Alert'
 import { cn } from 'cn'
 import type { PropsWithChildren } from 'react'
 import DefaultErrorMessage from './DefaultErrorMessage'
