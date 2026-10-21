@@ -17,7 +17,7 @@ interface UserFactorySetup {
   setupFactoryForTest: (user: User, updatedAt: Date) => Promise<void>
 }
 
-describe('addLastActivityAt', () => {
+describe('addLastActivityAtToUser', () => {
   afterEach(async () => {
     await emptyDatabase(prisma)
   })

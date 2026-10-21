@@ -86,7 +86,7 @@ export async function addLastActivityAtToUser(props?: Props) {
          -- Newsletter subscriptions do not issue a session
          WHERE v_c.usage = 'login'
       ),
-      most_recent_update_date AS (
+      most_recent_user_update_selection AS (
         SELECT user_id, MAX(dates) AS date
           FROM linked_entities
          GROUP BY user_id
@@ -94,7 +94,7 @@ export async function addLastActivityAtToUser(props?: Props) {
       updated_users AS (
         UPDATE ngc."User" u
            SET "lastActivityAt" = m_r.date
-          FROM most_recent_update_date m_r
+          FROM most_recent_user_update_selection m_r
          WHERE u.id = m_r.user_id
           -- Prevent update if dry mode is enabled
           AND NOT $3::boolean
