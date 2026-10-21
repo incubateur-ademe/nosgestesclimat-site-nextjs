@@ -8,6 +8,7 @@ import logger from '@/logger/logger.browser'
 import { downloadPollResults } from '@/services/organisations/download-poll-results'
 import type { PollIdentifier } from '@/types/organisations'
 import { toError } from '@nosgestesclimat/core/lib/to-error'
+import { cn } from 'cn'
 import { useTransition } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
 import Trans from '../translation/trans/TransClient'
@@ -45,7 +46,7 @@ export default function ExportDataButton({
   return (
     <div className="relative pb-11" aria-live="polite">
       <Button
-        className={className}
+        className={cn('dark', className)}
         variant={variant}
         disabled={isPending}
         onClick={handleClick}

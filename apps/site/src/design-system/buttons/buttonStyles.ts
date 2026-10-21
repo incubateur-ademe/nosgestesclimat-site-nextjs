@@ -13,7 +13,7 @@ const variantClassNames: Record<ButtonVariant, VariantStyles> = {
     primary: cn(
       'text-white bg-primary-700 border-2 border-primary-700 shadow-xs',
       'hover:text-white hover:bg-primary-800',
-      'dark:bg-primary-50 dark:hover:bg-primary-100 dark:text-primary-700!'
+      'dark:bg-primary-100 dark:hover:bg-primary-100 hover:dark:bg-primary-200 hover:dark:border-primary-200 dark:border-primary-100 dark:text-primary-700!'
     ),
     red: cn(
       'text-white bg-red-700 border-2 border-red-700 shadow-xs',

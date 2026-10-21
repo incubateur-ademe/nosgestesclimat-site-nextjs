@@ -37,6 +37,7 @@ export default function ShareSimulationButton({
       }}
       buttonLabel={buttonLabel ?? t('Partager')}
       variant={variant ?? 'text'}
+      className="dark"
       shouldHideTextOnMobile={shouldHideTextOnMobile}
       modalTitle={t('Partager le simulateur')}
       modalDescription={t(

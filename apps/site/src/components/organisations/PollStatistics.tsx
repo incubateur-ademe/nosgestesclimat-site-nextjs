@@ -50,7 +50,7 @@ export default function PollStatistics({
             onClick={() => {
               trackEvent(captureExportPollData)
             }}
-            className="h-14"
+            className="dark h-14"
           />
         )}
       </div>
