@@ -1,11 +1,10 @@
-import { randomBytes } from 'node:crypto'
-
 import { recordUserActivity } from '../../users/repositories/users.repository.ts'
 import {
   SESSION_ROTATION_TOLERANCE_SECONDS,
   SESSION_TTL_SECONDS,
 } from '../constants/session.ts'
 import { encryptSession } from '../helpers/encrypt-session.ts'
+import { generateRefreshToken } from '../helpers/generate-refresh-token.ts'
 import { hashToken } from '../helpers/hash-token.ts'
 import {
   findByPreviousToken,
@@ -45,7 +44,7 @@ export async function renewSession({
   email?: string
 }): Promise<RenewalOutcome> {
   const hashedToken = hashToken(refreshToken)
-  const nextToken = randomBytes(32).toString('base64url')
+  const nextToken = generateRefreshToken()
 
   const rotation = await rotateToken({
     hashedToken,
