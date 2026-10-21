@@ -1,6 +1,5 @@
 import { prisma } from '@nosgestesclimat/core/prisma/client'
-import yargs from 'yargs'
-import { hideBin } from 'yargs/helpers'
+import { parseArgs } from 'node:util'
 
 const DEFAULT_BATCH_SIZE = 1000
 
@@ -136,24 +135,26 @@ const isMain =
   process.argv[1] && import.meta.url === `file://${process.argv[1]}`
 
 if (isMain) {
-  const args = yargs(hideBin(process.argv))
-    .boolean('dry')
-    .alias('d', 'dry')
-    .default('dry', true)
-    .number('batch-size')
-    .alias('b', 'batch-size')
-    .default('batch-size', DEFAULT_BATCH_SIZE)
-    .check((argv) => {
-      const batchSize = argv['batch-size']
+  const { values } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      dry: { type: 'boolean' },
+      d: { type: 'boolean' },
+      'batch-size': { type: 'string' },
+      b: { type: 'string' },
+    },
+    allowNegative: true,
+  })
 
-      if (!Number.isInteger(batchSize) || batchSize < 1) {
-        throw new Error('--batch-size must be a positive integer')
-      }
-      return true
-    })
-    .parse()
+  const dry = values.dry ?? values.d ?? true
+  const batchSize = Number(
+    values['batch-size'] ?? values.b ?? DEFAULT_BATCH_SIZE
+  )
 
-  const { dry, 'batch-size': batchSize } = await args
+  if (!Number.isInteger(batchSize) || batchSize < 1) {
+    console.error('--batch-size must be a positive integer')
+    process.exit(1)
+  }
 
   addLastActivityAtToUser({ dry, batchSize })
     .then(() => process.exit(0))
