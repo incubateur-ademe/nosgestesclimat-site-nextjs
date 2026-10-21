@@ -215,3 +215,47 @@ export async function createOrUpdateUser(
 
   return mapUser(row)
 }
+
+export async function softDeleteUser(
+  userId: string,
+  { session }: { session: Transaction }
+) {
+  await session.$queryRaw<
+    Array<{
+      id: string
+    }>
+  >
+  /* sql */
+  `
+    WITH organisationAdmin AS (
+        SELECT o_a.id
+        FROM ngc."OrganisationAdministrator" o_a
+        JOIN ngc."VerifiedUser" v_u ON v_u.email = o_a."userEmail"
+        WHERE v_u.id = ${userId}::uuid
+    )
+    DELETE FROM ngc."OrganisationAdministrator" o_a
+    USING organisationAdmin
+    WHERE o_a.id = organisationAdmin.id
+    `
+
+  await session.organisationAdministrator.deleteMany({
+    where: {
+      id: userId,
+    },
+  })
+
+  await session.verifiedUser.deleteMany({
+    where: {
+      id: userId,
+    },
+  })
+
+  await session.user.updateMany({
+    where: {
+      id: userId,
+    },
+    data: {
+      deletedAt: new Date(),
+    },
+  })
+}
