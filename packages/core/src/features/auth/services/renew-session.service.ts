@@ -47,49 +47,46 @@ export async function renewSession({
   const hashedToken = hashToken(refreshToken)
   const nextToken = randomBytes(32).toString('base64url')
 
-  const rotated = await rotateToken({
+  const rotation = await rotateToken({
     hashedToken,
     newHashedToken: hashToken(nextToken),
   })
 
-  if (rotated) {
-    await recordUserActivity({ userId: rotated.userId })
+  const issueAccessToken = (userId: string) =>
+    encryptSession({ userId, email }, SESSION_TTL_SECONDS)
+
+  if (rotation.success) {
+    const { userId } = rotation.data
+    await recordUserActivity({ userId })
 
     return {
       status: 'rotated',
       tokens: {
-        accessToken: await encryptSession(
-          { userId: rotated.userId, email },
-          SESSION_TTL_SECONDS
-        ),
+        accessToken: await issueAccessToken(userId),
         refreshToken: nextToken,
       },
     }
   }
 
-  const previous = await findByPreviousToken(hashedToken)
-  if (!previous?.rotatedAt) {
-    return { status: 'unrecognised' }
+  // The key is not the live one. Either a request from the same page replaced it
+  // moments ago, or it comes back after the tolerance window: `rotatedAt` is
+  // what separates the two.
+  const replaced = await findByPreviousToken(hashedToken)
+  if (!replaced?.rotatedAt) return { status: 'unrecognised' }
+
+  const ageMs = Date.now() - replaced.rotatedAt.getTime()
+
+  if (ageMs > SESSION_ROTATION_TOLERANCE_SECONDS * 1000) {
+    // The whole family goes, so a replay costs the attacker the session too.
+    await revokeAllSessions(replaced.userId)
+    return { status: 'replayed', ageMs }
   }
 
-  const ageMs = Date.now() - previous.rotatedAt.getTime()
+  await recordUserActivity({ userId: replaced.userId })
 
-  if (ageMs <= SESSION_ROTATION_TOLERANCE_SECONDS * 1000) {
-    await recordUserActivity({ userId: previous.userId })
-
-    return {
-      status: 'concurrent',
-      ageMs,
-      tokens: {
-        accessToken: await encryptSession(
-          { userId: previous.userId, email },
-          SESSION_TTL_SECONDS
-        ),
-      },
-    }
+  return {
+    status: 'concurrent',
+    ageMs,
+    tokens: { accessToken: await issueAccessToken(replaced.userId) },
   }
-
-  // The whole family goes, so a replay costs the attacker the session too.
-  await revokeAllSessions(previous.userId)
-  return { status: 'replayed', ageMs }
 }

@@ -36,8 +36,7 @@ describe('renewSession', () => {
 
     const outcome = await renewSession({ refreshToken: token })
 
-    expect(outcome.status).toBe('rotated')
-    if (outcome.status !== 'rotated') return
+    expect.assert(outcome.status === 'rotated')
 
     const rows = await findAllByUserId(userId)
     expect(rows).toHaveLength(1)
@@ -76,7 +75,7 @@ describe('renewSession', () => {
     const concurrent = outcomes.find(
       (outcome) => outcome.status === 'concurrent'
     )
-    if (concurrent?.status !== 'concurrent') return
+    expect.assert(concurrent?.status === 'concurrent')
     // Handing a key back would overwrite the winner's cookie.
     expect(concurrent.tokens.refreshToken).toBeUndefined()
     expect(concurrent.ageMs).toBeLessThan(
@@ -91,8 +90,7 @@ describe('renewSession', () => {
 
     const outcome = await renewSession({ refreshToken: token })
 
-    expect(outcome.status).toBe('replayed')
-    if (outcome.status !== 'replayed') return
+    expect.assert(outcome.status === 'replayed')
     expect(outcome.ageMs).toBeGreaterThan(
       SESSION_ROTATION_TOLERANCE_SECONDS * 1000
     )

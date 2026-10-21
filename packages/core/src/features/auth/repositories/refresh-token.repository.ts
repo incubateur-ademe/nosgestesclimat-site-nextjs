@@ -1,8 +1,8 @@
+import { failure, success, type Result } from '../../../lib/result.ts'
 import { prisma } from '../../../prisma/client.ts'
-import type {
-  CreateRefreshTokenData,
-  RotatedToken,
-} from '../types/refresh-token.ts'
+import { isPrismaErrorNotFound } from '../../../prisma/utils.ts'
+import { RefreshTokenNotFoundError } from '../errors/refresh-token.error.ts'
+import type { CreateRefreshTokenData } from '../types/refresh-token.ts'
 import { mapCreateRefreshTokenInput } from './refresh-token.mapper.ts'
 
 export async function createRefreshToken(
@@ -14,9 +14,8 @@ export async function createRefreshToken(
 }
 
 /**
- * Replaces the token a row carries and keeps the replaced one, which is what
- * tells a concurrent request from a replay. The `WHERE` is the election: one
- * caller matches a given token.
+ * Rewrites the row's key in place, keeping the replaced key in `previousToken`:
+ * that is how a caller that could not rewrite it learns when it was rewritten.
  */
 export async function rotateToken({
   hashedToken,
@@ -24,19 +23,30 @@ export async function rotateToken({
 }: {
   hashedToken: string
   newHashedToken: string
-}): Promise<RotatedToken | null> {
-  const rows = await prisma.$queryRaw<RotatedToken[]>`
-    UPDATE ngc."RefreshToken"
-    SET token = ${newHashedToken},
-        "previousToken" = ${hashedToken},
-        "rotatedAt" = NOW()
-    WHERE token = ${hashedToken} AND "expiresAt" > NOW()
-    RETURNING id, "userId", "rotatedAt"
-  `
-  return rows[0] ?? null
+}): Promise<Result<{ userId: string }, RefreshTokenNotFoundError>> {
+  const now = new Date()
+
+  try {
+    const rotated = await prisma.refreshToken.update({
+      where: { token: hashedToken, expiresAt: { gt: now } },
+      data: {
+        token: newHashedToken,
+        previousToken: hashedToken,
+        rotatedAt: now,
+      },
+      select: { userId: true },
+    })
+
+    return success(rotated)
+  } catch (error) {
+    if (isPrismaErrorNotFound(error)) {
+      return failure(new RefreshTokenNotFoundError())
+    }
+    throw error
+  }
 }
 
-/** The row whose rotation replaced `hashedToken` and that has not rotated again. */
+/** The live row that carries `hashedToken` as the key it replaced. */
 export function findByPreviousToken(hashedToken: string): Promise<{
   id: string
   userId: string
