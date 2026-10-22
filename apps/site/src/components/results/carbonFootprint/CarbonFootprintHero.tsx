@@ -16,7 +16,6 @@ import {
   type FootprintComparisonLevel,
 } from './footprintComparison'
 import FootprintComparisonChart from './FootprintComparisonChart'
-import MobileStickyCta from './MobileStickyCta'
 
 interface Props {
   value: number
@@ -77,18 +76,6 @@ export default async function CarbonFootprintHero({
       deltaValues
     )
   }
-
-  const ctaLabel = (
-    <>
-      <Trans i18nKey="results.footprintBlock.actionsBlock.link">
-        Découvrir mes actions
-      </Trans>
-
-      <span aria-hidden="true" className="ml-2">
-        →
-      </span>
-    </>
-  )
 
   return (
     <Card
@@ -204,28 +191,19 @@ export default async function CarbonFootprintHero({
         </p>
 
         <div className="flex w-full flex-col items-start gap-3">
-          {/* `cta-position` tells PostHog autocapture which of the two
-              buttons was clicked */}
-          <MobileStickyCta
-            stickyCta={
-              <ButtonLink
-                href={ACTIONS_SUGGESTED_PATH}
-                color="primary"
-                size="md"
-                className="w-full"
-                data-ph-capture-attribute-cta-position="sticky">
-                {ctaLabel}
-              </ButtonLink>
-            }>
-            <ButtonLink
-              href={ACTIONS_SUGGESTED_PATH}
-              color="primary"
-              size="md"
-              className="w-full md:w-auto"
-              data-ph-capture-attribute-cta-position="inline">
-              {ctaLabel}
-            </ButtonLink>
-          </MobileStickyCta>
+          <ButtonLink
+            href={ACTIONS_SUGGESTED_PATH}
+            color="primary"
+            size="md"
+            className="w-full md:w-auto">
+            <Trans i18nKey="results.footprintBlock.actionsBlock.link">
+              Découvrir mes actions
+            </Trans>
+
+            <span aria-hidden="true" className="ml-2">
+              →
+            </span>
+          </ButtonLink>
 
           <p
             id="footprint-average-legend"
