@@ -90,13 +90,13 @@ export default async function CarbonFootprintHero({
           </Trans>
         </h1>
 
-        <div className="flex flex-wrap items-baseline gap-x-3.5 gap-y-1">
+        <div className="flex items-baseline gap-x-2.5 gap-y-1 md:flex-wrap md:gap-x-3.5">
           <p className="text-primary-700 mb-0 text-[clamp(3.6rem,6vw,4.5rem)] leading-[0.9] font-extrabold tracking-tight tabular-nums">
             {formattedValue}
           </p>
 
-          <div className="flex items-start gap-1.5 whitespace-nowrap">
-            <p className="text-primary-700 mb-0 text-[1.1rem]">
+          <div className="flex min-w-0 items-start gap-1.5 md:whitespace-nowrap">
+            <p className="text-primary-700 mb-0 text-sm md:text-[1.1rem]">
               {unit}&nbsp;
               <Trans i18nKey="results.footprintBlock.carbone.unitSuffix">
                 de CO₂e&nbsp;/&nbsp;an
@@ -185,7 +185,11 @@ export default async function CarbonFootprintHero({
             .exhaustive()}
         </p>
 
-        <ButtonLink href={ACTIONS_SUGGESTED_PATH} color="primary" size="md">
+        <ButtonLink
+          href={ACTIONS_SUGGESTED_PATH}
+          color="primary"
+          size="md"
+          className="w-full md:w-auto">
           <Trans i18nKey="results.footprintBlock.actionsBlock.link">
             Découvrir mes actions
           </Trans>

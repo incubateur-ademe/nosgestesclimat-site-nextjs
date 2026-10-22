@@ -2233,7 +2233,7 @@ entries:
   results.footprintBlock.carbone.message.close.lock: '<0>Votre empreinte ressemble à celle de millions de Français.</0> Ensemble, nous pouvons faire baisser notre moyenne : trouvez votre première action, et embarquez vos proches.'
   results.footprintBlock.carbone.title: Your carbon footprint
   results.footprintBlock.carbone.title.lock: Votre empreinte carbone
-  results.footprintBlock.carbone.unitSuffix: of CO₂e per year
+  results.footprintBlock.carbone.unitSuffix: of CO₂e per year
   results.footprintBlock.carbone.unitSuffix.lock: de CO₂e / an
   results.footprintBlock.carbone.comparison.equal: Equal to the average*
   results.footprintBlock.carbone.comparison.equal.lock: Égal à la moyenne*
