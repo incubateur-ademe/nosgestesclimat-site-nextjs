@@ -25,6 +25,11 @@ function scrollInlineCtaTo(top: number) {
   })
 }
 
+// The banner stays mounted to slide out: hidden means inert
+function isPinned() {
+  return !screen.getByText('sticky CTA').closest('[inert]')
+}
+
 describe('MobileStickyCta', () => {
   beforeEach(() => {
     vi.useFakeTimers({
@@ -46,7 +51,7 @@ describe('MobileStickyCta', () => {
     renderCta()
 
     expect(screen.getByText('inline CTA')).toBeInTheDocument()
-    expect(screen.getByText('sticky CTA')).toBeInTheDocument()
+    expect(isPinned()).toBe(true)
   })
 
   it('keeps the CTA pinned while the inline one is hidden behind it', () => {
@@ -55,7 +60,7 @@ describe('MobileStickyCta', () => {
 
     scrollInlineCtaTo(700)
 
-    expect(screen.getByText('sticky CTA')).toBeInTheDocument()
+    expect(isPinned()).toBe(true)
   })
 
   it('unpins the CTA once the inline one shows up', () => {
@@ -64,7 +69,7 @@ describe('MobileStickyCta', () => {
 
     scrollInlineCtaTo(600)
 
-    expect(screen.queryByText('sticky CTA')).not.toBeInTheDocument()
+    expect(isPinned()).toBe(false)
   })
 
   it('does not pin the CTA once the user has scrolled past the inline one', () => {
@@ -73,7 +78,7 @@ describe('MobileStickyCta', () => {
 
     scrollInlineCtaTo(-300)
 
-    expect(screen.queryByText('sticky CTA')).not.toBeInTheDocument()
+    expect(isPinned()).toBe(false)
   })
 
   it('pins the CTA again after a jump back to the top', () => {
@@ -83,6 +88,6 @@ describe('MobileStickyCta', () => {
 
     scrollInlineCtaTo(900)
 
-    expect(screen.getByText('sticky CTA')).toBeInTheDocument()
+    expect(isPinned()).toBe(true)
   })
 })

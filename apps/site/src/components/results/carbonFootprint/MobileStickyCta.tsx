@@ -2,6 +2,7 @@
 
 import HideInIframe from '@/components/layout/HideInIframe'
 import BottomBannerWithCTA from '@/design-system/layout/BottomBannerWithCTA'
+import { cn } from 'cn'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -26,7 +27,8 @@ interface Props {
  */
 export default function MobileStickyCta({ children, stickyCta }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const [isBelowFold, setIsBelowFold] = useState(false)
+  // `undefined` until measured after mount
+  const [isBelowFold, setIsBelowFold] = useState<boolean>()
 
   // Read on scroll rather than with an IntersectionObserver: a jump back to the
   // top (iOS status bar tap, anchor) never crosses the inline CTA, so an
@@ -65,13 +67,21 @@ export default function MobileStickyCta({ children, stickyCta }: Props) {
 
       {/* Portaled: an ancestor's transform (e.g. the card's entrance
           animation) would otherwise pin the banner to it, not the viewport.
-          `isBelowFold` is only set after mount, so `document` is defined. */}
-      {isBelowFold &&
+          `isBelowFold` is only set after mount, so `document` is defined.
+          The banner stays mounted once measured so that it can slide out;
+          `inert` keeps it out of reach while it is hidden. */}
+      {isBelowFold !== undefined &&
         createPortal(
           <HideInIframe>
-            <BottomBannerWithCTA className="md:hidden">
-              {stickyCta}
-            </BottomBannerWithCTA>
+            <div inert={!isBelowFold}>
+              <BottomBannerWithCTA
+                className={cn(
+                  'transition duration-300 ease-out motion-reduce:transition-none md:hidden',
+                  !isBelowFold && 'translate-y-full opacity-0'
+                )}>
+                {stickyCta}
+              </BottomBannerWithCTA>
+            </div>
           </HideInIframe>,
           document.body
         )}
